@@ -1,4 +1,3 @@
-S = "${WORKDIR}/git/${ROS_BPN}"
 
 inherit setuptools3
 
