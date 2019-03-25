@@ -1,11 +1,6 @@
 #
 # Copyright (c) 2013 Stefan Herbrechtsmeier, Bielefeld University
-# 
-
-ROS_BPN = "${@d.getVar('BPN', True).replace('-', '_')}"
-
-ROS_SPN ?= "${ROS_BPN}"
-ROS_SP = "${ROS_SPN}-${PV}"
+#
 
 export ros_prefix = "${base_prefix}/opt/ros/${ROS_DISTRO}"
 

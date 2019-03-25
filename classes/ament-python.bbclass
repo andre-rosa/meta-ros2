@@ -1,5 +1,3 @@
-ROS_BPN ?= "${@d.getVar('BPN', True).replace('-', '_')}"
-
 S = "${WORKDIR}/git/${ROS_BPN}"
 
 inherit setuptools3
