@@ -17,13 +17,13 @@ RDEPENDS_${PN} = "\
     ros2service \
     ros2srv \
     ros2topic \
-    ros2-actionlib-msgs \
-    ros2-diagnostic-msgs \
-    ros2-launch \
-    ros2-launch-extensions \
-    ros2-nav-msgs \
-    ros2-std-srvs \
-    ros2-stereo-msgs \
-    ros2-trajectory-msgs \
-    ros2-visualization-msgs \
+    actionlib-msgs \
+    diagnostic-msgs \
+    launch \
+    launch-ros \
+    nav-msgs \
+    std-srvs \
+    stereo-msgs \
+    trajectory-msgs \
+    visualization-msgs \
 "
