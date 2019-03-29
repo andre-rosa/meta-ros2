@@ -11,6 +11,7 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_BUILD_DEPENDS = " \
+    libyaml-vendor \
     rcl \
     rcutils \
     libyaml \
@@ -21,12 +22,14 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    libyaml-vendor \
     libyaml \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    libyaml-vendor \
     libyaml \
 "
 

@@ -49,10 +49,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/depthimage_to_laserscan-release/archive/release/crystal/depthimage_to_laserscan/2.2.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "c1206c91e82edd724407ec9b71d34ca5"
-SRC_URI[sha256sum] = "5f47f24261ddcfafd27a8f7df499d150049acc85156653e7751ab8a2ded9bbdc"
-S = "${WORKDIR}/depthimage_to_laserscan-release-release-crystal-depthimage_to_laserscan-2.2.0-0"
+SRC_URI = "https://github.com/ros2-gbp/depthimage_to_laserscan-release/archive/release/crystal/depthimage_to_laserscan/2.2.1-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "e4109c4dbe1fbf457e461fa85e213b9a"
+SRC_URI[sha256sum] = "582d63c338ab61eaa11d0299ba51a6da91979a75877b6c72208f71891e6b13a1"
+S = "${WORKDIR}/depthimage_to_laserscan-release-release-crystal-depthimage_to_laserscan-2.2.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"

@@ -171,6 +171,7 @@ RDEPENDS_${PN} = " \
     launch-testing \
     libcurl-vendor \
     librealsense2 \
+    libyaml-vendor \
     lifecycle \
     lifecycle-msgs \
     logging-demo \
