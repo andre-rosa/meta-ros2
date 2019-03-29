@@ -3,7 +3,6 @@
 #        Yet in practice all ament-based packages have to depend explicitly on the native
 #        ament-cmake-* packages.
 DEPENDS_append = " \
-    ament-tools-native \
     ament-cmake-native \
     ament-cmake-export-definitions-native \
     ament-cmake-export-dependencies-native \
@@ -16,6 +15,10 @@ DEPENDS_append = " \
     ament-cmake-target-dependencies-native \
     ament-cmake-include-directories-native \
     ament-cmake-test-native \
+"
+
+DEPENDS_append_bouncy = " \
+    ament-tools-native \
 "
 
 EXTRA_OECMAKE_append = " -DBUILD_TESTING=OFF -DPYTHON_SOABI=cpython-35m-${TUNE_ARCH}-${TARGET_OS}${ARMPKGSFX_EABI}"
