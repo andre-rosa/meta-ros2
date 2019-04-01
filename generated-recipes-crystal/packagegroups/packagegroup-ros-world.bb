@@ -20,23 +20,17 @@ RDEPENDS_${PN} = " \
     ament-cmake-copyright \
     ament-cmake-core \
     ament-cmake-cppcheck \
-    ament-cmake-cpplint \
     ament-cmake-export-definitions \
     ament-cmake-export-dependencies \
     ament-cmake-export-include-directories \
     ament-cmake-export-interfaces \
     ament-cmake-export-libraries \
     ament-cmake-export-link-flags \
-    ament-cmake-flake8 \
     ament-cmake-gmock \
     ament-cmake-gtest \
     ament-cmake-include-directories \
     ament-cmake-libraries \
-    ament-cmake-lint-cmake \
     ament-cmake-nose \
-    ament-cmake-pclint \
-    ament-cmake-pep257 \
-    ament-cmake-pep8 \
     ament-cmake-pyflakes \
     ament-cmake-pytest \
     ament-cmake-python \
@@ -44,23 +38,13 @@ RDEPENDS_${PN} = " \
     ament-cmake-target-dependencies \
     ament-cmake-test \
     ament-cmake-uncrustify \
-    ament-cmake-xmllint \
     ament-copyright \
     ament-cppcheck \
-    ament-cpplint \
-    ament-flake8 \
     ament-index-cpp \
     ament-index-python \
-    ament-lint-auto \
-    ament-lint-cmake \
-    ament-lint-common \
     ament-package \
-    ament-pclint \
-    ament-pep257 \
-    ament-pep8 \
     ament-pyflakes \
     ament-uncrustify \
-    ament-xmllint \
     angles \
     apriltag \
     apriltag-msgs \
