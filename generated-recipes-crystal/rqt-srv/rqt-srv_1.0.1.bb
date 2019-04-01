@@ -49,6 +49,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/rqt-srv/rqt-srv_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/rqt-srv/rqt-srv_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-srv/rqt-srv-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-srv/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-srv/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

@@ -60,6 +60,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/pcl-conversions/pcl-conversions_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/pcl-conversions/pcl-conversions_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-conversions/pcl-conversions-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-conversions/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-conversions/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

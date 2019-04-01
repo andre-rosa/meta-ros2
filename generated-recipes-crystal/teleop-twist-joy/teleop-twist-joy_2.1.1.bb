@@ -56,6 +56,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/teleop-twist-joy/teleop-twist-joy_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/teleop-twist-joy/teleop-twist-joy_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/teleop-twist-joy-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

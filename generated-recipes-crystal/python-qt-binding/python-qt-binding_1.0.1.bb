@@ -11,7 +11,7 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=ced11b5ec2a0776fd01740115328457b"
 
 ROS_BUILD_DEPENDS = " \
-    python3-qt5-bindings \
+    python3-pyqt5 \
     qtbase \
 "
 
@@ -24,7 +24,7 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python3-qt5-bindings \
+    python3-pyqt5 \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -53,6 +53,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/python-qt-binding/python-qt-binding_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/python-qt-binding/python-qt-binding_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/python-qt-binding/python-qt-binding-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/python-qt-binding/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/python-qt-binding/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

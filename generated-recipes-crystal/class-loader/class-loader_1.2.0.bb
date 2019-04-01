@@ -58,6 +58,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/class-loader/class-loader_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/class-loader/class-loader_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/class-loader/class-loader-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/class-loader/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/class-loader/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

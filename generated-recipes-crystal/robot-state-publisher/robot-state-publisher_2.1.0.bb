@@ -18,6 +18,7 @@ ROS_BUILD_DEPENDS = " \
     sensor-msgs \
     tf2-ros \
     urdf \
+    urdfdom-headers \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -36,6 +37,7 @@ ROS_EXEC_DEPENDS = " \
     sensor-msgs \
     tf2-ros \
     urdf \
+    urdfdom-headers \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -63,6 +65,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/robot-state-publisher/robot-state-publisher_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/robot-state-publisher/robot-state-publisher_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-state-publisher/robot-state-publisher-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-state-publisher/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-state-publisher/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

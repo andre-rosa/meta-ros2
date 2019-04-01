@@ -44,6 +44,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/angles/angles_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/angles/angles_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/angles/angles-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/angles/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/angles/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

@@ -50,6 +50,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/console-bridge-vendor/console-bridge-vendor_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/console-bridge-vendor/console-bridge-vendor_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/console-bridge-vendor-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

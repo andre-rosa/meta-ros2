@@ -61,6 +61,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/pluginlib/pluginlib_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/pluginlib/pluginlib_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/pluginlib-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

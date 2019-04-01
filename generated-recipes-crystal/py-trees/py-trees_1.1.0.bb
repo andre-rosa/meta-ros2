@@ -49,6 +49,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/py-trees/py-trees_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/py-trees/py-trees_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees/py-trees-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

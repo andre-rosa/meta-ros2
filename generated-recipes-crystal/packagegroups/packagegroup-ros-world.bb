@@ -171,7 +171,6 @@ RDEPENDS_${PN} = " \
     launch-testing \
     libcurl-vendor \
     librealsense2 \
-    libyaml-vendor \
     lifecycle \
     lifecycle-msgs \
     logging-demo \
@@ -348,6 +347,8 @@ RDEPENDS_${PN} = " \
     uncrustify-vendor \
     unique-identifier-msgs \
     urdf \
+    urdfdom \
+    urdfdom-headers \
     vision-opencv \
     visualization-msgs \
     yaml-cpp-vendor \

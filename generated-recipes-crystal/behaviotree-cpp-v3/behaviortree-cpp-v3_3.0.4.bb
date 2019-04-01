@@ -55,6 +55,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/behaviotree-cpp-v3/behaviotree-cpp-v3_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/behaviotree-cpp-v3/behaviotree-cpp-v3_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviotree-cpp-v3/behaviotree-cpp-v3-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviotree-cpp-v3/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviotree-cpp-v3/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

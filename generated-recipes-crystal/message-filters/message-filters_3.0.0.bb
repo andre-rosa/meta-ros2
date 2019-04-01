@@ -55,6 +55,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/message-filters/message-filters_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/message-filters/message-filters_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/message-filters-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

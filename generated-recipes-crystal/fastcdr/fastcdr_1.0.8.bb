@@ -44,6 +44,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/fastcdr/fastcdr_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/fastcdr/fastcdr_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastcdr/fastcdr-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastcdr/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastcdr/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

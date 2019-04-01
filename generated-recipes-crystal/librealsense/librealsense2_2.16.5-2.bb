@@ -72,6 +72,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/librealsense/librealsense_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/librealsense/librealsense_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/librealsense/librealsense-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/librealsense/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/librealsense/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

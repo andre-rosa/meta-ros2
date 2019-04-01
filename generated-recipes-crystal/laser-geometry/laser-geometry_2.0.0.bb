@@ -62,6 +62,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/laser-geometry/laser-geometry_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/laser-geometry/laser-geometry_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-geometry/laser-geometry-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-geometry/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-geometry/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

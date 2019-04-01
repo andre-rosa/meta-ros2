@@ -48,6 +48,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/eigen-stl-containers/eigen-stl-containers_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/eigen-stl-containers/eigen-stl-containers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigen-stl-containers/eigen-stl-containers-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigen-stl-containers/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigen-stl-containers/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

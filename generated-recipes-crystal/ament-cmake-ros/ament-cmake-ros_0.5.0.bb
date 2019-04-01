@@ -49,6 +49,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/ament-cmake-ros/ament-cmake-ros_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/ament-cmake-ros/ament-cmake-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/ament-cmake-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

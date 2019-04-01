@@ -11,7 +11,7 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_BUILD_DEPENDS = " \
-    python3-qt5-bindings \
+    python3-pyqt5 \
     qt5-qmake \
 "
 

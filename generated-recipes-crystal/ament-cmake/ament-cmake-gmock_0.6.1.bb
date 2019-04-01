@@ -22,7 +22,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = " \
     ament-cmake-gtest-native \
     ament-cmake-test-native \
     gmock-vendor-native \
-    google-mock-native \
+    gmock-native \
 "
 
 ROS_EXEC_DEPENDS = ""

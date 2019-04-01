@@ -44,6 +44,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/yaml-cpp-vendor/yaml-cpp-vendor_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/yaml-cpp-vendor/yaml-cpp-vendor_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yaml-cpp-vendor/yaml-cpp-vendor-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yaml-cpp-vendor/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yaml-cpp-vendor/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

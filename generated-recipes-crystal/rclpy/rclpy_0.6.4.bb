@@ -63,10 +63,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/rclpy-release/archive/release/crystal/rclpy/0.6.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "fb225c9c9cc68eb26f02baa28a81bd6a"
-SRC_URI[sha256sum] = "840203ff5552670412bcf83ff3dec5c2e2d2916ac7860034897e7086af34414d"
-S = "${WORKDIR}/rclpy-release-release-crystal-rclpy-0.6.3-1"
+SRC_URI = "https://github.com/ros2-gbp/rclpy-release/archive/release/crystal/rclpy/0.6.4-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "b4af35baa27a2aebce6019ba635cde8e"
+SRC_URI[sha256sum] = "f038de02819aeeb4c26500888db7ac0b56115fc9036e6c0816e62a75ad604dc7"
+S = "${WORKDIR}/rclpy-release-release-crystal-rclpy-0.6.4-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
@@ -75,6 +75,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/rclpy/rclpy_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/rclpy/rclpy_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclpy/rclpy-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclpy/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclpy/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

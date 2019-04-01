@@ -15,6 +15,7 @@ ROS_BUILD_DEPENDS = " \
     libtinyxml \
     tinyxml-vendor \
     urdf \
+    urdfdom-headers \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -23,6 +24,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     orocos-kdl \
+    urdfdom-headers \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -59,6 +61,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/kdl-parser/kdl-parser_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/kdl-parser/kdl-parser_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kdl-parser/kdl-parser-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kdl-parser/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kdl-parser/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

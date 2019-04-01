@@ -62,6 +62,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/rmw-implementation/rmw-implementation_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/rmw-implementation/rmw-implementation_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-implementation/rmw-implementation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-implementation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-implementation/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

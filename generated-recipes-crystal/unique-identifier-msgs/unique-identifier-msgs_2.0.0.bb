@@ -47,6 +47,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/unique-identifier-msgs/unique-identifier-msgs_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/unique-identifier-msgs/unique-identifier-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier-msgs/unique-identifier-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier-msgs/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

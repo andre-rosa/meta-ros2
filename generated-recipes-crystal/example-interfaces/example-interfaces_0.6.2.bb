@@ -52,6 +52,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/example-interfaces/example-interfaces_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/example-interfaces/example-interfaces_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/example-interfaces/example-interfaces-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/example-interfaces/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/example-interfaces/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}

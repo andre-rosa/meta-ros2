@@ -44,6 +44,8 @@ ROS_RECIPES_TREE = "recipes-ros2"
 include ${ROS_LAYERDIR}/recipes-ros/apriltag2/apriltag2_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/apriltag2/apriltag2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2/apriltag2-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_${ROS_DISTRO}
