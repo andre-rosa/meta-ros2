@@ -38,10 +38,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/launch-release/archive/release/crystal/launch_testing/0.7.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "5c2d075a0c3415e1496f4c9ed67dcf51"
-SRC_URI[sha256sum] = "d73dc1f4e6c3be410dbed78214e13679c3079361f1f632890611cd1858248045"
-S = "${WORKDIR}/launch-release-release-crystal-launch_testing-0.7.3-0"
+SRC_URI = "https://github.com/ros2-gbp/launch-release/archive/release/crystal/launch_testing/0.7.4-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "66d4c4c82c5d08f003e10636d72cebdd"
+SRC_URI[sha256sum] = "f2e76510b9b46a57150d902ba813ec46f8f9032e2d0152091bbddc7c37c0d959"
+S = "${WORKDIR}/launch-release-release-crystal-launch_testing-0.7.4-0"
 
 ROS_BUILD_TYPE = "ament_python"
 ROS_RECIPES_TREE = "recipes-ros2"

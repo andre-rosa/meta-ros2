@@ -170,7 +170,6 @@ RDEPENDS_${PN} = " \
     launch-ros \
     launch-testing \
     libcurl-vendor \
-    librealsense2 \
     lifecycle \
     lifecycle-msgs \
     logging-demo \
@@ -232,8 +231,6 @@ RDEPENDS_${PN} = " \
     rclcpp-lifecycle \
     rclpy \
     rcutils \
-    realsense-camera-msgs \
-    realsense-ros2-camera \
     resource-retriever \
     rmw \
     rmw-fastrtps-cpp \

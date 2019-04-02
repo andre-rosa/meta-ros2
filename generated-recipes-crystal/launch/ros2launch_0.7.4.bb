@@ -3,27 +3,39 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "The ROS launch tool."
-AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+DESCRIPTION = "The launch command for ROS 2 command line tools."
+AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_BUILD_DEPENDS = " \
-    osrf-pycommon \
+    ament-index-python \
+    launch \
+    launch-ros \
+    ros2cli \
+    ros2pkg \
 "
 
 ROS_BUILDTOOL_DEPENDS = ""
 
 ROS_EXPORT_DEPENDS = " \
-    osrf-pycommon \
+    ament-index-python \
+    launch \
+    launch-ros \
+    ros2cli \
+    ros2pkg \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    osrf-pycommon \
+    ament-index-python \
+    launch \
+    launch-ros \
+    ros2cli \
+    ros2pkg \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -41,10 +53,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/launch-release/archive/release/crystal/launch/0.7.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "b77b3d791b3cb614a6eabcd4b1a5a223"
-SRC_URI[sha256sum] = "85ac5be9406fac7aefe6445d6b9e0227ad52840b8f8ded9671aa9925d3a4f829"
-S = "${WORKDIR}/launch-release-release-crystal-launch-0.7.3-0"
+SRC_URI = "https://github.com/ros2-gbp/launch-release/archive/release/crystal/ros2launch/0.7.4-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "b9fc11fc5f0692b69be4e4ba9215e6eb"
+SRC_URI[sha256sum] = "3d01086b81c441f2d45bfeeb3860f45d5e74a8b3988029ce280755ccdcc65cb1"
+S = "${WORKDIR}/launch-release-release-crystal-ros2launch-0.7.4-0"
 
 ROS_BUILD_TYPE = "ament_python"
 ROS_RECIPES_TREE = "recipes-ros2"

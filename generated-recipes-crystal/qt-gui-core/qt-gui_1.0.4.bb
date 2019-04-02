@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9de
 
 ROS_BUILD_DEPENDS = " \
     python3-pyqt5 \
-    qt5-qmake \
+    qtbase \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
