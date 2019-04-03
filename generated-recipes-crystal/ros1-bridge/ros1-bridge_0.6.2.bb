@@ -14,6 +14,7 @@ ROS_BUILD_DEPENDS = " \
     actionlib-msgs \
     builtin-interfaces \
     diagnostic-msgs \
+    gazebo-msgs \
     geometry-msgs \
     nav-msgs \
     pkgconf \
@@ -49,6 +50,7 @@ ROS_EXEC_DEPENDS = " \
     actionlib-msgs \
     builtin-interfaces \
     diagnostic-msgs \
+    gazebo-msgs \
     geometry-msgs \
     nav-msgs \
     python-pyyaml \
