@@ -15,11 +15,11 @@ ROS_BUILD_DEPENDS = " \
     launch-ros \
     launch-testing \
     message-filters \
+    nav-msgs \
     nav2-common \
     nav2-dynamic-params \
     nav2-tasks \
     nav2-util \
-    nav-msgs \
     rclcpp \
     sensor-msgs \
     std-srvs \
@@ -37,10 +37,10 @@ ROS_EXPORT_DEPENDS = " \
     launch-ros \
     launch-testing \
     message-filters \
+    nav-msgs \
     nav2-dynamic-params \
     nav2-tasks \
     nav2-util \
-    nav-msgs \
     rclcpp \
     sensor-msgs \
     std-srvs \
@@ -56,10 +56,10 @@ ROS_EXEC_DEPENDS = " \
     launch-ros \
     launch-testing \
     message-filters \
+    nav-msgs \
     nav2-dynamic-params \
     nav2-tasks \
     nav2-util \
-    nav-msgs \
     rclcpp \
     sensor-msgs \
     std-srvs \

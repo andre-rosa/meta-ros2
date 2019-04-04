@@ -42,8 +42,8 @@ ROS_TEST_DEPENDS = " \
     ament-index-python \
     ament-lint-auto \
     ament-lint-common \
-    python3-pytest \
     python-cmake-module \
+    python3-pytest \
     rmw \
     rmw-implementation \
     rmw-implementation-cmake \

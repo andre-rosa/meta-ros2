@@ -21,8 +21,8 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python3-catkin-pkg-modules \
     python-qt-binding \
+    python3-catkin-pkg-modules \
     qt-gui \
     qt-gui-py-common \
     rqt-gui \

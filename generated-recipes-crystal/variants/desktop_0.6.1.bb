@@ -51,8 +51,8 @@ ROS_EXEC_DEPENDS = " \
     pcl-conversions \
     pendulum-control \
     ros-base \
-    rviz2 \
     rviz-default-plugins \
+    rviz2 \
     sros2 \
     teleop-twist-joy \
     teleop-twist-keyboard \

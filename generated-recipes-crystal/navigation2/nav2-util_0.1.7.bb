@@ -12,12 +12,12 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=12c26a18c7f493f
 
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
-    nav2-common \
-    nav2-msgs \
-    nav-msgs \
-    rclcpp \
     libsdl \
     libsdl-image \
+    nav-msgs \
+    nav2-common \
+    nav2-msgs \
+    rclcpp \
     tf2 \
     tf2-ros \
 "
@@ -32,11 +32,11 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
-    nav2-msgs \
-    nav-msgs \
-    rclcpp \
     libsdl \
     libsdl-image \
+    nav-msgs \
+    nav2-msgs \
+    rclcpp \
     tf2 \
     tf2-ros \
 "

@@ -56,11 +56,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
-    qtbase \
-    qtbase \
-    qtbase \
-    qtbase \
     pluginlib \
+    qtbase \
     rclcpp \
     resource-retriever \
     rviz-ogre-vendor \

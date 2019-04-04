@@ -25,8 +25,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     ament-index-python \
-    python3-catkin-pkg-modules \
     python-qt-binding \
+    python3-catkin-pkg-modules \
     tango-icon-theme \
 "
 

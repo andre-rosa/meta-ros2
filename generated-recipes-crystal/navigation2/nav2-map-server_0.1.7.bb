@@ -14,11 +14,11 @@ ROS_BUILD_DEPENDS = " \
     bullet \
     launch-ros \
     launch-testing \
-    nav2-common \
-    nav-msgs \
-    rclcpp \
     libsdl \
     libsdl-image \
+    nav-msgs \
+    nav2-common \
+    rclcpp \
     std-msgs \
     tf2 \
     yaml-cpp-vendor \
@@ -32,10 +32,10 @@ ROS_EXPORT_DEPENDS = " \
     bullet \
     launch-ros \
     launch-testing \
-    nav-msgs \
-    rclcpp \
     libsdl \
     libsdl-image \
+    nav-msgs \
+    rclcpp \
     std-msgs \
     tf2 \
     yaml-cpp-vendor \
@@ -47,10 +47,10 @@ ROS_EXEC_DEPENDS = " \
     bullet \
     launch-ros \
     launch-testing \
-    nav-msgs \
-    rclcpp \
     libsdl \
     libsdl-image \
+    nav-msgs \
+    rclcpp \
     std-msgs \
     tf2 \
     yaml-cpp-vendor \

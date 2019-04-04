@@ -15,10 +15,10 @@ ROS_BUILD_DEPENDS = " \
     class-loader \
     cv-bridge \
     geometry-msgs \
-    pcl \
     message-filters \
     object-analytics-msgs \
     object-msgs \
+    pcl \
     pcl-conversions \
     rclcpp \
     sensor-msgs \
@@ -38,11 +38,10 @@ ROS_EXEC_DEPENDS = " \
     class-loader \
     cv-bridge \
     geometry-msgs \
-    pcl \
-    pcl \
     message-filters \
     object-analytics-msgs \
     object-msgs \
+    pcl \
     pcl-conversions \
     rclcpp \
     sensor-msgs \

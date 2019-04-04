@@ -13,11 +13,11 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9de
 ROS_BUILD_DEPENDS = " \
     angles \
     dwb-core \
+    nav-2d-msgs \
+    nav-2d-utils \
     nav2-common \
     nav2-dynamic-params \
     nav2-util \
-    nav-2d-msgs \
-    nav-2d-utils \
     pluginlib \
     rclcpp \
 "
@@ -29,10 +29,10 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     angles \
     dwb-core \
-    nav2-dynamic-params \
-    nav2-util \
     nav-2d-msgs \
     nav-2d-utils \
+    nav2-dynamic-params \
+    nav2-util \
     pluginlib \
     rclcpp \
 "
@@ -42,10 +42,10 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     angles \
     dwb-core \
-    nav2-dynamic-params \
-    nav2-util \
     nav-2d-msgs \
     nav-2d-utils \
+    nav2-dynamic-params \
+    nav2-util \
     pluginlib \
     rclcpp \
 "

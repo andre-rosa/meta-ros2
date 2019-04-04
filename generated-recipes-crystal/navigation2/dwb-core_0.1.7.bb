@@ -13,11 +13,11 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc
 ROS_BUILD_DEPENDS = " \
     dwb-msgs \
     geometry-msgs \
-    nav2-common \
-    nav2-costmap-2d \
     nav-2d-msgs \
     nav-2d-utils \
     nav-msgs \
+    nav2-common \
+    nav2-costmap-2d \
     pluginlib \
     rclcpp \
     sensor-msgs \
@@ -37,9 +37,9 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     dwb-msgs \
     geometry-msgs \
-    nav2-costmap-2d \
     nav-2d-utils \
     nav-msgs \
+    nav2-costmap-2d \
     pluginlib \
     rclcpp \
     std-msgs \

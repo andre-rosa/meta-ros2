@@ -15,11 +15,11 @@ ROS_BUILD_DEPENDS = " \
     costmap-queue \
     dwb-core \
     geometry-msgs \
+    nav-2d-msgs \
+    nav-2d-utils \
     nav2-common \
     nav2-costmap-2d \
     nav2-util \
-    nav-2d-msgs \
-    nav-2d-utils \
     pluginlib \
     rclcpp \
     sensor-msgs \
@@ -34,10 +34,10 @@ ROS_EXPORT_DEPENDS = " \
     costmap-queue \
     dwb-core \
     geometry-msgs \
-    nav2-costmap-2d \
-    nav2-util \
     nav-2d-msgs \
     nav-2d-utils \
+    nav2-costmap-2d \
+    nav2-util \
     pluginlib \
     rclcpp \
     sensor-msgs \
@@ -50,10 +50,10 @@ ROS_EXEC_DEPENDS = " \
     costmap-queue \
     dwb-core \
     geometry-msgs \
-    nav2-costmap-2d \
-    nav2-util \
     nav-2d-msgs \
     nav-2d-utils \
+    nav2-costmap-2d \
+    nav2-util \
     pluginlib \
     rclcpp \
     sensor-msgs \

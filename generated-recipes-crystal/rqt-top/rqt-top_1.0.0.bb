@@ -21,8 +21,8 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python3-psutil \
     python-qt-binding \
+    python3-psutil \
     rclpy \
     rqt-gui \
     rqt-gui-py \

@@ -11,8 +11,8 @@ LICENSE = "Apache-2.0 & Boost-1.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=401a7342a877608092ef332b6948eb03"
 
 ROS_BUILD_DEPENDS = " \
-    poco \
     libpcre \
+    poco \
     zlib \
 "
 
@@ -21,8 +21,8 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    poco \
     libpcre \
+    poco \
     zlib \
 "
 
@@ -31,8 +31,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = " \
 "
 
 ROS_EXEC_DEPENDS = " \
-    poco \
     libpcre \
+    poco \
     zlib \
 "
 

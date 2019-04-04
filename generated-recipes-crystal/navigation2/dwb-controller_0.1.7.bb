@@ -13,13 +13,13 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493f
 ROS_BUILD_DEPENDS = " \
     boost \
     dwb-core \
+    nav-2d-msgs \
+    nav-2d-utils \
     nav2-common \
     nav2-msgs \
     nav2-robot \
     nav2-tasks \
     nav2-util \
-    nav-2d-msgs \
-    nav-2d-utils \
     rclcpp \
     std-msgs \
 "
@@ -31,12 +31,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     boost \
     dwb-core \
+    nav-2d-msgs \
+    nav-2d-utils \
     nav2-msgs \
     nav2-robot \
     nav2-tasks \
     nav2-util \
-    nav-2d-msgs \
-    nav-2d-utils \
     rclcpp \
     std-msgs \
 "
@@ -46,12 +46,12 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     boost \
     dwb-core \
+    nav-2d-msgs \
+    nav-2d-utils \
     nav2-msgs \
     nav2-robot \
     nav2-tasks \
     nav2-util \
-    nav-2d-msgs \
-    nav-2d-utils \
     rclcpp \
     std-msgs \
 "

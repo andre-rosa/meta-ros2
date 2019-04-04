@@ -50,13 +50,10 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     laser-geometry \
-    qtbase \
-    qtbase \
-    qtbase \
-    qtbase \
     map-msgs \
     nav-msgs \
     pluginlib \
+    qtbase \
     rclcpp \
     resource-retriever \
     rviz-common \

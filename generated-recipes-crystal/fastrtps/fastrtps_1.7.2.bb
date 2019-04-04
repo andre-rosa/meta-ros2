@@ -22,16 +22,16 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     fastcdr \
-    openssl \
     libtinyxml2 \
+    openssl \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     fastcdr \
-    openssl \
     libtinyxml2 \
+    openssl \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

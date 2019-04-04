@@ -13,8 +13,8 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493f
 ROS_BUILD_DEPENDS = " \
     builtin-interfaces \
     cv-bridge \
-    libeigen \
     image-transport \
+    libeigen \
     librealsense2 \
     rclcpp \
     realsense-camera-msgs \

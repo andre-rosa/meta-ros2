@@ -13,15 +13,15 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=18;endline=18;md5=d566ef916e9de
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     laser-geometry \
-    pcl \
     map-msgs \
     message-filters \
+    nav-msgs \
     nav2-common \
     nav2-dynamic-params \
     nav2-msgs \
     nav2-util \
     nav2-voxel-grid \
-    nav-msgs \
+    pcl \
     pluginlib \
     rclcpp \
     sensor-msgs \
@@ -40,14 +40,14 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     geometry-msgs \
     laser-geometry \
-    pcl \
     map-msgs \
     message-filters \
+    nav-msgs \
     nav2-dynamic-params \
     nav2-msgs \
     nav2-util \
     nav2-voxel-grid \
-    nav-msgs \
+    pcl \
     pluginlib \
     rclcpp \
     sensor-msgs \
@@ -64,14 +64,14 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     laser-geometry \
-    pcl \
     map-msgs \
     message-filters \
+    nav-msgs \
     nav2-dynamic-params \
     nav2-msgs \
     nav2-util \
     nav2-voxel-grid \
-    nav-msgs \
+    pcl \
     pluginlib \
     rclcpp \
     sensor-msgs \

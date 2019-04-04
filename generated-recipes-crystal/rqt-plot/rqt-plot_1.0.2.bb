@@ -21,10 +21,10 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python3-catkin-pkg-modules \
     python-matplotlib \
-    python3-numpy \
     python-qt-binding \
+    python3-catkin-pkg-modules \
+    python3-numpy \
     qt-gui-py-common \
     rclpy \
     rqt-gui \

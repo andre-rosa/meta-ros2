@@ -6,8 +6,6 @@
 DESCRIPTION = "All packages listed in ${ROS_DISTRO}-cache.yaml"
 LICENSE = "MIT"
 
-inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
 inherit packagegroup
 
 PACKAGES = "${PN}"
@@ -15,10 +13,8 @@ PACKAGES = "${PN}"
 RDEPENDS_${PN} = " \
     action-msgs \
     actionlib-msgs \
-    ament-clang-format \
     ament-cmake \
     ament-cmake-auto \
-    ament-cmake-clang-format \
     ament-cmake-copyright \
     ament-cmake-core \
     ament-cmake-cppcheck \
@@ -357,3 +353,9 @@ RDEPENDS_${PN} = " \
     visualization-msgs \
     yaml-cpp-vendor \
 "
+
+# Allow the above settings to be overridden.
+include ${ROS_LAYERDIR}/recipes-ros/packagegroups/packagegroup-ros-world-${ROS_DISTRO}.inc
+
+inherit ros_superflore_generated
+inherit ros_${ROS_DISTRO}

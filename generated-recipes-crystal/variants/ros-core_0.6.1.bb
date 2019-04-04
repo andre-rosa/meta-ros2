@@ -38,6 +38,7 @@ ROS_EXEC_DEPENDS = " \
     rclcpp \
     rclcpp-lifecycle \
     rclpy \
+    ros-environment \
     ros2launch \
     ros2lifecycle \
     ros2msg \
@@ -49,7 +50,6 @@ ROS_EXEC_DEPENDS = " \
     ros2service \
     ros2srv \
     ros2topic \
-    ros-environment \
     rosidl-default-generators \
     rosidl-default-runtime \
 "

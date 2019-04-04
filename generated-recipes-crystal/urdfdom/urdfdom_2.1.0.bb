@@ -11,8 +11,8 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_BUILD_DEPENDS = " \
-    console-bridge-vendor \
     console-bridge \
+    console-bridge-vendor \
     libtinyxml \
     tinyxml-vendor \
     urdfdom-headers \
@@ -27,8 +27,8 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    console-bridge-vendor \
     console-bridge \
+    console-bridge-vendor \
     libtinyxml \
     tinyxml-vendor \
     urdfdom-headers \

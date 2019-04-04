@@ -15,7 +15,6 @@ ROS_BUILD_DEPENDS = " \
     pluginlib \
     python-qt-binding \
     qtbase \
-    qtbase \
     tinyxml2-vendor \
 "
 

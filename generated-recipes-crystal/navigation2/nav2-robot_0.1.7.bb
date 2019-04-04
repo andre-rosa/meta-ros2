@@ -12,8 +12,8 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=12c26a18c7f493f
 
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
-    nav2-common \
     nav-msgs \
+    nav2-common \
     rclcpp \
     urdf \
 "

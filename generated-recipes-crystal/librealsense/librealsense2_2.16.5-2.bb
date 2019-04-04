@@ -12,14 +12,14 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=24;endline=24;md5=e8978a5103d23
 
 ROS_BUILD_DEPENDS = " \
     dkms \
-    gtk+3 \
+    eudev \
     glfw \
-    openssl \
+    gtk+3 \
     libusb1 \
     linux-headers-generic \
     mesa \
+    openssl \
     pkgconf \
-    eudev \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -28,26 +28,26 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     dkms \
-    gtk+3 \
+    eudev \
     glfw \
-    openssl \
+    gtk+3 \
     libusb1 \
     linux-headers-generic \
     mesa \
-    eudev \
+    openssl \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     dkms \
-    gtk+3 \
+    eudev \
     glfw \
-    openssl \
+    gtk+3 \
     libusb1 \
     linux-headers-generic \
     mesa \
-    eudev \
+    openssl \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

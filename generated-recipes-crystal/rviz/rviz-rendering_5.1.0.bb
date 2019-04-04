@@ -35,9 +35,6 @@ ROS_EXEC_DEPENDS = " \
     ament-index-cpp \
     libeigen \
     qtbase \
-    qtbase \
-    qtbase \
-    qtbase \
     resource-retriever \
     rviz-assimp-vendor \
     rviz-ogre-vendor \

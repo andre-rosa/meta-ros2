@@ -13,12 +13,12 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=12c26a18c7f493f
 ROS_BUILD_DEPENDS = " \
     builtin-interfaces \
     geometry-msgs \
+    nav-msgs \
     nav2-common \
     nav2-msgs \
     nav2-robot \
     nav2-tasks \
     nav2-util \
-    nav-msgs \
     rclcpp \
     visualization-msgs \
 "
@@ -34,11 +34,11 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     builtin-interfaces \
     geometry-msgs \
+    nav-msgs \
     nav2-msgs \
     nav2-robot \
     nav2-tasks \
     nav2-util \
-    nav-msgs \
     rclcpp \
     visualization-msgs \
 "

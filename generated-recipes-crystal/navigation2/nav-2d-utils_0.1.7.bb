@@ -12,10 +12,10 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9de
 
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
-    nav2-common \
-    nav2-msgs \
     nav-2d-msgs \
     nav-msgs \
+    nav2-common \
+    nav2-msgs \
     tf2 \
     tf2-geometry-msgs \
 "
@@ -26,9 +26,9 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     geometry-msgs \
-    nav2-msgs \
     nav-2d-msgs \
     nav-msgs \
+    nav2-msgs \
     tf2 \
     tf2-geometry-msgs \
 "
@@ -37,9 +37,9 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
-    nav2-msgs \
     nav-2d-msgs \
     nav-msgs \
+    nav2-msgs \
     tf2 \
     tf2-geometry-msgs \
 "

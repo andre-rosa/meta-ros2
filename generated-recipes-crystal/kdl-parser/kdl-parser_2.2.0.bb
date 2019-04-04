@@ -11,8 +11,8 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_BUILD_DEPENDS = " \
-    orocos-kdl \
     libtinyxml \
+    orocos-kdl \
     tinyxml-vendor \
     urdf \
     urdfdom-headers \
@@ -30,8 +30,8 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    orocos-kdl \
     libtinyxml \
+    orocos-kdl \
     tinyxml-vendor \
     urdf \
 "
