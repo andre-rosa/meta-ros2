@@ -13,8 +13,10 @@ PACKAGES = "${PN}"
 RDEPENDS_${PN} = " \
     action-msgs \
     actionlib-msgs \
+    ament-clang-format \
     ament-cmake \
     ament-cmake-auto \
+    ament-cmake-clang-format \
     ament-cmake-copyright \
     ament-cmake-core \
     ament-cmake-cppcheck \
@@ -152,6 +154,7 @@ RDEPENDS_${PN} = " \
     fmi-adapter-examples \
     gazebo-dev \
     gazebo-msgs \
+    gazebo-plugins \
     gazebo-ros \
     gazebo-ros-pkgs \
     geometry-msgs \
@@ -171,6 +174,7 @@ RDEPENDS_${PN} = " \
     launch-testing \
     libcurl-vendor \
     librealsense2 \
+    libyaml-vendor \
     lifecycle \
     lifecycle-msgs \
     logging-demo \
