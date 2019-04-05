@@ -2,3 +2,15 @@
 
 # Fetched tarballs have incorrect top level directory.
 S = "${WORKDIR}/osrf_testing_tools_cpp-release-release-crystal-${ROS_BPN}-1.1.0-0"
+
+# Need to package similar to a ament thing
+FILES_${PN} = " \
+    ${datadir}/${ROS_BPN}/vendor \
+    ${libdir}/${ROS_BPN} \
+    ${libdir}/lib*.so \
+"
+
+FILES_${PN}-dev = " \
+    ${datadir}/${ROS_BPN}/cmake \
+    ${includedir} \
+"
