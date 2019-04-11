@@ -23,7 +23,10 @@ ROS_EXPORT_DEPENDS = " \
     log4cxx \
 "
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = ""
+ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    ament-cmake-ros-native \
+    python3-empy-native \
+"
 
 ROS_EXEC_DEPENDS = " \
     log4cxx \
@@ -53,6 +56,9 @@ S = "${WORKDIR}/rcl_logging-release-release-crystal-rcl_logging_log4cxx-0.2.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = " \
+    rcl_logging_packages \
+"
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/rcl-logging/rcl-logging_common.inc
@@ -62,5 +68,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

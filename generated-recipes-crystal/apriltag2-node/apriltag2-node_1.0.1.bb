@@ -33,7 +33,9 @@ ROS_EXPORT_DEPENDS = " \
     tf2-msgs \
 "
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = ""
+ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    ament-cmake-native \
+"
 
 ROS_EXEC_DEPENDS = " \
     apriltag \
@@ -61,6 +63,7 @@ S = "${WORKDIR}/apriltag2_node-release-release-crystal-apriltag2_node-1.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/apriltag2-node/apriltag2-node_common.inc
@@ -70,5 +73,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2-node/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2-node/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

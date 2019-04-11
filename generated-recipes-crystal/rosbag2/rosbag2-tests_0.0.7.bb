@@ -3,38 +3,49 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "Entry point for rosbag in ROS 2"
+DESCRIPTION = "Tests package for rosbag2"
 AUTHOR = "Karsten Knese <karsten@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_BUILD_DEPENDS = " \
-    ros2cli \
-    rosbag2-transport \
+    ament-index-cpp \
 "
 
-ROS_BUILDTOOL_DEPENDS = ""
+ROS_BUILDTOOL_DEPENDS = " \
+    ament-cmake-native \
+"
 
 ROS_EXPORT_DEPENDS = " \
-    ros2cli \
-    rosbag2-transport \
+    ament-index-cpp \
 "
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = ""
+ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    ament-cmake-native \
+"
 
 ROS_EXEC_DEPENDS = " \
-    ros2cli \
-    rosbag2-transport \
+    ament-index-cpp \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    ament-copyright \
-    ament-flake8 \
-    ament-pep257 \
-    python3-pytest \
+    ament-cmake-gmock \
+    ament-lint-auto \
+    ament-lint-common \
+    rclcpp \
+    ros1-bridge \
+    ros2bag \
+    rosbag2 \
+    rosbag2-bag-v2-plugins \
+    rosbag2-converter-default-plugins \
+    rosbag2-storage \
+    rosbag2-storage-default-plugins \
+    rosbag2-test-common \
+    std-msgs \
+    test-msgs \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -44,13 +55,14 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/rosbag2-release/archive/release/crystal/ros2bag/0.0.6-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "c150243e7084369704e44b6ab4f4c69d"
-SRC_URI[sha256sum] = "deaa02d1f5f7d095c3e1f7e190f8abe3d87c57559c35ca1a06011f3cf3f13082"
-S = "${WORKDIR}/rosbag2-release-release-crystal-ros2bag-0.0.6-0"
+SRC_URI = "https://github.com/ros2-gbp/rosbag2-release/archive/release/crystal/rosbag2_tests/0.0.7-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "68a6450019ca89d8884dfd3fcd5929db"
+SRC_URI[sha256sum] = "c29de4e032b989e2d724d9270d9ed4aedd45354b9c989d99c7ff09265cafb577"
+S = "${WORKDIR}/rosbag2-release-release-crystal-rosbag2_tests-0.0.7-0"
 
-ROS_BUILD_TYPE = "ament_python"
+ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/rosbag2/rosbag2_common.inc
@@ -60,5 +72,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

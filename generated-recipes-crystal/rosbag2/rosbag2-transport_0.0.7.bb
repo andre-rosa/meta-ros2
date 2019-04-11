@@ -3,7 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "SQLite 3 vendor package"
+DESCRIPTION = "Layer encapsulating ROS middleware to allow rosbag2 to be used with or without middleware"
 AUTHOR = "Karsten Knese <karsten@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
@@ -11,25 +11,42 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_BUILD_DEPENDS = " \
-    sqlite3 \
+    rclcpp \
+    rmw \
+    rosbag2 \
+    shared-queues-vendor \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
-    cmake-native \
+    ament-cmake-ros-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    sqlite3 \
+    rclcpp \
+    rmw \
+    rosbag2 \
+    shared-queues-vendor \
 "
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = ""
+ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    ament-cmake-ros-native \
+"
 
 ROS_EXEC_DEPENDS = " \
-    sqlite3 \
+    rclcpp \
+    rmw \
+    rosbag2 \
+    shared-queues-vendor \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = ""
+ROS_TEST_DEPENDS = " \
+    ament-cmake-gmock \
+    ament-lint-auto \
+    ament-lint-common \
+    rosbag2-test-common \
+    test-msgs \
+"
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually
@@ -38,13 +55,14 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/rosbag2-release/archive/release/crystal/sqlite3_vendor/0.0.6-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "6390215f8bc02588bb1b268adc0bf91e"
-SRC_URI[sha256sum] = "57e058ff6dece26f6fa45e0c22e4ac1b8cd8e6e0a9ef5844e81057381a7af2bb"
-S = "${WORKDIR}/rosbag2-release-release-crystal-sqlite3_vendor-0.0.6-0"
+SRC_URI = "https://github.com/ros2-gbp/rosbag2-release/archive/release/crystal/rosbag2_transport/0.0.7-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "c54c810c7fdfa8e74b3d3cc5c04ccded"
+SRC_URI[sha256sum] = "e32c864241cb17117eae3a7c56b55095ec350968e3e07c96e5baa65c5720df46"
+S = "${WORKDIR}/rosbag2-release-release-crystal-rosbag2_transport-0.0.7-0"
 
-ROS_BUILD_TYPE = "cmake"
+ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/rosbag2/rosbag2_common.inc
@@ -54,5 +72,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

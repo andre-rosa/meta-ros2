@@ -22,7 +22,9 @@ ROS_EXPORT_DEPENDS = " \
     console-bridge \
 "
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = ""
+ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    ament-cmake-native \
+"
 
 ROS_EXEC_DEPENDS = " \
     console-bridge \
@@ -45,6 +47,7 @@ S = "${WORKDIR}/console_bridge_vendor-release-release-crystal-console_bridge_ven
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/console-bridge-vendor/console-bridge-vendor_common.inc
@@ -54,5 +57,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

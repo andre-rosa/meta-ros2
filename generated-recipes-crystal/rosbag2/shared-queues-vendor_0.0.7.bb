@@ -3,7 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "Commonly used test helper classes and fixtures for rosbag2"
+DESCRIPTION = "Vendor package for concurrent queues from moodycamel"
 AUTHOR = "Karsten Knese <karsten@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
@@ -16,22 +16,16 @@ ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    rclcpp \
-"
+ROS_EXPORT_DEPENDS = ""
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = ""
+ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    ament-cmake-native \
+"
 
 ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = " \
-    ament-cmake-gmock \
-    ament-lint-auto \
-    ament-lint-common \
-    rclcpp \
-    rcutils \
-"
+ROS_TEST_DEPENDS = ""
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually
@@ -40,13 +34,14 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/rosbag2-release/archive/release/crystal/rosbag2_test_common/0.0.6-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "289d69fe5dbb918495bd577b93cd14c2"
-SRC_URI[sha256sum] = "aa30cee2c69a8eb1e5c293a2abd2cca624cabbeed7930f2b6a68ea4f8162fa6d"
-S = "${WORKDIR}/rosbag2-release-release-crystal-rosbag2_test_common-0.0.6-0"
+SRC_URI = "https://github.com/ros2-gbp/rosbag2-release/archive/release/crystal/shared_queues_vendor/0.0.7-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "ffe37e917f4a69983a4e309bf678de93"
+SRC_URI[sha256sum] = "a16b140efff873ddc45af4c6f25e534942e36d408294d04ed33dc4875a6c9a57"
+S = "${WORKDIR}/rosbag2-release-release-crystal-shared_queues_vendor-0.0.7-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/rosbag2/rosbag2_common.inc
@@ -56,5 +51,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

@@ -24,7 +24,9 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = ""
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = ""
+ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    ament-cmake-ros-native \
+"
 
 ROS_EXEC_DEPENDS = " \
     lifecycle-msgs \
@@ -49,13 +51,14 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/rclcpp-release/archive/release/crystal/rclcpp_lifecycle/0.6.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "aa15581572d7b5f219e0e69ab7b55804"
-SRC_URI[sha256sum] = "9db46339e9c75b89756a15883ded25981bb98889cec190b696c43775b697b81f"
-S = "${WORKDIR}/rclcpp-release-release-crystal-rclcpp_lifecycle-0.6.3-0"
+SRC_URI = "https://github.com/ros2-gbp/rclcpp-release/archive/release/crystal/rclcpp_lifecycle/0.6.4-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "87575a7fb38bcd69b4e4b75fc87ce5bc"
+SRC_URI[sha256sum] = "d9e05dc10b16031ec559fd12f315139708c458a811bf4133e7863c65f26806cc"
+S = "${WORKDIR}/rclcpp-release-release-crystal-rclcpp_lifecycle-0.6.4-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/rclcpp/rclcpp_common.inc
@@ -65,5 +68,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclcpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclcpp/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

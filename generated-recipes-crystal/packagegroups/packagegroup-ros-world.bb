@@ -180,6 +180,8 @@ RDEPENDS_${PN} = " \
     logging-demo \
     map-msgs \
     message-filters \
+    ml-classifiers \
+    mrpt2 \
     nav-2d-msgs \
     nav-2d-utils \
     nav-msgs \
@@ -362,4 +364,4 @@ RDEPENDS_${PN} = " \
 include ${ROS_LAYERDIR}/recipes-ros/packagegroups/packagegroup-ros-world-${ROS_DISTRO}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}

@@ -31,7 +31,10 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = ""
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = ""
+ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    ament-cmake-native \
+    rosidl-default-generators-native \
+"
 
 ROS_EXEC_DEPENDS = " \
     builtin-interfaces \
@@ -67,6 +70,7 @@ S = "${WORKDIR}/ros2_intel_realsense-release-release-crystal-realsense_ros2_came
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/ros2-intel-realsense/ros2-intel-realsense_common.inc
@@ -76,5 +80,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-intel-realsense/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-intel-realsense/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

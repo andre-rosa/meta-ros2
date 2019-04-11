@@ -3,7 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "Package containing default plugins for format converters"
+DESCRIPTION = "Package containing storage and converter plugins for rosbag 1"
 AUTHOR = "Karsten Knese <karsten@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
@@ -11,13 +11,13 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_BUILD_DEPENDS = " \
-    ament-index-cpp \
     pluginlib \
-    poco-vendor \
+    rclcpp \
     rcutils \
-    rmw \
+    ros1-bridge \
+    ros1-rosbag-storage-vendor \
     rosbag2 \
-    rosidl-generator-cpp \
+    rosbag2-storage \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -25,25 +25,27 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    ament-index-cpp \
     pluginlib \
-    poco-vendor \
+    rclcpp \
     rcutils \
-    rmw \
+    ros1-bridge \
+    ros1-rosbag-storage-vendor \
     rosbag2 \
-    rosidl-generator-cpp \
+    rosbag2-storage \
 "
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = ""
+ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    ament-cmake-native \
+"
 
 ROS_EXEC_DEPENDS = " \
-    ament-index-cpp \
     pluginlib \
-    poco-vendor \
+    rclcpp \
     rcutils \
-    rmw \
+    ros1-bridge \
+    ros1-rosbag-storage-vendor \
     rosbag2 \
-    rosidl-generator-cpp \
+    rosbag2-storage \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -51,11 +53,8 @@ ROS_TEST_DEPENDS = " \
     ament-cmake-gmock \
     ament-lint-auto \
     ament-lint-common \
-    rcutils \
-    rmw-fastrtps-dynamic-cpp \
-    rosbag2 \
     rosbag2-test-common \
-    test-msgs \
+    std-msgs \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -65,13 +64,14 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/rosbag2-release/archive/release/crystal/rosbag2_converter_default_plugins/0.0.6-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "2a3f70cc1f4178b3dbf829278c7d9abe"
-SRC_URI[sha256sum] = "3c031aeb23cff5bdc3f298698fcaee9dc24d27455557a9c15c892e19a658cb77"
-S = "${WORKDIR}/rosbag2-release-release-crystal-rosbag2_converter_default_plugins-0.0.6-0"
+SRC_URI = "https://github.com/ros2-gbp/rosbag2-release/archive/release/crystal/rosbag2_bag_v2_plugins/0.0.7-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "eefa1395f4eafd5417b41bd08767f0db"
+SRC_URI[sha256sum] = "4760361587c5fbc1f4003239f3e2b6ce87c755878be0407bb7af5b689c31942b"
+S = "${WORKDIR}/rosbag2-release-release-crystal-rosbag2_bag_v2_plugins-0.0.7-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/rosbag2/rosbag2_common.inc
@@ -81,5 +81,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}
