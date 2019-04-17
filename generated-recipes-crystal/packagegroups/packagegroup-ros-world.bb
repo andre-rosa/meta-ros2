@@ -3,13 +3,15 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "All packages listed in ${ROS_DISTRO}-cache.yaml"
+DESCRIPTION = "All  non-test packages for the target from ${ROS_DISTRO}-cache.yaml"
 LICENSE = "MIT"
 
 inherit packagegroup
 
 PACKAGES = "${PN}"
 
+# Does not include packages in ROS_SUPERFLORE_GENERATED_BUILDTOOLS or ROS_SUPERFLORE_GENERATED_TESTS (set in
+# conf/ros-distro/include/ROS_DISTRO/generated-ros-distro.inc).
 RDEPENDS_${PN} = " \
     action-msgs \
     actionlib-msgs \
@@ -180,7 +182,6 @@ RDEPENDS_${PN} = " \
     logging-demo \
     map-msgs \
     message-filters \
-    ml-classifiers \
     mrpt2 \
     nav-2d-msgs \
     nav-2d-utils \

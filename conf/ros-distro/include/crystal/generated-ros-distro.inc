@@ -6,14 +6,21 @@
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190411222939"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190417214646"
 
-# ROS 2 distros only (can't set in ros2.bbclass because not all recipes are generated).
-ROS_USE_PYTHON3 = "yes"
+# Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
+# used for the third version field of DISTRO_VERSION.
+ROS_NUM_CACHE_YAML_COMMITS = "1"
+
+# Iterated values of ROS_DISTRO-cache.distribution_file.release_platforms.<LINUX-DISTRO>.<NAME> .
+ROS_DISTRO_RELEASE_PLATFORMS = " \
+    ubuntu-bionic \
+"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
     libopensplice67 \
+    ml-classifiers \
     opensplice-cmake-module \
     rmw-connext-cpp \
     rmw-connext-shared-cpp \
@@ -195,7 +202,6 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     logging-demo \
     map-msgs \
     message-filters \
-    ml-classifiers \
     mrpt2 \
     nav-2d-msgs \
     nav-2d-utils \
@@ -407,7 +413,6 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     ament-pyflakes-native \
     ament-uncrustify-native \
     ament-xmllint-native \
-    catkin-native \
     cmake-native \
     fastcdr-native \
     fastrtps-cmake-module-native \
@@ -438,43 +443,81 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     rosidl-typesupport-introspection-cpp-native \
 "
 
+ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
+    assimp-dev \
+    bullet \
+    clang-format \
+    cppunit \
+    dkms \
+    ffmpeg \
+    freeglut \
+    gazebo9 \
+    glut \
+    gtest-native \
+    libgazebo9-dev \
+    libjpeg \
+    libjpeg-turbo \
+    libpcap \
+    linux-headers-generic \
+    log4cxx \
+    pydocstyle \
+    python3-catkin-pkg-modules \
+    python3-catkin-pkg-modules-native \
+    python3-dev-native \
+    python3-flake8 \
+    python3-lark-parser \
+    python3-lxml \
+    python3-nose \
+    python3-nose-native \
+    python3-nose-yanc \
+    python3-opencv \
+    python3-pkg-resources \
+    python3-pydot \
+    python3-pygraphviz \
+    python3-pytest \
+    python3-pytest-native \
+    suitesparse \
+    tango-icon-theme \
+    uncrustify \
+    wxwidgets \
+"
+
 # Packages found only in <test_depend> items.
 ROS_SUPERFLORE_GENERATED_TESTS = " \
-    ament_cmake_copyright \
-    ament_cmake_cppcheck \
-    ament_cmake_cpplint \
-    ament_cmake_flake8 \
-    ament_cmake_gmock \
-    ament_cmake_lint_cmake \
-    ament_cmake_pep257 \
-    ament_cmake_pytest \
-    ament_cmake_uncrustify \
-    ament_cmake_xmllint \
-    ament_copyright \
-    ament_flake8 \
-    ament_lint_auto \
-    ament_lint_common \
-    ament_pep257 \
-    ament_pep8 \
+    ament-cmake-copyright \
+    ament-cmake-cppcheck \
+    ament-cmake-cpplint \
+    ament-cmake-flake8 \
+    ament-cmake-gmock \
+    ament-cmake-lint-cmake \
+    ament-cmake-pep257 \
+    ament-cmake-pytest \
+    ament-cmake-uncrustify \
+    ament-copyright \
+    ament-flake8 \
+    ament-lint-auto \
+    ament-lint-common \
+    ament-pep257 \
+    ament-pep8 \
     cppunit \
-    demo_nodes_cpp \
-    nav2_map_server \
-    osrf_testing_tools_cpp \
+    demo-nodes-cpp \
+    nav2-map-server \
+    osrf-testing-tools-cpp \
+    python-cmake-module \
     python3-nose \
     python3-nose-yanc \
     python3-opencv \
     python3-pygraphviz \
     python3-pytest \
-    python_cmake_module \
-    rmw_fastrtps_dynamic_cpp \
+    rmw-fastrtps-dynamic-cpp \
     ros2bag \
-    rosbag2_bag_v2_plugins \
-    rosbag2_converter_default_plugins \
-    rosbag2_storage_default_plugins \
-    rosbag2_test_common \
-    rviz_rendering_tests \
-    rviz_visual_testing_framework \
-    test_msgs \
+    rosbag2-bag-v2-plugins \
+    rosbag2-converter-default-plugins \
+    rosbag2-storage-default-plugins \
+    rosbag2-test-common \
+    rviz-rendering-tests \
+    rviz-visual-testing-framework \
+    test-msgs \
 "
 
 ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
@@ -516,7 +559,6 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     librealsense \
     libyaml-vendor \
     message-filters \
-    ml-classifiers \
     mrpt2 \
     navigation-msgs \
     navigation2 \

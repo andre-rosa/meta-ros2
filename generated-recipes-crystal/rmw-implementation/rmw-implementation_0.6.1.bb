@@ -29,9 +29,7 @@ ROS_EXPORT_DEPENDS = " \
     rmw-implementation-cmake \
 "
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = " \
-    ament-cmake-native \
-"
+ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     poco \
@@ -71,4 +69,4 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-implementation/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

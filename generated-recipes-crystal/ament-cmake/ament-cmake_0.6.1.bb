@@ -22,17 +22,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = " \
-    ament-cmake-core-native \
-    ament-cmake-export-definitions-native \
-    ament-cmake-export-dependencies-native \
-    ament-cmake-export-include-directories-native \
-    ament-cmake-export-interfaces-native \
-    ament-cmake-export-libraries-native \
-    ament-cmake-export-link-flags-native \
-    ament-cmake-libraries-native \
-    ament-cmake-python-native \
-    ament-cmake-target-dependencies-native \
-    ament-cmake-test-native \
     cmake-native \
 "
 
@@ -67,4 +56,4 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated_prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}
