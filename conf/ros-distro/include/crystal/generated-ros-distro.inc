@@ -6,7 +6,7 @@
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190418231600"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190418235015"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -387,14 +387,19 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     ament-clang-format-native \
     ament-cmake-auto-native \
     ament-cmake-core-native \
+    ament-cmake-export-definitions-native \
     ament-cmake-export-dependencies-native \
+    ament-cmake-export-include-directories-native \
+    ament-cmake-export-interfaces-native \
     ament-cmake-export-libraries-native \
+    ament-cmake-export-link-flags-native \
     ament-cmake-gtest-native \
     ament-cmake-include-directories-native \
     ament-cmake-libraries-native \
     ament-cmake-native \
     ament-cmake-python-native \
     ament-cmake-ros-native \
+    ament-cmake-target-dependencies-native \
     ament-cmake-test-native \
     ament-copyright-native \
     ament-cppcheck-native \
