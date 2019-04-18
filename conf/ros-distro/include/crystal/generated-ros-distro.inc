@@ -6,7 +6,7 @@
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190418165318"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190418231600"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
