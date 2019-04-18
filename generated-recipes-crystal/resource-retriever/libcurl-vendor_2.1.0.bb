@@ -16,6 +16,7 @@ ROS_BUILD_DEPENDS = " \
 
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
+    pkgconf-native \
 "
 
 ROS_EXPORT_DEPENDS = " \

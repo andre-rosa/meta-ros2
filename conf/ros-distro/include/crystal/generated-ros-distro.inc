@@ -6,7 +6,7 @@
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190417214646"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190418165318"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -190,6 +190,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     intra-process-demo \
     joy \
     kdl-parser \
+    keystroke \
     laser-geometry \
     launch \
     launch-ros \
@@ -386,19 +387,14 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     ament-clang-format-native \
     ament-cmake-auto-native \
     ament-cmake-core-native \
-    ament-cmake-export-definitions-native \
     ament-cmake-export-dependencies-native \
-    ament-cmake-export-include-directories-native \
-    ament-cmake-export-interfaces-native \
     ament-cmake-export-libraries-native \
-    ament-cmake-export-link-flags-native \
     ament-cmake-gtest-native \
     ament-cmake-include-directories-native \
     ament-cmake-libraries-native \
     ament-cmake-native \
     ament-cmake-python-native \
     ament-cmake-ros-native \
-    ament-cmake-target-dependencies-native \
     ament-cmake-test-native \
     ament-copyright-native \
     ament-cppcheck-native \
@@ -484,24 +480,11 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
 
 # Packages found only in <test_depend> items.
 ROS_SUPERFLORE_GENERATED_TESTS = " \
-    ament-cmake-copyright \
-    ament-cmake-cppcheck \
-    ament-cmake-cpplint \
-    ament-cmake-flake8 \
-    ament-cmake-gmock \
-    ament-cmake-lint-cmake \
-    ament-cmake-pep257 \
-    ament-cmake-pytest \
-    ament-cmake-uncrustify \
     ament-copyright \
     ament-flake8 \
-    ament-lint-auto \
-    ament-lint-common \
     ament-pep257 \
     ament-pep8 \
     cppunit \
-    demo-nodes-cpp \
-    nav2-map-server \
     osrf-testing-tools-cpp \
     python-cmake-module \
     python3-nose \
@@ -554,6 +537,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     image-transport-plugins \
     joystick-drivers \
     kdl-parser \
+    keystroke \
     laser-geometry \
     launch \
     librealsense \

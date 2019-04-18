@@ -15,7 +15,9 @@ ROS_BUILD_DEPENDS = " \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
+    ament-cmake-native \
     ament-cmake-ros-native \
+    rosidl-cmake-native \
 "
 
 ROS_EXPORT_DEPENDS = ""

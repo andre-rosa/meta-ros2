@@ -35,6 +35,7 @@ ROS_BUILD_DEPENDS = " \
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
     ament-index-python-native \
+    pkgconf-native \
     python3-catkin-pkg-modules-native \
     rosidl-cmake-native \
     rosidl-parser-native \

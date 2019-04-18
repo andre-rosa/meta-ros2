@@ -14,6 +14,8 @@ ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-core-native \
+    ament-cmake-include-directories-native \
+    ament-cmake-libraries-native \
 "
 
 ROS_EXPORT_DEPENDS = ""

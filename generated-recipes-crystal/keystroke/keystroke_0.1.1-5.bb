@@ -3,8 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "The CMake functionality to invoke code generation for ROS interface files."
-AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+DESCRIPTION = "Capture keyboard input from the local computer and publish it to ROS"
+AUTHOR = "Dan Rose <dan@digilabs.io>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
@@ -12,22 +12,15 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493f
 
 ROS_BUILD_DEPENDS = ""
 
-ROS_BUILDTOOL_DEPENDS = " \
-    ament-cmake-native \
-    ament-cmake-python-native \
-    python3-empy-native \
-"
+ROS_BUILDTOOL_DEPENDS = ""
 
 ROS_EXPORT_DEPENDS = ""
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = " \
-    ament-cmake-native \
-    python3-empy-native \
-"
+ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    rosidl-actions \
-    rosidl-parser \
+    rclpy \
+    std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -43,21 +36,21 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/rosidl-release/archive/release/crystal/rosidl_cmake/0.6.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "3f7c5bfd688d7df35a2b6c37cd0989fe"
-SRC_URI[sha256sum] = "511f4f0f1635d02c087d46fdb566d7a176bf94d1be85488a8764a9c93f706368"
-S = "${WORKDIR}/rosidl-release-release-crystal-rosidl_cmake-0.6.3-0"
+SRC_URI = "https://github.com/RoverRobotics/ros2-keystroke-release/archive/release/crystal/keystroke/0.1.1-5.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "2667cb8c091c6ea674898b83c8563645"
+SRC_URI[sha256sum] = "1ea77f0fe7762afeec97c3d6a148dc16e57efd9cb226a9c15084520d1daedcab"
+S = "${WORKDIR}/ros2-keystroke-release-release-crystal-keystroke-0.1.1-5"
 
-ROS_BUILD_TYPE = "ament_cmake"
+ROS_BUILD_TYPE = "ament_python"
 ROS_RECIPES_TREE = "recipes-ros2"
 ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosidl/rosidl_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosidl/rosidl_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/rosidl-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/${BPN}-${PV}.inc
+include ${ROS_LAYERDIR}/recipes-ros/keystroke/keystroke_common.inc
+include ${ROS_LAYERDIR}/recipes-ros2/keystroke/keystroke_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/keystroke-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}

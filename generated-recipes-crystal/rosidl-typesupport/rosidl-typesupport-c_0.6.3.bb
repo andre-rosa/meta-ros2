@@ -18,6 +18,7 @@ ROS_BUILD_DEPENDS = " \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
+    ament-cmake-core-native \
     ament-cmake-ros-native \
 "
 

@@ -19,6 +19,7 @@ ROS_BUILD_DEPENDS = " \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
+    ament-cmake-native \
     ament-cmake-ros-native \
     fastrtps-cmake-module-native \
 "

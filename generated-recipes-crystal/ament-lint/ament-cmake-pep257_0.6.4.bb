@@ -15,6 +15,7 @@ ROS_BUILD_DEPENDS = ""
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-core-native \
     ament-cmake-test-native \
+    ament-pep257-native \
 "
 
 ROS_EXPORT_DEPENDS = ""
