@@ -2,3 +2,6 @@
 
 FILES_${PN}-dev_prepend = "${prefix}/cmake "
 SYSROOT_DIRS_append = " ${prefix}/cmake"
+
+PROVIDES_bouncy += "libyaml"
+RPROVIDES_${PN}_bouncy += "libyaml"
