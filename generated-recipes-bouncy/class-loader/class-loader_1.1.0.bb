@@ -11,6 +11,7 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_BUILD_DEPENDS = " \
+    console-bridge \
     poco \
     poco-vendor \
 "
@@ -24,6 +25,7 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    console-bridge \
     poco \
     poco-vendor \
 "
@@ -49,12 +51,16 @@ S = "${WORKDIR}/class_loader-release-release-bouncy-class_loader-1.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/class-loader/class-loader_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/class-loader/class-loader_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/class-loader/class-loader-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/class-loader/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/class-loader/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

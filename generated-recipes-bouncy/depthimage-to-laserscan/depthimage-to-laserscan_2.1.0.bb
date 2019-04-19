@@ -56,12 +56,16 @@ S = "${WORKDIR}/depthimage_to_laserscan-release-release-bouncy-depthimage_to_las
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/depthimage-to-laserscan/depthimage-to-laserscan_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/depthimage-to-laserscan/depthimage-to-laserscan_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthimage-to-laserscan/depthimage-to-laserscan-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthimage-to-laserscan/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthimage-to-laserscan/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

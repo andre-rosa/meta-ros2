@@ -11,8 +11,11 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_BUILD_DEPENDS = " \
+    console-bridge \
     libtinyxml \
     tinyxml-vendor \
+    urdfdom \
+    urdfdom-headers \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -21,6 +24,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     libtinyxml \
+    urdfdom-headers \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -28,6 +32,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     libtinyxml \
     tinyxml-vendor \
+    urdfdom \
+    urdfdom-headers \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -50,12 +56,16 @@ S = "${WORKDIR}/urdf-release-release-bouncy-urdf-2.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/urdf/urdf_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/urdf/urdf_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/urdf-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

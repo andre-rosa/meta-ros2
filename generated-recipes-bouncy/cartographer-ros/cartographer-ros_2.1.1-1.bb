@@ -13,10 +13,11 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=b73cebba72f83c5
 ROS_BUILD_DEPENDS = " \
     cartographer \
     cartographer-ros-msgs \
+    console-bridge \
     libeigen \
-    pcl \
     lua \
     nav-msgs \
+    pcl \
     pcl-conversions \
     rclcpp \
     sensor-msgs \
@@ -25,6 +26,7 @@ ROS_BUILD_DEPENDS = " \
     tf2-msgs \
     tf2-ros \
     urdf \
+    urdfdom-headers \
     visualization-msgs \
     yaml-cpp \
 "
@@ -36,9 +38,10 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     cartographer \
     cartographer-ros-msgs \
-    pcl \
+    console-bridge \
     lua \
     nav-msgs \
+    pcl \
     rclcpp \
     sensor-msgs \
     tf2 \
@@ -54,9 +57,10 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     cartographer \
     cartographer-ros-msgs \
-    pcl \
+    console-bridge \
     lua \
     nav-msgs \
+    pcl \
     rclcpp \
     sensor-msgs \
     tf2 \
@@ -84,6 +88,7 @@ S = "${WORKDIR}/cartographer_ros-release-release-bouncy-cartographer_ros-2.1.1-1
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/cartographer-ros/cartographer-ros_common.inc
@@ -93,5 +98,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

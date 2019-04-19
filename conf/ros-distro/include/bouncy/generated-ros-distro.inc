@@ -6,27 +6,371 @@
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190328215117"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190419202205"
 
-ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
-    console_bridge \
-    libopensplice67 \
-    rti-connext-dds-5.3.1 \
-    rmw_connext_cpp \
-    rmw_connext_shared_cpp \
-    rmw_opensplice_cpp \
-    connext_cmake_module \
-    rosidl_typesupport_connext_c \
-    rosidl_typesupport_connext_cpp \
-    opensplice_cmake_module \
-    rosidl_typesupport_opensplice_c \
-    rosidl_typesupport_opensplice_cpp \
-    urdfdom_headers \
-    libyaml_vendor \
-    urdfdom \
+# Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
+# used for the third version field of DISTRO_VERSION.
+ROS_NUM_CACHE_YAML_COMMITS = "1"
+
+# Iterated values of ROS_DISTRO-cache.distribution_file.release_platforms.<LINUX-DISTRO>.<NAME> .
+ROS_DISTRO_RELEASE_PLATFORMS = " \
+    ubuntu-bionic \
 "
 
-# See generated-recipes-<ROS_DISTRO>/packagegroups/packagegroup-ros-world.bb for a list of the generated recipes.
+ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
+    connext-cmake-module \
+    libopensplice67 \
+    ml-classifiers \
+    opensplice-cmake-module \
+    rmw-connext-cpp \
+    rmw-connext-shared-cpp \
+    rmw-opensplice-cpp \
+    rosidl-typesupport-connext-c \
+    rosidl-typesupport-connext-cpp \
+    rosidl-typesupport-opensplice-c \
+    rosidl-typesupport-opensplice-cpp \
+    rti-connext-dds-5.3.1 \
+"
+
+ROS_SUPERFLORE_GENERATED_RECIPES = " \
+    actionlib-msgs \
+    amcl \
+    ament-clang-format \
+    ament-cmake \
+    ament-cmake-auto \
+    ament-cmake-clang-format \
+    ament-cmake-copyright \
+    ament-cmake-core \
+    ament-cmake-cppcheck \
+    ament-cmake-cpplint \
+    ament-cmake-export-definitions \
+    ament-cmake-export-dependencies \
+    ament-cmake-export-include-directories \
+    ament-cmake-export-interfaces \
+    ament-cmake-export-libraries \
+    ament-cmake-export-link-flags \
+    ament-cmake-flake8 \
+    ament-cmake-gmock \
+    ament-cmake-gtest \
+    ament-cmake-include-directories \
+    ament-cmake-libraries \
+    ament-cmake-lint-cmake \
+    ament-cmake-nose \
+    ament-cmake-pclint \
+    ament-cmake-pep257 \
+    ament-cmake-pep8 \
+    ament-cmake-pyflakes \
+    ament-cmake-pytest \
+    ament-cmake-python \
+    ament-cmake-ros \
+    ament-cmake-target-dependencies \
+    ament-cmake-test \
+    ament-cmake-uncrustify \
+    ament-copyright \
+    ament-cppcheck \
+    ament-cpplint \
+    ament-flake8 \
+    ament-index-cpp \
+    ament-index-python \
+    ament-lint-auto \
+    ament-lint-cmake \
+    ament-lint-common \
+    ament-package \
+    ament-pclint \
+    ament-pep257 \
+    ament-pep8 \
+    ament-pyflakes \
+    ament-tools \
+    ament-uncrustify \
+    angles \
+    astra-camera \
+    builtin-interfaces \
+    cartographer \
+    cartographer-ros \
+    cartographer-ros-msgs \
+    class-loader \
+    common-interfaces \
+    composition \
+    console-bridge \
+    control-msgs \
+    cv-bridge \
+    demo-nodes-cpp \
+    demo-nodes-cpp-rosnative \
+    demo-nodes-py \
+    depthimage-to-laserscan \
+    depthimage-to-pointcloud2 \
+    desktop \
+    diagnostic-msgs \
+    dummy-map-server \
+    dummy-robot-bringup \
+    dummy-sensors \
+    ecl-build \
+    ecl-command-line \
+    ecl-concepts \
+    ecl-config \
+    ecl-console \
+    ecl-containers \
+    ecl-converters \
+    ecl-converters-lite \
+    ecl-core-apps \
+    ecl-devices \
+    ecl-eigen \
+    ecl-errors \
+    ecl-exceptions \
+    ecl-filesystem \
+    ecl-formatters \
+    ecl-geometry \
+    ecl-io \
+    ecl-ipc \
+    ecl-license \
+    ecl-linear-algebra \
+    ecl-manipulators \
+    ecl-math \
+    ecl-mobile-robot \
+    ecl-mpl \
+    ecl-sigslots \
+    ecl-sigslots-lite \
+    ecl-statistics \
+    ecl-streams \
+    ecl-threads \
+    ecl-time \
+    ecl-time-lite \
+    ecl-type-traits \
+    ecl-utilities \
+    example-interfaces \
+    examples-rclcpp-minimal-client \
+    examples-rclcpp-minimal-composition \
+    examples-rclcpp-minimal-publisher \
+    examples-rclcpp-minimal-service \
+    examples-rclcpp-minimal-subscriber \
+    examples-rclcpp-minimal-timer \
+    examples-rclpy-executors \
+    examples-rclpy-minimal-client \
+    examples-rclpy-minimal-publisher \
+    examples-rclpy-minimal-service \
+    examples-rclpy-minimal-subscriber \
+    fastcdr \
+    fastrtps \
+    fastrtps-cmake-module \
+    geometry-msgs \
+    gmock-vendor \
+    gtest-vendor \
+    image-geometry \
+    image-tools \
+    intra-process-demo \
+    joy \
+    kdl-parser \
+    laser-geometry \
+    launch \
+    launch-ros \
+    launch-testing \
+    libcurl-vendor \
+    libyaml-vendor \
+    lifecycle \
+    lifecycle-msgs \
+    logging-demo \
+    map-msgs \
+    map-server \
+    nav-msgs \
+    orocos-kdl \
+    osrf-pycommon \
+    osrf-testing-tools-cpp \
+    pcl-conversions \
+    pendulum-control \
+    pendulum-msgs \
+    pluginlib \
+    poco-vendor \
+    py-trees \
+    py-trees-msgs \
+    python-cmake-module \
+    rcl \
+    rcl-interfaces \
+    rcl-lifecycle \
+    rcl-yaml-param-parser \
+    rclcpp \
+    rclcpp-lifecycle \
+    rclpy \
+    rcutils \
+    resource-retriever \
+    rmw \
+    rmw-fastrtps-cpp \
+    rmw-implementation \
+    rmw-implementation-cmake \
+    robot-state-publisher \
+    ros-base \
+    ros-core \
+    ros-environment \
+    ros-workspace \
+    ros1-bridge \
+    ros2cli \
+    ros2launch \
+    ros2lifecycle \
+    ros2msg \
+    ros2node \
+    ros2param \
+    ros2pkg \
+    ros2run \
+    ros2service \
+    ros2srv \
+    ros2topic \
+    rosgraph-msgs \
+    rosidl-cmake \
+    rosidl-default-generators \
+    rosidl-default-runtime \
+    rosidl-generator-c \
+    rosidl-generator-cpp \
+    rosidl-generator-dds-idl \
+    rosidl-generator-py \
+    rosidl-parser \
+    rosidl-typesupport-c \
+    rosidl-typesupport-cpp \
+    rosidl-typesupport-interface \
+    rosidl-typesupport-introspection-c \
+    rosidl-typesupport-introspection-cpp \
+    rttest \
+    rviz-assimp-vendor \
+    rviz-common \
+    rviz-default-plugins \
+    rviz-ogre-vendor \
+    rviz-rendering \
+    rviz-rendering-tests \
+    rviz-visual-testing-framework \
+    rviz-yaml-cpp-vendor \
+    rviz2 \
+    sensor-msgs \
+    shape-msgs \
+    sophus \
+    sros2 \
+    std-msgs \
+    std-srvs \
+    stereo-msgs \
+    teleop-twist-joy \
+    teleop-twist-keyboard \
+    test-msgs \
+    test-osrf-testing-tools-cpp \
+    tf2 \
+    tf2-eigen \
+    tf2-geometry-msgs \
+    tf2-msgs \
+    tf2-ros \
+    tinyxml-vendor \
+    tinyxml2-vendor \
+    tlsf \
+    tlsf-cpp \
+    topic-monitor \
+    trajectory-msgs \
+    turtlebot2-amcl \
+    turtlebot2-cartographer \
+    turtlebot2-demo \
+    turtlebot2-drivers \
+    turtlebot2-follower \
+    turtlebot2-teleop \
+    uncrustify-vendor \
+    urdf \
+    urdfdom \
+    urdfdom-headers \
+    vision-opencv \
+    visualization-msgs \
+"
+
+# Packages found in the <buildtool_depend> and <buildtool_export_depend> items, ie, ones for which a -native is built.
+ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
+    ament-clang-format-native \
+    ament-cmake-auto-native \
+    ament-cmake-core-native \
+    ament-cmake-export-definitions-native \
+    ament-cmake-export-dependencies-native \
+    ament-cmake-export-include-directories-native \
+    ament-cmake-export-interfaces-native \
+    ament-cmake-export-libraries-native \
+    ament-cmake-export-link-flags-native \
+    ament-cmake-gtest-native \
+    ament-cmake-include-directories-native \
+    ament-cmake-libraries-native \
+    ament-cmake-native \
+    ament-cmake-python-native \
+    ament-cmake-ros-native \
+    ament-cmake-target-dependencies-native \
+    ament-cmake-test-native \
+    ament-copyright-native \
+    ament-cppcheck-native \
+    ament-cpplint-native \
+    ament-flake8-native \
+    ament-index-python-native \
+    ament-lint-cmake-native \
+    ament-package-native \
+    ament-pclint-native \
+    ament-pep257-native \
+    ament-pep8-native \
+    ament-pyflakes-native \
+    ament-uncrustify-native \
+    cmake-native \
+    fastrtps-cmake-module-native \
+    gmock-native \
+    gmock-vendor-native \
+    gtest-native \
+    gtest-vendor-native \
+    osrf-pycommon-native \
+    pkgconf-native \
+    python-cmake-module-native \
+    python3-catkin-pkg-modules-native \
+    python3-dev-native \
+    python3-empy-native \
+    python3-nose-native \
+    python3-pytest-native \
+    rosidl-cmake-native \
+    rosidl-default-generators-native \
+    rosidl-generator-c-native \
+    rosidl-generator-cpp-native \
+    rosidl-generator-py-native \
+    rosidl-parser-native \
+    rosidl-typesupport-c-native \
+    rosidl-typesupport-cpp-native \
+    rosidl-typesupport-interface-native \
+    rosidl-typesupport-introspection-c-native \
+    rosidl-typesupport-introspection-cpp-native \
+"
+
+ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
+    clang-format \
+    cppunit \
+    g++-static \
+    gtest-native \
+    libgoogle-glog-dev \
+    pydocstyle \
+    python3-catkin-pkg-modules \
+    python3-catkin-pkg-modules-native \
+    python3-dev-native \
+    python3-flake8 \
+    python3-nose \
+    python3-nose-native \
+    python3-nose-yanc \
+    python3-opencv \
+    python3-pkg-resources \
+    python3-pydot \
+    python3-pytest \
+    python3-pytest-native \
+"
+
+# Packages found only in <test_depend> items.
+ROS_SUPERFLORE_GENERATED_TESTS = " \
+    ament-copyright \
+    ament-flake8 \
+    ament-pep257 \
+    ament-pep8 \
+    cppunit \
+    launch-testing \
+    osrf-testing-tools-cpp \
+    python-cmake-module \
+    python3-nose \
+    python3-nose-yanc \
+    python3-opencv \
+    python3-pytest \
+    rviz-rendering-tests \
+    rviz-visual-testing-framework \
+    test-msgs \
+"
+
 ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     ament-cmake \
     ament-cmake-ros \
@@ -39,6 +383,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     cartographer-ros \
     class-loader \
     common-interfaces \
+    console-bridge \
     control-msgs \
     demos \
     depthimage-to-laserscan \
@@ -55,6 +400,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     kdl-parser \
     laser-geometry \
     launch \
+    libyaml-vendor \
     navigation \
     navigation-msgs \
     orocos-kinematics-dynamics \
@@ -97,6 +443,18 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     turtlebot2-demo \
     uncrustify \
     urdf \
+    urdfdom \
+    urdfdom-headers \
     variants \
     vision-opencv \
+"
+
+# A ros_depgrp_<dependency-group>.bbclass must be created for each of these:
+ROS_SUPERFLORE_GENERATED_DEPENDENCY_GROUPS = " \
+    rmw_implementation_packages \
+    rosidl_generator_packages \
+    rosidl_interface_packages \
+    rosidl_runtime_packages \
+    rosidl_typesupport_c_packages \
+    rosidl_typesupport_cpp_packages \
 "

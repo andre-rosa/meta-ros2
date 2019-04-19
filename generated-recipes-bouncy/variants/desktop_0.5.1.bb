@@ -49,8 +49,8 @@ ROS_EXEC_DEPENDS = " \
     pcl-conversions \
     pendulum-control \
     ros-base \
-    rviz2 \
     rviz-default-plugins \
+    rviz2 \
     sros2 \
     teleop-twist-joy \
     teleop-twist-keyboard \
@@ -76,6 +76,7 @@ S = "${WORKDIR}/variants-release-release-bouncy-desktop-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/variants/variants_common.inc
@@ -85,5 +86,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variants/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variants/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

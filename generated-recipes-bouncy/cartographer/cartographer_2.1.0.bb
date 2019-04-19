@@ -12,11 +12,11 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=b73cebba72f83c5
 
 ROS_BUILD_DEPENDS = " \
     boost \
-    libeigen \
-    g++-static \
     cairo \
     ceres-solver \
+    g++-static \
     gflags \
+    libeigen \
     libgoogle-glog-dev \
     lua \
     protobuf \
@@ -28,10 +28,10 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     boost \
-    libeigen \
     cairo \
     ceres-solver \
     gflags \
+    libeigen \
     libgoogle-glog-dev \
     lua \
     protobuf \
@@ -41,10 +41,10 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     boost \
-    libeigen \
     cairo \
     ceres-solver \
     gflags \
+    libeigen \
     libgoogle-glog-dev \
     lua \
     protobuf \
@@ -67,12 +67,16 @@ S = "${WORKDIR}/cartographer-release-release-bouncy-cartographer-2.1.0-0"
 
 ROS_BUILD_TYPE = "cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/cartographer/cartographer_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/cartographer/cartographer_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer/cartographer-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

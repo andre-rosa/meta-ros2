@@ -28,7 +28,7 @@ ROS_EXEC_DEPENDS = " \
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    python-flake8 \
+    python3-flake8 \
     python3-pytest \
 "
 
@@ -46,12 +46,16 @@ S = "${WORKDIR}/ament_package-release-release-bouncy-ament_package-0.5.2-0"
 
 ROS_BUILD_TYPE = "ament_python"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/ament-package/ament-package_common.inc
 include ${ROS_LAYERDIR}/recipes-ros2/ament-package/ament-package_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-package/ament-package-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-package/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-package/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

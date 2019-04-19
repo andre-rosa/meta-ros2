@@ -3,15 +3,15 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "All packages listed in ${ROS_DISTRO}-cache.yaml"
+DESCRIPTION = "All non-test packages for the target from ${ROS_DISTRO}-cache.yaml"
 LICENSE = "MIT"
 
-inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
 inherit packagegroup
 
 PACKAGES = "${PN}"
 
+# Does not include packages in ROS_SUPERFLORE_GENERATED_BUILDTOOLS or ROS_SUPERFLORE_GENERATED_TESTS (set in
+# conf/ros-distro/include/ROS_DISTRO/generated-ros-distro.inc).
 RDEPENDS_${PN} = " \
     actionlib-msgs \
     amcl \
@@ -71,6 +71,7 @@ RDEPENDS_${PN} = " \
     class-loader \
     common-interfaces \
     composition \
+    console-bridge \
     control-msgs \
     cv-bridge \
     demo-nodes-cpp \
@@ -144,6 +145,7 @@ RDEPENDS_${PN} = " \
     launch-ros \
     launch-testing \
     libcurl-vendor \
+    libyaml-vendor \
     lifecycle \
     lifecycle-msgs \
     logging-demo \
@@ -245,6 +247,14 @@ RDEPENDS_${PN} = " \
     turtlebot2-teleop \
     uncrustify-vendor \
     urdf \
+    urdfdom \
+    urdfdom-headers \
     vision-opencv \
     visualization-msgs \
 "
+
+# Allow the above settings to be overridden.
+include ${ROS_LAYERDIR}/recipes-ros/packagegroups/packagegroup-ros-world-${ROS_DISTRO}.inc
+
+inherit ros_superflore_generated
+inherit ros_distro_${ROS_DISTRO}

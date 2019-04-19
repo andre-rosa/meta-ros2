@@ -44,6 +44,9 @@ S = "${WORKDIR}/common_interfaces-release-release-bouncy-std_srvs-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = " \
+    rosidl_interface_packages \
+"
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/common-interfaces/common-interfaces_common.inc
@@ -53,5 +56,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-interfaces/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-interfaces/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

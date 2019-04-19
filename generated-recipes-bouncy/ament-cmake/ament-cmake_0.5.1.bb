@@ -19,21 +19,20 @@ ROS_BUILDTOOL_DEPENDS = " \
     cmake-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    ament-cmake-core \
-    ament-cmake-export-definitions \
-    ament-cmake-export-dependencies \
-    ament-cmake-export-include-directories \
-    ament-cmake-export-interfaces \
-    ament-cmake-export-libraries \
-    ament-cmake-export-link-flags \
-    ament-cmake-libraries \
-    ament-cmake-python \
-    ament-cmake-target-dependencies \
-    ament-cmake-test \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    ament-cmake-core-native \
+    ament-cmake-export-definitions-native \
+    ament-cmake-export-dependencies-native \
+    ament-cmake-export-include-directories-native \
+    ament-cmake-export-interfaces-native \
+    ament-cmake-export-libraries-native \
+    ament-cmake-export-link-flags-native \
+    ament-cmake-libraries-native \
+    ament-cmake-python-native \
+    ament-cmake-target-dependencies-native \
+    ament-cmake-test-native \
     cmake-native \
 "
 
@@ -56,6 +55,7 @@ S = "${WORKDIR}/ament_cmake-release-release-bouncy-ament_cmake-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
+ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/ament-cmake/ament-cmake_common.inc
@@ -65,5 +65,6 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/${BPN}-${PV}.inc
 
 inherit ros_superflore_generated
-inherit ros_${ROS_DISTRO}
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
+inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}
