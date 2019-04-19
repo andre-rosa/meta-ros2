@@ -17,7 +17,7 @@ ROS_BUILD_DEPENDS = " \
     gazebo-msgs \
     geometry-msgs \
     nav-msgs \
-    pkgconf \
+    pkgconfig \
     python-pyyaml \
     rclcpp \
     rcutils \
@@ -35,8 +35,8 @@ ROS_BUILD_DEPENDS = " \
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
     ament-index-python-native \
-    pkgconf-native \
-    python3-catkin-pkg-modules-native \
+    pkgconfig-native \
+    python3-catkin-pkg-native \
     rosidl-cmake-native \
     rosidl-parser-native \
 "
@@ -44,7 +44,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = " \
-    pkgconf-native \
+    pkgconfig-native \
 "
 
 ROS_EXEC_DEPENDS = " \

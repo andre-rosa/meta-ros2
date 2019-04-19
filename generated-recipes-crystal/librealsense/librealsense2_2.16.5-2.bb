@@ -11,15 +11,14 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=24;endline=24;md5=e8978a5103d23266fc6f8ec03dc9eb16"
 
 ROS_BUILD_DEPENDS = " \
-    dkms \
     eudev \
     glfw \
     gtk+3 \
     libusb1 \
-    linux-headers-generic \
     mesa \
     openssl \
-    pkgconf \
+    pkgconfig \
+    virtual/kernel \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -27,27 +26,25 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    dkms \
     eudev \
     glfw \
     gtk+3 \
     libusb1 \
-    linux-headers-generic \
     mesa \
     openssl \
+    virtual/kernel \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    dkms \
     eudev \
     glfw \
     gtk+3 \
     libusb1 \
-    linux-headers-generic \
     mesa \
     openssl \
+    virtual/kernel \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

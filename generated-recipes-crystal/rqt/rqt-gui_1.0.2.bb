@@ -23,7 +23,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     ament-index-python \
     python-qt-binding \
-    python3-catkin-pkg-modules \
+    python3-catkin-pkg \
     qt-gui \
     rclpy \
 "

@@ -16,7 +16,7 @@ ROS_BUILD_DEPENDS = " \
     console-bridge \
     gpgme \
     openssl \
-    pkgconf \
+    pkgconfig \
     pluginlib \
     ros1-bridge \
 "

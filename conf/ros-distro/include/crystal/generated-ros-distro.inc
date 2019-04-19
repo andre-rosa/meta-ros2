@@ -5,20 +5,23 @@
 
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
+export ROS_VERSION = "2"
+
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190418235015"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190419233912"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
 ROS_NUM_CACHE_YAML_COMMITS = "1"
 
-# Iterated values of ROS_DISTRO-cache.distribution_file.release_platforms.<LINUX-DISTRO>.<NAME> .
+# Iterated values of ROS_DISTRO-cache.distribution_file.release_platforms.<LINUX-DISTRO>.[ <NAME> ... ] .
 ROS_DISTRO_RELEASE_PLATFORMS = " \
     ubuntu-bionic \
 "
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
+    keystroke \
     libopensplice67 \
     ml-classifiers \
     opensplice-cmake-module \
@@ -190,7 +193,6 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     intra-process-demo \
     joy \
     kdl-parser \
-    keystroke \
     laser-geometry \
     launch \
     launch-ros \
@@ -382,7 +384,8 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     yaml-cpp-vendor \
 "
 
-# Packages found in the <buildtool_depend> and <buildtool_export_depend> items, ie, ones for which a -native is built.
+# Packages found in the <buildtool_depend> and <buildtool_export_depend> items, ie, ones for which a -native is built. Does not
+# include those found in the ROS_EXEC_DEPENDS values in recipes of build tools.
 ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     ament-clang-format-native \
     ament-cmake-auto-native \
@@ -423,11 +426,11 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     gmock-vendor-native \
     gtest-native \
     gtest-vendor-native \
-    pkgconf-native \
+    pkgconfig-native \
     python-cmake-module-native \
-    python3-catkin-pkg-modules-native \
-    python3-dev-native \
+    python3-catkin-pkg-native \
     python3-empy-native \
+    python3-native \
     python3-nose-native \
     python3-pytest-native \
     rosidl-cmake-native \
@@ -445,45 +448,90 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
 "
 
 ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
-    assimp-dev \
+    asio \
+    assimp \
+    boost \
     bullet \
+    bzip2 \
     clang-format \
+    cmake \
+    cmake-native \
+    console-bridge \
+    cppcheck-native \
     cppunit \
-    dkms \
+    curl \
+    elfutils \
+    eudev \
     ffmpeg \
-    freeglut \
+    freetype \
     gazebo9 \
+    git-native \
+    glfw \
     glut \
+    gmock-native \
+    gpgme \
     gtest-native \
-    libgazebo9-dev \
-    libjpeg \
-    libjpeg-turbo \
+    gtk+3 \
+    libeigen \
+    libjpeq-turbo \
+    libogg \
     libpcap \
-    linux-headers-generic \
+    libpcre \
+    libsdl \
+    libsdl-image \
+    libtheora \
+    libtinyxml \
+    libtinyxml2 \
+    libusb1 \
+    libx11 \
+    libxaw \
+    libxml2 \
+    libxrandr \
+    libyaml \
     log4cxx \
+    mesa \
+    opencv \
+    openssl \
+    pcl \
+    pkgconfig \
+    pkgconfig-native \
+    poco \
     pydocstyle \
-    python3-catkin-pkg-modules \
-    python3-catkin-pkg-modules-native \
-    python3-dev-native \
+    python-matplotlib \
+    python-mock \
+    python-pep8 \
+    python-pyflakes \
+    python-pyyaml \
+    python3-catkin-pkg \
+    python3-catkin-pkg-native \
+    python3-empy \
+    python3-empy-native \
     python3-flake8 \
     python3-lark-parser \
     python3-lxml \
+    python3-native \
     python3-nose \
     python3-nose-native \
     python3-nose-yanc \
-    python3-opencv \
-    python3-pkg-resources \
+    python3-numpy \
+    python3-psutil \
     python3-pydot \
     python3-pygraphviz \
+    python3-pyqt5 \
     python3-pytest \
     python3-pytest-native \
+    python3-setuptools \
+    qtbase \
+    sqlite3 \
     suitesparse \
     tango-icon-theme \
-    uncrustify \
+    virtual/kernel \
     wxwidgets \
+    zeromq \
+    zlib \
 "
 
-# Packages found only in <test_depend> items.
+# Packages found only in <test_depend> items. Does not include those found only in the ROS_*_DEPENDS of recipes of tests.
 ROS_SUPERFLORE_GENERATED_TESTS = " \
     ament-copyright \
     ament-flake8 \
@@ -494,7 +542,6 @@ ROS_SUPERFLORE_GENERATED_TESTS = " \
     python-cmake-module \
     python3-nose \
     python3-nose-yanc \
-    python3-opencv \
     python3-pygraphviz \
     python3-pytest \
     rmw-fastrtps-dynamic-cpp \
@@ -542,7 +589,6 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     image-transport-plugins \
     joystick-drivers \
     kdl-parser \
-    keystroke \
     laser-geometry \
     launch \
     librealsense \

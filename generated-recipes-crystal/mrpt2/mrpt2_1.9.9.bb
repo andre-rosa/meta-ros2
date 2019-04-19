@@ -11,12 +11,12 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_BUILD_DEPENDS = " \
-    assimp-dev \
+    assimp \
     eudev \
     ffmpeg \
-    freeglut \
+    glut \
     libeigen \
-    libjpeg-turbo \
+    libjpeq-turbo \
     libpcap \
     libusb1 \
     opencv \
@@ -30,12 +30,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    assimp-dev \
+    assimp \
     eudev \
     ffmpeg \
     glut \
     libeigen \
-    libjpeg \
+    libjpeq-turbo \
     libpcap \
     libusb1 \
     opencv \
@@ -47,12 +47,12 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    assimp-dev \
+    assimp \
     eudev \
     ffmpeg \
     glut \
     libeigen \
-    libjpeg \
+    libjpeq-turbo \
     libpcap \
     libusb1 \
     opencv \

@@ -16,7 +16,7 @@ ROS_BUILD_DEPENDS = " \
     libxaw \
     libxrandr \
     mesa \
-    pkgconf \
+    pkgconfig \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
