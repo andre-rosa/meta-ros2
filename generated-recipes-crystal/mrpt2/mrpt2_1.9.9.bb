@@ -14,7 +14,7 @@ ROS_BUILD_DEPENDS = " \
     assimp \
     eudev \
     ffmpeg \
-    glut \
+    freeglut \
     libeigen \
     libjpeq-turbo \
     libpcap \
@@ -33,7 +33,7 @@ ROS_EXPORT_DEPENDS = " \
     assimp \
     eudev \
     ffmpeg \
-    glut \
+    freeglut \
     libeigen \
     libjpeq-turbo \
     libpcap \
@@ -50,7 +50,7 @@ ROS_EXEC_DEPENDS = " \
     assimp \
     eudev \
     ffmpeg \
-    glut \
+    freeglut \
     libeigen \
     libjpeq-turbo \
     libpcap \

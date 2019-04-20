@@ -8,7 +8,7 @@ ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 export ROS_VERSION = "2"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190419233912"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190420003143"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -177,11 +177,11 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     fastrtps-cmake-module \
     fmi-adapter \
     fmi-adapter-examples \
-    gazebo-dev \
     gazebo-msgs \
     gazebo-plugins \
     gazebo-ros \
     gazebo-ros-pkgs \
+    gazebo-rosdev \
     geometry-msgs \
     gmock-vendor \
     gtest-vendor \
@@ -463,11 +463,11 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     elfutils \
     eudev \
     ffmpeg \
+    freeglut \
     freetype \
     gazebo9 \
     git-native \
     glfw \
-    glut \
     gmock-native \
     gpgme \
     gtest-native \

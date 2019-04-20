@@ -12,8 +12,8 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=3dce4ba60d7e5
 
 ROS_BUILD_DEPENDS = " \
     builtin-interfaces \
-    gazebo-dev \
     gazebo-msgs \
+    gazebo-rosdev \
     rclcpp \
     std-srvs \
     tinyxml-vendor \
@@ -25,8 +25,8 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     builtin-interfaces \
-    gazebo-dev \
     gazebo-msgs \
+    gazebo-rosdev \
     geometry-msgs \
     rclcpp \
     sensor-msgs \
@@ -38,8 +38,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     builtin-interfaces \
-    gazebo-dev \
     gazebo-msgs \
+    gazebo-rosdev \
     rclcpp \
     std-srvs \
     tinyxml-vendor \

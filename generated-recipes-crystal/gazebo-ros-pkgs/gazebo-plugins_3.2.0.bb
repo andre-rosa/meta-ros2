@@ -12,8 +12,8 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=f7d4e3a22e649
 
 ROS_BUILD_DEPENDS = " \
     camera-info-manager \
-    gazebo-dev \
     gazebo-ros \
+    gazebo-rosdev \
     geometry-msgs \
     image-transport \
     nav-msgs \
@@ -43,8 +43,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     camera-info-manager \
-    gazebo-dev \
     gazebo-ros \
+    gazebo-rosdev \
     geometry-msgs \
     image-transport \
     nav-msgs \

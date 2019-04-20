@@ -154,11 +154,11 @@ RDEPENDS_${PN} = " \
     fastrtps-cmake-module \
     fmi-adapter \
     fmi-adapter-examples \
-    gazebo-dev \
     gazebo-msgs \
     gazebo-plugins \
     gazebo-ros \
     gazebo-ros-pkgs \
+    gazebo-rosdev \
     geometry-msgs \
     gmock-vendor \
     gtest-vendor \
