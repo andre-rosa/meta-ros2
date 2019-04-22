@@ -26,9 +26,7 @@ ROS_EXPORT_DEPENDS = " \
     zlib \
 "
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = " \
-    cmake-native \
-"
+ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     libpcre \

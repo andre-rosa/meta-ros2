@@ -26,15 +26,7 @@ ROS_EXPORT_DEPENDS = " \
     rmw \
 "
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = " \
-    ament-cmake-native \
-    fastcdr-native \
-    fastrtps-cmake-module-native \
-    fastrtps-native \
-    rosidl-cmake-native \
-    rosidl-generator-c-native \
-    rosidl-generator-cpp-native \
-"
+ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     rosidl-parser \

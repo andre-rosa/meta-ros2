@@ -17,7 +17,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    gazebo9 \
+    libgazebo9 \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""

@@ -44,10 +44,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/navigation_msgs-release/archive/release/crystal/map_msgs/2.0.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "0d45258c3d3d5737f5995c81b46b5068"
-SRC_URI[sha256sum] = "43f77c54d0949407d8727434c917b81860edf52867e84985f088b7d69a116e4f"
-S = "${WORKDIR}/navigation_msgs-release-release-crystal-map_msgs-2.0.0-0"
+SRC_URI = "https://github.com/ros2-gbp/navigation_msgs-release/archive/release/crystal/map_msgs/2.0.1-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "afcc12d7775e38b9fd292eed0b3f1c7a"
+SRC_URI[sha256sum] = "73777431375ad7b3d56e25f88ed4655e757047b218ae32ff4ce34affce8ee2bb"
+S = "${WORKDIR}/navigation_msgs-release-release-crystal-map_msgs-2.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"

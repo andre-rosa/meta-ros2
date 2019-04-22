@@ -21,7 +21,6 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    ament-cmake \
     ament-cmake-auto \
     ament-cmake-gmock \
     ament-cmake-gtest \

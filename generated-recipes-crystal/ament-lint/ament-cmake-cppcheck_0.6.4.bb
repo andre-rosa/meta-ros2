@@ -15,14 +15,11 @@ ROS_BUILD_DEPENDS = ""
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-core-native \
     ament-cmake-test-native \
-    ament-cppcheck-native \
 "
 
 ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = " \
-    ament-cmake-core-native \
-    ament-cmake-test-native \
     ament-cppcheck-native \
 "
 

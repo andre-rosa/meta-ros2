@@ -15,13 +15,11 @@ ROS_BUILD_DEPENDS = ""
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
     ament-cmake-python-native \
-    python3-empy-native \
 "
 
 ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = " \
-    ament-cmake-native \
     python3-empy-native \
 "
 

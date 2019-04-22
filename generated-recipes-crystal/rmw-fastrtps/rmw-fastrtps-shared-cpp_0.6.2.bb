@@ -13,13 +13,11 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493f
 ROS_BUILD_DEPENDS = " \
     fastcdr \
     fastrtps \
-    fastrtps-cmake-module \
     rcutils \
     rmw \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
-    ament-cmake-native \
     ament-cmake-ros-native \
     fastrtps-cmake-module-native \
 "
@@ -27,7 +25,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     fastcdr \
     fastrtps \
-    fastrtps-cmake-module \
     rcutils \
     rmw \
 "
