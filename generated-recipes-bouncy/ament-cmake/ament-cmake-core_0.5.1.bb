@@ -15,16 +15,12 @@ ROS_BUILD_DEPENDS = ""
 ROS_BUILDTOOL_DEPENDS = " \
     ament-package-native \
     cmake-native \
-    python3-catkin-pkg-modules-native \
+    python3-catkin-pkg-native \
 "
 
 ROS_EXPORT_DEPENDS = ""
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = " \
-    ament-package-native \
-    cmake-native \
-    python3-catkin-pkg-modules-native \
-"
+ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = ""
 

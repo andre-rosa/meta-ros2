@@ -24,9 +24,9 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     ament-index-python \
-    python3-catkin-pkg-modules \
+    python3-catkin-pkg \
     python3-empy \
-    python3-pkg-resources \
+    python3-setuptools \
     ros2cli \
 "
 

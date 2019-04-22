@@ -5,20 +5,23 @@
 
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
+export ROS_VERSION = "2"
+
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190419202205"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190422225952"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
 ROS_NUM_CACHE_YAML_COMMITS = "1"
 
-# Iterated values of ROS_DISTRO-cache.distribution_file.release_platforms.<LINUX-DISTRO>.<NAME> .
+# Iterated values of ROS_DISTRO-cache.distribution_file.release_platforms.<LINUX-DISTRO>.[ <NAME> ... ] .
 ROS_DISTRO_RELEASE_PLATFORMS = " \
     ubuntu-bionic \
 "
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
+    console-bridge \
     libopensplice67 \
     ml-classifiers \
     opensplice-cmake-module \
@@ -91,7 +94,6 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     class-loader \
     common-interfaces \
     composition \
-    console-bridge \
     control-msgs \
     cv-bridge \
     demo-nodes-cpp \
@@ -273,7 +275,8 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     visualization-msgs \
 "
 
-# Packages found in the <buildtool_depend> and <buildtool_export_depend> items, ie, ones for which a -native is built.
+# Packages found in the <buildtool_depend> and <buildtool_export_depend> items, ie, ones for which a -native is built. Does not
+# include those found in the ROS_EXEC_DEPENDS values in recipes of build tools.
 ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     ament-clang-format-native \
     ament-cmake-auto-native \
@@ -306,16 +309,15 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     ament-uncrustify-native \
     cmake-native \
     fastrtps-cmake-module-native \
-    gmock-native \
     gmock-vendor-native \
     gtest-native \
     gtest-vendor-native \
     osrf-pycommon-native \
-    pkgconf-native \
+    pkgconfig-native \
     python-cmake-module-native \
-    python3-catkin-pkg-modules-native \
-    python3-dev-native \
+    python3-catkin-pkg-native \
     python3-empy-native \
+    python3-native \
     python3-nose-native \
     python3-pytest-native \
     rosidl-cmake-native \
@@ -332,27 +334,68 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
 "
 
 ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
+    asio \
+    assimp \
+    boost \
+    cairo \
+    ceres-solver \
     clang-format \
+    cmake \
+    cmake-native \
+    cppcheck-native \
     cppunit \
+    curl \
+    eudev \
+    freetype \
     g++-static \
+    gflags \
+    git \
     gtest-native \
+    libeigen \
     libgoogle-glog-dev \
+    libpcre \
+    libsdl \
+    libsdl-image \
+    libtinyxml \
+    libtinyxml2 \
+    libusb1 \
+    libx11 \
+    libxaw \
+    libxrandr \
+    libyaml \
+    lua \
+    mesa \
+    opencv \
+    openssl \
+    pcl \
+    pkgconfig \
+    pkgconfig-native \
+    poco \
+    protobuf \
     pydocstyle \
-    python3-catkin-pkg-modules \
-    python3-catkin-pkg-modules-native \
-    python3-dev-native \
+    python-pep8 \
+    python-pyflakes \
+    python-pyyaml \
+    python3-catkin-pkg \
+    python3-catkin-pkg-native \
+    python3-empy \
+    python3-empy-native \
     python3-flake8 \
+    python3-native \
     python3-nose \
     python3-nose-native \
     python3-nose-yanc \
-    python3-opencv \
-    python3-pkg-resources \
+    python3-numpy \
     python3-pydot \
     python3-pytest \
     python3-pytest-native \
+    python3-setuptools \
+    qtbase \
+    yaml-cpp \
+    zlib \
 "
 
-# Packages found only in <test_depend> items.
+# Packages found only in <test_depend> items. Does not include those found only in the ROS_*_DEPENDS of recipes of tests.
 ROS_SUPERFLORE_GENERATED_TESTS = " \
     ament-copyright \
     ament-flake8 \
@@ -364,7 +407,6 @@ ROS_SUPERFLORE_GENERATED_TESTS = " \
     python-cmake-module \
     python3-nose \
     python3-nose-yanc \
-    python3-opencv \
     python3-pytest \
     rviz-rendering-tests \
     rviz-visual-testing-framework \
@@ -383,7 +425,6 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     cartographer-ros \
     class-loader \
     common-interfaces \
-    console-bridge \
     control-msgs \
     demos \
     depthimage-to-laserscan \

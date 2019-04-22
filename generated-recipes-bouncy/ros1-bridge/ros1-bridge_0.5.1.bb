@@ -17,7 +17,7 @@ ROS_BUILD_DEPENDS = " \
     example-interfaces \
     geometry-msgs \
     nav-msgs \
-    pkgconf \
+    pkgconfig \
     python-pyyaml \
     rclcpp \
     rcutils \
@@ -36,7 +36,7 @@ ROS_BUILD_DEPENDS = " \
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
     ament-index-python-native \
-    python3-catkin-pkg-modules-native \
+    python3-catkin-pkg-native \
     rosidl-cmake-native \
     rosidl-parser-native \
 "

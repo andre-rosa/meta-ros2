@@ -10,8 +10,8 @@ inherit packagegroup
 
 PACKAGES = "${PN}"
 
-# Does not include packages in ROS_SUPERFLORE_GENERATED_BUILDTOOLS or ROS_SUPERFLORE_GENERATED_TESTS (set in
-# conf/ros-distro/include/ROS_DISTRO/generated-ros-distro.inc).
+# Does not include packages in ROS_SUPERFLORE_GENERATED_BUILDTOOLS (with -native removed) or ROS_SUPERFLORE_GENERATED_TESTS. (Both
+# are set in conf/ros-distro/include/ROS_DISTRO/generated-ros-distro.inc).
 RDEPENDS_${PN} = " \
     actionlib-msgs \
     amcl \
@@ -71,7 +71,6 @@ RDEPENDS_${PN} = " \
     class-loader \
     common-interfaces \
     composition \
-    console-bridge \
     control-msgs \
     cv-bridge \
     demo-nodes-cpp \

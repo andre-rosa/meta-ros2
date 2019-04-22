@@ -15,7 +15,6 @@ ROS_BUILD_DEPENDS = " \
     rcl \
     rcutils \
     rmw-implementation \
-    rosidl-default-generators \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \

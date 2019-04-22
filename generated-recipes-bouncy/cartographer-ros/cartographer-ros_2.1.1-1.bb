@@ -13,7 +13,6 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=b73cebba72f83c5
 ROS_BUILD_DEPENDS = " \
     cartographer \
     cartographer-ros-msgs \
-    console-bridge \
     libeigen \
     lua \
     nav-msgs \
@@ -38,7 +37,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     cartographer \
     cartographer-ros-msgs \
-    console-bridge \
     lua \
     nav-msgs \
     pcl \
@@ -57,7 +55,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     cartographer \
     cartographer-ros-msgs \
-    console-bridge \
     lua \
     nav-msgs \
     pcl \

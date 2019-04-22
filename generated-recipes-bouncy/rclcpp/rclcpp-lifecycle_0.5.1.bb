@@ -15,7 +15,6 @@ ROS_BUILD_DEPENDS = " \
     rcl-lifecycle \
     rclcpp \
     rmw-implementation \
-    rosidl-default-generators \
     std-msgs \
 "
 

@@ -13,7 +13,6 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f49
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
-    ament-clang-format-native \
     ament-cmake-core-native \
     ament-cmake-test-native \
 "
@@ -22,7 +21,6 @@ ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = " \
     ament-clang-format-native \
-    ament-cmake-test-native \
 "
 
 ROS_EXEC_DEPENDS = ""

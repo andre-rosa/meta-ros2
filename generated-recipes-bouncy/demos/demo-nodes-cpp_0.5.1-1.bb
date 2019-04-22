@@ -48,7 +48,6 @@ ROS_TEST_DEPENDS = " \
     launch-testing \
     rclcpp \
     rmw-implementation \
-    rosidl-default-generators \
     rosidl-default-runtime \
 "
 

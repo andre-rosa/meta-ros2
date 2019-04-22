@@ -14,11 +14,6 @@ ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
-    ament-index-python-native \
-    python-cmake-module-native \
-    rosidl-cmake-native \
-    rosidl-typesupport-c-native \
-    rosidl-typesupport-interface-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
@@ -26,7 +21,6 @@ ROS_EXPORT_DEPENDS = " \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = " \
-    ament-cmake-native \
     ament-index-python-native \
     python-cmake-module-native \
     rosidl-cmake-native \

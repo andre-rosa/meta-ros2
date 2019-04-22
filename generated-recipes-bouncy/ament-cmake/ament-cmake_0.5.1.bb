@@ -33,7 +33,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = " \
     ament-cmake-python-native \
     ament-cmake-target-dependencies-native \
     ament-cmake-test-native \
-    cmake-native \
 "
 
 ROS_EXEC_DEPENDS = ""

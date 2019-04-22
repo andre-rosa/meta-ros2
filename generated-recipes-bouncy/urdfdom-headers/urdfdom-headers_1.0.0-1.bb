@@ -11,7 +11,6 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_BUILD_DEPENDS = " \
-    console-bridge \
     libtinyxml \
 "
 
@@ -20,14 +19,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    console-bridge \
     libtinyxml \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    console-bridge \
     libtinyxml \
 "
 
