@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2013 Stefan Herbrechtsmeier, Bielefeld University
-# 
+#
 
 ROS_BPN = "${@d.getVar('BPN', True).replace('-', '_')}"
 
@@ -21,6 +21,9 @@ PREPROCESS_RELOCATE_DIRS += " \
     ${ros_bindir} \
     ${ros_libdir} \
 "
+
+# ROS_PYTHON_VERSION is set in generated-ros-distro.inc, ie, it will never be unset here.
+inherit ${@'python3-dir' if d.getVar('ROS_PYTHON_VERSION') == '3' else 'python-dir'}
 
 PKG_CONFIG_PATH .= ":${PKG_CONFIG_DIR}:${STAGING_DIR_HOST}${ros_libdir}/pkgconfig:${STAGING_DATADIR}/pkgconfig"
 PYTHON_SITEPACKAGES_DIR = "${ros_libdir}/${PYTHON_DIR}/site-packages"
