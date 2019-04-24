@@ -9,8 +9,8 @@ RDEPENDS_${PN} = "python-core python-distutils python-numpy freetype libpng pyth
 SRC_URI = "https://github.com/matplotlib/matplotlib/archive/v${PV}.tar.gz \
            file://fix_setupext.patch \
 "
-SRC_URI[md5sum] = "89717c1ef3c6fdcd6fb1f3b597a4858c"
-SRC_URI[sha256sum] = "aebed23921562792b68b8ca355de5abc176af4424f1987e2fa95f65e5c5e7e89"
+SRC_URI[md5sum] = "38e86246695821c758a30d04e3c15145"
+SRC_URI[sha256sum] = "613d79282a0a8ba88cfc52dbcf1b08ab070dae395c3d313d141ccc3f87e3c9fa"
 S = "${WORKDIR}/matplotlib-${PV}"
 EXTRA_OECONF = "--disable-docs"
 
