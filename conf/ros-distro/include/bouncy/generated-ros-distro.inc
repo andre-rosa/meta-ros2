@@ -8,7 +8,7 @@ ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 export ROS_VERSION = "2"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190422225952"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190423221633"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -23,7 +23,6 @@ ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
     console-bridge \
     libopensplice67 \
-    ml-classifiers \
     opensplice-cmake-module \
     rmw-connext-cpp \
     rmw-connext-shared-cpp \
