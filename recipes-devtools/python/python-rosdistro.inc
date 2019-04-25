@@ -1,12 +1,12 @@
 DESCRIPTION = "ROS package library"
 SECTION = "devel/python"
-LICENSE = "BSD & MIT"
-LIC_FILES_CHKSUM = "file://PKG-INFO;beginline=8;endline=8;md5=48623a4c0f1b1f65fae1dedd990a7f54"
+LICENSE = "BSD-3-Clause"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=988919d688133096537549f9afebf425"
 SRCNAME = "rosdistro"
 
-SRC_URI = "http://download.ros.org/downloads/rosdistro/rosdistro-${PV}.tar.gz"
-SRC_URI[md5sum] = "a699690fab755fd1b92b2ac04933e227"
-SRC_URI[sha256sum] = "f44757336bcee4089f6f6d570248e7c4e09eebfe5238d6ae60d8bd35361eedc4"
+SRC_URI = "https://github.com/ros-infrastructure/rosdistro/archive/${PV}.tar.gz"
+SRC_URI[md5sum] = "cfa1acb3be6ebc30a146601238d34920"
+SRC_URI[sha256sum] = "f0d5a3a671d5718d531f865640aa77270f951959525ac97720889c89510ac827"
 
 S = "${WORKDIR}/${SRCNAME}-${PV}"
 
