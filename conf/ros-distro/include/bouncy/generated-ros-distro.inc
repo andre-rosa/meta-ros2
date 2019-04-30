@@ -6,9 +6,11 @@
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
 export ROS_VERSION = "2"
+# DO NOT OVERRIDE ROS_PYTHON_VERSION
+export ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190423221633"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190426201341"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -371,9 +373,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     pkgconfig-native \
     poco \
     protobuf \
-    pydocstyle \
-    python-pep8 \
-    python-pyflakes \
     python-pyyaml \
     python3-catkin-pkg \
     python3-catkin-pkg-native \
@@ -385,7 +384,10 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python3-nose-native \
     python3-nose-yanc \
     python3-numpy \
+    python3-pep8 \
+    python3-pydocstyle \
     python3-pydot \
+    python3-pyflakes \
     python3-pytest \
     python3-pytest-native \
     python3-setuptools \
@@ -490,11 +492,3 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
 "
 
 # A ros_depgrp_<dependency-group>.bbclass must be created for each of these:
-ROS_SUPERFLORE_GENERATED_DEPENDENCY_GROUPS = " \
-    rmw_implementation_packages \
-    rosidl_generator_packages \
-    rosidl_interface_packages \
-    rosidl_runtime_packages \
-    rosidl_typesupport_c_packages \
-    rosidl_typesupport_cpp_packages \
-"
