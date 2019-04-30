@@ -20,8 +20,11 @@ FILES_${PN} = "\
 FILES_${PN}-dev = ""
 
 RDEPENDS_${PN}_class-native = "${PYTHON_PN}-catkin-pkg"
-RDEPENDS_${PN} = "cmake make binutils binutils-symlinks gcc gcc-symlinks g++ g++-symlinks \
+RDEPENDS_${PN} = "cmake make binutils binutils-symlinks \
     catkin-runtime  ${PYTHON_PN}-empy"
+
+X = "gcc gcc-symlinks g++ g++-symlinks \
+"
 
 do_install_append() {
     rm ${D}${ros_bindir}/catkin_find
