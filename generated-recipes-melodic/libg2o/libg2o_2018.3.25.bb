@@ -56,7 +56,6 @@ S = "${WORKDIR}/libg2o-release-release-melodic-libg2o-2018.3.25-0"
 
 ROS_BUILD_TYPE = "cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/libg2o/libg2o_common.inc
@@ -68,4 +67,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libg2o/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

@@ -174,6 +174,9 @@ RDEPENDS_${PN} = " \
     depthcloud-encoder \
     depthimage-to-laserscan \
     derived-object-msgs \
+    desistek-saga-control \
+    desistek-saga-description \
+    desistek-saga-gazebo \
     desktop \
     desktop-full \
     diagnostic-aggregator \
@@ -206,6 +209,9 @@ RDEPENDS_${PN} = " \
     dynamixel-workbench-single-manager-gui \
     dynamixel-workbench-toolbox \
     easy-markers \
+    eca-a9-control \
+    eca-a9-description \
+    eca-a9-gazebo \
     ecl \
     ecl-build \
     ecl-command-line \
@@ -249,6 +255,7 @@ RDEPENDS_${PN} = " \
     eigen-conversions \
     eigen-stl-containers \
     eigenpy \
+    epos2-motor-controller \
     ethercat-grant \
     ethercat-hardware \
     ethercat-trigger-controllers \
@@ -489,6 +496,9 @@ RDEPENDS_${PN} = " \
     laser-geometry \
     laser-pipeline \
     laser-proc \
+    lauv-control \
+    lauv-description \
+    lauv-gazebo \
     leg-detector \
     lex-common-msgs \
     lex-node \
@@ -773,6 +783,7 @@ RDEPENDS_${PN} = " \
     pr2-common \
     pr2-common-action-msgs \
     pr2-common-actions \
+    pr2-controller-configuration-gazebo \
     pr2-controller-interface \
     pr2-controller-manager \
     pr2-controllers \
@@ -780,6 +791,8 @@ RDEPENDS_${PN} = " \
     pr2-dashboard-aggregator \
     pr2-description \
     pr2-ethercat-drivers \
+    pr2-gazebo \
+    pr2-gazebo-plugins \
     pr2-gripper-action \
     pr2-hardware-interface \
     pr2-head-action \
@@ -795,6 +808,7 @@ RDEPENDS_${PN} = " \
     pr2-position-scripts \
     pr2-power-board \
     pr2-power-drivers \
+    pr2-simulator \
     pr2-teleop-general \
     pr2-tilt-laser-interface \
     pr2-tuck-arms-action \

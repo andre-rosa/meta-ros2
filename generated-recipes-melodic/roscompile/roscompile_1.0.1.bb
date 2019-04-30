@@ -11,6 +11,7 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_BUILD_DEPENDS = " \
+    catkin \
     ros-introspection \
 "
 
@@ -19,12 +20,14 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    catkin \
     ros-introspection \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    catkin \
     ros-introspection \
 "
 
@@ -50,7 +53,6 @@ S = "${WORKDIR}/roscompile-release-release-melodic-roscompile-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/roscompile/roscompile_common.inc
@@ -62,4 +64,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

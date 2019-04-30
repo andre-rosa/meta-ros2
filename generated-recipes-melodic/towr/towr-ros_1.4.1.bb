@@ -46,6 +46,7 @@ ROS_EXEC_DEPENDS = " \
     libncurses-dev \
     message-generation \
     message-runtime \
+    ncurses \
     rosbag \
     roscpp \
     rqt-bag \
@@ -56,7 +57,6 @@ ROS_EXEC_DEPENDS = " \
     xpp-hyq \
     xpp-msgs \
     xpp-states \
-    xterm \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -76,7 +76,6 @@ S = "${WORKDIR}/towr-release-release-melodic-towr_ros-1.4.1-0"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/towr/towr_common.inc
@@ -88,4 +87,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/towr/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

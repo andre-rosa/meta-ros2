@@ -47,7 +47,6 @@ S = "${WORKDIR}/kinesis_video_streamer-release-release-melodic-kinesis_video_msg
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/kinesis-video-streamer/kinesis-video-streamer_common.inc
@@ -59,4 +58,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-video-streamer/${BPN}-${PV}.
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

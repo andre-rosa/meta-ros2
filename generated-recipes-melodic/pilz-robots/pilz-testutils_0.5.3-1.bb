@@ -3,14 +3,16 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "The metapackage"
+DESCRIPTION = "This package contains testing utilities used by Pilz packages."
 AUTHOR = "Alexander Gutenkunst <a.gutenkunst@pilz.de>"
-HOMEPAGE = "http://ros.org/wiki/pilz_robots"
+HOMEPAGE = "https://wiki.ros.org/pilz_testutils"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    roscpp \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -20,11 +22,7 @@ ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = " \
-    prbt-ikfast-manipulator-plugin \
-    prbt-moveit-config \
-    prbt-support \
-"
+ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = ""
@@ -36,14 +34,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/PilzDE/pilz_robots-release/archive/release/melodic/pilz_robots/0.5.2-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "ef287901d9e8658a4ccbb4b39d6142c1"
-SRC_URI[sha256sum] = "848dc98104ae50f81e74c1bfca1e7ce3841af09e0df516317ee23f3414bd10b2"
-S = "${WORKDIR}/pilz_robots-release-release-melodic-pilz_robots-0.5.2-0"
+SRC_URI = "https://github.com/PilzDE/pilz_robots-release/archive/release/melodic/pilz_testutils/0.5.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "ffa8e4b5182a7f1d23fe13209c1b1aa6"
+SRC_URI[sha256sum] = "0a19e1ad12f656f7b1ab0977438f322c5ab9ba19eca2c3ec25f0a81829f5fcb2"
+S = "${WORKDIR}/pilz_robots-release-release-melodic-pilz_testutils-0.5.3-1"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/pilz-robots/pilz-robots_common.inc
@@ -55,4 +52,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

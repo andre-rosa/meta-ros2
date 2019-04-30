@@ -14,9 +14,9 @@ ROS_BUILD_DEPENDS = " \
     bond \
     boost \
     cmake-modules \
+    crossguid \
     roscpp \
     smclib \
-    uuid \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -26,9 +26,9 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     bond \
     boost \
+    crossguid \
     roscpp \
     smclib \
-    uuid \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -36,9 +36,9 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     bond \
     boost \
+    crossguid \
     roscpp \
     smclib \
-    uuid \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -58,7 +58,6 @@ S = "${WORKDIR}/bond_core-release-release-melodic-bondcpp-1.8.3-0"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/bond-core/bond-core_common.inc
@@ -70,4 +69,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

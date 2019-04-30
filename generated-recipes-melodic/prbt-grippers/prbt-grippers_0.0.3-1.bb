@@ -34,14 +34,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/PilzDE/prbt_grippers-release/archive/release/melodic/prbt_grippers/0.0.2-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "24563051c9e62b4ca3b403cf997cbbc2"
-SRC_URI[sha256sum] = "49a1079006c4814d2f82525a088bb46c449637d9454d5e15818d2a2194280cbb"
-S = "${WORKDIR}/prbt_grippers-release-release-melodic-prbt_grippers-0.0.2-0"
+SRC_URI = "https://github.com/PilzDE/prbt_grippers-release/archive/release/melodic/prbt_grippers/0.0.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "310ae24aeffc06b0875b882bee4fb4fe"
+SRC_URI[sha256sum] = "f623ce025264f9a4407ee7687efc7dc058aaee1d80f1c81eeaa5e569c1c519dc"
+S = "${WORKDIR}/prbt_grippers-release-release-melodic-prbt_grippers-0.0.3-1"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/prbt-grippers/prbt-grippers_common.inc
@@ -53,4 +52,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prbt-grippers/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

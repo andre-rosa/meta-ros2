@@ -3,38 +3,49 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "Launch prbt robot in an empty Gazebo world."
+DESCRIPTION = "Control hardware functions of the PRBT manipulator like STO for Stop1 functionality."
 AUTHOR = "Alexander Gutenkunst <a.gutenkunst@pilz.de>"
-HOMEPAGE = "https://wiki.ros.org/prbt_gazebo"
+HOMEPAGE = "https://wiki.ros.org/prbt_hardware_support"
 SECTION = "devel"
-LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
+LICENSE = "LGPL-2"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=b691248d2f70cdaeeaf13696ada5d47c"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    libmodbus-dev \
+    message-filters \
+    message-generation \
+    roscpp \
+    std-msgs \
+    std-srvs \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    message-runtime \
+    roscpp \
+    std-msgs \
+    std-srvs \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    gazebo-ros \
-    gazebo-ros-control \
-    prbt-moveit-config \
-    prbt-support \
-    roslaunch \
-    xacro \
+    message-runtime \
+    roscpp \
+    std-msgs \
+    std-srvs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    actionlib \
-    roscpp \
+    cmake-modules \
+    code-coverage \
+    pilz-testutils \
     rostest \
-    trajectory-msgs \
+    rosunit \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -44,14 +55,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/PilzDE/pilz_robots-release/archive/release/melodic/prbt_gazebo/0.5.2-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "82315780e0066e7aa21ef877c12be41b"
-SRC_URI[sha256sum] = "87d8f8a2429571ed83ff657aaca17fdfa630a0e45d6c1a73ffa2acf8087e34ef"
-S = "${WORKDIR}/pilz_robots-release-release-melodic-prbt_gazebo-0.5.2-0"
+SRC_URI = "https://github.com/PilzDE/pilz_robots-release/archive/release/melodic/prbt_hardware_support/0.5.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "c4a4aa7b940e5c012c96047f73f754fc"
+SRC_URI[sha256sum] = "8833ee4869bd8c34bf8d4b9d76ec465235de9121403da7989ed73c31f648d5f0"
+S = "${WORKDIR}/pilz_robots-release-release-melodic-prbt_hardware_support-0.5.3-1"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/pilz-robots/pilz-robots_common.inc
@@ -63,4 +73,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

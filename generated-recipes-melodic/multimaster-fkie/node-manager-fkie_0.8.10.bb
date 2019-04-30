@@ -51,6 +51,7 @@ ROS_EXEC_DEPENDS = " \
     master-discovery-fkie \
     master-sync-fkie \
     multimaster-msgs-fkie \
+    ncurses \
     python-docutils \
     python-paramiko \
     python-qt-binding \
@@ -63,7 +64,6 @@ ROS_EXEC_DEPENDS = " \
     rqt-gui \
     rqt-reconfigure \
     screen \
-    xterm \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -83,7 +83,6 @@ S = "${WORKDIR}/multimaster_fkie-release-release-melodic-node_manager_fkie-0.8.1
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/multimaster-fkie/multimaster-fkie_common.inc
@@ -95,4 +94,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

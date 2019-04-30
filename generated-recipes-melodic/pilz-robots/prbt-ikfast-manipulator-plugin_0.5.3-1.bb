@@ -54,14 +54,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/PilzDE/pilz_robots-release/archive/release/melodic/prbt_ikfast_manipulator_plugin/0.5.2-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "fe3603ddada4a8058c2e4ec794db776b"
-SRC_URI[sha256sum] = "7af5fbac9ef84b4c58661c8cc505beff584aa585b6732a4f43c0bf785ef8b89f"
-S = "${WORKDIR}/pilz_robots-release-release-melodic-prbt_ikfast_manipulator_plugin-0.5.2-0"
+SRC_URI = "https://github.com/PilzDE/pilz_robots-release/archive/release/melodic/prbt_ikfast_manipulator_plugin/0.5.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "e29d99ef20732b1b03de832d86620995"
+SRC_URI[sha256sum] = "def4ff61fb9b4e80534735517fdada554eb01572558047e6b7c840f923c77766"
+S = "${WORKDIR}/pilz_robots-release-release-melodic-prbt_ikfast_manipulator_plugin-0.5.3-1"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/pilz-robots/pilz-robots_common.inc
@@ -73,4 +72,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

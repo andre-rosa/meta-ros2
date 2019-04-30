@@ -43,7 +43,6 @@ S = "${WORKDIR}/hector_models-release-release-melodic-hector_sensors_description
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/hector-models/hector-models_common.inc
@@ -55,4 +54,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

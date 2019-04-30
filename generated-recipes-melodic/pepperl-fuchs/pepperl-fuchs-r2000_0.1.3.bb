@@ -51,7 +51,6 @@ S = "${WORKDIR}/pepperl_fuchs-release-release-melodic-pepperl_fuchs_r2000-0.1.3-
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/pepperl-fuchs/pepperl-fuchs_common.inc
@@ -63,4 +62,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pepperl-fuchs/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

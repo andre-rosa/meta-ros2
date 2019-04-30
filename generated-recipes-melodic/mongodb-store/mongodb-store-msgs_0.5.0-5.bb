@@ -13,6 +13,7 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=2c00b8d285410
 ROS_BUILD_DEPENDS = " \
     actionlib \
     actionlib-msgs \
+    catkin \
     message-generation \
 "
 
@@ -53,7 +54,6 @@ S = "${WORKDIR}/mongodb_store-release-melodic-mongodb_store_msgs-0.5.0-5"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/mongodb-store/mongodb-store_common.inc
@@ -65,4 +65,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

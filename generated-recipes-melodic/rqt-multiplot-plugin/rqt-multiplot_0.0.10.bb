@@ -63,7 +63,6 @@ S = "${WORKDIR}/rqt_multiplot_plugin-release-release-melodic-rqt_multiplot-0.0.1
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/rqt-multiplot-plugin/rqt-multiplot-plugin_common.inc
@@ -75,4 +74,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-multiplot-plugin/${BPN}-${PV}.in
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

@@ -11,6 +11,7 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_BUILD_DEPENDS = " \
+    acpica \
     boost \
     cv-bridge \
     diagnostic-msgs \
@@ -19,7 +20,6 @@ ROS_BUILD_DEPENDS = " \
     gps-common \
     libgeos++-dev \
     nodelet \
-    proj \
     roscpp \
     rospy \
     swri-math-util \
@@ -37,6 +37,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    acpica \
     boost \
     cv-bridge \
     diagnostic-msgs \
@@ -45,7 +46,6 @@ ROS_EXPORT_DEPENDS = " \
     gps-common \
     libgeos++-dev \
     nodelet \
-    proj \
     roscpp \
     rospy \
     swri-math-util \
@@ -60,6 +60,7 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    acpica \
     boost \
     cv-bridge \
     diagnostic-msgs \
@@ -68,7 +69,6 @@ ROS_EXEC_DEPENDS = " \
     gps-common \
     libgeos++-dev \
     nodelet \
-    proj \
     roscpp \
     rospy \
     sensor-msgs \
@@ -100,7 +100,6 @@ S = "${WORKDIR}/marti_common-release-release-melodic-swri_transform_util-2.8.0-0
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/marti-common/marti-common_common.inc
@@ -112,4 +111,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

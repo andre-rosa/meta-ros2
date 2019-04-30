@@ -11,7 +11,6 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_BUILD_DEPENDS = " \
-    python-argparse \
     python-catkin-pkg \
     python-empy \
 "
@@ -22,16 +21,16 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     gtest \
-    python-argparse \
     python-catkin-pkg \
     python-empy \
     python-nose \
 "
 
-ROS_BUILDTOOL_EXPORT_DEPENDS = ""
+ROS_BUILDTOOL_EXPORT_DEPENDS = " \
+    cmake-native \
+"
 
 ROS_EXEC_DEPENDS = " \
-    python-argparse \
     python-catkin-pkg \
 "
 
@@ -55,7 +54,6 @@ S = "${WORKDIR}/catkin-release-release-melodic-catkin-0.7.17-0"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/catkin/catkin_common.inc
@@ -67,4 +65,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

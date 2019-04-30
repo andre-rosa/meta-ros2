@@ -79,7 +79,6 @@ S = "${WORKDIR}/fetch_open_auto_dock-gbp-release-melodic-fetch_open_auto_dock-0.
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/fetch-open-auto-dock/fetch-open-auto-dock_common.inc
@@ -91,4 +90,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-open-auto-dock/${BPN}-${PV}.in
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

@@ -11,10 +11,12 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
 ROS_BUILD_DEPENDS = " \
+    cv-bridge \
     pcl \
     pcl-ros \
     roscpp \
     sensor-msgs \
+    visualization-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -22,19 +24,23 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    cv-bridge \
     pcl \
     pcl-ros \
     roscpp \
     sensor-msgs \
+    visualization-msgs \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    cv-bridge \
     pcl \
     pcl-ros \
     roscpp \
     sensor-msgs \
+    visualization-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -47,14 +53,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/praveen-palanisamy/multi_object_tracking_lidar-release/archive/release/melodic/multi_object_tracking_lidar/1.0.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "fbb9a36afcda2b8b827cf97675692227"
-SRC_URI[sha256sum] = "b1d366b334c7d7b1e9fde0909627106eb470b3aba815186b4770ab979e73b6a0"
-S = "${WORKDIR}/multi_object_tracking_lidar-release-release-melodic-multi_object_tracking_lidar-1.0.0-0"
+SRC_URI = "https://github.com/praveen-palanisamy/multi_object_tracking_lidar-release/archive/release/melodic/multi_object_tracking_lidar/1.0.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "781515c355686ffd7fae7e1b6247d4f1"
+SRC_URI[sha256sum] = "2c8c139caef500a457297233231fcdb913d3106954789481277d4c028df6219f"
+S = "${WORKDIR}/multi_object_tracking_lidar-release-release-melodic-multi_object_tracking_lidar-1.0.1-1"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/multi-object-tracking-lidar/multi-object-tracking-lidar_common.inc
@@ -66,4 +71,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multi-object-tracking-lidar/${BPN}-$
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

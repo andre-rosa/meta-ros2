@@ -81,7 +81,6 @@ S = "${WORKDIR}/moveit_visual_tools-release-release-melodic-moveit_visual_tools-
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/moveit-visual-tools/moveit-visual-tools_common.inc
@@ -93,4 +92,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-visual-tools/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

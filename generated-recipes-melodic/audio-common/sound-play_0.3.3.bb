@@ -46,13 +46,13 @@ ROS_EXEC_DEPENDS = " \
     actionlib-msgs \
     audio-common-msgs \
     diagnostic-msgs \
-    festival \
     gstreamer1.0 \
     gstreamer1.0-plugins-base \
     gstreamer1.0-plugins-good \
     gstreamer1.0-plugins-ugly \
     message-runtime \
-    python-gi \
+    mimic \
+    python-gitdb-native \
     roscpp \
     roslib \
     rospy \
@@ -75,7 +75,6 @@ S = "${WORKDIR}/audio_common-release-release-melodic-sound_play-0.3.3-0"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/audio-common/audio-common_common.inc
@@ -87,4 +86,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

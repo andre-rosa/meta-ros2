@@ -17,6 +17,7 @@ ROS_BUILD_DEPENDS = " \
     message-generation \
     nodelet \
     roscpp \
+    sensor-msgs \
     std-msgs \
     std-srvs \
 "
@@ -32,6 +33,7 @@ ROS_EXPORT_DEPENDS = " \
     message-runtime \
     nodelet \
     roscpp \
+    sensor-msgs \
     std-msgs \
     std-srvs \
 "
@@ -45,6 +47,7 @@ ROS_EXEC_DEPENDS = " \
     message-runtime \
     nodelet \
     roscpp \
+    sensor-msgs \
     std-msgs \
     std-srvs \
 "
@@ -55,6 +58,7 @@ ROS_TEST_DEPENDS = " \
     image-proc \
     image-view \
     rosbag \
+    roslaunch \
     rosservice \
     rostest \
     rostopic \
@@ -68,14 +72,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-perception/opencv_apps-release/archive/release/melodic/opencv_apps/2.0.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "4e115ec5c0772567782e8d6084caf763"
-SRC_URI[sha256sum] = "8dfed794573f2526432a6d0066f5af7158d2b405ebd78eec02d14e86872266c0"
-S = "${WORKDIR}/opencv_apps-release-release-melodic-opencv_apps-2.0.0-0"
+SRC_URI = "https://github.com/ros-perception/opencv_apps-release/archive/release/melodic/opencv_apps/2.0.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "424b941292bc77336340f2d7b31664da"
+SRC_URI[sha256sum] = "11489debf5d3b3dc194472f483d67857db62f76665f6785ad4f55882c4e4d3dc"
+S = "${WORKDIR}/opencv_apps-release-release-melodic-opencv_apps-2.0.1-1"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/opencv-apps/opencv-apps_common.inc
@@ -87,4 +90,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/opencv-apps/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

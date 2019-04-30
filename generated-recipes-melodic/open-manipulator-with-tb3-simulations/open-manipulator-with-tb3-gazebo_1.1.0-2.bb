@@ -57,7 +57,6 @@ S = "${WORKDIR}/open_manipulator_with_tb3_simulations-release-release-melodic-op
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/open-manipulator-with-tb3-simulations/open-manipulator-with-tb3-simulations_common.inc
@@ -69,4 +68,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3-simulation
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

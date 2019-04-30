@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=4;endline=4;md5=d566ef916e9dedc
 ROS_BUILD_DEPENDS = " \
     bluez5 \
     diagnostic-msgs \
-    joystick \
+    libsdl \
     libusb-dev \
     python-bluez \
     rosgraph \
@@ -26,9 +26,9 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    bluez \
+    bluez5 \
     diagnostic-msgs \
-    joystick \
+    libsdl \
     libusb-dev \
     python-bluez \
     rosgraph \
@@ -39,9 +39,9 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    bluez \
+    bluez5 \
     diagnostic-msgs \
-    joystick \
+    libsdl \
     libusb-dev \
     python-bluez \
     rosgraph \
@@ -66,7 +66,6 @@ S = "${WORKDIR}/joystick_drivers-release-release-melodic-ps3joy-1.12.0-0"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/joystick-drivers/joystick-drivers_common.inc
@@ -78,4 +77,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

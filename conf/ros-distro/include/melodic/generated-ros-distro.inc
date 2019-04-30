@@ -6,9 +6,11 @@
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
 export ROS_VERSION = "1"
+# Can override ROS_PYTHON_VERSION in conf/local.conf
+export ROS_PYTHON_VERSION ??= "2"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190423220001"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190426205342"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -198,6 +200,9 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     depthcloud-encoder \
     depthimage-to-laserscan \
     derived-object-msgs \
+    desistek-saga-control \
+    desistek-saga-description \
+    desistek-saga-gazebo \
     desktop \
     desktop-full \
     diagnostic-aggregator \
@@ -230,6 +235,9 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     dynamixel-workbench-single-manager-gui \
     dynamixel-workbench-toolbox \
     easy-markers \
+    eca-a9-control \
+    eca-a9-description \
+    eca-a9-gazebo \
     ecl \
     ecl-build \
     ecl-command-line \
@@ -273,6 +281,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     eigen-conversions \
     eigen-stl-containers \
     eigenpy \
+    epos2-motor-controller \
     ethercat-grant \
     ethercat-hardware \
     ethercat-trigger-controllers \
@@ -513,6 +522,9 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     laser-geometry \
     laser-pipeline \
     laser-proc \
+    lauv-control \
+    lauv-description \
+    lauv-gazebo \
     leg-detector \
     lex-common-msgs \
     lex-node \
@@ -797,6 +809,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     pr2-common \
     pr2-common-action-msgs \
     pr2-common-actions \
+    pr2-controller-configuration-gazebo \
     pr2-controller-interface \
     pr2-controller-manager \
     pr2-controllers \
@@ -804,6 +817,8 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     pr2-dashboard-aggregator \
     pr2-description \
     pr2-ethercat-drivers \
+    pr2-gazebo \
+    pr2-gazebo-plugins \
     pr2-gripper-action \
     pr2-hardware-interface \
     pr2-head-action \
@@ -819,6 +834,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     pr2-position-scripts \
     pr2-power-board \
     pr2-power-drivers \
+    pr2-simulator \
     pr2-teleop-general \
     pr2-tilt-laser-interface \
     pr2-tuck-arms-action \
@@ -1335,7 +1351,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     avahi-daemon \
     binutils \
     bison \
-    bluez \
     bluez5 \
     boost \
     bullet \
@@ -1343,6 +1358,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     ca-certificates \
     cairo \
     ceres-solver \
+    cmake \
     cmake-native \
     coinor-libipopt-dev \
     collada-dom \
@@ -1357,10 +1373,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     dnsmasq \
     doxygen \
     elfutils \
-    emacs \
-    epydoc \
     eudev \
-    festival \
     ffmpeg \
     flex \
     freeglut \
@@ -1386,7 +1399,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     hddtemp \
     hostapd \
     iproute2 \
-    joystick \
     julius-voxforge \
     lcov \
     leveldb \
@@ -1405,6 +1417,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     libfltk-dev \
     libfreenect-dev \
     libftdi-dev \
+    libftdipp-dev \
     libgazebo9 \
     libgeos++-dev \
     libgfortran \
@@ -1487,18 +1500,15 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     opencv \
     openssl \
     osm2pgsql \
-    paramiko \
     pcl \
     phantomjs \
     pkgconfig \
     pkgconfig-native \
     poco \
     postgresql-postgis \
-    proj \
     protobuf \
     python \
     python-argcomplete \
-    python-argparse \
     python-avahi \
     python-backports.ssl-match-hostname \
     python-bluez \
@@ -1515,7 +1525,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python-click \
     python-colorama \
     python-coverage \
-    python-crypto \
     python-cryptography \
     python-cwiid \
     python-cython \
@@ -1530,7 +1539,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python-freezegun-pip \
     python-futures \
     python-gdown-pip \
-    python-gi \
     python-gitdb-native \
     python-gnupg \
     python-h5py \
@@ -1593,7 +1601,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python-twisted-core \
     python-urlgrabber \
     python-virtualenv \
-    python-websocket \
     python-websocket-client \
     python-wxtools \
     python-yaml \
@@ -1618,7 +1625,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     time \
     unzip \
     usbutils \
-    uuid \
     v4l-utils \
     wget \
     wget-native \
@@ -1626,7 +1632,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     wxwidgets \
     xfonts-100dpi \
     xfonts-75dpi \
-    xterm \
     xvfb \
     yaml-cpp \
     yaml-cpp-native \
@@ -1718,6 +1723,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     ddynamic-reconfigure-python \
     depthcloud-encoder \
     depthimage-to-laserscan \
+    desistek-saga \
     diagnostics \
     driver-common \
     dynamic-reconfigure \
@@ -1725,6 +1731,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     dynamixel-sdk \
     dynamixel-workbench \
     dynamixel-workbench-msgs \
+    eca-a9 \
     ecl-core \
     ecl-lite \
     ecl-manipulation \
@@ -1732,6 +1739,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     ecl-tools \
     eigen-stl-containers \
     eigenpy \
+    epos2-motor-controller \
     ethercat-grant \
     euslisp \
     executive-smach \
@@ -1818,6 +1826,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     laser-geometry \
     laser-pipeline \
     laser-proc \
+    lauv-gazebo \
     lex-node \
     lgsvl-msgs \
     libg2o \
@@ -1926,6 +1935,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     pr2-mechanism \
     pr2-mechanism-msgs \
     pr2-power-drivers \
+    pr2-simulator \
     prbt-grippers \
     py-trees \
     py-trees-msgs \
@@ -2114,6 +2124,3 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
 "
 
 # A ros_depgrp_<dependency-group>.bbclass must be created for each of these:
-ROS_SUPERFLORE_GENERATED_DEPENDENCY_GROUPS = " \
-    rosidl_interface_packages \
-"

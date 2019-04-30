@@ -60,9 +60,6 @@ S = "${WORKDIR}/ml_classifiers-release-release-melodic-ml_classifiers-1.0.1-1"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = " \
-    rosidl_interface_packages \
-"
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/ml-classifiers/ml-classifiers_common.inc
@@ -74,4 +71,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ml-classifiers/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

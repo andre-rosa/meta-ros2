@@ -10,7 +10,9 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    cmake \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     cmake-native \
@@ -39,7 +41,6 @@ S = "${WORKDIR}/sbpl-release-release-melodic-sbpl-1.3.1-0"
 
 ROS_BUILD_TYPE = "cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/sbpl/sbpl_common.inc
@@ -51,4 +52,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbpl/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

@@ -46,7 +46,6 @@ S = "${WORKDIR}/xv_11_laser_driver-release-release-melodic-xv_11_laser_driver-0.
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/xv-11-laser-driver/xv-11-laser-driver_common.inc
@@ -58,4 +57,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xv-11-laser-driver/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

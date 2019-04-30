@@ -3,42 +3,49 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "An automatically generated package with all the configuration and launch files for using the prbt with the MoveIt! Motion Planning Framework"
+DESCRIPTION = "This package provides a specialized joint_trajectory_controller that can be moved into holding state via service call.   No further trajectories will be accepted/followed in this state."
 AUTHOR = "Alexander Gutenkunst <a.gutenkunst@pilz.de>"
-HOMEPAGE = "https://wiki.ros.org/prbt_moveit_config"
+HOMEPAGE = "http://ros.org/wiki/pilz_control"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=19;endline=19;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    cmake-modules \
+    controller-interface \
+    controller-manager \
+    joint-trajectory-controller \
+    roscpp \
+    roslint \
+    std-srvs \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    controller-interface \
+    controller-manager \
+    joint-trajectory-controller \
+    roscpp \
+    std-srvs \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    joint-state-publisher \
+    controller-interface \
+    controller-manager \
     joint-trajectory-controller \
-    moveit-fake-controller-manager \
-    moveit-kinematics \
-    moveit-planners-ompl \
-    moveit-ros-move-group \
-    moveit-ros-visualization \
-    moveit-simple-controller-manager \
-    prbt-ikfast-manipulator-plugin \
-    prbt-support \
-    robot-state-publisher \
-    rviz \
-    xacro \
+    roscpp \
+    std-srvs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    roslaunch \
+    code-coverage \
+    rostest \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -48,14 +55,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/PilzDE/pilz_robots-release/archive/release/melodic/prbt_moveit_config/0.5.2-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "70f0d02a13355eb123b046095a488506"
-SRC_URI[sha256sum] = "cc486768aa9e279f218a2b051fee1c4d6c313023a9f510d3a35c12716827fe27"
-S = "${WORKDIR}/pilz_robots-release-release-melodic-prbt_moveit_config-0.5.2-0"
+SRC_URI = "https://github.com/PilzDE/pilz_robots-release/archive/release/melodic/pilz_control/0.5.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "14296236fd88bd526cc85a2b900b379d"
+SRC_URI[sha256sum] = "4ab1a3cf20ab9a31e256bc2e750d7040b10038afe80715e149921a4c7efb56e6"
+S = "${WORKDIR}/pilz_robots-release-release-melodic-pilz_control-0.5.3-1"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/pilz-robots/pilz-robots_common.inc
@@ -67,4 +73,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

@@ -3,35 +3,38 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "A simple script that aggregates all of the topics that a &quot;pr2_dashboard&quot; app might be interested in."
+DESCRIPTION = "This package contains the description (mechanical, kinematic, visual,   etc.) of the PR2 robot.  The files in this package are parsed and used by   a variety of other components.  Most users will not interact directly   with this package."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
-HOMEPAGE = "http://ros.org/wiki/pr2_dashboard_aggregator"
+HOMEPAGE = "http://ros.org/wiki/pr2_description"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    convex-decomposition \
+    ivcon \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    pr2-msgs \
-    rospy \
-    std-msgs \
+    xacro \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    pr2-msgs \
-    rospy \
-    std-msgs \
+    xacro \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = ""
+ROS_TEST_DEPENDS = " \
+    gtest \
+    liburdfdom-dev \
+    rosbash \
+"
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually
@@ -40,14 +43,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/pr2-gbp/pr2_common-release/archive/release/melodic/pr2_dashboard_aggregator/1.12.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "dec87d62dd0955010c010b18a2edbed6"
-SRC_URI[sha256sum] = "50c10a982c9d7fe6b1d6f64f73bcdaa207b5a8f76ddd867ff146114e1ba020c4"
-S = "${WORKDIR}/pr2_common-release-release-melodic-pr2_dashboard_aggregator-1.12.3-0"
+SRC_URI = "https://github.com/pr2-gbp/pr2_common-release/archive/release/melodic/pr2_description/1.12.4-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "54d56eca2aa96010ac7cfc7ea01d9137"
+SRC_URI[sha256sum] = "8614f27c6963296dfcd6091bb406ac8cb85b3d3ddc240ad390b6da44363d341e"
+S = "${WORKDIR}/pr2_common-release-release-melodic-pr2_description-1.12.4-1"
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/pr2-common/pr2-common_common.inc
@@ -59,4 +61,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

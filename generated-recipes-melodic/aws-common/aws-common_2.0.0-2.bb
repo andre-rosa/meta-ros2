@@ -24,18 +24,18 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    crossguid \
     curl \
     openssl \
-    uuid \
     zlib \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    crossguid \
     curl \
     openssl \
-    uuid \
     zlib \
 "
 
@@ -58,7 +58,6 @@ S = "${WORKDIR}/aws_common-release-release-melodic-aws_common-2.0.0-2"
 
 ROS_BUILD_TYPE = "cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/aws-common/aws-common_common.inc
@@ -70,4 +69,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-common/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

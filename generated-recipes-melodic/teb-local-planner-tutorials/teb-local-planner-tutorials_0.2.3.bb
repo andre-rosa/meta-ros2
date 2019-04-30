@@ -51,7 +51,6 @@ S = "${WORKDIR}/teb_local_planner_tutorials-release-release-melodic-teb_local_pl
 
 ROS_BUILD_TYPE = "catkin"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/teb-local-planner-tutorials/teb-local-planner-tutorials_common.inc
@@ -63,4 +62,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner-tutorials/${BPN}-$
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}
