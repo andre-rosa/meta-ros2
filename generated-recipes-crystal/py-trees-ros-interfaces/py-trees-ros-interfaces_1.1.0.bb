@@ -55,9 +55,6 @@ S = "${WORKDIR}/py_trees_ros_interfaces-release-release-crystal-py_trees_ros_int
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = " \
-    rosidl_interface_packages \
-"
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/py-trees-ros-interfaces/py-trees-ros-interfaces_common.inc
@@ -69,4 +66,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros-interfaces/${BPN}-${PV}
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

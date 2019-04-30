@@ -170,6 +170,7 @@ RDEPENDS_${PN} = " \
     intra-process-demo \
     joy \
     kdl-parser \
+    keystroke \
     laser-geometry \
     launch \
     launch-ros \
@@ -182,6 +183,10 @@ RDEPENDS_${PN} = " \
     logging-demo \
     map-msgs \
     message-filters \
+    micro-ros-agent \
+    micro-xrce-dds-agent \
+    microxrcedds-agent-cmake-module \
+    ml-classifiers \
     mrpt2 \
     nav-2d-msgs \
     nav-2d-utils \

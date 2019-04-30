@@ -13,6 +13,7 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493f
 ROS_BUILD_DEPENDS = " \
     fastcdr \
     fastrtps \
+    fastrtps-cmake-module \
     rcutils \
     rmw \
     rmw-fastrtps-shared-cpp \
@@ -29,6 +30,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     fastcdr \
     fastrtps \
+    fastrtps-cmake-module \
     rcutils \
     rmw \
     rmw-fastrtps-shared-cpp \
@@ -63,9 +65,6 @@ S = "${WORKDIR}/rmw_fastrtps-release-release-crystal-rmw_fastrtps_dynamic_cpp-0.
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = " \
-    rmw_implementation_packages \
-"
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/rmw-fastrtps/rmw-fastrtps_common.inc
@@ -77,4 +76,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-fastrtps/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

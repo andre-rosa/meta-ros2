@@ -11,6 +11,7 @@ LICENSE = "LGPL-2.1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3badeab1074cb0c993003745c15d12f0"
 
 ROS_BUILD_DEPENDS = " \
+    ament-cmake \
     rclcpp \
     rmw \
     std-msgs \
@@ -26,6 +27,7 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    ament-cmake \
     rclcpp \
     rmw \
     std-msgs \
@@ -54,7 +56,6 @@ S = "${WORKDIR}/realtime_support-release-release-crystal-tlsf_cpp-0.6.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"
-ROS_DEPENDENCY_GROUPS = ""
 
 # Allow the above settings to be overridden.
 include ${ROS_LAYERDIR}/recipes-ros/realtime-support/realtime-support_common.inc
@@ -66,4 +67,3 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/${BPN}-${PV}.inc
 inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
-inherit ${@ros_superflore_generated__prefix_all('ROS_DEPENDENCY_GROUPS', 'ros_depgrp_', d)}

@@ -6,9 +6,11 @@
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
 export ROS_VERSION = "2"
+# DO NOT OVERRIDE ROS_PYTHON_VERSION
+export ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190422224835"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190426004154"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -21,9 +23,7 @@ ROS_DISTRO_RELEASE_PLATFORMS = " \
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
-    keystroke \
     libopensplice67 \
-    ml-classifiers \
     opensplice-cmake-module \
     rmw-connext-cpp \
     rmw-connext-shared-cpp \
@@ -193,6 +193,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     intra-process-demo \
     joy \
     kdl-parser \
+    keystroke \
     laser-geometry \
     launch \
     launch-ros \
@@ -205,6 +206,10 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     logging-demo \
     map-msgs \
     message-filters \
+    micro-ros-agent \
+    micro-xrce-dds-agent \
+    microxrcedds-agent-cmake-module \
+    ml-classifiers \
     mrpt2 \
     nav-2d-msgs \
     nav-2d-utils \
@@ -432,6 +437,7 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     python3-native \
     python3-nose-native \
     python3-pytest-native \
+    ros-environment-native \
     rosidl-cmake-native \
     rosidl-default-generators-native \
     rosidl-generator-c-native \
@@ -494,11 +500,8 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     pkgconfig \
     pkgconfig-native \
     poco \
-    pydocstyle \
     python-matplotlib \
     python-mock \
-    python-pep8 \
-    python-pyflakes \
     python-pyyaml \
     python3-catkin-pkg \
     python3-catkin-pkg-native \
@@ -512,8 +515,11 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python3-nose-native \
     python3-nose-yanc \
     python3-numpy \
+    python3-pep8 \
     python3-psutil \
+    python3-pydocstyle \
     python3-pydot \
+    python3-pyflakes \
     python3-pygraphviz \
     python3-pyqt5 \
     python3-pytest \
@@ -587,11 +593,15 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     image-transport-plugins \
     joystick-drivers \
     kdl-parser \
+    keystroke \
     laser-geometry \
     launch \
     librealsense \
     libyaml-vendor \
     message-filters \
+    micro-ros-agent \
+    micro-xrce-dds-agent \
+    ml-classifiers \
     mrpt2 \
     navigation-msgs \
     navigation2 \
@@ -666,12 +676,3 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
 "
 
 # A ros_depgrp_<dependency-group>.bbclass must be created for each of these:
-ROS_SUPERFLORE_GENERATED_DEPENDENCY_GROUPS = " \
-    rcl_logging_packages \
-    rmw_implementation_packages \
-    rosidl_generator_packages \
-    rosidl_interface_packages \
-    rosidl_runtime_packages \
-    rosidl_typesupport_c_packages \
-    rosidl_typesupport_cpp_packages \
-"
