@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=80318c4afef111a7690eaf237460856b"
 
+ROS_BPN = "sros2_cmake"
+
 ROS_BUILD_DEPENDS = " \
     ament-cmake-test \
     ros2cli \

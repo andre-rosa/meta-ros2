@@ -10,19 +10,25 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "ml_classifiers"
+
 ROS_BUILD_DEPENDS = " \
     libeigen \
     pluginlib \
+    rclcpp \
+    rosidl-default-generators \
     std-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
+    ament-cmake-native \
     ros-environment-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
     libeigen \
     pluginlib \
+    rclcpp \
     std-msgs \
 "
 
@@ -31,11 +37,21 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     libeigen \
     pluginlib \
+    rclcpp \
+    rosidl-default-runtime \
     std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = ""
+ROS_TEST_DEPENDS = " \
+    ament-cmake-copyright \
+    ament-cmake-cppcheck \
+    ament-cmake-cpplint \
+    ament-cmake-lint-cmake \
+    ament-cmake-uncrustify \
+    ament-cmake-xmllint \
+    ament-lint-auto \
+"
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually

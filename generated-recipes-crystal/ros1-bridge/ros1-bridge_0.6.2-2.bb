@@ -10,15 +10,18 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_BPN = "ros1_bridge"
+
 ROS_BUILD_DEPENDS = " \
     actionlib-msgs \
     builtin-interfaces \
     diagnostic-msgs \
+    example-interfaces \
     gazebo-msgs \
     geometry-msgs \
     nav-msgs \
     pkgconfig \
-    python-pyyaml \
+    python3-pyyaml \
     rclcpp \
     rcutils \
     rmw-implementation-cmake \
@@ -50,10 +53,11 @@ ROS_EXEC_DEPENDS = " \
     actionlib-msgs \
     builtin-interfaces \
     diagnostic-msgs \
+    example-interfaces \
     gazebo-msgs \
     geometry-msgs \
     nav-msgs \
-    python-pyyaml \
+    python3-pyyaml \
     rclcpp \
     rcutils \
     sensor-msgs \
@@ -84,10 +88,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/ros1_bridge-release/archive/release/crystal/ros1_bridge/0.6.2-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "2e17cff55bc816cef611d25db32b6055"
-SRC_URI[sha256sum] = "09f603aed66a2a4ebc79793d23c81a49ccb7f161348b5f3a04a4b90d8493d57d"
-S = "${WORKDIR}/ros1_bridge-release-release-crystal-ros1_bridge-0.6.2-0"
+SRC_URI = "https://github.com/ros2-gbp/ros1_bridge-release/archive/release/crystal/ros1_bridge/0.6.2-2.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "c806d82aa43e9b2d2426b50fe76d32f6"
+SRC_URI[sha256sum] = "8dd00267aeb79b2c88892c8b6806f55684450b04fd412f3874309f069f23e9e3"
+S = "${WORKDIR}/ros1_bridge-release-release-crystal-ros1_bridge-0.6.2-2"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"

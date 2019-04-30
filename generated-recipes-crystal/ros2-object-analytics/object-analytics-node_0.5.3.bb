@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=a530e7e8bd0b9c8e6d4e5d32904af192"
 
+ROS_BPN = "object_analytics_node"
+
 ROS_BUILD_DEPENDS = " \
     ament-index-cpp \
     class-loader \

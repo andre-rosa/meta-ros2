@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "py_trees"
+
 ROS_BUILD_DEPENDS = " \
     python3-setuptools \
 "
@@ -37,10 +39,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/stonier/py_trees-release/archive/release/crystal/py_trees/1.1.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "0568a499f3209b5bd4304b87c856b12c"
-SRC_URI[sha256sum] = "32a12e0f712c4804635440a02637e4c52886bdcabc5c273e88d68a37cc0b31c3"
-S = "${WORKDIR}/py_trees-release-release-crystal-py_trees-1.1.0-0"
+SRC_URI = "https://github.com/stonier/py_trees-release/archive/release/crystal/py_trees/1.2.0-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "e2bf2fac9d0a93d1e87c2d50ba55019f"
+SRC_URI[sha256sum] = "9d7e0d9f18faa35cb0a57c542f467c68c3d8557d153a5bf10dc060649bb1b72e"
+S = "${WORKDIR}/py_trees-release-release-crystal-py_trees-1.2.0-1"
 
 ROS_BUILD_TYPE = "ament_python"
 ROS_RECIPES_TREE = "recipes-ros2"

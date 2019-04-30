@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=ced11b5ec2a0776fd01740115328457b"
 
+ROS_BPN = "python_qt_binding"
+
 ROS_BUILD_DEPENDS = " \
     python3-pyqt5 \
     qtbase \

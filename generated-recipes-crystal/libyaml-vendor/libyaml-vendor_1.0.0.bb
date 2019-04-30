@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0 & MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=f12ef8c0445c08084ae92cf2dcb7ee92"
 
+ROS_BPN = "libyaml_vendor"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "py_trees_ros_interfaces"
+
 ROS_BUILD_DEPENDS = " \
     action-msgs \
     geometry-msgs \
@@ -48,10 +50,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/stonier/py_trees_ros_interfaces-release/archive/release/crystal/py_trees_ros_interfaces/1.1.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "02144cd223fc0f7a55414be11c99ad9e"
-SRC_URI[sha256sum] = "3a25be87767060f9adcbc42f2846a4c672d45808a2aea175196d03025ba6d567"
-S = "${WORKDIR}/py_trees_ros_interfaces-release-release-crystal-py_trees_ros_interfaces-1.1.0-0"
+SRC_URI = "https://github.com/stonier/py_trees_ros_interfaces-release/archive/release/crystal/py_trees_ros_interfaces/1.1.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "083fcaa6c78022c58e0c8af82ecb30c2"
+SRC_URI[sha256sum] = "d4792a78173a09b204e0f4bffc654a22b3401ff0bf8b6018930e085d18ea72ba"
+S = "${WORKDIR}/py_trees_ros_interfaces-release-release-crystal-py_trees_ros_interfaces-1.1.1-1"
 
 ROS_BUILD_TYPE = "ament_cmake"
 ROS_RECIPES_TREE = "recipes-ros2"

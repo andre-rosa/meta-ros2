@@ -10,12 +10,14 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_BPN = "launch_ros"
+
 ROS_BUILD_DEPENDS = " \
     ament-index-python \
     launch \
     lifecycle-msgs \
     osrf-pycommon \
-    python-pyyaml \
+    python3-pyyaml \
     rclpy \
 "
 
@@ -26,7 +28,7 @@ ROS_EXPORT_DEPENDS = " \
     launch \
     lifecycle-msgs \
     osrf-pycommon \
-    python-pyyaml \
+    python3-pyyaml \
     rclpy \
 "
 
@@ -37,7 +39,7 @@ ROS_EXEC_DEPENDS = " \
     launch \
     lifecycle-msgs \
     osrf-pycommon \
-    python-pyyaml \
+    python3-pyyaml \
     rclpy \
 "
 

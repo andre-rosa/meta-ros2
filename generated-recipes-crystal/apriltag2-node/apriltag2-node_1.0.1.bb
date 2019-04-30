@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_BPN = "apriltag2_node"
+
 ROS_BUILD_DEPENDS = " \
     apriltag \
     apriltag-msgs \

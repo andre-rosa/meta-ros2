@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=24;endline=24;md5=e8978a5103d23266fc6f8ec03dc9eb16"
 
+ROS_BPN = "librealsense2"
+
 ROS_BUILD_DEPENDS = " \
     eudev \
     glfw \

@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=23;endline=23;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_BPN = "nav2_amcl"
+
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     launch-ros \
