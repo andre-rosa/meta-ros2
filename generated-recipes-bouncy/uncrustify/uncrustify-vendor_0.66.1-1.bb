@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=78ab71f8bc669914d3a3405fa3ef1c9c"
 
+ROS_BPN = "uncrustify_vendor"
+
 ROS_BUILD_DEPENDS = " \
     ament-cmake-core \
 "

@@ -5,12 +5,13 @@
 
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
+DISTRO = "ros2"
 export ROS_VERSION = "2"
 # DO NOT OVERRIDE ROS_PYTHON_VERSION
 export ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190426201341"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190501191007"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -335,6 +336,8 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
 "
 
 ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
+    ${PYTHON_PN}-pydocstyle \
+    ${PYTHON_PN}-pyflakes \
     asio \
     assimp \
     boost \
@@ -348,12 +351,11 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     curl \
     eudev \
     freetype \
-    g++-static \
     gflags \
     git \
+    glog \
     gtest-native \
     libeigen \
-    libgoogle-glog-dev \
     libpcre \
     libsdl \
     libsdl-image \
@@ -373,7 +375,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     pkgconfig-native \
     poco \
     protobuf \
-    python-pyyaml \
     python3-catkin-pkg \
     python3-catkin-pkg-native \
     python3-empy \
@@ -385,11 +386,10 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python3-nose-yanc \
     python3-numpy \
     python3-pep8 \
-    python3-pydocstyle \
     python3-pydot \
-    python3-pyflakes \
     python3-pytest \
     python3-pytest-native \
+    python3-pyyaml \
     python3-setuptools \
     qtbase \
     yaml-cpp \
@@ -490,5 +490,3 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     variants \
     vision-opencv \
 "
-
-# A ros_depgrp_<dependency-group>.bbclass must be created for each of these:

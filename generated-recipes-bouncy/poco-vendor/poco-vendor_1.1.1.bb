@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0 & Boost-1.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=401a7342a877608092ef332b6948eb03"
 
+ROS_BPN = "poco_vendor"
+
 ROS_BUILD_DEPENDS = " \
     libpcre \
     poco \

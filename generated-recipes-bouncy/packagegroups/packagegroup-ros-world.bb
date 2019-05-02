@@ -3,7 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "All non-test packages for the target from ${ROS_DISTRO}-cache.yaml"
+DESCRIPTION = "All non-test packages for the target from files/${ROS_DISTRO}/cache.yaml"
 LICENSE = "MIT"
 
 inherit packagegroup

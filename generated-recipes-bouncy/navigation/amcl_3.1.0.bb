@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=22;endline=22;md5=58d727014cda5ed405b7fb52666a1f97"
 
+ROS_BPN = "amcl"
+
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     nav-msgs \
