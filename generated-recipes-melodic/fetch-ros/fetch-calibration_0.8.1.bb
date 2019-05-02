@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=c93e37fc0c6f510db5735eb91dcc1550"
 
+ROS_BPN = "fetch_calibration"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

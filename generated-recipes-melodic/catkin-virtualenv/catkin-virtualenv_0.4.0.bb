@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=21;endline=21;md5=d6fd5bd8a2ca0ce00c65331b4263470b"
 
+ROS_BPN = "catkin_virtualenv"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

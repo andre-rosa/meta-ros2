@@ -10,9 +10,11 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=19;endline=19;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_BPN = "bfl"
+
 ROS_BUILD_DEPENDS = " \
     cppunit \
-    ros \
+    ros--distro-renamed \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -22,7 +24,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     catkin \
     cppunit \
-    ros \
+    ros--distro-renamed \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -30,7 +32,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     catkin \
     cppunit \
-    ros \
+    ros--distro-renamed \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

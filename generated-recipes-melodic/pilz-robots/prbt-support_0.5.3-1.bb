@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_BPN = "prbt_support"
+
 ROS_BUILD_DEPENDS = " \
     roscpp \
 "

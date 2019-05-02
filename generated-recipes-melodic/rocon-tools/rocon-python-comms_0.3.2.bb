@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "rocon_python_comms"
+
 ROS_BUILD_DEPENDS = " \
     python-catkin-pkg \
     rostest \
@@ -21,7 +23,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     genpy \
-    python-yaml \
+    python-yamllint-native \
     rocon-console \
     rocon-service-pair-msgs \
     rosgraph \
@@ -38,7 +40,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     genpy \
-    python-yaml \
+    python-yamllint-native \
     rocon-console \
     rocon-service-pair-msgs \
     rosgraph \

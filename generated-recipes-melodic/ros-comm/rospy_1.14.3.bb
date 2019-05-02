@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=23;endline=23;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "rospy"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -20,7 +22,7 @@ ROS_EXPORT_DEPENDS = " \
     genpy \
     python-numpy \
     python-rospkg \
-    python-yaml \
+    python-yamllint-native \
     roscpp \
     rosgraph \
     rosgraph-msgs \
@@ -34,7 +36,7 @@ ROS_EXEC_DEPENDS = " \
     genpy \
     python-numpy \
     python-rospkg \
-    python-yaml \
+    python-yamllint-native \
     roscpp \
     rosgraph \
     rosgraph-msgs \

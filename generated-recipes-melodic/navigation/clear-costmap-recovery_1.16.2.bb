@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_BPN = "clear_costmap_recovery"
+
 ROS_BUILD_DEPENDS = " \
     cmake-modules \
     costmap-2d \

@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=b691248d2f70cdaeeaf13696ada5d47c"
 
+ROS_BPN = "fetch_open_auto_dock"
+
 ROS_BUILD_DEPENDS = " \
     actionlib \
     angles \

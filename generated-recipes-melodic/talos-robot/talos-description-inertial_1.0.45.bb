@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "CC-BY-NC-ND-4.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=c34cc4dbd73e2cebfa3f363105f53fd5"
 
+ROS_BPN = "talos_description_inertial"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

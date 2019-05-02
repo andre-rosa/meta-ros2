@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=fe8b75cf0aba647401e1038bcd69ee74"
 
+ROS_BPN = "octovis"
+
 ROS_BUILD_DEPENDS = " \
     libqglviewer-qt4-dev \
     libqt4-dev \

@@ -5,12 +5,13 @@
 
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
+DISTRO = "ros"
 export ROS_VERSION = "1"
 # Can override ROS_PYTHON_VERSION in conf/local.conf
 export ROS_PYTHON_VERSION ??= "2"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190426205342"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190502173243"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -24,18 +25,9 @@ ROS_DISTRO_RELEASE_PLATFORMS = " \
 "
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
-    connext-cmake-module \
-    console-bridge \
-    libopensplice67 \
-    opensplice-cmake-module \
-    rmw-connext-cpp \
-    rmw-connext-shared-cpp \
-    rmw-opensplice-cpp \
-    rosidl-typesupport-connext-c \
-    rosidl-typesupport-connext-cpp \
-    rosidl-typesupport-opensplice-c \
-    rosidl-typesupport-opensplice-cpp \
-    rti-connext-dds-5.3.1 \
+    flatbuffers \
+    octoviz \
+    qt-metapackages \
 "
 
 ROS_SUPERFLORE_GENERATED_RECIPES = " \
@@ -307,10 +299,12 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     fake-localization \
     fcl-catkin \
     fetch-auto-dock-msgs \
+    fetch-bringup \
     fetch-calibration \
     fetch-depth-layer \
     fetch-description \
     fetch-driver-msgs \
+    fetch-drivers \
     fetch-gazebo \
     fetch-gazebo-demo \
     fetch-ikfast-plugin \
@@ -330,7 +324,6 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     fingertip-pressure \
     fkie-message-filters \
     fkie-potree-rviz-plugin \
-    flatbuffers \
     flexbe-behavior-engine \
     flexbe-core \
     flexbe-input \
@@ -348,6 +341,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     four-wheel-steering-controller \
     four-wheel-steering-msgs \
     franka-description \
+    freight-bringup \
     gateway-msgs \
     gazebo-msgs \
     gazebo-plugins \
@@ -534,6 +528,15 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     libmavconn \
     libmodbus \
     libphidget21 \
+    libqt-concurrent \
+    libqt-core \
+    libqt-gui \
+    libqt-network \
+    libqt-opengl \
+    libqt-opengl-rosdev \
+    libqt-rosdev \
+    libqt-svg-rosdev \
+    libqt-widgets \
     libreflexxestype2 \
     librviz-tutorial \
     libsiftfast \
@@ -705,6 +708,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     nodelet-topic-tools \
     nodelet-tutorial-math \
     novatel-gps-driver \
+    novatel-gps-msgs \
     novatel-msgs \
     novatel-span-driver \
     object-recognition-msgs \
@@ -846,6 +850,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     prbt-moveit-config \
     prbt-pg70-support \
     prbt-support \
+    prosilica-camera \
     ps3joy \
     py-trees \
     py-trees-msgs \
@@ -859,6 +864,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     qt-gui-core \
     qt-gui-cpp \
     qt-gui-py-common \
+    qt-qmake \
     qwt-dependency \
     radar-msgs \
     rail-manipulation-msgs \
@@ -866,6 +872,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     range-sensor-layer \
     raw-description \
     rc-cloud-accumulator \
+    rc-common-msgs \
     rc-dynamics-api \
     rc-genicam-api \
     rc-hand-eye-calibration-client \
@@ -918,7 +925,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     rocon-tools \
     rocon-tutorial-msgs \
     rocon-uri \
-    ros \
+    ros--distro-renamed \
     ros-base \
     ros-canopen \
     ros-comm \
@@ -1009,6 +1016,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     rosserial-windows \
     rosserial-xbee \
     rosservice \
+    rostate-machine \
     rostest \
     rostime \
     rostopic \
@@ -1131,6 +1139,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     swri-system-util \
     swri-transform-util \
     swri-yaml-util \
+    talos-description \
     talos-description-calibration \
     talos-description-inertial \
     teb-local-planner \
@@ -1222,6 +1231,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     urdf-geometry-parser \
     urdf-parser-plugin \
     urdf-sim-tutorial \
+    urdf-test \
     urdf-tutorial \
     urdfdom-py \
     urg-c \
@@ -1275,6 +1285,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     visualization-msgs \
     visualization-tutorials \
     viz \
+    volksbot-driver \
     voxel-grid \
     vrpn-client-ros \
     vrx-gazebo \
@@ -1342,6 +1353,7 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
 "
 
 ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
+    ${PYTHON_PN}-sphinx \
     acpica \
     apr \
     arduino-core \
@@ -1378,7 +1390,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     flex \
     freeglut \
     ftdi-eeprom \
-    g++-static \
     gawk \
     gazebo \
     gdal-bin \
@@ -1387,6 +1398,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     gflags \
     git \
     git-native \
+    glog \
     gpgme \
     graphviz \
     gstreamer1.0 \
@@ -1423,7 +1435,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     libgfortran \
     libglew-dev \
     libglib-dev \
-    libgoogle-glog-dev \
     libgphoto-dev \
     libgps \
     libgstreamer-plugins-base1.0-dev \
@@ -1456,7 +1467,10 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     libqt4-dev \
     libqt4-opengl \
     libqt4-opengl-dev \
+    libqt5-concurrent \
+    libqt5-network \
     libqt5-opengl-dev \
+    libqt5-svg-dev \
     libqt5x11extras5-dev \
     libqtgui4 \
     libqwt-qt5-dev \
@@ -1495,6 +1509,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     ncurses \
     netpbm \
     nkf \
+    nodejs \
     nodejs-native \
     npm-native \
     opencv \
@@ -1592,7 +1607,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python-sklearn \
     python-slacker-cli \
     python-speechrecognition-pip \
-    python-sphinx \
     python-tabulate-pip \
     python-termcolor \
     python-texttable \
@@ -1603,7 +1617,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python-virtualenv \
     python-websocket-client \
     python-wxtools \
-    python-yaml \
+    python-yamllint-native \
     python3 \
     python3-venv \
     qtbase \
@@ -1660,6 +1674,7 @@ ROS_SUPERFLORE_GENERATED_TESTS = " \
     python-pcapy \
     python-pep8 \
     python-selenium-pip \
+    urdf-test \
     xvfb \
 "
 
@@ -1749,13 +1764,13 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     fetch-gazebo \
     fetch-msgs \
     fetch-open-auto-dock \
+    fetch-robots \
     fetch-ros \
     fetch-tools \
     filters \
     find-object-2d \
     fkie-message-filters \
     fkie-potree-rviz-plugin \
-    flatbuffers \
     flexbe \
     flir-boson-usb \
     fmi-adapter \
@@ -1937,16 +1952,19 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     pr2-power-drivers \
     pr2-simulator \
     prbt-grippers \
+    prosilica-driver \
     py-trees \
     py-trees-msgs \
     py-trees-ros \
     pybind11-catkin \
     python-qt-binding \
     qt-gui-core \
+    qt-metapackages \
     qwt-dependency \
     rail-manipulation-msgs \
     random-numbers \
     rc-cloud-accumulator \
+    rc-common-msgs \
     rc-dynamics-api \
     rc-genicam-api \
     rc-visard \
@@ -1967,7 +1985,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     robotis-manipulator \
     rocon-msgs \
     rocon-tools \
-    ros \
+    ros--distro-renamed \
     ros-canopen \
     ros-comm \
     ros-comm-msgs \
@@ -2001,6 +2019,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     rospilot \
     rospy-message-converter \
     rosserial \
+    rostate-machine \
     roswww \
     rplidar-ros \
     rqt \
@@ -2086,6 +2105,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     urdf \
     urdf-geometry-parser \
     urdf-sim-tutorial \
+    urdf-test \
     urdf-tutorial \
     urdfdom-py \
     urg-c \
@@ -2103,6 +2123,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     vision-opencv \
     visp \
     visualization-tutorials \
+    volksbot-driver \
     vrpn-client-ros \
     vrx \
     warehouse-ros \
@@ -2122,5 +2143,3 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     yujin-ocs \
     zeroconf-msgs \
 "
-
-# A ros_depgrp_<dependency-group>.bbclass must be created for each of these:

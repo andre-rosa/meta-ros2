@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=22;endline=22;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "robot_state_publisher"
+
 ROS_BUILD_DEPENDS = " \
     kdl-parser \
     libeigen \

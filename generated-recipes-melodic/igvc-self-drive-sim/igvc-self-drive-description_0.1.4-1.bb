@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=6c4b0dfc2c040991f7798d2c24b8fc03"
 
+ROS_BPN = "igvc_self_drive_description"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "roslaunch"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -19,7 +21,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     python-paramiko \
     python-rospkg \
-    python-yaml \
+    python-yamllint-native \
     rosclean \
     rosgraph-msgs \
     roslib \
@@ -34,7 +36,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     python-paramiko \
     python-rospkg \
-    python-yaml \
+    python-yamllint-native \
     rosclean \
     rosgraph-msgs \
     roslib \

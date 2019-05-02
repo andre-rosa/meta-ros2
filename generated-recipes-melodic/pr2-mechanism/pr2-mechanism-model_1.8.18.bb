@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=21;endline=21;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "pr2_mechanism_model"
+
 ROS_BUILD_DEPENDS = " \
     angles \
     cmake-modules \

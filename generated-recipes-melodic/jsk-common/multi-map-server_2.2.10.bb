@@ -10,13 +10,15 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "multi_map_server"
+
 ROS_BUILD_DEPENDS = " \
     jsk-tools \
     libsdl-image \
     map-server \
     nav-msgs \
     python-imaging \
-    python-yaml \
+    python-yamllint-native \
     rosconsole \
     roscpp \
     rosmake \

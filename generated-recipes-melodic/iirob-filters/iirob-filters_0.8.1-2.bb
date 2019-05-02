@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=b691248d2f70cdaeeaf13696ada5d47c"
 
+ROS_BPN = "iirob_filters"
+
 ROS_BUILD_DEPENDS = " \
     cmake-modules \
     dynamic-reconfigure \

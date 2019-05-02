@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-3 & LGPL-2 & BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_BPN = "mavros"
+
 ROS_BUILD_DEPENDS = " \
     angles \
     boost \

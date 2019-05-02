@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_BPN = "uuv_thruster_manager"
+
 ROS_BUILD_DEPENDS = " \
     message-generation \
     std-msgs \
@@ -28,7 +30,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     message-runtime \
-    python-yaml \
+    python-yamllint-native \
     rospy \
     std-msgs \
     tf \

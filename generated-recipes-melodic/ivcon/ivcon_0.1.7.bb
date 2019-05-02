@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=19;endline=19;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_BPN = "ivcon"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

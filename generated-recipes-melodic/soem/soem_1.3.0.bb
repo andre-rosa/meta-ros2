@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d2094aa59491bce7d3aaf0a0450d7783"
 
+ROS_BPN = "soem"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

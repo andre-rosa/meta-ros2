@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_BPN = "robot_pose_ekf"
+
 ROS_BUILD_DEPENDS = " \
     bfl \
     geometry-msgs \

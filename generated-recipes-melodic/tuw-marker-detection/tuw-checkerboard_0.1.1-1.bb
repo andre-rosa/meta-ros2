@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_BPN = "tuw_checkerboard"
+
 ROS_BUILD_DEPENDS = " \
     cv-bridge \
     dynamic-reconfigure \

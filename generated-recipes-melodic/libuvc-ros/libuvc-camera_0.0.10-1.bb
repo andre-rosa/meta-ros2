@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_BPN = "libuvc_camera"
+
 ROS_BUILD_DEPENDS = " \
     camera-info-manager \
     dynamic-reconfigure \

@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=b691248d2f70cdaeeaf13696ada5d47c"
 
+ROS_BPN = "open_karto"
+
 ROS_BUILD_DEPENDS = " \
     boost \
 "

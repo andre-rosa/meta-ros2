@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=a3ae2ba3f0f44e61270955e8cd98afcf"
 
+ROS_BPN = "audio_play"
+
 ROS_BUILD_DEPENDS = " \
     audio-common-msgs \
     libgstreamer-plugins-base1.0-dev \

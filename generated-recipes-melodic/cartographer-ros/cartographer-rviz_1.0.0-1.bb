@@ -10,12 +10,13 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=b73cebba72f83c5afebf178817283e37"
 
+ROS_BPN = "cartographer_rviz"
+
 ROS_BUILD_DEPENDS = " \
     cartographer \
     cartographer-ros \
     cartographer-ros-msgs \
     eigen-conversions \
-    g++-static \
     message-runtime \
     qtbase \
     roscpp \

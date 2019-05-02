@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=4;endline=4;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_BPN = "wiimote"
+
 ROS_BUILD_DEPENDS = " \
     cwiid-dev \
     genmsg \

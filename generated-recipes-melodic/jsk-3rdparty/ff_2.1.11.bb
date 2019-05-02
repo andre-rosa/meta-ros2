@@ -9,6 +9,8 @@ SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_BPN = "ff"
+
 ROS_BUILD_DEPENDS = " \
     bison \
     ca-certificates \

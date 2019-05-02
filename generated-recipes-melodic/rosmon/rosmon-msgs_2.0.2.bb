@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=75730354549103aaba72b66caf53717b"
 
+ROS_BPN = "rosmon_msgs"
+
 ROS_BUILD_DEPENDS = " \
     message-generation \
     std-msgs \

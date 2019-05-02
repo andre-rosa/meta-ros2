@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_BPN = "convex_decomposition"
+
 ROS_BUILD_DEPENDS = " \
     unzip \
 "

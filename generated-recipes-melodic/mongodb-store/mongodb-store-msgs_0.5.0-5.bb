@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_BPN = "mongodb_store_msgs"
+
 ROS_BUILD_DEPENDS = " \
     actionlib \
     actionlib-msgs \

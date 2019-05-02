@@ -1,4 +1,4 @@
-On branch yocto-bot-fhMwLCghHC
+On branch yocto-bot-RlqZYkSwnK
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
@@ -210,7 +210,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/ecl-tools/ecl-license_0.61.7.bb
 	new file:   generated-recipes-melodic/ecl-tools/ecl-tools_0.61.7.bb
 	new file:   generated-recipes-melodic/eigen-stl-containers/eigen-stl-containers_0.1.8.bb
-	new file:   generated-recipes-melodic/eigenpy/eigenpy_1.5.0-1.bb
+	new file:   generated-recipes-melodic/eigenpy/eigenpy_1.5.1-2.bb
 	new file:   generated-recipes-melodic/epos2-motor-controller/epos2-motor-controller_1.0.0-1.bb
 	new file:   generated-recipes-melodic/ethercat-grant/ethercat-grant_0.2.5.bb
 	new file:   generated-recipes-melodic/euslisp/euslisp_9.26.0-1.bb
@@ -240,6 +240,9 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/fetch-msgs/fetch-auto-dock-msgs_1.1.1.bb
 	new file:   generated-recipes-melodic/fetch-msgs/fetch-driver-msgs_1.1.1.bb
 	new file:   generated-recipes-melodic/fetch-open-auto-dock/fetch-open-auto-dock_0.1.2.bb
+	new file:   generated-recipes-melodic/fetch-robots/fetch-bringup_0.8.6.bb
+	new file:   generated-recipes-melodic/fetch-robots/fetch-drivers_0.8.6.bb
+	new file:   generated-recipes-melodic/fetch-robots/freight-bringup_0.8.6.bb
 	new file:   generated-recipes-melodic/fetch-ros/fetch-calibration_0.8.1.bb
 	new file:   generated-recipes-melodic/fetch-ros/fetch-depth-layer_0.8.1.bb
 	new file:   generated-recipes-melodic/fetch-ros/fetch-description_0.8.1.bb
@@ -254,7 +257,6 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/find-object-2d/find-object-2d_0.6.2-1.bb
 	new file:   generated-recipes-melodic/fkie-message-filters/fkie-message-filters_1.0.0.bb
 	new file:   generated-recipes-melodic/fkie-potree-rviz-plugin/fkie-potree-rviz-plugin_1.0.0.bb
-	new file:   generated-recipes-melodic/flatbuffers/flatbuffers_1.1.0.bb
 	new file:   generated-recipes-melodic/flexbe/flexbe-behavior-engine_1.1.2.bb
 	new file:   generated-recipes-melodic/flexbe/flexbe-core_1.1.2.bb
 	new file:   generated-recipes-melodic/flexbe/flexbe-input_1.1.2.bb
@@ -618,12 +620,12 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/mrpt-slam/mrpt-slam_0.1.9.bb
 	new file:   generated-recipes-melodic/mrpt1/mrpt1_1.5.7-6.bb
 	new file:   generated-recipes-melodic/multi-object-tracking-lidar/multi-object-tracking-lidar_1.0.1-1.bb
-	new file:   generated-recipes-melodic/multimaster-fkie/default-cfg-fkie_0.8.10.bb
-	new file:   generated-recipes-melodic/multimaster-fkie/master-discovery-fkie_0.8.10.bb
-	new file:   generated-recipes-melodic/multimaster-fkie/master-sync-fkie_0.8.10.bb
-	new file:   generated-recipes-melodic/multimaster-fkie/multimaster-fkie_0.8.10.bb
-	new file:   generated-recipes-melodic/multimaster-fkie/multimaster-msgs-fkie_0.8.10.bb
-	new file:   generated-recipes-melodic/multimaster-fkie/node-manager-fkie_0.8.10.bb
+	new file:   generated-recipes-melodic/multimaster-fkie/default-cfg-fkie_0.8.12.bb
+	new file:   generated-recipes-melodic/multimaster-fkie/master-discovery-fkie_0.8.12.bb
+	new file:   generated-recipes-melodic/multimaster-fkie/master-sync-fkie_0.8.12.bb
+	new file:   generated-recipes-melodic/multimaster-fkie/multimaster-fkie_0.8.12.bb
+	new file:   generated-recipes-melodic/multimaster-fkie/multimaster-msgs-fkie_0.8.12.bb
+	new file:   generated-recipes-melodic/multimaster-fkie/node-manager-fkie_0.8.12.bb
 	new file:   generated-recipes-melodic/multisense-ros/multisense-bringup_4.0.2.bb
 	new file:   generated-recipes-melodic/multisense-ros/multisense-cal-check_4.0.2.bb
 	new file:   generated-recipes-melodic/multisense-ros/multisense-description_4.0.2.bb
@@ -685,6 +687,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/nodelet-core/nodelet-topic-tools_1.9.16.bb
 	new file:   generated-recipes-melodic/nodelet-core/nodelet_1.9.16.bb
 	new file:   generated-recipes-melodic/novatel-gps-driver/novatel-gps-driver_3.7.0.bb
+	new file:   generated-recipes-melodic/novatel-gps-driver/novatel-gps-msgs_3.7.0.bb
 	new file:   generated-recipes-melodic/novatel-span-driver/novatel-msgs_1.1.0.bb
 	new file:   generated-recipes-melodic/novatel-span-driver/novatel-span-driver_1.1.0.bb
 	new file:   generated-recipes-melodic/object-recognition-msgs/object-recognition-msgs_0.4.1.bb
@@ -757,7 +760,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-high-speed-encoder_0.7.7.bb
 	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-ik_0.7.7.bb
 	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-imu_0.7.7.bb
-	new file:   generated-recipes-melodic/photo/photo_1.0.2.bb
+	new file:   generated-recipes-melodic/photo/photo_1.0.3.bb
 	new file:   generated-recipes-melodic/pid/pid_0.0.27.bb
 	new file:   generated-recipes-melodic/pilz-industrial-motion/pilz-extensions_0.4.3.bb
 	new file:   generated-recipes-melodic/pilz-industrial-motion/pilz-industrial-motion-testutils_0.4.3.bb
@@ -773,7 +776,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/pilz-robots/prbt-ikfast-manipulator-plugin_0.5.3-1.bb
 	new file:   generated-recipes-melodic/pilz-robots/prbt-moveit-config_0.5.3-1.bb
 	new file:   generated-recipes-melodic/pilz-robots/prbt-support_0.5.3-1.bb
-	new file:   generated-recipes-melodic/pinocchio/pinocchio_2.0.0.bb
+	new file:   generated-recipes-melodic/pinocchio/pinocchio_2.1.3-1.bb
 	new file:   generated-recipes-melodic/plotjuggler/plotjuggler_2.1.9.bb
 	new file:   generated-recipes-melodic/pluginlib/pluginlib_1.12.1.bb
 	new file:   generated-recipes-melodic/pointcloud-to-laserscan/pointcloud-to-laserscan_1.4.0.bb
@@ -823,12 +826,13 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/pr2-power-drivers/power-monitor_1.1.7.bb
 	new file:   generated-recipes-melodic/pr2-power-drivers/pr2-power-board_1.1.7.bb
 	new file:   generated-recipes-melodic/pr2-power-drivers/pr2-power-drivers_1.1.7.bb
-	new file:   generated-recipes-melodic/pr2-simulator/pr2-controller-configuration-gazebo_2.0.13-1.bb
-	new file:   generated-recipes-melodic/pr2-simulator/pr2-gazebo-plugins_2.0.13-1.bb
-	new file:   generated-recipes-melodic/pr2-simulator/pr2-gazebo_2.0.13-1.bb
-	new file:   generated-recipes-melodic/pr2-simulator/pr2-simulator_2.0.13-1.bb
+	new file:   generated-recipes-melodic/pr2-simulator/pr2-controller-configuration-gazebo_2.0.14.bb
+	new file:   generated-recipes-melodic/pr2-simulator/pr2-gazebo-plugins_2.0.14.bb
+	new file:   generated-recipes-melodic/pr2-simulator/pr2-gazebo_2.0.14.bb
+	new file:   generated-recipes-melodic/pr2-simulator/pr2-simulator_2.0.14.bb
 	new file:   generated-recipes-melodic/prbt-grippers/prbt-grippers_0.0.3-1.bb
 	new file:   generated-recipes-melodic/prbt-grippers/prbt-pg70-support_0.0.3-1.bb
+	new file:   generated-recipes-melodic/prosilica-driver/prosilica-camera_1.9.4-1.bb
 	new file:   generated-recipes-melodic/py-trees-msgs/py-trees-msgs_0.3.6.bb
 	new file:   generated-recipes-melodic/py-trees-ros/py-trees-ros_0.5.18.bb
 	new file:   generated-recipes-melodic/py-trees/py-trees_0.6.8.bb
@@ -840,10 +844,21 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/qt-gui-core/qt-gui-cpp_0.3.11.bb
 	new file:   generated-recipes-melodic/qt-gui-core/qt-gui-py-common_0.3.11.bb
 	new file:   generated-recipes-melodic/qt-gui-core/qt-gui_0.3.11.bb
+	new file:   generated-recipes-melodic/qt-metapackages/libqt-concurrent_1.0.1.bb
+	new file:   generated-recipes-melodic/qt-metapackages/libqt-core_1.0.1.bb
+	new file:   generated-recipes-melodic/qt-metapackages/libqt-gui_1.0.1.bb
+	new file:   generated-recipes-melodic/qt-metapackages/libqt-network_1.0.1.bb
+	new file:   generated-recipes-melodic/qt-metapackages/libqt-opengl-rosdev_1.0.1.bb
+	new file:   generated-recipes-melodic/qt-metapackages/libqt-opengl_1.0.1.bb
+	new file:   generated-recipes-melodic/qt-metapackages/libqt-rosdev_1.0.1.bb
+	new file:   generated-recipes-melodic/qt-metapackages/libqt-svg-rosdev_1.0.1.bb
+	new file:   generated-recipes-melodic/qt-metapackages/libqt-widgets_1.0.1.bb
+	new file:   generated-recipes-melodic/qt-metapackages/qt-qmake_1.0.1.bb
 	new file:   generated-recipes-melodic/qwt-dependency/qwt-dependency_1.1.0.bb
 	new file:   generated-recipes-melodic/rail-manipulation-msgs/rail-manipulation-msgs_0.0.12.bb
 	new file:   generated-recipes-melodic/random-numbers/random-numbers_0.3.2.bb
 	new file:   generated-recipes-melodic/rc-cloud-accumulator/rc-cloud-accumulator_1.0.4.bb
+	new file:   generated-recipes-melodic/rc-common-msgs/rc-common-msgs_0.2.1-1.bb
 	new file:   generated-recipes-melodic/rc-dynamics-api/rc-dynamics-api_0.7.1.bb
 	new file:   generated-recipes-melodic/rc-genicam-api/rc-genicam-api_2.1.0.bb
 	new file:   generated-recipes-melodic/rc-visard/rc-hand-eye-calibration-client_2.5.0.bb
@@ -919,6 +934,17 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/rocon-tools/rocon-semantic-version_0.3.2.bb
 	new file:   generated-recipes-melodic/rocon-tools/rocon-tools_0.3.2.bb
 	new file:   generated-recipes-melodic/rocon-tools/rocon-uri_0.3.2.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/mk_1.14.6.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/ros--distro-renamed_1.14.6.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/rosbash_1.14.6.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/rosboost-cfg_1.14.6.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/rosbuild_1.14.6.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/rosclean_1.14.6.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/roscreate_1.14.6.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/roslang_1.14.6.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/roslib_1.14.6.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/rosmake_1.14.6.bb
+	new file:   generated-recipes-melodic/ros--distro-renamed/rosunit_1.14.6.bb
 	new file:   generated-recipes-melodic/ros-canopen/can-msgs_0.8.0.bb
 	new file:   generated-recipes-melodic/ros-canopen/canopen-402_0.8.0.bb
 	new file:   generated-recipes-melodic/ros-canopen/canopen-chain-node_0.8.0.bb
@@ -992,17 +1018,6 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/ros-tutorials/rospy-tutorials_0.9.1.bb
 	new file:   generated-recipes-melodic/ros-tutorials/turtlesim_0.9.1.bb
 	new file:   generated-recipes-melodic/ros-type-introspection/ros-type-introspection_1.3.2-1.bb
-	new file:   generated-recipes-melodic/ros/mk_1.14.6.bb
-	new file:   generated-recipes-melodic/ros/ros_1.14.6.bb
-	new file:   generated-recipes-melodic/ros/rosbash_1.14.6.bb
-	new file:   generated-recipes-melodic/ros/rosboost-cfg_1.14.6.bb
-	new file:   generated-recipes-melodic/ros/rosbuild_1.14.6.bb
-	new file:   generated-recipes-melodic/ros/rosclean_1.14.6.bb
-	new file:   generated-recipes-melodic/ros/roscreate_1.14.6.bb
-	new file:   generated-recipes-melodic/ros/roslang_1.14.6.bb
-	new file:   generated-recipes-melodic/ros/roslib_1.14.6.bb
-	new file:   generated-recipes-melodic/ros/rosmake_1.14.6.bb
-	new file:   generated-recipes-melodic/ros/rosunit_1.14.6.bb
 	new file:   generated-recipes-melodic/rosauth/rosauth_0.1.7-2.bb
 	new file:   generated-recipes-melodic/rosbag-migration-rule/rosbag-migration-rule_1.0.0.bb
 	new file:   generated-recipes-melodic/rosbag-pandas/rosbag-pandas_0.5.3.bb
@@ -1055,6 +1070,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/rosserial/rosserial-windows_0.8.0.bb
 	new file:   generated-recipes-melodic/rosserial/rosserial-xbee_0.8.0.bb
 	new file:   generated-recipes-melodic/rosserial/rosserial_0.8.0.bb
+	new file:   generated-recipes-melodic/rostate-machine/rostate-machine_0.0.2-3.bb
 	new file:   generated-recipes-melodic/roswww/roswww_0.1.12.bb
 	new file:   generated-recipes-melodic/rplidar-ros/rplidar-ros_1.7.0.bb
 	new file:   generated-recipes-melodic/rqt-action/rqt-action_0.4.9.bb
@@ -1120,6 +1136,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/swri-console/swri-console_1.1.0.bb
 	new file:   generated-recipes-melodic/talos-robot/talos-description-calibration_1.0.45.bb
 	new file:   generated-recipes-melodic/talos-robot/talos-description-inertial_1.0.45.bb
+	new file:   generated-recipes-melodic/talos-robot/talos-description_1.0.45.bb
 	new file:   generated-recipes-melodic/teb-local-planner-tutorials/teb-local-planner-tutorials_0.2.3.bb
 	new file:   generated-recipes-melodic/teb-local-planner/teb-local-planner_0.8.1.bb
 	new file:   generated-recipes-melodic/teleop-tools/joy-teleop_0.3.0.bb
@@ -1184,6 +1201,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/unique-identifier/uuid-msgs_1.0.6.bb
 	new file:   generated-recipes-melodic/urdf-geometry-parser/urdf-geometry-parser_0.0.3.bb
 	new file:   generated-recipes-melodic/urdf-sim-tutorial/urdf-sim-tutorial_0.4.0.bb
+	new file:   generated-recipes-melodic/urdf-test/urdf-test_1.0.4.bb
 	new file:   generated-recipes-melodic/urdf-tutorial/urdf-tutorial_0.4.0.bb
 	new file:   generated-recipes-melodic/urdf/urdf-parser-plugin_1.13.1.bb
 	new file:   generated-recipes-melodic/urdf/urdf_1.13.1.bb
@@ -1238,6 +1256,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/visualization-tutorials/rviz-python-tutorial_0.10.3.bb
 	new file:   generated-recipes-melodic/visualization-tutorials/visualization-marker-tutorials_0.10.3.bb
 	new file:   generated-recipes-melodic/visualization-tutorials/visualization-tutorials_0.10.3.bb
+	new file:   generated-recipes-melodic/volksbot-driver/volksbot-driver_1.0.0-1.bb
 	new file:   generated-recipes-melodic/vrpn-client-ros/vrpn-client-ros_0.2.2.bb
 	new file:   generated-recipes-melodic/vrx/usv-gazebo-plugins_1.0.1.bb
 	new file:   generated-recipes-melodic/vrx/vrx-gazebo_1.0.1.bb

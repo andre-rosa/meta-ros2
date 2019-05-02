@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=146ba316845cfe6058c8baebd902a726"
 
+ROS_BPN = "rqt_multiplot"
+
 ROS_BUILD_DEPENDS = " \
     libqwt-qt5-dev \
     qtbase \

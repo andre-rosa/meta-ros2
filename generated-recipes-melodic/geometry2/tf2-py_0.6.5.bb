@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_BPN = "tf2_py"
+
 ROS_BUILD_DEPENDS = " \
     rospy \
     tf2 \

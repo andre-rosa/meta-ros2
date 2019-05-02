@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=b691248d2f70cdaeeaf13696ada5d47c"
 
+ROS_BPN = "canopen_motor_node"
+
 ROS_BUILD_DEPENDS = " \
     canopen-402 \
     canopen-chain-node \

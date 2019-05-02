@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2.1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=061abe8dc89f326789675967c8760541"
 
+ROS_BPN = "ar_track_alvar"
+
 ROS_BUILD_DEPENDS = " \
     ar-track-alvar-msgs \
     cmake-modules \

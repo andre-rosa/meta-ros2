@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "CC-BY-NC-SA-4.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=6bc0e2b80b41b84c8240cea714dea709"
 
+ROS_BPN = "twist_mux_msgs"
+
 ROS_BUILD_DEPENDS = " \
     actionlib \
     actionlib-msgs \

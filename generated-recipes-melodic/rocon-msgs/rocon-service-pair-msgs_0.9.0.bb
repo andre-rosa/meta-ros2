@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=5ee5b8b046ae48ad94a2037ca953a67b"
 
+ROS_BPN = "rocon_service_pair_msgs"
+
 ROS_BUILD_DEPENDS = " \
     message-generation \
     uuid-msgs \

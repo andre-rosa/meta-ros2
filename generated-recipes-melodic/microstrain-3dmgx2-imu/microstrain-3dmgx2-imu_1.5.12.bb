@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_BPN = "microstrain_3dmgx2_imu"
+
 ROS_BUILD_DEPENDS = " \
     diagnostic-updater \
     log4cxx \

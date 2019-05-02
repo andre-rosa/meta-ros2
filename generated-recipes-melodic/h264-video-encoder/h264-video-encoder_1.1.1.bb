@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2.1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=e181b18ed9533044a61dea448605dcd5"
 
+ROS_BPN = "h264_video_encoder"
+
 ROS_BUILD_DEPENDS = " \
     aws-ros1-common \
     h264-encoder-core \

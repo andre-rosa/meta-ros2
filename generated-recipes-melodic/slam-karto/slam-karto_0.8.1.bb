@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_BPN = "slam_karto"
+
 ROS_BUILD_DEPENDS = " \
     cmake-modules \
     libeigen \

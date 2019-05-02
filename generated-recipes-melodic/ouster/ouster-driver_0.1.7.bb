@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=fc216ef9336537897fbeafa564601763"
 
+ROS_BPN = "ouster_driver"
+
 ROS_BUILD_DEPENDS = " \
     message-generation \
     pcl-conversions \

@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3460237096e94473a838c16f7071063e"
 
+ROS_BPN = "acado"
+
 ROS_BUILD_DEPENDS = " \
     boost \
 "

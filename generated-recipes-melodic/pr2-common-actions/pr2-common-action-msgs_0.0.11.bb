@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_BPN = "pr2_common_action_msgs"
+
 ROS_BUILD_DEPENDS = " \
     actionlib-msgs \
     geometry-msgs \

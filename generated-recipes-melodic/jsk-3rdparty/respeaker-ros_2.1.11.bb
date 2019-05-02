@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-1.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=211ba54883815de9f52a3dcd9f281523"
 
+ROS_BPN = "respeaker_ros"
+
 ROS_BUILD_DEPENDS = " \
     dynamic-reconfigure \
 "

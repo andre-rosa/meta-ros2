@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD & LGPL-2 & GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "multi_interface_roam"
+
 ROS_BUILD_DEPENDS = " \
     asmach \
     diagnostic-msgs \

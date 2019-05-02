@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=c93e37fc0c6f510db5735eb91dcc1550"
 
+ROS_BPN = "robot_calibration_msgs"
+
 ROS_BUILD_DEPENDS = " \
     actionlib-msgs \
     geometry-msgs \

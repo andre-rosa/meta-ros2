@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_BPN = "pr2_mannequin_mode"
+
 ROS_BUILD_DEPENDS = " \
     pr2-controller-manager \
     pr2-controllers-msgs \

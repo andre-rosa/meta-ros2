@@ -10,21 +10,22 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=b73cebba72f83c5afebf178817283e37"
 
+ROS_BPN = "cartographer_ros"
+
 ROS_BUILD_DEPENDS = " \
+    ${PYTHON_PN}-sphinx \
     cartographer \
     cartographer-ros-msgs \
     eigen-conversions \
-    g++-static \
     geometry-msgs \
     gflags \
+    glog \
     gtest \
-    libgoogle-glog-dev \
     message-runtime \
     nav-msgs \
     pcl \
     pcl-conversions \
     protobuf \
-    python-sphinx \
     robot-state-publisher \
     rosbag \
     roscpp \
@@ -49,7 +50,7 @@ ROS_EXPORT_DEPENDS = " \
     eigen-conversions \
     geometry-msgs \
     gflags \
-    libgoogle-glog-dev \
+    glog \
     message-runtime \
     nav-msgs \
     pcl \
@@ -76,7 +77,7 @@ ROS_EXEC_DEPENDS = " \
     eigen-conversions \
     geometry-msgs \
     gflags \
-    libgoogle-glog-dev \
+    glog \
     message-runtime \
     nav-msgs \
     pcl \

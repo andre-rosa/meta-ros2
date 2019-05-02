@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "rosdoc_lite"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -17,27 +19,27 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    ${PYTHON_PN}-sphinx \
     doxygen \
     genmsg \
     python-catkin-pkg \
     python-epydoc \
     python-kitchen \
     python-rospkg \
-    python-sphinx \
-    python-yaml \
+    python-yamllint-native \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    ${PYTHON_PN}-sphinx \
     doxygen \
     genmsg \
     python-catkin-pkg \
     python-epydoc \
     python-kitchen \
     python-rospkg \
-    python-sphinx \
-    python-yaml \
+    python-yamllint-native \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

@@ -3,7 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
-DESCRIPTION = "All non-test packages for the target from ${ROS_DISTRO}-cache.yaml"
+DESCRIPTION = "All non-test packages for the target from files/${ROS_DISTRO}/cache.yaml"
 LICENSE = "MIT"
 
 inherit packagegroup
@@ -281,10 +281,12 @@ RDEPENDS_${PN} = " \
     fake-localization \
     fcl-catkin \
     fetch-auto-dock-msgs \
+    fetch-bringup \
     fetch-calibration \
     fetch-depth-layer \
     fetch-description \
     fetch-driver-msgs \
+    fetch-drivers \
     fetch-gazebo \
     fetch-gazebo-demo \
     fetch-ikfast-plugin \
@@ -304,7 +306,6 @@ RDEPENDS_${PN} = " \
     fingertip-pressure \
     fkie-message-filters \
     fkie-potree-rviz-plugin \
-    flatbuffers \
     flexbe-behavior-engine \
     flexbe-core \
     flexbe-input \
@@ -322,6 +323,7 @@ RDEPENDS_${PN} = " \
     four-wheel-steering-controller \
     four-wheel-steering-msgs \
     franka-description \
+    freight-bringup \
     gateway-msgs \
     gazebo-msgs \
     gazebo-plugins \
@@ -508,6 +510,15 @@ RDEPENDS_${PN} = " \
     libmavconn \
     libmodbus \
     libphidget21 \
+    libqt-concurrent \
+    libqt-core \
+    libqt-gui \
+    libqt-network \
+    libqt-opengl \
+    libqt-opengl-rosdev \
+    libqt-rosdev \
+    libqt-svg-rosdev \
+    libqt-widgets \
     libreflexxestype2 \
     librviz-tutorial \
     libsiftfast \
@@ -679,6 +690,7 @@ RDEPENDS_${PN} = " \
     nodelet-topic-tools \
     nodelet-tutorial-math \
     novatel-gps-driver \
+    novatel-gps-msgs \
     novatel-msgs \
     novatel-span-driver \
     object-recognition-msgs \
@@ -820,6 +832,7 @@ RDEPENDS_${PN} = " \
     prbt-moveit-config \
     prbt-pg70-support \
     prbt-support \
+    prosilica-camera \
     ps3joy \
     py-trees \
     py-trees-msgs \
@@ -833,6 +846,7 @@ RDEPENDS_${PN} = " \
     qt-gui-core \
     qt-gui-cpp \
     qt-gui-py-common \
+    qt-qmake \
     qwt-dependency \
     radar-msgs \
     rail-manipulation-msgs \
@@ -840,6 +854,7 @@ RDEPENDS_${PN} = " \
     range-sensor-layer \
     raw-description \
     rc-cloud-accumulator \
+    rc-common-msgs \
     rc-dynamics-api \
     rc-genicam-api \
     rc-hand-eye-calibration-client \
@@ -892,7 +907,7 @@ RDEPENDS_${PN} = " \
     rocon-tools \
     rocon-tutorial-msgs \
     rocon-uri \
-    ros \
+    ros--distro-renamed \
     ros-base \
     ros-canopen \
     ros-comm \
@@ -983,6 +998,7 @@ RDEPENDS_${PN} = " \
     rosserial-windows \
     rosserial-xbee \
     rosservice \
+    rostate-machine \
     rostest \
     rostime \
     rostopic \
@@ -1105,6 +1121,7 @@ RDEPENDS_${PN} = " \
     swri-system-util \
     swri-transform-util \
     swri-yaml-util \
+    talos-description \
     talos-description-calibration \
     talos-description-inertial \
     teb-local-planner \
@@ -1196,6 +1213,7 @@ RDEPENDS_${PN} = " \
     urdf-geometry-parser \
     urdf-parser-plugin \
     urdf-sim-tutorial \
+    urdf-test \
     urdf-tutorial \
     urdfdom-py \
     urg-c \
@@ -1249,6 +1267,7 @@ RDEPENDS_${PN} = " \
     visualization-msgs \
     visualization-tutorials \
     viz \
+    volksbot-driver \
     voxel-grid \
     vrpn-client-ros \
     vrx-gazebo \

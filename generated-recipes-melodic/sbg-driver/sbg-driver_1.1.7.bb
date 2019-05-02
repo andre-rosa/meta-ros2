@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_BPN = "sbg_driver"
+
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     message-generation \

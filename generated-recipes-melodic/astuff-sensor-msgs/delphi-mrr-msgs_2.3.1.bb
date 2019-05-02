@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_BPN = "delphi_mrr_msgs"
+
 ROS_BUILD_DEPENDS = " \
     message-generation \
     std-msgs \

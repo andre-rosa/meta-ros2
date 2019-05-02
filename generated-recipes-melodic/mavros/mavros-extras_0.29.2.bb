@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-3 & LGPL-2 & BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_BPN = "mavros_extras"
+
 ROS_BUILD_DEPENDS = " \
     cmake-modules \
     geometry-msgs \

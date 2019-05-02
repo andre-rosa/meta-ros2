@@ -10,18 +10,19 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=b73cebba72f83c5afebf178817283e37"
 
+ROS_BPN = "cartographer"
+
 ROS_BUILD_DEPENDS = " \
+    ${PYTHON_PN}-sphinx \
     boost \
     cairo \
     ceres-solver \
-    g++-static \
     gflags \
+    glog \
     gtest \
     libeigen \
-    libgoogle-glog-dev \
     lua \
     protobuf \
-    python-sphinx \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -33,8 +34,8 @@ ROS_EXPORT_DEPENDS = " \
     cairo \
     ceres-solver \
     gflags \
+    glog \
     libeigen \
-    libgoogle-glog-dev \
     lua \
     protobuf \
 "
@@ -46,8 +47,8 @@ ROS_EXEC_DEPENDS = " \
     cairo \
     ceres-solver \
     gflags \
+    glog \
     libeigen \
-    libgoogle-glog-dev \
     lua \
     protobuf \
 "

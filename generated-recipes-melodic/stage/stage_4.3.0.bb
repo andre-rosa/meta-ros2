@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_BPN = "stage"
+
 ROS_BUILD_DEPENDS = " \
     gtk2 \
     libfltk-dev \

@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=fe8b75cf0aba647401e1038bcd69ee74"
 
+ROS_BPN = "mongodb_log"
+
 ROS_BUILD_DEPENDS = " \
     mongodb-store \
     openssl \

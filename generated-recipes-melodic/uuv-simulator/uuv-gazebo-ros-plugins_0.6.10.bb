@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=18;endline=18;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_BPN = "uuv_gazebo_ros_plugins"
+
 ROS_BUILD_DEPENDS = " \
     gazebo-rosdev \
     geometry-msgs \

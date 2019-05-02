@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=a3ae2ba3f0f44e61270955e8cd98afcf"
 
+ROS_BPN = "map_msgs"
+
 ROS_BUILD_DEPENDS = " \
     message-generation \
     nav-msgs \

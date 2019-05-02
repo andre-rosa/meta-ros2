@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=8caad55b0e7a31e039fbcff07dba789e"
 
+ROS_BPN = "gazebo_ros_pkgs"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

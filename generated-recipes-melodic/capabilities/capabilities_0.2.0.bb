@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "capabilities"
+
 ROS_BUILD_DEPENDS = " \
     message-generation \
     roslaunch \
@@ -27,7 +29,7 @@ ROS_EXPORT_DEPENDS = " \
     bondpy \
     message-runtime \
     nodelet \
-    python-yaml \
+    python-yamllint-native \
     roslaunch \
     rospy \
     std-msgs \
@@ -40,7 +42,7 @@ ROS_EXEC_DEPENDS = " \
     bondpy \
     message-runtime \
     nodelet \
-    python-yaml \
+    python-yamllint-native \
     roslaunch \
     rospy \
     std-msgs \

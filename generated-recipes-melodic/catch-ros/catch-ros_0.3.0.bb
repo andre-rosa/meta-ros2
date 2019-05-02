@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=5;endline=5;md5=75730354549103aaba72b66caf53717b"
 
+ROS_BPN = "catch_ros"
+
 ROS_BUILD_DEPENDS = " \
     roscpp \
 "

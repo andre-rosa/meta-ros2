@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "public_domain"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=90cf8e14bb501c1f6d3eda81e45e438a"
 
+ROS_BPN = "roslisp_repl"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

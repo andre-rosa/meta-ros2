@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "CC-BY-NC-ND-4.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=6549234dc4c73b62e8ba710cb6e68a29"
 
+ROS_BPN = "fetch_description"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_BPN = "codec_image_transport"
+
 ROS_BUILD_DEPENDS = " \
     ffmpeg \
     image-transport \

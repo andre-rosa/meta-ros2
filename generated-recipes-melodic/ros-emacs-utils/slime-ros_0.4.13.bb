@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "public_domain"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=c60c465e235b13ecfc23607d3b1b9e2f"
 
+ROS_BPN = "slime_ros"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

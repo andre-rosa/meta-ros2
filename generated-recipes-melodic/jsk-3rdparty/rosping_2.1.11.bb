@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Boost-1.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d98785270c85a483b5697dfd09b5f41a"
 
+ROS_BPN = "rosping"
+
 ROS_BUILD_DEPENDS = " \
     mk \
     rosboost-cfg \

@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_BPN = "rc_hand_eye_calibration_client"
+
 ROS_BUILD_DEPENDS = " \
     curl \
     dynamic-reconfigure \

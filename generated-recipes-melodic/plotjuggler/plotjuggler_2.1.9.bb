@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=a9a72c186797ff98a79f90205c589abf"
 
+ROS_BPN = "plotjuggler"
+
 ROS_BUILD_DEPENDS = " \
     binutils \
     qtbase \

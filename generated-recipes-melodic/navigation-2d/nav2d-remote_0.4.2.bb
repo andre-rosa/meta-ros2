@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_BPN = "nav2d_remote"
+
 ROS_BUILD_DEPENDS = " \
     nav2d-navigator \
     nav2d-operator \

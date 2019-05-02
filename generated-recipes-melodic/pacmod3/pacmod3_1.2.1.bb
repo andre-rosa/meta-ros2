@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_BPN = "pacmod3"
+
 ROS_BUILD_DEPENDS = " \
     can-msgs \
     pacmod-msgs \

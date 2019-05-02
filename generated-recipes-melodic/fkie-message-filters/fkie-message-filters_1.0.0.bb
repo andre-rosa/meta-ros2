@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_BPN = "fkie_message_filters"
+
 ROS_BUILD_DEPENDS = " \
     image-transport \
     roscpp \

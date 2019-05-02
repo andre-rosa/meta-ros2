@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "GPL-3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_BPN = "nav2d_tutorials"
+
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \

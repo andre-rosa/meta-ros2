@@ -10,6 +10,8 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=22;endline=22;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_BPN = "costmap_2d"
+
 ROS_BUILD_DEPENDS = " \
     cmake-modules \
     dynamic-reconfigure \
