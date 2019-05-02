@@ -5,13 +5,13 @@
 
 ROS_SUPERFLORE_GENERATION_SCHEME = "1"
 
-export DISTRO = "ros2"
+DISTRO = "ros2"
 export ROS_VERSION = "2"
 # DO NOT OVERRIDE ROS_PYTHON_VERSION
 export ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190430202958"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190501185949"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -457,6 +457,7 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
 ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     ${PYTHON_PN}-pydocstyle \
     ${PYTHON_PN}-pyflakes \
+    ${PYTHON_PN}-sphinx \
     asio \
     assimp \
     boost \
@@ -476,17 +477,16 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     ffmpeg \
     freeglut \
     freetype \
-    g++-static \
     gflags \
     git-native \
     glfw \
+    glog \
     gpgme \
     gtest \
     gtest-native \
     gtk+3 \
     libeigen \
     libgazebo9 \
-    libgoogle-glog-dev \
     libjpeq-turbo \
     libogg \
     libpcap \
@@ -512,7 +512,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     pkgconfig-native \
     poco \
     protobuf \
-    python-sphinx \
     python3-catkin-pkg \
     python3-catkin-pkg-native \
     python3-empy \
@@ -686,5 +685,3 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     vision-opencv \
     yaml-cpp-vendor \
 "
-
-# A ros_depgrp_<dependency-group>.bbclass must be created for each of these:
