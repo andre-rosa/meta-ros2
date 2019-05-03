@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The OPT++ catkin wrapper package"
 AUTHOR = "Wolfgang Merkt <wolfgang.merkt@ed.ac.uk>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "b910ce830859bdd106d02f6cce840ffaa18ad3dd7cdf0e6b4f8d9da024
 S = "${WORKDIR}/optpp_catkin-release-release-melodic-optpp_catkin-2.4.0-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/optpp-catkin/optpp-catkin_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/optpp-catkin/optpp-catkin_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('optpp-catkin', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/optpp-catkin/optpp-catkin_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/optpp-catkin/optpp-catkin-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/optpp-catkin/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/optpp-catkin/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

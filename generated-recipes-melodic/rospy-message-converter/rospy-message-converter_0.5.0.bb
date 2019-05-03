@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Converts between Python dictionaries and JSON to rospy messages."
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
 HOMEPAGE = "http://ros.org/wiki/rospy_message_converter"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "c35584b4ef0c7fed1e90a35bfeb17ad63ec36a9a86ba1aaf74547cdcbd
 S = "${WORKDIR}/rospy_message_converter-release-release-melodic-rospy_message_converter-0.5.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rospy-message-converter/rospy-message-converter_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rospy-message-converter/rospy-message-converter_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rospy-message-converter', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospy-message-converter/rospy-message-converter_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospy-message-converter/rospy-message-converter-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospy-message-converter/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospy-message-converter/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

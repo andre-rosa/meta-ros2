@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Contains a set of tools that can be used from a hard     realtime thread, without breaking the realtime behavior.  The     tools currently only provides the realtime publisher, which makes     it possible to publish messages to a ROS topic from a realtime     thread. We plan to add a basic implementation of a realtime     buffer, to make it possible to get data from a (non-realtime)     topic callback into the realtime loop. Once the lockfree buffer is     created, the realtime publisher will start using it, which will     result in major API changes for the realtime publisher (removal of     all lock methods)."
 AUTHOR = "Bence Magyar <bence.magyar.robotics@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/realtime_tools"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "399aca3a72c59e2bd7bfc508e7dca8cb53d95ee76f067f4b11ecdaa49e
 S = "${WORKDIR}/realtime_tools-release-release-melodic-realtime_tools-1.13.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/realtime-tools/realtime-tools_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/realtime-tools/realtime-tools_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('realtime-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-tools/realtime-tools_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-tools/realtime-tools-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-tools/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Bringup for fetch"
 AUTHOR = "Eric Relson <erelson@fetchrobotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -57,15 +59,13 @@ SRC_URI[sha256sum] = "7226d4b1fd3e2bb93192fa270d0d1a82cabd74c3dbdbada0cf5620e5ae
 S = "${WORKDIR}/fetch_robots-release-release-melodic-fetch_bringup-0.8.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/fetch-robots/fetch-robots_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/fetch-robots/fetch-robots_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-robots', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/fetch-robots_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/fetch-robots-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

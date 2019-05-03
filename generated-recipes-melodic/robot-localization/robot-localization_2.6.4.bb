@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Provides nonlinear state estimation through sensor fusion of an abritrary number of sensors."
 AUTHOR = "Tom Moore <ayrton04@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/robot_localization"
@@ -108,15 +110,13 @@ SRC_URI[sha256sum] = "ec11a24842691aeb10996db5752bd1b2af596a93c2598793afc1207500
 S = "${WORKDIR}/robot_localization-release-release-melodic-robot_localization-2.6.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/robot-localization/robot-localization_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/robot-localization/robot-localization_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-localization', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-localization/robot-localization_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-localization/robot-localization-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-localization/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-localization/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

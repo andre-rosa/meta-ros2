@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The mongodb_store_msgs package"
 AUTHOR = "Nick Hawes <nickh@robots.ox.ac.uk>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "b5df2309a7ca62a19b97e73cf22e30ccf3e8b320ef40e8faf07f9ed144
 S = "${WORKDIR}/mongodb_store-release-melodic-mongodb_store_msgs-0.5.0-5"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/mongodb-store/mongodb-store_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/mongodb-store/mongodb-store_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mongodb-store', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/mongodb-store_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/mongodb-store-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

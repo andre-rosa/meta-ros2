@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Tools for writing ros-node-like bash scripts"
 AUTHOR = "Martin Pecka <peckama2@fel.cvut.cz>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "af9e6ee8c0ffae32824fbbfa2dfcbb6483e0ad1757282f347ca744db60
 S = "${WORKDIR}/rosbash_params-release-release-melodic-rosbash_params-1.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosbash-params/rosbash-params_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosbash-params/rosbash-params_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbash-params', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbash-params/rosbash-params_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbash-params/rosbash-params-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbash-params/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbash-params/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

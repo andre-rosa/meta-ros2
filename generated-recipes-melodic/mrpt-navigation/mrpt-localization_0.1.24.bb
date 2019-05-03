@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package for robot 2D self-localization using dynamic or static (MRPT or ROS) maps. 	The interface is similar to amcl (http://wiki.ros.org/amcl)    but supports different particle-filter algorithms, several grid maps at    different heights, range-only localization, etc."
 AUTHOR = "Markus Bader <markus.bader@tuwien.ac.at>"
 HOMEPAGE = "http://www.mrpt.org/"
@@ -73,15 +75,13 @@ SRC_URI[sha256sum] = "5775c752a5bf1d2769f09bca7c2105041bfea961a8126752d9f78fdd20
 S = "${WORKDIR}/mrpt_navigation-release-release-melodic-mrpt_localization-0.1.24-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/mrpt-navigation/mrpt-navigation_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/mrpt-navigation/mrpt-navigation_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/mrpt-navigation_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/mrpt-navigation-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "flexbe_mirror implements functionality to remotely mirror an executed behavior."
 AUTHOR = "Philipp Schillinger <schillin@kth.se>"
 HOMEPAGE = "http://ros.org/wiki/flexbe_mirror"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "e7fe4fb1348f410752aea65dc49ce210fed63260ec504b1a895d9cc131
 S = "${WORKDIR}/flexbe_behavior_engine-release-release-melodic-flexbe_mirror-1.1.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/flexbe/flexbe_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/flexbe/flexbe_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('flexbe', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/flexbe_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/flexbe-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

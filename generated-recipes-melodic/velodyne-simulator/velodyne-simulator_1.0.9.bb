@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Metapackage allowing easy installation of Velodyne simulation components."
 AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
 HOMEPAGE = "http://wiki.ros.org/velodyne_simulator"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "d6cbbbf0f73845a641801a326ecb69780982d3e6523330cb0358093e16
 S = "${WORKDIR}/velodyne_simulator-release-release-melodic-velodyne_simulator-1.0.9-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/velodyne-simulator/velodyne-simulator_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/velodyne-simulator/velodyne-simulator_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('velodyne-simulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/velodyne-simulator_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/velodyne-simulator-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

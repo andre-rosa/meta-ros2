@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package to parse NMEA strings and publish a very simple GPS message. Does not      require or use the GPSD deamon."
 AUTHOR = "Ed Venator <evenator@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/nmea_navsat_driver"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "c502e261f11dee9d169b96c13eec505a7251157364aeac7201a6518740
 S = "${WORKDIR}/nmea_navsat_driver-release-release-melodic-nmea_navsat_driver-0.5.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/nmea-navsat-driver/nmea-navsat-driver_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/nmea-navsat-driver/nmea-navsat-driver_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('nmea-navsat-driver', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nmea-navsat-driver/nmea-navsat-driver_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nmea-navsat-driver/nmea-navsat-driver-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nmea-navsat-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nmea-navsat-driver/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

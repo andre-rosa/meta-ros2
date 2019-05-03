@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_console provides a GUI plugin for displaying and filtering ROS messages."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rqt_console"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "bd66d6c711910fb8db8804b403bf5cedcce83ecfc82eaa4c12afb5e035
 S = "${WORKDIR}/rqt_console-release-release-melodic-rqt_console-0.4.8-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-console/rqt-console_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-console/rqt-console_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-console', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-console/rqt-console_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-console/rqt-console-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-console/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-console/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

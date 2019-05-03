@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_logger_level provides a GUI plugin for configuring the logger level of ROS nodes.<br/>    <br/>   rqt_logger_level takes over `wx`-based tool [[rxloggerlevel]]."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rqt_logger_level"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "c2fcc66a3b20e836aba40218bc745f0112986d329804f3929c275534d9
 S = "${WORKDIR}/rqt_logger_level-release-release-melodic-rqt_logger_level-0.4.8-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-logger-level/rqt-logger-level_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-logger-level/rqt-logger-level_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-logger-level', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-logger-level/rqt-logger-level_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-logger-level/rqt-logger-level-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-logger-level/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-logger-level/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

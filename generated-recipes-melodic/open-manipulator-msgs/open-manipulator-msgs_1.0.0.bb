@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Messages and services package for OpenManipulator to send information about state or pose"
 AUTHOR = "Pyo <pyo@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/open_manipulator_msgs"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "8a499c54924fdc7b81c8315d5e720e3b2179757fc5ef98e524dfef53ac
 S = "${WORKDIR}/open_manipulator_msgs-release-release-melodic-open_manipulator_msgs-1.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/open-manipulator-msgs/open-manipulator-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/open-manipulator-msgs/open-manipulator-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('open-manipulator-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-msgs/open-manipulator-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-msgs/open-manipulator-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

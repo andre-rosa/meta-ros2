@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A ROS driver for the SICK TiM and the SICK MRS 1000 laser scanners."
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
 HOMEPAGE = "http://wiki.ros.org/sick_tim"
@@ -61,15 +63,13 @@ SRC_URI[sha256sum] = "7e331af0eea21b51239fc2ed9b451fe43529d24569f208a3e71591e2f3
 S = "${WORKDIR}/sick_tim-release-release-melodic-sick_tim-0.0.15-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/sick-tim/sick-tim_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/sick-tim/sick-tim_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sick-tim', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sick-tim/sick-tim_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sick-tim/sick-tim-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sick-tim/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sick-tim/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

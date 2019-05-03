@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Runs an optimization to estimate the a robot's kinematic parameters. This package is a     generic rewrite of pr2_calibration_estimation."
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/calibration_estimation"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "b6d902974beb94a2868f04a7c820517a153083bf0c316b91036a746a41
 S = "${WORKDIR}/calibration-release-release-melodic-calibration_estimation-0.10.14-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/calibration/calibration_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/calibration/calibration_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('calibration', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/calibration_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/calibration-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A set of packages that include controller interfaces, controller managers, transmissions and hardware_interfaces."
 AUTHOR = "Bence Magyar <bence.magyar.robotics@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/ros_control"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "58bf82c63707b76b7d6752df3afd2b4fe369fc95260431e56a8cb7068a
 S = "${WORKDIR}/ros_control-release-release-melodic-ros_control-0.15.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-control/ros-control_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-control/ros-control_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-control', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/ros-control_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/ros-control-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

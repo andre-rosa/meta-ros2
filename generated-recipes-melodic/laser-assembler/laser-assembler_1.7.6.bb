@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Provides nodes to assemble point clouds from either LaserScan or PointCloud messages"
 AUTHOR = "Jonathan Binney <jon.binney@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/laser_assembler"
@@ -68,15 +70,13 @@ SRC_URI[sha256sum] = "e9f578692846ccaf041da048fcfcef51d1a421a2869c94d2970541af31
 S = "${WORKDIR}/laser_assembler-release-release-melodic-laser_assembler-1.7.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/laser-assembler/laser-assembler_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/laser-assembler/laser-assembler_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-assembler', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-assembler/laser-assembler_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-assembler/laser-assembler-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-assembler/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-assembler/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package contains standard capability interfaces, which describe common robot capabilities in terms of ROS concepts such as topics, services, actions, and parameters."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/std_capabilities"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "56846414a12f4f667aec42eaef1c602c355854fdaa729692117961e54d
 S = "${WORKDIR}/std_capabilities-release-release-melodic-std_capabilities-0.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/std-capabilities/std-capabilities_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/std-capabilities/std-capabilities_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('std-capabilities', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/std-capabilities/std-capabilities_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/std-capabilities/std-capabilities-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/std-capabilities/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/std-capabilities/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

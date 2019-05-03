@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Underlying data libraries for roscpp messages."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/roscpp_core"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "814ea5bddeba2cabb4229baa27006fe21dbc56f0fd51bf3afd5e20a22b
 S = "${WORKDIR}/roscpp_core-release-release-melodic-roscpp_core-0.6.12-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/roscpp-core/roscpp-core_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/roscpp-core/roscpp-core_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roscpp-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/roscpp-core_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/roscpp-core-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "MAVLink message marshaling library.   This package provides C-headers and C++11 library   for both 1.0 and 2.0 versions of protocol.    For pymavlink use separate install via rosdep (python-pymavlink)."
 AUTHOR = "Vladimir Ermakov <vooon341@gmail.com>"
 HOMEPAGE = "http://qgroundcontrol.org/mavlink/"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "ae60116d328ad383dfd3bfe663586b9c39241b44ae58dc502d15a44cc5
 S = "${WORKDIR}/mavlink-gbp-release-release-melodic-mavlink-2019.4.4-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/mavlink/mavlink_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/mavlink/mavlink_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mavlink', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavlink/mavlink_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavlink/mavlink-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavlink/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavlink/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

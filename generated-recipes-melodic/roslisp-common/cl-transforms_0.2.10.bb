@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Homogeneous transform library for Common Lisp."
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
 HOMEPAGE = "http://ros.org/wiki/cl_transforms"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "cfb2f58621330690fb1aede02cff56e91d5c94b75e2a2a36d891521bfb
 S = "${WORKDIR}/roslisp_common-release-release-melodic-cl_transforms-0.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/roslisp-common/roslisp-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/roslisp-common/roslisp-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roslisp-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp-common/roslisp-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp-common/roslisp-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

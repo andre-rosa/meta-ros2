@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rosbuild contains scripts for managing the CMake-based build system for ROS."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/rosbuild"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "3c95011a3c521dc30e8b7f4399fdc46f0e3702978b9060f309529e6e8f
 S = "${WORKDIR}/ros-release-release-melodic-rosbuild-1.14.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros--distro-renamed/ros--distro-renamed_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros--distro-renamed/ros--distro-renamed_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros--distro-renamed', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

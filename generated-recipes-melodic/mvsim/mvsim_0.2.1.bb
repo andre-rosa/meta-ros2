@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Node for the &quot;multivehicle simulator&quot; framework."
 AUTHOR = "Jose-Luis Blanco-Claraco <jlblanco@ual.es>"
 HOMEPAGE = "http://wiki.ros.org/mvsim"
@@ -76,15 +78,13 @@ SRC_URI[sha256sum] = "341d75fa8e654806b77f439a1e82959974366382947ef70df434047c76
 S = "${WORKDIR}/mvsim-release-release-melodic-mvsim-0.2.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/mvsim/mvsim_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/mvsim/mvsim_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mvsim', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mvsim/mvsim_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mvsim/mvsim-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mvsim/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mvsim/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This stack holds packages for IPA default environment configuration."
 AUTHOR = "Jannik Abbenseth <jba@ipa.fhg.de>"
 HOMEPAGE = "http://ros.org/wiki/cob_environments"
@@ -42,15 +44,13 @@ SRC_URI[sha256sum] = "ff50f816354b9990e71a7ed557e7c3a6df5d513cb6469a7a36367b0039
 S = "${WORKDIR}/cob_environments-release-release-melodic-cob_environments-0.6.8-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/cob-environments/cob-environments_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/cob-environments/cob-environments_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cob-environments', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-environments/cob-environments_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-environments/cob-environments-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-environments/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-environments/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

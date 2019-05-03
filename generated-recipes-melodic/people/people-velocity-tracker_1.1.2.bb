@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Track the output of the leg_detector to indicate the velocity of person."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/people_velocity_tracker"
@@ -62,15 +64,13 @@ SRC_URI[sha256sum] = "57da6c218e5e9b052299795c8143a4efae4123d78dedb160a66ffa5925
 S = "${WORKDIR}/people-release-release-melodic-people_velocity_tracker-1.1.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/people/people_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/people/people_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('people', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/people_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/people-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

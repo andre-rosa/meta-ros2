@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Processors for sensor_msgs::Imu data"
 AUTHOR = "Paul Bovbel <pbovbel@clearpathrobotics.com>"
 HOMEPAGE = "http://ros.org/wiki/imu_processors"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "68dd63390a89e5634e7ae241aa2e8c21e8e80753d49eaf8569de7f8ac1
 S = "${WORKDIR}/imu_pipeline-release-release-melodic-imu_processors-0.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/imu-pipeline/imu-pipeline_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/imu-pipeline/imu-pipeline_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imu-pipeline', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/imu-pipeline_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/imu-pipeline-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

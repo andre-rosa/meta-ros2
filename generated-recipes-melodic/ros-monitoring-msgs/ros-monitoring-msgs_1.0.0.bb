@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Messages for publishing monitoring data about ROS systems"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/ros_monitoring_msgs"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "3f7de8101df1c96e947d8123e8eef5a129edc09a1e5ce723e9d91409c9
 S = "${WORKDIR}/ros_monitoring_msgs-release-release-melodic-ros_monitoring_msgs-1.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-monitoring-msgs/ros-monitoring-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-monitoring-msgs/ros-monitoring-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-monitoring-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-monitoring-msgs/ros-monitoring-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-monitoring-msgs/ros-monitoring-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-monitoring-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-monitoring-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Generic joystick teleop for twist robots."
 AUTHOR = "Mike Purvis <mpurvis@clearpathrobotics.com>"
 HOMEPAGE = "http://wiki.ros.org/teleop_twist_joy"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "3e9186dd642c84cc2776994b6afa7a97a9a4759d53170c1e1f9fddd9fb
 S = "${WORKDIR}/teleop_twist_joy-release-release-melodic-teleop_twist_joy-0.1.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/teleop-twist-joy/teleop-twist-joy_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/teleop-twist-joy/teleop-twist-joy_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teleop-twist-joy', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/teleop-twist-joy_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/teleop-twist-joy-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

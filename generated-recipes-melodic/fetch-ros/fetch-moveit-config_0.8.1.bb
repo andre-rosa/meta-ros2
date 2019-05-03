@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "An automatically generated package with all the configuration and launch files for using the fetch_urdf with the MoveIt Motion Planning Framework"
 AUTHOR = "Russell Toris <rtoris@fetchrobotics.com>"
 HOMEPAGE = "http://moveit.ros.org/"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "cd8f245340ae00e0138b66eebbe75fb95da8a60bfbe05b329d20160f09
 S = "${WORKDIR}/fetch_ros-release-release-melodic-fetch_moveit_config-0.8.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/fetch-ros/fetch-ros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/fetch-ros/fetch-ros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/fetch-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/fetch-ros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

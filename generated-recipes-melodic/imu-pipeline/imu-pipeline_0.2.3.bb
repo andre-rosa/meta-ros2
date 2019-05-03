@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "imu_pipeline"
 AUTHOR = "Paul Bovbel <pbovbel@clearpathrobotics.com>"
 HOMEPAGE = "http://ros.org/wiki/imu_pipeline"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "9ee5a8bc23b24ed9fc68e57f0a23a27cee64664c6cddd61e6ce6474d25
 S = "${WORKDIR}/imu_pipeline-release-release-melodic-imu_pipeline-0.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/imu-pipeline/imu-pipeline_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/imu-pipeline/imu-pipeline_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imu-pipeline', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/imu-pipeline_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/imu-pipeline-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

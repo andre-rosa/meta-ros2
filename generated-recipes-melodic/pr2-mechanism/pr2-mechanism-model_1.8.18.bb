@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "<p>         This package contains the robot model that is used by the realtime         controllers         inside <a href="http://www.ros.org/wiki/pr2_controller_manager">controller            manager</a>. This robot model focuses on controlling the robot         mechanism in a realtime control loop, and therefore it only contains         the components of a robot that are relevant in realtime: the robot         joints (with encoders, transmisisons and actuators) and the         kinematic/dynamic model of the robot.      </p>      <p>         The pr2_mechanism_model package is well tested and is released with a stable API.      </p>"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
 HOMEPAGE = "http://ros.org/wiki/pr2_mechanism_model"
@@ -70,15 +72,13 @@ SRC_URI[sha256sum] = "d20f677226a4c6286216f0b159340ec70dfc1a7473623ddd4c39c526f2
 S = "${WORKDIR}/pr2_mechanism-release-release-melodic-pr2_mechanism_model-1.8.18-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pr2-mechanism/pr2-mechanism_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pr2-mechanism/pr2-mechanism_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-mechanism', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/pr2-mechanism_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/pr2-mechanism-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

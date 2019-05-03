@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The people stack holds algorithms for perceiving people from a number of sensors."
 AUTHOR = "Dan Lazewatsky <dan@lazewatsky.com>"
 HOMEPAGE = "http://ros.org/wiki/people"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "c9e1e3a253e0a4674504cf974f66e24d91ae6552eca545cd8fde925c94
 S = "${WORKDIR}/people-release-release-melodic-people-1.1.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/people/people_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/people/people_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('people', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/people_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/people-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

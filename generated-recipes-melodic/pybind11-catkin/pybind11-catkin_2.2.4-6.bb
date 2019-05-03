@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The pybind11 package"
 AUTHOR = "Vladimir Ivan <v.ivan@ed.ac.uk>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "5252e0b91e05e1f8d2cb6bd845b6c29d53e704c82511371a7be979d51a
 S = "${WORKDIR}/pybind11_catkin-release-release-melodic-pybind11_catkin-2.2.4-6"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pybind11-catkin/pybind11-catkin_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pybind11-catkin/pybind11-catkin_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pybind11-catkin', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pybind11-catkin/pybind11-catkin_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pybind11-catkin/pybind11-catkin-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pybind11-catkin/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pybind11-catkin/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

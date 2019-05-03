@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A pure-python interaface to the MoveIt! ROS API."
 AUTHOR = "Michael Ferguson <fergs@unboundedrobotics.com>"
 HOMEPAGE = "http://ros.org/wiki/moveit_python"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "17781480fab3a6e6b44d90315cb6c257cceb228d58d8db2b0892895dc3
 S = "${WORKDIR}/moveit_python-release-release-melodic-moveit_python-0.3.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/moveit-python/moveit-python_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/moveit-python/moveit-python_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit-python', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-python/moveit-python_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-python/moveit-python-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-python/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-python/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

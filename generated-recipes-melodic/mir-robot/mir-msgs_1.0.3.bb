@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Message definitions for the MiR100 robot"
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
 HOMEPAGE = "https://github.com/dfki-ric/mir_robot"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "c4d63d427acace6162d68513c68fc64da0d5631be84c81ac6193ea339e
 S = "${WORKDIR}/mir_robot-release-release-melodic-mir_msgs-1.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/mir-robot/mir-robot_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/mir-robot/mir-robot_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mir-robot', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/mir-robot_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/mir-robot-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

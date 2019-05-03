@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package for TurtleBot3 automatic_parking which uses ar code. This example needs a printed ar code and a TurtleBot3."
 AUTHOR = "Pyo <pyo@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/turtlebot3_automatic_parking_vision"
@@ -68,15 +70,13 @@ SRC_URI[sha256sum] = "6e10d535cf4f41ac732ed8cc54edc197c35c8cf6969c2bf9b0649e37c9
 S = "${WORKDIR}/turtlebot3_applications-release-release-melodic-turtlebot3_automatic_parking_vision-1.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/turtlebot3-applications/turtlebot3-applications_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/turtlebot3-applications/turtlebot3-applications_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3-applications', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/turtlebot3-applications_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/turtlebot3-applications-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

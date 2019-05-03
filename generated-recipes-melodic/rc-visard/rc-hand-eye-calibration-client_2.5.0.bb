@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The rc_hand_eye_calibration_client package"
 AUTHOR = "Felix Ruess <felix.ruess@roboception.de>"
 HOMEPAGE = "http://wiki.ros.org/rc_hand_eye_calibration_client"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "4a0f8dbf4cf73db3976b83dea3cb12c86d3bc81e41241ec3a1b00bdb23
 S = "${WORKDIR}/rc_visard-release-release-melodic-rc_hand_eye_calibration_client-2.5.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rc-visard/rc-visard_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rc-visard/rc-visard_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-visard', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/rc-visard_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/rc-visard-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

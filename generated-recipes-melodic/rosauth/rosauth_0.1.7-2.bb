@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Server Side tools for Authorization and Authentication of ROS Clients"
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
 HOMEPAGE = "http://ros.org/wiki/rosauth"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "9d3f956efc11d59d7fb973249d34a497dfe1649d77dffe76da6cc29a48
 S = "${WORKDIR}/rosauth-release-release-melodic-rosauth-0.1.7-2"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosauth/rosauth_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosauth/rosauth_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosauth', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosauth/rosauth_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosauth/rosauth-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosauth/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosauth/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

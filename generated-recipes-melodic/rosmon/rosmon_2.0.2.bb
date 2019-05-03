@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Node launcher and monitor for ROS. rosmon is a replacement 		for the roslaunch tool, focused on performance, remote 		monitoring, and usability."
 AUTHOR = "Max Schwarz <max.schwarz@uni-bonn.de>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "86889a64f484e3a77ff9c176c3c47c185e7c2d1e6a748885e2f658344b
 S = "${WORKDIR}/rosmon-release-release-melodic-rosmon-2.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosmon/rosmon_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosmon/rosmon_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosmon', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosmon/rosmon_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosmon/rosmon-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosmon/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosmon/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

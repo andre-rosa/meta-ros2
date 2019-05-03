@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package defines services that are used to communicate with      the realtime control loop. It also defines messages      that represent the state of the realtime controllers, the joints      and the actuators."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
 HOMEPAGE = "http://ros.org/wiki/pr2_mechanism_msgs"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "ed530def634447f8d6970857f1f33b8ddfadefc07cffd6e4ce01e71e17
 S = "${WORKDIR}/pr2_mechanism_msgs-release-release-melodic-pr2_mechanism_msgs-1.8.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pr2-mechanism-msgs/pr2-mechanism-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pr2-mechanism-msgs/pr2-mechanism-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-mechanism-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism-msgs/pr2-mechanism-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism-msgs/pr2-mechanism-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

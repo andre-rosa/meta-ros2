@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "C++ library for SE(2/3) pose and 2D/3D point     composition operations with uncertainty"
 AUTHOR = "Jose-Luis Blanco-Claraco <jlblanco@ual.es>"
 HOMEPAGE = "http://wiki.ros.org/pose_cov_ops"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "03a6c9edc43d420a3532232fdbd48db4d4bf69acea65d8a5ce153b7f19
 S = "${WORKDIR}/pose_cov_ops-release-release-melodic-pose_cov_ops-0.2.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pose-cov-ops/pose-cov-ops_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pose-cov-ops/pose-cov-ops_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pose-cov-ops', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pose-cov-ops/pose-cov-ops_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pose-cov-ops/pose-cov-ops-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pose-cov-ops/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pose-cov-ops/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

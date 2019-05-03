@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "roslaunch is a tool for easily launching multiple ROS <a href="http://ros.org/wiki/Nodes">nodes</a> locally and remotely     via SSH, as well as setting parameters on the <a href="http://ros.org/wiki/Parameter Server">Parameter     Server</a>. It includes options to automatically respawn processes     that have already died. roslaunch takes in one or more XML     configuration files (with the <tt>.launch</tt> extension) that     specify the parameters to set and nodes to launch, as well as the     machines that they should be run on."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/roslaunch"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "6332d21a5e4ba14d3cdc2d0a0492eb1ba63615e78c63dfbb828df59c93
 S = "${WORKDIR}/ros_comm-release-release-melodic-roslaunch-1.14.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-comm/ros-comm_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-comm/ros-comm_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/ros-comm_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/ros-comm-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

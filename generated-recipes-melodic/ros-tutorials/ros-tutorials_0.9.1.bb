@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ros_tutorials contains packages that demonstrate various features of ROS,     as well as support packages which help demonstrate those features."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/ros_tutorials"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "566f9e87ffd41023bf48a504e928de4e837676cfade117ef7c208c89e3
 S = "${WORKDIR}/ros_tutorials-release-release-melodic-ros_tutorials-0.9.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-tutorials/ros-tutorials_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-tutorials/ros-tutorials_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-tutorials', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/ros-tutorials_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/ros-tutorials-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

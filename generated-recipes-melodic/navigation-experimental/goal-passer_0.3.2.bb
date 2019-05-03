@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A global planner plugin for move_base that simply passes the target pose on     as a global plan. Useful for debugging local planners."
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
 HOMEPAGE = "http://wiki.ros.org/goal_passer"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "9c648c6dfebf422fd014074cd0a9fc095208ff674436da5729f8f515c4
 S = "${WORKDIR}/navigation_experimental-release-release-melodic-goal_passer-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/navigation-experimental/navigation-experimental_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/navigation-experimental/navigation-experimental_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-experimental', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/navigation-experimental_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/navigation-experimental-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

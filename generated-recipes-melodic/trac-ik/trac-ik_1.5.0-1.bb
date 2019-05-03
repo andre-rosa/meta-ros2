@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The ROS packages in this repository were created to provide an improved     alternative Inverse Kinematics solver to the popular inverse Jacobian     methods in KDL.  TRAC-IK handles joint-limited chains better than KDL     without increasing solve time."
 AUTHOR = "Patrick Beeson <pbeeson@traclabs.com>"
 HOMEPAGE = "http://wiki.ros.org/trac_ik"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "c985213ab2ea13f1d77ffd934d03abb7f1cd6364f98247d8ce9d483161
 S = "${WORKDIR}/trac_ik-release-release-melodic-trac_ik-1.5.0-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/trac-ik/trac-ik_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/trac-ik/trac-ik_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('trac-ik', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/trac-ik_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/trac-ik-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

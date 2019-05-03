@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A viewer for the SLAM component of roboception based on ROS and PCL"
 AUTHOR = "Felix Endres <felix.endres@roboception.de>"
 HOMEPAGE = "https://wiki.ros.org/rc_cloud_accumulator"
@@ -73,15 +75,13 @@ SRC_URI[sha256sum] = "6356622f9801312add690a710948202c253adab5a5540ae0875e9bca83
 S = "${WORKDIR}/rc_cloud_accumulator-release-release-melodic-rc_cloud_accumulator-1.0.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rc-cloud-accumulator/rc-cloud-accumulator_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rc-cloud-accumulator/rc-cloud-accumulator_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-cloud-accumulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-cloud-accumulator/rc-cloud-accumulator_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-cloud-accumulator/rc-cloud-accumulator-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-cloud-accumulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-cloud-accumulator/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

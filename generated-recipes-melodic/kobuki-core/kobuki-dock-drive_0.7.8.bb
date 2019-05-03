@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Dock driving library for Kobuki. Users owning a docking station for Kobuki  	    can use this tool to develop autonomous docking drive algorithms."
 AUTHOR = "Younghun Ju <yhju@yujinrobot.com>"
 HOMEPAGE = "http://ros.org/wiki/kobuki_dock_drive"
@@ -53,15 +55,13 @@ SRC_URI[sha256sum] = "4dfca7766cb632cb77dd853c714c4da273b373cb549f891a71533fd0ea
 S = "${WORKDIR}/kobuki_core-release-release-melodic-kobuki_dock_drive-0.7.8-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/kobuki-core/kobuki-core_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/kobuki-core/kobuki-core_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('kobuki-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-core/kobuki-core_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-core/kobuki-core-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-core/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

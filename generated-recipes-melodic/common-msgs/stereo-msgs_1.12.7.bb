@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "stereo_msgs contains messages specific to stereo processing, such as disparity images."
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/stereo_msgs"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "18b3d8ec019e01a906981d524a8f1d0cc067e39f53494f1ce0a8c94e07
 S = "${WORKDIR}/common_msgs-release-release-melodic-stereo_msgs-1.12.7-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/common-msgs/common-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/common-msgs/common-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/common-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/common-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

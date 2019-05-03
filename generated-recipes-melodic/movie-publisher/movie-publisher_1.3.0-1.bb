@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Node for using a video file as video topic source."
 AUTHOR = "Martin Pecka <peckama2@fel.cvut.cz>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "d25ff36cadc9c0e22259a1e55b9e761efcc0e9ed0f4c1fcd30c1f919df
 S = "${WORKDIR}/movie_publisher-release-release-melodic-movie_publisher-1.3.0-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/movie-publisher/movie-publisher_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/movie-publisher/movie-publisher_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('movie-publisher', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/movie-publisher/movie-publisher_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/movie-publisher/movie-publisher-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/movie-publisher/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/movie-publisher/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

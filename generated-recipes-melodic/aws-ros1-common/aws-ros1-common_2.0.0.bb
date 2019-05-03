@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Common utilities for ROS1 nodes using Amazon Web Services"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/aws_ros1_common"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "34ab3879ab871a990b6b3eb591794dcdc7c62c32ef2687d011db9fdf14
 S = "${WORKDIR}/aws_ros1_common-release-release-melodic-aws_ros1_common-2.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/aws-ros1-common/aws-ros1-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/aws-ros1-common/aws-ros1-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('aws-ros1-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-ros1-common/aws-ros1-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-ros1-common/aws-ros1-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-ros1-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-ros1-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

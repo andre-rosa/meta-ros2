@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Extract a single ring of a Velodyne PointCloud2 and publish it as a LaserScan message"
 AUTHOR = "Josh Whitley <jwhitley@autonomoustuff.com>"
 HOMEPAGE = "http://ros.org/wiki/velodyne_laserscan"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "7a79ee1a1f2efe7e9e20695fea816a595f442ad661d13a345a918df1a9
 S = "${WORKDIR}/velodyne-release-release-melodic-velodyne_laserscan-1.5.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/velodyne/velodyne_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/velodyne/velodyne_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('velodyne', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne/velodyne_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne/velodyne-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

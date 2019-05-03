@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "<p>Metapackage that contains commonly used messages for jsk-ros-pkg</p>"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/jsk_common_msgs"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "3b58085e4249a1b809d2e657158c595336460295578ba0cfe369f8006f
 S = "${WORKDIR}/jsk_common_msgs-release-release-melodic-jsk_common_msgs-4.3.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/jsk-common-msgs/jsk-common-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/jsk-common-msgs/jsk-common-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-common-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common-msgs/jsk-common-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common-msgs/jsk-common-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

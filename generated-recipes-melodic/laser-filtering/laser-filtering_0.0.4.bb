@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ROS Libraries for filtering specific kinds of laser scans"
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "d5aed79a7f8e17e1ffc7f9e88fa741a3d7d3a6134b822428cb8e0eab23
 S = "${WORKDIR}/laser_filtering_release-release-melodic-laser_filtering-0.0.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/laser-filtering/laser-filtering_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/laser-filtering/laser-filtering_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-filtering', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/laser-filtering_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/laser-filtering-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

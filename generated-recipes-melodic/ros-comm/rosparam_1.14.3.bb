@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rosparam contains the rosparam command-line tool for getting and     setting ROS Parameters on the <a href="http://www.ros.org/wiki/Parameter%20Server">Parameter     Server</a> using YAML-encoded files. It also contains an     experimental library for using YAML with the Parameter     Server. This library is intended for internal use only.      rosparam can be invoked within a <a href="http://www.ros.org/wiki/roslaunch">roslaunch</a> file."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/rosparam"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "343802ed53b75408f174d17ef9ff67a20856b3bc126f85941a3f7cd188
 S = "${WORKDIR}/ros_comm-release-release-melodic-rosparam-1.14.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-comm/ros-comm_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-comm/ros-comm_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/ros-comm_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/ros-comm-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

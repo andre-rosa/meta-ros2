@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package contains the C++ interfaces to the PR2 hardware   components that are controlled over EtherCAT. This includes the   motors and encoders needed to control the PR2 mechanism, as well as   components like the pressure sensors in the fingertips, camera   triggers, etc... All of the hardware components in this interface are   directly available to the controllers inside the hard realtime   control loop."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
 HOMEPAGE = "http://ros.org/wiki/pr2_hardware_interface"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "abbcd1c6b4af9419057f2bb0b7f7677943e16e03abdd15933e41efdc16
 S = "${WORKDIR}/pr2_mechanism-release-release-melodic-pr2_hardware_interface-1.8.18-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pr2-mechanism/pr2-mechanism_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pr2-mechanism/pr2-mechanism_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-mechanism', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/pr2-mechanism_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/pr2-mechanism-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

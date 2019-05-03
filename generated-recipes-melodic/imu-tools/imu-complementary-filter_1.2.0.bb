@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Filter which fuses angular velocities, accelerations, and (optionally) magnetic readings from a generic IMU device into a quaternion to represent the orientation of the device wrt the global frame. Based on the algorithm by Roberto G. Valenti etal. described in the paper &quot;Keeping a Good Attitude: A Quaternion-Based Orientation Filter for IMUs and MARGs&quot; available at http://www.mdpi.com/1424-8220/15/8/19302 ."
 AUTHOR = "Roberto G. Valenti <robertogl.valenti@gmail.com>"
 HOMEPAGE = "http://www.mdpi.com/1424-8220/15/8/19302"
@@ -59,15 +61,13 @@ SRC_URI[sha256sum] = "c23c27697af1b9f37cc30cde2c65855eadd20cf0faa3264b2dfeaeeb54
 S = "${WORKDIR}/imu_tools-release-release-melodic-imu_complementary_filter-1.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/imu-tools/imu-tools_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/imu-tools/imu-tools_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imu-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/imu-tools_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/imu-tools-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

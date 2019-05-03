@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The urdf_sim_tutorial package"
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "520f94f7fe52250069283fc7bdd40b734e9153bdcc11b76309fe952297
 S = "${WORKDIR}/urdf_sim_tutorial-release-release-melodic-urdf_sim_tutorial-0.4.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/urdf-sim-tutorial/urdf-sim-tutorial_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/urdf-sim-tutorial/urdf-sim-tutorial_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdf-sim-tutorial', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-sim-tutorial/urdf-sim-tutorial_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-sim-tutorial/urdf-sim-tutorial-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-sim-tutorial/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-sim-tutorial/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

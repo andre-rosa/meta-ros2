@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The codec_image_transport package"
 AUTHOR = "Yoshito Okada <okada@rm.is.tohoku.ac.jp>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "13bb8181da621d6d7bff7f97900b2bc744a93a4e2c8f5e92030a3e50da
 S = "${WORKDIR}/codec_image_transport-release-release-melodic-codec_image_transport-0.0.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/codec-image-transport/codec-image-transport_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/codec-image-transport/codec-image-transport_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('codec-image-transport', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/codec-image-transport/codec-image-transport_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/codec-image-transport/codec-image-transport-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/codec-image-transport/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/codec-image-transport/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

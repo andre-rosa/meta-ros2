@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ROS Python and C++ interfaces for universally unique identifiers."
 AUTHOR = "Jack O'Quin <jack.oquin@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/unique_id"
@@ -54,15 +56,13 @@ SRC_URI[sha256sum] = "8f995d23c4bdefadf40cd213fead2b4f4be1285f536a3578823fdaa46c
 S = "${WORKDIR}/unique_identifier-release-release-melodic-unique_id-1.0.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/unique-identifier/unique-identifier_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/unique-identifier/unique-identifier_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('unique-identifier', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier/unique-identifier_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier/unique-identifier-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

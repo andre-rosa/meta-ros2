@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package provides an implementation of the Dynamic Window Approach to         local robot navigation on a plane. Given a global plan to follow and a         costmap, the local planner produces velocity commands to send to a mobile         base. This package supports any robot who's footprint can be represented as         a convex polygon or cicrle, and exposes its configuration as ROS parameters         that can be set in a launch file. The parameters for this planner are also         dynamically reconfigurable. This package's ROS wrapper adheres to the         BaseLocalPlanner interface specified in the <a href="http://wiki.ros.org/nav_core">nav_core</a> package."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/dwa_local_planner"
@@ -81,15 +83,13 @@ SRC_URI[sha256sum] = "e142fe402484f27336add5adf42e945d56d2495c629181704c8f226375
 S = "${WORKDIR}/navigation-release-release-melodic-dwa_local_planner-1.16.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/navigation/navigation_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/navigation/navigation_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/navigation_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/navigation-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

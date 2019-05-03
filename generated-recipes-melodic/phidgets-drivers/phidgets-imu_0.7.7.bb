@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Driver for the Phidgets Spatial 3/3/3 devices"
 AUTHOR = "Martin Guenther <martin.guenther@dfki.de>"
 HOMEPAGE = "http://ros.org/wiki/phidgets_imu"
@@ -78,15 +80,13 @@ SRC_URI[sha256sum] = "65ebf60e6f3b3113b73e67b86b44184e8157dd2b33a3a9ced64765641a
 S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_imu-0.7.7-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/phidgets-drivers/phidgets-drivers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/phidgets-drivers/phidgets-drivers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('phidgets-drivers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/phidgets-drivers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/phidgets-drivers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

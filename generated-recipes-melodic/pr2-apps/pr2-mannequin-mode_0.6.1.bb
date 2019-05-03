@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The pr2_mannequin_mode package"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
 HOMEPAGE = "http://wiki.ros.org/pr2_mannequin_mode"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "bd942a926267442a2232ac55b6019f8aa0e6494879ca4030ab18837c93
 S = "${WORKDIR}/pr2_apps-release-release-melodic-pr2_mannequin_mode-0.6.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pr2-apps/pr2-apps_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pr2-apps/pr2-apps_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-apps', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/pr2-apps_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/pr2-apps-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The robot_activity package implements ROS node lifecycle"
 AUTHOR = "Maciej ZURAD <maciej.zurad@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/robot_activity"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "9aea7f4b03a74445c52faddfcd58ea086b7ad8af058a6a3749e9b99284
 S = "${WORKDIR}/robot_activity-release-release-melodic-robot_activity-0.1.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/robot-activity/robot-activity_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/robot-activity/robot-activity_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-activity', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-activity/robot-activity_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-activity/robot-activity-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-activity/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-activity/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

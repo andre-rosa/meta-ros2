@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_bag provides a GUI plugin for displaying and replaying ROS bag files."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rqt_bag"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "53a48d67f5cedf54b58b26b33350958952bac0c27f38160918c6ba0f4a
 S = "${WORKDIR}/rqt_bag-release-release-melodic-rqt_bag-0.4.12-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-bag/rqt-bag_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-bag/rqt-bag_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-bag', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-bag/rqt-bag_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-bag/rqt-bag-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-bag/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-bag/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

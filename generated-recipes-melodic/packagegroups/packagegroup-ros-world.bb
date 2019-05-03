@@ -255,6 +255,7 @@ RDEPENDS_${PN} = " \
     eigen-conversions \
     eigen-stl-containers \
     eigenpy \
+    eml \
     epos2-motor-controller \
     ethercat-grant \
     ethercat-hardware \
@@ -277,6 +278,7 @@ RDEPENDS_${PN} = " \
     exotica-ompl-solver \
     exotica-python \
     exotica-time-indexed-rrt-connect-solver \
+    exotica-val-description \
     face-detector \
     fake-localization \
     fcl-catkin \
@@ -376,6 +378,7 @@ RDEPENDS_${PN} = " \
     h264-video-encoder \
     hardware-interface \
     health-metric-collector \
+    hebi-cpp-api \
     hector-components-description \
     hector-gazebo \
     hector-gazebo-plugins \
@@ -526,6 +529,7 @@ RDEPENDS_${PN} = " \
     libuvc-camera \
     libuvc-ros \
     linksys-access-point \
+    linux-networking \
     lockfree \
     locomotor \
     locomotor-msgs \
@@ -550,12 +554,19 @@ RDEPENDS_${PN} = " \
     marti-visualization-msgs \
     master-discovery-fkie \
     master-sync-fkie \
+    mav-comm \
+    mav-msgs \
+    mav-planning-msgs \
     mavlink \
     mavros \
     mavros-extras \
     mavros-msgs \
     mbf-abstract-core \
+    mbf-abstract-nav \
     mbf-costmap-core \
+    mbf-costmap-nav \
+    mbf-msgs \
+    mbf-simple-nav \
     mbf-utility \
     mcl-3dl \
     mcl-3dl-msgs \
@@ -723,11 +734,14 @@ RDEPENDS_${PN} = " \
     open-manipulator-with-tb3-waffle-moveit \
     open-manipulator-with-tb3-waffle-pi-moveit \
     opencv-apps \
+    openhrp3 \
     openni-camera \
     openni-description \
     openni-launch \
     openni2-camera \
     openni2-launch \
+    openrtm-aist \
+    openrtm-aist-python \
     opt-camera \
     optpp-catkin \
     orocos-kdl \
@@ -821,6 +835,7 @@ RDEPENDS_${PN} = " \
     pr2-power-board \
     pr2-power-drivers \
     pr2-simulator \
+    pr2-teleop \
     pr2-teleop-general \
     pr2-tilt-laser-interface \
     pr2-tuck-arms-action \
@@ -833,6 +848,7 @@ RDEPENDS_${PN} = " \
     prbt-pg70-support \
     prbt-support \
     prosilica-camera \
+    prosilica-gige-sdk \
     ps3joy \
     py-trees \
     py-trees-msgs \
@@ -847,8 +863,10 @@ RDEPENDS_${PN} = " \
     qt-gui-cpp \
     qt-gui-py-common \
     qt-qmake \
+    quaternion-operation \
     qwt-dependency \
     radar-msgs \
+    radar-omnipresense \
     rail-manipulation-msgs \
     random-numbers \
     range-sensor-layer \
@@ -920,6 +938,7 @@ RDEPENDS_${PN} = " \
     ros-introspection \
     ros-monitoring-msgs \
     ros-pytest \
+    ros-realtime \
     ros-reflexxes \
     ros-speech-recognition \
     ros-tutorials \
@@ -1007,6 +1026,15 @@ RDEPENDS_${PN} = " \
     roswtf \
     roswww \
     rotate-recovery \
+    rotors-comm \
+    rotors-control \
+    rotors-description \
+    rotors-evaluation \
+    rotors-gazebo \
+    rotors-gazebo-plugins \
+    rotors-hil-interface \
+    rotors-joy-interface \
+    rotors-simulator \
     rplidar-ros \
     rqt \
     rqt-action \
@@ -1040,6 +1068,7 @@ RDEPENDS_${PN} = " \
     rqt-robot-plugins \
     rqt-robot-steering \
     rqt-rosmon \
+    rqt-rotors \
     rqt-runtime-monitor \
     rqt-rviz \
     rqt-service-caller \
@@ -1055,6 +1084,7 @@ RDEPENDS_${PN} = " \
     rslidar-pointcloud \
     rtabmap \
     rtabmap-ros \
+    rtctree \
     rviz \
     rviz-imu-plugin \
     rviz-plugin-tutorials \
@@ -1072,6 +1102,7 @@ RDEPENDS_${PN} = " \
     serial \
     settlerlib \
     shape-msgs \
+    sick-safetyscanners \
     sick-scan \
     sick-tim \
     simple-grasping \
@@ -1079,6 +1110,7 @@ RDEPENDS_${PN} = " \
     simulators \
     single-joint-position-action \
     slam-karto \
+    slic \
     slime-ros \
     slime-wrapper \
     smach \
@@ -1098,6 +1130,7 @@ RDEPENDS_${PN} = " \
     srdfdom \
     stage \
     stage-ros \
+    static-tf \
     static-transform-mux \
     std-capabilities \
     std-msgs \
@@ -1130,6 +1163,7 @@ RDEPENDS_${PN} = " \
     teleop-tools-msgs \
     teleop-twist-joy \
     teleop-twist-keyboard \
+    teraranger \
     test-diagnostic-aggregator \
     test-mavros \
     tf \
@@ -1157,6 +1191,7 @@ RDEPENDS_${PN} = " \
     trac-ik-kinematics-plugin \
     trac-ik-lib \
     trac-ik-python \
+    tracetools \
     trajectory-msgs \
     trajectory-tracker-msgs \
     trajectory-tracker-rviz-plugins \
@@ -1220,6 +1255,9 @@ RDEPENDS_${PN} = " \
     urg-node \
     urg-stamped \
     usb-cam \
+    usb-cam-controllers \
+    usb-cam-hardware \
+    usb-cam-hardware-interface \
     usv-gazebo-plugins \
     uuid-msgs \
     uuv-assistants \
@@ -1267,8 +1305,10 @@ RDEPENDS_${PN} = " \
     visualization-msgs \
     visualization-tutorials \
     viz \
+    voice-text \
     volksbot-driver \
     voxel-grid \
+    vrpn \
     vrpn-client-ros \
     vrx-gazebo \
     wamv-description \
@@ -1278,6 +1318,9 @@ RDEPENDS_${PN} = " \
     webkit-dependency \
     webrtc \
     webrtc-ros \
+    wge100-camera \
+    wge100-camera-firmware \
+    wge100-driver \
     wifi-ddwrt \
     wiimote \
     willow-maps \
@@ -1304,6 +1347,7 @@ RDEPENDS_${PN} = " \
     yocs-localization-manager \
     yocs-math-toolkit \
     yocs-msgs \
+    yocs-navi-toolkit \
     yocs-navigator \
     yocs-rapps \
     yocs-safety-controller \

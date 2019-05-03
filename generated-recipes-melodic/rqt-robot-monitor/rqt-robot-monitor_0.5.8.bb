@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_robot_monitor displays diagnostics_agg topics messages that    are published by <a href="http://www.ros.org/wiki/diagnostic_aggregator">diagnostic_aggregator</a>.    rqt_robot_monitor is a direct port to rqt of    <a href="http://www.ros.org/wiki/robot_monitor">robot_monitor</a>. All    diagnostics are fall into one of three tree panes depending on the status of    diagnostics (normal, warning, error/stale). Status are shown in trees to    represent their hierarchy. Worse status dominates the higher level status.<br/>    <ul>     Ex. 'Computer' category has 3 sub devices. 2 are green but 1 is error. Then         'Computer' becomes error.    </ul>   You can look at the detail of each status by double-clicking the tree nodes.<br/>    Currently re-usable API to other pkgs are not explicitly provided."
 AUTHOR = "Aaron Blasdel <ablasdel@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/rqt_robot_monitor"
@@ -62,15 +64,13 @@ SRC_URI[sha256sum] = "3f1c272f0f73b0c3f1dc3283e233a183f4a0541ee345408fcb6ac83430
 S = "${WORKDIR}/rqt_robot_monitor-release-release-melodic-rqt_robot_monitor-0.5.8-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-robot-monitor/rqt-robot-monitor_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-robot-monitor/rqt-robot-monitor_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-robot-monitor', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-monitor/rqt-robot-monitor_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-monitor/rqt-robot-monitor-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-monitor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-monitor/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

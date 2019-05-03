@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package contains the description (mechanical, kinematic, visual,   etc.) of different schunk components. The files in this package are parsed and used by   a variety of other components. Most users will not interact directly   with this package."
 AUTHOR = "Bruno Brito <bfb@ipa.fhg.de>"
 HOMEPAGE = "http://ros.org/wiki/schunk_description"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "e8b387455b278c049357886b457c7016a4b79ba90cf0b83b5382813a17
 S = "${WORKDIR}/schunk_modular_robotics-release-release-melodic-schunk_description-0.6.12-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/schunk-modular-robotics/schunk-modular-robotics_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/schunk-modular-robotics/schunk-modular-robotics_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('schunk-modular-robotics', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/schunk-modular-robotics/schunk-modular-robotics_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/schunk-modular-robotics/schunk-modular-robotics-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/schunk-modular-robotics/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/schunk-modular-robotics/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

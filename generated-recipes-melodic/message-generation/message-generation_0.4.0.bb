@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package modeling the build-time dependencies for generating language bindings of messages."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/message_generation"
@@ -54,15 +56,13 @@ SRC_URI[sha256sum] = "e868cdae2dcb54701e86484cb186fad8814bbd295db8a0224c4c14c365
 S = "${WORKDIR}/message_generation-release-release-melodic-message_generation-0.4.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/message-generation/message-generation_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/message-generation/message-generation_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('message-generation', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-generation/message-generation_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-generation/message-generation-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-generation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-generation/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

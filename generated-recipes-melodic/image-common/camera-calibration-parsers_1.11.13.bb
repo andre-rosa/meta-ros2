@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "camera_calibration_parsers contains routines for reading and writing camera calibration parameters."
 AUTHOR = "Jack O'Quin <jack.oquin@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/camera_calibration_parsers"
@@ -63,15 +65,13 @@ SRC_URI[sha256sum] = "dd350061b03da5dba0315515f603daa31204e71c43389cf9e57bf09c06
 S = "${WORKDIR}/image_common-release-release-melodic-camera_calibration_parsers-1.11.13-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/image-common/image-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/image-common/image-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/image-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/image-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Contains transforms (e.g. differential drive inverse kinematics)     for the various types of mobile robot platforms."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/ecl_mobile_robot"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "b90849f51b703d6d5c3b246161ad8679bf14b8a27865ae175e9c945fe9
 S = "${WORKDIR}/ecl_navigation-release-release-melodic-ecl_mobile_robot-0.60.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ecl-navigation/ecl-navigation_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ecl-navigation/ecl-navigation_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/ecl-navigation_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/ecl-navigation-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

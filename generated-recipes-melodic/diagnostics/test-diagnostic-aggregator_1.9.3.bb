@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Basic diagnostic_aggregator tests are  in the"
 AUTHOR = "Brice Rebsamen <brice.rebsamen@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/test_diagnostic_aggregator"
@@ -59,15 +61,13 @@ SRC_URI[sha256sum] = "4c49680ea5fe2d6e4c792d09848623c3b0206126ad171c4b4dd61f400c
 S = "${WORKDIR}/diagnostics-release-release-melodic-test_diagnostic_aggregator-1.9.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/diagnostics/diagnostics_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/diagnostics/diagnostics_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('diagnostics', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/diagnostics_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/diagnostics-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "SOEM is an open source EtherCAT master library written in c. Its      primary target is Linux but can be adapted to other OS and      embedded systems. (http://developer.berlios.de/projects/soem/)       This package contains the original soem c code provided by the Technische Universiteit Eindhoven."
 AUTHOR = "Ruben Smits <ruben@intermodalics.eu>"
 HOMEPAGE = "http://developer.berlios.de/projects/soem"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "79cdd2124448cb591bcccded0b04a2bc74e0a44c030c84187b1e9aaa6a
 S = "${WORKDIR}/soem-gbp-release-melodic-soem-1.3.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/soem/soem_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/soem/soem_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('soem', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/soem/soem_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/soem/soem-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/soem/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/soem/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "RViz plugin for displaying grid map messages."
 AUTHOR = "Péter Fankhauser <pfankhauser@anybotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "b08f8ea81daf464016e80cbe342b8d320237d799ac4529923a0068f43d
 S = "${WORKDIR}/grid_map-release-release-melodic-grid_map_rviz_plugin-1.6.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/grid-map/grid-map_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/grid-map/grid-map_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('grid-map', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grid-map/grid-map_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grid-map/grid-map-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grid-map/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grid-map/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

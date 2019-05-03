@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Generalized client side source for rosserial."
 AUTHOR = "Paul Bouchier <paul.bouchier@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/rosserial_client"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "13062a7278b9eefc10406a7aaa3b18cf9ab2cad7b24485d9ed4e8699e8
 S = "${WORKDIR}/rosserial-release-release-melodic-rosserial_client-0.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosserial/rosserial_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosserial/rosserial_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosserial', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/rosserial_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/rosserial-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

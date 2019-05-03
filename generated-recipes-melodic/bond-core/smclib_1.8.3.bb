@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The State Machine Compiler (SMC) from http://smc.sourceforge.net/     converts a language-independent description of a state machine     into the source code to support that state machine.      This package contains the libraries that a compiled state machine     depends on, but it does not contain the compiler itself."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
 HOMEPAGE = "http://smc.sourceforge.net/"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "a367091ee777853d4a769c98d193b054d176ce84d36a628756970d4495
 S = "${WORKDIR}/bond_core-release-release-melodic-smclib-1.8.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/bond-core/bond-core_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/bond-core/bond-core_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('bond-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/bond-core_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/bond-core-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

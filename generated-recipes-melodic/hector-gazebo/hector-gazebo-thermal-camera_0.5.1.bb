@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "hector_gazebo_thermal_camera provides a gazebo plugin that produces simulated thermal camera images. The plugin uses modified code from the gazebo_ros_camera plugin."
 AUTHOR = "Johannes Meyer <johannes@intermodalics.eu>"
 HOMEPAGE = "http://ros.org/wiki/hector_gazebo_thermal_camera"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "6a3221be450c74fed270dcff5e3399e8e5650169b2bdf36ecf588a9602
 S = "${WORKDIR}/hector_gazebo-release-release-melodic-hector_gazebo_thermal_camera-0.5.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/hector-gazebo/hector-gazebo_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/hector-gazebo/hector-gazebo_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hector-gazebo', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/hector-gazebo_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/hector-gazebo-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

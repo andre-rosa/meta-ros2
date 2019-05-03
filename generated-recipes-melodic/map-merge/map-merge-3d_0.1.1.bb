@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Merging multiple 3D maps, represented as pointclouds,   without knowledge of initial positions of robots."
 AUTHOR = "Jiri Horner <laeqten@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/map_merge_3d"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "7413dc94e5c7e8b52bf48c1b7be92e7b7381fac6cd5db59b93e5b9fdf5
 S = "${WORKDIR}/map-merge-release-release-melodic-map_merge_3d-0.1.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/map-merge/map-merge_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/map-merge/map-merge_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('map-merge', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/map-merge/map-merge_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/map-merge/map-merge-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/map-merge/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/map-merge/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

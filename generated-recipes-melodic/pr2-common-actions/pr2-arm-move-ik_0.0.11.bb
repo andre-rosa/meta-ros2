@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Move the pr2 arm using inverse kinematics"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
 HOMEPAGE = "http://ros.org/wiki/pr2_arm_move_ik"
@@ -67,15 +69,13 @@ SRC_URI[sha256sum] = "8051d2f766e269e465921bb3b85eb08ab5a8f24c1e9e0f2ee7422665e5
 S = "${WORKDIR}/pr2_common_actions-release-release-melodic-pr2_arm_move_ik-0.0.11-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pr2-common-actions/pr2-common-actions_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pr2-common-actions/pr2-common-actions_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-common-actions', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/pr2-common-actions_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/pr2-common-actions-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

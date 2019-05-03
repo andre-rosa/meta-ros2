@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Holds the action description and relevant messages for the move_base package"
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/move_base_msgs"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "a9b1ee115c3252718a9915a94ba16421a39309ed237a33d790f486d468
 S = "${WORKDIR}/navigation_msgs-release-release-melodic-move_base_msgs-1.13.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/navigation-msgs/navigation-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/navigation-msgs/navigation-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-msgs/navigation-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-msgs/navigation-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

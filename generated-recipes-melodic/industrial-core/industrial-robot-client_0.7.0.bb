@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "industrial robot client contains generic clients for connecting       to industrial robot controllers with servers that adhere to the      simple message protocol."
 AUTHOR = "Shaun Edwards <sedwards@swri.org>"
 HOMEPAGE = "http://ros.org/wiki/industrial_robot_client"
@@ -81,15 +83,13 @@ SRC_URI[sha256sum] = "c1039af144fc2cbd4de93b448d60d1a5bb417d8ad72f428324ed5a489e
 S = "${WORKDIR}/industrial_core-release-release-melodic-industrial_robot_client-0.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/industrial-core/industrial-core_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/industrial-core/industrial-core_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('industrial-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/industrial-core_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/industrial-core-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

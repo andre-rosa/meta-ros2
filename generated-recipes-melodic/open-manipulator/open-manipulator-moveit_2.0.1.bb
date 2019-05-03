@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "An automatically generated package with all the configuration and launch files for using the open_manipulator with the MoveIt! Motion Planning Framework"
 AUTHOR = "Pyo <pyo@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/open_manipulator_moveit"
@@ -53,15 +55,13 @@ SRC_URI[sha256sum] = "3c42db504d582107d35edba1019fc8764f4082573f47bfb41e53e89230
 S = "${WORKDIR}/open_manipulator-release-release-melodic-open_manipulator_moveit-2.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/open-manipulator/open-manipulator_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/open-manipulator/open-manipulator_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('open-manipulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator/open-manipulator_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator/open-manipulator-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

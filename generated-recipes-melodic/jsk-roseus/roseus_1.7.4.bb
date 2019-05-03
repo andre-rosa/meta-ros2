@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "EusLisp client for ROS Robot Operating System."
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://pr.willowgarage.com/wiki/roseus"
@@ -116,15 +118,13 @@ SRC_URI[sha256sum] = "e68ad89c7896f6b30f8a8dea7b8a0216dc5bfad5988cf8f287dd148069
 S = "${WORKDIR}/jsk_roseus-release-release-melodic-roseus-1.7.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/jsk-roseus/jsk-roseus_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/jsk-roseus/jsk-roseus_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-roseus', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-roseus/jsk-roseus_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-roseus/jsk-roseus-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-roseus/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-roseus/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

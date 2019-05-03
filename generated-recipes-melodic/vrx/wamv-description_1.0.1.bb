@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package provides a URDF model of WAM-V"
 AUTHOR = "Carlos Aguero <caguero@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/wamv_description"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "5bbe5d0b1c2b60abcab2525119219cf28f20b962132593003c885efddb
 S = "${WORKDIR}/vrx-release-release-melodic-wamv_description-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/vrx/vrx_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/vrx/vrx_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vrx', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/vrx_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/vrx-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

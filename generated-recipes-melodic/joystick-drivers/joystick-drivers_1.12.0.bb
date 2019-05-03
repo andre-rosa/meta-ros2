@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This metapackage depends on packages for interfacing common     joysticks and human input devices with ROS."
 AUTHOR = "Jonathan Bohren <jbo@jhu.edu>"
 HOMEPAGE = "http://www.ros.org/wiki/joystick_drivers"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "bfa46ae2ec0edaf6d3bb8d0876da64c78f295047cd7d60a40ace164bdc
 S = "${WORKDIR}/joystick_drivers-release-release-melodic-joystick_drivers-1.12.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/joystick-drivers/joystick-drivers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/joystick-drivers/joystick-drivers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('joystick-drivers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/joystick-drivers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/joystick-drivers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

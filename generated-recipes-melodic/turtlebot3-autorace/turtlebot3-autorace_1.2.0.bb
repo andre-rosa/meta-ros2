@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "AutoRace ROS packages for AutoRace with TurtleBot3 (meta package)"
 AUTHOR = "Pyo <pyo@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/turtlebot3_autorace"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "1e9063e4da91e347177fe176cdcdea7510bd47e555bada4446679354de
 S = "${WORKDIR}/turtlebot3_autorace-release-release-melodic-turtlebot3_autorace-1.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/turtlebot3-autorace/turtlebot3-autorace_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/turtlebot3-autorace/turtlebot3-autorace_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3-autorace', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-autorace/turtlebot3-autorace_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-autorace/turtlebot3-autorace-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-autorace/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-autorace/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "joint_trajectory_generator action takes in a trajectory specified     by a number of joint positions, and it generates a new smooth trajectory     through these joint positions."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
 HOMEPAGE = "http://ros.org/wiki/joint_trajectory_generator"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "273943f65776908254c198a36be8792716e78e5487d52e849be32aa660
 S = "${WORKDIR}/pr2_common_actions-release-release-melodic-joint_trajectory_generator-0.0.11-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pr2-common-actions/pr2-common-actions_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pr2-common-actions/pr2-common-actions_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-common-actions', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/pr2-common-actions_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/pr2-common-actions-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

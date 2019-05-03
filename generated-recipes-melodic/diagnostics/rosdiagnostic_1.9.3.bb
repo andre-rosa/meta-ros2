@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Command to print aggregated diagnostic contents to the command line"
 AUTHOR = "Guillaume Autran <gautran@clearpath.ai>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "1244881acaaeb2251f829e4705bbf88e5d1f99d161d24a4ab99bae9a13
 S = "${WORKDIR}/diagnostics-release-release-melodic-rosdiagnostic-1.9.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/diagnostics/diagnostics_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/diagnostics/diagnostics_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('diagnostics', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/diagnostics_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/diagnostics-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

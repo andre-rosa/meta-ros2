@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "It provides a grapic user interface to check the status of Dynamixel and control it before using Dynamixel"
 AUTHOR = "Pyo <pyo@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/dynamixel_workbench_single_manager_gui"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "3ec093cac435218696a0a1172957a05724706c83c0f644369c48bbe361
 S = "${WORKDIR}/dynamixel-workbench-release-release-melodic-dynamixel_workbench_single_manager_gui-2.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/dynamixel-workbench/dynamixel-workbench_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/dynamixel-workbench/dynamixel-workbench_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dynamixel-workbench', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/dynamixel-workbench_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/dynamixel-workbench-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

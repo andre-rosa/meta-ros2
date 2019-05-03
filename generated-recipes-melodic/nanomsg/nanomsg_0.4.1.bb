@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The nanomsg package"
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "0b9f6215f091598eac4c7c958693a5b4c8cb09838e18a5b18bc9feb7bf
 S = "${WORKDIR}/nanomsg-release-release-melodic-nanomsg-0.4.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/nanomsg/nanomsg_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/nanomsg/nanomsg_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('nanomsg', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nanomsg/nanomsg_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nanomsg/nanomsg-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nanomsg/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nanomsg/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "SMACH is a task-level architecture for rapidly creating complex robot     behavior. At its core, SMACH is a ROS-independent Python library to build     hierarchical state machines. SMACH is a new library that takes advantage of     very old concepts in order to quickly create robust robot behavior with     maintainable and modular code."
 AUTHOR = "Isaac I. Y. Saito <gm130s@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "37de5727c98e7aa222670ad40229cfe239e2907f25ec0d7133b4ec2c29
 S = "${WORKDIR}/executive_smach-release-release-melodic-smach-2.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/executive-smach/executive-smach_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/executive-smach/executive-smach_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('executive-smach', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach/executive-smach_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach/executive-smach-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

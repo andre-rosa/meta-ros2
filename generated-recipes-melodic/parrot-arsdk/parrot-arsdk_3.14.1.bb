@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Catkin wrapper for the official ARSDK from Parrot"
 AUTHOR = "Mani Monajjemi <mmonajje@sfu.ca>"
 HOMEPAGE = "http://wiki.ros.org/parrot_arsdk"
@@ -53,15 +55,13 @@ SRC_URI[sha256sum] = "7c12a877881ee154fb0899c3b8d365276cb5c7afc319859078e610ec06
 S = "${WORKDIR}/parrot_arsdk-release-release-melodic-parrot_arsdk-3.14.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/parrot-arsdk/parrot-arsdk_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/parrot-arsdk/parrot-arsdk_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('parrot-arsdk', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/parrot-arsdk/parrot-arsdk_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/parrot-arsdk/parrot-arsdk-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/parrot-arsdk/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/parrot-arsdk/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

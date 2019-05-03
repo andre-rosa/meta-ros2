@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Precisely stamped URG driver for ROS"
 AUTHOR = "Atsushi Watanabe <atsushi.w@ieee.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -53,15 +55,13 @@ SRC_URI[sha256sum] = "61fcca882388f29606ea22d0017c5e19cec9c4edb2b970816693598b38
 S = "${WORKDIR}/urg_stamped-release-release-melodic-urg_stamped-0.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/urg-stamped/urg-stamped_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/urg-stamped/urg-stamped_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urg-stamped', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-stamped/urg-stamped_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-stamped/urg-stamped-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-stamped/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-stamped/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

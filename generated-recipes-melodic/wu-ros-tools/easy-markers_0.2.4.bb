@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Python library to assist in publishing markers easily"
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/easy_markers"
@@ -61,15 +63,13 @@ SRC_URI[sha256sum] = "64fea822e5e6ee2d58d4bfbd23519485c3197e5a8a8d74ef97ec91abc5
 S = "${WORKDIR}/wu_ros_tools-release-melodic-easy_markers-0.2.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/wu-ros-tools/wu-ros-tools_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/wu-ros-tools/wu-ros-tools_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('wu-ros-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/wu-ros-tools_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/wu-ros-tools-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

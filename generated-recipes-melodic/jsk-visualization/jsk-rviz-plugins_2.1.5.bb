@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The jsk_rviz_plugins package"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://jsk-docs.readthedocs.io/en/latest/jsk_visualization/doc/jsk_rviz_plugins"
@@ -102,15 +104,13 @@ SRC_URI[sha256sum] = "c1c50044f24196bb50fc782cb407e7ed9c8540a7525c6f305b0ec44641
 S = "${WORKDIR}/jsk_visualization-release-release-melodic-jsk_rviz_plugins-2.1.5-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/jsk-visualization/jsk-visualization_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/jsk-visualization/jsk-visualization_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-visualization', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/jsk-visualization_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/jsk-visualization-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

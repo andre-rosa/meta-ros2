@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "EusLisp is an integrated programming system for the   research on intelligent robots based on Common Lisp and   Object-Oriented programming"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://euslisp.github.io/EusLisp/manual.html"
@@ -69,15 +71,13 @@ SRC_URI[sha256sum] = "267e9150e430c87ed26dd58e103e1db0ef56dfe6580f16bf3352ebb23f
 S = "${WORKDIR}/euslisp-release-release-melodic-euslisp-9.26.0-1"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/euslisp/euslisp_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/euslisp/euslisp_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('euslisp', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/euslisp/euslisp_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/euslisp/euslisp-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/euslisp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/euslisp/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Meshes and URDF descriptions for audibot"
 AUTHOR = "Micho Radovnikovich <mtradovn@oakland.edu>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "d3ed9cf90813e8be82fbad03f60acce1ab3cfe878343f6855a7d861967
 S = "${WORKDIR}/audibot-release-release-melodic-audibot_description-0.1.0-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/audibot/audibot_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/audibot/audibot_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audibot', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/audibot_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/audibot-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

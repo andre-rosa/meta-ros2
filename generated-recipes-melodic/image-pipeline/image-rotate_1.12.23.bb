@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "<p>       Contains a node that rotates an image stream in a way that minimizes       the angle between a vector in some arbitrary frame and a vector in the       camera frame. The frame of the outgoing image is published by the node.     </p>     <p>       This node is intended to allow camera images to be visualized in an       orientation that is more intuitive than the hardware-constrained       orientation of the physical camera. This is particularly helpful, for       example, to show images from the PR2's forearm cameras with a       consistent up direction, despite the fact that the forearms need to       rotate in arbitrary ways during manipulation.     </p>     <p>       It is not recommended to use the output from this node for further       computation, as it interpolates the source image, introduces black       borders, and does not output a camera_info.     </p>"
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/image_rotate"
@@ -71,15 +73,13 @@ SRC_URI[sha256sum] = "300158018b97ce2b2f3cdfac00889d443b74165b3fb49105317148c766
 S = "${WORKDIR}/image_pipeline-release-release-melodic-image_rotate-1.12.23-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/image-pipeline/image-pipeline_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/image-pipeline/image-pipeline_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-pipeline', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/image-pipeline_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/image-pipeline-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

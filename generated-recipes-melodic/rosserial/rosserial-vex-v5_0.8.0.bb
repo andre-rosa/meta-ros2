@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rosserial for the VEX Cortex V5 Robot Brain platform."
 AUTHOR = "Canyon Turtle <canyonturtle@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "4f28ad67afe3ee95fc74913159fcf5c1121049490b7ab7cb95721ccd04
 S = "${WORKDIR}/rosserial-release-release-melodic-rosserial_vex_v5-0.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosserial/rosserial_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosserial/rosserial_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosserial', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/rosserial_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/rosserial-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

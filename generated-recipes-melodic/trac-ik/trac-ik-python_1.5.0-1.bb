@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The trac_ik_python package contains a python wrapper using SWIG   for trac_ik_lib"
 AUTHOR = "Sam Pfeiffer <Sammy.Pfeiffer@student.uts.edu.au>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -57,15 +59,13 @@ SRC_URI[sha256sum] = "d61541a1eb22c8c6af749e058557fdbd0259fe89d4045230871a54b606
 S = "${WORKDIR}/trac_ik-release-release-melodic-trac_ik_python-1.5.0-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/trac-ik/trac-ik_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/trac-ik/trac-ik_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('trac-ik', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/trac-ik_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/trac-ik-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "jsk_interactive"
 AUTHOR = "Yusuke Furuta <furua@jsk.imi.i.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/jsk_interactive"
@@ -63,15 +65,13 @@ SRC_URI[sha256sum] = "739be630c6e56f915493551f092539377bfc8a224ddc9952b517e22395
 S = "${WORKDIR}/jsk_visualization-release-release-melodic-jsk_interactive-2.1.5-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/jsk-visualization/jsk-visualization_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/jsk-visualization/jsk-visualization_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-visualization', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/jsk-visualization_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/jsk-visualization-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

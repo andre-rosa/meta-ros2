@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "AWS CloudWatch management library used by ROS1/2 node to publish logs to CloudWatch service"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "cda8f3c7329460e52f3d90c4072ab345cfd7de20b8faee0b99895644f0
 S = "${WORKDIR}/cloudwatch_common-release-release-melodic-cloudwatch_logs_common-1.0.1-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/cloudwatch-common/cloudwatch-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/cloudwatch-common/cloudwatch-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cloudwatch-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-common/cloudwatch-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-common/cloudwatch-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

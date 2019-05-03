@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package containing messages for Ibeo sensors."
 AUTHOR = "AutonomouStuff Software Team <software@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/ibeo_msgs"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "dea8e5394662faf24cdc6a29a2d03de48952bf5000498f87110a5735c4
 S = "${WORKDIR}/astuff_sensor_msgs-release-release-melodic-ibeo_msgs-2.3.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/astuff-sensor-msgs/astuff-sensor-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/astuff-sensor-msgs/astuff-sensor-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('astuff-sensor-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/astuff-sensor-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/astuff-sensor-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

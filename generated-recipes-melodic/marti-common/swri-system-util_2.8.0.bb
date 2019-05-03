@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "swri_system_util"
 AUTHOR = "Marc Alban <malban@swri.org>"
 HOMEPAGE = "https://github.com/swri-robotics/marti_common"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "446a55bae83886fef1ed64d134a9b15b533d74583c15c6e2b2eb321b1c
 S = "${WORKDIR}/marti_common-release-release-melodic-swri_system_util-2.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/marti-common/marti-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/marti-common/marti-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('marti-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/marti-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/marti-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package enabling a robot to speak with a human voice by providing a Text-To-Speech ROS service"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/tts"
@@ -65,15 +67,13 @@ SRC_URI[sha256sum] = "1d5dd8813c3e0cf4e9e75bd364a93f1b0b02072ddd561fa0d316a75cd0
 S = "${WORKDIR}/tts-release-release-melodic-tts-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/tts/tts_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/tts/tts_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tts', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tts/tts_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tts/tts-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tts/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tts/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

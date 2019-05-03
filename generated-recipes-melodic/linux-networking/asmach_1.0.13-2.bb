@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "SMACH, which stands for 'state machine', is a task-level     architecture for rapidly creating complex robot behavior. At its     core, SMACH is a ROS-independent Python library to build     hierarchical state machines.  SMACH is a new library that takes     advantage of very old concepts in order to quickly create robust     robot behavior with maintainable and modular code."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
 HOMEPAGE = "http://ros.org/wiki/smach"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "67a3b18eccdf4d0a02c7459cb3af8c367f16bc45a0dcfb66f84c293b61
 S = "${WORKDIR}/linux_networking-release-release-melodic-asmach-1.0.13-2"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/linux-networking/linux-networking_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/linux-networking/linux-networking_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/linux-networking_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/linux-networking-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

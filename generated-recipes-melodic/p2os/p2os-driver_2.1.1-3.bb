@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Driver file descriptions for P2OS/ARCOS robot"
 AUTHOR = "Hunter L. Allen <hunter@openrobotics.org>"
 HOMEPAGE = "http://ros.org/wiki/p2os_driver"
@@ -68,15 +70,13 @@ SRC_URI[sha256sum] = "6964b9f9c333b2290f586f8ea5bb23cd9bf6d3eb0e774dd33d2498624b
 S = "${WORKDIR}/p2os-release-release-melodic-p2os_driver-2.1.1-3"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/p2os/p2os_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/p2os/p2os_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('p2os', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/p2os_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/p2os-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

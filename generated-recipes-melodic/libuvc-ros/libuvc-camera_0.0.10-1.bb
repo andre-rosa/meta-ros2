@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "USB Video Class camera driver"
 AUTHOR = "Ken Tossell <ken@tossell.net>"
 HOMEPAGE = "http://ros.org/wiki/libuvc_camera"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "2ea19c5821e70fe6c63da750b35c6ae0dfff43faadca9f951c0137e570
 S = "${WORKDIR}/libuvc_ros-release-release-melodic-libuvc_camera-0.0.10-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/libuvc-ros/libuvc-ros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/libuvc-ros/libuvc-ros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('libuvc-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc-ros/libuvc-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc-ros/libuvc-ros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc-ros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

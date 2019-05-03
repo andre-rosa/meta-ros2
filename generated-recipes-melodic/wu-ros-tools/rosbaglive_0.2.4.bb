@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Plays rosbags as though they were happening NOW."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/rosbaglive"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "96a3356c1fe0467cb3049b0a3962a1a987b55aa11fc69d4dfdd9e7ec9c
 S = "${WORKDIR}/wu_ros_tools-release-melodic-rosbaglive-0.2.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/wu-ros-tools/wu-ros-tools_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/wu-ros-tools/wu-ros-tools_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('wu-ros-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/wu-ros-tools_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/wu-ros-tools-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

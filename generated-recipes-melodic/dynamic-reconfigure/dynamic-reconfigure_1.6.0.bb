@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This unary stack contains the dynamic_reconfigure package which provides a means to change     node parameters at any time without having to restart the node."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/dynamic_reconfigure"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "00811c7ff7a43ff5dc2d22ce9bb493e55728d403f49c359606e173b687
 S = "${WORKDIR}/dynamic_reconfigure-release-release-melodic-dynamic_reconfigure-1.6.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/dynamic-reconfigure/dynamic-reconfigure_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/dynamic-reconfigure/dynamic-reconfigure_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dynamic-reconfigure', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamic-reconfigure/dynamic-reconfigure_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamic-reconfigure/dynamic-reconfigure-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamic-reconfigure/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamic-reconfigure/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

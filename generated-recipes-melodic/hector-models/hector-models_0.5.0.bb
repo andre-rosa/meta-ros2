@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "hector_models contains (urdf) models of robots, sensors etc."
 AUTHOR = "Johannes Meyer <johannes@intermodalics.eu>"
 HOMEPAGE = "http://ros.org/wiki/hector_models"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "aea206089e02162e6f34440dd82a3c9f0c66f4030e8dc4738838c77a9a
 S = "${WORKDIR}/hector_models-release-release-melodic-hector_models-0.5.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/hector-models/hector-models_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/hector-models/hector-models_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hector-models', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/hector-models_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/hector-models-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

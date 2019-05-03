@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Listens on a ImageFeatures topic, and waits for the data to settle.      This package is experimental and unstable.      Expect its APIs to change."
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/monocam_settler"
@@ -61,15 +63,13 @@ SRC_URI[sha256sum] = "e071a63f48ee1ed211bca1e5bcd85a46afce004dc18ba4226aee484dc7
 S = "${WORKDIR}/calibration-release-release-melodic-monocam_settler-0.10.14-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/calibration/calibration_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/calibration/calibration_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('calibration', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/calibration_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/calibration-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

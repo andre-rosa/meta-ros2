@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "UUV Simulator's extended ROS plugins for generation of the necessary       ROS services and topics during the simulation."
 AUTHOR = "Musa Morena Marcusso Manhaes <musa.marcusso@de.bosch.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -77,15 +79,13 @@ SRC_URI[sha256sum] = "b0cdb028c61cc24853b1b461f4e8b1735016490561682764faa5b6abfb
 S = "${WORKDIR}/uuv_simulator-release-release-melodic-uuv_gazebo_ros_plugins-0.6.10-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/uuv-simulator/uuv-simulator_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/uuv-simulator/uuv-simulator_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('uuv-simulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uuv-simulator/uuv-simulator_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uuv-simulator/uuv-simulator-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uuv-simulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uuv-simulator/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

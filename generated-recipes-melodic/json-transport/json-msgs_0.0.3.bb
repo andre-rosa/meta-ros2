@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "JSON ROS message"
 AUTHOR = "Paul Bovbel <pbovbel@locusrobotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "bf40e01a92a86cd7c5f7c56e26b160dd8425c7bdcaee3d407ceac8f6df
 S = "${WORKDIR}/json_transport-release-release-melodic-json_msgs-0.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/json-transport/json-transport_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/json-transport/json-transport_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('json-transport', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/json-transport/json-transport_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/json-transport/json-transport-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/json-transport/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/json-transport/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

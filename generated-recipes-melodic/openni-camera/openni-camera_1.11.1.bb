@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A ROS driver for OpenNI depth (+ RGB) cameras. These include:         Microsoft Kinect,        PrimeSense PSDK,        ASUS Xtion Pro and Pro Live      The driver publishes raw depth, RGB, and IR image streams."
 AUTHOR = "Isaac I.Y. Saito <130s@2000.jukuin.keio.ac.jp>"
 HOMEPAGE = "http://www.ros.org/wiki/openni_camera"
@@ -70,15 +72,13 @@ SRC_URI[sha256sum] = "0efa907d200aa0506d664882b0083f992ee2855b36d890c7b334bdc3a5
 S = "${WORKDIR}/openni_camera-release-release-melodic-openni_camera-1.11.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/openni-camera/openni-camera_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/openni-camera/openni-camera_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('openni-camera', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/openni-camera_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/openni-camera-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

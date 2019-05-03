@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Twist multiplexer, which multiplex several velocity commands (topics) and       allows to priorize or disable them (locks)."
 AUTHOR = "Enrique Fernandez <efernandez@clearpathrobotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "aa2888069d0ed77dbab6759a450cef52d03b6f64b09514c006bd2f4938
 S = "${WORKDIR}/twist_mux-release-release-melodic-twist_mux-3.1.0-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/twist-mux/twist-mux_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/twist-mux/twist-mux_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('twist-mux', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/twist-mux/twist-mux_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/twist-mux/twist-mux-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/twist-mux/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/twist-mux/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

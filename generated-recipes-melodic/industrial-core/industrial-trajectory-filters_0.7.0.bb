@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "<p>      ROS Industrial libraries/plugins for filtering trajectories.    </p>    <p>      This package is part of the ROS Industrial program and contains libraries      and moveit plugins for filtering robot trajectories.    </p>"
 AUTHOR = "Shaun Edwards <sedwards@swri.org>"
 HOMEPAGE = "http://ros.org/wiki/industrial_trajectory_filters"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "ce903b69e6712c8ebe654ab523ee627a57881be2c218b5fdb2330d8150
 S = "${WORKDIR}/industrial_core-release-release-melodic-industrial_trajectory_filters-0.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/industrial-core/industrial-core_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/industrial-core/industrial-core_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('industrial-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/industrial-core_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/industrial-core-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

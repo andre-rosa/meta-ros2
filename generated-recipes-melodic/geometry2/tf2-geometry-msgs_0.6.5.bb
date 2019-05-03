@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "tf2_geometry_msgs"
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/tf2_ros"
@@ -59,15 +61,13 @@ SRC_URI[sha256sum] = "f1516df538999a5fb7cb8eeaf71636c9572bba758adac8cdafbf544691
 S = "${WORKDIR}/geometry2-release-release-melodic-tf2_geometry_msgs-0.6.5-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/geometry2/geometry2_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/geometry2/geometry2_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geometry2', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/geometry2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/geometry2-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "CAN bus tools using Dataspeed hardware"
 AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
 HOMEPAGE = "http://dataspeedinc.com"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "db45e27927b4142df69eb0748d76e39125e9c76bae491a84fc04f8aa9e
 S = "${WORKDIR}/dataspeed_can-release-release-melodic-dataspeed_can-1.0.12-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/dataspeed-can/dataspeed-can_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/dataspeed-can/dataspeed-can_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dataspeed-can', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/dataspeed-can_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/dataspeed-can-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The backward_ros package is a ros wrapper of backward-cpp from https://github.com/bombela/backward-cpp"
 AUTHOR = "Victor López <victor.lopez@pal-robotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "3cec255db3ff1af9bfc80b31ca88a9be50f11d663d9213edf457b0a7ed
 S = "${WORKDIR}/backward_ros-release-release-melodic-backward_ros-0.1.7-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/backward-ros/backward-ros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/backward-ros/backward-ros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('backward-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/backward-ros/backward-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/backward-ros/backward-ros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/backward-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/backward-ros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

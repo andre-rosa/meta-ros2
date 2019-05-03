@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The tuw_geometry package"
 AUTHOR = "Markus Bader <markus.bader@tuwien.ac.at>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -59,15 +61,13 @@ SRC_URI[sha256sum] = "96df80626ab8ecd101acb1f972c815be0d105e9e5539e73d691ea3b2ef
 S = "${WORKDIR}/tuw_geometry-release-release-melodic-tuw_geometry-0.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/tuw-geometry/tuw-geometry_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/tuw-geometry/tuw-geometry_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tuw-geometry', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-geometry/tuw-geometry_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-geometry/tuw-geometry-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-geometry/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-geometry/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

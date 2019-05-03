@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package containing PCL (Point Cloud Library)-related ROS messages."
 AUTHOR = "Paul Bovbel <paul@bovbel.com>"
 HOMEPAGE = "http://wiki.ros.org/pcl_msgs"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "e4d2bd132c08b705e38958c8fd8203311af0feefdaa2a3aeeac86cb54e
 S = "${WORKDIR}/pcl_msgs-release-release-melodic-pcl_msgs-0.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pcl-msgs/pcl-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pcl-msgs/pcl-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pcl-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-msgs/pcl-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-msgs/pcl-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

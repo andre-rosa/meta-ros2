@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A multiplexer for command velocity inputs. Arbitrates incoming cmd_vel messages from several topics,      allowing one topic at a time to command the robot, based on priorities. It also deallocates current      allowed topic if no messages are received after a configured timeout. All topics, together with their      priority and timeout are configured through a YAML file, that can be reload at runtime."
 AUTHOR = "Jihoon Lee <jihoonl@yujinrobot.com>"
 HOMEPAGE = "http://ros.org/wiki/yocs_cmd_vel_mux"
@@ -61,15 +63,13 @@ SRC_URI[sha256sum] = "fb7a0444d33e684e14c5c1b78fa3c2cda433abbd202401316232daff02
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_cmd_vel_mux-0.8.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/yujin-ocs/yujin-ocs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/yujin-ocs/yujin-ocs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

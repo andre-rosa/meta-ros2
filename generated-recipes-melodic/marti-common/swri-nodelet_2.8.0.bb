@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package provides a simple script to write simple launch files     that can easily switch between running nodelets together or as     standalone nodes."
 AUTHOR = "P. J. Reed <preed@swri.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "028628e0bc364e9be5f608663cf49c988db0599bad0a534b9f1d4f7077
 S = "${WORKDIR}/marti_common-release-release-melodic-swri_nodelet-2.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/marti-common/marti-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/marti-common/marti-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('marti-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/marti-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/marti-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

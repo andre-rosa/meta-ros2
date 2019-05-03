@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ROS client nodes for the <a href="https://github.com/vrpn/vrpn/wiki">VRPN</a> library, compatible with VICON, OptiTrack, and other <a href="https://github.com/vrpn/vrpn/wiki/Supported-hardware-devices">hardware interfaces</a>."
 AUTHOR = "Paul Bovbel <paul@bovbel.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "1aab125d405ed53be48b7f49db7594343f35cccfecd3f4ef14571311ff
 S = "${WORKDIR}/vrpn_client_ros-release-release-melodic-vrpn_client_ros-0.2.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/vrpn-client-ros/vrpn-client-ros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/vrpn-client-ros/vrpn-client-ros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vrpn-client-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrpn-client-ros/vrpn-client-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrpn-client-ros/vrpn-client-ros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrpn-client-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrpn-client-ros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

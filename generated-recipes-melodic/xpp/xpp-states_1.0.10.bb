@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Common definitions (positions, velocities, angular angles,     angular rates) and robot definitions in Cartesian and joint state     used in the Xpp Motion Framework, as well as conversions to/from     xpp_msgs."
 AUTHOR = "Alexander W. Winkler <alexander.w.winkler@gmail.com>"
 HOMEPAGE = "http://github.com/leggedrobotics/xpp"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "7844597910c688e3ae3664b58bf6d3f17f0364d049d890156ed4675a2a
 S = "${WORKDIR}/xpp-release-release-melodic-xpp_states-1.0.10-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/xpp/xpp_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/xpp/xpp_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('xpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/xpp_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/xpp-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

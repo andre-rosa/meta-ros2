@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "common_msgs contains messages that are widely used by other ROS packages.     These includes messages for     actions (<a href="http://wiki.ros.org/actionlib_msgs">actionlib_msgs</a>),     diagnostics (<a href="http://wiki.ros.org/diagnostic_msgs">diagnostic_msgs</a>),     geometric primitives (<a href="http://wiki.ros.org/geometry_msgs">geometry_msgs</a>),     robot navigation (<a href="http://wiki.ros.org/nav_msgs">nav_msgs</a>),     and common sensors (<a href="http://wiki.ros.org/sensor_msgs">sensor_msgs</a>), such as laser range finders, cameras, point clouds."
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/common_msgs"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "631a7674053674e50d7fdadc741dcd4f112f0f12c62c179b438e0db457
 S = "${WORKDIR}/common_msgs-release-release-melodic-common_msgs-1.12.7-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/common-msgs/common-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/common-msgs/common-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/common-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/common-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A driver for IMUs compatible the microstrain 3DM-GX2 and 3DM-GX3 protocol. Includes      a heavily modified standalone driver pulled from the player distribution,      and a ROS node."
 AUTHOR = "Chad Rockey <chadrockey@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/microstrain_3dmgx2_imu"
@@ -64,21 +66,19 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-gbp/microstrain_3dmgx2_imu-release/archive/release/melodic/microstrain_3dmgx2_imu/1.5.12-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "7a8f9e449c55ee4bdb7b26f281508820"
-SRC_URI[sha256sum] = "9aa8d9be95d5d65abd8cd0512ad5e2e0840843ff3feaeff12de80ef2f6e44780"
-S = "${WORKDIR}/microstrain_3dmgx2_imu-release-release-melodic-microstrain_3dmgx2_imu-1.5.12-0"
+SRC_URI = "https://github.com/ros-gbp/microstrain_3dmgx2_imu-release/archive/release/melodic/microstrain_3dmgx2_imu/1.5.12-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "90f8fb648a0fe8e80d5f803d24485ec9"
+SRC_URI[sha256sum] = "25b441c8be65da409431657796fe7577585e401b74e363c0a81f72177d9fd2e4"
+S = "${WORKDIR}/microstrain_3dmgx2_imu-release-release-melodic-microstrain_3dmgx2_imu-1.5.12-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/microstrain-3dmgx2-imu/microstrain-3dmgx2-imu_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/microstrain-3dmgx2-imu/microstrain-3dmgx2-imu_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('microstrain-3dmgx2-imu', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/microstrain-3dmgx2-imu/microstrain-3dmgx2-imu_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/microstrain-3dmgx2-imu/microstrain-3dmgx2-imu-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/microstrain-3dmgx2-imu/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/microstrain-3dmgx2-imu/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

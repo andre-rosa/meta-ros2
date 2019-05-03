@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Common-Lisp ROS message and service generators."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/roslisp"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "0da61ebbb633656062ce030fc94b5931bf3cdf3b5cf896116895608a73
 S = "${WORKDIR}/genlisp-release-release-melodic-genlisp-0.4.16-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/genlisp/genlisp_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/genlisp/genlisp_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('genlisp', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genlisp/genlisp_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genlisp/genlisp-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genlisp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genlisp/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

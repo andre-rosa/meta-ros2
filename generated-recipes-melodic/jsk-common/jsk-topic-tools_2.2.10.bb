@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "jsk_topic_tools"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/jsk_topic_tools"
@@ -111,15 +113,13 @@ SRC_URI[sha256sum] = "d2f76dd70a0b02a05b56658211cc0c8441dca5bea008d0ea45694d3c4c
 S = "${WORKDIR}/jsk_common-release-release-melodic-jsk_topic_tools-2.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/jsk-common/jsk-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/jsk-common/jsk-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/jsk-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/jsk-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

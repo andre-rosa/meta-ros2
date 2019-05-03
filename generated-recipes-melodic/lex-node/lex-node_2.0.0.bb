@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package providing a ROS node for interacting with Amazon Lex"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/lex_node"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "f1d299c1196758e3443d3d83d2e5953391c35b8b00c233b36257a3ad38
 S = "${WORKDIR}/lex_node-release-release-melodic-lex_node-2.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/lex-node/lex-node_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/lex-node/lex-node_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('lex-node', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lex-node/lex-node_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lex-node/lex-node-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lex-node/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lex-node/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

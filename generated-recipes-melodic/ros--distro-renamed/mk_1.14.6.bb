@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A collection of .mk include files for building ROS architectural elements.     Most package authors should use cmake .mk, which calls CMake for the build of the package.     The other files in this package are intended for use in exotic situations that mostly arise when importing 3rdparty code."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/ROS"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "1382c3d63ce096921a1c157c850962bb220f806dc2fa9ca88c45f3d001
 S = "${WORKDIR}/ros-release-release-melodic-mk-1.14.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros--distro-renamed/ros--distro-renamed_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros--distro-renamed/ros--distro-renamed_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros--distro-renamed', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

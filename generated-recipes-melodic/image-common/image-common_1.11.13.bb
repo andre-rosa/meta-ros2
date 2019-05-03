@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Common code for working with images in ROS."
 AUTHOR = "Jack O'Quin <jack.oquin@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/image_common"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "987bdb08a0bf935d3c657331b79564a3e272f6c4538e5be5d893ab6a13
 S = "${WORKDIR}/image_common-release-release-melodic-image_common-1.11.13-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/image-common/image-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/image-common/image-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/image-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/image-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

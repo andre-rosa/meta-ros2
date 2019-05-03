@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This is an interface to the Ocean Server Technology Intelligent Battery and Power System."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
 HOMEPAGE = "http://www.ros.org/wiki/ocean_battery_driver"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "4a494470bf4da45f24517df66b0c0fea70f79e15c14e6935e00f990d4e
 S = "${WORKDIR}/pr2_power_drivers-release-release-melodic-ocean_battery_driver-1.1.7-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pr2-power-drivers/pr2-power-drivers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pr2-power-drivers/pr2-power-drivers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-power-drivers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-power-drivers/pr2-power-drivers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-power-drivers/pr2-power-drivers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-power-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-power-drivers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

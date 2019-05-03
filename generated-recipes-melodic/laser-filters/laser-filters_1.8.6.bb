@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Assorted filters designed to operate on 2D planar laser scanners,     which use the sensor_msgs/LaserScan type."
 AUTHOR = "Jon Binney <jon.binney@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/laser_filters"
@@ -68,15 +70,13 @@ SRC_URI[sha256sum] = "7429472a08b080cae1e101e9e96443b884791926ad59479c5538096693
 S = "${WORKDIR}/laser_filters-release-release-melodic-laser_filters-1.8.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/laser-filters/laser-filters_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/laser-filters/laser-filters_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-filters', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filters/laser-filters_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filters/laser-filters-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filters/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filters/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ml_classifiers"
 AUTHOR = "AutonomouStuff Software Development Team <software@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/ml_classifiers"
@@ -61,15 +63,13 @@ SRC_URI[sha256sum] = "77588596b459e29cb22098164289c3b74e0a6326d372c99ce6025a422a
 S = "${WORKDIR}/ml_classifiers-release-release-melodic-ml_classifiers-1.0.1-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ml-classifiers/ml-classifiers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ml-classifiers/ml-classifiers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ml-classifiers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ml-classifiers/ml-classifiers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ml-classifiers/ml-classifiers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ml-classifiers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ml-classifiers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

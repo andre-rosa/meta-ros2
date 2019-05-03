@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A bond allows two processes, A and B, to know when the other has     terminated, either cleanly or by crashing.  The bond remains     connected until it is either broken explicitly or until a     heartbeat times out."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/bond"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "6a9f5fb5b44ce6285800177903b4364061521de47bda8cd8902814405a
 S = "${WORKDIR}/bond_core-release-release-melodic-bond-1.8.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/bond-core/bond-core_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/bond-core/bond-core_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('bond-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/bond-core_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/bond-core-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

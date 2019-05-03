@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The cob_common stack hosts common packages that are used within the Care-O-bot repository. E.g. utility packages or common message and service definitions etc. Also the urdf desciption of the robot is located in this stack."
 AUTHOR = "Felix Messmer <felixmessmer@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/cob_common"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "84d1c74ce5aab95a64c655926aef6a9b76df9d5acd2c683fa5319e3015
 S = "${WORKDIR}/cob_common-release-release-melodic-cob_common-0.6.10-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/cob-common/cob-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/cob-common/cob-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cob-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-common/cob-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-common/cob-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

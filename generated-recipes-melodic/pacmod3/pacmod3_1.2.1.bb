@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "AutonomouStuff PACMod v3 Driver Package"
 AUTHOR = "AutonomouStuff Software Team <software@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/pacmod3"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "daff58bf63c7d7e4d76b098f59076691ba3bb27401201eb39681d229ad
 S = "${WORKDIR}/pacmod3-release-release-melodic-pacmod3-1.2.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pacmod3/pacmod3_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pacmod3/pacmod3_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pacmod3', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pacmod3/pacmod3_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pacmod3/pacmod3-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pacmod3/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pacmod3/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

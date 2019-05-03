@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Extends the arbotix_node package with a number of more sophisticated ROS wrappers for common devices."
 AUTHOR = "Michael Ferguson <mike@vanadiumlabs.com>"
 HOMEPAGE = "http://ros.org/wiki/arbotix_sensors"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "2c7dcfa8c133915b15eb77783282f2be0b01ac676239daefba4285885e
 S = "${WORKDIR}/arbotix_ros-release-release-melodic-arbotix_sensors-0.10.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/arbotix/arbotix_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/arbotix/arbotix_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('arbotix', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/arbotix_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/arbotix-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

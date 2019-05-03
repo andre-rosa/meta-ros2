@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Base implementation for CANopen chains node with support for management services and diagnostics"
 AUTHOR = "Mathias Lüdtke <mathias.luedtke@ipa.fraunhofer.de>"
 HOMEPAGE = "http://wiki.ros.org/canopen_chain_node"
@@ -69,15 +71,13 @@ SRC_URI[sha256sum] = "38578e51fcb8c8cf7e3de40d3febe7e318244f107b56346a984c7e5fe1
 S = "${WORKDIR}/ros_canopen-release-release-melodic-canopen_chain_node-0.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-canopen/ros-canopen_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-canopen/ros-canopen_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-canopen', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/ros-canopen_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/ros-canopen-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

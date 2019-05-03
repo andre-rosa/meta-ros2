@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The libg2o library from http://openslam.org/g2o.html"
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
 HOMEPAGE = "https://github.com/RainerKuemmerle/g2o"
@@ -57,15 +59,13 @@ SRC_URI[sha256sum] = "b904a96dd4edffa57b21856d75d7d0bf9b064921e330012922c67a545e
 S = "${WORKDIR}/libg2o-release-release-melodic-libg2o-2018.3.25-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/libg2o/libg2o_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/libg2o/libg2o_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('libg2o', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libg2o/libg2o_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libg2o/libg2o-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libg2o/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libg2o/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

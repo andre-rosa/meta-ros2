@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The rostate_machine package"
 AUTHOR = "masaya kataoka <ms.kataoka@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "a7eae9ee6371319fc4b598f00322101431141a52b07ed6ef2c0ee5588a
 S = "${WORKDIR}/rostate_machine-release-release-melodic-rostate_machine-0.0.2-3"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rostate-machine/rostate-machine_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rostate-machine/rostate-machine_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rostate-machine', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rostate-machine/rostate-machine_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rostate-machine/rostate-machine-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rostate-machine/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rostate-machine/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

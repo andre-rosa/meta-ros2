@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "mavros_msgs defines messages for <a href="http://wiki.ros.org/mavros">MAVROS</a>."
 AUTHOR = "Vladimir Ermakov <vooon341@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/mavros_msgs"
@@ -57,15 +59,13 @@ SRC_URI[sha256sum] = "80cdf9f83bf0b611e8b08201b461ca0b73909bc211c66176e64a13ee9e
 S = "${WORKDIR}/mavros-release-release-melodic-mavros_msgs-0.29.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/mavros/mavros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/mavros/mavros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mavros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/mavros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/mavros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

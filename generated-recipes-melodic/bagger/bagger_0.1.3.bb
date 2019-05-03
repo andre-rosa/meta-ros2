@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "An application used to systematically record rosbags"
 AUTHOR = "Brenden Gibbons <bgibbons@squarerobots.com>"
 HOMEPAGE = "http://www.ros.org/wiki/bagger"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "e8275de0f4ad29f758472ae12d8ce534b53705ec57066e8611498b6077
 S = "${WORKDIR}/bagger-release-release-melodic-bagger-0.1.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/bagger/bagger_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/bagger/bagger_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('bagger', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bagger/bagger_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bagger/bagger-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bagger/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bagger/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

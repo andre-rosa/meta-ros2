@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Basic ROS support for the Robosense 3D LIDARs."
 AUTHOR = "Abraham Monrroy <abrahammonrroy@yahoo.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "afc1683d73695c2460bccb0db0b1ecf4907ddff91506e6c4c33ac34ecf
 S = "${WORKDIR}/robosense-release-release-melodic-rslidar-1.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/robosense/robosense_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/robosense/robosense_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robosense', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robosense/robosense_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robosense/robosense-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robosense/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robosense/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

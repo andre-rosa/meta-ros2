@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "3D interactive marker communication library for RViz and similar tools."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/interactive_markers"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "600001c06acb4e88fe5c9f512476d50b41a795356643bb02e528748b15
 S = "${WORKDIR}/interactive_markers-release-release-melodic-interactive_markers-1.11.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/interactive-markers/interactive-markers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/interactive-markers/interactive-markers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('interactive-markers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-markers/interactive-markers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-markers/interactive-markers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-markers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-markers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

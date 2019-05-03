@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The package provides gripper support for the pilz_robots package."
 AUTHOR = "Alexander Gutenkunst <a.gutenkunst@pilz.de>"
 HOMEPAGE = "http://ros.org/wiki/prbt_grippers"
@@ -42,15 +44,13 @@ SRC_URI[sha256sum] = "f623ce025264f9a4407ee7687efc7dc058aaee1d80f1c81eeaa5e569c1
 S = "${WORKDIR}/prbt_grippers-release-release-melodic-prbt_grippers-0.0.3-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/prbt-grippers/prbt-grippers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/prbt-grippers/prbt-grippers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('prbt-grippers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prbt-grippers/prbt-grippers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prbt-grippers/prbt-grippers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prbt-grippers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prbt-grippers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

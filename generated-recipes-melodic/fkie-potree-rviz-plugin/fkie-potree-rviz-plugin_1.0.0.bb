@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Render large point clouds in rviz"
 AUTHOR = "Timo Röhling <timo.roehling@fkie.fraunhofer.de>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -53,15 +55,13 @@ SRC_URI[sha256sum] = "9a9b281a5546efc32cbf9d79e4675deaf0c30bae167cd88a26c6c904a2
 S = "${WORKDIR}/potree_rviz_plugin-release-release-melodic-fkie_potree_rviz_plugin-1.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/fkie-potree-rviz-plugin/fkie-potree-rviz-plugin_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/fkie-potree-rviz-plugin/fkie-potree-rviz-plugin_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fkie-potree-rviz-plugin', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-potree-rviz-plugin/fkie-potree-rviz-plugin_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-potree-rviz-plugin/fkie-potree-rviz-plugin-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-potree-rviz-plugin/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-potree-rviz-plugin/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

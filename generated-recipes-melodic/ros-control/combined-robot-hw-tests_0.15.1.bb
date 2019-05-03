@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The combined_robot_hw_tests package"
 AUTHOR = "Bence Magyar <bence.magyar.robotics@gmail.com>"
 HOMEPAGE = "https://github.com/ros-controls/ros_control/wiki"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "df8e558ef4b707ba0691eabdd3dfbc72bfdb050c3e94c87e0cf69675ba
 S = "${WORKDIR}/ros_control-release-release-melodic-combined_robot_hw_tests-0.15.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-control/ros-control_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-control/ros-control_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-control', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/ros-control_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/ros-control-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

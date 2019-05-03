@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Catkinized ROS packaging of the OpenKarto library"
 AUTHOR = "Michael Ferguson <mfergs7@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "dd134fee71bd93a6e756305e084c1767c516f369c0afe70f921c87d040
 S = "${WORKDIR}/open_karto-release-release-melodic-open_karto-1.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/open-karto/open-karto_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/open-karto/open-karto_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('open-karto', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-karto/open-karto_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-karto/open-karto-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-karto/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-karto/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

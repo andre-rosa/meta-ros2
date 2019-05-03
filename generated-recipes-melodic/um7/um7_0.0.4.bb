@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The um7 package provides a C++ implementation of the CH Robotics serial protocol, and a     corresponding ROS node for publishing standard ROS orientation topics from a UM7."
 AUTHOR = "Daniel Miller <dgmiller@ncsu.edu>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "d557326e26d705cb29897eb7ac32baa349a08c71d07cf9501e6c457e3d
 S = "${WORKDIR}/um7-release-release-melodic-um7-0.0.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/um7/um7_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/um7/um7_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('um7', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/um7/um7_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/um7/um7-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/um7/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/um7/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The configuration node loads a given launch configuration and offers services to       list or start the contained nodes. It provides additional description       extracted from launch file. This is used by node_manager_fkie."
 AUTHOR = "Alexander Tiderko <alexander.tiderko@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/default_cfg_fkie"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "0b43fafcadef2aeff4fd5e7325daac4eeab711e5323c32fb37606bd318
 S = "${WORKDIR}/multimaster_fkie-release-release-melodic-default_cfg_fkie-0.8.12-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/multimaster-fkie/multimaster-fkie_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/multimaster-fkie/multimaster-fkie_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('multimaster-fkie', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/multimaster-fkie_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/multimaster-fkie-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

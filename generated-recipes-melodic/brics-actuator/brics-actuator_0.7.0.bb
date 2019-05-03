@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Message defined in the BRICS project"
 AUTHOR = "Walter Nowak <nowak@locomotec.com>"
 HOMEPAGE = "http://ros.org/wiki/brics_actuator"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "20a7643aa378c2f934d712eb798a3ad3a89e86728e22da9debfae0c62e
 S = "${WORKDIR}/brics_actuator-release-release-melodic-brics_actuator-0.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/brics-actuator/brics-actuator_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/brics-actuator/brics-actuator_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('brics-actuator', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/brics-actuator/brics-actuator_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/brics-actuator/brics-actuator-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/brics-actuator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/brics-actuator/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

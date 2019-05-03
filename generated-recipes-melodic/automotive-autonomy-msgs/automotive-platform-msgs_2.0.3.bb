@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Generic Messages for Communication with an Automotive Autonomous Platform"
 AUTHOR = "AutonomouStuff Software Development Team <software@autonomoustuff.com>"
 HOMEPAGE = "http://github.com/automotive_platform_msgs"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "9e9e38d99db9d57b99f5cc554c6062cbec31765a2afe8141ecef0aec3c
 S = "${WORKDIR}/automotive_autonomy_msgs-release-release-melodic-automotive_platform_msgs-2.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/automotive-autonomy-msgs/automotive-autonomy-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/automotive-autonomy-msgs/automotive-autonomy-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('automotive-autonomy-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/automotive-autonomy-msgs/automotive-autonomy-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/automotive-autonomy-msgs/automotive-autonomy-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/automotive-autonomy-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/automotive-autonomy-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

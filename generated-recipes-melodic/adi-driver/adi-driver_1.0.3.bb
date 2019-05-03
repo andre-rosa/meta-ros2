@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The adi_driver package"
 AUTHOR = "Tokyo Opensource Robotics Kyokai (TORK) Developer Team <dev@opensource-robotics.tokyo.jp>"
 HOMEPAGE = "http://wiki.ros.org/adi_driver"
@@ -66,15 +68,13 @@ SRC_URI[sha256sum] = "6f2b565c98396653f9364c57fddafa0ca244781c27edd5b5467502fa77
 S = "${WORKDIR}/adi_driver-release-release-melodic-adi_driver-1.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/adi-driver/adi-driver_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/adi-driver/adi-driver_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('adi-driver', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/adi-driver/adi-driver_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/adi-driver/adi-driver-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/adi-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/adi-driver/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

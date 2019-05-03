@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Common base code for ROS1/ROS2 H264 encoder node"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/h264_encoder_core"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "67e0ef7ef6d8f71198043fa55ce97ec74cd53cc1c9caf3e21f04dc58df
 S = "${WORKDIR}/h264_encoder_core-release-release-melodic-h264_encoder_core-2.0.0-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/h264-encoder-core/h264-encoder-core_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/h264-encoder-core/h264-encoder-core_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('h264-encoder-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/h264-encoder-core/h264-encoder-core_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/h264-encoder-core/h264-encoder-core-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/h264-encoder-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/h264-encoder-core/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

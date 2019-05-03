@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A fast and flexible implementation of Rigid Body Dynamics algorithms and their analytical derivatives - wrapped for catkin."
 AUTHOR = "Wolfgang Merkt <wolfgang.merkt@ed.ac.uk>"
 HOMEPAGE = "https://github.com/stack-of-tasks/pinocchio"
@@ -62,15 +64,13 @@ SRC_URI[sha256sum] = "55e2abcacc5f041bb5aac36853a0114852d76d03bdbe29c5a257f39429
 S = "${WORKDIR}/pinocchio_catkin-release-release-melodic-pinocchio-2.1.3-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pinocchio/pinocchio_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pinocchio/pinocchio_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pinocchio', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pinocchio/pinocchio_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pinocchio/pinocchio-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pinocchio/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pinocchio/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

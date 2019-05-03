@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A Python GUI plugin for introspecting available ROS message types.   Note that the msgs available through this plugin is the ones that are stored   on your machine, not on the ROS core your rqt instance connects to."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rqt_msg"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "ec3e88d3c822856ace98a11ab03950fb0e9390829122b7abfabc863180
 S = "${WORKDIR}/rqt_msg-release-release-melodic-rqt_msg-0.4.8-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-msg/rqt-msg_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-msg/rqt-msg_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-msg', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-msg/rqt-msg_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-msg/rqt-msg-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-msg/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-msg/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

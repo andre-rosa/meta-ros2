@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rosconsole_bridge is a package used in conjunction with console_bridge and rosconsole for connecting console_bridge-based logging to rosconsole-based logging."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/rosconsole_bridge"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "d47fadd37a04d4f165bef5173d536190baa3006dac2fa0235a14527d32
 S = "${WORKDIR}/rosconsole_bridge-release-release-melodic-rosconsole_bridge-0.5.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosconsole-bridge/rosconsole-bridge_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosconsole-bridge/rosconsole-bridge_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosconsole-bridge', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosconsole-bridge/rosconsole-bridge_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosconsole-bridge/rosconsole-bridge-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosconsole-bridge/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosconsole-bridge/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

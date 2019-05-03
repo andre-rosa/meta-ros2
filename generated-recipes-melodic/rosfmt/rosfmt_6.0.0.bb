@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "fmt is an open-source formatting library for C++. 		It can be used as a safe and fast alternative to (s)printf and IOStreams."
 AUTHOR = "Max Schwarz <max.schwarz@ais.uni-bonn.de>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "e1ad333968f25d127063d05379f33345f56fa5fa9d195f24c69d9139b9
 S = "${WORKDIR}/rosfmt-release-release-melodic-rosfmt-6.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosfmt/rosfmt_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosfmt/rosfmt_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosfmt', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosfmt/rosfmt_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosfmt/rosfmt-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosfmt/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosfmt/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

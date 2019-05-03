@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "EusLisp ROS message and service generators."
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "aadb96f7266f5584813ea6033317b1decf6a7358d01cf257239ae4c04f
 S = "${WORKDIR}/geneus-release-release-melodic-geneus-2.2.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/geneus/geneus_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/geneus/geneus_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geneus', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geneus/geneus_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geneus/geneus-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geneus/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geneus/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

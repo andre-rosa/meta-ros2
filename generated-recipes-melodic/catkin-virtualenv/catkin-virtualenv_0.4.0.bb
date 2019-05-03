@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Bundle python requirements in a catkin package via virtualenv."
 AUTHOR = "Paul Bovbel <pbovbel@locusrobotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "3f909a14d101315946102dbd8af5ea4390248ded9c8f5e38fc604cd0e5
 S = "${WORKDIR}/catkin_virtualenv-release-release-melodic-catkin_virtualenv-0.4.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/catkin-virtualenv/catkin-virtualenv_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/catkin-virtualenv/catkin-virtualenv_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('catkin-virtualenv', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin-virtualenv/catkin-virtualenv_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin-virtualenv/catkin-virtualenv-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin-virtualenv/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin-virtualenv/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

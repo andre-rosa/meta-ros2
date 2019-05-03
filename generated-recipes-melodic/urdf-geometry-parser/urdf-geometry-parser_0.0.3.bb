@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Extract geometry value of a vehicle from urdf"
 AUTHOR = "Vincent Rousseau <vincent.rousseau@irstea.fr>"
 HOMEPAGE = "http://ros.org/wiki/urdf_geometry_parser"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "e9abdad19d455ac3e82dffae119a7e212d53874d4587df5cb5664ac397
 S = "${WORKDIR}/urdf_geometry_parser-release-release-melodic-urdf_geometry_parser-0.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/urdf-geometry-parser/urdf-geometry-parser_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/urdf-geometry-parser/urdf-geometry-parser_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdf-geometry-parser', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-geometry-parser/urdf-geometry-parser_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-geometry-parser/urdf-geometry-parser-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-geometry-parser/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-geometry-parser/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Bound incoming velocity messages according to robot velocity and acceleration limits."
 AUTHOR = "Jihoon Lee <jihoonl@yujinrobot.com>"
 HOMEPAGE = "http://ros.org/wiki/yocs_velocity_smoother"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "9de916242e06317201e15ac26eb33949b8f7aeb84dc262ee44e82ce5ce
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_velocity_smoother-0.8.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/yujin-ocs/yujin-ocs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/yujin-ocs/yujin-ocs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

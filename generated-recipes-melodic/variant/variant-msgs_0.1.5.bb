@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Variant messages are designed to accommodate the information content     of any invariant message. They are truly generic and can freely be     converted to and from specific message objects."
 AUTHOR = "Ralf Kaestner <ralf.kaestner@gmail.com>"
 HOMEPAGE = "http://github.com/ethz-asl/ros-topic-variant"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "bc5b26692c4b9223aa4bd83c00fe4b2710a4f5acfe1b9c49cbba0e6f1a
 S = "${WORKDIR}/variant-release-release-melodic-variant_msgs-0.1.5-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/variant/variant_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/variant/variant_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('variant', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/variant_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/variant-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

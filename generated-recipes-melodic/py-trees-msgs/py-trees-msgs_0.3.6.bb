@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Messages used by py_trees_ros and some extras for the mock demos/tests."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/py_trees_msgs"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "71d8d3b25202546af7f8f085a532d72bf3fc35a591958d88927c650657
 S = "${WORKDIR}/py_trees_msgs-release-release-melodic-py_trees_msgs-0.3.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/py-trees-msgs/py-trees-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/py-trees-msgs/py-trees-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('py-trees-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-msgs/py-trees-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-msgs/py-trees-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package wraps the libphidget21 to use it as a ROS dependency"
 AUTHOR = "Martin Guenther <martin.guenther@dfki.de>"
 HOMEPAGE = "http://ros.org/wiki/libphidget21"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "69660b7d771da1f35e899d0a658ba8d32e940015d336c37a176d7a21dc
 S = "${WORKDIR}/phidgets_drivers-release-release-melodic-libphidget21-0.7.7-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/phidgets-drivers/phidgets-drivers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/phidgets-drivers/phidgets-drivers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('phidgets-drivers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/phidgets-drivers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/phidgets-drivers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This implements the CANopen device profile for drives and motion control. CiA(r) 402"
 AUTHOR = "Mathias Lüdtke <mathias.luedtke@ipa.fraunhofer.de>"
 HOMEPAGE = "http://wiki.ros.org/canopen_402"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "efde470bfc5b7f1a067d861078f5de826f05e7af4bb8dd3456f5166496
 S = "${WORKDIR}/ros_canopen-release-release-melodic-canopen_402-0.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-canopen/ros-canopen_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-canopen/ros-canopen_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-canopen', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/ros-canopen_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/ros-canopen-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

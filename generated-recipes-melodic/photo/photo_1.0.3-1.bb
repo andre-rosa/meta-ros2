@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The photo package provides access to digital cameras. Much of the underlying functionality is provide by the gPhoto libary. The system package libgphoto2-2-dev or equivalent is required.&gt;"
 AUTHOR = "Philip Roan <Philip.Roan@us.bosch.com>"
 HOMEPAGE = "http://wiki.ros.org/photo"
@@ -58,21 +60,19 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/bosch-ros-pkg/photo-release/archive/release/melodic/photo/1.0.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "cd01f760e776d7d9e41286ec88c5a7d3"
-SRC_URI[sha256sum] = "3fa17650d7495846b81e1a2488f80cce9324a54c40047e75b6fadd1402f9590d"
-S = "${WORKDIR}/photo-release-release-melodic-photo-1.0.3-0"
+SRC_URI = "https://github.com/bosch-ros-pkg/photo-release/archive/release/melodic/photo/1.0.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "33bca0444418ba5e1865f9a249ebb783"
+SRC_URI[sha256sum] = "61ab67a9bc3909382c062c6c93be55830c71b889b35326014bf3966b88fb354f"
+S = "${WORKDIR}/photo-release-release-melodic-photo-1.0.3-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/photo/photo_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/photo/photo_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('photo', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/photo/photo_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/photo/photo-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/photo/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/photo/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

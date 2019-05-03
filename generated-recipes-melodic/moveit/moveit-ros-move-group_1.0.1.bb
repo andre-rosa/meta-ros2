@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The move_group node for MoveIt"
 AUTHOR = "Michael Ferguson <mferguson@fetchrobotics.com>"
 HOMEPAGE = "http://moveit.ros.org"
@@ -74,15 +76,13 @@ SRC_URI[sha256sum] = "0b67a53e3f9ac332042ca174e04388c21a556b4f0eb0b1856001b86426
 S = "${WORKDIR}/moveit-release-release-melodic-moveit_ros_move_group-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/moveit/moveit_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/moveit/moveit_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/moveit_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/moveit-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

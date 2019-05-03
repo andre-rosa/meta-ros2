@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The rc_dynamics_api provides an API for easy handling of the dynamic-state data       streams provided by Roboception's stereo camera with self-localization.       See http://rc-visard.com        Dynamic-state estimates of the rc_visard relate to its self-localization and       ego-motion estimation. These states refer to rc_visard's current pose,       velocity, or acceleration and are published on demand via several data streams.       For a complete list and descriptions of these dynamics states and the       respective data streams please refer to rc_visard's user manual."
 AUTHOR = "Felix Ruess <felix.ruess@roboception.de>"
 HOMEPAGE = "http://rc-visard.com"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "5d865c30cd327b025024612b430e223e073cc182a7d8cb5c46b2612348
 S = "${WORKDIR}/rc_dynamics_api-release-release-melodic-rc_dynamics_api-0.7.1-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rc-dynamics-api/rc-dynamics-api_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rc-dynamics-api/rc-dynamics-api_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-dynamics-api', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-dynamics-api/rc-dynamics-api_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-dynamics-api/rc-dynamics-api-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-dynamics-api/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-dynamics-api/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

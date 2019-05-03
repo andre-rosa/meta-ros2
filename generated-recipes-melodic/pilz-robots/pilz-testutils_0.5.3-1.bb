@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package contains testing utilities used by Pilz packages."
 AUTHOR = "Alexander Gutenkunst <a.gutenkunst@pilz.de>"
 HOMEPAGE = "https://wiki.ros.org/pilz_testutils"
@@ -42,15 +44,13 @@ SRC_URI[sha256sum] = "0a19e1ad12f656f7b1ab0977438f322c5ab9ba19eca2c3ec25f0a81829
 S = "${WORKDIR}/pilz_robots-release-release-melodic-pilz_testutils-0.5.3-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pilz-robots/pilz-robots_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pilz-robots/pilz-robots_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pilz-robots', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/pilz-robots_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/pilz-robots-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

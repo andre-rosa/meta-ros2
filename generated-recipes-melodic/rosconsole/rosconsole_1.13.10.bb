@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ROS console output library."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/rosconsole"
@@ -59,15 +61,13 @@ SRC_URI[sha256sum] = "a16be47247f622748425d2165afd1a83abe00a57dbe77ef98e801bc5d6
 S = "${WORKDIR}/rosconsole-release-release-melodic-rosconsole-1.13.10-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosconsole/rosconsole_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosconsole/rosconsole_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosconsole', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosconsole/rosconsole_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosconsole/rosconsole-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosconsole/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosconsole/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

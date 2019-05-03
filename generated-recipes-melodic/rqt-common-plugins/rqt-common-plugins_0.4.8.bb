@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_common_plugins metapackage provides ROS backend graphical tools suite that can be used on/off of robot runtime.<br/>     <br/>     To run any rqt plugins, just type in a single command &quot;rqt&quot;, then select any plugins you want from the GUI that launches afterwards.<br/>     <br/>     rqt consists of three following metapackages:<br/>     <ul>      <li><a href="http://ros.org/wiki/rqt">rqt</a> - core modules of rqt (ROS GUI) framework. rqt plugin developers barely needs to pay attention to this metapackage.</li>      <li>rqt_common_plugins (you're here!)</li>      <li><a href="http://ros.org/wiki/rqt_robot_plugins">rqt_robot_plugins</a> - rqt plugins that are particularly used with robots during their runtime.</li><br/>     </ul>    <br/>"
 AUTHOR = "Aaron Blasdel <ablasdel@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/rqt_common_plugins"
@@ -84,15 +86,13 @@ SRC_URI[sha256sum] = "f0c64a0ec07274960b5e4eb9c032c6c439e67a82b0ae25c4cc9d27be2e
 S = "${WORKDIR}/rqt_common_plugins-release-release-melodic-rqt_common_plugins-0.4.8-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-common-plugins/rqt-common-plugins_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-common-plugins/rqt-common-plugins_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-common-plugins', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-common-plugins/rqt-common-plugins_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-common-plugins/rqt-common-plugins-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-common-plugins/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-common-plugins/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

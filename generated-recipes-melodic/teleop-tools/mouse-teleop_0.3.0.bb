@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A mouse teleop tool for holonomic mobile robots."
 AUTHOR = "Enrique Fernandez <enrique.fernandez.perdomo@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "ccf8af493ba91d2a7dee432444454286025cc9bafb30105a1e5ec46ab7
 S = "${WORKDIR}/teleop_tools-release-release-melodic-mouse_teleop-0.3.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/teleop-tools/teleop-tools_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/teleop-tools/teleop-tools_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teleop-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/teleop-tools_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/teleop-tools-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

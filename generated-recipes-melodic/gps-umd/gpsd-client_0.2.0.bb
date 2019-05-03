@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "connects to a GPSd server and broadcasts GPS fixes     using the NavSatFix message"
 AUTHOR = "Timo Roehling <timo.roehling@fkie.fraunhofer.de>"
 HOMEPAGE = "http://ros.org/wiki/gpsd_client"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "fb72a43064b023d7be47f00194232ca28d92aea68d92e7b32d337bbe6c
 S = "${WORKDIR}/gps_umd-release-release-melodic-gpsd_client-0.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/gps-umd/gps-umd_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/gps-umd/gps-umd_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gps-umd', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/gps-umd_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/gps-umd-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

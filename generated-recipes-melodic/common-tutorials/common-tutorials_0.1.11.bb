@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Metapackage that contains common tutorials"
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/common_tutorials"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "a74b72d318a6002dcee5e39472587f5fbe70741e93e71fac242b4ad60b
 S = "${WORKDIR}/common_tutorials-release-release-melodic-common_tutorials-0.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/common-tutorials/common-tutorials_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/common-tutorials/common-tutorials_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-tutorials', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/common-tutorials_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/common-tutorials-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

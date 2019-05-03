@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The URDF file for a quadrotor to be used with the xpp packages and a      simple rviz publisher of quadrotor tfs.           Adapted from Daniel Mellinger, Nathan Michael, Vijay Kumar,      &quot;Trajectory Generation and Control for Precise Aggressive Maneuvers     with Quadrotors&quot;."
 AUTHOR = "Alexander W. Winkler <alexander.w.winkler@gmail.com>"
 HOMEPAGE = "http://github.com/leggedrobotics/xpp"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "8a3c7cbaa6def3250bf3825790f587b3626799b51dc7105917c20af6b8
 S = "${WORKDIR}/xpp-release-release-melodic-xpp_quadrotor-1.0.10-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/xpp/xpp_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/xpp/xpp_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('xpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/xpp_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/xpp-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

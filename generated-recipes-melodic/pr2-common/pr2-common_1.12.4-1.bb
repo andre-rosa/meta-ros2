@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "URDF description of the robot kinematics and dynamics, 3D models of robot components, information required for gazebo to simulate the PR2, and messages specific to the PR2 such as detailed information about its power board and fingertip pressure sensors."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
 HOMEPAGE = "http://ros.org/wiki/pr2_common"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "a079541b7d696b2a3755aaef63c34e720a67d9c5700fa0acc3a9fa9167
 S = "${WORKDIR}/pr2_common-release-release-melodic-pr2_common-1.12.4-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pr2-common/pr2-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pr2-common/pr2-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/pr2-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/pr2-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Service pair libraries for pub/sub non-blocking services."
 AUTHOR = "AlexV <asmodehn@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/rocon_python_comms"
@@ -71,15 +73,13 @@ SRC_URI[sha256sum] = "9592f4282b01f537108ca98200116db495421ad1d7da6c63016e315229
 S = "${WORKDIR}/rocon_tools-release-release-melodic-rocon_python_comms-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rocon-tools/rocon-tools_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rocon-tools/rocon-tools_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rocon-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/rocon-tools_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/rocon-tools-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

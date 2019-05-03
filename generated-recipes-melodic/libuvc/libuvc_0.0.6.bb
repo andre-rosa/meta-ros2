@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "USB Video Class driver library"
 AUTHOR = "Ken Tossell <ken@tossell.net>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "06a553e6d043735a10fff606d5f71a20661fc9b6be392b69a06c35b8ac
 S = "${WORKDIR}/libuvc-release-release-melodic-libuvc-0.0.6-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/libuvc/libuvc_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/libuvc/libuvc_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('libuvc', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc/libuvc_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc/libuvc-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Metapackage for audibot"
 AUTHOR = "Micho Radovnikovich <mradov@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "7e76b4daa4f12f798cfe9d6cb369a346f4c99ab31dc013ea460d3ee9c4
 S = "${WORKDIR}/audibot-release-release-melodic-audibot-0.1.0-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/audibot/audibot_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/audibot/audibot_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audibot', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/audibot_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/audibot-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

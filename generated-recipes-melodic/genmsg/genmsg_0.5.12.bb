@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Standalone Python library for generating ROS message and service data structures for various languages."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/genmsg"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "6398881d14a9653d5fccff7733c2162513814bb14350bd7958c5cc2c36
 S = "${WORKDIR}/genmsg-release-release-melodic-genmsg-0.5.12-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/genmsg/genmsg_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/genmsg/genmsg_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('genmsg', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genmsg/genmsg_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genmsg/genmsg-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genmsg/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genmsg/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

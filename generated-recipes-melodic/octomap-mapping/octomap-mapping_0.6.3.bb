@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Mapping tools to be used with the <a href="https://octomap.github.io/">OctoMap library</a>, implementing a 3D occupancy grid mapping."
 AUTHOR = "Wolfgang Merkt <w.merkt+oss@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/octomap_mapping"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "4de0af1b402b7e50dd92835c84a45f9ce90467fe3bf16a714d185e6830
 S = "${WORKDIR}/octomap_mapping-release-release-melodic-octomap_mapping-0.6.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/octomap-mapping/octomap-mapping_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/octomap-mapping/octomap-mapping_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('octomap-mapping', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-mapping/octomap-mapping_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-mapping/octomap-mapping-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-mapping/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-mapping/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "chomp_motion_planner"
 AUTHOR = "Chittaranjan Srinivas Swaminathan <chitt@live.in>"
 HOMEPAGE = "http://ros.org/wiki/chomp_motion_planner"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "1f5bd973706dc3c014bb87d0e75f202e83db8d8d0883774f9eda58085d
 S = "${WORKDIR}/moveit-release-release-melodic-chomp_motion_planner-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/moveit/moveit_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/moveit/moveit_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/moveit_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/moveit-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

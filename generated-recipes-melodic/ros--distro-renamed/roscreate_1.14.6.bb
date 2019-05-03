@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "roscreate contains a tool that assists in the creation of ROS filesystem resources.      It provides: <tt>roscreate-pkg</tt>, which creates a new package directory,      including the appropriate build and manifest files."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/roscreate"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "00feca079aa2df6b49f19098c964312824216bffc015e1d64d1960df06
 S = "${WORKDIR}/ros-release-release-melodic-roscreate-1.14.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros--distro-renamed/ros--distro-renamed_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros--distro-renamed/ros--distro-renamed_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros--distro-renamed', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

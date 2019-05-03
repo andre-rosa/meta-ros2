@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The control toolbox contains modules that are useful across all controllers."
 AUTHOR = "Bence Magyar <bence.magyar.robotics@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/control_toolbox"
@@ -66,15 +68,13 @@ SRC_URI[sha256sum] = "87d87fd3110630b61fba232464add3e10dca4f7e6a080cf4900827cccf
 S = "${WORKDIR}/control_toolbox-release-release-melodic-control_toolbox-1.17.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/control-toolbox/control-toolbox_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/control-toolbox/control-toolbox_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('control-toolbox', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-toolbox/control-toolbox_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-toolbox/control-toolbox-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-toolbox/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-toolbox/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

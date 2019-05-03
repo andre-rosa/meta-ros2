@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The ros_reflexxes package"
 AUTHOR = "Daniel Zumkeller <daniel.zumkeller@live.de>"
 HOMEPAGE = "https://gitlab.ira.uka.de/iirob/ros_reflexxes"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "76626c036fcf97fd86efb214887ddffe715d343b660a6117eddd0f833e
 S = "${WORKDIR}/ipr_extern-release-release-melodic-ros_reflexxes-0.8.8-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ipr-extern/ipr-extern_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ipr-extern/ipr-extern_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ipr-extern', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/ipr-extern_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/ipr-extern-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

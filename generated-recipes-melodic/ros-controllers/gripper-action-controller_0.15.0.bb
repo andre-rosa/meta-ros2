@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The gripper_action_controller package"
 AUTHOR = "Sachin Chitta <robot.moveit@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -82,15 +84,13 @@ SRC_URI[sha256sum] = "7b15202e7175d3352a3855ee222ddbd4db8a5221425436f4637a80e600
 S = "${WORKDIR}/ros_controllers-release-release-melodic-gripper_action_controller-0.15.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-controllers/ros-controllers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-controllers/ros-controllers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-controllers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/ros-controllers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/ros-controllers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

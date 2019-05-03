@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Sample launch files to start a simulated LAUV in Gazebo."
 AUTHOR = "Musa Morena Marcusso Manhaes <musa.marcusso@de.bosch.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "ba4a2d4a1567b183be8c500d5dc714ebbec6802532da93eaab20cc7cdb
 S = "${WORKDIR}/lauv_gazebo-release-release-melodic-lauv_gazebo-0.1.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/lauv-gazebo/lauv-gazebo_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/lauv-gazebo/lauv-gazebo_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('lauv-gazebo', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lauv-gazebo/lauv-gazebo_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lauv-gazebo/lauv-gazebo-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lauv-gazebo/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lauv-gazebo/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

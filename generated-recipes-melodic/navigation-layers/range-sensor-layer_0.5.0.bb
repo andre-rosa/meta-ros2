@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Navigation Layer for Range sensors like sonar and IR"
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/range_sensor_layer"
@@ -69,15 +71,13 @@ SRC_URI[sha256sum] = "8e94872327b9579a9ca65c6aefe659bfffb7544a61ddca67580e8707af
 S = "${WORKDIR}/navigation_layers_release-release-melodic-range_sensor_layer-0.5.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/navigation-layers/navigation-layers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/navigation-layers/navigation-layers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-layers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-layers/navigation-layers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-layers/navigation-layers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-layers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-layers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

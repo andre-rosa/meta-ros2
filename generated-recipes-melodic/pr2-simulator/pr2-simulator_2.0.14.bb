@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The pr2_simulator package"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "4502d2d3680adc3ad5bb876120527c7deb7642208da743e0c853353d85
 S = "${WORKDIR}/pr2_simulator-release-release-melodic-pr2_simulator-2.0.14-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pr2-simulator/pr2-simulator_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pr2-simulator/pr2-simulator_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-simulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/pr2-simulator_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/pr2-simulator-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Search-based planning library (SBPL)."
 AUTHOR = "Pyo <pyo@robotis.com>"
 HOMEPAGE = "http://sbpl.net"
@@ -42,15 +44,13 @@ SRC_URI[sha256sum] = "9f24887428cc4e548e8cb297b225d952a1085e3c1f555a847350016c21
 S = "${WORKDIR}/sbpl-release-release-melodic-sbpl-1.3.1-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/sbpl/sbpl_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/sbpl/sbpl_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sbpl', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbpl/sbpl_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbpl/sbpl-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbpl/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbpl/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

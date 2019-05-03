@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "<p>opencv_apps provides various nodes that run internally OpenCV's functionalities and publish the result as ROS topics. With opencv_apps, you can skip writing OpenCV application codes for a lot of its functionalities by simply running a launch file that corresponds to OpenCV's functionality you want.</p>     <ul>       <li>You can have a look at all launch files provided here (be sure to choose the correct branch. As of Sept. 2016 indigo branch is used for ROS Indigo, Jade, and Kinetic distros).</li>       <li>Some of the features covered by opencv_apps are explained in <a href="http://wiki.ros.org/opencv_apps">the wiki</a>.</li>     </ul>     <p>The most of code is originally taken from https://github.com/Itseez/opencv/tree/master/samples/cpp</p>"
 AUTHOR = "Kei Okada <kei.okada@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -80,15 +82,13 @@ SRC_URI[sha256sum] = "11489debf5d3b3dc194472f483d67857db62f76665f6785ad4f55882c4
 S = "${WORKDIR}/opencv_apps-release-release-melodic-opencv_apps-2.0.1-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/opencv-apps/opencv-apps_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/opencv-apps/opencv-apps_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('opencv-apps', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/opencv-apps/opencv-apps_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/opencv-apps/opencv-apps-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/opencv-apps/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/opencv-apps/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Transports audio from a source to a destination. Audio sources can come       from a microphone or file. The destination can play the audio or save it       to an mp3 file."
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/audio_capture"
@@ -59,15 +61,13 @@ SRC_URI[sha256sum] = "c24552309d44459372bb344e5d02af47ce6f9451329cb1f73e99e57833
 S = "${WORKDIR}/audio_common-release-release-melodic-audio_capture-0.3.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/audio-common/audio-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/audio-common/audio-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audio-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/audio-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/audio-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

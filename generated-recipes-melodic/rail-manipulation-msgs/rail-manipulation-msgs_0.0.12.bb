@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Common Manipulation Messages and Services Used in RAIL Manipulation Packages"
 AUTHOR = "David Kent <dekent@gatech.edu>"
 HOMEPAGE = "http://ros.org/wiki/rail_manipulation_msgs"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "2d8effa0a61ce81ef4a037ce360defc578616e2b6e5c1981144ba08e89
 S = "${WORKDIR}/rail_manipulation_msgs-release-release-melodic-rail_manipulation_msgs-0.0.12-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rail-manipulation-msgs/rail-manipulation-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rail-manipulation-msgs/rail-manipulation-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rail-manipulation-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rail-manipulation-msgs/rail-manipulation-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rail-manipulation-msgs/rail-manipulation-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rail-manipulation-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rail-manipulation-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

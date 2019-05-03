@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Drivers for the Asus Xtion and Primesense Devices. For using a kinect   with ROS, try the <a href="http://wiki.ros.org/freenect_stack">freenect stack</a>"
 AUTHOR = "Michael Ferguson <mferguson@fetchrobotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -67,15 +69,13 @@ SRC_URI[sha256sum] = "d154919dd68c19a6255bbbafd1d238d30baae4e6b146eb178750025111
 S = "${WORKDIR}/openni2_camera-release-release-melodic-openni2_camera-0.4.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/openni2-camera/openni2-camera_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/openni2-camera/openni2-camera_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('openni2-camera', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni2-camera/openni2-camera_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni2-camera/openni2-camera-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni2-camera/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni2-camera/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

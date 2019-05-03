@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Base dependencies and support libraries for ROS.     roslib contains many of the common data structures and tools that are shared across ROS client library implementations."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/roslib"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "e6a681f31b005d86d3d87877a69d398e5736ac4fc8cd3e65d8900d05b9
 S = "${WORKDIR}/ros-release-release-melodic-roslib-1.14.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros--distro-renamed/ros--distro-renamed_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros--distro-renamed/ros--distro-renamed_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros--distro-renamed', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

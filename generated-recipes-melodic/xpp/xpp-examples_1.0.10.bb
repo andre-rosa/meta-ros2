@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Examples of how to use the xpp framework."
 AUTHOR = "Alexander W. Winkler <alexander.w.winkler@gmail.com>"
 HOMEPAGE = "http://github.com/leggedrobotics/xpp"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "df300b82eb4135d5c0343d75f1c11dc6e3c03df09b07582ab3a4f75333
 S = "${WORKDIR}/xpp-release-release-melodic-xpp_examples-1.0.10-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/xpp/xpp_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/xpp/xpp_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('xpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/xpp_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/xpp-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

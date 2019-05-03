@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The find_object_2d package"
 AUTHOR = "Mathieu Labbe <matlabbe@gmail.com>"
 HOMEPAGE = "http://find-object.googlecode.com"
@@ -74,15 +76,13 @@ SRC_URI[sha256sum] = "7f868aa64cabd58c39cc11179f4d935c4c8399d9ebc5a59a561f352831
 S = "${WORKDIR}/find_object_2d-release-release-melodic-find_object_2d-0.6.2-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/find-object-2d/find-object-2d_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/find-object-2d/find-object-2d_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('find-object-2d', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/find-object-2d/find-object-2d_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/find-object-2d/find-object-2d-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/find-object-2d/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/find-object-2d/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "hector_gazebo_plugins provides gazebo plugins from Team Hector.      Currently it contains a 6wd differential drive plugin, an IMU sensor plugin,      an earth magnetic field sensor plugin, a GPS sensor plugin and a      sonar ranger plugin."
 AUTHOR = "Johannes Meyer <johannes@intermodalics.eu>"
 HOMEPAGE = "http://ros.org/wiki/hector_gazebo_plugins"
@@ -72,15 +74,13 @@ SRC_URI[sha256sum] = "950bd57e9157767ab5699a7b93eee1083a484633b26f8931b433c71755
 S = "${WORKDIR}/hector_gazebo-release-release-melodic-hector_gazebo_plugins-0.5.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/hector-gazebo/hector-gazebo_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/hector-gazebo/hector-gazebo_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hector-gazebo', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/hector-gazebo_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/hector-gazebo-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

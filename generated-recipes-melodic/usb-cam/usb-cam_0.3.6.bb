@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A ROS Driver for V4L USB Cameras"
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
 HOMEPAGE = "http://wiki.ros.org/usb_cam"
@@ -66,15 +68,13 @@ SRC_URI[sha256sum] = "21a2fa956af929b771c989bdb53a572443481b101cea0ba0b66547e044
 S = "${WORKDIR}/usb_cam-release-release-melodic-usb_cam-0.3.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/usb-cam/usb-cam_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/usb-cam/usb-cam_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('usb-cam', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam/usb-cam_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam/usb-cam-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

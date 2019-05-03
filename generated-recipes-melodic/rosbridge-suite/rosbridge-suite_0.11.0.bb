@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Rosbridge provides a JSON API to ROS functionality for non-ROS programs.     There are a variety of front ends that interface with rosbridge, including     a WebSocket server for web browsers to interact with.      Rosbridge_suite is a meta-package containing rosbridge, various front end     packages for rosbridge like a WebSocket package, and helper packages."
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
 HOMEPAGE = "http://ros.org/wiki/rosbridge_suite"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "76c2dc5b9525b17dc6862ac1781cd94a7d6df2df81457fe9731a6012c3
 S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosbridge_suite-0.11.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosbridge-suite/rosbridge-suite_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosbridge-suite/rosbridge-suite_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbridge-suite', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/rosbridge-suite_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/rosbridge-suite-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Messages for interfacing with various computer vision pipelines, such as     object detectors."
 AUTHOR = "Adam Allevato <adam.d.allevato@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "aea7d0a539a76bbd0072f74bb3c7ebc0a7f3b3277963f8d696de42a5c4
 S = "${WORKDIR}/vision_msgs-release-release-melodic-vision_msgs-0.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/vision-msgs/vision-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/vision-msgs/vision-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vision-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-msgs/vision-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-msgs/vision-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

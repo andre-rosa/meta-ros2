@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The robot_upstart package provides scripts which may be used to install     and uninstall Ubuntu Linux upstart jobs which launch groups of roslaunch files."
 AUTHOR = "Mike Purvis <mpurvis@clearpathrobotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -47,15 +49,13 @@ SRC_URI[sha256sum] = "a275ce760e7a19ed7b1f120e6b1a3e3c1043f35c5b9bc116a0ba9ed8a6
 S = "${WORKDIR}/robot_upstart-release-release-melodic-robot_upstart-0.3.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/robot-upstart/robot-upstart_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/robot-upstart/robot-upstart_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-upstart', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-upstart/robot-upstart_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-upstart/robot-upstart-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-upstart/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-upstart/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

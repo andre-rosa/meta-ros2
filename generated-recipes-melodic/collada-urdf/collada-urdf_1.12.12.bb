@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package contains a tool to convert Unified Robot Description Format (URDF) documents into COLLAborative Design Activity (COLLADA) documents.      Implements robot-specific COLLADA extensions as defined by     http://openrave.programmingvision.com/index.php/Started:COLLADA"
 AUTHOR = "Chris Lalancette <clalancette@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/collada_urdf"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "b45310a279cd0ed77c4c782656bcaed2417adc74d09b546d4a41eb0121
 S = "${WORKDIR}/collada_urdf-release-release-melodic-collada_urdf-1.12.12-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/collada-urdf/collada-urdf_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/collada-urdf/collada-urdf_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('collada-urdf', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/collada-urdf/collada-urdf_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/collada-urdf/collada-urdf-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/collada-urdf/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/collada-urdf/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

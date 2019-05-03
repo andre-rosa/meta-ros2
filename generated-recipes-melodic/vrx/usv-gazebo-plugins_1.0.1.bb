@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Gazebo plugins for simulating Unmanned Surface Vehicles     Originaly copied from https://github.com/bsb808/usv_gazebo_plugins"
 AUTHOR = "Carlos Aguero <caguero@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/usv_gazebo_plugins"
@@ -59,15 +61,13 @@ SRC_URI[sha256sum] = "61bbed37ef07cd02e27f6710063400a17b259523bbe721a0f657120b3a
 S = "${WORKDIR}/vrx-release-release-melodic-usv_gazebo_plugins-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/vrx/vrx_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/vrx/vrx_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vrx', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/vrx_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/vrx-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

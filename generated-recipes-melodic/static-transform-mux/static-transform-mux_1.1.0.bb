@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A helper node that makes sure everybody knows about all static transforms, even if they are published by multiple publishers."
 AUTHOR = "Martin Pecka <peckama2@fel.cvut.cz>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "9b5bce13459bb33c3bcf4eb03f3c72e10e4b9b118f16a5a352ca9d4293
 S = "${WORKDIR}/static_transform_mux-release-release-melodic-static_transform_mux-1.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/static-transform-mux/static-transform-mux_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/static-transform-mux/static-transform-mux_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('static-transform-mux', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/static-transform-mux/static-transform-mux_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/static-transform-mux/static-transform-mux-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/static-transform-mux/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/static-transform-mux/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

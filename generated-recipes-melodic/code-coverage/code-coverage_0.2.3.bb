@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "CMake configuration to run coverage"
 AUTHOR = "Michael Ferguson <mike@vanadiumlabs.com>"
 HOMEPAGE = "https://github.com/mikeferguson/code_coverage"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "aaf9d0b3b00d1b1af932e9099dbb3a92475ee92e45f189b3bfb3559e8a
 S = "${WORKDIR}/code_coverage-gbp-release-melodic-code_coverage-0.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/code-coverage/code-coverage_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/code-coverage/code-coverage_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('code-coverage', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/code-coverage/code-coverage_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/code-coverage/code-coverage-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/code-coverage/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/code-coverage/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

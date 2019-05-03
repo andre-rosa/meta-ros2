@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "HyQ-robot specific functions for visualization in the  XPP Motion Framework.          These include inverse kinematics as well as urdf files for a one-legged,     two-legged and four legged robot with <a href="http://dls.iit.it/">HyQ</a>     legs.              The dynamic model can be found      <a href="https://github.com/iit-DLSLab/hyq-description">here</a>.            See also <a href="https://dls.iit.it">IIT</a>."
 AUTHOR = "Alexander W. Winkler <alexander.w.winkler@gmail.com>"
 HOMEPAGE = "http://github.com/leggedrobotics/xpp"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "92f200e4ca8f3bb5c9b5e4b9657aadd436267efeae2f74f235a682ad9c
 S = "${WORKDIR}/xpp-release-release-melodic-xpp_hyq-1.0.10-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/xpp/xpp_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/xpp/xpp_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('xpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/xpp_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/xpp-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xpp/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

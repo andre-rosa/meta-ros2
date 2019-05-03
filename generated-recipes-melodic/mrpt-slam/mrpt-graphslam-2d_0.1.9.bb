@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Implement graphSLAM using the mrpt-graphslam library, in an online fashion   	by directly reading measurements off ROS Topics."
 AUTHOR = "Nikos Koukis <nickkouk@gmail.com>"
 HOMEPAGE = "http://www.mrpt.org/"
@@ -79,15 +81,13 @@ SRC_URI[sha256sum] = "2581a0b10692921efe75fa9456cba7e3f39755e8ec223ad296f44944e1
 S = "${WORKDIR}/mrpt_slam-release-release-melodic-mrpt_graphslam_2d-0.1.9-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/mrpt-slam/mrpt-slam_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/mrpt-slam/mrpt-slam_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-slam', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/mrpt-slam_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/mrpt-slam-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

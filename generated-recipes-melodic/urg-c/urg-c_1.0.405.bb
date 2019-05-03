@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The urg_c package"
 AUTHOR = "Chad Rockey <chadrockey@gmail.com>"
 HOMEPAGE = "http://sourceforge.net/projects/urgwidget/"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "f747da6d3ab437c8a455194bbd9cf64f84798700d7458584c77916f9c4
 S = "${WORKDIR}/urg_c-release-release-melodic-urg_c-1.0.405-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/urg-c/urg-c_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/urg-c/urg-c_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urg-c', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-c/urg-c_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-c/urg-c-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-c/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-c/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

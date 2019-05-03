@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "sound_play provides a ROS node that translates commands on a ROS topic (<tt>robotsound</tt>) into sounds. The node supports built-in sounds, playing OGG/WAV files, and doing speech synthesis via festival. C++ and Python bindings allow this node to be used without understanding the details of the message format, allowing faster development and resilience to message format changes."
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/sound_play"
@@ -76,15 +78,13 @@ SRC_URI[sha256sum] = "3ac9c2fb8ee7252db6e28c37df5d7591fdee14dbe437408b32cf2d01d1
 S = "${WORKDIR}/audio_common-release-release-melodic-sound_play-0.3.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/audio-common/audio-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/audio-common/audio-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audio-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/audio-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/audio-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package is used to manually control a robot that uses the operator and     navigator node from navigation_2d. Currently there is one node to control one     robot with a joystick and one to control multiple robots in simulation.     It can send commands directly to the operator or start and stop navigator actions."
 AUTHOR = "Sebastian Kasperski <sebastian.kasperski@dfki.de>"
 HOMEPAGE = "http://wiki.ros.org/remote_controller"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "91aa99978a86691724e4b4079baa5825b7f19ec127b1ca8d349af55c22
 S = "${WORKDIR}/navigation_2d-release-release-melodic-nav2d_remote-0.4.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/navigation-2d/navigation-2d_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/navigation-2d/navigation-2d_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-2d', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/navigation-2d_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/navigation-2d-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

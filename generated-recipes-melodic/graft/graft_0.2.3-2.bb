@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Graft is not yet finished. It's intended to be a full replacement to     robot_pose_ekf, including native absolute references, and arbitrary     topic configuration.      If you try to use Graft now, please note that not all parameters are     configured and you will not always see a change in behavior by     modifying the parameters."
 AUTHOR = "Chad Rockey <chadrockey@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/graft"
@@ -68,15 +70,13 @@ SRC_URI[sha256sum] = "9a8974a928fe75527071337fedbe94266631129c0a1b9cb9d9163b0630
 S = "${WORKDIR}/graft-release-release-melodic-graft-0.2.3-2"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/graft/graft_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/graft/graft_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('graft', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/graft/graft_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/graft/graft-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/graft/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/graft/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

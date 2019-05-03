@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The roscompile package"
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -54,15 +56,13 @@ SRC_URI[sha256sum] = "09449c45a4b93695d6faf539f2d2a59f91c971d54f38beb9b0ecd317f1
 S = "${WORKDIR}/roscompile-release-release-melodic-roscompile-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/roscompile/roscompile_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/roscompile/roscompile_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roscompile', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/roscompile_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/roscompile-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

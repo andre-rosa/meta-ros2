@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The wiimote package allows ROS nodes to communicate with a Nintendo Wiimote     and its related peripherals, including the Nunchuk, Motion Plus, and     (experimentally) the Classic. The package implements a ROS node that uses     Bluetooth to communicate with the Wiimote device, obtaining accelerometer     and gyro data, the state of LEDs, the IR camera, rumble (vibrator),     buttons, joystick, and battery state. The node additionally enables ROS     nodes to control the Wiimote's LEDs and vibration for feedback to the human     Wiimote operator. LEDs and vibration may be switched on and off, or made to     operate according to a timed pattern."
 AUTHOR = "Jonathan Bohren <jbo@jhu.edu>"
 HOMEPAGE = "http://www.ros.org/wiki/wiimote"
@@ -76,15 +78,13 @@ SRC_URI[sha256sum] = "89cc9d0267879d69c478f2d1fafb2462142c7d462c87c9458345b76063
 S = "${WORKDIR}/joystick_drivers-release-release-melodic-wiimote-1.12.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/joystick-drivers/joystick-drivers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/joystick-drivers/joystick-drivers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('joystick-drivers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/joystick-drivers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/joystick-drivers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

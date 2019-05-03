@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package with external libraries used in Industrial and Service workspaces. Currentlly supported Libraries: Reflexxes, Libmodbus."
 AUTHOR = "Denis Štogl <denis.stogl@kit.edu>"
 HOMEPAGE = "https://github.com/KITrobotics/ipr_extern"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "a117475704fac421bb5f283eb775ab4339944f6ea148c2c996c0fb7642
 S = "${WORKDIR}/ipr_extern-release-release-melodic-ipr_extern-0.8.8-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ipr-extern/ipr-extern_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ipr-extern/ipr-extern_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ipr-extern', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/ipr-extern_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/ipr-extern-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

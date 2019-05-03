@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The ibeo_core package"
 AUTHOR = "AutonomouStuff Software Development Team <software@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/ibeo_core"
@@ -47,15 +49,13 @@ SRC_URI[sha256sum] = "c2ee7a2ea9424ee0c40e44d9cf22ab00bface29f418167a42451c6fae0
 S = "${WORKDIR}/ibeo_core-release-release-melodic-ibeo_core-2.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ibeo-core/ibeo-core_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ibeo-core/ibeo-core_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ibeo-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-core/ibeo-core_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-core/ibeo-core-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-core/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

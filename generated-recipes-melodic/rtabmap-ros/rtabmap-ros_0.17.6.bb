@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "RTAB-Map's ros-pkg. RTAB-Map is a RGB-D SLAM approach with real-time constraints."
 AUTHOR = "Mathieu Labbe <matlabbe@gmail.com>"
 HOMEPAGE = "https://github.com/introlab/rtabmap_ros/issues"
@@ -139,15 +141,13 @@ SRC_URI[sha256sum] = "6fe815c03b7ab3c27db125908e1206c537a46da0ff6266bb0263315833
 S = "${WORKDIR}/rtabmap_ros-release-release-melodic-rtabmap_ros-0.17.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rtabmap-ros/rtabmap-ros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rtabmap-ros/rtabmap-ros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rtabmap-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtabmap-ros/rtabmap-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtabmap-ros/rtabmap-ros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtabmap-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtabmap-ros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

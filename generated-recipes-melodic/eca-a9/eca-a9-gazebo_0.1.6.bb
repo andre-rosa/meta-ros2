@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package with launch files for demonstrations with the ECA A9 AUV"
 AUTHOR = "Thibault Pelletier <thp@eca.fr>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "e2dce04036c923f6df2b176be5b73ffc2f2f7002fb0c2db7f54d2ea686
 S = "${WORKDIR}/eca_a9-release-release-melodic-eca_a9_gazebo-0.1.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/eca-a9/eca-a9_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/eca-a9/eca-a9_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('eca-a9', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eca-a9/eca-a9_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eca-a9/eca-a9-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eca-a9/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eca-a9/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

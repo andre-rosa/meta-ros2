@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package provides a set of simple math utilities to work         with angles. The utilities cover simple things like         normalizing an angle and conversion between degrees and         radians. But even if you're trying to calculate things like         the shortest angular distance between two joinst space         positions of your robot, but the joint motion is constrained         by joint limits, this package is what you need. The code in         this packge is stable and well tested. There are no plans for         major changes in the near future."
 AUTHOR = "Ioan Sucan <isucan@willowgarage.com>"
 HOMEPAGE = "http://ros.org/wiki/angles"
@@ -42,15 +44,13 @@ SRC_URI[sha256sum] = "e234fbb316d2e74febab2c47710ecb9c1c7231c439d68a2f8540b41624
 S = "${WORKDIR}/geometry_angles_utils-release-release-melodic-angles-1.9.11-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/angles/angles_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/angles/angles_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('angles', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/angles/angles_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/angles/angles-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/angles/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/angles/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

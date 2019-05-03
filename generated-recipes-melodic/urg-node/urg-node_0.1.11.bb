@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "urg_node"
 AUTHOR = "Tony Baltovski <tony.baltovski@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/urg_node"
@@ -83,15 +85,13 @@ SRC_URI[sha256sum] = "86fec955adf084d6ebdf11e8a17ecb03586afcfab3b15329e02535a773
 S = "${WORKDIR}/urg_node-release-release-melodic-urg_node-0.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/urg-node/urg-node_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/urg-node/urg-node_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urg-node', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-node/urg-node_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-node/urg-node-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-node/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-node/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

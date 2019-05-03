@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Test suite for the packages that are part of the &quot;WiFi Test Setup&quot; project:     network_monitor_udp, network_traffic_control, hostapd_access_point, linksys_access_point,     ddwrt_access_point."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
 HOMEPAGE = "http://ros.org/wiki/network_control_tests"
@@ -67,15 +69,13 @@ SRC_URI[sha256sum] = "277a453251b08e5d8616c7c1af2081b1f9a5fde81c7415b7eb5eac329e
 S = "${WORKDIR}/linux_networking-release-release-melodic-network_control_tests-1.0.13-2"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/linux-networking/linux-networking_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/linux-networking/linux-networking_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/linux-networking_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/linux-networking-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

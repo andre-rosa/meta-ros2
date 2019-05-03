@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Javascript ROS message and service generators."
 AUTHOR = "Chris Smith <csmith@rethinkrobotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "09d5f9ee001d83dd19c111dc8c2d995b9e9a90e21df2a379b882ac555b
 S = "${WORKDIR}/gennodejs-release-release-melodic-gennodejs-2.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/gennodejs/gennodejs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/gennodejs/gennodejs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gennodejs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gennodejs/gennodejs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gennodejs/gennodejs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gennodejs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gennodejs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A plugin to image_transport for transparently sending images encoded with ImageZero."
 AUTHOR = "P. J. Reed <preed@swri.org>"
 HOMEPAGE = "http://www.ros.org/wiki/image_transport_plugins"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "4c9fbc7c319b30bb24174343cc8e901e9908725890f11cdca4866fbd4f
 S = "${WORKDIR}/imagezero_transport-release-release-melodic-imagezero_image_transport-0.2.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/imagezero-transport/imagezero-transport_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/imagezero-transport/imagezero-transport_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imagezero-transport', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imagezero-transport/imagezero-transport_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imagezero-transport/imagezero-transport-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imagezero-transport/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imagezero-transport/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

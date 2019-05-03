@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "HPP fork of FCL with bug fixes."
 AUTHOR = "Wolfgang Merkt <wolfgang.merkt@ed.ac.uk>"
 HOMEPAGE = "https://github.com/humanoid-path-planner/hpp-fcl"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "f6c9669e0b2cf9cbc04bfc89014ae8a82b0895e65eec29d65ca557ca6d
 S = "${WORKDIR}/hpp-fcl_catkin-release-release-melodic-hpp-fcl-1.0.1-2"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/hpp-fcl/hpp-fcl_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/hpp-fcl/hpp-fcl_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hpp-fcl', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hpp-fcl/hpp-fcl_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hpp-fcl/hpp-fcl-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hpp-fcl/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hpp-fcl/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

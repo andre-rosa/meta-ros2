@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ROS driver for IBEO LUX"
 AUTHOR = "AutonomouStuff Software Development Team <software@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/ibeo_lux"
@@ -67,15 +69,13 @@ SRC_URI[sha256sum] = "0aa9797cbee3936a930074405e44de2f604c0eaf99b7b4e6b60d377324
 S = "${WORKDIR}/ibeo_lux-release-release-melodic-ibeo_lux-2.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ibeo-lux/ibeo-lux_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ibeo-lux/ibeo-lux_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ibeo-lux', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-lux/ibeo-lux_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-lux/ibeo-lux-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-lux/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-lux/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

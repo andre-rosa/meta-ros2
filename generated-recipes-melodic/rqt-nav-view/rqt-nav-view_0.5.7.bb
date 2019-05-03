@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_nav_view provides a gui for viewing navigation maps and paths."
 AUTHOR = "Aaron Blasdel <ablasdel@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/rqt_nav_view"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "a531ad91a1753f9dd2b74d56b519c52aebeac013373f76c6e4e6b19c66
 S = "${WORKDIR}/rqt_nav_view-release-release-melodic-rqt_nav_view-0.5.7-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-nav-view/rqt-nav-view_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-nav-view/rqt-nav-view_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-nav-view', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-nav-view/rqt-nav-view_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-nav-view/rqt-nav-view-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-nav-view/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-nav-view/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Bindings between Numpy and Eigen using Boost.Python - wrapped for catkin."
 AUTHOR = "Wolfgang Merkt <wolfgang.merkt@ed.ac.uk>"
 HOMEPAGE = "https://github.com/stack-of-tasks/eigenpy"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "c8cf3b85343d3d89898496db8b1f5fcdfc1d3c5c43611cafb1871d7594
 S = "${WORKDIR}/eigenpy_catkin-release-release-melodic-eigenpy-1.5.1-2"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/eigenpy/eigenpy_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/eigenpy/eigenpy_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('eigenpy', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigenpy/eigenpy_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigenpy/eigenpy-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigenpy/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigenpy/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

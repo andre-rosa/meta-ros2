@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ROS messages for publishing graphs of different data types"
 AUTHOR = "Dave Coleman <davetcoleman@gmail.com>"
 HOMEPAGE = "https://github.com/davetcoleman/graph_msgs"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "90eea30842973033f2e20449457a89b871d1a66249113b2a423da84f45
 S = "${WORKDIR}/graph_msgs-release-release-melodic-graph_msgs-0.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/graph-msgs/graph-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/graph-msgs/graph-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('graph-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/graph-msgs/graph-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/graph-msgs/graph-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/graph-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/graph-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

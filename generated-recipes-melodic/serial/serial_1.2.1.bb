@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Serial is a cross-platform, simple to use library for using serial ports on computers.  This library provides a C++, object oriented interface for interacting with RS-232 like devices on Linux and Windows."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "http://wjwwood.github.com/serial/"
@@ -42,15 +44,13 @@ SRC_URI[sha256sum] = "2509a47393feef491a0876997beb0fd9af9ecc4e6ed6ceb533f3b88404
 S = "${WORKDIR}/serial-release-release-melodic-serial-1.2.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/serial/serial_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/serial/serial_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('serial', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/serial/serial_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/serial/serial-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/serial/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/serial/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

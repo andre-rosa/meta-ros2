@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Controller for a steer drive mobile base."
 AUTHOR = "Masaru Morita <p595201m@mail.kyutech.jp>"
 HOMEPAGE = "https://github.com/ros-controls/ros_controllers/issues"
@@ -80,15 +82,13 @@ SRC_URI[sha256sum] = "d6de33231e9dfdcb67a15c0c397f77d3e3e656823cabd02eb2464ba4a6
 S = "${WORKDIR}/ros_controllers-release-release-melodic-ackermann_steering_controller-0.15.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-controllers/ros-controllers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-controllers/ros-controllers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-controllers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/ros-controllers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/ros-controllers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

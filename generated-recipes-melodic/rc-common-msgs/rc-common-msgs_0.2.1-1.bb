@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Common msg and srv definitions used by Roboception's ROS packages"
 AUTHOR = "Felix Ruess <felix.ruess@roboception.de>"
 HOMEPAGE = "http://roboception.de"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "0510e2724b20be04c132d6218f0e411382934c9ebb5c5f8254b87b8db9
 S = "${WORKDIR}/rc_common_msgs-release-release-melodic-rc_common_msgs-0.2.1-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rc-common-msgs/rc-common-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rc-common-msgs/rc-common-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-common-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-common-msgs/rc-common-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-common-msgs/rc-common-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-common-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-common-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

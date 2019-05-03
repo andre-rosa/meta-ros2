@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "UMD camera metapackage"
 AUTHOR = "Ken Tossell <ken@tossell.net>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "fb6705f080d0f3add72ec01a70dfb7e3efd9f264c9294a4a2ced40f941
 S = "${WORKDIR}/camera_umd-release-release-melodic-camera_umd-0.2.7-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/camera-umd/camera-umd_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/camera-umd/camera-umd_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('camera-umd', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/camera-umd/camera-umd_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/camera-umd/camera-umd-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/camera-umd/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/camera-umd/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

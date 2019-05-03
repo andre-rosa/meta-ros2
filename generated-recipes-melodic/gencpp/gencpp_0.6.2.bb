@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "C++ ROS message and service generators."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://github.com/ros/gencpp/issues"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "d5b03777119dd51d50536b5e9613f00b0bb7558f363ed7f7358b8ceb80
 S = "${WORKDIR}/gencpp-release-release-melodic-gencpp-0.6.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/gencpp/gencpp_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/gencpp/gencpp_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gencpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gencpp/gencpp_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gencpp/gencpp-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gencpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gencpp/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

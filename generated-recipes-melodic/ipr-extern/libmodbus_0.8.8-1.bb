@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The iirob_filters package implements following filters:       1) Low-Pass       2) Moving Mean       3) Gravity Compensation (used for force-torque sensors)       4) Threshold Filter"
 AUTHOR = "Denis Štogl <denis.stogl@kit.edu>"
 HOMEPAGE = "http://wiki.ros.org/iirob_controllers"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "f5b0b1453abb1f1950ad1ca3378b061979259515d0d5bdc5958dd46a5c
 S = "${WORKDIR}/ipr_extern-release-release-melodic-libmodbus-0.8.8-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ipr-extern/ipr-extern_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ipr-extern/ipr-extern_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ipr-extern', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/ipr-extern_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/ipr-extern-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

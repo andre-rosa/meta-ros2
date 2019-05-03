@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "An example controller manager plugin for MoveIt. This is not functional code."
 AUTHOR = "Michael Görner <me@v4hn.de>"
 HOMEPAGE = "http://moveit.ros.org"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "7594ace173bf4c1d41806d16686f371784e37f2169aa655548213b4b44
 S = "${WORKDIR}/moveit-release-release-melodic-moveit_controller_manager_example-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/moveit/moveit_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/moveit/moveit_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/moveit_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/moveit-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

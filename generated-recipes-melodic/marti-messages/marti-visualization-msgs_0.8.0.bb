@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "marti_visualization_msgs"
 AUTHOR = "Marc Alban <malban@swri.org>"
 HOMEPAGE = "https://github.com/swri-robotics/marti_messages"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "09801787ccf1dbfc0dca3e719e3444552fb5d05834fa8036961ae60386
 S = "${WORKDIR}/marti_messages-release-release-melodic-marti_visualization_msgs-0.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/marti-messages/marti-messages_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/marti-messages/marti-messages_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('marti-messages', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-messages/marti-messages_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-messages/marti-messages-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-messages/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-messages/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

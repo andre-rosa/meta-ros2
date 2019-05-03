@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Messages, services and actions used by MoveIt"
 AUTHOR = "Dave Coleman <dave@dav.ee>"
 HOMEPAGE = "http://moveit.ros.org"
@@ -70,15 +72,13 @@ SRC_URI[sha256sum] = "d1053ffe57d739fff282835af4753e39f484acad8a596049f8dc97825a
 S = "${WORKDIR}/moveit_msgs-release-release-melodic-moveit_msgs-0.10.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/moveit-msgs/moveit-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/moveit-msgs/moveit-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-msgs/moveit-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-msgs/moveit-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

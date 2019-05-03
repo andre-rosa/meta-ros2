@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Synchronize the local ROS master to the remote masters       discovered by master_discovery_fkie node. The registration      of topics and services is only perform by local ROS master."
 AUTHOR = "Alexander Tiderko <alexander.tiderko@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/master_sync_fkie"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "14b81d9024f42cd1ad4eb7e35af79cdddc3682c38bbc867fea10915636
 S = "${WORKDIR}/multimaster_fkie-release-release-melodic-master_sync_fkie-0.8.12-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/multimaster-fkie/multimaster-fkie_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/multimaster-fkie/multimaster-fkie_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('multimaster-fkie', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/multimaster-fkie_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/multimaster-fkie-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

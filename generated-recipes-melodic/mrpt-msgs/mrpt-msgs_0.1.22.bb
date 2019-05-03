@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ROS messages for MRPT classes and objects"
 AUTHOR = "Jose-Luis Blanco-Claraco <jlblanco@ual.es>"
 HOMEPAGE = "http://wiki.ros.org/mrpt_msgs"
@@ -55,15 +57,13 @@ SRC_URI[sha256sum] = "baf8fd73e1c316f837c29fcaea20d6cb5cb84d4083813944b09005de92
 S = "${WORKDIR}/mrpt_msgs-release-release-melodic-mrpt_msgs-0.1.22-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/mrpt-msgs/mrpt-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/mrpt-msgs/mrpt-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-msgs/mrpt-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-msgs/mrpt-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "laser_proc"
 AUTHOR = "Chad Rockey <chadrockey@willowgarage.com>"
 HOMEPAGE = "http://ros.org/wiki/laser_proc"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "bd596ebcfc3016970ba1c6abcd0d8c550e9b96a19ec6ab23ec8f5f3bc0
 S = "${WORKDIR}/laser_proc-release-release-melodic-laser_proc-0.1.5-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/laser-proc/laser-proc_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/laser-proc/laser-proc_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-proc', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-proc/laser-proc_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-proc/laser-proc-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-proc/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-proc/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

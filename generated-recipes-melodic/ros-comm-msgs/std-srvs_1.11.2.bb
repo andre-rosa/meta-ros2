@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Common service definitions."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/std_srvs"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "ecc565aebf13d5afbfaf42a1fb8a31de29af19331ca76239ced87c10f1
 S = "${WORKDIR}/ros_comm_msgs-release-release-melodic-std_srvs-1.11.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-comm-msgs/ros-comm-msgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-comm-msgs/ros-comm-msgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm-msgs/ros-comm-msgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm-msgs/ros-comm-msgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm-msgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

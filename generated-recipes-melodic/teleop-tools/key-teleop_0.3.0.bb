@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A text-based interface to send a robot movement commands"
 AUTHOR = "Bence Magyar <bence.magyar.robotics@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "06f164a11e5deeab452048a9d404d302ac6b82f351df562da48abaf604
 S = "${WORKDIR}/teleop_tools-release-release-melodic-key_teleop-0.3.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/teleop-tools/teleop-tools_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/teleop-tools/teleop-tools_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teleop-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/teleop-tools_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/teleop-tools-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

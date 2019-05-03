@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Drive-by-wire interface to the Dataspeed Inc. Chrysler Pacifica DBW kit"
 AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
 HOMEPAGE = "http://dataspeedinc.com"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "971b88a77e2907f4fcd3cff91033cc784bdceb4f51d784bd9f01826128
 S = "${WORKDIR}/dbw_fca_ros-release-release-melodic-dbw_fca-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/dbw-fca-ros/dbw-fca-ros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/dbw-fca-ros/dbw-fca-ros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dbw-fca-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/dbw-fca-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/dbw-fca-ros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

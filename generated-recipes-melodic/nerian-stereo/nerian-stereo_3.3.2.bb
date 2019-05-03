@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Driver node for SceneScan and SP1 stereo vision sensors by Nerian Vision Technologies"
 AUTHOR = "Konstantin Schauwecker <konstantin.schauwecker@nerian.com>"
 HOMEPAGE = "http://wiki.ros.org/nerian_stereo"
@@ -63,15 +65,13 @@ SRC_URI[sha256sum] = "cab332138682cb2a2fb8de01086a05bf0c8e7a81c2ad1f169e7b530496
 S = "${WORKDIR}/nerian_stereo-release-release-melodic-nerian_stereo-3.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/nerian-stereo/nerian-stereo_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/nerian-stereo/nerian-stereo_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('nerian-stereo', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nerian-stereo/nerian-stereo_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nerian-stereo/nerian-stereo-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nerian-stereo/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nerian-stereo/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

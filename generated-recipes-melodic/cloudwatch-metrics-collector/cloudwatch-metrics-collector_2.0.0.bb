@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Subscriber node for the aws/monitoring topic to publish metrics to AWS Cloudwatch"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/cloudwatch_metrics_collector"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "85f807efb7f6dfc6cca35eed12ee12e4bc864e618221903eddab3c2892
 S = "${WORKDIR}/cloudwatch_metrics_collector-release-release-melodic-cloudwatch_metrics_collector-2.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/cloudwatch-metrics-collector/cloudwatch-metrics-collector_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/cloudwatch-metrics-collector/cloudwatch-metrics-collector_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cloudwatch-metrics-collector', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-metrics-collector/cloudwatch-metrics-collector_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-metrics-collector/cloudwatch-metrics-collector-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-metrics-collector/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-metrics-collector/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

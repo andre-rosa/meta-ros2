@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_runtime_monitor provides a GUI plugin viewing DiagnosticsArray messages."
 AUTHOR = "Aaron Blasdel <ablasdel@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/rqt_runtime_monitor"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "f58958b5649d59fca3022a1771e6a457382744c616835cc65980213ab7
 S = "${WORKDIR}/rqt_runtime_monitor-release-release-melodic-rqt_runtime_monitor-0.5.7-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-runtime-monitor/rqt-runtime-monitor_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-runtime-monitor/rqt-runtime-monitor_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-runtime-monitor', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-runtime-monitor/rqt-runtime-monitor_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-runtime-monitor/rqt-runtime-monitor-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-runtime-monitor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-runtime-monitor/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

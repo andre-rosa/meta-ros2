@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package attempts to show the features of ROS python API step-by-step,     including using messages, servers, parameters, etc. These tutorials are compatible with the nodes in roscpp_tutorial."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/rospy_tutorials"
@@ -54,15 +56,13 @@ SRC_URI[sha256sum] = "e7045e90505a3136f04f9d7d34a3eb67e81ffeb87d362291c9d1e3b72f
 S = "${WORKDIR}/ros_tutorials-release-release-melodic-rospy_tutorials-0.9.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-tutorials/ros-tutorials_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-tutorials/ros-tutorials_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-tutorials', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/ros-tutorials_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/ros-tutorials-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

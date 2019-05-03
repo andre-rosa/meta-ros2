@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package contains a number of URDF tutorials."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/urdf_tutorial"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "92605e8f00f4f6ca12ef65eceb536dc41ba222e9881eaa733a28afc784
 S = "${WORKDIR}/urdf_tutorial-release-release-melodic-urdf_tutorial-0.4.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/urdf-tutorial/urdf-tutorial_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/urdf-tutorial/urdf-tutorial_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdf-tutorial', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-tutorial/urdf-tutorial_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-tutorial/urdf-tutorial-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-tutorial/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-tutorial/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

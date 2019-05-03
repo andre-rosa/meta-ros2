@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package contains generic definitions of geometric shapes and bodies."
 AUTHOR = "Dave Coleman <dave@dav.ee>"
 HOMEPAGE = "http://ros.org/wiki/geometric_shapes"
@@ -79,15 +81,13 @@ SRC_URI[sha256sum] = "d30facbce2033851ba0b121a75c8d41c47a91831e51efb11dafe3bc877
 S = "${WORKDIR}/geometric_shapes-release-release-melodic-geometric_shapes-0.6.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/geometric-shapes/geometric-shapes_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/geometric-shapes/geometric-shapes_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geometric-shapes', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometric-shapes/geometric-shapes_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometric-shapes/geometric-shapes-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometric-shapes/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometric-shapes/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

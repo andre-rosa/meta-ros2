@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Provides service calls for getting ros meta-information, like list of     topics, services, params, etc."
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
 HOMEPAGE = "http://ros.org/wiki/rosapi"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "a267e4c4c19156dc78278f5efe291fc40f84e12fde5516279738f4f681
 S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosapi-0.11.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosbridge-suite/rosbridge-suite_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosbridge-suite/rosbridge-suite_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbridge-suite', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/rosbridge-suite_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/rosbridge-suite-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

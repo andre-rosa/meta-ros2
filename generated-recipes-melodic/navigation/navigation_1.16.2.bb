@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A 2D navigation stack that takes in information from odometry, sensor         streams, and a goal pose and outputs safe velocity commands that are sent         to a mobile base."
 AUTHOR = "Michael Ferguson <mfergs7@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/navigation"
@@ -57,15 +59,13 @@ SRC_URI[sha256sum] = "f95e40e466dbf7535ad26e1bc94630a9e75c337b3b6e0730e7576e871f
 S = "${WORKDIR}/navigation-release-release-melodic-navigation-1.16.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/navigation/navigation_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/navigation/navigation_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/navigation_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/navigation-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

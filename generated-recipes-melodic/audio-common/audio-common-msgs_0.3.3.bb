@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Messages for transmitting audio via ROS"
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/audio_common_msgs"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "119fea466f5d72ff6fab2bb92fed76cf3665441eb4b6012ff202817c5c
 S = "${WORKDIR}/audio_common-release-release-melodic-audio_common_msgs-0.3.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/audio-common/audio-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/audio-common/audio-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audio-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/audio-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/audio-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

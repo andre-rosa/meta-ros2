@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Python implementation of bond, a mechanism for checking when     another process has terminated."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/bondpy"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "c7dde4bdb17c65092192cf7f2b28294b6271f6d19cf3778a90106b74f0
 S = "${WORKDIR}/bond_core-release-release-melodic-bondpy-1.8.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/bond-core/bond-core_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/bond-core/bond-core_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('bond-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/bond-core_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/bond-core-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A controller ensuring the safe operation of your robot.      The SafetyController listens to ranger readings in order to stop (and move back), if obstacles get to close.      This controller can be enabled/disabled."
 AUTHOR = "Marcus Liebhardt <marcus.liebhardt@yujinrobot.com>"
 HOMEPAGE = "http://ros.org/wiki/yocsd_safety_controller"
@@ -67,15 +69,13 @@ SRC_URI[sha256sum] = "83f0799143de08c0f6c8aa93c665fbac01d8a7dc3e8e04752bdc59e042
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_safety_controller-0.8.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/yujin-ocs/yujin-ocs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/yujin-ocs/yujin-ocs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ROS Package Tool"
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rospack"
@@ -65,15 +67,13 @@ SRC_URI[sha256sum] = "0b9db7d9b7c20d8f36204d3bda08ef5cf41f3f8f7e009862102603b9da
 S = "${WORKDIR}/rospack-release-release-melodic-rospack-2.5.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rospack/rospack_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rospack/rospack_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rospack', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospack/rospack_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospack/rospack-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospack/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospack/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

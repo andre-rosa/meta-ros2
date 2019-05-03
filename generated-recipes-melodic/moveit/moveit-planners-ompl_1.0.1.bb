@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "MoveIt! interface to OMPL"
 AUTHOR = "Dave Coleman <dave@picknik.ai>"
 HOMEPAGE = "http://moveit.ros.org"
@@ -70,15 +72,13 @@ SRC_URI[sha256sum] = "ff42c067ffeea4f9430e365946b5a958bec447d2e0e5a4fee66eee6a30
 S = "${WORKDIR}/moveit-release-release-melodic-moveit_planners_ompl-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/moveit/moveit_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/moveit/moveit_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/moveit_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/moveit-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

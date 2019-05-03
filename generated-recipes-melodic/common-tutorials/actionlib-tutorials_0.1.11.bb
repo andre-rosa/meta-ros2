@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The actionlib_tutorials package"
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/actionlib/Tutorials"
@@ -54,15 +56,13 @@ SRC_URI[sha256sum] = "202b1bd5a2d7cde96dcd20fa54fb6fc017ec6e1252575b5413618310c5
 S = "${WORKDIR}/common_tutorials-release-release-melodic-actionlib_tutorials-0.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/common-tutorials/common-tutorials_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/common-tutorials/common-tutorials_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-tutorials', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/common-tutorials_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/common-tutorials-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

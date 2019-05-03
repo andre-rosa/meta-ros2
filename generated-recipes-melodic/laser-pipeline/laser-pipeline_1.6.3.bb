@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Meta-package of libraries for processing laser data, including converting laser data       into 3D representations."
 AUTHOR = "Jonathan Binney <jon.binney@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/laser_pipeline"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "5d831b4e5ff12088b034f71202b7202c5d4fff9717d4a58acd5843e279
 S = "${WORKDIR}/laser_pipeline-release-release-melodic-laser_pipeline-1.6.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/laser-pipeline/laser-pipeline_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/laser-pipeline/laser-pipeline_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-pipeline', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-pipeline/laser-pipeline_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-pipeline/laser-pipeline-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-pipeline/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

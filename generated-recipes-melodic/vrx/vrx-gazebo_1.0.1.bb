@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The ROS package for the RobotX competition running in Gazebo."
 AUTHOR = "Carlos Aguero <caguero@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/vrx_gazebo"
@@ -70,15 +72,13 @@ SRC_URI[sha256sum] = "d6a4a9bdd86e6645bd539ec12ebcde5a87f46368643f4485561e3fae94
 S = "${WORKDIR}/vrx-release-release-melodic-vrx_gazebo-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/vrx/vrx_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/vrx/vrx_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vrx', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/vrx_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/vrx-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_pose_view provides a GUI plugin for visualizing 3D poses."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rqt_pose_view"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "00e9962e4a7132dcb9082692fb49563d309b9e446b5eb17e65354dd7e1
 S = "${WORKDIR}/rqt_pose_view-release-release-melodic-rqt_pose_view-0.5.8-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-pose-view/rqt-pose-view_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-pose-view/rqt-pose-view_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-pose-view', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-pose-view/rqt-pose-view_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-pose-view/rqt-pose-view-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-pose-view/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-pose-view/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Metapackage referencing tutorials related to rviz and visualization."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/visualization_tutorials"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "5f67b564a5f87b4d7113b97de74e987a956d3985dac7639204b4ba697a
 S = "${WORKDIR}/visualization_tutorials-release-release-melodic-visualization_tutorials-0.10.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/visualization-tutorials/visualization-tutorials_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/visualization-tutorials/visualization-tutorials_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('visualization-tutorials', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/visualization-tutorials_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/visualization-tutorials-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

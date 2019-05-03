@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Components of MoveIt! that offer simpler interfaces to planning and execution"
 AUTHOR = "Michael Ferguson <mferguson@fetchrobotics.com>"
 HOMEPAGE = "http://moveit.ros.org"
@@ -93,15 +95,13 @@ SRC_URI[sha256sum] = "3d9447fa2f84157ef3613cc32133286a7475fee7410a3bdbaa6653833a
 S = "${WORKDIR}/moveit-release-release-melodic-moveit_ros_planning_interface-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/moveit/moveit_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/moveit/moveit_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/moveit_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/moveit-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

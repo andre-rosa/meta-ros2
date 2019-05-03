@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ROS messages for the cartographer_ros package."
 AUTHOR = "The Cartographer Authors <cartographer-owners@googlegroups.com>"
 HOMEPAGE = "https://github.com/googlecartographer/cartographer_ros"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "f4572cb110370abc6059493e41532e143142c3ee974c6737c6a42aa781
 S = "${WORKDIR}/cartographer_ros-release-release-melodic-cartographer_ros_msgs-1.0.0-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/cartographer-ros/cartographer-ros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/cartographer-ros/cartographer-ros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cartographer-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/cartographer-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/cartographer-ros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

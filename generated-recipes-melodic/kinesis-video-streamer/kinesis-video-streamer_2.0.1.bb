@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Kinesis Video Streams producer node"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/kinesis_video_streamer"
@@ -67,15 +69,13 @@ SRC_URI[sha256sum] = "63f75867b432622944356a87a290bd76e4ad6bd76b5dc98306905eade5
 S = "${WORKDIR}/kinesis_video_streamer-release-release-melodic-kinesis_video_streamer-2.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/kinesis-video-streamer/kinesis-video-streamer_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/kinesis-video-streamer/kinesis-video-streamer_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('kinesis-video-streamer', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-video-streamer/kinesis-video-streamer_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-video-streamer/kinesis-video-streamer-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-video-streamer/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-video-streamer/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

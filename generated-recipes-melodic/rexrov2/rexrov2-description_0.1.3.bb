@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The robot description files for the RexROV 2 underwater vehicle"
 AUTHOR = "Musa Morena Marcusso Manhaes <Musa.Marcusso@de.bosch.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -53,15 +55,13 @@ SRC_URI[sha256sum] = "a4da8b1fd519c66c4156c38ff1107731858cf630ef0194fd3fe2e5950a
 S = "${WORKDIR}/rexrov2-release-release-melodic-rexrov2_description-0.1.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rexrov2/rexrov2_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rexrov2/rexrov2_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rexrov2', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rexrov2/rexrov2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rexrov2/rexrov2-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rexrov2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rexrov2/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

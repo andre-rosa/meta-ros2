@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Ros extensions and behaviours for py_trees."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/py_trees"
@@ -65,15 +67,13 @@ SRC_URI[sha256sum] = "1bc3f54d395458994329b16c3e3abff63702270a44e1443c5cafafe85a
 S = "${WORKDIR}/py_trees_ros-release-release-melodic-py_trees_ros-0.5.18-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/py-trees-ros/py-trees-ros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/py-trees-ros/py-trees-ros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('py-trees-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros/py-trees-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros/py-trees-ros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

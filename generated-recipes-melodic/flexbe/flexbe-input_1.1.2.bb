@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "flexbe_input enables to send data to onboard behavior when required."
 AUTHOR = "Philipp Schillinger <schillin@kth.se>"
 HOMEPAGE = "http://ros.org/wiki/flexbe_input"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "0ebbf1d4e17a6a51d7699e23869d3e7741220a0e18a80114979f4c67d2
 S = "${WORKDIR}/flexbe_behavior_engine-release-release-melodic-flexbe_input-1.1.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/flexbe/flexbe_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/flexbe/flexbe_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('flexbe', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/flexbe_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/flexbe-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

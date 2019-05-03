@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_web is a simple web content viewer for rqt. Users can show web content in Qt-based window by specifying its URL."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rqt_web"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "3192e2e64f268d79b93d505bc475aa1f39009e75f645d294934d55c2b0
 S = "${WORKDIR}/rqt_web-release-release-melodic-rqt_web-0.4.8-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-web/rqt-web_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-web/rqt-web_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-web', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-web/rqt-web_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-web/rqt-web-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-web/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-web/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

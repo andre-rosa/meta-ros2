@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The urdf_test package"
 AUTHOR = "davidfernandez <david.fernandez@pal-robotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -47,15 +49,13 @@ SRC_URI[sha256sum] = "0c218b7644479fe4c625fd32883d1e45d945f3662f73152e60e45bbf3c
 S = "${WORKDIR}/urdf_test-release-release-melodic-urdf_test-1.0.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/urdf-test/urdf-test_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/urdf-test/urdf-test_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdf-test', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-test/urdf-test_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-test/urdf-test-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-test/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-test/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

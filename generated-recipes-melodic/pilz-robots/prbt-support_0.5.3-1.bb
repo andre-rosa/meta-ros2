@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Mechanical, kinematic and visual description   of the Pilz light weight arm PRBT."
 AUTHOR = "Alexander Gutenkunst <a.gutenkunst@pilz.de>"
 HOMEPAGE = "https://wiki.ros.org/prbt_support"
@@ -62,15 +64,13 @@ SRC_URI[sha256sum] = "3245c40ace092b9ec35df51500c0ade0fd3ff5723d5f92c8e724d4edd7
 S = "${WORKDIR}/pilz_robots-release-release-melodic-prbt_support-0.5.3-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pilz-robots/pilz-robots_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pilz-robots/pilz-robots_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pilz-robots', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/pilz-robots_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/pilz-robots-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

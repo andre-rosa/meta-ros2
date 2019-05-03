@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package to translate ROS messages to and from CAN messages to interact with the Universal Lat/Lon Controller (ULC) firmware"
 AUTHOR = "Micho Radovnikovich <mradovnikovich@dataspeedinc.com>"
 HOMEPAGE = "https://bitbucket.org/dataspeedinc/dataspeed_ulc_ros"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "85673897676564ab1aea0ffe505a10469008d058ca28ce81bce53b50b4
 S = "${WORKDIR}/dataspeed_ulc_ros-release-release-melodic-dataspeed_ulc_can-0.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/dataspeed-ulc-ros/dataspeed-ulc-ros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/dataspeed-ulc-ros/dataspeed-ulc-ros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dataspeed-ulc-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-ulc-ros/dataspeed-ulc-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-ulc-ros/dataspeed-ulc-ros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-ulc-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-ulc-ros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

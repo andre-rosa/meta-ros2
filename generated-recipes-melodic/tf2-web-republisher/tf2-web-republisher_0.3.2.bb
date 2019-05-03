@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Republishing of Selected TFs"
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
 HOMEPAGE = "http://ros.org/wiki/tf2_web_republisher"
@@ -67,15 +69,13 @@ SRC_URI[sha256sum] = "401fcc79bf11e5071e8304b1053bf8afed6f3e91d3df30c0823c87c82b
 S = "${WORKDIR}/tf2_web_republisher-release-release-melodic-tf2_web_republisher-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/tf2-web-republisher/tf2-web-republisher_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/tf2-web-republisher/tf2-web-republisher_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tf2-web-republisher', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf2-web-republisher/tf2-web-republisher_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf2-web-republisher/tf2-web-republisher-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf2-web-republisher/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf2-web-republisher/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

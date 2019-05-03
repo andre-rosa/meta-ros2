@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Some utility functionality to interact with ROS using roslisp."
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
 HOMEPAGE = "http://ros.org/wiki/roslisp_utilities"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "8ba55d5f2be13e9efc3be9f7ab4d78897f917e388d291f75f627642034
 S = "${WORKDIR}/roslisp_common-release-release-melodic-roslisp_utilities-0.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/roslisp-common/roslisp-common_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/roslisp-common/roslisp-common_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roslisp-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp-common/roslisp-common_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp-common/roslisp-common-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp-common/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

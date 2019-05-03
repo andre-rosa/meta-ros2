@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Filters a laser scan to remove points that are in the current static map"
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/map_laser"
@@ -62,15 +64,13 @@ SRC_URI[sha256sum] = "eea82c4a217ce37a62d9e6dc06c0a309cbe738b5da63ea573aea59d8ef
 S = "${WORKDIR}/laser_filtering_release-release-melodic-map_laser-0.0.4-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/laser-filtering/laser-filtering_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/laser-filtering/laser-filtering_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-filtering', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/laser-filtering_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/laser-filtering-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

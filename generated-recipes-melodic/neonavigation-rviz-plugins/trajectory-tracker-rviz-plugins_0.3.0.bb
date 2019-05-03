@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Rviz plugins for trajectory_tracker_msgs"
 AUTHOR = "Atsushi Watanabe <atsushi.w@ieee.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -54,15 +56,13 @@ SRC_URI[sha256sum] = "27d4fffce53dd393d4c705e38fb1f2bf9696c4a0e33081ce28db0d2379
 S = "${WORKDIR}/neonavigation_rviz_plugins-release-release-melodic-trajectory_tracker_rviz_plugins-0.3.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/neonavigation-rviz-plugins/neonavigation-rviz-plugins_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/neonavigation-rviz-plugins/neonavigation-rviz-plugins_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('neonavigation-rviz-plugins', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/neonavigation-rviz-plugins/neonavigation-rviz-plugins_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/neonavigation-rviz-plugins/neonavigation-rviz-plugins-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/neonavigation-rviz-plugins/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/neonavigation-rviz-plugins/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

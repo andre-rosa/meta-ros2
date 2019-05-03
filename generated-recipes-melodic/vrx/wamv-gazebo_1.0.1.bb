@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Provides templates and examples for integrating the WAM-V model into gazebo with dynamics, sensors, etc."
 AUTHOR = "Carlos Aguero <caguero@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/wamv_gazebo"
@@ -64,15 +66,13 @@ SRC_URI[sha256sum] = "108c898691498d09b8946e2d081c9e3f8f3c247db5bfd785df968d4ae2
 S = "${WORKDIR}/vrx-release-release-melodic-wamv_gazebo-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/vrx/vrx_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/vrx/vrx_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vrx', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/vrx_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/vrx-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

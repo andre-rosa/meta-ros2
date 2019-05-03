@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rosserial for TivaC Launchpad evaluation boards."
 AUTHOR = "Vitor Matos <vmatos@robosavvy.com>"
 HOMEPAGE = "http://wiki.ros.org/rosserial_tivac"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "3d4ce56cd9d2dd5e1d51afa86467890aa0d06c97b7342f7d469640eaa0
 S = "${WORKDIR}/rosserial-release-release-melodic-rosserial_tivac-0.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosserial/rosserial_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosserial/rosserial_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosserial', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/rosserial_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/rosserial-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

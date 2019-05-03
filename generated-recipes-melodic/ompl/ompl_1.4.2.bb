@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "OMPL is a free sampling-based motion planning library."
 AUTHOR = "Mark Moll <mmoll@rice.edu>"
 HOMEPAGE = "http://ompl.kavrakilab.org"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "35d69fbf80c64944c92a69d468823e68bcd7d776750720c7f50c3af09f
 S = "${WORKDIR}/ompl-release-release-melodic-ompl-1.4.2-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ompl/ompl_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ompl/ompl_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ompl', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ompl/ompl_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ompl/ompl-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ompl/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ompl/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

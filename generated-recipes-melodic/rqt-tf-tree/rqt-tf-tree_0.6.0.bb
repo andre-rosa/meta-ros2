@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_tf_tree provides a GUI plugin for visualizing the ROS TF frame tree."
 AUTHOR = "Isaac I.Y. Saito <gm130s@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/rqt_tf_tree"
@@ -66,15 +68,13 @@ SRC_URI[sha256sum] = "c52046ad978eb9ae418a866706d9b909646dee0f8b76deed4fa501e089
 S = "${WORKDIR}/rqt_tf_tree-release-release-melodic-rqt_tf_tree-0.6.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-tf-tree/rqt-tf-tree_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-tf-tree/rqt-tf-tree_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-tf-tree', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-tf-tree/rqt-tf-tree_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-tf-tree/rqt-tf-tree-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-tf-tree/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-tf-tree/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Python and C++ interfaces for manipulating geodetic coordinates."
 AUTHOR = "Jack O'Quin <jack.oquin@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/geodesy"
@@ -67,15 +69,13 @@ SRC_URI[sha256sum] = "58e20388e22a583385b39acf097e80a508617623d484f29a30f31ee965
 S = "${WORKDIR}/geographic_info-release-release-melodic-geodesy-0.5.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/geographic-info/geographic-info_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/geographic-info/geographic-info_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geographic-info', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geographic-info/geographic-info_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geographic-info/geographic-info-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geographic-info/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geographic-info/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

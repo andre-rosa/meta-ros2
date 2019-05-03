@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Driver for the Volksbot robot."
 AUTHOR = "Sebastian Pütz <spuetz@uos.de>"
 HOMEPAGE = "http://wiki.ros.org/volksbot_driver"
@@ -54,15 +56,13 @@ SRC_URI[sha256sum] = "c8cb933054437dd270a0a2171f0dc56922538911d1b32ea5dbb1cea60b
 S = "${WORKDIR}/volksbot_driver-release-release-melodic-volksbot_driver-1.0.0-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/volksbot-driver/volksbot-driver_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/volksbot-driver/volksbot-driver_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('volksbot-driver', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/volksbot-driver/volksbot-driver_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/volksbot-driver/volksbot-driver-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/volksbot-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/volksbot-driver/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

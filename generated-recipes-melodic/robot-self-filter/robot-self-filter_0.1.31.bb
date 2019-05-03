@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Filters the robot's body out of point clouds."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
 HOMEPAGE = "http://ros.org/wiki/robot_self_filter"
@@ -77,15 +79,13 @@ SRC_URI[sha256sum] = "8a6538dd30770242d25476003332f8ac072fbb0837e50cdde55600dc7d
 S = "${WORKDIR}/robot_self_filter-gbp-release-melodic-robot_self_filter-0.1.31-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/robot-self-filter/robot-self-filter_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/robot-self-filter/robot-self-filter_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-self-filter', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-self-filter/robot-self-filter_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-self-filter/robot-self-filter-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-self-filter/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-self-filter/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

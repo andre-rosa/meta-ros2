@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package contains a tool for setting and publishing joint state values for a given URDF."
 AUTHOR = "Chris Lalancette <clalancette@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/joint_state_publisher"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "47bcd5c3c46ffd2d73ee0910bf584a3a23be56e2e423f3849b8771e55f
 S = "${WORKDIR}/joint_state_publisher-release-release-melodic-joint_state_publisher-1.12.13-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/joint-state-publisher/joint-state-publisher_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/joint-state-publisher/joint-state-publisher_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('joint-state-publisher', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joint-state-publisher/joint-state-publisher_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joint-state-publisher/joint-state-publisher-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joint-state-publisher/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joint-state-publisher/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This  library contains wrappers for generating floating point values, integers, quaternions using boost libraries.    The constructor of the wrapper is guaranteed to be thread safe and initialize its random number generator to a random seed.   Seeds are obtained using a separate and different random number generator."
 AUTHOR = "Steven! Ragnarök <stevenragnarok@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/random_numbers"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "989cf481e8bd4c7b44278d73a549554fd874479c1f28e8d26f77fa905a
 S = "${WORKDIR}/random_numbers-release-release-melodic-random_numbers-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/random-numbers/random-numbers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/random-numbers/random-numbers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('random-numbers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/random-numbers/random-numbers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/random-numbers/random-numbers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/random-numbers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/random-numbers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

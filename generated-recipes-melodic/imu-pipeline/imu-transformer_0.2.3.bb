@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Node/nodelet combination to transform sensor_msgs::Imu data from one frame into another."
 AUTHOR = "Paul Bovbel <pbovbel@clearpathrobotics.com>"
 HOMEPAGE = "http://ros.org/wiki/imu_transformer"
@@ -75,15 +77,13 @@ SRC_URI[sha256sum] = "385d6b98746a58cc8dcc26c189a5a3c9853b553794798cd352ebe3445d
 S = "${WORKDIR}/imu_pipeline-release-release-melodic-imu_transformer-0.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/imu-pipeline/imu-pipeline_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/imu-pipeline/imu-pipeline_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imu-pipeline', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/imu-pipeline_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/imu-pipeline-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

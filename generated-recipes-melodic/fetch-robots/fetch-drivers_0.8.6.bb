@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The public fetch_drivers package is a binary only release.      fetch_drivers contains both the drivers and firmware for the fetch and freight research robots.     There should be no reason to use these drivers unless you're running on a fetch or a freight research robot.     This package, is a cmake/make only package which installs the binaries for the drivers and firmware."
 AUTHOR = "Alexander Moriarty <amoriarty@fetchrobotics.com>"
 HOMEPAGE = "https://wiki.ros.org/fetch_drivers"
@@ -108,15 +110,13 @@ SRC_URI[sha256sum] = "bf7c846904d5af4fd6cd3591a534d336436666f15b3e1ec28e25d5c5f5
 S = "${WORKDIR}/fetch_robots-release-release-melodic-fetch_drivers-0.8.6-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/fetch-robots/fetch-robots_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/fetch-robots/fetch-robots_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-robots', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/fetch-robots_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/fetch-robots-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This stack aims to bring the common tools and algorithms needed to     develop navigation algorithms, in particular slam. It does not focus on     the end-point solution, rather the tools needed to create a variety of     end-point solutions."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/ecl_navigation"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "1d3e834b6aa0b70617f25fc03c9c7f275e5280ed6a75570483b0db48ec
 S = "${WORKDIR}/ecl_navigation-release-release-melodic-ecl_navigation-0.60.3-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ecl-navigation/ecl-navigation_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ecl-navigation/ecl-navigation_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/ecl-navigation_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/ecl-navigation-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package provides a gui program as well as a rviz plugin to publish static transforms.   Both support the transformation between various Euler angle representations.   The rviz plugin also allows to configure the transform with an interactive marker."
 AUTHOR = "Robert Haschke <rhaschke@techfak.uni-bielefeld.de>"
 HOMEPAGE = "http://wiki.ros.org/agni_tf_tools"
@@ -54,15 +56,13 @@ SRC_URI[sha256sum] = "a9e0e0179ff125da7fca8680b2428754c2fb434db0b9d190865e95f6c6
 S = "${WORKDIR}/agni_tf_tools-release-release-melodic-agni_tf_tools-0.1.1-1"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/agni-tf-tools/agni-tf-tools_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/agni-tf-tools/agni-tf-tools_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('agni-tf-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/agni-tf-tools/agni-tf-tools_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/agni-tf-tools/agni-tf-tools-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/agni-tf-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/agni-tf-tools/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

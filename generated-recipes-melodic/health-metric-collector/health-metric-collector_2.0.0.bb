@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The health_metric_collector package"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/health_metric_collector"
@@ -68,15 +70,13 @@ SRC_URI[sha256sum] = "a0b78f0e8e9edbbea16f0837f64764358c03dad0b2e2bd07012c802697
 S = "${WORKDIR}/health_metric_collector-release-release-melodic-health_metric_collector-2.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/health-metric-collector/health-metric-collector_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/health-metric-collector/health-metric-collector_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('health-metric-collector', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/health-metric-collector/health-metric-collector_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/health-metric-collector/health-metric-collector-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/health-metric-collector/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/health-metric-collector/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

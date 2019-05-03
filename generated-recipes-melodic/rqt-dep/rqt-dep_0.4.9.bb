@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_dep provides a GUI plugin for visualizing the ROS dependency graph."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rqt_dep"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "7fa60310716f75eb444c3f45578111826f1e2bcdc092a1a5b530bfef04
 S = "${WORKDIR}/rqt_dep-release-release-melodic-rqt_dep-0.4.9-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-dep/rqt-dep_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-dep/rqt-dep_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-dep', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-dep/rqt-dep_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-dep/rqt-dep-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-dep/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-dep/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

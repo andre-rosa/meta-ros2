@@ -3,11 +3,13 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "libqt-svg-dev metapackage supporting qt4 and qt5"
 AUTHOR = "Matthew Bries <mbries@swri.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
-LICENSE = "GPR & Proprietary"
+LICENSE = "United States Government Purpose & SwRI Proprietary"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=8e473b26ead33548c945bdaca143a08d"
 
 ROS_BPN = "libqt_svg_dev"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "9650990b4fed04c6f124e9fbd4c007937351ea9b3fbb924e36a6c58aeb
 S = "${WORKDIR}/qt_metapackages-release-release-melodic-libqt_svg_dev-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/qt-metapackages/qt-metapackages_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/qt-metapackages/qt-metapackages_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('qt-metapackages', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-metapackages/qt-metapackages_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-metapackages/qt-metapackages-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-metapackages/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-metapackages/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

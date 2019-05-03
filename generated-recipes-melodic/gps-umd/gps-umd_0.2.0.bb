@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "gps_umd metapackage"
 AUTHOR = "Ken Tossell <ken@tossell.net>"
 HOMEPAGE = "http://ros.org/wiki/gps_umd"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "8a74ec06defb2718bb21ef216302cc99a063ddf7f3cca8fe8b5a836a9a
 S = "${WORKDIR}/gps_umd-release-release-melodic-gps_umd-0.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/gps-umd/gps-umd_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/gps-umd/gps-umd_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gps-umd', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/gps-umd_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/gps-umd-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

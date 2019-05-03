@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "YP-Spur is a mobile robot motion control software with coordinate frame based commands."
 AUTHOR = "Atsushi Watanabe <atsushi.w@ieee.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "35d3539033d2e62e0a731c12c4cce634e0976e41be664aac51ac0da12f
 S = "${WORKDIR}/yp-spur-release-release-melodic-ypspur-1.15.3-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/yp-spur/yp-spur_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/yp-spur/yp-spur_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yp-spur', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yp-spur/yp-spur_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yp-spur/yp-spur-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yp-spur/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yp-spur/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
