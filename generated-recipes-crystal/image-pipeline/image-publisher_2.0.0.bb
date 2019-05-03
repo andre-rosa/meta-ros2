@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "<p>       Contains a node publish an image stream from single image file       or avi motion file.     </p>"
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/image_publisher"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "399a70053d065f616ea3b8a4dcc0b8aa5aba278c3e12d60be4dadfffe3
 S = "${WORKDIR}/image_pipeline-release-release-crystal-image_publisher-2.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/image-pipeline/image-pipeline_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/image-pipeline/image-pipeline_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-pipeline', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/image-pipeline_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/image-pipeline-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Converts action files into message and service files."
 AUTHOR = "Shane Loretz <sloretz@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "f79319429937ec9389ab706816c9e04dbbbb1903073b76317f97be19a6
 S = "${WORKDIR}/rosidl-release-release-crystal-rosidl_actions-0.6.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosidl/rosidl_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosidl/rosidl_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/rosidl_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/rosidl-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

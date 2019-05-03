@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Wrapper around yaml-cpp, it provides a fixed CMake module and an ExternalProject build of it."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "https://github.com/jbeder/yaml-cpp"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "40ebab2a3298b5c6f44d69b287d305097cc267912e38722e181f1a903e
 S = "${WORKDIR}/yaml_cpp_vendor-release-release-crystal-yaml_cpp_vendor-5.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/yaml-cpp-vendor/yaml-cpp-vendor_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/yaml-cpp-vendor/yaml-cpp-vendor_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yaml-cpp-vendor', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yaml-cpp-vendor/yaml-cpp-vendor_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yaml-cpp-vendor/yaml-cpp-vendor-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yaml-cpp-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yaml-cpp-vendor/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

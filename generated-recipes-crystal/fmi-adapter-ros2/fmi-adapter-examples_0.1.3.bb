@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Provides small examples for use of the fmi_adapter package"
 AUTHOR = "Ralph Lange <ralph.lange@de.bosch.com>"
 HOMEPAGE = "http://wiki.ros.org/fmi_adapter"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "d7f11e0bf4166888fe9cbdee74a25ae52063a844708dc92accfe267c6f
 S = "${WORKDIR}/fmi_adapter_ros2-release-release-crystal-fmi_adapter_examples-0.1.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/fmi-adapter-ros2/fmi-adapter-ros2_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/fmi-adapter-ros2/fmi-adapter-ros2_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fmi-adapter-ros2', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter-ros2/fmi-adapter-ros2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter-ros2/fmi-adapter-ros2-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter-ros2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter-ros2/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

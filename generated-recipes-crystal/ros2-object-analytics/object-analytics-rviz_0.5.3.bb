@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Display object analytics result in rviz"
 AUTHOR = "Chris Ye <chris.ye@intel.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -63,15 +65,13 @@ SRC_URI[sha256sum] = "00f9f160d4740e7ca9799da65b83e5337aa482e4dac4cc151ce8c84dea
 S = "${WORKDIR}/ros2_object_analytics-release-release-crystal-object_analytics_rviz-0.5.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros2-object-analytics/ros2-object-analytics_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros2-object-analytics/ros2-object-analytics_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros2-object-analytics', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-object-analytics/ros2-object-analytics_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-object-analytics/ros2-object-analytics-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-object-analytics/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-object-analytics/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

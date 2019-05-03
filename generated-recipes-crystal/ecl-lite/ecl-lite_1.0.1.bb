@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Libraries and utilities for embedded and low-level linux development."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/ecl_lite"
@@ -47,15 +49,13 @@ SRC_URI[sha256sum] = "da24938f4d3fabe34a7d9e936cb274beb26f8070113c92fd3b3da54b7a
 S = "${WORKDIR}/ecl_lite-release-release-crystal-ecl_lite-1.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ecl-lite/ecl-lite_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ecl-lite/ecl-lite_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-lite', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/ecl-lite_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/ecl-lite-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

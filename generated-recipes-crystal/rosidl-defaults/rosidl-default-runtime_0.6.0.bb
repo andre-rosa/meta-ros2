@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A configuration package defining the runtime for the ROS interfaces."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "8b856ffb15bc3153f89f51d87b1606568d2702cd87f00c30f39f8b65e2
 S = "${WORKDIR}/rosidl_defaults-release-release-crystal-rosidl_default_runtime-0.6.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosidl-defaults/rosidl-defaults_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosidl-defaults/rosidl-defaults_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl-defaults', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-defaults/rosidl-defaults_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-defaults/rosidl-defaults-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-defaults/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-defaults/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

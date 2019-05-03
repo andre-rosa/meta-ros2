@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Model-based distributed configuration handling."
 AUTHOR = "Arne Nordmann <arne.nordmann@bosch.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -71,15 +73,13 @@ SRC_URI[sha256sum] = "0ab125b66ddef7e164e8f9014f60a32b55e99fb0e2caf0be1b43b4a847
 S = "${WORKDIR}/system_modes-release-release-crystal-system_modes-0.1.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/system-modes/system-modes_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/system-modes/system-modes_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('system-modes', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/system-modes/system-modes_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/system-modes/system-modes-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/system-modes/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/system-modes/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

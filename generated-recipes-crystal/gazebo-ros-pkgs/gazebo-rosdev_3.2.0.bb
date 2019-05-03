@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Provides a cmake config for the default version of Gazebo for the ROS distribution."
 AUTHOR = "Jose Luis Rivero <jrivero@openrobotics.org>"
 HOMEPAGE = "http://gazebosim.org/tutorials?cat=connect_ros"
@@ -42,15 +44,13 @@ SRC_URI[sha256sum] = "a7820291c149e6e678fe5b6b4076fc4aa4872ad674555d4f8ec3cc072f
 S = "${WORKDIR}/gazebo_ros_pkgs-release-release-crystal-gazebo_dev-3.2.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/gazebo-ros-pkgs/gazebo-ros-pkgs_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/gazebo-ros-pkgs/gazebo-ros-pkgs_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gazebo-ros-pkgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gazebo-ros-pkgs/gazebo-ros-pkgs_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gazebo-ros-pkgs/gazebo-ros-pkgs-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gazebo-ros-pkgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gazebo-ros-pkgs/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

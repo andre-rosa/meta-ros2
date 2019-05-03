@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Wrapper around uncrustify, providing nothing but a dependency on uncrustify, on some systems.     On others, it provides an ExternalProject build of uncrustify."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
 HOMEPAGE = "https://github.com/uncrustify/uncrustify"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "e81702fda146eb9e430cb382a925c852d768aee7f801fe35df14c91cc2
 S = "${WORKDIR}/uncrustify_vendor-release-release-crystal-uncrustify_vendor-1.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/uncrustify-vendor/uncrustify-vendor_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/uncrustify-vendor/uncrustify-vendor_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('uncrustify-vendor', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uncrustify-vendor/uncrustify-vendor_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uncrustify-vendor/uncrustify-vendor-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uncrustify-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uncrustify-vendor/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Wrapper around assimp, providing nothing but a dependency on assimp, on some systems.     On others, it provides a fixed CMake module or even an ExternalProject build of assimp."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "http://assimp.sourceforge.net/index.html"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "b571fec410ffc054065ebb16be64e2ef2e6b50b62c9a3fe4656ffde677
 S = "${WORKDIR}/rviz-release-release-crystal-rviz_assimp_vendor-5.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rviz/rviz_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rviz/rviz_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/rviz_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/rviz-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

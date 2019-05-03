@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Python API to access the ament resource index."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -42,15 +44,13 @@ SRC_URI[sha256sum] = "2c72c61f27599e5d25900d22ad6e70116552e5eea1570e00b519b5b2d7
 S = "${WORKDIR}/ament_index-release-release-crystal-ament_index_python-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ament-index/ament-index_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ament-index/ament-index_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-index', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-index/ament-index_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-index/ament-index-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-index/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-index/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

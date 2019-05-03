@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "AprilTag message definitions"
 AUTHOR = "Christian Rauch <Rauch.Christian@gmx.de>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "af7792e34c22e34c7cf69608d103c3d27cb182bb5741a3848fb21d4eb5
 S = "${WORKDIR}/apriltag2_node-release-release-crystal-apriltag_msgs-1.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/apriltag2-node/apriltag2-node_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/apriltag2-node/apriltag2-node_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('apriltag2-node', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2-node/apriltag2-node_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2-node/apriltag2-node-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2-node/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2-node/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

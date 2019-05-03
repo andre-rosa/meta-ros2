@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Python nodes which were previously in the ros2/examples repository but are now just used for demo purposes."
 AUTHOR = "Michael Carroll <michael@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -47,15 +49,13 @@ SRC_URI[sha256sum] = "cc1e237a66ebe61ff40c27723c53672c42ebc6afc8f292e422d648b60c
 S = "${WORKDIR}/demos-release-release-crystal-demo_nodes_py-0.6.2-0"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/demos/demos_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/demos/demos_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('demos', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/demos_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/demos-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

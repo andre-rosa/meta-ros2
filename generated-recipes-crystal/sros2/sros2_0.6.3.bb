@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Command line tools for managing SROS2 keys"
 AUTHOR = "Michael Carroll <michael@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "006a7b5eef7f2d33a38be6367659eec3a17a901a35339c1b30fd64b4ab
 S = "${WORKDIR}/sros2-release-release-crystal-sros2-0.6.3-0"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/sros2/sros2_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/sros2/sros2_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sros2', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/sros2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/sros2-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

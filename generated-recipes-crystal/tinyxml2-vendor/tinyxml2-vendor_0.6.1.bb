@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Wrapper around tinyxml2, providing nothing but a dependency on tinyxml2, on some systems.     On others, it provides a fixed CMake module or even an ExternalProject build of tinyxml2."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "68aa18c4cdfc73098b30c5b59de57a85458e88e38f54b790442cf6ab05
 S = "${WORKDIR}/tinyxml2_vendor-release-release-crystal-tinyxml2_vendor-0.6.1-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/tinyxml2-vendor/tinyxml2-vendor_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/tinyxml2-vendor/tinyxml2-vendor_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tinyxml2-vendor', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinyxml2-vendor/tinyxml2-vendor_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinyxml2-vendor/tinyxml2-vendor-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinyxml2-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinyxml2-vendor/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

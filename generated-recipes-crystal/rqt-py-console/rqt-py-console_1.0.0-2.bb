@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_py_console is a Python GUI plugin providing an interactive Python console."
 AUTHOR = "Dorian Scholz <scholz@sim.tu-darmstadt.de>"
 HOMEPAGE = "http://wiki.ros.org/rqt_py_console"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "2797cbe4f59a613ed53201713ad7a0a3d5f3db5271bca452012500b8ab
 S = "${WORKDIR}/rqt_py_console-release-release-crystal-rqt_py_console-1.0.0-2"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-py-console/rqt-py-console_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-py-console/rqt-py-console_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-py-console', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-py-console/rqt-py-console_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-py-console/rqt-py-console-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-py-console/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-py-console/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

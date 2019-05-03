@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "AprilTag detector library"
 AUTHOR = "Christian Rauch <Rauch.Christian@gmx.de>"
 HOMEPAGE = "https://april.eecs.umich.edu/software/apriltag.html"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "3f021fcda7c06021420a3edbd25dcac2df45bb01d90de64e6cade44e94
 S = "${WORKDIR}/apriltag2-release-release-crystal-apriltag-0.9.8-1"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/apriltag2/apriltag2_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/apriltag2/apriltag2_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('apriltag2', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2/apriltag2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2/apriltag2-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

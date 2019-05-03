@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "TLSF allocator version 2.4.6"
 AUTHOR = "Chris Lalancette <clalancette@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -47,15 +49,13 @@ SRC_URI[sha256sum] = "fb30080b58ef1610f857ff1ddcf1416325f24a247267e2c49f09a5759a
 S = "${WORKDIR}/tlsf-release-release-crystal-tlsf-0.5.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/tlsf/tlsf_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/tlsf/tlsf_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tlsf', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tlsf/tlsf_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tlsf/tlsf-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tlsf/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tlsf/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

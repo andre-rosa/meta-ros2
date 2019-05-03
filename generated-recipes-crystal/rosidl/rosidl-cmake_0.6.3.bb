@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The CMake functionality to invoke code generation for ROS interface files."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "511f4f0f1635d02c087d46fdb566d7a176bf94d1be85488a8764a9c93f
 S = "${WORKDIR}/rosidl-release-release-crystal-rosidl_cmake-0.6.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosidl/rosidl_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosidl/rosidl_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/rosidl_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/rosidl-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A simple bridge between ROS 1 and ROS 2"
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -94,15 +96,13 @@ SRC_URI[sha256sum] = "8dd00267aeb79b2c88892c8b6806f55684450b04fd412f3874309f069f
 S = "${WORKDIR}/ros1_bridge-release-release-crystal-ros1_bridge-0.6.2-2"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros1-bridge/ros1-bridge_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros1-bridge/ros1-bridge_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros1-bridge', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros1-bridge/ros1-bridge_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros1-bridge/ros1-bridge-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros1-bridge/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros1-bridge/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_gui_py enables GUI plugins to use the Python client library for ROS."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/rqt_gui_py"
@@ -47,15 +49,13 @@ SRC_URI[sha256sum] = "88e7fbe247e2a45351e3c8a7e882b302a3c7a7a6766a191be34edf2ef1
 S = "${WORKDIR}/rqt-release-release-crystal-rqt_gui_py-1.0.2-0"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt/rqt_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt/rqt_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt/rqt_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt/rqt-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

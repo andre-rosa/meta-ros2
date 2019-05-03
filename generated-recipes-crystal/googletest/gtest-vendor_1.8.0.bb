@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The package provides GoogleTest."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "f670a11cca4cf323c27c007c363ae1cdedcab5b04894fe9fb427075855
 S = "${WORKDIR}/googletest-release-release-crystal-gtest_vendor-1.8.0-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/googletest/googletest_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/googletest/googletest_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('googletest', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/googletest/googletest_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/googletest/googletest-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/googletest/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/googletest/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

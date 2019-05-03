@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_topic provides a GUI plugin for displaying debug information about ROS topics including publishers, subscribers, publishing rate, and ROS Messages."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rqt_topic"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "fcd05409c692c11682336b35372024844908ac97824eed6b8d98e38ac4
 S = "${WORKDIR}/rqt_topic-release-release-crystal-rqt_topic-1.0.0-0"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-topic/rqt-topic_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-topic/rqt-topic_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-topic', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-topic/rqt-topic_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-topic/rqt-topic-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-topic/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-topic/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

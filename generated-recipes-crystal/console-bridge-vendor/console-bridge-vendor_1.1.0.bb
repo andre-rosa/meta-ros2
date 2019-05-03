@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Wrapper around console_bridge, providing nothing but a dependency on console_bridge, on some systems.     On others, it provides an ExternalProject build of console_bridge."
 AUTHOR = "Steven! Ragnarök <steven@osrfoundation.org>"
 HOMEPAGE = "https://github.com/ros/console_bridge"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "1a8eb7126fa9825f35ad4f5373646c2df8b68595d0d6e4c2a595c3916e
 S = "${WORKDIR}/console_bridge_vendor-release-release-crystal-console_bridge_vendor-1.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/console-bridge-vendor/console-bridge-vendor_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/console-bridge-vendor/console-bridge-vendor_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('console-bridge-vendor', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/console-bridge-vendor_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/console-bridge-vendor-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

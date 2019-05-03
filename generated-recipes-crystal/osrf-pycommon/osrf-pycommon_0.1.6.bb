@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Commonly needed Python modules, used by Python software developed at OSRF."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "0b57f393c62abbe990c23c9b55272fc0e97d402ef68d2e9f7fc3c3a66f
 S = "${WORKDIR}/osrf_pycommon-release-release-crystal-osrf_pycommon-0.1.6-0"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/osrf-pycommon/osrf-pycommon_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/osrf-pycommon/osrf-pycommon_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('osrf-pycommon', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-pycommon/osrf-pycommon_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-pycommon/osrf-pycommon-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-pycommon/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-pycommon/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

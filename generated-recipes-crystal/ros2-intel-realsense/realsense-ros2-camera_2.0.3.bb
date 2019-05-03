@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The realsense_ros2_camera package"
 AUTHOR = "Sharron LIU <sharron.liu@intel.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -68,15 +70,13 @@ SRC_URI[sha256sum] = "ccd6585ced405d85548f307ccafaffe130bbcdad898c93a6c447205304
 S = "${WORKDIR}/ros2_intel_realsense-release-release-crystal-realsense_ros2_camera-2.0.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros2-intel-realsense/ros2-intel-realsense_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros2-intel-realsense/ros2-intel-realsense_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros2-intel-realsense', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-intel-realsense/ros2-intel-realsense_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-intel-realsense/ros2-intel-realsense-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-intel-realsense/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-intel-realsense/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

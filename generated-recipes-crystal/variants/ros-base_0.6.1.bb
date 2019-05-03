@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A package which extends 'ros_core' and includes other basic functionalities like tf2 and urdf."
 AUTHOR = "Steven! Ragnarök <steven@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "f4024e4d573f5137a6c5d7865bdd4ea69875a111db2c4938b7995da59c
 S = "${WORKDIR}/variants-release-release-crystal-ros_base-0.6.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/variants/variants_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/variants/variants_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('variants', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variants/variants_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variants/variants-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variants/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variants/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

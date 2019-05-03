@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Cmake macros to configure security for nodes"
 AUTHOR = "AWS B9 Team <aws-b9-platform@amazon.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "80042b41404ecbb8cc07a61aa45b2b93fb2c15adfb8e6043fb1e5ef662
 S = "${WORKDIR}/sros2-release-release-crystal-sros2_cmake-0.6.3-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/sros2/sros2_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/sros2/sros2_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sros2', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/sros2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/sros2-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

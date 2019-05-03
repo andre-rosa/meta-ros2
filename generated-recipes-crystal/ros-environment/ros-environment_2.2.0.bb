@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The package provides the environment variables `ROS_VERSION` and `ROS_DISTRO`."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://github.com/ros/ros_environment"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "8c890650a2d0c0bf70cb93ad109a920272f64cba3ac089503891a356d6
 S = "${WORKDIR}/ros_environment-release-release-crystal-ros_environment-2.2.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-environment/ros-environment_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-environment/ros-environment_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-environment', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/ros-environment_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/ros-environment-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

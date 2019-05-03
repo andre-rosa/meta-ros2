@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Example plugin for RViz - documents and tests RViz plugin development"
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "https://github.com/ros2/rviz"
@@ -58,15 +60,13 @@ SRC_URI[sha256sum] = "a66b2482a4c5c7ab5fd51246a799b42855b7d406643a9c28e1eff45fba
 S = "${WORKDIR}/rviz-release-release-crystal-rviz_rendering_tests-5.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rviz/rviz_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rviz/rviz_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/rviz_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/rviz-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

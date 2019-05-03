@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Implementation of RTPS standard."
 AUTHOR = "Steven! Ragnarök <stevenragnarok@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "296305d8465e27e3cff4289865b15bf2bb40ccfb7a7d60e7c28b3a5df3
 S = "${WORKDIR}/fastrtps-release-release-crystal-fastrtps-1.7.2-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/fastrtps/fastrtps_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/fastrtps/fastrtps_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fastrtps', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastrtps/fastrtps_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastrtps/fastrtps-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastrtps/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastrtps/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

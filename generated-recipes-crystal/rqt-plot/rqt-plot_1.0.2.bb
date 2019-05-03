@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_plot provides a GUI plugin visualizing numeric values in a 2D plot using different plotting backends."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rqt_plot"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "748b63efccb0774caf53eb6b27c0ff0b818352f027bf34df203e4a7105
 S = "${WORKDIR}/rqt_plot-release-release-crystal-rqt_plot-1.0.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-plot/rqt-plot_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-plot/rqt-plot_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-plot', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-plot/rqt-plot_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-plot/rqt-plot-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-plot/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-plot/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

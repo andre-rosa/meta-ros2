@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A set of ROS2 message filters which take in messages and may output those messages at a later time, based on the conditions that filter needs met."
 AUTHOR = "Ethan Gao <ethan.gao@linux.intel.com>"
 HOMEPAGE = "https://github.com/intel/ros2_message_filters"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "8fe2f16068afc46bdb688496deda0717a80a87a0ec6730f1c6361c9176
 S = "${WORKDIR}/ros2_message_filters-release-release-crystal-message_filters-3.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/message-filters/message-filters_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/message-filters/message-filters_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('message-filters', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/message-filters_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/message-filters-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

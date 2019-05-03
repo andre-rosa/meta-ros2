@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package provides an implementation of a 2D costmap that takes in sensor     data from the world, builds a 2D or 3D occupancy grid of the data (depending     on whether a voxel based implementation is used), and inflates costs in a     2D costmap based on the occupancy grid and a user specified inflation radius.     This package also provides support for map_server based initialization of a     costmap, rolling window based costmaps, and parameter based subscription to     and configuration of sensor topics."
 AUTHOR = "Michael Ferguson <mfergs7@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -109,15 +111,13 @@ SRC_URI[sha256sum] = "d334601046ce22f40bb0abe4f43ec89531f3a21890d4e678e98b4e3289
 S = "${WORKDIR}/navigation2-release-release-crystal-nav2_costmap_2d-0.1.7-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/navigation2/navigation2_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/navigation2/navigation2_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation2', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/navigation2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/navigation2-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

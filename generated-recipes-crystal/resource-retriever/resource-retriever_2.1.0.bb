@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package retrieves data from url-format files such as http://,    ftp://, package:// file://, etc., and loads the data into memory.    The package:// url for ros packages is translated into a local    file:// url.  The resourse retriever was initially designed to load    mesh files into memory, but it can be used for any type of    data. The resource retriever is based on the the libcurl library."
 AUTHOR = "Chris Lalancette <clalancette@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/resource_retriever"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "9db42f615c9c1240dcae2f0ef91495e1177ab7c97acd884dfb38507e5d
 S = "${WORKDIR}/resource_retriever-release-release-crystal-resource_retriever-2.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/resource-retriever/resource-retriever_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/resource-retriever/resource-retriever_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('resource-retriever', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/resource-retriever_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/resource-retriever-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

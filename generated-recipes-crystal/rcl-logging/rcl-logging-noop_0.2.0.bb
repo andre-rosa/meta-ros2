@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "An rcl logger implementation that doesn't do anything with log messages."
 AUTHOR = "Amazon B9 <amazon-b9-ros@amazon.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "7820b3b21a0cd3964df0a6a60e6f385d4cd89ecc3dc59e8ae9c28b44f9
 S = "${WORKDIR}/rcl_logging-release-release-crystal-rcl_logging_noop-0.2.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rcl-logging/rcl-logging_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rcl-logging/rcl-logging_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rcl-logging', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/rcl-logging_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/rcl-logging-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

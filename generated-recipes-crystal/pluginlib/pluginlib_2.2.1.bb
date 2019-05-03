@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The pluginlib package provides tools for writing and dynamically loading plugins using the ROS build infrastructure.     To work, these tools require plugin providers to register their plugins in the package.xml of their package."
 AUTHOR = "Steven! Ragnarök <stevenragnarok@osrfoundation.org>"
 HOMEPAGE = "http://www.ros.org/wiki/pluginlib"
@@ -57,15 +59,13 @@ SRC_URI[sha256sum] = "f520bff44d60282657c97f75a9eee211d9e49e0ed605450997a0155f77
 S = "${WORKDIR}/pluginlib-release-release-crystal-pluginlib-2.2.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/pluginlib/pluginlib_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/pluginlib/pluginlib_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pluginlib', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/pluginlib_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/pluginlib-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Messages and service files for the navigation2 stack"
 AUTHOR = "Michael Jeronimo <michael.jeronimo@intel.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -60,15 +62,13 @@ SRC_URI[sha256sum] = "8e9fea4bc061a90e57516cabb3b22badf16f496c002a6292b22a4ecf08
 S = "${WORKDIR}/navigation2-release-release-crystal-nav2_msgs-0.1.7-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/navigation2/navigation2_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/navigation2/navigation2_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation2', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/navigation2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/navigation2-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

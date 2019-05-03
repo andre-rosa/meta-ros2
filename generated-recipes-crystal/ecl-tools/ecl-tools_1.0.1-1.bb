@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Tools and utilities for ecl development."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/ecl_tools"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "899c4f6f93e12acdb6d81631ac8fdf56c45a54f565e68a4ce6a05030e4
 S = "${WORKDIR}/ecl_tools-release-release-crystal-ecl_tools-1.0.1-1"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ecl-tools/ecl-tools_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ecl-tools/ecl-tools_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-tools/ecl-tools_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-tools/ecl-tools-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-tools/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

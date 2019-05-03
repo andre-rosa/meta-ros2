@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Layer encapsulating ROS middleware to allow rosbag2 to be used with or without middleware"
 AUTHOR = "Karsten Knese <karsten@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -61,15 +63,13 @@ SRC_URI[sha256sum] = "e32c864241cb17117eae3a7c56b55095ec350968e3e07c96e5baa65c57
 S = "${WORKDIR}/rosbag2-release-release-crystal-rosbag2_transport-0.0.7-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosbag2/rosbag2_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosbag2/rosbag2_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbag2', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/rosbag2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/rosbag2-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

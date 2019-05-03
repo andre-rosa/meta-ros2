@@ -3,12 +3,14 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Capture keyboard input from the local computer and publish it to ROS"
 AUTHOR = "Dan Rose <dan@digilabs.io>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
-LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LICENSE = "BSD"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=19a28aa894d84513b15cf3f44c437682"
 
 ROS_BPN = "keystroke"
 
@@ -41,21 +43,19 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/RoverRobotics/ros2-keystroke-release/archive/release/crystal/keystroke/0.2.2-2.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "a69c2095819732b63831be6081018a66"
-SRC_URI[sha256sum] = "dd2f1902894c0ddb3f58d9ef0ba3e6d08ff288b7914ea2fa0914a2138ab9d6b8"
-S = "${WORKDIR}/ros2-keystroke-release-release-crystal-keystroke-0.2.2-2"
+SRC_URI = "https://github.com/RoverRobotics/ros2-keystroke-release/archive/release/crystal/keystroke/0.3.0-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "76932a1609fa7117fedfd0945e1462d6"
+SRC_URI[sha256sum] = "8307e9b7ca167d02250975689b9b77be1663f0525eb04e866f4f47d1c8b0980c"
+S = "${WORKDIR}/ros2-keystroke-release-release-crystal-keystroke-0.3.0-1"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/keystroke/keystroke_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/keystroke/keystroke_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('keystroke', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/keystroke_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/keystroke-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package containing various utility types and functions for C"
 AUTHOR = "Karsten Knese <karsten@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "0fdb96bde3e98cd975529a326ffaf7ff763f51d523d5fc98fab8c6af69
 S = "${WORKDIR}/rcutils-release-release-crystal-rcutils-0.6.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rcutils/rcutils_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rcutils/rcutils_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rcutils', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcutils/rcutils_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcutils/rcutils-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcutils/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcutils/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

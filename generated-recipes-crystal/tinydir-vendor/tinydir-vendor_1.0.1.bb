@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "CMake shim over tinydir: https://github.com/cxong/tinydir/"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "993a5b8000c90a3284ca05971c79f13f7e71fa2b92e02f865d8d730b9c
 S = "${WORKDIR}/tinydir_vendor-release-release-crystal-tinydir_vendor-1.0.1-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/tinydir-vendor/tinydir-vendor_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/tinydir-vendor/tinydir-vendor_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tinydir-vendor', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinydir-vendor/tinydir-vendor_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinydir-vendor/tinydir-vendor-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinydir-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinydir-vendor/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

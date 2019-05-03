@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "DDS-XCRE agent implementation"
 AUTHOR = "Borja Outerelo <borjaouterelo@eprosima.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -63,15 +65,13 @@ SRC_URI[sha256sum] = "db09d137d08f374c6d6f0bfce90f0bad311ad4a809c5499866d3a5516a
 S = "${WORKDIR}/micro-ROS-Agent-release-release-crystal-micro_ros_agent-0.0.1-2"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/micro-ros-agent/micro-ros-agent_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/micro-ros-agent/micro-ros-agent_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('micro-ros-agent', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-ros-agent/micro-ros-agent_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-ros-agent/micro-ros-agent-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-ros-agent/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-ros-agent/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

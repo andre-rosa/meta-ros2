@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "rqt_action provides a feature to introspect all available ROS   action types. By utilizing rqt_msg, the output format is   unified with it and rqt_srv. Note that the actions shown on this plugin   is the ones that are stored on your machine, not on the ROS core your rqt   instance connects to."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/rqt_action"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "7238fa8bf233b4f674088d5229026c07a0e8de91de6183897e92be1786
 S = "${WORKDIR}/rqt_action-release-release-crystal-rqt_action-1.0.1-0"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rqt-action/rqt-action_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rqt-action/rqt-action_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-action', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-action/rqt-action_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-action/rqt-action-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-action/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-action/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

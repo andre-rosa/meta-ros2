@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "DDS-XCRE agent implementation"
 AUTHOR = "Borja Outerelo <borjaouterelo@eprosima.com>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "2527ae37b394541a98465ecdfbf05b9de141c0b66a1675ccf19f7e149d
 S = "${WORKDIR}/Micro-XRCE-DDS-Agent-release-release-crystal-micro-xrce-dds-agent-1.0.3-1"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/micro-xrce-dds-agent/micro-xrce-dds-agent_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/micro-xrce-dds-agent/micro-xrce-dds-agent_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('micro-xrce-dds-agent', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-xrce-dds-agent/micro-xrce-dds-agent_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-xrce-dds-agent/micro-xrce-dds-agent-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-xrce-dds-agent/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-xrce-dds-agent/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

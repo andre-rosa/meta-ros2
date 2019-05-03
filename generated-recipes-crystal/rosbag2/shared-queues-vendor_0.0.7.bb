@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Vendor package for concurrent queues from moodycamel"
 AUTHOR = "Karsten Knese <karsten@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "a16b140efff873ddc45af4c6f25e534942e36d408294d04ed33dc4875a
 S = "${WORKDIR}/rosbag2-release-release-crystal-shared_queues_vendor-0.0.7-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosbag2/rosbag2_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosbag2/rosbag2_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbag2', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/rosbag2_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/rosbag2-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

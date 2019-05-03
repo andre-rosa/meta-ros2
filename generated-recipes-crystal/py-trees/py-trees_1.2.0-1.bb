@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Pythonic implementation of behaviour trees."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://py-trees.readthedocs.io"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "9d7e0d9f18faa35cb0a57c542f467c68c3d8557d153a5bf10dc060649b
 S = "${WORKDIR}/py_trees-release-release-crystal-py_trees-1.2.0-1"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/py-trees/py-trees_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/py-trees/py-trees_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('py-trees', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees/py-trees_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees/py-trees-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
