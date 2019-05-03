@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The CMake API for ament_copyright to check every source file contains copyright reference."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -47,15 +49,13 @@ SRC_URI[sha256sum] = "847e2f589e67871a8ad144d45e27ac54f9c97b72737945e517ca5a23ef
 S = "${WORKDIR}/ament_lint-release-release-bouncy-ament_cmake_copyright-0.5.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ament-lint/ament-lint_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ament-lint/ament-lint_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-lint', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-lint/ament-lint_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-lint/ament-lint-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-lint/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-lint/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

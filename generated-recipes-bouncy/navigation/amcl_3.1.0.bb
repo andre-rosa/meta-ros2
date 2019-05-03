@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "<p>             amcl is a probabilistic localization system for a robot moving in             2D. It implements the adaptive (or KLD-sampling) Monte Carlo             localization approach (as described by Dieter Fox), which uses a             particle filter to track the pose of a robot against a known map.         </p>         <p>             This node is derived, with thanks, from Andrew Howard's excellent             'amcl' Player driver.         </p>"
 AUTHOR = "D. Hood <dhood@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/amcl"
@@ -65,15 +67,13 @@ SRC_URI[sha256sum] = "d51f060b28a6f705570ad7c5a97944ee03365274d75d888e4e08b7f3e8
 S = "${WORKDIR}/navigation-release-release-bouncy-amcl-3.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/navigation/navigation_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/navigation/navigation_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/navigation_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/navigation-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

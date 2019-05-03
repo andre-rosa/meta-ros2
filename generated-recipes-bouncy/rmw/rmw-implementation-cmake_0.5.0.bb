@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "CMake functions which can discover and enumerate available implementations."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "09b0254962e8830e603158351d839392f9d8546c21365afc348b1e5d69
 S = "${WORKDIR}/rmw-release-release-bouncy-rmw_implementation_cmake-0.5.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rmw/rmw_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rmw/rmw_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rmw', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw/rmw_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw/rmw-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

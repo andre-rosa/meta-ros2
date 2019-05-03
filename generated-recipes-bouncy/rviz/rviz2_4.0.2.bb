@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "3D visualization tool for ROS."
 AUTHOR = "D. Hood <dhood@osrfoundation.org>"
 HOMEPAGE = "https://github.com/ros2/rviz/blob/ros2/README.md"
@@ -59,15 +61,13 @@ SRC_URI[sha256sum] = "9003cd0366dbe169ed0fa031995bc3fb6dc9b15940c95a51000457e71f
 S = "${WORKDIR}/rviz-release-release-bouncy-rviz2-4.0.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rviz/rviz_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rviz/rviz_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/rviz_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/rviz-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

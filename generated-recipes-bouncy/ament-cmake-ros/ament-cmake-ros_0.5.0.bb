@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The ROS specific CMake bits in the ament buildsystem."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "cc191a3b4c9b489ec62c46ec7f92b499c5138ef7795e7166cb7bdc5cbb
 S = "${WORKDIR}/ament_cmake_ros-release-release-bouncy-ament_cmake_ros-0.5.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ament-cmake-ros/ament-cmake-ros_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ament-cmake-ros/ament-cmake-ros_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-cmake-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/ament-cmake-ros_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/ament-cmake-ros-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

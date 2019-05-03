@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The launch command for ROS 2 command line tools."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -61,15 +63,13 @@ SRC_URI[sha256sum] = "7aad303b42a0d5c2208743193e80f1500bddc5e79eaaf7e18c0063a030
 S = "${WORKDIR}/launch-release-release-bouncy-ros2launch-0.6.0-0"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/launch/launch_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/launch/launch_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('launch', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/launch_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/launch-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

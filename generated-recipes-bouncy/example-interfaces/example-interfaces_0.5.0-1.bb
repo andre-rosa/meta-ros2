@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Contains message and service definitions used by the examples."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "858d28603fd763f1a7edffa539320e1ab6f075ba016acc1c2a7c808fe0
 S = "${WORKDIR}/example_interfaces-release-release-bouncy-example_interfaces-0.5.0-1"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/example-interfaces/example-interfaces_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/example-interfaces/example-interfaces_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('example-interfaces', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/example-interfaces/example-interfaces_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/example-interfaces/example-interfaces-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/example-interfaces/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/example-interfaces/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

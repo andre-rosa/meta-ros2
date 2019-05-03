@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This package contains a C++ parser for the Unified Robot Description     Format (URDF), which is an XML format for representing a robot model.     The code API of the parser has been through our review process and will remain     backwards compatible in future releases."
 AUTHOR = "Chris Lalancette <clalancette@osrfoundation.org>"
 HOMEPAGE = "https://github.com/ros2/urdf"
@@ -56,15 +58,13 @@ SRC_URI[sha256sum] = "2e8ea3503c1ebcf88b1a25ebd9625c25e765666fae6d28d1402093f452
 S = "${WORKDIR}/urdf-release-release-bouncy-urdf-2.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/urdf/urdf_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/urdf/urdf_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdf', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/urdf_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/urdf-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

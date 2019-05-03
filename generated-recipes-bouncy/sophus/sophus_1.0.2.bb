@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "C++ implementation of Lie Groups using Eigen."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "https://github.com/strasdat/sophus"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "a29074bc4fcfb6f1becebcfab6146a37b75d0a3479d846c808b3b2fa15
 S = "${WORKDIR}/sophus-release-release-bouncy-sophus-1.0.2-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/sophus/sophus_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/sophus/sophus_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sophus', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sophus/sophus_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sophus/sophus-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sophus/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sophus/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

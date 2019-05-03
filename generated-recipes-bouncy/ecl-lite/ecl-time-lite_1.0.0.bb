@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Provides a portable set of time functions that are especially useful for      porting other code or being wrapped by higher level c++ classes."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/ecl_time_lite"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "482458bad8bb76aae2d56611aab169e01f3205def69625a2f9488a772b
 S = "${WORKDIR}/ecl_lite-release-release-bouncy-ecl_time_lite-1.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ecl-lite/ecl-lite_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ecl-lite/ecl-lite_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-lite', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/ecl-lite_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/ecl-lite-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

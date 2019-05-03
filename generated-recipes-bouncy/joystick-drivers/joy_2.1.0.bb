@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "ROS2 driver for a generic Linux joystick.     Will contain a MacOS and Windows version later.     The joy package contains joy_node, a node that interfaces a     generic Linux joystick to ROS2. This node publishes a &quot;Joy&quot;     message, which contains the current state of each one of the     joystick's buttons and axes."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
 HOMEPAGE = "https://github.com/ros2/joystick_drivers"
@@ -49,15 +51,13 @@ SRC_URI[sha256sum] = "42f44c4a24dc860d3dd44f0ec6ecd818ee0c81f02d3656fc1fae2c0e7d
 S = "${WORKDIR}/joystick_drivers-release-release-bouncy-joy-2.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/joystick-drivers/joystick-drivers_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/joystick-drivers/joystick-drivers_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('joystick-drivers', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/joystick-drivers_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/joystick-drivers-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

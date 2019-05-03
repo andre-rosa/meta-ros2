@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A package containing some message definitions used in the implementation or actions."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -50,15 +52,13 @@ SRC_URI[sha256sum] = "18ec2665c492cd53ce81d10b015c131d1fca436d06738daf8c311ae67b
 S = "${WORKDIR}/common_interfaces-release-release-bouncy-actionlib_msgs-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/common-interfaces/common-interfaces_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/common-interfaces/common-interfaces_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-interfaces', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-interfaces/common-interfaces_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-interfaces/common-interfaces-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-interfaces/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-interfaces/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

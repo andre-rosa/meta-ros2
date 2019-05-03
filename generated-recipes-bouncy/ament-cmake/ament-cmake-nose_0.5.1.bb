@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The ability to add nose-based tests in the ament buildsystem in CMake."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -44,15 +46,13 @@ SRC_URI[sha256sum] = "99dc1013dcff7f5ba2f578f7d8a2dbd0b6723cd5c54e9de1098f830530
 S = "${WORKDIR}/ament_cmake-release-release-bouncy-ament_cmake_nose-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ament-cmake/ament-cmake_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ament-cmake/ament-cmake_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-cmake', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/ament-cmake_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/ament-cmake-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

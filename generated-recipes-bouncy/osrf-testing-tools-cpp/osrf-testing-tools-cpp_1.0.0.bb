@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Testing tools for C++, and is used in various OSRF projects."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -40,15 +42,13 @@ SRC_URI[sha256sum] = "c0a48eb994360025f79e3ef4dcb19d817b5b51a606a1696d0d7a99bfa8
 S = "${WORKDIR}/osrf_testings_tools_cpp-release-release-bouncy-osrf_testing_tools_cpp-1.0.0-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/osrf-testing-tools-cpp/osrf-testing-tools-cpp_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/osrf-testing-tools-cpp/osrf-testing-tools-cpp_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('osrf-testing-tools-cpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-testing-tools-cpp/osrf-testing-tools-cpp_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-testing-tools-cpp/osrf-testing-tools-cpp-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-testing-tools-cpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-testing-tools-cpp/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Metaprogramming tools move alot of runtime calculations to be shifted to     compile time. This has only very elementary structures at this stage."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/ecl_mpl"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "b488d5f11f460f0803c99258946ebc704a75028581c4c155e6de019b70
 S = "${WORKDIR}/ecl_core-release-release-bouncy-ecl_mpl-1.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ecl-core/ecl-core_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ecl-core/ecl-core_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-core/ecl-core_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-core/ecl-core-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-core/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

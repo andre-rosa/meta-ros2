@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Provide CMake module with extra functionality for Python."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -45,15 +47,13 @@ SRC_URI[sha256sum] = "fe0d845dbdbe35c1ff08333ea09d2d1df085ae3dabce80e9da6144a0ab
 S = "${WORKDIR}/rosidl_python-release-release-bouncy-python_cmake_module-0.5.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rosidl-python/rosidl-python_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rosidl-python/rosidl-python_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl-python', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-python/rosidl-python_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-python/rosidl-python-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-python/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-python/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

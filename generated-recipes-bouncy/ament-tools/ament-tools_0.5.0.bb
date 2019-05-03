@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The command line tools for the ament buildsystem."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -51,15 +53,13 @@ SRC_URI[sha256sum] = "901b651e78cf587f1a1fca070e43e902092839dd9dc8cb6cc758c0c558
 S = "${WORKDIR}/ament_tools-release-release-bouncy-ament_tools-0.5.0-0"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ament-tools/ament-tools_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ament-tools/ament-tools_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-tools/ament-tools_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-tools/ament-tools-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-tools/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

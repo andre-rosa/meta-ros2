@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Provides the prefix level environment files for ROS 2 packages."
 AUTHOR = "Steven! Ragnarök <steven@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -43,15 +45,13 @@ SRC_URI[sha256sum] = "2417d917dd856d122f0b332ecca368c2e2a7eb9d06626c073383a55b5e
 S = "${WORKDIR}/ros_workspace-release-release-bouncy-ros_workspace-0.5.1-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros-workspace/ros-workspace_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros-workspace/ros-workspace_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-workspace', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-workspace/ros-workspace_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-workspace/ros-workspace-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-workspace/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-workspace/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

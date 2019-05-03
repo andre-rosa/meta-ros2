@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Cartographer is a system that provides real-time simultaneous localization     and mapping (SLAM) in 2D and 3D across multiple platforms and sensor     configurations."
 AUTHOR = "Chris Lalancette <clalancette@openrobotics.org>"
 HOMEPAGE = "https://github.com/googlecartographer/cartographer"
@@ -67,15 +69,13 @@ SRC_URI[sha256sum] = "51d1a1d834147212a900c4ed2ea2333e4a318278d74776939aa0b7de1e
 S = "${WORKDIR}/cartographer-release-release-bouncy-cartographer-2.1.0-0"
 
 ROS_BUILD_TYPE = "cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/cartographer/cartographer_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/cartographer/cartographer_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cartographer', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer/cartographer_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer/cartographer-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "The srv command for ROS 2 command line tools."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -52,15 +54,13 @@ SRC_URI[sha256sum] = "040b4584b2d5be3758aa4e6d4bfcb112ca849fd57a2ec6a90b130bb7a7
 S = "${WORKDIR}/ros2cli-release-release-bouncy-ros2srv-0.5.4-0"
 
 ROS_BUILD_TYPE = "ament_python"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/ros2cli/ros2cli_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/ros2cli/ros2cli_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros2cli', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2cli/ros2cli_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2cli/ros2cli-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2cli/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2cli/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

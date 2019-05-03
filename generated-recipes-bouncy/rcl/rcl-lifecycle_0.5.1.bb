@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Package containing a C-based lifecycle implementation"
 AUTHOR = "Karsten Knese <karsten@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -57,15 +59,13 @@ SRC_URI[sha256sum] = "37eac532ca248e4b0788c7c7af471d450c4115b361650b85ca3e39e9ad
 S = "${WORKDIR}/rcl-release-release-bouncy-rcl_lifecycle-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rcl/rcl_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rcl/rcl_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rcl', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl/rcl_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl/rcl-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

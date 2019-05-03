@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "Examples of minimal publisher nodes"
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -46,15 +48,13 @@ SRC_URI[sha256sum] = "18b3dd04fd992e018e67643216a178d5570b02efec95f3cd69ed5b1c47
 S = "${WORKDIR}/examples-release-release-bouncy-examples_rclcpp_minimal_publisher-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/examples/examples_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/examples/examples_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('examples', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/examples_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/examples-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

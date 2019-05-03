@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "This contains CvBridge, which converts between ROS2     Image messages and OpenCV images."
 AUTHOR = "Ethan Gao <ethan.gao@linux.intel.com>"
 HOMEPAGE = "http://www.ros.org/wiki/cv_bridge"
@@ -63,15 +65,13 @@ SRC_URI[sha256sum] = "a2ec0f5b7b3b3c966c0fbc7c488922b15d7f931961350be9d1bbe105e5
 S = "${WORKDIR}/vision_opencv-release-release-bouncy-cv_bridge-2.0.5-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/vision-opencv/vision-opencv_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/vision-opencv/vision-opencv_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vision-opencv', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-opencv/vision-opencv_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-opencv/vision-opencv-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-opencv/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-opencv/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

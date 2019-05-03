@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "A package containing message definitions and fixtures used exclusively for testing purposes."
 AUTHOR = "Karsten Knese <karsten@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -48,15 +50,13 @@ SRC_URI[sha256sum] = "d2e892276f6ddd68105ce7d85ddd4ac835f733dd12f3bf861e6462f815
 S = "${WORKDIR}/rcl_interfaces-release-release-bouncy-test_msgs-0.5.0-3"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/rcl-interfaces/rcl-interfaces_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/rcl-interfaces/rcl-interfaces_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rcl-interfaces', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-interfaces/rcl-interfaces_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-interfaces/rcl-interfaces-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-interfaces/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-interfaces/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

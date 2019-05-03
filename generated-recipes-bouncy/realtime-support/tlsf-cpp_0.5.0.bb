@@ -3,6 +3,8 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_superflore_generated
+
 DESCRIPTION = "C++ stdlib-compatible wrapper around tlsf allocator and ROS2 examples"
 AUTHOR = "Chris Lalancette <clalancette@openrobotics.org>"
 HOMEPAGE = "https://wiki.ros.org"
@@ -57,15 +59,13 @@ SRC_URI[sha256sum] = "67033ce905229b25e55d140b23115e2450308bdbcb8c1cb04f9d34abb8
 S = "${WORKDIR}/realtime_support-release-release-bouncy-tlsf_cpp-0.5.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_RECIPES_TREE = "recipes-ros2"
 
 # Allow the above settings to be overridden.
-include ${ROS_LAYERDIR}/recipes-ros/realtime-support/realtime-support_common.inc
-include ${ROS_LAYERDIR}/recipes-ros2/realtime-support/realtime-support_common.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('realtime-support', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/realtime-support_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/realtime-support-${PV}_common.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/${BPN}-${PV}.inc
 
-inherit ros_superflore_generated
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
