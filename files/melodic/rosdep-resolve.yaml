@@ -279,7 +279,6 @@ qt5-qmake: qtbase@meta-qt5
 qtbase5-dev: qtbase@meta-qt5
 qtdeclarative5-dev: 'null'
 qtmultimedia5-dev: 'null'
-rosparam_handler: 'null'
 rsync: rsync
 sbcl: 'null'
 screen: screen

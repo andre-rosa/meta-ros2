@@ -400,7 +400,6 @@ RDEPENDS_${PN} = " \
     igvc-self-drive-gazebo \
     igvc-self-drive-gazebo-plugins \
     igvc-self-drive-sim \
-    iirob-filters \
     image-cb-detector \
     image-common \
     image-geometry \

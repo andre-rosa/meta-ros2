@@ -11,7 +11,7 @@ export ROS_VERSION = "1"
 export ROS_PYTHON_VERSION ??= "2"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190503221930"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190503235443"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -26,6 +26,7 @@ ROS_DISTRO_RELEASE_PLATFORMS = " \
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     flatbuffers \
+    iirob-filters \
     octoviz \
     qt-metapackages \
 "
@@ -418,7 +419,6 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     igvc-self-drive-gazebo \
     igvc-self-drive-gazebo-plugins \
     igvc-self-drive-sim \
-    iirob-filters \
     image-cb-detector \
     image-common \
     image-geometry \
@@ -1767,7 +1767,6 @@ ROS_SUPERFLORE_GENERATED_RECIPES_WITH_VERSIONS = " \
     igvc-self-drive-gazebo-0.1.4-1 \
     igvc-self-drive-gazebo-plugins-0.1.4-1 \
     igvc-self-drive-sim-0.1.4-1 \
-    iirob-filters-0.8.1-2 \
     image-cb-detector-0.10.14 \
     image-common-1.11.13 \
     image-geometry-1.13.0 \
@@ -2756,7 +2755,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     atlas \
     autoconf \
     automake \
-    automake-native \
     avahi-daemon \
     binutils \
     bison \
@@ -2768,7 +2766,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     cairo \
     ceres-solver \
     cmake \
-    cmake-native \
     coinor-libipopt-dev \
     collada-dom \
     console-bridge \
@@ -2796,7 +2793,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     gflags \
     gforth \
     git \
-    git-native \
     glog \
     gpgme \
     graphviz \
@@ -2882,7 +2878,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     libtinyxml \
     libtinyxml2 \
     libtool \
-    libtool-native \
     liburdfdom-dev \
     liburdfdom-headers-dev \
     liburdfdom-tools \
@@ -2911,8 +2906,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     netpbm \
     nkf \
     nodejs \
-    nodejs-native \
-    npm-native \
+    npm \
     omniorb \
     opencv \
     openssl \
@@ -2920,7 +2914,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     pcl \
     phantomjs \
     pkgconfig \
-    pkgconfig-native \
     poco \
     postgresql-postgis \
     protobuf \
@@ -2934,7 +2927,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python-cairo \
     python-catkin-lint \
     python-catkin-pkg \
-    python-catkin-pkg-native \
     python-catkin-tools \
     python-chainer-pip \
     python-chainercv-pip \
@@ -3027,7 +3019,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     qtdeclarative5-dev \
     qtmultimedia5-dev \
     readline \
-    rosparam_handler \
     rsync \
     sbcl \
     screen \
@@ -3044,14 +3035,12 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     usbutils \
     v4l-utils \
     wget \
-    wget-native \
     wxpython \
     wxwidgets \
     xfonts-100dpi \
     xfonts-75dpi \
     xvfb \
     yaml-cpp \
-    yaml-cpp-native \
     yasm \
     zbar \
     zeromq \
@@ -3213,7 +3202,6 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     ibeo-lux \
     ifopt \
     igvc-self-drive-sim \
-    iirob-filters \
     image-common \
     image-pipeline \
     image-transport-plugins \
