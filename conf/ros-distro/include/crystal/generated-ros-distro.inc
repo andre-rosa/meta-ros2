@@ -11,7 +11,7 @@ export ROS_VERSION = "2"
 export ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190503214010"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190504002919"
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
 # used for the third version field of DISTRO_VERSION.
@@ -822,7 +822,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     ceres-solver \
     clang-format \
     cmake \
-    cmake-native \
     console-bridge \
     cppcheck \
     cppunit \
@@ -833,12 +832,11 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     freeglut \
     freetype \
     gflags \
-    git-native \
+    git \
     glfw \
     glog \
     gpgme \
     gtest \
-    gtest-native \
     gtk+3 \
     libeigen \
     libgazebo9 \
@@ -864,21 +862,17 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     openssl \
     pcl \
     pkgconfig \
-    pkgconfig-native \
     poco \
     protobuf \
+    python3 \
     python3-catkin-pkg \
-    python3-catkin-pkg-native \
     python3-empy \
-    python3-empy-native \
     python3-flake8 \
     python3-lark-parser \
     python3-lxml \
     python3-matplotlib \
     python3-mock \
-    python3-native \
     python3-nose \
-    python3-nose-native \
     python3-nose-yanc \
     python3-numpy \
     python3-pep8 \
@@ -887,7 +881,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python3-pygraphviz \
     python3-pyqt5 \
     python3-pytest \
-    python3-pytest-native \
     python3-pyyaml \
     python3-setuptools \
     qtbase \
