@@ -9,7 +9,7 @@ DESCRIPTION = "The dataset evaluation package for the RotorS simulator."
 AUTHOR = "Fadri Furrer <fadri.furrer@mavt.ethz.ch>"
 HOMEPAGE = "https://github.com/ethz-asl/rotors_simulator"
 SECTION = "devel"
-LICENSE = "ASL 2.0"
+LICENSE = "ASL_2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=5f4e9e9dcee74b02aa26af144fe2f0af"
 
 ROS_BPN = "rotors_evaluation"

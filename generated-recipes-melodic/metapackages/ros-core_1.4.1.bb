@@ -38,7 +38,7 @@ ROS_EXEC_DEPENDS = " \
     message-generation \
     message-runtime \
     pluginlib \
-    ros--distro-renamed \
+    ros \
     ros-comm \
     rosbag-migration-rule \
     rosconsole \

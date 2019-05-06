@@ -91,7 +91,6 @@ RDEPENDS_${PN} = " \
     cartographer-rviz \
     catch-ros \
     catkin \
-    catkin-virtualenv \
     checkerboard-detector \
     chomp-motion-planner \
     cl-tf \
@@ -924,7 +923,7 @@ RDEPENDS_${PN} = " \
     rocon-tools \
     rocon-tutorial-msgs \
     rocon-uri \
-    ros--distro-renamed \
+    ros \
     ros-base \
     ros-canopen \
     ros-comm \

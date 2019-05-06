@@ -22,7 +22,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     message-filters \
-    ros--distro-renamed \
+    ros \
     rosbag \
     rosconsole \
     roscpp \
@@ -49,7 +49,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     message-filters \
-    ros--distro-renamed \
+    ros \
     rosbag \
     rosconsole \
     roscpp \

@@ -9,7 +9,7 @@ DESCRIPTION = "The mbf_costmap_nav package contains the costmap navigation serve
 AUTHOR = "Sebastian Pütz <spuetz@uos.de>"
 HOMEPAGE = "http://wiki.ros.org/move_base_flex"
 SECTION = "devel"
-LICENSE = "3-Clause BSD"
+LICENSE = "3-Clause_BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2a17ba6bda1db7ca47fe93a1560e517b"
 
 ROS_BPN = "mbf_costmap_nav"

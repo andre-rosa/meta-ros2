@@ -9,7 +9,7 @@ DESCRIPTION = "Messages for proprietary (non-NMEA) sentences from Novatel GPS re
 AUTHOR = "P. J. Reed <preed@swri.org>"
 HOMEPAGE = "https://ivs-git.dyn.datasys.swri.edu/uss/novatel_gps.git"
 SECTION = "devel"
-LICENSE = "Southwest Research Institute Proprietary"
+LICENSE = "Southwest_Research_Institute_Proprietary"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=0ecd2b809a714729aa61f2072c17e9ad"
 
 ROS_BPN = "novatel_gps_msgs"

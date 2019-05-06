@@ -9,7 +9,7 @@ DESCRIPTION = "voice_text (www.voicetext.jp)"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/voice_text"
 SECTION = "devel"
-LICENSE = "HOYA License"
+LICENSE = "HOYA_License"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=022ccc6becffa6ec4f05cd7c1f04dcd5"
 
 ROS_BPN = "voice_text"

@@ -9,7 +9,7 @@ DESCRIPTION = "Ros navigation utilities."
 AUTHOR = "Daniel Stonier <stonier@yujinrobot.com>"
 HOMEPAGE = "https://github.com/yujinrobot/yujin_ocs"
 SECTION = "devel"
-LICENSE = "Yujin Robot"
+LICENSE = "Yujin_Robot"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=a9f99b3452a89416bf7474e0b60ab849"
 
 ROS_BPN = "yocs_navi_toolkit"

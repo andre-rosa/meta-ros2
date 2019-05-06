@@ -9,7 +9,7 @@ DESCRIPTION = "libqt-gui metapackage supporting qt4 and qt5"
 AUTHOR = "Matthew Bries <mbries@swri.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
-LICENSE = "United States Government Purpose & SwRI Proprietary"
+LICENSE = "United_States_Government_Purpose & SwRI_Proprietary"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=8e473b26ead33548c945bdaca143a08d"
 
 ROS_BPN = "libqt_gui"

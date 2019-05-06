@@ -9,7 +9,7 @@ DESCRIPTION = "The quaternion_operation package"
 AUTHOR = "Masaya Kataoka <ms.kataoka@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
-LICENSE = "Aoache v2"
+LICENSE = "Aoache_v2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=dd29f9b27e3b4235c977e390f3efb659"
 
 ROS_BPN = "quaternion_operation"

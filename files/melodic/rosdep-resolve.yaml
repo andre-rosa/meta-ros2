@@ -227,7 +227,6 @@ python-numpy: python-numpy
 python-omniorb: 'null'
 python-opencv: 'null'
 python-opengl: 'null'
-python-packaging: python-packaging-native
 python-pandas: python-pandas
 python-paramiko: python-paramiko
 python-pcapy: 'null'
@@ -269,12 +268,9 @@ python-tilestache: 'null'
 python-tornado: python-tornado
 python-twisted-core: 'null'
 python-urlgrabber: 'null'
-python-virtualenv: python-virtualenv
 python-websocket: python-websocket-client
 python-wxtools: 'null'
 python-yaml: python-yamllint-native
-python3-dev: python3@openembedded-core
-python3-venv: 'null'
 qt5-qmake: qtbase@meta-qt5
 qtbase5-dev: qtbase@meta-qt5
 qtdeclarative5-dev: 'null'
@@ -298,7 +294,6 @@ unzip: unzip
 usbutils: usbutils
 uuid: crossguid
 v4l-utils: v4l-utils
-virtualenv: python-virtualenv
 wget: wget
 wx-common: wxwidgets@meta-ros
 wxpython: wxpython

@@ -1,4 +1,4 @@
-On branch yocto-bot-MkIKFYJVIM
+On branch yocto-bot-oJPaTNXiOw
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
@@ -78,7 +78,6 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/cartographer-ros/cartographer-rviz_1.0.0-1.bb
 	new file:   generated-recipes-melodic/cartographer/cartographer_1.0.0.bb
 	new file:   generated-recipes-melodic/catch-ros/catch-ros_0.3.0.bb
-	new file:   generated-recipes-melodic/catkin-virtualenv/catkin-virtualenv_0.4.0.bb
 	new file:   generated-recipes-melodic/catkin/catkin_0.7.17.bb
 	new file:   generated-recipes-melodic/class-loader/class-loader_0.4.1.bb
 	new file:   generated-recipes-melodic/cloudwatch-common/cloudwatch-logs-common_1.0.1.bb
@@ -953,17 +952,6 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/rocon-tools/rocon-semantic-version_0.3.2.bb
 	new file:   generated-recipes-melodic/rocon-tools/rocon-tools_0.3.2.bb
 	new file:   generated-recipes-melodic/rocon-tools/rocon-uri_0.3.2.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/mk_1.14.6.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/ros--distro-renamed_1.14.6.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/rosbash_1.14.6.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/rosboost-cfg_1.14.6.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/rosbuild_1.14.6.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/rosclean_1.14.6.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/roscreate_1.14.6.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/roslang_1.14.6.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/roslib_1.14.6.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/rosmake_1.14.6.bb
-	new file:   generated-recipes-melodic/ros--distro-renamed/rosunit_1.14.6.bb
 	new file:   generated-recipes-melodic/ros-canopen/can-msgs_0.8.0.bb
 	new file:   generated-recipes-melodic/ros-canopen/canopen-402_0.8.0.bb
 	new file:   generated-recipes-melodic/ros-canopen/canopen-chain-node_0.8.0.bb
@@ -1038,6 +1026,17 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/ros-tutorials/rospy-tutorials_0.9.1.bb
 	new file:   generated-recipes-melodic/ros-tutorials/turtlesim_0.9.1.bb
 	new file:   generated-recipes-melodic/ros-type-introspection/ros-type-introspection_1.3.2-1.bb
+	new file:   generated-recipes-melodic/ros/mk_1.14.6.bb
+	new file:   generated-recipes-melodic/ros/ros_1.14.6.bb
+	new file:   generated-recipes-melodic/ros/rosbash_1.14.6.bb
+	new file:   generated-recipes-melodic/ros/rosboost-cfg_1.14.6.bb
+	new file:   generated-recipes-melodic/ros/rosbuild_1.14.6.bb
+	new file:   generated-recipes-melodic/ros/rosclean_1.14.6.bb
+	new file:   generated-recipes-melodic/ros/roscreate_1.14.6.bb
+	new file:   generated-recipes-melodic/ros/roslang_1.14.6.bb
+	new file:   generated-recipes-melodic/ros/roslib_1.14.6.bb
+	new file:   generated-recipes-melodic/ros/rosmake_1.14.6.bb
+	new file:   generated-recipes-melodic/ros/rosunit_1.14.6.bb
 	new file:   generated-recipes-melodic/rosauth/rosauth_0.1.7-2.bb
 	new file:   generated-recipes-melodic/rosbag-migration-rule/rosbag-migration-rule_1.0.0.bb
 	new file:   generated-recipes-melodic/rosbag-pandas/rosbag-pandas_0.5.3.bb

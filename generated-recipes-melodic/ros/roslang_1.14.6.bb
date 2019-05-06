@@ -5,14 +5,14 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "Assorted shell commands for using ros with bash."
+DESCRIPTION = "roslang is a common package that all <a href="http://www.ros.org/wiki/Client%20Libraries">ROS client libraries</a> depend on.     This is mainly used to find client libraries (via 'rospack depends-on1 roslang')."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
-HOMEPAGE = "http://www.ros.org/wiki/rosbash"
+HOMEPAGE = "http://ros.org/wiki/roslang"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BPN = "rosbash"
+ROS_BPN = "roslang"
 
 ROS_BUILD_DEPENDS = ""
 
@@ -22,14 +22,14 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     catkin \
-    rospack \
+    genmsg \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     catkin \
-    rospack \
+    genmsg \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -42,19 +42,19 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-gbp/ros-release/archive/release/melodic/rosbash/1.14.6-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "be2e1100278862070ac61b18940a0b28"
-SRC_URI[sha256sum] = "8aa3f8849a9e6f158a85db00420299e5f3fc31222ccaf53dc025904548535bcb"
-S = "${WORKDIR}/ros-release-release-melodic-rosbash-1.14.6-0"
+SRC_URI = "https://github.com/ros-gbp/ros-release/archive/release/melodic/roslang/1.14.6-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "d2555b46fa07dcef60b3b0cffcab30fc"
+SRC_URI[sha256sum] = "147d2f848b96ebd2b38f17bd62b485e3b213c1ac672c497d5216038f5c5f5bda"
+S = "${WORKDIR}/ros-release-release-melodic-roslang-1.14.6-0"
 
 ROS_BUILD_TYPE = "catkin"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros--distro-renamed', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}-${PV}.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

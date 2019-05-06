@@ -5,26 +5,36 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "Contains scripts used by the rosboost-cfg tool for determining cflags/lflags/etc. of boost on your system"
+DESCRIPTION = "rosbuild contains scripts for managing the CMake-based build system for ROS."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
-HOMEPAGE = "http://ros.org/wiki/rosboost_cfg"
+HOMEPAGE = "http://ros.org/wiki/rosbuild"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BPN = "rosboost_cfg"
+ROS_BPN = "rosbuild"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    pkgconfig \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    catkin \
+    message-generation \
+    message-runtime \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = ""
+ROS_EXEC_DEPENDS = " \
+    catkin \
+    message-generation \
+    message-runtime \
+"
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = ""
@@ -36,19 +46,19 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-gbp/ros-release/archive/release/melodic/rosboost_cfg/1.14.6-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "07f22e8ae17d5bd448dc58d90f957c1d"
-SRC_URI[sha256sum] = "1aad8d583287e022e1f74e4093b5279383ec65589461a3345941daa136b2e57e"
-S = "${WORKDIR}/ros-release-release-melodic-rosboost_cfg-1.14.6-0"
+SRC_URI = "https://github.com/ros-gbp/ros-release/archive/release/melodic/rosbuild/1.14.6-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "74ec4da1832e25f3c7264befda9ccc21"
+SRC_URI[sha256sum] = "3c95011a3c521dc30e8b7f4399fdc46f0e3702978b9060f309529e6e8f396e43"
+S = "${WORKDIR}/ros-release-release-melodic-rosbuild-1.14.6-0"
 
 ROS_BUILD_TYPE = "catkin"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros--distro-renamed', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/ros--distro-renamed-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros--distro-renamed/${BPN}-${PV}.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}
