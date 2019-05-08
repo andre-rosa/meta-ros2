@@ -24,3 +24,7 @@ DISTRO_CODENAME = "${ROS_DISTRO}"
 DISTRO_VERSION = "${ROS_DISTRO_VERSION_MAJOR}.${ROS_DISTRO_VERSION_MINOR}.${ROS_DISTRO_VERSION_MICRO}.${ROS_DISTRO_VERSION_REVISION}"
 
 MAINTAINER = "Open Source Robotics Foundation, Inc. <info@openrobotics.org>"
+
+# Use systemd, but keep SysVinit present (see https://www.yoctoproject.org/docs/2.6.2/mega-manual/mega-manual.html#selecting-an-initialization-manager).
+DISTRO_FEATURES_append = " systemd"
+VIRTUAL-RUNTIME_init_manager = "systemd"
