@@ -5,18 +5,18 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "A C++ Wrapper for the Phidgets C API"
-AUTHOR = "Martin Guenther <martin.guenther@dfki.de>"
-HOMEPAGE = "http://ros.org/wiki/phidgets_api"
+DESCRIPTION = "Message definitions for the MiR100 robot"
+AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
+HOMEPAGE = "https://github.com/dfki-ric/mir_robot"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BPN = "phidgets_api"
+ROS_BPN = "mir_msgs"
 
 ROS_BUILD_DEPENDS = " \
-    libphidget21 \
-    libusb1 \
+    geometry-msgs \
+    message-generation \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -24,15 +24,14 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    libphidget21 \
-    libusb-1.0 \
+    geometry-msgs \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    libphidget21 \
-    libusb-1.0 \
+    geometry-msgs \
+    message-runtime \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -45,19 +44,19 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-drivers-gbp/phidgets_drivers-release/archive/release/melodic/phidgets_api/0.7.7-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "46dfcd282815ecfba13bca0d0aeb9ae9"
-SRC_URI[sha256sum] = "bfbd02aa5ca164b4ba558a53dd7ddeff44e81b7682c9ea21c08f4f3aa9333152"
-S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_api-0.7.7-0"
+SRC_URI = "https://github.com/uos-gbp/mir_robot-release/archive/release/melodic/mir_msgs/1.0.4-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "5ce002ec5b57acd493cc02e317e47012"
+SRC_URI[sha256sum] = "60ccda62899a4d92718a5a4074e21faa865d2ee0c53d33730ff367c6bf402f38"
+S = "${WORKDIR}/mir_robot-release-release-melodic-mir_msgs-1.0.4-1"
 
 ROS_BUILD_TYPE = "catkin"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('phidgets-drivers', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/phidgets-drivers_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/phidgets-drivers-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}-${PV}.inc
+ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mir-robot', d)}"
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/mir-robot_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/mir-robot-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_${ROS_BUILD_TYPE}

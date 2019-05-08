@@ -1,4 +1,4 @@
-On branch yocto-bot-oJPaTNXiOw
+On branch yocto-bot-qYvXIgIUge
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
@@ -140,7 +140,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/dbw-mkz-ros/dbw-mkz-twist-controller_1.1.1.bb
 	new file:   generated-recipes-melodic/dbw-mkz-ros/dbw-mkz_1.1.1.bb
 	new file:   generated-recipes-melodic/ddynamic-reconfigure-python/ddynamic-reconfigure-python_0.0.1.bb
-	new file:   generated-recipes-melodic/depthcloud-encoder/depthcloud-encoder_0.1.0.bb
+	new file:   generated-recipes-melodic/depthcloud-encoder/depthcloud-encoder_0.1.1-1.bb
 	new file:   generated-recipes-melodic/depthimage-to-laserscan/depthimage-to-laserscan_1.0.8.bb
 	new file:   generated-recipes-melodic/desistek-saga/desistek-saga-control_0.3.2.bb
 	new file:   generated-recipes-melodic/desistek-saga/desistek-saga-description_0.3.2.bb
@@ -375,10 +375,10 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/imu-pipeline/imu-pipeline_0.2.3.bb
 	new file:   generated-recipes-melodic/imu-pipeline/imu-processors_0.2.3.bb
 	new file:   generated-recipes-melodic/imu-pipeline/imu-transformer_0.2.3.bb
-	new file:   generated-recipes-melodic/imu-tools/imu-complementary-filter_1.2.0.bb
-	new file:   generated-recipes-melodic/imu-tools/imu-filter-madgwick_1.2.0.bb
-	new file:   generated-recipes-melodic/imu-tools/imu-tools_1.2.0.bb
-	new file:   generated-recipes-melodic/imu-tools/rviz-imu-plugin_1.2.0.bb
+	new file:   generated-recipes-melodic/imu-tools/imu-complementary-filter_1.2.1-1.bb
+	new file:   generated-recipes-melodic/imu-tools/imu-filter-madgwick_1.2.1-1.bb
+	new file:   generated-recipes-melodic/imu-tools/imu-tools_1.2.1-1.bb
+	new file:   generated-recipes-melodic/imu-tools/rviz-imu-plugin_1.2.1-1.bb
 	new file:   generated-recipes-melodic/industrial-core/industrial-core_0.7.0.bb
 	new file:   generated-recipes-melodic/industrial-core/industrial-deprecated_0.7.0.bb
 	new file:   generated-recipes-melodic/industrial-core/industrial-msgs_0.7.0.bb
@@ -561,14 +561,14 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/metapackages/simulators_1.4.1.bb
 	new file:   generated-recipes-melodic/metapackages/viz_1.4.1.bb
 	new file:   generated-recipes-melodic/microstrain-3dmgx2-imu/microstrain-3dmgx2-imu_1.5.12-1.bb
-	new file:   generated-recipes-melodic/mir-robot/mir-actions_1.0.3.bb
-	new file:   generated-recipes-melodic/mir-robot/mir-description_1.0.3.bb
-	new file:   generated-recipes-melodic/mir-robot/mir-driver_1.0.3.bb
-	new file:   generated-recipes-melodic/mir-robot/mir-dwb-critics_1.0.3.bb
-	new file:   generated-recipes-melodic/mir-robot/mir-gazebo_1.0.3.bb
-	new file:   generated-recipes-melodic/mir-robot/mir-msgs_1.0.3.bb
-	new file:   generated-recipes-melodic/mir-robot/mir-navigation_1.0.3.bb
-	new file:   generated-recipes-melodic/mir-robot/mir-robot_1.0.3.bb
+	new file:   generated-recipes-melodic/mir-robot/mir-actions_1.0.4-1.bb
+	new file:   generated-recipes-melodic/mir-robot/mir-description_1.0.4-1.bb
+	new file:   generated-recipes-melodic/mir-robot/mir-driver_1.0.4-1.bb
+	new file:   generated-recipes-melodic/mir-robot/mir-dwb-critics_1.0.4-1.bb
+	new file:   generated-recipes-melodic/mir-robot/mir-gazebo_1.0.4-1.bb
+	new file:   generated-recipes-melodic/mir-robot/mir-msgs_1.0.4-1.bb
+	new file:   generated-recipes-melodic/mir-robot/mir-navigation_1.0.4-1.bb
+	new file:   generated-recipes-melodic/mir-robot/mir-robot_1.0.4-1.bb
 	new file:   generated-recipes-melodic/ml-classifiers/ml-classifiers_1.0.1-1.bb
 	new file:   generated-recipes-melodic/mongodb-store/mongodb-log_0.5.0-5.bb
 	new file:   generated-recipes-melodic/mongodb-store/mongodb-store-msgs_0.5.0-5.bb
@@ -629,7 +629,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/mrpt-slam/mrpt-icp-slam-2d_0.1.9.bb
 	new file:   generated-recipes-melodic/mrpt-slam/mrpt-rbpf-slam_0.1.9.bb
 	new file:   generated-recipes-melodic/mrpt-slam/mrpt-slam_0.1.9.bb
-	new file:   generated-recipes-melodic/mrpt1/mrpt1_1.5.7-6.bb
+	new file:   generated-recipes-melodic/mrpt1/mrpt1_1.5.8.bb
 	new file:   generated-recipes-melodic/multi-object-tracking-lidar/multi-object-tracking-lidar_1.0.1-1.bb
 	new file:   generated-recipes-melodic/multimaster-fkie/default-cfg-fkie_0.8.12.bb
 	new file:   generated-recipes-melodic/multimaster-fkie/master-discovery-fkie_0.8.12.bb
@@ -751,7 +751,6 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/p2os/p2os-msgs_2.1.1-3.bb
 	new file:   generated-recipes-melodic/p2os/p2os-teleop_2.1.1-3.bb
 	new file:   generated-recipes-melodic/p2os/p2os-urdf_2.1.1-3.bb
-	new file:   generated-recipes-melodic/packagegroups/packagegroup-ros-world.bb
 	new file:   generated-recipes-melodic/pacmod-game-control/pacmod-game-control_2.3.0.bb
 	new file:   generated-recipes-melodic/pacmod3/pacmod3_1.2.1.bb
 	new file:   generated-recipes-melodic/panda-moveit-config/panda-moveit-config_0.7.1.bb
@@ -768,12 +767,12 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/perception-pcl/pcl-ros_1.6.2.bb
 	new file:   generated-recipes-melodic/perception-pcl/perception-pcl_1.6.2.bb
 	new file:   generated-recipes-melodic/pheeno-ros-description/pheeno-ros-description_0.1.0.bb
-	new file:   generated-recipes-melodic/phidgets-drivers/libphidget21_0.7.7.bb
-	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-api_0.7.7.bb
-	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-drivers_0.7.7.bb
-	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-high-speed-encoder_0.7.7.bb
-	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-ik_0.7.7.bb
-	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-imu_0.7.7.bb
+	new file:   generated-recipes-melodic/phidgets-drivers/libphidget21_0.7.8-1.bb
+	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-api_0.7.8-1.bb
+	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-drivers_0.7.8-1.bb
+	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-high-speed-encoder_0.7.8-1.bb
+	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-ik_0.7.8-1.bb
+	new file:   generated-recipes-melodic/phidgets-drivers/phidgets-imu_0.7.8-1.bb
 	new file:   generated-recipes-melodic/photo/photo_1.0.3-1.bb
 	new file:   generated-recipes-melodic/pid/pid_0.0.27.bb
 	new file:   generated-recipes-melodic/pilz-industrial-motion/pilz-extensions_0.4.3.bb
@@ -1152,7 +1151,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/serial/serial_1.2.1.bb
 	new file:   generated-recipes-melodic/sick-safetyscanners/sick-safetyscanners_1.0.2.bb
 	new file:   generated-recipes-melodic/sick-scan/sick-scan_0.0.16.bb
-	new file:   generated-recipes-melodic/sick-tim/sick-tim_0.0.15.bb
+	new file:   generated-recipes-melodic/sick-tim/sick-tim_0.0.16-1.bb
 	new file:   generated-recipes-melodic/simple-grasping/simple-grasping_0.3.1.bb
 	new file:   generated-recipes-melodic/slam-karto/slam-karto_0.8.1.bb
 	new file:   generated-recipes-melodic/soem/soem_1.3.0.bb

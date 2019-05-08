@@ -9,7 +9,7 @@ DESCRIPTION = "A ROS package providing access to the HEBI C++ API."
 AUTHOR = "Matthew Tesch <matt@hebirobotics.com>"
 HOMEPAGE = "http://docs.hebi.us/tools.html#cpp-api"
 SECTION = "devel"
-LICENSE = "HEBI_C___Software_License_(https:__www.hebirobotics.com_softwarelicense)"
+LICENSE = "HEBI-C-Software-License-https:-www.hebirobotics.com-softwarelicense-"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=8cc38e87392e4480a4870daca61af5fd"
 
 ROS_BPN = "hebi_cpp_api"

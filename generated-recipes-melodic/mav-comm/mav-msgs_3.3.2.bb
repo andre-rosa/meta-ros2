@@ -9,7 +9,7 @@ DESCRIPTION = "Package containing messages for communicating with rotary wing MA
 AUTHOR = "Rik Bähnemann <brik@ethz.ch>"
 HOMEPAGE = "https://github.com/ethz-asl/mav_comm"
 SECTION = "devel"
-LICENSE = "ASL_2.0"
+LICENSE = "ASL-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=19;endline=19;md5=5f4e9e9dcee74b02aa26af144fe2f0af"
 
 ROS_BPN = "mav_msgs"

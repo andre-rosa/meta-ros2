@@ -5,33 +5,64 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "URDF description, Gazebo simulation, navigation, bringup launch files, message and action descriptions for the MiR100 robot."
+DESCRIPTION = "Trajectory critics for the dwb_local_planner that work well together with the SBPL global planner on the MiR robot"
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
-HOMEPAGE = "https://github.com/dfki-ric/mir_robot"
+HOMEPAGE = "https://github.com/dfki-ric/mir_dwb_critics"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BPN = "mir_robot"
+ROS_BPN = "mir_dwb_critics"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    angles \
+    costmap-queue \
+    dwb-critics \
+    dwb-local-planner \
+    geometry-msgs \
+    nav-2d-msgs \
+    nav-2d-utils \
+    nav-core2 \
+    nav-grid-iterators \
+    pluginlib \
+    roscpp \
+    sensor-msgs \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    angles \
+    costmap-queue \
+    dwb-critics \
+    dwb-local-planner \
+    geometry-msgs \
+    nav-2d-msgs \
+    nav-2d-utils \
+    nav-core2 \
+    nav-grid-iterators \
+    pluginlib \
+    roscpp \
+    sensor-msgs \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    mir-actions \
-    mir-description \
-    mir-driver \
-    mir-dwb-critics \
-    mir-gazebo \
-    mir-msgs \
-    mir-navigation \
+    angles \
+    costmap-queue \
+    dwb-critics \
+    dwb-local-planner \
+    geometry-msgs \
+    nav-2d-msgs \
+    nav-2d-utils \
+    nav-core2 \
+    nav-grid-iterators \
+    pluginlib \
+    roscpp \
+    sensor-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -44,10 +75,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/uos-gbp/mir_robot-release/archive/release/melodic/mir_robot/1.0.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "075a8a90ee2b7c8bb0a696fd95815143"
-SRC_URI[sha256sum] = "3037700c38b063bebea35ba8506ede308e9115ac5487946af9c30b604e23b1db"
-S = "${WORKDIR}/mir_robot-release-release-melodic-mir_robot-1.0.3-0"
+SRC_URI = "https://github.com/uos-gbp/mir_robot-release/archive/release/melodic/mir_dwb_critics/1.0.4-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "668d82e44b20faf07e41b76c42dc1f5e"
+SRC_URI[sha256sum] = "72ef1187b0c85ee0de3f41cf602bb84854fbfdfb65422ea25b44d9e70b6b76f4"
+S = "${WORKDIR}/mir_robot-release-release-melodic-mir_dwb_critics-1.0.4-1"
 
 ROS_BUILD_TYPE = "catkin"
 

@@ -55,10 +55,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/uos-gbp/imu_tools-release/archive/release/melodic/imu_complementary_filter/1.2.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "61787e814a8fdaa5b04212d2e04680b1"
-SRC_URI[sha256sum] = "c23c27697af1b9f37cc30cde2c65855eadd20cf0faa3264b2dfeaeeb54a915da"
-S = "${WORKDIR}/imu_tools-release-release-melodic-imu_complementary_filter-1.2.0-0"
+SRC_URI = "https://github.com/uos-gbp/imu_tools-release/archive/release/melodic/imu_complementary_filter/1.2.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "f808295e25d0c395d35c8e2a0cafc6cc"
+SRC_URI[sha256sum] = "a039e20b6d977288ca1672bb3a48cca17ee24935e497174cacea40a94f04ecb5"
+S = "${WORKDIR}/imu_tools-release-release-melodic-imu_complementary_filter-1.2.1-1"
 
 ROS_BUILD_TYPE = "catkin"
 

@@ -16,6 +16,7 @@ ROS_BPN = "mrpt1"
 
 ROS_BUILD_DEPENDS = " \
     assimp \
+    boost \
     eudev \
     ffmpeg \
     freeglut \
@@ -25,6 +26,8 @@ ROS_BUILD_DEPENDS = " \
     libusb1 \
     octomap \
     opencv \
+    python \
+    python-numpy \
     suitesparse \
     wxwidgets \
     zlib \
@@ -36,6 +39,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     assimp \
+    boost \
     eudev \
     ffmpeg \
     freeglut \
@@ -45,6 +49,8 @@ ROS_EXPORT_DEPENDS = " \
     libusb1 \
     octomap \
     opencv \
+    python \
+    python-numpy \
     suitesparse \
     wxwidgets \
     zlib \
@@ -54,6 +60,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     assimp \
+    boost \
     catkin \
     eudev \
     ffmpeg \
@@ -64,6 +71,8 @@ ROS_EXEC_DEPENDS = " \
     libusb1 \
     octomap \
     opencv \
+    python \
+    python-numpy \
     suitesparse \
     wxwidgets \
     zlib \
@@ -79,10 +88,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/mrpt-ros-pkg-release/mrpt1-release/archive/release/melodic/mrpt1/1.5.7-6.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "a68a9b542ef6507f275d36bda3cd53cc"
-SRC_URI[sha256sum] = "b450ce4344eb9f5015268ff6fa680f25579f1f5bfcc7779d2cd2cfe96f109d7f"
-S = "${WORKDIR}/mrpt1-release-release-melodic-mrpt1-1.5.7-6"
+SRC_URI = "https://github.com/mrpt-ros-pkg-release/mrpt1-release/archive/release/melodic/mrpt1/1.5.8-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "fc470b0cb447f723551bb22f26a66226"
+SRC_URI[sha256sum] = "15161645758ce908438710546a1d48be2b0c663e8c22b764a2c291b166fc3287"
+S = "${WORKDIR}/mrpt1-release-release-melodic-mrpt1-1.5.8-0"
 
 ROS_BUILD_TYPE = "cmake"
 

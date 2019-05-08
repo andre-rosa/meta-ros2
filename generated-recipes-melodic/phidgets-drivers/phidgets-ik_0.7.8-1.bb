@@ -5,17 +5,24 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "This package wraps the libphidget21 to use it as a ROS dependency"
-AUTHOR = "Martin Guenther <martin.guenther@dfki.de>"
-HOMEPAGE = "http://ros.org/wiki/libphidget21"
+DESCRIPTION = "Driver for the Phidgets InterfaceKit devices"
+AUTHOR = "Russel Howe <russel@appliedinvention.com>"
+HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
-LICENSE = "LGPL-2"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=46ee8693f40a89a31023e97ae17ecf19"
+LICENSE = "BSD"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BPN = "libphidget21"
+ROS_BPN = "phidgets_ik"
 
 ROS_BUILD_DEPENDS = " \
-    libusb-dev \
+    geometry-msgs \
+    message-generation \
+    nodelet \
+    phidgets-api \
+    roscpp \
+    sensor-msgs \
+    std-msgs \
+    tf \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -23,13 +30,27 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    libusb-dev \
+    geometry-msgs \
+    message-runtime \
+    nodelet \
+    phidgets-api \
+    roscpp \
+    sensor-msgs \
+    std-msgs \
+    tf \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    libusb-dev \
+    geometry-msgs \
+    message-runtime \
+    nodelet \
+    phidgets-api \
+    roscpp \
+    sensor-msgs \
+    std-msgs \
+    tf \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -42,10 +63,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-drivers-gbp/phidgets_drivers-release/archive/release/melodic/libphidget21/0.7.7-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "5b9088fdc2eef2ba4007e55c673d9530"
-SRC_URI[sha256sum] = "69660b7d771da1f35e899d0a658ba8d32e940015d336c37a176d7a21dc715aed"
-S = "${WORKDIR}/phidgets_drivers-release-release-melodic-libphidget21-0.7.7-0"
+SRC_URI = "https://github.com/ros-drivers-gbp/phidgets_drivers-release/archive/release/melodic/phidgets_ik/0.7.8-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "b3baf59df6571b2752380bedc967d859"
+SRC_URI[sha256sum] = "67c0cf362886a9f706cea5925ad22e53a6e266c950dd166dbe3119e4dc9db06e"
+S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_ik-0.7.8-1"
 
 ROS_BUILD_TYPE = "catkin"
 

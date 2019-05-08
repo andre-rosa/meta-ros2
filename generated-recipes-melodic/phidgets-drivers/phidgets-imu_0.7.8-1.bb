@@ -74,10 +74,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-drivers-gbp/phidgets_drivers-release/archive/release/melodic/phidgets_imu/0.7.7-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "4359e2c3d40146af6459262bf31820c1"
-SRC_URI[sha256sum] = "65ebf60e6f3b3113b73e67b86b44184e8157dd2b33a3a9ced64765641a1a32df"
-S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_imu-0.7.7-0"
+SRC_URI = "https://github.com/ros-drivers-gbp/phidgets_drivers-release/archive/release/melodic/phidgets_imu/0.7.8-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "e286651d19ffed7720f1e705ef0ef537"
+SRC_URI[sha256sum] = "11d6e527269e2e1a3e0f982bbc594b4d403391a20a505b47806f49466ad1c2e7"
+S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_imu-0.7.8-1"
 
 ROS_BUILD_TYPE = "catkin"
 

@@ -5,37 +5,39 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "URDF description of the MiR100 robot"
+DESCRIPTION = "Action definitions for the MiR100 robot"
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
 HOMEPAGE = "https://github.com/dfki-ric/mir_robot"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BPN = "mir_description"
+ROS_BPN = "mir_actions"
 
 ROS_BUILD_DEPENDS = " \
-    roslaunch \
+    actionlib \
+    geometry-msgs \
+    message-generation \
+    nav-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    actionlib \
+    geometry-msgs \
+    nav-msgs \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    diff-drive-controller \
-    gazebo-ros-control \
-    joint-state-controller \
-    joint-state-publisher \
-    position-controllers \
-    robot-state-publisher \
-    rviz \
-    urdf \
-    xacro \
+    actionlib \
+    geometry-msgs \
+    message-runtime \
+    nav-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -48,10 +50,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/uos-gbp/mir_robot-release/archive/release/melodic/mir_description/1.0.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "c7374e902a3742e801cb63864efe4117"
-SRC_URI[sha256sum] = "1673a6c78f1655851cd913be6057e0d5eeedf8c77ff1d22fa5a639cf6f22a522"
-S = "${WORKDIR}/mir_robot-release-release-melodic-mir_description-1.0.3-0"
+SRC_URI = "https://github.com/uos-gbp/mir_robot-release/archive/release/melodic/mir_actions/1.0.4-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "b65bf84c95a75bdcf25b3d5513266386"
+SRC_URI[sha256sum] = "aaf73d32129e1084e5460ae1c6279641d6ee78931c8d05e89aa943836d79807c"
+S = "${WORKDIR}/mir_robot-release-release-melodic-mir_actions-1.0.4-1"
 
 ROS_BUILD_TYPE = "catkin"
 

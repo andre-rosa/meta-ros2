@@ -9,7 +9,7 @@ DESCRIPTION = "The move_base_flex messages package providing the action definiti
 AUTHOR = "Jorge Santos <santos@magazino.eu>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
-LICENSE = "3-Clause_BSD"
+LICENSE = "3-Clause-BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=2a17ba6bda1db7ca47fe93a1560e517b"
 
 ROS_BPN = "mbf_msgs"

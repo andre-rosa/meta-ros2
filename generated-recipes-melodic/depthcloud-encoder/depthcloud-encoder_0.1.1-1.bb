@@ -66,10 +66,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/RobotWebTools-release/depthcloud_encoder-release/archive/release/melodic/depthcloud_encoder/0.1.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "4f185766dc19f75dddeb99701f167a49"
-SRC_URI[sha256sum] = "f057bb543baa3dcb80b740f37262203623e9c9ecbdd5328ce3164dcb667eea39"
-S = "${WORKDIR}/depthcloud_encoder-release-release-melodic-depthcloud_encoder-0.1.0-0"
+SRC_URI = "https://github.com/RobotWebTools-release/depthcloud_encoder-release/archive/release/melodic/depthcloud_encoder/0.1.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "d75910d075e355984b42cd493b53ca2a"
+SRC_URI[sha256sum] = "cd0303245ac1fcc135761ad4d18dda3ed256e4165cf4fbbd6a4182037cecece6"
+S = "${WORKDIR}/depthcloud_encoder-release-release-melodic-depthcloud_encoder-0.1.1-1"
 
 ROS_BUILD_TYPE = "catkin"
 

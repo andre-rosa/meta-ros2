@@ -5,39 +5,79 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "Simulation specific launch and configuration files for the MiR100 robot."
+DESCRIPTION = "A reverse ROS bridge for the MiR100 robot"
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
 HOMEPAGE = "https://github.com/dfki-ric/mir_robot"
 SECTION = "devel"
-LICENSE = "BSD"
+LICENSE = "BSD & Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BPN = "mir_gazebo"
+ROS_BPN = "mir_driver"
 
 ROS_BUILD_DEPENDS = " \
+    actionlib-msgs \
+    diagnostic-msgs \
+    dynamic-reconfigure \
+    geometry-msgs \
+    mir-actions \
+    mir-msgs \
+    move-base-msgs \
+    nav-msgs \
+    python-websocket-client \
+    rosgraph-msgs \
     roslaunch \
+    rospy \
+    rospy-message-converter \
+    sensor-msgs \
+    std-msgs \
+    tf \
+    visualization-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    actionlib-msgs \
+    diagnostic-msgs \
+    dynamic-reconfigure \
+    geometry-msgs \
+    mir-actions \
+    mir-msgs \
+    move-base-msgs \
+    nav-msgs \
+    python-websocket-client \
+    rosgraph-msgs \
+    rospy \
+    rospy-message-converter \
+    sensor-msgs \
+    std-msgs \
+    tf \
+    visualization-msgs \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    controller-manager \
-    fake-localization \
-    gazebo-ros \
-    joint-state-publisher \
+    actionlib-msgs \
+    diagnostic-msgs \
+    dynamic-reconfigure \
+    geometry-msgs \
+    mir-actions \
     mir-description \
-    mir-driver \
-    robot-localization \
+    mir-msgs \
+    move-base-msgs \
+    nav-msgs \
+    python-websocket-client \
     robot-state-publisher \
-    rostopic \
-    rqt-robot-steering \
-    topic-tools \
+    rosgraph-msgs \
+    rospy \
+    rospy-message-converter \
+    sensor-msgs \
+    std-msgs \
+    tf \
+    visualization-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -50,10 +90,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/uos-gbp/mir_robot-release/archive/release/melodic/mir_gazebo/1.0.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "9f0a3ed440d606934500369cf6640bb7"
-SRC_URI[sha256sum] = "3e9fbfe4a30892fbde3192719aae286acba1c2f88b5238f5c72987e706d60c20"
-S = "${WORKDIR}/mir_robot-release-release-melodic-mir_gazebo-1.0.3-0"
+SRC_URI = "https://github.com/uos-gbp/mir_robot-release/archive/release/melodic/mir_driver/1.0.4-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "520e1705a3baf557c8b621d627254255"
+SRC_URI[sha256sum] = "da99d11e458c15ad666321a49d43326ee91a75b969f98f8bb904c7bf0a071188"
+S = "${WORKDIR}/mir_robot-release-release-melodic-mir_driver-1.0.4-1"
 
 ROS_BUILD_TYPE = "catkin"
 

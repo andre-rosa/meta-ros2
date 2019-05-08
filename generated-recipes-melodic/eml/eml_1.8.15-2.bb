@@ -9,7 +9,7 @@ DESCRIPTION = "This is an implementation of the EtherCAT master protocol for the
 AUTHOR = "David Feil-Seifer <dave@cse.unr.edu>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
-LICENSE = "Binary_Only"
+LICENSE = "Binary-Only"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=a99890d7e16071ac30156cdebd292056"
 
 ROS_BPN = "eml"

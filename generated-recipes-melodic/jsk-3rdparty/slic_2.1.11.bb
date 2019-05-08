@@ -9,7 +9,7 @@ DESCRIPTION = "SLIC-Superpizel ROS Wrapper   This file contains the class elemen
 AUTHOR = "Kei Okada <k-okada@jsk.imi.i.u-tokyo.ac.jp>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
-LICENSE = "N_A"
+LICENSE = "N-A"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=05621664bc3a8e6d6781cb1e0156ed33"
 
 ROS_BPN = "slic"

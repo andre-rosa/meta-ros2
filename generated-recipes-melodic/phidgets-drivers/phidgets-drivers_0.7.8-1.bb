@@ -5,23 +5,16 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "Driver for the Phidgets high speed encoder devices"
-AUTHOR = "Geoff Viola <geoffrey.viola@asirobots.com>"
-HOMEPAGE = "https://wiki.ros.org"
+DESCRIPTION = "API and ROS drivers for Phidgets devices"
+AUTHOR = "Martin Guenther <martin.guenther@dfki.de>"
+HOMEPAGE = "http://ros.org/wiki/phidgets_drivers"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=9b8b2c2c843b0cb5803c38944da723d5"
 
-ROS_BPN = "phidgets_high_speed_encoder"
+ROS_BPN = "phidgets_drivers"
 
-ROS_BUILD_DEPENDS = " \
-    libphidget21 \
-    message-generation \
-    phidgets-api \
-    roscpp \
-    sensor-msgs \
-    std-msgs \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -29,22 +22,18 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     libphidget21 \
-    message-runtime \
     phidgets-api \
-    roscpp \
-    sensor-msgs \
-    std-msgs \
+    phidgets-high-speed-encoder \
+    phidgets-imu \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     libphidget21 \
-    message-runtime \
     phidgets-api \
-    roscpp \
-    sensor-msgs \
-    std-msgs \
+    phidgets-high-speed-encoder \
+    phidgets-imu \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -57,10 +46,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-drivers-gbp/phidgets_drivers-release/archive/release/melodic/phidgets_high_speed_encoder/0.7.7-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "21b2b02a6f4185759c4c4d5eb87cc3b7"
-SRC_URI[sha256sum] = "462219fb56f8ef2d8fbcf1b6237a6313fc1c5612f883cb0385ef3bfd5ae7f063"
-S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_high_speed_encoder-0.7.7-0"
+SRC_URI = "https://github.com/ros-drivers-gbp/phidgets_drivers-release/archive/release/melodic/phidgets_drivers/0.7.8-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "8ad27b260b688d4a157647d34562005b"
+SRC_URI[sha256sum] = "b60da069198bc4f8ffd9b5ddaab268d81929ba1331cb64b40fcdc80286b80595"
+S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_drivers-0.7.8-1"
 
 ROS_BUILD_TYPE = "catkin"
 

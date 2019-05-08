@@ -71,10 +71,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/uos-gbp/imu_tools-release/archive/release/melodic/imu_filter_madgwick/1.2.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "5b52923e934e96bf0622e36ef17dc0e1"
-SRC_URI[sha256sum] = "3b80b8a778fb209b3b42dd515e4f0a02d0018b205bbf35cbe94c1486c79db0be"
-S = "${WORKDIR}/imu_tools-release-release-melodic-imu_filter_madgwick-1.2.0-0"
+SRC_URI = "https://github.com/uos-gbp/imu_tools-release/archive/release/melodic/imu_filter_madgwick/1.2.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "51fca858467068190ef6b1bae453c110"
+SRC_URI[sha256sum] = "508edb7c8f11f0bb31e1ed63f2f4825e19fc4ee5c02b1754c48b03347a1eeaed"
+S = "${WORKDIR}/imu_tools-release-release-melodic-imu_filter_madgwick-1.2.1-1"
 
 ROS_BUILD_TYPE = "catkin"
 

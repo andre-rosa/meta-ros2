@@ -5,39 +5,33 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "Action definitions for the MiR100 robot"
+DESCRIPTION = "URDF description, Gazebo simulation, navigation, bringup launch files, message and action descriptions for the MiR100 robot."
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
 HOMEPAGE = "https://github.com/dfki-ric/mir_robot"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BPN = "mir_actions"
+ROS_BPN = "mir_robot"
 
-ROS_BUILD_DEPENDS = " \
-    actionlib \
-    geometry-msgs \
-    message-generation \
-    nav-msgs \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    actionlib \
-    geometry-msgs \
-    nav-msgs \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    actionlib \
-    geometry-msgs \
-    message-runtime \
-    nav-msgs \
+    mir-actions \
+    mir-description \
+    mir-driver \
+    mir-dwb-critics \
+    mir-gazebo \
+    mir-msgs \
+    mir-navigation \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -50,10 +44,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/uos-gbp/mir_robot-release/archive/release/melodic/mir_actions/1.0.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "2244ee92ab597b00b7c25a30ff4e402b"
-SRC_URI[sha256sum] = "7a98d3c84c4620fd3f311c2419aec7a9f25eb2bf432373316cabeb5198e5dc6d"
-S = "${WORKDIR}/mir_robot-release-release-melodic-mir_actions-1.0.3-0"
+SRC_URI = "https://github.com/uos-gbp/mir_robot-release/archive/release/melodic/mir_robot/1.0.4-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "0e46097fc767941d941b3c133c0ae721"
+SRC_URI[sha256sum] = "1be447be46d3485524682a594f9f55d972b07c44b4e29e31c2c57105530be475"
+S = "${WORKDIR}/mir_robot-release-release-melodic-mir_robot-1.0.4-1"
 
 ROS_BUILD_TYPE = "catkin"
 

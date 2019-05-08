@@ -5,37 +5,33 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "RVIZ plugin for IMU visualization"
+DESCRIPTION = "Various tools for IMU devices"
 AUTHOR = "Martin Günther <martin.guenther1980@gmail.com>"
-HOMEPAGE = "http://ros.org/wiki/rviz_imu_plugin"
+HOMEPAGE = "http://ros.org/wiki/imu_tools"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d81febe1baeaed0bfd599be384185f36"
 
-ROS_BPN = "rviz_imu_plugin"
+ROS_BPN = "imu_tools"
 
-ROS_BUILD_DEPENDS = " \
-    qtbase \
-    roscpp \
-    rviz \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    qtbase \
-    roscpp \
-    rviz \
+    imu-complementary-filter \
+    imu-filter-madgwick \
+    rviz-imu-plugin \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    qtbase \
-    roscpp \
-    rviz \
+    imu-complementary-filter \
+    imu-filter-madgwick \
+    rviz-imu-plugin \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -48,10 +44,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/uos-gbp/imu_tools-release/archive/release/melodic/rviz_imu_plugin/1.2.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "ca584eb829031ee04853be36910a611c"
-SRC_URI[sha256sum] = "8611fe62e3a09de1147588b51946ff3d88a663ff412a6fa8d1199a929d4a54ef"
-S = "${WORKDIR}/imu_tools-release-release-melodic-rviz_imu_plugin-1.2.0-0"
+SRC_URI = "https://github.com/uos-gbp/imu_tools-release/archive/release/melodic/imu_tools/1.2.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "b8abe1cf0fb5662e3c194a596321ccb4"
+SRC_URI[sha256sum] = "8fd6b517a5550d0e5151db6599ed9e4eacaca2e299846939932f35f5d0ca3569"
+S = "${WORKDIR}/imu_tools-release-release-melodic-imu_tools-1.2.1-1"
 
 ROS_BUILD_TYPE = "catkin"
 

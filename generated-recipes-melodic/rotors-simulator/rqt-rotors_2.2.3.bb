@@ -9,7 +9,7 @@ DESCRIPTION = "The rqt_rotors package"
 AUTHOR = "Pavel Vechersky <pavelv@student.ethz.ch>"
 HOMEPAGE = "https://github.com/ethz-asl/rotors_simulator"
 SECTION = "devel"
-LICENSE = "ASL_2.0"
+LICENSE = "ASL-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=5f4e9e9dcee74b02aa26af144fe2f0af"
 
 ROS_BPN = "rqt_rotors"

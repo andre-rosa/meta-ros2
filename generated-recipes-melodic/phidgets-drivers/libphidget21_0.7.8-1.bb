@@ -5,35 +5,31 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "API and ROS drivers for Phidgets devices"
+DESCRIPTION = "This package wraps the libphidget21 to use it as a ROS dependency"
 AUTHOR = "Martin Guenther <martin.guenther@dfki.de>"
-HOMEPAGE = "http://ros.org/wiki/phidgets_drivers"
+HOMEPAGE = "http://ros.org/wiki/libphidget21"
 SECTION = "devel"
-LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=9b8b2c2c843b0cb5803c38944da723d5"
+LICENSE = "LGPL-2"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=46ee8693f40a89a31023e97ae17ecf19"
 
-ROS_BPN = "phidgets_drivers"
+ROS_BPN = "libphidget21"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    libusb-dev \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    libphidget21 \
-    phidgets-api \
-    phidgets-high-speed-encoder \
-    phidgets-imu \
+    libusb-dev \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    libphidget21 \
-    phidgets-api \
-    phidgets-high-speed-encoder \
-    phidgets-imu \
+    libusb-dev \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -46,10 +42,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-drivers-gbp/phidgets_drivers-release/archive/release/melodic/phidgets_drivers/0.7.7-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "04b10bfdfd1821dafc0216ab77f76206"
-SRC_URI[sha256sum] = "15dfbffa4b9c25597a909ff1c2e2a58b7e8498e764501562064da010a40d6c04"
-S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_drivers-0.7.7-0"
+SRC_URI = "https://github.com/ros-drivers-gbp/phidgets_drivers-release/archive/release/melodic/libphidget21/0.7.8-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "89bc433911df46304622fa2d66b74635"
+SRC_URI[sha256sum] = "b72a79de039651e82bd15d452dd153cc76339eb6f0705dc4b8875f3ffed5d650"
+S = "${WORKDIR}/phidgets_drivers-release-release-melodic-libphidget21-0.7.8-1"
 
 ROS_BUILD_TYPE = "catkin"
 

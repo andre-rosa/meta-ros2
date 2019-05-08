@@ -57,10 +57,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/uos-gbp/sick_tim-release/archive/release/melodic/sick_tim/0.0.15-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "2fe7a1334053c56d333b70c320f9b913"
-SRC_URI[sha256sum] = "7e331af0eea21b51239fc2ed9b451fe43529d24569f208a3e71591e2f334c3e1"
-S = "${WORKDIR}/sick_tim-release-release-melodic-sick_tim-0.0.15-0"
+SRC_URI = "https://github.com/uos-gbp/sick_tim-release/archive/release/melodic/sick_tim/0.0.16-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "31c5e53f66fdf83e504f663ec680e148"
+SRC_URI[sha256sum] = "21cbe180b6016b00a94db9fdcaca49ef8d560608c041bb975b5babb0e8f9aaf3"
+S = "${WORKDIR}/sick_tim-release-release-melodic-sick_tim-0.0.16-1"
 
 ROS_BUILD_TYPE = "catkin"
 
