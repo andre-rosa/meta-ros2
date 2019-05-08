@@ -11,16 +11,7 @@ export ROS_VERSION = "2"
 export ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190506194300"
-
-# Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
-# used for the third version field of DISTRO_VERSION.
-ROS_NUM_CACHE_YAML_COMMITS = "1"
-
-# Iterated values of ROS_DISTRO-cache.distribution_file.release_platforms.<LINUX-DISTRO>.[ <NAME> ... ] .
-ROS_DISTRO_RELEASE_PLATFORMS = " \
-    ubuntu-bionic \
-"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190507212230"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
@@ -34,6 +25,18 @@ ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     rosidl-typesupport-opensplice-c \
     rosidl-typesupport-opensplice-cpp \
     rti-connext-dds-5.3.1 \
+"
+
+# Superflore was unable to generate recipes for these packages, eg, because their repositories are not on GitHub.
+ROS_SUPERFLORE_GENERATION_NOT_POSSIBLE = ""
+
+# Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
+# used for the third version field of DISTRO_VERSION.
+ROS_NUM_CACHE_YAML_COMMITS = "1"
+
+# Iterated values of ROS_DISTRO-cache.distribution_file.release_platforms.<LINUX-DISTRO>.[ <NAME> ... ] .
+ROS_DISTRO_RELEASE_PLATFORMS = " \
+    ubuntu-bionic \
 "
 
 ROS_SUPERFLORE_GENERATED_RECIPES = " \
@@ -746,8 +749,365 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     yaml-cpp-vendor_5.0.0 \
 "
 
+# What's built by packagegroup-ros-world. Does not include packages that appear solely in ROS_SUPERFLORE_GENERATED_BUILDTOOLS
+# (with a -native suffix) or ROS_SUPERFLORE_GENERATED_TESTS.
+ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
+    action-msgs \
+    actionlib-msgs \
+    ament-clang-format \
+    ament-cmake \
+    ament-cmake-auto \
+    ament-cmake-clang-format \
+    ament-cmake-copyright \
+    ament-cmake-core \
+    ament-cmake-cppcheck \
+    ament-cmake-cpplint \
+    ament-cmake-export-definitions \
+    ament-cmake-export-dependencies \
+    ament-cmake-export-include-directories \
+    ament-cmake-export-interfaces \
+    ament-cmake-export-libraries \
+    ament-cmake-export-link-flags \
+    ament-cmake-flake8 \
+    ament-cmake-gmock \
+    ament-cmake-gtest \
+    ament-cmake-include-directories \
+    ament-cmake-libraries \
+    ament-cmake-lint-cmake \
+    ament-cmake-nose \
+    ament-cmake-pclint \
+    ament-cmake-pep257 \
+    ament-cmake-pep8 \
+    ament-cmake-pyflakes \
+    ament-cmake-pytest \
+    ament-cmake-python \
+    ament-cmake-ros \
+    ament-cmake-target-dependencies \
+    ament-cmake-test \
+    ament-cmake-uncrustify \
+    ament-cmake-xmllint \
+    ament-copyright \
+    ament-cppcheck \
+    ament-cpplint \
+    ament-flake8 \
+    ament-index-cpp \
+    ament-index-python \
+    ament-lint-auto \
+    ament-lint-cmake \
+    ament-lint-common \
+    ament-package \
+    ament-pclint \
+    ament-pep257 \
+    ament-pep8 \
+    ament-pyflakes \
+    ament-uncrustify \
+    ament-xmllint \
+    angles \
+    apriltag \
+    apriltag-msgs \
+    apriltag2-node \
+    behaviortree-cpp \
+    behaviortree-cpp-v3 \
+    builtin-interfaces \
+    camera-calibration-parsers \
+    camera-info-manager \
+    cartographer \
+    class-loader \
+    common-interfaces \
+    composition \
+    compressed-depth-image-transport \
+    compressed-image-transport \
+    console-bridge-vendor \
+    control-msgs \
+    costmap-queue \
+    cv-bridge \
+    demo-nodes-cpp \
+    demo-nodes-cpp-rosnative \
+    demo-nodes-py \
+    depth-image-proc \
+    depthimage-to-laserscan \
+    desktop \
+    diagnostic-msgs \
+    dummy-map-server \
+    dummy-robot-bringup \
+    dummy-sensors \
+    dwb-controller \
+    dwb-core \
+    dwb-critics \
+    dwb-msgs \
+    dwb-plugins \
+    ecl-build \
+    ecl-command-line \
+    ecl-concepts \
+    ecl-config \
+    ecl-console \
+    ecl-containers \
+    ecl-converters \
+    ecl-converters-lite \
+    ecl-core \
+    ecl-core-apps \
+    ecl-devices \
+    ecl-eigen \
+    ecl-errors \
+    ecl-exceptions \
+    ecl-filesystem \
+    ecl-formatters \
+    ecl-geometry \
+    ecl-io \
+    ecl-ipc \
+    ecl-license \
+    ecl-linear-algebra \
+    ecl-lite \
+    ecl-manipulators \
+    ecl-math \
+    ecl-mobile-robot \
+    ecl-mpl \
+    ecl-sigslots \
+    ecl-sigslots-lite \
+    ecl-statistics \
+    ecl-streams \
+    ecl-threads \
+    ecl-time \
+    ecl-time-lite \
+    ecl-tools \
+    ecl-type-traits \
+    ecl-utilities \
+    eigen-stl-containers \
+    example-interfaces \
+    examples-rclcpp-minimal-action-client \
+    examples-rclcpp-minimal-action-server \
+    examples-rclcpp-minimal-client \
+    examples-rclcpp-minimal-composition \
+    examples-rclcpp-minimal-publisher \
+    examples-rclcpp-minimal-service \
+    examples-rclcpp-minimal-subscriber \
+    examples-rclcpp-minimal-timer \
+    examples-rclpy-executors \
+    examples-rclpy-minimal-action-client \
+    examples-rclpy-minimal-action-server \
+    examples-rclpy-minimal-client \
+    examples-rclpy-minimal-publisher \
+    examples-rclpy-minimal-service \
+    examples-rclpy-minimal-subscriber \
+    fastcdr \
+    fastrtps \
+    fastrtps-cmake-module \
+    fmi-adapter \
+    fmi-adapter-examples \
+    gazebo-msgs \
+    gazebo-plugins \
+    gazebo-ros \
+    gazebo-ros-pkgs \
+    gazebo-rosdev \
+    geometry-msgs \
+    gmock-vendor \
+    gtest-vendor \
+    image-geometry \
+    image-publisher \
+    image-tools \
+    image-transport \
+    image-transport-plugins \
+    intra-process-demo \
+    joy \
+    kdl-parser \
+    keystroke \
+    laser-geometry \
+    launch \
+    launch-ros \
+    launch-testing \
+    libcurl-vendor \
+    librealsense2 \
+    libyaml-vendor \
+    lifecycle \
+    lifecycle-msgs \
+    logging-demo \
+    map-msgs \
+    message-filters \
+    micro-ros-agent \
+    micro-xrce-dds-agent \
+    microxrcedds-agent-cmake-module \
+    ml-classifiers \
+    mrpt2 \
+    nav-2d-msgs \
+    nav-2d-utils \
+    nav-msgs \
+    nav2-amcl \
+    nav2-bringup \
+    nav2-bt-navigator \
+    nav2-common \
+    nav2-costmap-2d \
+    nav2-dwb-controller \
+    nav2-dynamic-params \
+    nav2-map-server \
+    nav2-mission-executor \
+    nav2-motion-primitives \
+    nav2-msgs \
+    nav2-navfn-planner \
+    nav2-robot \
+    nav2-simple-navigator \
+    nav2-tasks \
+    nav2-util \
+    nav2-voxel-grid \
+    nav2-world-model \
+    navigation2 \
+    object-analytics-msgs \
+    object-analytics-node \
+    object-analytics-rviz \
+    object-msgs \
+    orocos-kdl \
+    osrf-pycommon \
+    osrf-testing-tools-cpp \
+    pcl-conversions \
+    pendulum-control \
+    pendulum-msgs \
+    pluginlib \
+    poco-vendor \
+    py-trees \
+    py-trees-ros-interfaces \
+    python-cmake-module \
+    python-qt-binding \
+    qt-dotgraph \
+    qt-gui \
+    qt-gui-app \
+    qt-gui-core \
+    qt-gui-cpp \
+    qt-gui-py-common \
+    rcl \
+    rcl-action \
+    rcl-interfaces \
+    rcl-lifecycle \
+    rcl-logging-log4cxx \
+    rcl-logging-noop \
+    rcl-yaml-param-parser \
+    rclcpp \
+    rclcpp-action \
+    rclcpp-lifecycle \
+    rclpy \
+    rcutils \
+    realsense-camera-msgs \
+    realsense-ros2-camera \
+    resource-retriever \
+    rmw \
+    rmw-fastrtps-cpp \
+    rmw-fastrtps-dynamic-cpp \
+    rmw-fastrtps-shared-cpp \
+    rmw-implementation \
+    rmw-implementation-cmake \
+    robot-state-publisher \
+    ros-base \
+    ros-core \
+    ros-environment \
+    ros-workspace \
+    ros1-bridge \
+    ros1-rosbag-storage-vendor \
+    ros2bag \
+    ros2cli \
+    ros2launch \
+    ros2lifecycle \
+    ros2msg \
+    ros2multicast \
+    ros2node \
+    ros2param \
+    ros2pkg \
+    ros2run \
+    ros2service \
+    ros2srv \
+    ros2topic \
+    rosbag2 \
+    rosbag2-bag-v2-plugins \
+    rosbag2-converter-default-plugins \
+    rosbag2-storage \
+    rosbag2-storage-default-plugins \
+    rosbag2-test-common \
+    rosbag2-tests \
+    rosbag2-transport \
+    rosgraph-msgs \
+    rosidl-actions \
+    rosidl-adapter \
+    rosidl-cmake \
+    rosidl-default-generators \
+    rosidl-default-runtime \
+    rosidl-generator-c \
+    rosidl-generator-cpp \
+    rosidl-generator-dds-idl \
+    rosidl-generator-py \
+    rosidl-parser \
+    rosidl-typesupport-c \
+    rosidl-typesupport-cpp \
+    rosidl-typesupport-fastrtps-c \
+    rosidl-typesupport-fastrtps-cpp \
+    rosidl-typesupport-interface \
+    rosidl-typesupport-introspection-c \
+    rosidl-typesupport-introspection-cpp \
+    rqt \
+    rqt-action \
+    rqt-console \
+    rqt-graph \
+    rqt-gui \
+    rqt-gui-cpp \
+    rqt-gui-py \
+    rqt-image-view \
+    rqt-msg \
+    rqt-plot \
+    rqt-publisher \
+    rqt-py-common \
+    rqt-py-console \
+    rqt-service-caller \
+    rqt-shell \
+    rqt-srv \
+    rqt-top \
+    rqt-topic \
+    rttest \
+    rviz-assimp-vendor \
+    rviz-common \
+    rviz-default-plugins \
+    rviz-ogre-vendor \
+    rviz-rendering \
+    rviz-rendering-tests \
+    rviz-visual-testing-framework \
+    rviz2 \
+    sensor-msgs \
+    shape-msgs \
+    shared-queues-vendor \
+    sophus \
+    sqlite3-vendor \
+    sros2 \
+    sros2-cmake \
+    std-msgs \
+    std-srvs \
+    stereo-msgs \
+    system-modes \
+    system-modes-examples \
+    teleop-twist-joy \
+    teleop-twist-keyboard \
+    test-msgs \
+    test-osrf-testing-tools-cpp \
+    tf2 \
+    tf2-eigen \
+    tf2-geometry-msgs \
+    tf2-msgs \
+    tf2-ros \
+    tf2-sensor-msgs \
+    theora-image-transport \
+    tinydir-vendor \
+    tinyxml-vendor \
+    tinyxml2-vendor \
+    tlsf \
+    tlsf-cpp \
+    topic-monitor \
+    trajectory-msgs \
+    uncrustify-vendor \
+    unique-identifier-msgs \
+    urdf \
+    urdfdom \
+    urdfdom-headers \
+    vision-opencv \
+    visualization-msgs \
+    yaml-cpp-vendor \
+"
+
 # Packages found in the <buildtool_depend> and <buildtool_export_depend> items, ie, ones for which a -native is built. Does not
-# include those found in the ROS_EXEC_DEPENDS values in recipes of build tools.
+# include those found in the ROS_EXEC_DEPENDS values in the recipes of build tools.
 ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     ament-clang-format-native \
     ament-cmake-auto-native \
