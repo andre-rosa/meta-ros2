@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "ament_cmake"
 ROS_BPN = "ament_cmake_libraries"
 
 ROS_BUILD_DEPENDS = ""
@@ -44,6 +45,7 @@ SRC_URI[sha256sum] = "c2b46f5954b70525580a2c7fc37136df3f2c79ef0a416cbbe7d4611757
 S = "${WORKDIR}/ament_cmake-release-release-bouncy-ament_cmake_libraries-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ament-cmake', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-cmake', d)}"
@@ -53,4 +55,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

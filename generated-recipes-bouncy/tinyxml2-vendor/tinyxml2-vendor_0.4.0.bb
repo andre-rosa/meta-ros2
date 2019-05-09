@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "tinyxml2_vendor"
 ROS_BPN = "tinyxml2_vendor"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +49,7 @@ SRC_URI[sha256sum] = "a0c41d836a8e197e47c7be761a69de2a3ef6fdf0786807c1232958fac7
 S = "${WORKDIR}/tinyxml2_vendor-release-release-bouncy-tinyxml2_vendor-0.4.0-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tinyxml2-vendor', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tinyxml2-vendor', d)}"
@@ -57,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinyxml2-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinyxml2-vendor/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

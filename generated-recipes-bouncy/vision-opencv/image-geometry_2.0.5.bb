@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "`image_geometry` contains C++ and Python libraries for interpreting images     geometrically. It interfaces the calibration parameters in sensor_msgs/CameraInfo     messages with OpenCV functions such as image rectification, much as cv_bridge     interfaces ROS sensor_msgs/Image with OpenCV data types."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
+ROS_AUTHOR = "Patrick Mihelich"
 HOMEPAGE = "http://www.ros.org/wiki/image_geometry"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "vision_opencv"
 ROS_BPN = "image_geometry"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "23fadf7255a7c69a9e6165d87404c1547439688b0efa18480dcdd1e1ae
 S = "${WORKDIR}/vision_opencv-release-release-bouncy-image_geometry-2.0.5-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('vision-opencv', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vision-opencv', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-opencv/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-opencv/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

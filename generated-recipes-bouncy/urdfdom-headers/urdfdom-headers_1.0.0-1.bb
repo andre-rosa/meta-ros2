@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "urdfdom_headers"
 ROS_BPN = "urdfdom_headers"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +49,7 @@ SRC_URI[sha256sum] = "f73d7d6513c556b5afcb2817c63f3d0b0b97b114ee188fe74eee112ae4
 S = "${WORKDIR}/urdfdom_headers-release-release-bouncy-urdfdom_headers-1.0.0-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urdfdom-headers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdfdom-headers', d)}"
@@ -57,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-headers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-headers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

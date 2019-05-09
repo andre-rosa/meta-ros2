@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Helper scripts for tests that use the ROS launch tool."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Esteve Fernandez"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "launch"
 ROS_BPN = "launch_testing"
 
 ROS_BUILD_DEPENDS = ""
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "75e6052d3aae65fa858f627ba22c6dbdc27c0aacfde4af92e0a165d3fd
 S = "${WORKDIR}/launch-release-release-bouncy-launch_testing-0.6.0-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('launch', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('launch', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

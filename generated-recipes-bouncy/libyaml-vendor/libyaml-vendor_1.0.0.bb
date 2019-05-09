@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0 & MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=f12ef8c0445c08084ae92cf2dcb7ee92"
 
+ROS_CN = "libyaml_vendor"
 ROS_BPN = "libyaml_vendor"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +43,7 @@ SRC_URI[sha256sum] = "d63986cc17a6c606438fab7a024cc84e7f30f1b5ac5918f3120d3dd76f
 S = "${WORKDIR}/libyaml_vendor-release-release-bouncy-libyaml_vendor-1.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('libyaml-vendor', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('libyaml-vendor', d)}"
@@ -51,4 +53,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libyaml-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libyaml-vendor/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

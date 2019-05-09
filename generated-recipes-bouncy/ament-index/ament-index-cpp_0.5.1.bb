@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "ament_index"
 ROS_BPN = "ament_index_cpp"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +47,7 @@ SRC_URI[sha256sum] = "d153918f964d8330da0fdfecffc890cbd6bfac6e6102bf4180eac32ba9
 S = "${WORKDIR}/ament_index-release-release-bouncy-ament_index_cpp-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ament-index', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-index', d)}"
@@ -55,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-index/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-index/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

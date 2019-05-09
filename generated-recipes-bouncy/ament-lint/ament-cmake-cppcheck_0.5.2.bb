@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "ament_lint"
 ROS_BPN = "ament_cmake_cppcheck"
 
 ROS_BUILD_DEPENDS = ""
@@ -49,6 +50,7 @@ SRC_URI[sha256sum] = "78e6fa542d33b2eec80f5382c51f73f8288b5f72eafc3f3fb76a3d23d8
 S = "${WORKDIR}/ament_lint-release-release-bouncy-ament_cmake_cppcheck-0.5.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ament-lint', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-lint', d)}"
@@ -58,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-lint/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-lint/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

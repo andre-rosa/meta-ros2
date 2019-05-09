@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0 & BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=f12ef8c0445c08084ae92cf2dcb7ee92"
 
+ROS_CN = "rviz"
 ROS_BPN = "rviz_assimp_vendor"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +49,7 @@ SRC_URI[sha256sum] = "b66b0dc8ce75f7277869c4edabacd008b467a6e819f4b21cc154e86152
 S = "${WORKDIR}/rviz-release-release-bouncy-rviz_assimp_vendor-4.0.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rviz', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz', d)}"
@@ -57,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

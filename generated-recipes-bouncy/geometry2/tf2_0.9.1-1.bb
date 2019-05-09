@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "tf2 is the second generation of the transform library, which lets     the user keep track of multiple coordinate frames over time. tf2     maintains the relationship between coordinate frames in a tree     structure buffered in time, and lets the user transform points,     vectors, etc between any two coordinate frames at any desired     point in time."
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
+ROS_AUTHOR = "Tully Foote"
 HOMEPAGE = "http://www.ros.org/wiki/tf2"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "geometry2"
 ROS_BPN = "tf2"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "ab9e1d651e8a3c205b21faae345f679a4fd90ac9690f33f1500320dd38
 S = "${WORKDIR}/geometry2-release-release-bouncy-tf2-0.9.1-1"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('geometry2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geometry2', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

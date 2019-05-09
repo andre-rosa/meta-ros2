@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "rmw"
 ROS_BPN = "rmw_implementation_cmake"
 
 ROS_BUILD_DEPENDS = ""
@@ -47,6 +48,7 @@ SRC_URI[sha256sum] = "09b0254962e8830e603158351d839392f9d8546c21365afc348b1e5d69
 S = "${WORKDIR}/rmw-release-release-bouncy-rmw_implementation_cmake-0.5.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rmw', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rmw', d)}"
@@ -56,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

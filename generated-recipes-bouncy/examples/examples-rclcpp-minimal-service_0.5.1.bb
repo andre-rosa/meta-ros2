@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A minimal service server which adds two numbers"
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
+ROS_AUTHOR = "Morgan Quigley"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "examples"
 ROS_BPN = "examples_rclcpp_minimal_service"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "6ed98e35b6e0afbb218fcd0da6cafbfbda8969fee4afa6ca20843eda42
 S = "${WORKDIR}/examples-release-release-bouncy-examples_rclcpp_minimal_service-0.5.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('examples', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('examples', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

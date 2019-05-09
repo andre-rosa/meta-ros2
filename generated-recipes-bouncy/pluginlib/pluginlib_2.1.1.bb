@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The pluginlib package provides tools for writing and dynamically loading plugins using the ROS build infrastructure.     To work, these tools require plugin providers to register their plugins in the package.xml of their package."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
+ROS_AUTHOR = "Eitan Marder-Eppstein"
 HOMEPAGE = "http://www.ros.org/wiki/pluginlib"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pluginlib"
 ROS_BPN = "pluginlib"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "8485f210e59c7ccd3d1d7f5add2fb57ec33ebd5561b234276801a515ae
 S = "${WORKDIR}/pluginlib-release-release-bouncy-pluginlib-2.1.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pluginlib', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pluginlib', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

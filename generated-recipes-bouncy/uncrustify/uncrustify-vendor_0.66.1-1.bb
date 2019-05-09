@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "GPL-3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=78ab71f8bc669914d3a3405fa3ef1c9c"
 
+ROS_CN = "uncrustify"
 ROS_BPN = "uncrustify_vendor"
 
 ROS_BUILD_DEPENDS = " \
@@ -42,6 +43,7 @@ SRC_URI[sha256sum] = "fb31e852e9392b4cc67543731dd764d9be33a4edf3722a3aa06957056f
 S = "${WORKDIR}/uncrustify-release-release-bouncy-uncrustify_vendor-0.66.1-1"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('uncrustify', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('uncrustify', d)}"
@@ -51,4 +53,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uncrustify/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uncrustify/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "ament_package"
 ROS_BPN = "ament_package"
 
 ROS_BUILD_DEPENDS = " \
@@ -49,6 +50,7 @@ SRC_URI[sha256sum] = "bca69aac44d4010473a9c8b2676eef3539679f003b80994ea1f75c3514
 S = "${WORKDIR}/ament_package-release-release-bouncy-ament_package-0.5.2-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ament-package', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-package', d)}"
@@ -58,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-package/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-package/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

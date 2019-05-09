@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "rviz"
 ROS_BPN = "rviz_rendering_tests"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +61,7 @@ SRC_URI[sha256sum] = "7eaa51dc42eaecb74db32950c02dc9b01732a5ed62a9b31fefcc3cbc7a
 S = "${WORKDIR}/rviz-release-release-bouncy-rviz_rendering_tests-4.0.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rviz', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz', d)}"
@@ -69,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

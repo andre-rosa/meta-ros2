@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "demos"
 ROS_BPN = "logging_demo"
 
 ROS_BUILD_DEPENDS = " \
@@ -64,6 +65,7 @@ SRC_URI[sha256sum] = "7f6f0816391382a3f278c7cc3acbe85200e69129b0480ed461625b555f
 S = "${WORKDIR}/demos-release-release-bouncy-logging_demo-0.5.1-1"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('demos', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('demos', d)}"
@@ -73,4 +75,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

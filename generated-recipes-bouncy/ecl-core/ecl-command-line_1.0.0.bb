@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Embeds the TCLAP library inside the ecl. This is a very convenient      command line parser in templatised c++."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/ecl_command_line"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ecl_core"
 ROS_BPN = "ecl_command_line"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "c223298c8cafc26b2bdb5b7c2dcd34c9095fec66f3e16decdcaa2f2182
 S = "${WORKDIR}/ecl_core-release-release-bouncy-ecl_command_line-1.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ecl-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-core', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

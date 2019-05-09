@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "3D testing framework for RViz."
 AUTHOR = "William Woodall <william@openrobotics.org>"
+ROS_AUTHOR = "Alessandro Bottero"
 HOMEPAGE = "http://ros.org/wiki/rviz2"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rviz"
 ROS_BPN = "rviz_visual_testing_framework"
 
 ROS_BUILD_DEPENDS = " \
@@ -58,6 +60,7 @@ SRC_URI[sha256sum] = "dd8637ec65a201b22e709d0c43fad4b1291b6bb015dad5909e8b2c867c
 S = "${WORKDIR}/rviz-release-release-bouncy-rviz_visual_testing_framework-4.0.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rviz', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz', d)}"
@@ -67,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

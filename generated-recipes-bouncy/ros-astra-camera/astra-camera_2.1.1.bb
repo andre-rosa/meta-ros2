@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Drivers for Orbbec Astra Devices."
 AUTHOR = "Chris Lalancette <clalancette@openrobotics.org>"
+ROS_AUTHOR = "Tim Liu <liuhua@orbbec.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_astra_camera"
 ROS_BPN = "astra_camera"
 
 ROS_BUILD_DEPENDS = " \
@@ -64,6 +66,7 @@ SRC_URI[sha256sum] = "21269326784bcf416424404ffbfdd1a1d6abc5eb83efdafc4fc8abaa70
 S = "${WORKDIR}/ros_astra_camera-release-release-bouncy-astra_camera-2.1.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-astra-camera', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-astra-camera', d)}"
@@ -73,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-astra-camera/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-astra-camera/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

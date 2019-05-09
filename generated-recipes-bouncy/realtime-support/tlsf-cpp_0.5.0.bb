@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "C++ stdlib-compatible wrapper around tlsf allocator and ROS2 examples"
 AUTHOR = "Chris Lalancette <clalancette@openrobotics.org>"
+ROS_AUTHOR = "Jackie Kay <jackie@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "LGPL-2.1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3badeab1074cb0c993003745c15d12f0"
 
+ROS_CN = "realtime_support"
 ROS_BPN = "tlsf_cpp"
 
 ROS_BUILD_DEPENDS = " \
@@ -59,6 +61,7 @@ SRC_URI[sha256sum] = "67033ce905229b25e55d140b23115e2450308bdbcb8c1cb04f9d34abb8
 S = "${WORKDIR}/realtime_support-release-release-bouncy-tlsf_cpp-0.5.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('realtime-support', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('realtime-support', d)}"
@@ -68,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Command line tools for managing SROS2 keys"
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
+ROS_AUTHOR = "Morgan Quigley <morgan@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "sros2"
 ROS_BPN = "sros2"
 
 ROS_BUILD_DEPENDS = " \
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "00a363fc039fa14fb0aa6ddce2ee8711eebbf6fb210dbac11b5c7d7639
 S = "${WORKDIR}/sros2-release-release-bouncy-sros2-0.5.0-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sros2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sros2', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

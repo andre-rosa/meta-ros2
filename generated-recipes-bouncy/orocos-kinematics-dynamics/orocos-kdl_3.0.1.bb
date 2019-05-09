@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains a recent version of the Kinematics and Dynamics     Library (KDL), distributed by the Orocos Project."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
+ROS_AUTHOR = "Ruben Smits"
 HOMEPAGE = "http://wiki.ros.org/orocos_kdl"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_CN = "orocos_kinematics_dynamics"
 ROS_BPN = "orocos_kdl"
 
 ROS_BUILD_DEPENDS = " \
@@ -49,6 +51,7 @@ SRC_URI[sha256sum] = "9902b1fbe014a218f8e31b389c02e70ecf74da795888d000bfcaa1e8d1
 S = "${WORKDIR}/orocos_kinematics_dynamics-release-release-bouncy-orocos_kdl-3.0.1-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('orocos-kinematics-dynamics', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('orocos-kinematics-dynamics', d)}"
@@ -58,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/orocos-kinematics-dynamics/${BPN}.in
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/orocos-kinematics-dynamics/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

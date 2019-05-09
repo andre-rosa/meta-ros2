@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Pythonic implementation of behaviour trees."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier"
 HOMEPAGE = "http://py-trees.readthedocs.io"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "py_trees"
 ROS_BPN = "py_trees"
 
 ROS_BUILD_DEPENDS = " \
@@ -47,6 +49,7 @@ SRC_URI[sha256sum] = "7a74e506f0962a511ef5f7d8ee989bcb004bef9640f3bfe5eb08bcc29b
 S = "${WORKDIR}/py_trees-release-release-bouncy-py_trees-0.8.2-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('py-trees', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('py-trees', d)}"
@@ -56,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

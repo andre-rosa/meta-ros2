@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "launch"
 ROS_BPN = "ros2launch"
 
 ROS_BUILD_DEPENDS = " \
@@ -63,6 +64,7 @@ SRC_URI[sha256sum] = "7aad303b42a0d5c2208743193e80f1500bddc5e79eaaf7e18c0063a030
 S = "${WORKDIR}/launch-release-release-bouncy-ros2launch-0.6.0-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('launch', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('launch', d)}"
@@ -72,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

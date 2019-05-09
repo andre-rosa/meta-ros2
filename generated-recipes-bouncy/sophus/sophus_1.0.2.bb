@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "C++ implementation of Lie Groups using Eigen."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Hauke Strasdat"
 HOMEPAGE = "https://github.com/strasdat/sophus"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "sophus"
 ROS_BPN = "sophus"
 
 ROS_BUILD_DEPENDS = " \
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "a29074bc4fcfb6f1becebcfab6146a37b75d0a3479d846c808b3b2fa15
 S = "${WORKDIR}/sophus-release-release-bouncy-sophus-1.0.2-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sophus', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sophus', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sophus/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sophus/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

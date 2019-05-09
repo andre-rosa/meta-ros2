@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains the ROS bindings for the tf2 library, for both Python and C++."
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
+ROS_AUTHOR = "Eitan Marder-Eppstein"
 HOMEPAGE = "http://www.ros.org/wiki/tf2_ros"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "geometry2"
 ROS_BPN = "tf2_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -56,6 +58,7 @@ SRC_URI[sha256sum] = "3e4973496090f34c6b4e98c4071c9805ad074f714dd4177a5c6cdcec84
 S = "${WORKDIR}/geometry2-release-release-bouncy-tf2_ros-0.9.1-1"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('geometry2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geometry2', d)}"
@@ -65,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

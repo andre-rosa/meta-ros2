@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0 & MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=f12ef8c0445c08084ae92cf2dcb7ee92"
 
+ROS_CN = "resource_retriever"
 ROS_BPN = "libcurl_vendor"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,6 +51,7 @@ SRC_URI[sha256sum] = "42bade1696caa4699aebdf4daaec5b5083e7d344c5bf2633670a0d8315
 S = "${WORKDIR}/resource_retriever-release-release-bouncy-libcurl_vendor-2.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('resource-retriever', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('resource-retriever', d)}"
@@ -59,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

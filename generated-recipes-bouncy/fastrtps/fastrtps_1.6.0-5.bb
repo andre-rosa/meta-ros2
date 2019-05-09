@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "fastrtps"
 ROS_BPN = "fastrtps"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +55,7 @@ SRC_URI[sha256sum] = "17ad3833c0e8405c3f991e1f2b4fa4fab42b0919f481a34dab7c46b61a
 S = "${WORKDIR}/fastrtps-release-release-bouncy-fastrtps-1.6.0-5"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fastrtps', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fastrtps', d)}"
@@ -63,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastrtps/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastrtps/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}
