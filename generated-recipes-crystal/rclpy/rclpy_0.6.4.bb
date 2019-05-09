@@ -56,6 +56,7 @@ ROS_TEST_DEPENDS = " \
     ament-cmake-pytest \
     ament-lint-auto \
     ament-lint-common \
+    python3-pytest \
     rcl-interfaces \
     rosidl-generator-py \
     test-msgs \

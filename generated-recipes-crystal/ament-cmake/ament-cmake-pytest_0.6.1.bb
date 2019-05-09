@@ -26,6 +26,7 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = " \
     ament-cmake-core-native \
     ament-cmake-test-native \
+    python3-pytest-native \
 "
 
 ROS_EXEC_DEPENDS = ""

@@ -37,6 +37,7 @@ ROS_TEST_DEPENDS = " \
     ament-copyright \
     ament-flake8 \
     ament-pep257 \
+    python3-pytest \
     std-msgs \
     std-srvs \
 "

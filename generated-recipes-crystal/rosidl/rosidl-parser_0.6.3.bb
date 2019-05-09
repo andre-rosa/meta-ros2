@@ -35,6 +35,7 @@ ROS_TEST_DEPENDS = " \
     ament-cmake-pytest \
     ament-lint-auto \
     ament-lint-common \
+    python3-pytest \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"

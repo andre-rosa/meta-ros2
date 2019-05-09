@@ -29,6 +29,7 @@ ROS_EXEC_DEPENDS = ""
 ROS_TEST_DEPENDS = " \
     ament-flake8 \
     ament-pep257 \
+    python3-pytest \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
