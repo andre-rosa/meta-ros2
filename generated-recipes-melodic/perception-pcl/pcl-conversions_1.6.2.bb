@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Provides conversions from PCL data types and ROS message types"
 AUTHOR = "Paul Bovbel <paul@bovbel.com>"
+ROS_AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/pcl_conversions"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "perception_pcl"
 ROS_BPN = "pcl_conversions"
 
 ROS_BUILD_DEPENDS = ""
@@ -56,6 +58,7 @@ SRC_URI[sha256sum] = "14361d15d63002d2752dff7618967181b18d3bb43aaee0c42ac6eb563d
 S = "${WORKDIR}/perception_pcl-release-release-melodic-pcl_conversions-1.6.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('perception-pcl', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('perception-pcl', d)}"
@@ -65,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/perception-pcl/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/perception-pcl/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

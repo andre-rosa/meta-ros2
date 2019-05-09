@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Neato XV-11 Laser Driver. This driver works with the laser when it is removed from the XV-11 Robot as opposed to reading scans from the Neato's USB port."
 AUTHOR = "rohan <send2arohan@gmail.com>"
+ROS_AUTHOR = "Eric Perko"
 HOMEPAGE = "http://ros.org/wiki/xv_11_laser_driver"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "xv_11_laser_driver"
 ROS_BPN = "xv_11_laser_driver"
 
 ROS_BUILD_DEPENDS = " \
@@ -49,6 +51,7 @@ SRC_URI[sha256sum] = "7c6485e8b062b95fd61b2eceb47f042f5d069f1c6aad947f5c237f8968
 S = "${WORKDIR}/xv_11_laser_driver-release-release-melodic-xv_11_laser_driver-0.3.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('xv-11-laser-driver', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('xv-11-laser-driver', d)}"
@@ -58,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xv-11-laser-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xv-11-laser-driver/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

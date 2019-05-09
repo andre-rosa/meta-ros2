@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Point cloud conversions for rslidar 3D LIDARs."
 AUTHOR = "Abraham Monrroy <abrahammonrroy@yahoo.com>"
+ROS_AUTHOR = "Tony Zhang <tony.zhang@robosense.cn>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "robosense"
 ROS_BPN = "rslidar_pointcloud"
 
 ROS_BUILD_DEPENDS = " \
@@ -82,6 +84,7 @@ SRC_URI[sha256sum] = "a6c848ebbe5c69d8458345fbb9c5fd54012a1a96130c1587ccf0b251de
 S = "${WORKDIR}/robosense-release-release-melodic-rslidar_pointcloud-1.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robosense', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robosense', d)}"
@@ -91,4 +94,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robosense/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robosense/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

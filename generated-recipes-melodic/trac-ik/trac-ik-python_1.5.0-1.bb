@@ -7,16 +7,17 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The trac_ik_python package contains a python wrapper using SWIG   for trac_ik_lib"
 AUTHOR = "Sam Pfeiffer <Sammy.Pfeiffer@student.uts.edu.au>"
+ROS_AUTHOR = "Sam Pfeiffer"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "trac_ik"
 ROS_BPN = "trac_ik_python"
 
 ROS_BUILD_DEPENDS = " \
     rospy \
-    swig \
     tf-conversions \
     trac-ik-lib \
 "
@@ -27,7 +28,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     rospy \
-    swig \
     tf \
     tf-conversions \
     trac-ik-lib \
@@ -37,7 +37,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     rospy \
-    swig \
     tf \
     tf-conversions \
     trac-ik-lib \
@@ -59,6 +58,7 @@ SRC_URI[sha256sum] = "d61541a1eb22c8c6af749e058557fdbd0259fe89d4045230871a54b606
 S = "${WORKDIR}/trac_ik-release-release-melodic-trac_ik_python-1.5.0-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('trac-ik', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('trac-ik', d)}"
@@ -68,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

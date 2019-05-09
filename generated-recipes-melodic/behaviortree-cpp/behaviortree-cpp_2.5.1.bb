@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides a behavior trees core."
 AUTHOR = "Michele Colledanchise <michele.colledanchise@gmail.com>"
+ROS_AUTHOR = "Michele Colledanchise"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "behaviortree_cpp"
 ROS_BPN = "behaviortree_cpp"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "cd1af27ccb2e5763fa4e9f02e23edf77fca7d1894d013a0d932e7f5ad0
 S = "${WORKDIR}/behaviortree_cpp-release-release-melodic-behaviortree_cpp-2.5.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('behaviortree-cpp', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('behaviortree-cpp', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviortree-cpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviortree-cpp/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

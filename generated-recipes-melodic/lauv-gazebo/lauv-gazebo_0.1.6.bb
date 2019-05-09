@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Sample launch files to start a simulated LAUV in Gazebo."
 AUTHOR = "Musa Morena Marcusso Manhaes <musa.marcusso@de.bosch.com>"
+ROS_AUTHOR = "Musa Morena Marcusso Manhaes <musa.marcusso@de.bosch.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_CN = "lauv_gazebo"
 ROS_BPN = "lauv_gazebo"
 
 ROS_BUILD_DEPENDS = ""
@@ -47,6 +49,7 @@ SRC_URI[sha256sum] = "ba4a2d4a1567b183be8c500d5dc714ebbec6802532da93eaab20cc7cdb
 S = "${WORKDIR}/lauv_gazebo-release-release-melodic-lauv_gazebo-0.1.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('lauv-gazebo', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('lauv-gazebo', d)}"
@@ -56,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lauv-gazebo/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lauv-gazebo/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

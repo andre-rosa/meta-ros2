@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides access to the PR2 fingertip pressure sensors. This information includes:"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "Blaise Gassend <blaise@willowgarage.com>"
 HOMEPAGE = "http://ros.org/wiki/fingertip_pressure"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pr2_ethercat_drivers"
 ROS_BPN = "fingertip_pressure"
 
 ROS_BUILD_DEPENDS = " \
@@ -61,6 +63,7 @@ SRC_URI[sha256sum] = "b4ed5a369a34c342f410d4fbfb050d286cb4ff8db96482684e0e6354c6
 S = "${WORKDIR}/pr2_ethercat_drivers-release-release-melodic-fingertip_pressure-1.8.18-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-ethercat-drivers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-ethercat-drivers', d)}"
@@ -70,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-ethercat-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-ethercat-drivers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

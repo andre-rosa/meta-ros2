@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "EusLisp is an integrated programming system for the   research on intelligent robots based on Common Lisp and   Object-Oriented programming"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Toshihiro Matsui"
 HOMEPAGE = "http://euslisp.github.io/EusLisp/manual.html"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "euslisp"
 ROS_BPN = "euslisp"
 
 ROS_BUILD_DEPENDS = " \
@@ -20,7 +22,6 @@ ROS_BUILD_DEPENDS = " \
     libpng-dev \
     libpq-dev \
     libx11 \
-    libxext \
     mesa \
     mk \
     xfonts-100dpi \
@@ -36,7 +37,6 @@ ROS_EXPORT_DEPENDS = " \
     libpng-dev \
     libpq-dev \
     libx11 \
-    libxext \
     mesa \
     xfonts-100dpi \
     xfonts-75dpi \
@@ -49,7 +49,6 @@ ROS_EXEC_DEPENDS = " \
     libpng-dev \
     libpq-dev \
     libx11 \
-    libxext \
     mesa \
     xfonts-100dpi \
     xfonts-75dpi \
@@ -71,6 +70,7 @@ SRC_URI[sha256sum] = "267e9150e430c87ed26dd58e103e1db0ef56dfe6580f16bf3352ebb23f
 S = "${WORKDIR}/euslisp-release-release-melodic-euslisp-9.26.0-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('euslisp', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('euslisp', d)}"
@@ -80,4 +80,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/euslisp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/euslisp/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

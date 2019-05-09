@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rosmake is a ros dependency aware build tool which can be used to      build all dependencies in the correct order."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/rosmake"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros"
 ROS_BPN = "rosmake"
 
 ROS_BUILD_DEPENDS = ""
@@ -22,14 +24,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     catkin \
-    python-rospkg \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     catkin \
-    python-rospkg \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -48,6 +48,7 @@ SRC_URI[sha256sum] = "2014461723eb619c99a70d3314a6e392e922a27d17fc9bc5a83292c8df
 S = "${WORKDIR}/ros-release-release-melodic-rosmake-1.14.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros', d)}"
@@ -57,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

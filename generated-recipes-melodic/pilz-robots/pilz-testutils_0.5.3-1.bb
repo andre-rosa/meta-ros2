@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "pilz_robots"
 ROS_BPN = "pilz_testutils"
 
 ROS_BUILD_DEPENDS = " \
@@ -44,6 +45,7 @@ SRC_URI[sha256sum] = "0a19e1ad12f656f7b1ab0977438f322c5ab9ba19eca2c3ec25f0a81829
 S = "${WORKDIR}/pilz_robots-release-release-melodic-pilz_testutils-0.5.3-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pilz-robots', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pilz-robots', d)}"
@@ -53,4 +55,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

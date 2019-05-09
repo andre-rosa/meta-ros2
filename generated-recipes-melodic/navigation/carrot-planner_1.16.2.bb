@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This planner attempts to find a legal place to put a carrot for the robot to follow. It does this by moving back along the vector between the robot and the goal point."
 AUTHOR = "Aaron Hoy <ahoy@fetchrobotics.com>"
+ROS_AUTHOR = "Eitan Marder-Eppstein"
 HOMEPAGE = "http://wiki.ros.org/carrot_planner"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "navigation"
 ROS_BPN = "carrot_planner"
 
 ROS_BUILD_DEPENDS = " \
@@ -70,6 +72,7 @@ SRC_URI[sha256sum] = "a5d041ba34682f24432fac22801b54a438dc58d3e13e1a4dde1e81e09d
 S = "${WORKDIR}/navigation-release-release-melodic-carrot_planner-1.16.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation', d)}"
@@ -79,4 +82,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

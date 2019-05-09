@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains common nodelet tools such as a mux, demux and throttle."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
+ROS_AUTHOR = "Radu Bogdan Rusu"
 HOMEPAGE = "http://ros.org/wiki/nodelet_topic_tools"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "nodelet_core"
 ROS_BPN = "nodelet_topic_tools"
 
 ROS_BUILD_DEPENDS = " \
@@ -55,6 +57,7 @@ SRC_URI[sha256sum] = "39f55bdfb39c520b29a3c6004ca8d359a2e2ffc8da9ed254ba38c180bd
 S = "${WORKDIR}/nodelet_core-release-release-melodic-nodelet_topic_tools-1.9.16-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('nodelet-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('nodelet-core', d)}"
@@ -64,4 +67,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nodelet-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nodelet-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

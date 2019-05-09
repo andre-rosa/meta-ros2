@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Launch files to open an RGBD device and load all nodelets to       convert raw depth/RGB/IR streams to depth images, disparity images,       and (registered) point clouds."
 AUTHOR = "Piyush Khandelwal <piyushk@gmail.com>"
+ROS_AUTHOR = "Patrick Mihelich and others"
 HOMEPAGE = "http://www.ros.org/wiki/rgbd_launch"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rgbd_launch"
 ROS_BPN = "rgbd_launch"
 
 ROS_BUILD_DEPENDS = " \
@@ -59,6 +61,7 @@ SRC_URI[sha256sum] = "973d8f054d8b7447e8951b5dc8dc65d860a3ce48431789fee0f582d8d5
 S = "${WORKDIR}/rgbd_launch-release-release-melodic-rgbd_launch-2.2.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rgbd-launch', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rgbd-launch', d)}"
@@ -68,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rgbd-launch/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rgbd-launch/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

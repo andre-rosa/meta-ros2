@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Underlying data libraries for roscpp messages."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Josh Faust"
 HOMEPAGE = "http://www.ros.org/wiki/roscpp_core"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "roscpp_core"
 ROS_BPN = "roscpp_core"
 
 ROS_BUILD_DEPENDS = ""
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "814ea5bddeba2cabb4229baa27006fe21dbc56f0fd51bf3afd5e20a22b
 S = "${WORKDIR}/roscpp_core-release-release-melodic-roscpp_core-0.6.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roscpp-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roscpp-core', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "An automatically generated package with all the configuration and launch files for using the panda with the MoveIt! Motion Planning Framework"
 AUTHOR = "Mike Lautman <mike@picknik.ai>"
+ROS_AUTHOR = "Mike Lautman <mike@picknik.ai>"
 HOMEPAGE = "http://moveit.ros.org/"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "panda_moveit_config"
 ROS_BPN = "panda_moveit_config"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "01274911d72afb49bda01ff79f7c15aec55668bc0d29342f70d3ea3be5
 S = "${WORKDIR}/panda_moveit_config-release-release-melodic-panda_moveit_config-0.7.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('panda-moveit-config', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('panda-moveit-config', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/panda-moveit-config/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/panda-moveit-config/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Messages for interfacing with various computer vision pipelines, such as     object detectors."
 AUTHOR = "Adam Allevato <adam.d.allevato@gmail.com>"
+ROS_AUTHOR = "Adam Allevato <adam.d.allevato@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "vision_msgs"
 ROS_BPN = "vision_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -62,6 +64,7 @@ SRC_URI[sha256sum] = "aea7d0a539a76bbd0072f74bb3c7ebc0a7f3b3277963f8d696de42a5c4
 S = "${WORKDIR}/vision_msgs-release-release-melodic-vision_msgs-0.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('vision-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vision-msgs', d)}"
@@ -71,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

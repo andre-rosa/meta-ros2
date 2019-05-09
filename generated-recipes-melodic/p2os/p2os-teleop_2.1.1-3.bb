@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A teleoperation node for the p2os_driver package."
 AUTHOR = "Hunter L. Allen <hunter@openrobotics.org>"
+ROS_AUTHOR = "Hunter L. Allen <hunter@openrobotics.org>"
 HOMEPAGE = "http://ros.org/wiki/p2os-purdue"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "p2os"
 ROS_BPN = "p2os_teleop"
 
 ROS_BUILD_DEPENDS = " \
@@ -58,6 +60,7 @@ SRC_URI[sha256sum] = "f263fffb042a86ffea63279e319c18b59efe102b6ad0f0d2f868ddd86e
 S = "${WORKDIR}/p2os-release-release-melodic-p2os_teleop-2.1.1-3"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('p2os', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('p2os', d)}"
@@ -67,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

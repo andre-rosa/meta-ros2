@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "qt_gui provides the infrastructure for an integrated graphical user interface based on Qt.     It is extensible with Python- and C++-based plugins (implemented in separate packages) which can contribute arbitrary widgets.     It requires either PyQt or PySide bindings."
 AUTHOR = "D. Hood <dhood@osrfoundation.org>"
+ROS_AUTHOR = "Dirk Thomas"
 HOMEPAGE = "http://ros.org/wiki/qt_gui"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "qt_gui_core"
 ROS_BPN = "qt_gui"
 
 ROS_BUILD_DEPENDS = " \
@@ -25,7 +27,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     python-qt-binding \
-    python-rospkg \
     tango-icon-theme \
 "
 
@@ -33,7 +34,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     python-qt-binding \
-    python-rospkg \
     tango-icon-theme \
 "
 
@@ -53,6 +53,7 @@ SRC_URI[sha256sum] = "4a87192e0c9880e2d7d14b67c3ee5d156a5bc6d1e11f8e4a23a3ced3d7
 S = "${WORKDIR}/qt_gui_core-release-release-melodic-qt_gui-0.3.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('qt-gui-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('qt-gui-core', d)}"
@@ -62,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=b691248d2f70cdaeeaf13696ada5d47c"
 
+ROS_CN = "ipr_extern"
 ROS_BPN = "ros_reflexxes"
 
 ROS_BUILD_DEPENDS = " \
@@ -52,6 +53,7 @@ SRC_URI[sha256sum] = "76626c036fcf97fd86efb214887ddffe715d343b660a6117eddd0f833e
 S = "${WORKDIR}/ipr_extern-release-release-melodic-ros_reflexxes-0.8.8-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ipr-extern', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ipr-extern', d)}"
@@ -61,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

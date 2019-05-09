@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "An example controller manager plugin for MoveIt. This is not functional code."
 AUTHOR = "Michael Görner <me@v4hn.de>"
+ROS_AUTHOR = "Ioan Sucan <isucan@google.com>"
 HOMEPAGE = "http://moveit.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "moveit"
 ROS_BPN = "moveit_controller_manager_example"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "7594ace173bf4c1d41806d16686f371784e37f2169aa655548213b4b44
 S = "${WORKDIR}/moveit-release-release-melodic-moveit_controller_manager_example-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

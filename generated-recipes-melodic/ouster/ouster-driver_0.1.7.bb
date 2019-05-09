@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "OS1 ROS client"
 AUTHOR = "Alexander Carballo <miyamoto.musashi2@gmail.com>"
+ROS_AUTHOR = "ouster developers <oss@ouster.io>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=fc216ef9336537897fbeafa564601763"
 
+ROS_CN = "ouster"
 ROS_BPN = "ouster_driver"
 
 ROS_BUILD_DEPENDS = " \
@@ -56,6 +58,7 @@ SRC_URI[sha256sum] = "7f68cc7f16bf51c84ddf73d6db82c8352089ee1da21d2e6b1da177ce36
 S = "${WORKDIR}/ouster-release-release-melodic-ouster_driver-0.1.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ouster', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ouster', d)}"
@@ -65,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ouster/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ouster/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

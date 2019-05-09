@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Metapackage referencing tutorials related to rviz and visualization."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
+ROS_AUTHOR = "Dave Hershberger"
 HOMEPAGE = "http://ros.org/wiki/visualization_tutorials"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "visualization_tutorials"
 ROS_BPN = "visualization_tutorials"
 
 ROS_BUILD_DEPENDS = ""
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "5f67b564a5f87b4d7113b97de74e987a956d3985dac7639204b4ba697a
 S = "${WORKDIR}/visualization_tutorials-release-release-melodic-visualization_tutorials-0.10.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('visualization-tutorials', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('visualization-tutorials', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

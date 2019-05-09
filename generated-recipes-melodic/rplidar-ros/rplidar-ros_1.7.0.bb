@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rplidar_ros"
 ROS_BPN = "rplidar_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +58,7 @@ SRC_URI[sha256sum] = "548d65fb0fba265d22e0ad2e2fdb4d522f97a751b62bf01fb7dfbac36e
 S = "${WORKDIR}/rplidar_ros-release-release-melodic-rplidar_ros-1.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rplidar-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rplidar-ros', d)}"
@@ -66,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rplidar-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rplidar-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

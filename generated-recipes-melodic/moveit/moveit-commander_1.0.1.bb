@@ -7,20 +7,19 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Python interfaces to MoveIt"
 AUTHOR = "Michael Görner <me@v4hn.de>"
+ROS_AUTHOR = "Ioan Sucan <isucan@google.com>"
 HOMEPAGE = "http://moveit.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "moveit"
 ROS_BPN = "moveit_commander"
 
-ROS_BUILD_DEPENDS = " \
-    python \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
-    python-catkin-pkg-native \
 "
 
 ROS_EXPORT_DEPENDS = ""
@@ -31,7 +30,6 @@ ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     moveit-msgs \
     moveit-ros-planning-interface \
-    python \
     python-pyassimp \
     rospy \
     sensor-msgs \
@@ -58,6 +56,7 @@ SRC_URI[sha256sum] = "ea3303f2603691866e92db0d35a0491c179d9c68bbabe6b6c251928bd8
 S = "${WORKDIR}/moveit-release-release-melodic-moveit_commander-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
@@ -67,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

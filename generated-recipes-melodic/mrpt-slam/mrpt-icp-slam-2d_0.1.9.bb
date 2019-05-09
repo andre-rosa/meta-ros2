@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "mrpt_icp_slam_2d contains a wrapper on MRPT's 2D ICP-SLAM algorithms."
 AUTHOR = "Jose Luis Blanco Claraco <jlblanco@ual.es>"
+ROS_AUTHOR = "Jose Luis Blanco Claraco"
 HOMEPAGE = "http://ros.org/wiki/mrpt_icp_slam_2d"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mrpt_slam"
 ROS_BPN = "mrpt_icp_slam_2d"
 
 ROS_BUILD_DEPENDS = " \
@@ -80,6 +82,7 @@ SRC_URI[sha256sum] = "aca7e53d844693e92f1d043660b5982dce6739932f68f63943fb87763b
 S = "${WORKDIR}/mrpt_slam-release-release-melodic-mrpt_icp_slam_2d-0.1.9-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-slam', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-slam', d)}"
@@ -89,4 +92,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

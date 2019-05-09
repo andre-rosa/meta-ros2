@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "CAN interface to the Universal Lat/Lon Controller (ULC) firmware"
 AUTHOR = "Micho Radovnikovich <mradovnikovich@dataspeedinc.com>"
+ROS_AUTHOR = "Micho Radovnikovich <mradovnikovich@dataspeedinc.com>"
 HOMEPAGE = "https://bitbucket.org/dataspeedinc/dataspeed_ulc_ros"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "dataspeed_ulc_ros"
 ROS_BPN = "dataspeed_ulc"
 
 ROS_BUILD_DEPENDS = ""
@@ -45,6 +47,7 @@ SRC_URI[sha256sum] = "471b98597bb7b5f02af67b0c268f2285f4defa360d371091972f5d826d
 S = "${WORKDIR}/dataspeed_ulc_ros-release-release-melodic-dataspeed_ulc-0.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dataspeed-ulc-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dataspeed-ulc-ros', d)}"
@@ -54,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-ulc-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-ulc-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

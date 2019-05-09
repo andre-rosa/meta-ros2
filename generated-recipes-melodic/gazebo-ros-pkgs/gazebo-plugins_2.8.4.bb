@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Robot-independent Gazebo plugins for sensors, motors and dynamic reconfigurable components."
 AUTHOR = "Jose Luis Rivero <jrivero@osrfoundation.org>"
+ROS_AUTHOR = "John Hsu"
 HOMEPAGE = "http://gazebosim.org/tutorials?cat=connect_ros"
 SECTION = "devel"
 LICENSE = "BSD-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=f7d4e3a22e6490b133f4eb99348a8124"
 
+ROS_CN = "gazebo_ros_pkgs"
 ROS_BPN = "gazebo_plugins"
 
 ROS_BUILD_DEPENDS = " \
@@ -117,6 +119,7 @@ SRC_URI[sha256sum] = "94c5485bf4de9cbdb17df841f0ba08aa28e245dd533f88c78f3533b763
 S = "${WORKDIR}/gazebo_ros_pkgs-release-release-melodic-gazebo_plugins-2.8.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('gazebo-ros-pkgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gazebo-ros-pkgs', d)}"
@@ -126,4 +129,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gazebo-ros-pkgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gazebo-ros-pkgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

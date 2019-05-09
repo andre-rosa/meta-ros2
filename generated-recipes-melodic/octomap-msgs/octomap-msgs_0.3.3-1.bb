@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides messages and serializations / conversion for the <a href="http://octomap.github.com">OctoMap library</a>."
 AUTHOR = "Armin Hornung <armin@hornung.io>"
+ROS_AUTHOR = "Armin Hornung <armin@hornung.io>"
 HOMEPAGE = "http://ros.org/wiki/octomap_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=5ee5b8b046ae48ad94a2037ca953a67b"
 
+ROS_CN = "octomap_msgs"
 ROS_BPN = "octomap_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "416e70d1633904e7a65bfcd4e1665e5ff5e013d8a9d6a53329d2a449c2
 S = "${WORKDIR}/octomap_msgs-release-release-melodic-octomap_msgs-0.3.3-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('octomap-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('octomap-msgs', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

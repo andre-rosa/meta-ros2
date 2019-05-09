@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "roscompile"
 ROS_BPN = "ros_introspection"
 
 ROS_BUILD_DEPENDS = ""
@@ -25,7 +26,6 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-requests \
     rosmsg \
 "
 
@@ -47,6 +47,7 @@ SRC_URI[sha256sum] = "becacb2e9cb821bffb018fe5bb49612b59152cd46067ab47a1fa5fbce2
 S = "${WORKDIR}/roscompile-release-release-melodic-ros_introspection-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roscompile', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roscompile', d)}"
@@ -56,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The OctoMap library implements a 3D occupancy grid mapping approach, providing data structures and mapping algorithms in C++. The map implementation is based on an octree. See   http://octomap.github.io for details."
 AUTHOR = "Armin Hornung <armin@hornung.io>"
+ROS_AUTHOR = "Kai M. Wurm <wurm@informatik.uni-freiburg.de>"
 HOMEPAGE = "http://octomap.github.io"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "octomap"
 ROS_BPN = "octomap"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "20a5bb7d159129053c2b25f7c02a76ad4ffec83c31e2fb4486753c8811
 S = "${WORKDIR}/octomap-release-release-melodic-octomap-1.9.0-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('octomap', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('octomap', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

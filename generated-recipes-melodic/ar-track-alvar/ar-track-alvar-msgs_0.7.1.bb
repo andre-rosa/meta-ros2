@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ar_track_alvar"
 ROS_BPN = "ar_track_alvar_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +55,7 @@ SRC_URI[sha256sum] = "0c39c3c9732ca3712a78f43bcc2545f90b846aff2559de8a5fc7a9b4a6
 S = "${WORKDIR}/ar_track_alvar-release-release-melodic-ar_track_alvar_msgs-0.7.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ar-track-alvar', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ar-track-alvar', d)}"
@@ -63,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ar-track-alvar/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ar-track-alvar/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

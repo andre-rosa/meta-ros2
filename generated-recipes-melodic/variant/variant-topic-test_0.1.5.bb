@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Variant topic tools testing suites."
 AUTHOR = "Ralf Kaestner <ralf.kaestner@gmail.com>"
+ROS_AUTHOR = "Ralf Kaestner"
 HOMEPAGE = "http://github.com/ethz-asl/ros-topic-variant"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=146ba316845cfe6058c8baebd902a726"
 
+ROS_CN = "variant"
 ROS_BPN = "variant_topic_test"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "bfb1f587202ae563d3c7c967de21660efdd00723675a8e16ae0b9592fc
 S = "${WORKDIR}/variant-release-release-melodic-variant_topic_test-0.1.5-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('variant', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('variant', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

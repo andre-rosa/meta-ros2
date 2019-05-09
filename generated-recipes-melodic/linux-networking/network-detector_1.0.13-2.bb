@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS node that watches a given network interface and publishes      whether it is both UP and RUNNING (indicating that a cable is      plugged into it and communication is happening, for instance) or      not."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
+ROS_AUTHOR = "Dave Hershberger"
 HOMEPAGE = "http://ros.org/wiki/detect_running_network_interface"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "linux_networking"
 ROS_BPN = "network_detector"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "9a614eb87c2da1654949748ff121761e81aa54c428fe07970ddaa90707
 S = "${WORKDIR}/linux_networking-release-release-melodic-network_detector-1.0.13-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('linux-networking', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

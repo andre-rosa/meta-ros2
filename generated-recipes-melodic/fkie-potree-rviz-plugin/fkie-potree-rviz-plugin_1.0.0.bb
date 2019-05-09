@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Render large point clouds in rviz"
 AUTHOR = "Timo Röhling <timo.roehling@fkie.fraunhofer.de>"
+ROS_AUTHOR = "Timo Röhling <timo.roehling@fkie.fraunhofer.de>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_CN = "fkie_potree_rviz_plugin"
 ROS_BPN = "fkie_potree_rviz_plugin"
 
 ROS_BUILD_DEPENDS = " \
@@ -55,6 +57,7 @@ SRC_URI[sha256sum] = "9a9b281a5546efc32cbf9d79e4675deaf0c30bae167cd88a26c6c904a2
 S = "${WORKDIR}/potree_rviz_plugin-release-release-melodic-fkie_potree_rviz_plugin-1.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fkie-potree-rviz-plugin', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fkie-potree-rviz-plugin', d)}"
@@ -64,4 +67,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-potree-rviz-plugin/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-potree-rviz-plugin/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

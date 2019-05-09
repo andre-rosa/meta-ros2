@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "laser_proc"
 AUTHOR = "Chad Rockey <chadrockey@willowgarage.com>"
+ROS_AUTHOR = "Chad Rockey <chadrockey@willowgarage.com>"
 HOMEPAGE = "http://ros.org/wiki/laser_proc"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "laser_proc"
 ROS_BPN = "laser_proc"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "bd596ebcfc3016970ba1c6abcd0d8c550e9b96a19ec6ab23ec8f5f3bc0
 S = "${WORKDIR}/laser_proc-release-release-melodic-laser_proc-0.1.5-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('laser-proc', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-proc', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-proc/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-proc/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

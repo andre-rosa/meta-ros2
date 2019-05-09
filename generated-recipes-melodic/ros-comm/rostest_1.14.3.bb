@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Integration test suite based on roslaunch that is compatible with xUnit frameworks."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Ken Conley"
 HOMEPAGE = "http://ros.org/wiki/rostest"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_comm"
 ROS_BPN = "rostest"
 
 ROS_BUILD_DEPENDS = " \
@@ -59,6 +61,7 @@ SRC_URI[sha256sum] = "90e7b4ba3167ae06f5ad213c193b0c5ab7888b4abd75542a3d7c02592e
 S = "${WORKDIR}/ros_comm-release-release-melodic-rostest-1.14.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-comm', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm', d)}"
@@ -68,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

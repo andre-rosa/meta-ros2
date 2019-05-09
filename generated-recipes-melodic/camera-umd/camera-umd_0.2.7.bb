@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "GPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "camera_umd"
 ROS_BPN = "camera_umd"
 
 ROS_BUILD_DEPENDS = ""
@@ -48,6 +49,7 @@ SRC_URI[sha256sum] = "fb6705f080d0f3add72ec01a70dfb7e3efd9f264c9294a4a2ced40f941
 S = "${WORKDIR}/camera_umd-release-release-melodic-camera_umd-0.2.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('camera-umd', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('camera-umd', d)}"
@@ -57,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/camera-umd/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/camera-umd/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

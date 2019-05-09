@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "visualization_msgs is a set of messages used by higher level packages, such as <a href="/wiki/rviz">rviz</a>, that deal in visualization-specific data.      The main messages in visualization_msgs is <tt>visualization_msgs/Marker</tt>.     The marker message is used to send visualization &quot;markers&quot; such as boxes, spheres, arrows, lines, etc. to a visualization environment such as <a href="http:///www.ros.org/wiki/rviz">rviz</a>.     See the rviz tutorial <a href="http://www.ros.org/wiki/rviz/Tutorials">rviz tutorials</a> for more information."
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
+ROS_AUTHOR = "Josh Faust <jfaust@willowgarage.com>"
 HOMEPAGE = "http://ros.org/wiki/visualization_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "common_msgs"
 ROS_BPN = "visualization_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "fcd899da639e6bd69f2b1dab627bf76ae527ae753f671d01357cb55c21
 S = "${WORKDIR}/common_msgs-release-release-melodic-visualization_msgs-1.12.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('common-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-msgs', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

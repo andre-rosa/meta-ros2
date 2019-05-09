@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Dynamixel-Workbench is dynamixel solution for ROS.     This metapackage allows you to easily change the ID, baudrate and operating mode of the Dynamixel.     Furthermore, it supports various controllers based on operating mode and Dynamixel SDK.     These controllers are commanded by operators."
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Darby Lim <thlim@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/dynamixel_workbench"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "dynamixel-workbench"
 ROS_BPN = "dynamixel_workbench"
 
 ROS_BUILD_DEPENDS = ""
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "00841253629ace29288f09f2eaeedc1d86eee69657d4b0ac32824b4561
 S = "${WORKDIR}/dynamixel-workbench-release-release-melodic-dynamixel_workbench-2.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dynamixel-workbench', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dynamixel-workbench', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

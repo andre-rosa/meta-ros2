@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The tools package(including SLAM, Navigation, Manipulation) for OpenManipulator with TurtleBot3"
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Darby Lim <thlim@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/open_manipulator_with_tb3_tools"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "open_manipulator_with_tb3"
 ROS_BPN = "open_manipulator_with_tb3_tools"
 
 ROS_BUILD_DEPENDS = " \
@@ -95,6 +97,7 @@ SRC_URI[sha256sum] = "6095647043adf0b59ecb69da2f441cbf996fa4729007040dbe2856d3d7
 S = "${WORKDIR}/open_manipulator_with_tb3-release-release-melodic-open_manipulator_with_tb3_tools-1.1.0-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('open-manipulator-with-tb3', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('open-manipulator-with-tb3', d)}"
@@ -104,4 +107,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

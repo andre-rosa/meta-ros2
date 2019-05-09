@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Lisp client library for ROS, the Robot Operating System."
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
+ROS_AUTHOR = "Bhaskara Marthi"
 HOMEPAGE = "http://ros.org/wiki/roslisp"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "roslisp"
 ROS_BPN = "roslisp"
 
 ROS_BUILD_DEPENDS = ""
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "83844af11c1d8a5baf84efcef5a107629966d66b14973723446cd8803f
 S = "${WORKDIR}/roslisp-release-release-melodic-roslisp-1.9.22-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roslisp', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roslisp', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

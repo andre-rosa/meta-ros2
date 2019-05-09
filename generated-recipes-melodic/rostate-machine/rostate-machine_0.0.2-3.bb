@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=e331ae4007befdc99188ed9053fe2356"
 
+ROS_CN = "rostate_machine"
 ROS_BPN = "rostate_machine"
 
 ROS_BUILD_DEPENDS = " \
@@ -62,6 +63,7 @@ SRC_URI[sha256sum] = "a7eae9ee6371319fc4b598f00322101431141a52b07ed6ef2c0ee5588a
 S = "${WORKDIR}/rostate_machine-release-release-melodic-rostate_machine-0.0.2-3"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rostate-machine', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rostate-machine', d)}"
@@ -71,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rostate-machine/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rostate-machine/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

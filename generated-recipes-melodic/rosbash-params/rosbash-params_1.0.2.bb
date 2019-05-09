@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Tools for writing ros-node-like bash scripts"
 AUTHOR = "Martin Pecka <peckama2@fel.cvut.cz>"
+ROS_AUTHOR = "Martin Pecka <peckama2@fel.cvut.cz>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rosbash_params"
 ROS_BPN = "rosbash_params"
 
 ROS_BUILD_DEPENDS = ""
@@ -45,6 +47,7 @@ SRC_URI[sha256sum] = "af9e6ee8c0ffae32824fbbfa2dfcbb6483e0ad1757282f347ca744db60
 S = "${WORKDIR}/rosbash_params-release-release-melodic-rosbash_params-1.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosbash-params', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbash-params', d)}"
@@ -54,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbash-params/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbash-params/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

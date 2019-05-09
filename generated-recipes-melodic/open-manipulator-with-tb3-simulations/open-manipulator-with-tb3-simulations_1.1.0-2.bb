@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Simulation packages for OpenManipulator with TurtleBot3"
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Darby Lim <thlim@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/open_manipulator_with_tb3_simulations"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "open_manipulator_with_tb3_simulations"
 ROS_BPN = "open_manipulator_with_tb3_simulations"
 
 ROS_BUILD_DEPENDS = ""
@@ -44,6 +46,7 @@ SRC_URI[sha256sum] = "efe76d391f38587da7c22cdd2d53fe308be8fc7ef3b59e24a231b7df5e
 S = "${WORKDIR}/open_manipulator_with_tb3_simulations-release-release-melodic-open_manipulator_with_tb3_simulations-1.1.0-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('open-manipulator-with-tb3-simulations', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('open-manipulator-with-tb3-simulations', d)}"
@@ -53,4 +56,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3-simulation
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3-simulations/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

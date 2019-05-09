@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The mbf_simple_nav package contains a simple navigation server implementation of Move Base Flex (MBF). The simple navigation server is bound to no map representation. It provides actions for planning, controlling and recovering. MBF loads all defined plugins which are defined in the lists *planners*, *controllers* and *recovery_behaviors*. Each list holds a pair of a *name* and a *type*. The *type* defines which kind of plugin to load. The *name* defines under which name the plugin should be callable by the actions.           It tries to load the defined plugins which implements the defined interfaces in <a href="wiki.ros.org/mbf_abstract_core">mbf_abstract_core</a>."
 AUTHOR = "Sebastian Pütz <spuetz@uos.de>"
+ROS_AUTHOR = "Sebastian Pütz <spuetz@uos.de>"
 HOMEPAGE = "http://wiki.ros.org/move_base_flex"
 SECTION = "devel"
 LICENSE = "3-Clause-BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2a17ba6bda1db7ca47fe93a1560e517b"
 
+ROS_CN = "move_base_flex"
 ROS_BPN = "mbf_simple_nav"
 
 ROS_BUILD_DEPENDS = " \
@@ -90,6 +92,7 @@ SRC_URI[sha256sum] = "29ab5a2e9938d504135251b3d5aef505d7f67cec5428c96afa6d9abdf3
 S = "${WORKDIR}/move_base_flex-release-release-melodic-mbf_simple_nav-0.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('move-base-flex', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('move-base-flex', d)}"
@@ -99,4 +102,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

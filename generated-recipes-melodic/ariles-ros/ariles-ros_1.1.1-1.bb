@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "ariles_ros"
 ROS_BPN = "ariles_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +58,7 @@ SRC_URI[sha256sum] = "dee2ca2288b1f598165e3f8026581e78436f1cb86b46bf995996392173
 S = "${WORKDIR}/ariles-release-release-melodic-ariles_ros-1.1.1-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ariles-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ariles-ros', d)}"
@@ -66,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ariles-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ariles-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

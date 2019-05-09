@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ros_tutorials contains packages that demonstrate various features of ROS,     as well as support packages which help demonstrate those features."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Josh Faust"
 HOMEPAGE = "http://www.ros.org/wiki/ros_tutorials"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_tutorials"
 ROS_BPN = "ros_tutorials"
 
 ROS_BUILD_DEPENDS = ""
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "566f9e87ffd41023bf48a504e928de4e837676cfade117ef7c208c89e3
 S = "${WORKDIR}/ros_tutorials-release-release-melodic-ros_tutorials-0.9.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-tutorials', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-tutorials', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

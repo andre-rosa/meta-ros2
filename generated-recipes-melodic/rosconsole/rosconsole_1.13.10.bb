@@ -7,15 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS console output library."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Josh Faust"
 HOMEPAGE = "http://www.ros.org/wiki/rosconsole"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rosconsole"
 ROS_BPN = "rosconsole"
 
 ROS_BUILD_DEPENDS = " \
-    apr \
     boost \
     cpp-common \
     log4cxx \
@@ -28,7 +29,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    apr \
     cpp-common \
     log4cxx \
     rosbuild \
@@ -38,7 +38,6 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    apr \
     cpp-common \
     log4cxx \
     rosbuild \
@@ -61,6 +60,7 @@ SRC_URI[sha256sum] = "a16be47247f622748425d2165afd1a83abe00a57dbe77ef98e801bc5d6
 S = "${WORKDIR}/rosconsole-release-release-melodic-rosconsole-1.13.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosconsole', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosconsole', d)}"
@@ -70,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosconsole/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosconsole/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

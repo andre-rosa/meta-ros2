@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This Package contains Care-O-bot specific service definitions."
 AUTHOR = "Felix Messmer <felixmessmer@gmail.com>"
+ROS_AUTHOR = "Florian Weisshardt <fmw@ipa.fhg.de>"
 HOMEPAGE = "http://ros.org/wiki/cob_srvs"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "cob_common"
 ROS_BPN = "cob_srvs"
 
 ROS_BUILD_DEPENDS = " \
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "1088b5dbe8ab9875e5f02cc74208dfa61f3d7f208c83b3cfe4be94c909
 S = "${WORKDIR}/cob_common-release-release-melodic-cob_srvs-0.6.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('cob-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cob-common', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

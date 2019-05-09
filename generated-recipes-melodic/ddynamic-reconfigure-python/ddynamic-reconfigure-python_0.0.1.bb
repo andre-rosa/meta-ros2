@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ddynamic_reconfigure_python"
 ROS_BPN = "ddynamic_reconfigure_python"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +52,7 @@ SRC_URI[sha256sum] = "bc8dcf50274a8e4a0548a9044f4af8ef90d207eab61b8a3ff4e474582b
 S = "${WORKDIR}/ddynamic_reconfigure_python-release-release-melodic-ddynamic_reconfigure_python-0.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ddynamic-reconfigure-python', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ddynamic-reconfigure-python', d)}"
@@ -60,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ddynamic-reconfigure-python/${BPN}.i
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ddynamic-reconfigure-python/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

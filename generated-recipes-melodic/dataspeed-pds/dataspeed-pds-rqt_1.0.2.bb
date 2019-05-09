@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS rqt GUI for the Dataspeed Inc. Power Distribution System (PDS)"
 AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
+ROS_AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
 HOMEPAGE = "http://dataspeedinc.com"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "dataspeed_pds"
 ROS_BPN = "dataspeed_pds_rqt"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "e88f4d791492e0e2966a559a4af4e2b676ce72d2710220ee67c939da43
 S = "${WORKDIR}/dataspeed_pds-release-release-melodic-dataspeed_pds_rqt-1.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dataspeed-pds', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dataspeed-pds', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-pds/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-pds/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

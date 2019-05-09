@@ -7,15 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The swri_transform_util package contains utility functions and classes for      transforming between coordinate frames."
 AUTHOR = "Marc Alban <malban@swri.org>"
+ROS_AUTHOR = "Marc Alban"
 HOMEPAGE = "https://github.com/swri-robotics/marti_common"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "marti_common"
 ROS_BPN = "swri_transform_util"
 
 ROS_BUILD_DEPENDS = " \
-    acpica \
     boost \
     cv-bridge \
     diagnostic-msgs \
@@ -41,7 +42,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    acpica \
     boost \
     cv-bridge \
     diagnostic-msgs \
@@ -64,7 +64,6 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    acpica \
     boost \
     cv-bridge \
     diagnostic-msgs \
@@ -103,6 +102,7 @@ SRC_URI[sha256sum] = "f6532904852bb800d11213f89b6503213a9d7b2f1e3d138755ada636c0
 S = "${WORKDIR}/marti_common-release-release-melodic-swri_transform_util-2.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('marti-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('marti-common', d)}"
@@ -112,4 +112,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

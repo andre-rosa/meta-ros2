@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The industrial robot simulator is a stand in for industrial robot driver node(s).  It adheres to the driver specification for industrial robot controllers."
 AUTHOR = "Shaun Edwards <sedwards@swri.org>"
+ROS_AUTHOR = "Shaun Edwards"
 HOMEPAGE = "http://ros.org/wiki/industrial_robot_simulator"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "industrial_core"
 ROS_BPN = "industrial_robot_simulator"
 
 ROS_BUILD_DEPENDS = ""
@@ -28,7 +30,6 @@ ROS_EXEC_DEPENDS = " \
     control-msgs \
     industrial-msgs \
     industrial-robot-client \
-    python-rospkg \
     rospy \
     sensor-msgs \
     trajectory-msgs \
@@ -53,6 +54,7 @@ SRC_URI[sha256sum] = "48bcc0aeacff43ba149a6320ff4e61271a7f2b1aa41309d7ac6b5dce31
 S = "${WORKDIR}/industrial_core-release-release-melodic-industrial_robot_simulator-0.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('industrial-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('industrial-core', d)}"
@@ -62,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

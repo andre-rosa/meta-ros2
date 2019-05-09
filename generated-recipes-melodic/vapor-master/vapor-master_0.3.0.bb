@@ -7,18 +7,19 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "high availability ros master"
 AUTHOR = "Nicholas Zatkovich <nick@roshub.io>"
+ROS_AUTHOR = "RosHub Inc. <code@roshub.io>"
 HOMEPAGE = "http://github.com/roshub/vapor_master"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_CN = "vapor_master"
 ROS_BPN = "vapor_master"
 
 ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
-    nodejs-native \
     npm-native \
 "
 
@@ -27,7 +28,6 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    nodejs \
     rospack \
 "
 
@@ -47,6 +47,7 @@ SRC_URI[sha256sum] = "c6fc8a631a9237b71a58f298e1394f498f3374ba2698c365f0aae44e5a
 S = "${WORKDIR}/vapor_master-release-release-melodic-vapor_master-0.3.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('vapor-master', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vapor-master', d)}"
@@ -56,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vapor-master/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vapor-master/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

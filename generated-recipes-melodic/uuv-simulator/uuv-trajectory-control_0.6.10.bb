@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_CN = "uuv_simulator"
 ROS_BPN = "uuv_trajectory_control"
 
 ROS_BUILD_DEPENDS = ""
@@ -27,10 +28,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     nav-msgs \
-    python-matplotlib \
-    python-numpy \
     python-scipy \
-    python-yamllint-native \
     roslib \
     rospy \
     std-msgs \
@@ -58,6 +56,7 @@ SRC_URI[sha256sum] = "392957a1863c5095f5fcb8b61ecac3520e2a8fa4e8e21175ac69128888
 S = "${WORKDIR}/uuv_simulator-release-release-melodic-uuv_trajectory_control-0.6.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('uuv-simulator', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('uuv-simulator', d)}"
@@ -67,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uuv-simulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uuv-simulator/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -12,10 +12,10 @@ SECTION = "devel"
 LICENSE = "N-A"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=05621664bc3a8e6d6781cb1e0156ed33"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "slic"
 
 ROS_BUILD_DEPENDS = " \
-    ca-certificates \
     cmake-modules \
     git \
     opencv \
@@ -52,6 +52,7 @@ SRC_URI[sha256sum] = "70cc442ffa095dd5da8b61cd98ac71d2399f5c66e2becb9509a8860c6b
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-slic-2.1.11-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -61,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

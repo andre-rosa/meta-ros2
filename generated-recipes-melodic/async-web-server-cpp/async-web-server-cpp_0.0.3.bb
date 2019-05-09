@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Asynchronous Web/WebSocket Server in C++"
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
+ROS_AUTHOR = "Mitchell Wills <mwills@wpi.edu>"
 HOMEPAGE = "http://ros.org/wiki/async_web_server_cpp"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "async_web_server_cpp"
 ROS_BPN = "async_web_server_cpp"
 
 ROS_BUILD_DEPENDS = " \
@@ -26,7 +28,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     boost \
     openssl \
-    python-websocket-client \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -34,7 +35,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     boost \
     openssl \
-    python-websocket-client \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -57,6 +57,7 @@ SRC_URI[sha256sum] = "45d13cce4a77b0e5e67b9ed7be20691e0425861c5a48a653d4a3bdff99
 S = "${WORKDIR}/async_web_server_cpp-release-release-melodic-async_web_server_cpp-0.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('async-web-server-cpp', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('async-web-server-cpp', d)}"
@@ -66,4 +67,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-web-server-cpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-web-server-cpp/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

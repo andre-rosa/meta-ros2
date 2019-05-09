@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "XmlRpc++ is a C++ implementation of the XML-RPC protocol. This version is     heavily modified from the package available on SourceForge in order to     support roscpp's threading model. As such, we are maintaining our     own fork."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Chris Morley"
 HOMEPAGE = "http://xmlrpcpp.sourceforge.net"
 SECTION = "devel"
 LICENSE = "LGPL-2.1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=184dd1523b9a109aead3fbbe0b4262e0"
 
+ROS_CN = "ros_comm"
 ROS_BPN = "xmlrpcpp"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "d141854dd4371212f6606bfff6f7a44eb1a0292bbcf64cf29f4fed0c07
 S = "${WORKDIR}/ros_comm-release-release-melodic-xmlrpcpp-1.14.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-comm', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

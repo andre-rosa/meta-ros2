@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Leg Detector using a machine learning approach to find leg-like patterns of laser scanner readings."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
+ROS_AUTHOR = "Caroline Pantofaru"
 HOMEPAGE = "http://ros.org/wiki/leg_detector"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "people"
 ROS_BPN = "leg_detector"
 
 ROS_BUILD_DEPENDS = " \
@@ -89,6 +91,7 @@ SRC_URI[sha256sum] = "e1865c4b5c768ff408d3d1cb531bf26dd6acac28f2a7ad5d25fe11cf6e
 S = "${WORKDIR}/people-release-release-melodic-leg_detector-1.1.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('people', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('people', d)}"
@@ -98,4 +101,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

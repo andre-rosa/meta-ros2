@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The adi_driver package"
 AUTHOR = "Tokyo Opensource Robotics Kyokai (TORK) Developer Team <dev@opensource-robotics.tokyo.jp>"
+ROS_AUTHOR = "Ryosuke Tajima <ryosuke.tajima@opensource-robotics.tokyo.jp>"
 HOMEPAGE = "http://wiki.ros.org/adi_driver"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "adi_driver"
 ROS_BPN = "adi_driver"
 
 ROS_BUILD_DEPENDS = " \
@@ -68,6 +70,7 @@ SRC_URI[sha256sum] = "6f2b565c98396653f9364c57fddafa0ca244781c27edd5b5467502fa77
 S = "${WORKDIR}/adi_driver-release-release-melodic-adi_driver-1.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('adi-driver', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('adi-driver', d)}"
@@ -77,4 +80,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/adi-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/adi-driver/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

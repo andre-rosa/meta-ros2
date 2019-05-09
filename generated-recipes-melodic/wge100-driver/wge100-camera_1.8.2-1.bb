@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS node and assorted tools to provide access to the WGE100     camera used in the forearms and the stereo cameras of the PR2     robot."
 AUTHOR = "Austin Hendrix <ahendrix@willowgarage.com>"
+ROS_AUTHOR = "Blaise Gassend, Patrick Mihelich, Eric MacIntosh, David Palchak"
 HOMEPAGE = "http://www.ros.org/wiki/wge100_camera"
 SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=984eb2ebe444619cdde9621008ccf4e4"
 
+ROS_CN = "wge100_driver"
 ROS_BPN = "wge100_camera"
 
 ROS_BUILD_DEPENDS = " \
@@ -82,6 +84,7 @@ SRC_URI[sha256sum] = "555d7b0249e43457e5ce245fb1c7fe895a0510b8a142197717e046e7cc
 S = "${WORKDIR}/wge100_driver-release-release-melodic-wge100_camera-1.8.2-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('wge100-driver', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('wge100-driver', d)}"
@@ -91,4 +94,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wge100-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wge100-driver/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS nodes to publish resized images."
 AUTHOR = "Yohei Kakiuchi <youhei@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Yohei Kakiuchi <youhei@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://jsk-docs.readthedocs.io/en/latest/jsk_recognition/doc/resized_image_transport"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_recognition"
 ROS_BPN = "resized_image_transport"
 
 ROS_BUILD_DEPENDS = " \
@@ -70,6 +72,7 @@ SRC_URI[sha256sum] = "6631d7021aa7bf102ca9be8925ec2fdc5dc4fd4ac4effa126ae8df74bb
 S = "${WORKDIR}/jsk_recognition-release-release-melodic-resized_image_transport-1.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-recognition', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-recognition', d)}"
@@ -79,4 +82,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A simple viewer for ROS image topics with draw-on features"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/image_view2"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_common"
 ROS_BPN = "image_view2"
 
 ROS_BUILD_DEPENDS = " \
@@ -71,7 +73,6 @@ ROS_EXEC_DEPENDS = " \
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    python-numpy \
     python-scipy \
 "
 
@@ -88,6 +89,7 @@ SRC_URI[sha256sum] = "fc10ec510f70e52bb26455ddc62237f9b9c3dfa77819fa84c140d41617
 S = "${WORKDIR}/jsk_common-release-release-melodic-image_view2-2.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-common', d)}"
@@ -97,4 +99,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

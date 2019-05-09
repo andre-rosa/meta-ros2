@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The tuw_vehicle_msgs package"
 AUTHOR = "Raphael Hauk <raphael.hauk@racing.tuwien.ac.at>"
+ROS_AUTHOR = "Marcel Zeilinger <marcel.zeilinger@racing.tuwien.ac.at>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "tuw_msgs"
 ROS_BPN = "tuw_vehicle_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "47c7c12836c59f936116f877d105cdf3399455996e434fdb75c72fe958
 S = "${WORKDIR}/tuw_msgs-release-release-melodic-tuw_vehicle_msgs-0.0.13-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tuw-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tuw-msgs', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

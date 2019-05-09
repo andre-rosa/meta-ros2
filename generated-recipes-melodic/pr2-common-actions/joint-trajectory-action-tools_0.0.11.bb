@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "joint_trajectory_action_tools"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "Melonee Wise"
 HOMEPAGE = "http://ros.org/wiki/joint_trajectory_action_tools"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pr2_common_actions"
 ROS_BPN = "joint_trajectory_action_tools"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "cff217c086340f75d87f968fe96ab08c5485fb39779aa8d1af8699bcb9
 S = "${WORKDIR}/pr2_common_actions-release-release-melodic-joint_trajectory_action_tools-0.0.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-common-actions', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-common-actions', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

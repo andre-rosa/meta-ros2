@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Unit-testing package for ROS. This is a lower-level library for rostest and handles unit tests, whereas rostest handles integration tests."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Ken Conley"
 HOMEPAGE = "http://ros.org/wiki/rosunit"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros"
 ROS_BPN = "rosunit"
 
 ROS_BUILD_DEPENDS = ""
@@ -21,14 +23,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    python-rospkg \
     roslib \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-rospkg \
     roslib \
 "
 
@@ -48,6 +48,7 @@ SRC_URI[sha256sum] = "145e8195fd8e46ec775d82e0c18aeb0b49e8dd20e9f042b454fecfd350
 S = "${WORKDIR}/ros-release-release-melodic-rosunit-1.14.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros', d)}"
@@ -57,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

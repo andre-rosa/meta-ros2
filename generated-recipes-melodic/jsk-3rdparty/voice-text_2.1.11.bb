@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "voice_text (www.voicetext.jp)"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Kei Okada"
 HOMEPAGE = "http://ros.org/wiki/voice_text"
 SECTION = "devel"
 LICENSE = "HOYA-License"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=022ccc6becffa6ec4f05cd7c1f04dcd5"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "voice_text"
 
 ROS_BUILD_DEPENDS = " \
@@ -56,6 +58,7 @@ SRC_URI[sha256sum] = "37a4a26a48a53442967a596d029751ca64270ad49531b78436a68abc48
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-voice_text-2.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -65,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

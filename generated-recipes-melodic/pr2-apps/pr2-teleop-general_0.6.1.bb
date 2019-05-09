@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "pr2_teleop_general"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "Gil Jones"
 HOMEPAGE = "http://ros.org/wiki/pr2_teleop_general"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pr2_apps"
 ROS_BPN = "pr2_teleop_general"
 
 ROS_BUILD_DEPENDS = " \
@@ -99,6 +101,7 @@ SRC_URI[sha256sum] = "e3ae1cbc8602721113121e1546387c770995bf51dda293c8d593919c38
 S = "${WORKDIR}/pr2_apps-release-release-melodic-pr2_teleop_general-0.6.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-apps', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-apps', d)}"
@@ -108,4 +111,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

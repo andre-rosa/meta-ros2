@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "SMACH, which stands for 'state machine', is a task-level     architecture for rapidly creating complex robot behavior. At its     core, SMACH is a ROS-independent Python library to build     hierarchical state machines.  SMACH is a new library that takes     advantage of very old concepts in order to quickly create robust     robot behavior with maintainable and modular code."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
+ROS_AUTHOR = "Jonathan Bohren"
 HOMEPAGE = "http://ros.org/wiki/smach"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "linux_networking"
 ROS_BPN = "asmach"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "67a3b18eccdf4d0a02c7459cb3af8c367f16bc45a0dcfb66f84c293b61
 S = "${WORKDIR}/linux_networking-release-release-melodic-asmach-1.0.13-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('linux-networking', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

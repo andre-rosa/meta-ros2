@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "<p>       Contains a node that rotates an image stream in a way that minimizes       the angle between a vector in some arbitrary frame and a vector in the       camera frame. The frame of the outgoing image is published by the node.     </p>     <p>       This node is intended to allow camera images to be visualized in an       orientation that is more intuitive than the hardware-constrained       orientation of the physical camera. This is particularly helpful, for       example, to show images from the PR2's forearm cameras with a       consistent up direction, despite the fact that the forearms need to       rotate in arbitrary ways during manipulation.     </p>     <p>       It is not recommended to use the output from this node for further       computation, as it interpolates the source image, introduces black       borders, and does not output a camera_info.     </p>"
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
+ROS_AUTHOR = "Blaise Gassend"
 HOMEPAGE = "http://ros.org/wiki/image_rotate"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=26;endline=26;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_pipeline"
 ROS_BPN = "image_rotate"
 
 ROS_BUILD_DEPENDS = " \
@@ -73,6 +75,7 @@ SRC_URI[sha256sum] = "300158018b97ce2b2f3cdfac00889d443b74165b3fb49105317148c766
 S = "${WORKDIR}/image_pipeline-release-release-melodic-image_rotate-1.12.23-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-pipeline', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-pipeline', d)}"
@@ -82,4 +85,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

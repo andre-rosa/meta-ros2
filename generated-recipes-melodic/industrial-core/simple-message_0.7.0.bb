@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "simple_message defines a simple messaging connection and protocol for communicating  	with an industrial robot controller.  Additional handler and manager classes are  	included for handling connection limited systems.  This package is part of the ROS-Industrial  	program."
 AUTHOR = "Shaun Edwards <sedwards@swri.org>"
+ROS_AUTHOR = "Shaun Edwards"
 HOMEPAGE = "http://ros.org/wiki/simple_message"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "industrial_core"
 ROS_BPN = "simple_message"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "5c8e3ff246f5d757272ddf918cd28c6256bfca757437ec78fd606fc68c
 S = "${WORKDIR}/industrial_core-release-release-melodic-simple_message-0.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('industrial-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('industrial-core', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

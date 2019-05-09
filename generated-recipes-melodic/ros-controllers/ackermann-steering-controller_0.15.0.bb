@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Controller for a steer drive mobile base."
 AUTHOR = "Masaru Morita <p595201m@mail.kyutech.jp>"
+ROS_AUTHOR = "Masaru Morita <p595201m@mail.kyutech.jp>"
 HOMEPAGE = "https://github.com/ros-controls/ros_controllers/issues"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_controllers"
 ROS_BPN = "ackermann_steering_controller"
 
 ROS_BUILD_DEPENDS = " \
@@ -82,6 +84,7 @@ SRC_URI[sha256sum] = "d6de33231e9dfdcb67a15c0c397f77d3e3e656823cabd02eb2464ba4a6
 S = "${WORKDIR}/ros_controllers-release-release-melodic-ackermann_steering_controller-0.15.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-controllers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-controllers', d)}"
@@ -91,4 +94,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

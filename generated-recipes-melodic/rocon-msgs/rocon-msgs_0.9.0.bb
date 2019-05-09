@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Communication types (msgs/srvs/actions) for robotics in concert (aka multimaster)."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier"
 HOMEPAGE = "http://www.ros.org/wiki/rocon_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rocon_msgs"
 ROS_BPN = "rocon_msgs"
 
 ROS_BUILD_DEPENDS = ""
@@ -64,6 +66,7 @@ SRC_URI[sha256sum] = "5eca94dc0ac40d38a417f7e804e77d25f3abb25ceda463b681ad24186a
 S = "${WORKDIR}/rocon_msgs-release-release-melodic-rocon_msgs-0.9.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rocon-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rocon-msgs', d)}"
@@ -73,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

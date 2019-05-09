@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS driver node for AVT/Prosilica Gigabit Ethernet (GigE) cameras."
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
+ROS_AUTHOR = "Maintained by William Woodall - wwoodall@willowgarage.com"
 HOMEPAGE = "http://www.ros.org/wiki/prosilica_camera"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "prosilica_driver"
 ROS_BPN = "prosilica_camera"
 
 ROS_BUILD_DEPENDS = " \
@@ -82,6 +84,7 @@ SRC_URI[sha256sum] = "7c2aafe58194390d9dbaaf25cf54cf5ba4060742e2ef9f10a0bb207c37
 S = "${WORKDIR}/prosilica_driver-release-release-melodic-prosilica_camera-1.9.4-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('prosilica-driver', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('prosilica-driver', d)}"
@@ -91,4 +94,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prosilica-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prosilica-driver/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Common code for working with audio in ROS"
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
+ROS_AUTHOR = "Blaise Gassend"
 HOMEPAGE = "http://ros.org/wiki/audio_common"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=e412bfc9312ba25bfbb7ea55d4c4409c"
 
+ROS_CN = "audio_common"
 ROS_BPN = "audio_common"
 
 ROS_BUILD_DEPENDS = ""
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "c30da5fa52747bb15685265588f9da95b14d15bb7f4cb569f954e9bba9
 S = "${WORKDIR}/audio_common-release-release-melodic-audio_common-0.3.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('audio-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audio-common', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_visualization"
 ROS_BPN = "jsk_rqt_plugins"
 
 ROS_BUILD_DEPENDS = " \
@@ -78,6 +79,7 @@ SRC_URI[sha256sum] = "c2205a66a68f133e6e9f7fb7dbbb8448c5291b3b077c542ea1bca58a08
 S = "${WORKDIR}/jsk_visualization-release-release-melodic-jsk_rqt_plugins-2.1.5-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-visualization', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-visualization', d)}"
@@ -87,4 +89,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This rqt plugin ROS package provides easy view of .launch files.   User can also start and end node by node that are defined in those files."
 AUTHOR = "Isaac Saito <130s@lateeye.net>"
+ROS_AUTHOR = "Isaac Saito"
 HOMEPAGE = "http://wiki.ros.org/rqt_launch"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_launch"
 ROS_BPN = "rqt_launch"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "7aab0c6b78ad90736d40ae6b7ce54048936ef38c0f032858b65a8347b4
 S = "${WORKDIR}/rqt_launch-release-release-melodic-rqt_launch-0.4.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-launch', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-launch', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-launch/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-launch/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

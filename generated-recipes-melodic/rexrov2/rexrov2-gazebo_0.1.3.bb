@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Package with launch files for demonstrations with the RexROV 2 vehicle"
 AUTHOR = "Musa Morena Marcusso Manhaes <Musa.Marcusso@de.bosch.com>"
+ROS_AUTHOR = "Musa Morena Marcusso Manhaes <Musa.Marcusso@de.bosch.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_CN = "rexrov2"
 ROS_BPN = "rexrov2_gazebo"
 
 ROS_BUILD_DEPENDS = ""
@@ -45,6 +47,7 @@ SRC_URI[sha256sum] = "ae244517e996486264c129ef22354f23c9e84f3e32be10a5fd7fa193bd
 S = "${WORKDIR}/rexrov2-release-release-melodic-rexrov2_gazebo-0.1.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rexrov2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rexrov2', d)}"
@@ -54,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rexrov2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rexrov2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Outputs audio to a speaker from a source node."
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
+ROS_AUTHOR = "Nate Koenig"
 HOMEPAGE = "http://ros.org/wiki/audio_play"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=a3ae2ba3f0f44e61270955e8cd98afcf"
 
+ROS_CN = "audio_common"
 ROS_BPN = "audio_play"
 
 ROS_BUILD_DEPENDS = " \
@@ -27,10 +29,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     audio-common-msgs \
-    gstreamer1.0 \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-ugly \
     roscpp \
 "
 
@@ -38,10 +36,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     audio-common-msgs \
-    gstreamer1.0 \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-ugly \
     roscpp \
 "
 
@@ -61,6 +55,7 @@ SRC_URI[sha256sum] = "a3c3715c6c4d70959103aa529c2e2cdcf46e6a07d500ed262146038ecd
 S = "${WORKDIR}/audio_common-release-release-melodic-audio_play-0.3.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('audio-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audio-common', d)}"
@@ -70,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The diagnostic_analysis package can convert a log of diagnostics data     into a series of CSV files. Robot logs are recorded with rosbag, and     can be processed offline using the scripts in this package."
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
+ROS_AUTHOR = "Kevin Watts"
 HOMEPAGE = "http://www.ros.org/wiki/diagnostics_analysis"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "diagnostics"
 ROS_BPN = "diagnostic_analysis"
 
 ROS_BUILD_DEPENDS = " \
@@ -55,6 +57,7 @@ SRC_URI[sha256sum] = "72eb7b968b92d97d5c95a15a4e9e573c9f025158e2a4e4375ad18b7448
 S = "${WORKDIR}/diagnostics-release-release-melodic-diagnostic_analysis-1.9.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('diagnostics', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('diagnostics', d)}"
@@ -64,4 +67,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

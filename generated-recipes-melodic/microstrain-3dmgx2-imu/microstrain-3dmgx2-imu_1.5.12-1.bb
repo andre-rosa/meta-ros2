@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A driver for IMUs compatible the microstrain 3DM-GX2 and 3DM-GX3 protocol. Includes      a heavily modified standalone driver pulled from the player distribution,      and a ROS node."
 AUTHOR = "Chad Rockey <chadrockey@gmail.com>"
+ROS_AUTHOR = "Jeremy Leibs"
 HOMEPAGE = "http://www.ros.org/wiki/microstrain_3dmgx2_imu"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_CN = "microstrain_3dmgx2_imu"
 ROS_BPN = "microstrain_3dmgx2_imu"
 
 ROS_BUILD_DEPENDS = " \
@@ -72,6 +74,7 @@ SRC_URI[sha256sum] = "25b441c8be65da409431657796fe7577585e401b74e363c0a81f72177d
 S = "${WORKDIR}/microstrain_3dmgx2_imu-release-release-melodic-microstrain_3dmgx2_imu-1.5.12-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('microstrain-3dmgx2-imu', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('microstrain-3dmgx2-imu', d)}"
@@ -81,4 +84,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/microstrain-3dmgx2-imu/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/microstrain-3dmgx2-imu/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

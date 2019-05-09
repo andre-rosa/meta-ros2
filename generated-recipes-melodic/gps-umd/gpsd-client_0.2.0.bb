@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "connects to a GPSd server and broadcasts GPS fixes     using the NavSatFix message"
 AUTHOR = "Timo Roehling <timo.roehling@fkie.fraunhofer.de>"
+ROS_AUTHOR = "Ken Tossell <ken@tossell.net>"
 HOMEPAGE = "http://ros.org/wiki/gpsd_client"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "gps_umd"
 ROS_BPN = "gpsd_client"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "fb72a43064b023d7be47f00194232ca28d92aea68d92e7b32d337bbe6c
 S = "${WORKDIR}/gps_umd-release-release-melodic-gpsd_client-0.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('gps-umd', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gps-umd', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

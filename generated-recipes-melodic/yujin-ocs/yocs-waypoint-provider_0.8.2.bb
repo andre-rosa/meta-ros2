@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Parse a multiple poses from yaml and provide as topic and service. This package is highly inspired by yocs_waypoints_navi"
 AUTHOR = "Jihoon Lee <jihoonl@yujinrobot.com>"
+ROS_AUTHOR = "Jihoon Lee"
 HOMEPAGE = "http://ros.org/wiki/yocs_waypoint_provider"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "yujin_ocs"
 ROS_BPN = "yocs_waypoint_provider"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "af1f87405e022fbc50096287d8b679f0198b09307dc22b04aa1b8a3bcf
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_waypoint_provider-0.8.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yujin-ocs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

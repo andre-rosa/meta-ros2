@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS dependent wrapper for     <a href="http://wiki.ros.org/towr">towr</a>.     Adds a keyboard user interface to set different goal states, motions     and robots and visualizes the produced motions plan in rviz using     <a href="http://wiki.ros.org/xpp">xpp</a>."
 AUTHOR = "Alexander W. Winkler <alexander.w.winkler@gmail.com>"
+ROS_AUTHOR = "Alexander W. Winkler"
 HOMEPAGE = "http://github.com/ethz-adrl/towr"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "towr"
 ROS_BPN = "towr_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,7 +52,6 @@ ROS_EXEC_DEPENDS = " \
     libncurses-dev \
     message-generation \
     message-runtime \
-    ncurses \
     rosbag \
     roscpp \
     rqt-bag \
@@ -79,6 +80,7 @@ SRC_URI[sha256sum] = "fd30887f7c1a5dcd841ed043da22a724bc30cc47f3db12593a0da5d7a9
 S = "${WORKDIR}/towr-release-release-melodic-towr_ros-1.4.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('towr', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('towr', d)}"
@@ -88,4 +90,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/towr/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/towr/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

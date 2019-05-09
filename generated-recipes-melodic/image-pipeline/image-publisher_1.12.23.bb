@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "<p>       Contains a node publish an image stream from single image file       or avi motion file.     </p>"
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
+ROS_AUTHOR = "Kei Okada"
 HOMEPAGE = "http://ros.org/wiki/image_publisher"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_pipeline"
 ROS_BPN = "image_publisher"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "56bebe095951f6cfb7e0d4c0250ed2dea459b085b214b9e21cdd93f487
 S = "${WORKDIR}/image_pipeline-release-release-melodic-image_publisher-1.12.23-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-pipeline', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-pipeline', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

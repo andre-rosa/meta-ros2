@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Module for working with rocon uri strings."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/rocon_uri"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rocon_tools"
 ROS_BPN = "rocon_uri"
 
 ROS_BUILD_DEPENDS = ""
@@ -21,7 +23,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    python-rospkg \
     rocon-console \
     rocon-ebnf \
     rocon-python-utils \
@@ -31,7 +32,6 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-rospkg \
     rocon-console \
     rocon-ebnf \
     rocon-python-utils \
@@ -56,6 +56,7 @@ SRC_URI[sha256sum] = "bdaecc320ad45d56c33e3b5d3ad2448ac7e3952dca5c8e3fd34d3adee1
 S = "${WORKDIR}/rocon_tools-release-release-melodic-rocon_uri-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rocon-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rocon-tools', d)}"
@@ -65,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

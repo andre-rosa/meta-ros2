@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS messages for robots using FourWheelSteering."
 AUTHOR = "Vincent Rousseau <vincent.rousseau@irstea.fr>"
+ROS_AUTHOR = "Vincent Rousseau <vincent.rousseau@irstea.fr>"
 HOMEPAGE = "http://ros.org/wiki/four_wheel_steering_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "four_wheel_steering_msgs"
 ROS_BPN = "four_wheel_steering_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "4089701e5cb0a7f06d6e42aef2863cd985f8e43d46d7aca46f5c0e01ca
 S = "${WORKDIR}/four_wheel_steering_msgs-release-release-melodic-four_wheel_steering_msgs-1.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('four-wheel-steering-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('four-wheel-steering-msgs', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/four-wheel-steering-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/four-wheel-steering-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "MoveIt planning request adapter utilizing chomp for solution optimization"
 AUTHOR = "Raghavender Sahdev <raghavendersahdev@gmail.com>"
+ROS_AUTHOR = "Raghavender Sahdev <raghavendersahdev@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "moveit"
 ROS_BPN = "moveit_chomp_optimizer_adapter"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "b9065477079418a14d4a7ba689e48b048557070f3abe99b9ebe80e239d
 S = "${WORKDIR}/moveit-release-release-melodic-moveit_chomp_optimizer_adapter-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

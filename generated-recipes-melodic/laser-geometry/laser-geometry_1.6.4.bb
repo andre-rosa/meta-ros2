@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains a class for converting from a 2D laser scan as defined by     sensor_msgs/LaserScan into a point cloud as defined by sensor_msgs/PointCloud     or sensor_msgs/PointCloud2. In particular, it contains functionality to account     for the skew resulting from moving robots or tilting laser scanners."
 AUTHOR = "Dave Hershberger <dave.hershberger@sri.com>"
+ROS_AUTHOR = "Tully Foote"
 HOMEPAGE = "http://ros.org/wiki/laser_geometry"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "laser_geometry"
 ROS_BPN = "laser_geometry"
 
 ROS_BUILD_DEPENDS = " \
@@ -32,7 +34,6 @@ ROS_EXPORT_DEPENDS = " \
     angles \
     boost \
     libeigen \
-    python-numpy \
     roscpp \
     sensor-msgs \
     tf \
@@ -44,7 +45,6 @@ ROS_EXEC_DEPENDS = " \
     angles \
     boost \
     libeigen \
-    python-numpy \
     roscpp \
     sensor-msgs \
     tf \
@@ -68,6 +68,7 @@ SRC_URI[sha256sum] = "d2c0acb926c14dd2000db4b395b3bbcc26b53fc76461f4cf7c262947e3
 S = "${WORKDIR}/laser_geometry-release-release-melodic-laser_geometry-1.6.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('laser-geometry', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-geometry', d)}"
@@ -77,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-geometry/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-geometry/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,30 +7,26 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "CMake configuration to run coverage"
 AUTHOR = "Michael Ferguson <mike@vanadiumlabs.com>"
+ROS_AUTHOR = "Michael Ferguson <mike@vanadiumlabs.com>"
 HOMEPAGE = "https://github.com/mikeferguson/code_coverage"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "code_coverage"
 ROS_BPN = "code_coverage"
 
-ROS_BUILD_DEPENDS = " \
-    lcov \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    lcov \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = " \
-    lcov \
-"
+ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = ""
@@ -48,6 +44,7 @@ SRC_URI[sha256sum] = "aaf9d0b3b00d1b1af932e9099dbb3a92475ee92e45f189b3bfb3559e8a
 S = "${WORKDIR}/code_coverage-gbp-release-melodic-code_coverage-0.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('code-coverage', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('code-coverage', d)}"
@@ -57,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/code-coverage/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/code-coverage/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

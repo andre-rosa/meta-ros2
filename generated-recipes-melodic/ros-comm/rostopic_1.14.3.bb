@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rostopic contains the rostopic command-line tool for displaying     debug information about     ROS <a href="http://www.ros.org/wiki/Topics">Topics</a>, including     publishers, subscribers, publishing rate,     and ROS <a href="http://www.ros.org/wiki/Messages">Messages</a>. It also     contains an experimental Python library for getting information about     and interacting with topics dynamically. This library is for     internal-use only as the code API may change, though it does provide     examples of how to implement dynamic subscription and publication     behaviors in ROS."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Ken Conley"
 HOMEPAGE = "http://ros.org/wiki/rostopic"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_comm"
 ROS_BPN = "rostopic"
 
 ROS_BUILD_DEPENDS = " \
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "0327ddd98b2b5aea960318ee4548726994d033f110d1016e53399a74ec
 S = "${WORKDIR}/ros_comm-release-release-melodic-rostopic-1.14.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-comm', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

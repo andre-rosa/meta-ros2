@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This ROS package wraps documentation tools like doxygen, sphinx,     and epydoc, making it convenient to generate ROS package     documentation.      It also generates online documentation for the ROS wiki."
 AUTHOR = "Jack O'Quin <jack.oquin@gmail.com>"
+ROS_AUTHOR = "Ken Conley"
 HOMEPAGE = "http://wiki.ros.org/rosdoc_lite"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rosdoc_lite"
 ROS_BPN = "rosdoc_lite"
 
 ROS_BUILD_DEPENDS = ""
@@ -22,26 +24,18 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     ${PYTHON_PN}-sphinx \
-    doxygen \
     genmsg \
-    python-catkin-pkg \
     python-epydoc \
     python-kitchen \
-    python-rospkg \
-    python-yamllint-native \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     ${PYTHON_PN}-sphinx \
-    doxygen \
     genmsg \
-    python-catkin-pkg \
     python-epydoc \
     python-kitchen \
-    python-rospkg \
-    python-yamllint-native \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -60,6 +54,7 @@ SRC_URI[sha256sum] = "56baa614cb5b9b10171336c2a62470104cba4b85d16b8a4e952d1384fb
 S = "${WORKDIR}/rosdoc_lite-release-release-melodic-rosdoc_lite-0.2.9-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosdoc-lite', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosdoc-lite', d)}"
@@ -69,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosdoc-lite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosdoc-lite/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

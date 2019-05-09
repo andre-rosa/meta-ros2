@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The find_object_2d package"
 AUTHOR = "Mathieu Labbe <matlabbe@gmail.com>"
+ROS_AUTHOR = "Mathieu Labbe <matlabbe@gmail.com>"
 HOMEPAGE = "http://find-object.googlecode.com"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "find_object_2d"
 ROS_BPN = "find_object_2d"
 
 ROS_BUILD_DEPENDS = " \
@@ -76,6 +78,7 @@ SRC_URI[sha256sum] = "7f868aa64cabd58c39cc11179f4d935c4c8399d9ebc5a59a561f352831
 S = "${WORKDIR}/find_object_2d-release-release-melodic-find_object_2d-0.6.2-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('find-object-2d', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('find-object-2d', d)}"
@@ -85,4 +88,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/find-object-2d/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/find-object-2d/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

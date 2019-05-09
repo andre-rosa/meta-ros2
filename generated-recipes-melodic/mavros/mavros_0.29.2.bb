@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "MAVROS -- MAVLink extendable communication node for ROS     with proxy for Ground Control Station."
 AUTHOR = "Vladimir Ermakov <vooon341@gmail.com>"
+ROS_AUTHOR = "Vladimir Ermakov <vooon341@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/mavros"
 SECTION = "devel"
 LICENSE = "GPL-3 & LGPL-2 & BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_CN = "mavros"
 ROS_BPN = "mavros"
 
 ROS_BUILD_DEPENDS = " \
@@ -22,7 +24,6 @@ ROS_BUILD_DEPENDS = " \
     diagnostic-updater \
     eigen-conversions \
     geographic-msgs \
-    geographiclib \
     geographiclib-tools \
     geometry-msgs \
     libeigen \
@@ -50,7 +51,6 @@ ROS_EXPORT_DEPENDS = " \
     diagnostic-updater \
     eigen-conversions \
     geographic-msgs \
-    geographiclib \
     geographiclib-tools \
     geometry-msgs \
     libeigen \
@@ -111,6 +111,7 @@ SRC_URI[sha256sum] = "7999a1395dc5dfddba5225bcea8be7816ad1bf15a9221b1e0ac3d7fe2d
 S = "${WORKDIR}/mavros-release-release-melodic-mavros-0.29.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mavros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mavros', d)}"
@@ -120,4 +121,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

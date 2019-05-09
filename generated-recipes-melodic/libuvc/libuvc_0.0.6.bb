@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "libuvc"
 ROS_BPN = "libuvc"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +55,7 @@ SRC_URI[sha256sum] = "06a553e6d043735a10fff606d5f71a20661fc9b6be392b69a06c35b8ac
 S = "${WORKDIR}/libuvc-release-release-melodic-libuvc-0.0.6-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('libuvc', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('libuvc', d)}"
@@ -63,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -12,11 +12,10 @@ SECTION = "devel"
 LICENSE = "Apache-1.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=211ba54883815de9f52a3dcd9f281523"
 
+ROS_CN = "abseil_cpp"
 ROS_BPN = "abseil_cpp"
 
-ROS_BUILD_DEPENDS = " \
-    rsync \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -44,6 +43,7 @@ SRC_URI[sha256sum] = "016b0cb70355a46ec06fa709a09117aaed9f8c7351a216634cefdfc642
 S = "${WORKDIR}/abseil_cpp-release-release-melodic-abseil_cpp-0.2.3-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('abseil-cpp', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('abseil-cpp', d)}"
@@ -53,4 +53,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/abseil-cpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/abseil-cpp/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Network interfaces and messages."
 AUTHOR = "AutonomouStuff Software Development Team <software@autonomoustuff.com>"
+ROS_AUTHOR = "Joshua Whitley <jwhitley@autonomoustuff.com>"
 HOMEPAGE = "https://github.com/astuff/network_interface/issues"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "network_interface"
 ROS_BPN = "network_interface"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "5998b4fc5c5a96474d6a2ab83d3c55f7f5e847af5f909f00176deda4f6
 S = "${WORKDIR}/network_interface-release-release-melodic-network_interface-2.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('network-interface', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('network-interface', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/network-interface/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/network-interface/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_runtime_monitor provides a GUI plugin viewing DiagnosticsArray messages."
 AUTHOR = "Aaron Blasdel <ablasdel@gmail.com>"
+ROS_AUTHOR = "Aaron Blasdel"
 HOMEPAGE = "http://wiki.ros.org/rqt_runtime_monitor"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_runtime_monitor"
 ROS_BPN = "rqt_runtime_monitor"
 
 ROS_BUILD_DEPENDS = ""
@@ -23,7 +25,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     diagnostic-msgs \
     python-qt-binding \
-    python-rospkg \
     qt-gui \
     rospy \
     rqt-gui \
@@ -35,7 +36,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     diagnostic-msgs \
     python-qt-binding \
-    python-rospkg \
     qt-gui \
     rospy \
     rqt-gui \
@@ -58,6 +58,7 @@ SRC_URI[sha256sum] = "f58958b5649d59fca3022a1771e6a457382744c616835cc65980213ab7
 S = "${WORKDIR}/rqt_runtime_monitor-release-release-melodic-rqt_runtime_monitor-0.5.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-runtime-monitor', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-runtime-monitor', d)}"
@@ -67,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-runtime-monitor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-runtime-monitor/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

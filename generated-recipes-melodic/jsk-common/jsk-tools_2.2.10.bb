@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Includes emacs scripts, ros tool alias generator, and launch doc generator."
 AUTHOR = "Ryohei Ueda <ueda@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Ryohei Ueda (ueda@jsk.t.u-tokyo.ac.jp)"
 HOMEPAGE = "http://ros.org/wiki/jsk_tools"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "jsk_common"
 ROS_BPN = "jsk_tools"
 
 ROS_BUILD_DEPENDS = " \
@@ -25,16 +27,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     cv-bridge \
-    iproute2 \
     jsk-gui-msgs \
     jsk-network-tools \
     jsk-topic-tools \
-    python-colorama \
     python-percol \
     python-progressbar \
     python-pygithub3 \
-    python-requests \
-    python-rosdep \
     python-slacker-cli \
     python-tabulate-pip \
     python-texttable \
@@ -49,16 +47,12 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     cv-bridge \
-    iproute2 \
     jsk-gui-msgs \
     jsk-network-tools \
     jsk-topic-tools \
-    python-colorama \
     python-percol \
     python-progressbar \
     python-pygithub3 \
-    python-requests \
-    python-rosdep \
     python-slacker-cli \
     python-tabulate-pip \
     python-texttable \
@@ -88,6 +82,7 @@ SRC_URI[sha256sum] = "f320ae1c4775755b4236236bc4b43ea7b941cb2ecd775f2d5e0d004ec4
 S = "${WORKDIR}/jsk_common-release-release-melodic-jsk_tools-2.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-common', d)}"
@@ -97,4 +92,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

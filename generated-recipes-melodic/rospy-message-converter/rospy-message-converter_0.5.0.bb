@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Converts between Python dictionaries and JSON to rospy messages."
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
+ROS_AUTHOR = "Brandon Alexander <baalexander@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/rospy_message_converter"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rospy_message_converter"
 ROS_BPN = "rospy_message_converter"
 
 ROS_BUILD_DEPENDS = " \
@@ -58,6 +60,7 @@ SRC_URI[sha256sum] = "c35584b4ef0c7fed1e90a35bfeb17ad63ec36a9a86ba1aaf74547cdcbd
 S = "${WORKDIR}/rospy_message_converter-release-release-melodic-rospy_message_converter-0.5.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rospy-message-converter', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rospy-message-converter', d)}"
@@ -67,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospy-message-converter/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospy-message-converter/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

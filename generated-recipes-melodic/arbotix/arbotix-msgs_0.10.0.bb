@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Messages and Services definitions for the ArbotiX."
 AUTHOR = "Michael Ferguson <mike@vanadiumlabs.com>"
+ROS_AUTHOR = "Michael Ferguson"
 HOMEPAGE = "http://ros.org/wiki/arbotix_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "arbotix"
 ROS_BPN = "arbotix_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "4c30092a42cad55c7ed008b877d72fa55f90fd899352daa35e4e1bf647
 S = "${WORKDIR}/arbotix_ros-release-release-melodic-arbotix_msgs-0.10.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('arbotix', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('arbotix', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

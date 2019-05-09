@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Gazebo plugins for simulating Unmanned Surface Vehicles     Originaly copied from https://github.com/bsb808/usv_gazebo_plugins"
 AUTHOR = "Carlos Aguero <caguero@osrfoundation.org>"
+ROS_AUTHOR = "Brian Bingham <briansbingham@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/usv_gazebo_plugins"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "vrx"
 ROS_BPN = "usv_gazebo_plugins"
 
 ROS_BUILD_DEPENDS = " \
@@ -61,6 +63,7 @@ SRC_URI[sha256sum] = "61bbed37ef07cd02e27f6710063400a17b259523bbe721a0f657120b3a
 S = "${WORKDIR}/vrx-release-release-melodic-usv_gazebo_plugins-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('vrx', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vrx', d)}"
@@ -70,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

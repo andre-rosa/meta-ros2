@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The operator is a lightweight, purely reactive obstacle-avoidance     module for mobile robots moving in a planar environment. The operator node     works by evaluating a set of predefined motion primitives based on a local     costmap and a desired direction. The best evaluated motion command will be     send to the mobile base."
 AUTHOR = "Sebastian Kasperski <sebastian.kasperski@dfki.de>"
+ROS_AUTHOR = "Sebastian Kasperski <sebastian.kasperski@dfki.de>"
 HOMEPAGE = "http://wiki.ros.org/nav2d_operator"
 SECTION = "devel"
 LICENSE = "GPL-3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_CN = "navigation_2d"
 ROS_BPN = "nav2d_operator"
 
 ROS_BUILD_DEPENDS = " \
@@ -61,6 +63,7 @@ SRC_URI[sha256sum] = "a8ba977c06ec3334210448ff31687a876686fe661f3b50f407471465c8
 S = "${WORKDIR}/navigation_2d-release-release-melodic-nav2d_operator-0.4.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-2d', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-2d', d)}"
@@ -70,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

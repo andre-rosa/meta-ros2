@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides a kinematics implementation for the PR2 robot. It can be used to compute forward and inverse kinematics."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "Sachin Chitta"
 HOMEPAGE = "http://ros.org/wiki/pr2_arm_kinematics"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pr2_kinematics"
 ROS_BPN = "pr2_arm_kinematics"
 
 ROS_BUILD_DEPENDS = " \
@@ -73,6 +75,7 @@ SRC_URI[sha256sum] = "ad182e7a84e3e1448a25ab252edae3155e4cb6d27180b1c16e56ce29c6
 S = "${WORKDIR}/pr2_kinematics-release-release-melodic-pr2_arm_kinematics-1.0.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-kinematics', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-kinematics', d)}"
@@ -82,4 +85,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-kinematics/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-kinematics/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

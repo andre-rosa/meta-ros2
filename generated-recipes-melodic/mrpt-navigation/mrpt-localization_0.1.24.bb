@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Package for robot 2D self-localization using dynamic or static (MRPT or ROS) maps. 	The interface is similar to amcl (http://wiki.ros.org/amcl)    but supports different particle-filter algorithms, several grid maps at    different heights, range-only localization, etc."
 AUTHOR = "Markus Bader <markus.bader@tuwien.ac.at>"
+ROS_AUTHOR = "Markus Bader"
 HOMEPAGE = "http://www.mrpt.org/"
 SECTION = "devel"
 LICENSE = "BSD & BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mrpt_navigation"
 ROS_BPN = "mrpt_localization"
 
 ROS_BUILD_DEPENDS = " \
@@ -75,6 +77,7 @@ SRC_URI[sha256sum] = "5775c752a5bf1d2769f09bca7c2105041bfea961a8126752d9f78fdd20
 S = "${WORKDIR}/mrpt_navigation-release-release-melodic-mrpt_localization-0.1.24-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-navigation', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-navigation', d)}"
@@ -84,4 +87,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

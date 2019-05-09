@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Improved ROS message filters"
 AUTHOR = "Timo Röhling <timo.roehling@fkie.fraunhofer.de>"
+ROS_AUTHOR = "Timo Röhling <timo.roehling@fkie.fraunhofer.de>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_CN = "fkie_message_filters"
 ROS_BPN = "fkie_message_filters"
 
 ROS_BUILD_DEPENDS = " \
@@ -59,6 +61,7 @@ SRC_URI[sha256sum] = "938b5bff6f2fb9ec9e2fe36b383f0b81828c5147f0870cda2650b2cc86
 S = "${WORKDIR}/message_filters-release-release-melodic-fkie_message_filters-1.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fkie-message-filters', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fkie-message-filters', d)}"
@@ -68,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-message-filters/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-message-filters/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

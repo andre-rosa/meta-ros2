@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "roscreate contains a tool that assists in the creation of ROS filesystem resources.      It provides: <tt>roscreate-pkg</tt>, which creates a new package directory,      including the appropriate build and manifest files."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Ken Conley <kwc@willowgarage.com>"
 HOMEPAGE = "http://ros.org/wiki/roscreate"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros"
 ROS_BPN = "roscreate"
 
 ROS_BUILD_DEPENDS = ""
@@ -21,14 +23,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    python-rospkg \
     roslib \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-rospkg \
     roslib \
 "
 
@@ -48,6 +48,7 @@ SRC_URI[sha256sum] = "00feca079aa2df6b49f19098c964312824216bffc015e1d64d1960df06
 S = "${WORKDIR}/ros-release-release-melodic-roscreate-1.14.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros', d)}"
@@ -57,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

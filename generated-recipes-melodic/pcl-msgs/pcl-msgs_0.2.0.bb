@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Package containing PCL (Point Cloud Library)-related ROS messages."
 AUTHOR = "Paul Bovbel <paul@bovbel.com>"
+ROS_AUTHOR = "Open Perception"
 HOMEPAGE = "http://wiki.ros.org/pcl_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pcl_msgs"
 ROS_BPN = "pcl_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "e4d2bd132c08b705e38958c8fd8203311af0feefdaa2a3aeeac86cb54e
 S = "${WORKDIR}/pcl_msgs-release-release-melodic-pcl_msgs-0.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pcl-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pcl-msgs', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "More efficient version of tf/tf_remap able to handle TFs at kHz with tens of subscribers."
 AUTHOR = "Martin Pecka <peckama2@fel.cvut.cz>"
+ROS_AUTHOR = "Martin Pecka <peckama2@fel.cvut.cz>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "tf_remapper_cpp"
 ROS_BPN = "tf_remapper_cpp"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "e212a7354d6e6f6eb42f9f8a90551b26cc4ffd427324bfe6f82ccbcd46
 S = "${WORKDIR}/tf_remapper_cpp-release-release-melodic-tf_remapper_cpp-1.1.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tf-remapper-cpp', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tf-remapper-cpp', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf-remapper-cpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf-remapper-cpp/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

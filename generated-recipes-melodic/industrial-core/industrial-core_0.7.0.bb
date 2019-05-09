@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS-Industrial core stack contains packages and libraries for supporing industrial systems"
 AUTHOR = "Shaun Edwards <sedwards@swri.org>"
+ROS_AUTHOR = "Shaun Edwards <sedwards@swri.org>"
 HOMEPAGE = "http://ros.org/wiki/industrial_core"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "industrial_core"
 ROS_BPN = "industrial_core"
 
 ROS_BUILD_DEPENDS = ""
@@ -58,6 +60,7 @@ SRC_URI[sha256sum] = "bf63fe4b823d57a1ea8970db34788b07979c6b6ac549c0dcf587bee582
 S = "${WORKDIR}/industrial_core-release-release-melodic-industrial_core-0.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('industrial-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('industrial-core', d)}"
@@ -67,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

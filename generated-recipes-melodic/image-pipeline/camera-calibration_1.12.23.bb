@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "camera_calibration allows easy calibration of monocular or stereo      cameras using a checkerboard calibration target."
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
+ROS_AUTHOR = "James Bowman"
 HOMEPAGE = "http://www.ros.org/wiki/camera_calibration"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=23;endline=23;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_pipeline"
 ROS_BPN = "camera_calibration"
 
 ROS_BUILD_DEPENDS = ""
@@ -58,6 +60,7 @@ SRC_URI[sha256sum] = "12493d808dd8edcdfa7e569b70cd8be685c22df027f8dc0fabe6d56ed2
 S = "${WORKDIR}/image_pipeline-release-release-melodic-camera_calibration-1.12.23-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-pipeline', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-pipeline', d)}"
@@ -67,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

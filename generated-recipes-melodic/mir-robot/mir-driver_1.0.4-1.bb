@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A reverse ROS bridge for the MiR100 robot"
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
+ROS_AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
 HOMEPAGE = "https://github.com/dfki-ric/mir_robot"
 SECTION = "devel"
 LICENSE = "BSD & Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mir_robot"
 ROS_BPN = "mir_driver"
 
 ROS_BUILD_DEPENDS = " \
@@ -23,7 +25,6 @@ ROS_BUILD_DEPENDS = " \
     mir-msgs \
     move-base-msgs \
     nav-msgs \
-    python-websocket-client \
     rosgraph-msgs \
     roslaunch \
     rospy \
@@ -47,7 +48,6 @@ ROS_EXPORT_DEPENDS = " \
     mir-msgs \
     move-base-msgs \
     nav-msgs \
-    python-websocket-client \
     rosgraph-msgs \
     rospy \
     rospy-message-converter \
@@ -69,7 +69,6 @@ ROS_EXEC_DEPENDS = " \
     mir-msgs \
     move-base-msgs \
     nav-msgs \
-    python-websocket-client \
     robot-state-publisher \
     rosgraph-msgs \
     rospy \
@@ -96,6 +95,7 @@ SRC_URI[sha256sum] = "da99d11e458c15ad666321a49d43326ee91a75b969f98f8bb904c7bf0a
 S = "${WORKDIR}/mir_robot-release-release-melodic-mir_driver-1.0.4-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mir-robot', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mir-robot', d)}"
@@ -105,4 +105,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

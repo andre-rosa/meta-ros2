@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "TODO"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=2feaf30a620f46f06a4b016624acf46f"
 
+ROS_CN = "ros_realtime"
 ROS_BPN = "ros_realtime"
 
 ROS_BUILD_DEPENDS = ""
@@ -52,6 +53,7 @@ SRC_URI[sha256sum] = "7106572a7a1fc86e47f9df7ab27badd45a0f8b55c3bbff666fdb8c7a5d
 S = "${WORKDIR}/ros_realtime-release-release-melodic-ros_realtime-1.0.25-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-realtime', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-realtime', d)}"
@@ -61,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

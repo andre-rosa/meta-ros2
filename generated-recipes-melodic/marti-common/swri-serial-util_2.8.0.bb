@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "swri_serial_util"
 AUTHOR = "Marc Alban <malban@swri.org>"
+ROS_AUTHOR = "Marc Alban"
 HOMEPAGE = "https://github.com/swri-robotics/marti_common"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "marti_common"
 ROS_BPN = "swri_serial_util"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "e57ee6c62599e33b6690b2bb2869d82769cc69b24194955243562baa00
 S = "${WORKDIR}/marti_common-release-release-melodic-swri_serial_util-2.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('marti-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('marti-common', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

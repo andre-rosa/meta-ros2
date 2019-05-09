@@ -7,25 +7,21 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Catkin wrapper for the official ARSDK from Parrot"
 AUTHOR = "Mani Monajjemi <mmonajje@sfu.ca>"
+ROS_AUTHOR = "Parrot S.A. <unknow@parrot.com>"
 HOMEPAGE = "http://wiki.ros.org/parrot_arsdk"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "parrot_arsdk"
 ROS_BPN = "parrot_arsdk"
 
 ROS_BUILD_DEPENDS = " \
-    autoconf \
-    automake \
     curl \
     ffmpeg \
     libavahi-client-dev \
     libavahi-core-dev \
     libncurses-dev \
-    libtool \
-    nasm \
-    unzip \
-    yasm \
     zlib \
 "
 
@@ -55,6 +51,7 @@ SRC_URI[sha256sum] = "7c12a877881ee154fb0899c3b8d365276cb5c7afc319859078e610ec06
 S = "${WORKDIR}/parrot_arsdk-release-release-melodic-parrot_arsdk-3.14.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('parrot-arsdk', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('parrot-arsdk', d)}"
@@ -64,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/parrot-arsdk/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/parrot-arsdk/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

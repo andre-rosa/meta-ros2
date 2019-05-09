@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "laser_pipeline"
 ROS_BPN = "laser_pipeline"
 
 ROS_BUILD_DEPENDS = ""
@@ -50,6 +51,7 @@ SRC_URI[sha256sum] = "5d831b4e5ff12088b034f71202b7202c5d4fff9717d4a58acd5843e279
 S = "${WORKDIR}/laser_pipeline-release-release-melodic-laser_pipeline-1.6.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('laser-pipeline', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-pipeline', d)}"
@@ -59,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-pipeline/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

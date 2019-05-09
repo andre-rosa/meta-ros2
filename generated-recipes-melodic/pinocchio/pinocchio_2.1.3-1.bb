@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pinocchio"
 ROS_BPN = "pinocchio"
 
 ROS_BUILD_DEPENDS = " \
@@ -20,8 +21,6 @@ ROS_BUILD_DEPENDS = " \
     git \
     libeigen \
     liburdfdom-dev \
-    python \
-    python-numpy \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -33,8 +32,6 @@ ROS_EXPORT_DEPENDS = " \
     eigenpy \
     libeigen \
     liburdfdom-dev \
-    python \
-    python-numpy \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -44,8 +41,6 @@ ROS_EXEC_DEPENDS = " \
     eigenpy \
     libeigen \
     liburdfdom-dev \
-    python \
-    python-numpy \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -64,6 +59,7 @@ SRC_URI[sha256sum] = "55e2abcacc5f041bb5aac36853a0114852d76d03bdbe29c5a257f39429
 S = "${WORKDIR}/pinocchio_catkin-release-release-melodic-pinocchio-2.1.3-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pinocchio', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pinocchio', d)}"
@@ -73,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pinocchio/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pinocchio/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

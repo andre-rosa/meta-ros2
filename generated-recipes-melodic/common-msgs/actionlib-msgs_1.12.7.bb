@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "actionlib_msgs defines the common messages to interact with an      action server and an action client.  For full documentation of      the actionlib API see      the <a href="http://wiki.ros.org/actionlib">actionlib</a>      package."
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
+ROS_AUTHOR = "Vijay Pradeep"
 HOMEPAGE = "http://wiki.ros.org/actionlib_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "common_msgs"
 ROS_BPN = "actionlib_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "0ad19d4f8698df04a22979c4b64f21991696c55877c952dc592e92ffb8
 S = "${WORKDIR}/common_msgs-release-release-melodic-actionlib_msgs-1.12.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('common-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-msgs', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

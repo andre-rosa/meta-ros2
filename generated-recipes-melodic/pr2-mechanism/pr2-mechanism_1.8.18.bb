@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The pr2_mechanism stack contains the infrastructure to control the PR2 robot in a hard realtime control loop."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "Wim Meeussen"
 HOMEPAGE = "http://ros.org/wiki/pr2_mechanism"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pr2_mechanism"
 ROS_BPN = "pr2_mechanism"
 
 ROS_BUILD_DEPENDS = ""
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "c6ed5bf479132aac212fc57681dc0223a03708b808e2ee0c0c8c273183
 S = "${WORKDIR}/pr2_mechanism-release-release-melodic-pr2_mechanism-1.8.18-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-mechanism', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-mechanism', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

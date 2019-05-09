@@ -7,18 +7,19 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains a tool to convert Unified Robot Description Format (URDF) documents into COLLAborative Design Activity (COLLADA) documents.      Implements robot-specific COLLADA extensions as defined by     http://openrave.programmingvision.com/index.php/Started:COLLADA"
 AUTHOR = "Chris Lalancette <clalancette@osrfoundation.org>"
+ROS_AUTHOR = "Tim Field"
 HOMEPAGE = "http://ros.org/wiki/collada_urdf"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=18;endline=18;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "collada_urdf"
 ROS_BPN = "collada_urdf"
 
 ROS_BUILD_DEPENDS = " \
     angles \
     assimp \
     cmake-modules \
-    collada-dom \
     collada-parser \
     geometric-shapes \
     libeigen \
@@ -41,7 +42,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     assimp \
-    collada-dom \
     collada-parser \
     geometric-shapes \
     liburdfdom-dev \
@@ -66,6 +66,7 @@ SRC_URI[sha256sum] = "b45310a279cd0ed77c4c782656bcaed2417adc74d09b546d4a41eb0121
 S = "${WORKDIR}/collada_urdf-release-release-melodic-collada_urdf-1.12.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('collada-urdf', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('collada-urdf', d)}"
@@ -75,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/collada-urdf/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/collada-urdf/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

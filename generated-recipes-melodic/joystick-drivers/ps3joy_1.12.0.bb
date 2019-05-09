@@ -7,17 +7,17 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Playstation 3 SIXAXIS or DUAL SHOCK 3 joystick driver.     Driver for the Sony PlayStation 3 SIXAXIS or DUAL SHOCK 3     joysticks. In its current state, this driver is not compatible     with the use of other Bluetooth HID devices. The driver listens     for a connection on the HID ports, starts the joystick     streaming data, and passes the data to the Linux uinput device     so that it shows up as a normal joystick."
 AUTHOR = "Jonathan Bohren <jbo@jhu.edu>"
+ROS_AUTHOR = "Blaise Gassend"
 HOMEPAGE = "http://www.ros.org/wiki/ps3joy"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=4;endline=4;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "joystick_drivers"
 ROS_BPN = "ps3joy"
 
 ROS_BUILD_DEPENDS = " \
-    bluez5 \
     diagnostic-msgs \
-    libsdl \
     libusb-dev \
     python-bluez \
     rosgraph \
@@ -30,9 +30,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    bluez5 \
     diagnostic-msgs \
-    libsdl \
     libusb-dev \
     python-bluez \
     rosgraph \
@@ -43,9 +41,7 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    bluez5 \
     diagnostic-msgs \
-    libsdl \
     libusb-dev \
     python-bluez \
     rosgraph \
@@ -69,6 +65,7 @@ SRC_URI[sha256sum] = "c3b9aa3c6b572091d412fa7e2904b1c799471ba99aed7dd1b906f2b9e3
 S = "${WORKDIR}/joystick_drivers-release-release-melodic-ps3joy-1.12.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('joystick-drivers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('joystick-drivers', d)}"
@@ -78,4 +75,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

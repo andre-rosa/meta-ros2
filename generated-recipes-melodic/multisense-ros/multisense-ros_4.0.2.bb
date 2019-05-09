@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "multisense_ros"
 ROS_BPN = "multisense_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -97,6 +98,7 @@ SRC_URI[sha256sum] = "c1b2959f4247366b8fffeab9da15990e326707d8abfe4967b16065d6ec
 S = "${WORKDIR}/multisense_ros-release-release-melodic-multisense_ros-4.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('multisense-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('multisense-ros', d)}"
@@ -106,4 +108,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multisense-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multisense-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

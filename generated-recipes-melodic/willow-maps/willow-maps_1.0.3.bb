@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Holds maps of Willow Garage that can be used for a number of different applications."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "Eitan Marder-Eppstein"
 HOMEPAGE = "http://pr.willowgarage.com/wiki/willow_maps"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "willow_maps"
 ROS_BPN = "willow_maps"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "8c9dbbaeabb4464c98637228bddfd69f2b0e8692e40d9a0f0921b4b910
 S = "${WORKDIR}/willow_maps-release-release-melodic-willow_maps-1.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('willow-maps', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('willow-maps', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/willow-maps/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/willow-maps/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

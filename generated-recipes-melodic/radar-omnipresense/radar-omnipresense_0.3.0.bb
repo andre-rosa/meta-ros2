@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This is the radar driver package developed for the omnipresense radar module."
 AUTHOR = "Garren Hendricks <ghendricks@scu.edu>"
+ROS_AUTHOR = "Garren Hendricks <ghendricks@scu.edu>"
 HOMEPAGE = "http://www.ros.org/wiki/radar_omnipresense"
 SECTION = "devel"
 LICENSE = "ECL2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "radar_omnipresense"
 ROS_BPN = "radar_omnipresense"
 
 ROS_BUILD_DEPENDS = " \
@@ -58,6 +60,7 @@ SRC_URI[sha256sum] = "f82a2ead3bd79d78a4b0e123824adb03e08ca62c227ed8359c866e7f7e
 S = "${WORKDIR}/radar_omnipresense-release-release-melodic-radar_omnipresense-0.3.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('radar-omnipresense', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('radar-omnipresense', d)}"
@@ -67,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/radar-omnipresense/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/radar-omnipresense/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "diagnostic_updater contains tools for easily updating diagnostics. it is commonly used in device drivers to keep track of the status of output topics, device status, etc."
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
+ROS_AUTHOR = "Kevin Watts"
 HOMEPAGE = "http://www.ros.org/wiki/diagnostic_updater"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "diagnostics"
 ROS_BPN = "diagnostic_updater"
 
 ROS_BUILD_DEPENDS = " \
@@ -55,6 +57,7 @@ SRC_URI[sha256sum] = "5ac66485bad485a41a0de8647ecde0dda778e54648f6bce43c3b5e53a7
 S = "${WORKDIR}/diagnostics-release-release-melodic-diagnostic_updater-1.9.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('diagnostics', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('diagnostics', d)}"
@@ -64,4 +67,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

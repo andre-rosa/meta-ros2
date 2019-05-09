@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Generic Messages for Navigation Objectives in Automotive Automation Software"
 AUTHOR = "AutonomouStuff Software Development Team <software@autonomoustuff.com>"
+ROS_AUTHOR = "Daniel Stanek <dstanek@autonomoustuff.com>"
 HOMEPAGE = "http://github.com/automotive_navigation_msgs"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "automotive_autonomy_msgs"
 ROS_BPN = "automotive_navigation_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "c47b3746216db63830a678b6d220f7f39bacebe9980d4fa40aeb106012
 S = "${WORKDIR}/automotive_autonomy_msgs-release-release-melodic-automotive_navigation_msgs-2.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('automotive-autonomy-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('automotive-autonomy-msgs', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/automotive-autonomy-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/automotive-autonomy-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

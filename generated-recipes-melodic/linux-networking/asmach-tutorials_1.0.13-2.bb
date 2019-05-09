@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package containes numerous examples of how to use SMACH. See the examples directory."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
+ROS_AUTHOR = "Jonathan Bohren"
 HOMEPAGE = "http://ros.org/wiki/smach_tutorials"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "linux_networking"
 ROS_BPN = "asmach_tutorials"
 
 ROS_BUILD_DEPENDS = " \
@@ -64,6 +66,7 @@ SRC_URI[sha256sum] = "ca0024ddfd9f62f4c76291300d9cf50e15fbc87e64af3823255db33e42
 S = "${WORKDIR}/linux_networking-release-release-melodic-asmach_tutorials-1.0.13-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('linux-networking', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
@@ -73,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

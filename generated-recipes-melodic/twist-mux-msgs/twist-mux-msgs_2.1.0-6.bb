@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The twist_mux msgs and actions package"
 AUTHOR = "Enrique Fernandez <efernandez@clearpathrobotics.com>"
+ROS_AUTHOR = "Enrique Fernandez <efernandez@clearpathrobotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "CC-BY-NC-SA-4.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=6bc0e2b80b41b84c8240cea714dea709"
 
+ROS_CN = "twist_mux_msgs"
 ROS_BPN = "twist_mux_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "521a28a3dcc722a2eac2208e66f7f511a2010c3fda6e0b81fe45548c3e
 S = "${WORKDIR}/twist_mux_msgs-release-release-melodic-twist_mux_msgs-2.1.0-6"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('twist-mux-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('twist-mux-msgs', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/twist-mux-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/twist-mux-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Search and approach behaviour, moving to a target in front of a pair of ar markers."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier"
 HOMEPAGE = "http://ros.org/wiki/yocs_ar_pair_approach"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "yujin_ocs"
 ROS_BPN = "yocs_ar_pair_approach"
 
 ROS_BUILD_DEPENDS = ""
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "57ea6195fb9edc5fd0e5a0e89a7c82773a4a809b56a85fa6cd396c88bb
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_ar_pair_approach-0.8.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yujin-ocs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

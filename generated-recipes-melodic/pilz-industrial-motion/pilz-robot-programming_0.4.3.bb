@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=b691248d2f70cdaeeaf13696ada5d47c"
 
+ROS_CN = "pilz_industrial_motion"
 ROS_BPN = "pilz_robot_programming"
 
 ROS_BUILD_DEPENDS = " \
@@ -27,7 +28,6 @@ ROS_EXPORT_DEPENDS = " \
     moveit-commander \
     pilz-msgs \
     pilz-trajectory-generation \
-    python-psutil \
     rospy \
     tf \
     tf-conversions \
@@ -39,7 +39,6 @@ ROS_EXEC_DEPENDS = " \
     moveit-commander \
     pilz-msgs \
     pilz-trajectory-generation \
-    python-psutil \
     rospy \
     tf \
     tf-conversions \
@@ -50,7 +49,6 @@ ROS_TEST_DEPENDS = " \
     pilz-industrial-motion-testutils \
     prbt-moveit-config \
     prbt-pg70-support \
-    python-coverage \
     python-docopt \
     rostest \
 "
@@ -68,6 +66,7 @@ SRC_URI[sha256sum] = "b753f1fdac939cc51563b027e7c282d1a218977a7ea1c954123696d7fe
 S = "${WORKDIR}/pilz_industrial_motion-release-release-melodic-pilz_robot_programming-0.4.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pilz-industrial-motion', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pilz-industrial-motion', d)}"
@@ -77,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-industrial-motion/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-industrial-motion/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

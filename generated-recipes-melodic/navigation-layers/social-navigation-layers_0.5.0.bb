@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Plugin-based layers for the navigation stack that   implement various social navigation contraints, like proxemic distance."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
+ROS_AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/social_navigation_layers"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "navigation_layers"
 ROS_BPN = "social_navigation_layers"
 
 ROS_BUILD_DEPENDS = " \
@@ -68,6 +70,7 @@ SRC_URI[sha256sum] = "106139809be8e491881b20b8510ca74eb2b73109bef94c30f1c58be452
 S = "${WORKDIR}/navigation_layers_release-release-melodic-social_navigation_layers-0.5.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-layers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-layers', d)}"
@@ -77,4 +80,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-layers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-layers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

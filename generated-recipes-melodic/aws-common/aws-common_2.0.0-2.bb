@@ -7,16 +7,17 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Common AWS SDK utilities, intended for use by ROS packages using the AWS SDK"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
+ROS_AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/aws_common"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "aws_common"
 ROS_BPN = "aws_common"
 
 ROS_BUILD_DEPENDS = " \
     catkin \
-    crossguid \
     curl \
     openssl \
     ros-environment \
@@ -28,7 +29,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    crossguid \
     curl \
     openssl \
     zlib \
@@ -37,7 +37,6 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    crossguid \
     curl \
     openssl \
     zlib \
@@ -61,6 +60,7 @@ SRC_URI[sha256sum] = "fd9f9814aef06e687d94c1158f8f401e035005b187e8e22321567cf5db
 S = "${WORKDIR}/aws_common-release-release-melodic-aws_common-2.0.0-2"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('aws-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('aws-common', d)}"
@@ -70,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

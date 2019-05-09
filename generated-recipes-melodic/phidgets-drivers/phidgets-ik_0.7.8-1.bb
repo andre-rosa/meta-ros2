@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Driver for the Phidgets InterfaceKit devices"
 AUTHOR = "Russel Howe <russel@appliedinvention.com>"
+ROS_AUTHOR = "James Sarrett"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "phidgets_drivers"
 ROS_BPN = "phidgets_ik"
 
 ROS_BUILD_DEPENDS = " \
@@ -69,6 +71,7 @@ SRC_URI[sha256sum] = "67c0cf362886a9f706cea5925ad22e53a6e266c950dd166dbe3119e4dc
 S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_ik-0.7.8-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('phidgets-drivers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('phidgets-drivers', d)}"
@@ -78,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

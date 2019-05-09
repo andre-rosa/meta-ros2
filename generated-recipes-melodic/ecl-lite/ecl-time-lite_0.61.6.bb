@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Provides a portable set of time functions that are especially useful for       porting other code or being wrapped by higher level c++ classes."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/ecl_time_lite"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ecl_lite"
 ROS_BPN = "ecl_time_lite"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "97485e9c7be495031bb6c5b207851c5e8458bb243cb2f4e5dcfa9c2dcc
 S = "${WORKDIR}/ecl_lite-release-release-melodic-ecl_time_lite-0.61.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ecl-lite', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-lite', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

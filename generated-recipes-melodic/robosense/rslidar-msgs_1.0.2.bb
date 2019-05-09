@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS message definitions for Rslidar 3D LIDARs."
 AUTHOR = "Abraham Monrroy <abrahammonrroy@yahoo.com>"
+ROS_AUTHOR = "Tony Zhang <tony.zhang@robosense.cn>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "robosense"
 ROS_BPN = "rslidar_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "5e648cc16e6b3f0db83e8ce00c9609f6f2da14f0d29951c2cb63e2e271
 S = "${WORKDIR}/robosense-release-release-melodic-rslidar_msgs-1.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robosense', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robosense', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robosense/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robosense/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

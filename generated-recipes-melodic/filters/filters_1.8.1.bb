@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "filters"
 ROS_BPN = "filters"
 
 ROS_BUILD_DEPENDS = " \
@@ -58,6 +59,7 @@ SRC_URI[sha256sum] = "850380ab0564923c37a6ee93227fe934647a1c4e5dfb4c5d2502f156b6
 S = "${WORKDIR}/filters-release-release-melodic-filters-1.8.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('filters', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('filters', d)}"
@@ -67,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/filters/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/filters/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

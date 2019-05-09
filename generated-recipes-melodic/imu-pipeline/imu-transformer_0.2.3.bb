@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Node/nodelet combination to transform sensor_msgs::Imu data from one frame into another."
 AUTHOR = "Paul Bovbel <pbovbel@clearpathrobotics.com>"
+ROS_AUTHOR = "Paul Bovbel <pbovbel@clearpathrobotics.com>"
 HOMEPAGE = "http://ros.org/wiki/imu_transformer"
 SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_CN = "imu_pipeline"
 ROS_BPN = "imu_transformer"
 
 ROS_BUILD_DEPENDS = " \
@@ -77,6 +79,7 @@ SRC_URI[sha256sum] = "385d6b98746a58cc8dcc26c189a5a3c9853b553794798cd352ebe3445d
 S = "${WORKDIR}/imu_pipeline-release-release-melodic-imu_transformer-0.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('imu-pipeline', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imu-pipeline', d)}"
@@ -86,4 +89,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

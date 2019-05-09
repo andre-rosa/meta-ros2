@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Defines the messages that are used to communicate with the     p2os_driver package and the ROS infrastructure."
 AUTHOR = "Hunter L. Allen <hunter@openrobotics.org>"
+ROS_AUTHOR = "Hunter L. Allen <hunter@openrobotics.org>"
 HOMEPAGE = "http://ros.org/wiki/p2os-purdue"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "p2os"
 ROS_BPN = "p2os_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "03bd75df3567d74a4b0e3357d73ae5cf4085fc772aa1c65e36078f4afb
 S = "${WORKDIR}/p2os-release-release-melodic-p2os_msgs-2.1.1-3"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('p2os', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('p2os', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

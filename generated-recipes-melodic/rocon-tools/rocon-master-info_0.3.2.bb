@@ -7,23 +7,22 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Publish master information - name, description, icon."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier"
 HOMEPAGE = "http://ros.org/wiki/rocon_master_info"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rocon_tools"
 ROS_BPN = "rocon_master_info"
 
-ROS_BUILD_DEPENDS = " \
-    python-catkin-pkg \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    python-rospkg \
     rocon-bubble-icons \
     rocon-console \
     rocon-icons \
@@ -37,7 +36,6 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-rospkg \
     rocon-bubble-icons \
     rocon-console \
     rocon-icons \
@@ -64,6 +62,7 @@ SRC_URI[sha256sum] = "accae02c60a70a23f1d4970a961c780c0acc172430d73af57718ed904b
 S = "${WORKDIR}/rocon_tools-release-release-melodic-rocon_master_info-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rocon-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rocon-tools', d)}"
@@ -73,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

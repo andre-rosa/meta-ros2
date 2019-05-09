@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Library used by ROS1/2 node to publish metrics"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
+ROS_AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "cloudwatch_common"
 ROS_BPN = "cloudwatch_metrics_common"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "05af61ad2cb0a12df52a90b5ecc8f812a40bebe45e3a243930ff568f36
 S = "${WORKDIR}/cloudwatch_common-release-release-melodic-cloudwatch_metrics_common-1.0.1-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('cloudwatch-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cloudwatch-common', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

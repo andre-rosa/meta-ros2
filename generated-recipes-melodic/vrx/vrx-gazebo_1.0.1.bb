@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The ROS package for the RobotX competition running in Gazebo."
 AUTHOR = "Carlos Aguero <caguero@osrfoundation.org>"
+ROS_AUTHOR = "Brian Bingham <briansbingham@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/vrx_gazebo"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "vrx"
 ROS_BPN = "vrx_gazebo"
 
 ROS_BUILD_DEPENDS = " \
@@ -72,6 +74,7 @@ SRC_URI[sha256sum] = "d6a4a9bdd86e6645bd539ec12ebcde5a87f46368643f4485561e3fae94
 S = "${WORKDIR}/vrx-release-release-melodic-vrx_gazebo-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('vrx', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vrx', d)}"
@@ -81,4 +84,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

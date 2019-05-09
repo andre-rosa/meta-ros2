@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains the manipulation API and functions for controlling the manipulator."
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Hye-Jong KIM <hjkim@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/robotis_manipulator"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "robotis_manipulator"
 ROS_BPN = "robotis_manipulator"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "3e32af08b49c5a8b698e9e98b01c1fee182559c0b5e96025fc1be922ff
 S = "${WORKDIR}/robotis_manipulator-release-release-melodic-robotis_manipulator-1.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robotis-manipulator', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robotis-manipulator', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robotis-manipulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robotis-manipulator/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

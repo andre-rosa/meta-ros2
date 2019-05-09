@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_py_trees provides a GUI plugin for visualizing py_trees behaviour trees based on rqt_tf_tree."
 AUTHOR = "Michal Staniaszek <m.staniaszek@gmail.com>"
+ROS_AUTHOR = "Thibault Kruse"
 HOMEPAGE = "http://ros.org/wiki/rqt_py_trees"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=5ee5b8b046ae48ad94a2037ca953a67b"
 
+ROS_CN = "rqt_py_trees"
 ROS_BPN = "rqt_py_trees"
 
 ROS_BUILD_DEPENDS = " \
@@ -29,8 +31,6 @@ ROS_EXPORT_DEPENDS = " \
     py-trees \
     py-trees-msgs \
     python-pygraphviz \
-    python-rospkg \
-    python-termcolor \
     qt-dotgraph \
     rospy \
     rqt-bag \
@@ -47,8 +47,6 @@ ROS_EXEC_DEPENDS = " \
     py-trees \
     py-trees-msgs \
     python-pygraphviz \
-    python-rospkg \
-    python-termcolor \
     qt-dotgraph \
     rospy \
     rqt-bag \
@@ -76,6 +74,7 @@ SRC_URI[sha256sum] = "f01bb9ccb08d23b79f515c9fe65342463911d1af5c2cffec32c3384581
 S = "${WORKDIR}/rqt_py_trees-release-release-melodic-rqt_py_trees-0.3.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-py-trees', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-py-trees', d)}"
@@ -85,4 +84,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-py-trees/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-py-trees/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

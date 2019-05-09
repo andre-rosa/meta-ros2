@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS tools for those who live in Emacs."
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
+ROS_AUTHOR = "Bhaskara Marthi"
 HOMEPAGE = "http://www.ros.org/wiki/rosemacs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_emacs_utils"
 ROS_BPN = "rosemacs"
 
 ROS_BUILD_DEPENDS = ""
@@ -20,15 +22,11 @@ ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    readline \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = " \
-    readline \
-"
+ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = ""
@@ -46,6 +44,7 @@ SRC_URI[sha256sum] = "80a2911c8cf86b70a771060e8304d9234b375b2f221fb42e63bfe5bfbf
 S = "${WORKDIR}/ros_emacs_utils-release-release-melodic-rosemacs-0.4.13-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-emacs-utils', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-emacs-utils', d)}"
@@ -55,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

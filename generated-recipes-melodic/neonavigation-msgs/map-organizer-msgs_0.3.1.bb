@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Message definitions for map_organizer_msgs package"
 AUTHOR = "Atsushi Watanabe <atsushi.w@ieee.org>"
+ROS_AUTHOR = "Atsushi Watanabe <atsushi.w@ieee.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "neonavigation_msgs"
 ROS_BPN = "map_organizer_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "af49ea381522b98ba810d373e597842afa5ed7d28e141b79468501f484
 S = "${WORKDIR}/neonavigation_msgs-release-release-melodic-map_organizer_msgs-0.3.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('neonavigation-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('neonavigation-msgs', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/neonavigation-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/neonavigation-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

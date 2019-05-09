@@ -7,15 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "RTAB-Map's standalone library. RTAB-Map is a RGB-D SLAM approach with real-time constraints."
 AUTHOR = "Mathieu Labbe <matlabbe@gmail.com>"
+ROS_AUTHOR = "Mathieu Labbe"
 HOMEPAGE = "http://introlab.github.io/rtabmap"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rtabmap"
 ROS_BPN = "rtabmap"
 
 ROS_BUILD_DEPENDS = " \
-    acpica \
     cv-bridge \
     libfreenect-dev \
     libg2o \
@@ -76,6 +77,7 @@ SRC_URI[sha256sum] = "ef29a24868205118c1363dc6d9b8700ece63647ee2c10b2cbefd1b2741
 S = "${WORKDIR}/rtabmap-release-release-melodic-rtabmap-0.17.6-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rtabmap', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rtabmap', d)}"
@@ -85,4 +87,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtabmap/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtabmap/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "CMake lint commands for ROS packages.      The lint commands perform static checking of Python or C++ source     code for errors and standards compliance."
 AUTHOR = "Mike Purvis <mpurvis@clearpathrobotics.com>"
+ROS_AUTHOR = "Mike Purvis"
 HOMEPAGE = "http://ros.org/wiki/roslint"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "roslint"
 ROS_BPN = "roslint"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "85588e28bc32d5359340c5524437aa447aadbd15f25c30d9e6cb4030f4
 S = "${WORKDIR}/roslint-release-release-melodic-roslint-0.11.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roslint', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roslint', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslint/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslint/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

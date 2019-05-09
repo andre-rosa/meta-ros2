@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "libuvc_ros"
 ROS_BPN = "libuvc_camera"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +67,7 @@ SRC_URI[sha256sum] = "2ea19c5821e70fe6c63da750b35c6ae0dfff43faadca9f951c0137e570
 S = "${WORKDIR}/libuvc_ros-release-release-melodic-libuvc_camera-0.0.10-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('libuvc-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('libuvc-ros', d)}"
@@ -75,4 +77,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "TODO"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=2feaf30a620f46f06a4b016624acf46f"
 
+ROS_CN = "static_tf"
 ROS_BPN = "static_tf"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +58,7 @@ SRC_URI[sha256sum] = "0c372214894f09c32cf9f0e8364ee57db00a1a906ba997b8767c027bf8
 S = "${WORKDIR}/static_tf_release-release-melodic-static_tf-0.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('static-tf', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('static-tf', d)}"
@@ -66,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/static-tf/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/static-tf/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

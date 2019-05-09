@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Simple tool for waypoints navigation with two functions:     <br/> * Command the robot to go to a goal by passing through a series of waypoints.     <br/> * Command the robot to constantly loop through a series of waypoints, useful for patrol."
 AUTHOR = "Jihoon Lee <jihoonl@yujinrobot.com>"
+ROS_AUTHOR = "Jorge Santos Simon"
 HOMEPAGE = "http://ros.org/wiki/yocs_waypoints_navi"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "yujin_ocs"
 ROS_BPN = "yocs_waypoints_navi"
 
 ROS_BUILD_DEPENDS = " \
@@ -75,6 +77,7 @@ SRC_URI[sha256sum] = "b0134c5b12ed2067775780964a54a4d339efc42bcb4481b013913c9355
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_waypoints_navi-0.8.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yujin-ocs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
@@ -84,4 +87,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The rc_hand_eye_calibration_client package"
 AUTHOR = "Felix Ruess <felix.ruess@roboception.de>"
+ROS_AUTHOR = "Christian Emmerich <christian.emmerich@roboception.de>"
 HOMEPAGE = "http://wiki.ros.org/rc_hand_eye_calibration_client"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rc_visard"
 ROS_BPN = "rc_hand_eye_calibration_client"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "4a0f8dbf4cf73db3976b83dea3cb12c86d3bc81e41241ec3a1b00bdb23
 S = "${WORKDIR}/rc_visard-release-release-melodic-rc_hand_eye_calibration_client-2.5.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rc-visard', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-visard', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

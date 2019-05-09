@@ -7,10 +7,12 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "mini_maxwell"
 AUTHOR = "Ryohei Ueda <ueda@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Yusuke Furuta <furuta@jsk.imi.i.u-tokyo.ac.jp>"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "mini_maxwell"
 
 ROS_BUILD_DEPENDS = " \
@@ -49,6 +51,7 @@ SRC_URI[sha256sum] = "a69fc95ceca0f3b9035039ac42b1805c74f2bb0f11dd017e7ec7fbbd1a
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-mini_maxwell-2.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -58,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

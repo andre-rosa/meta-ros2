@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Generic Radar Messages"
 AUTHOR = "AutonomouStuff Software Development Team <software@autonomoustuff.com>"
+ROS_AUTHOR = "Daniel Stanek <dstanek@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/radar_msgs"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "astuff_sensor_msgs"
 ROS_BPN = "radar_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "ef32eb400ff896750907c99abf7c31091f742b43a1bd011b35c15ee14d
 S = "${WORKDIR}/astuff_sensor_msgs-release-release-melodic-radar_msgs-2.3.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('astuff-sensor-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('astuff-sensor-msgs', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

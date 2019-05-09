@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_shell is a Python GUI plugin providing an interactive shell."
 AUTHOR = "Dorian Scholz <scholz@sim.tu-darmstadt.de>"
+ROS_AUTHOR = "Dorian Scholz"
 HOMEPAGE = "http://wiki.ros.org/rqt_shell"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_shell"
 ROS_BPN = "rqt_shell"
 
 ROS_BUILD_DEPENDS = ""
@@ -22,7 +24,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     python-qt-binding \
-    python-rospkg \
     qt-gui \
     qt-gui-py-common \
     rqt-gui \
@@ -33,7 +34,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     python-qt-binding \
-    python-rospkg \
     qt-gui \
     qt-gui-py-common \
     rqt-gui \
@@ -56,6 +56,7 @@ SRC_URI[sha256sum] = "522e34ae2cf5e4af2d14805e70767f394ec88043033a1c6e44324ae58a
 S = "${WORKDIR}/rqt_shell-release-release-melodic-rqt_shell-0.4.9-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-shell', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-shell', d)}"
@@ -65,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-shell/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-shell/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

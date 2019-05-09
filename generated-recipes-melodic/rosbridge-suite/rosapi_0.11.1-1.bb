@@ -5,16 +5,20 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "Rosbridge provides a JSON API to ROS functionality for non-ROS programs.     There are a variety of front ends that interface with rosbridge, including     a WebSocket server for web browsers to interact with.      Rosbridge_suite is a meta-package containing rosbridge, various front end     packages for rosbridge like a WebSocket package, and helper packages."
+DESCRIPTION = "Provides service calls for getting ros meta-information, like list of     topics, services, params, etc."
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
-HOMEPAGE = "http://ros.org/wiki/rosbridge_suite"
+ROS_AUTHOR = "Jonathan Mace <jonathan.c.mace@gmail.com>"
+HOMEPAGE = "http://ros.org/wiki/rosapi"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BPN = "rosbridge_suite"
+ROS_CN = "rosbridge_suite"
+ROS_BPN = "rosapi"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    message-generation \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -25,9 +29,11 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    rosapi \
+    message-runtime \
     rosbridge-library \
-    rosbridge-server \
+    rosgraph \
+    rosnode \
+    rospy \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -40,12 +46,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/RobotWebTools-release/rosbridge_suite-release/archive/release/melodic/rosbridge_suite/0.11.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "fa170e1fcfb0471003248626d1731e40"
-SRC_URI[sha256sum] = "76c2dc5b9525b17dc6862ac1781cd94a7d6df2df81457fe9731a6012c32b0323"
-S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosbridge_suite-0.11.0-0"
+SRC_URI = "https://github.com/RobotWebTools-release/rosbridge_suite-release/archive/release/melodic/rosapi/0.11.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "886fb0cf8b1c185578509bdb73fcbeb5"
+SRC_URI[sha256sum] = "c28e939e2812f04bbd9b115470edca0adf3b5ef8600633890aca838793940eb6"
+S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosapi-0.11.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosbridge-suite', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbridge-suite', d)}"
@@ -55,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

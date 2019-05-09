@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Message and service types: custom messages and services for TurtleBot3 packages"
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Pyo <pyo@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/turtlebot3_msgs"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "turtlebot3_msgs"
 ROS_BPN = "turtlebot3_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "45317e8776023604286708e4f7f9b206d3d64e59601af91849a5f80b94
 S = "${WORKDIR}/turtlebot3_msgs-release-release-melodic-turtlebot3_msgs-1.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot3-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3-msgs', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

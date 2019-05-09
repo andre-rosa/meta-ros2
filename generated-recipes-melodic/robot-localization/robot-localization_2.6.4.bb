@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Provides nonlinear state estimation through sensor fusion of an abritrary number of sensors."
 AUTHOR = "Tom Moore <ayrton04@gmail.com>"
+ROS_AUTHOR = "Tom Moore <ayrton04@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/robot_localization"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "robot_localization"
 ROS_BPN = "robot_localization"
 
 ROS_BUILD_DEPENDS = " \
@@ -26,7 +28,6 @@ ROS_BUILD_DEPENDS = " \
     message-generation \
     nav-msgs \
     nodelet \
-    python-catkin-pkg \
     roscpp \
     roslint \
     sensor-msgs \
@@ -110,6 +111,7 @@ SRC_URI[sha256sum] = "ec11a24842691aeb10996db5752bd1b2af596a93c2598793afc1207500
 S = "${WORKDIR}/robot_localization-release-release-melodic-robot_localization-2.6.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robot-localization', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-localization', d)}"
@@ -119,4 +121,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-localization/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-localization/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

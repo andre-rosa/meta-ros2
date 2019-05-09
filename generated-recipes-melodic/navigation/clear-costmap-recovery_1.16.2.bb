@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides a recovery behavior for the navigation stack that attempts to clear space by reverting the costmaps used by the navigation stack to the static map outside of a given area."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
+ROS_AUTHOR = "Eitan Marder-Eppstein"
 HOMEPAGE = "http://wiki.ros.org/clear_costmap_recovery"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "navigation"
 ROS_BPN = "clear_costmap_recovery"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "9844494fbe4443e201302dfd5a6fae1246fe452f38432696d0613c2405
 S = "${WORKDIR}/navigation-release-release-melodic-clear_costmap_recovery-1.16.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Common messages for interacting with Amazon Lex using the lex_node package"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
+ROS_AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/lex_common_msgs"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "lex_node"
 ROS_BPN = "lex_common_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "38bc675f3d1607953a04c92775548a0cda08aa90b0699ed3c8ae3cd0d5
 S = "${WORKDIR}/lex_node-release-release-melodic-lex_common_msgs-2.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('lex-node', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('lex-node', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lex-node/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lex-node/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

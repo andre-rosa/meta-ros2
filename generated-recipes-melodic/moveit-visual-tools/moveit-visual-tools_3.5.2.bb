@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Helper functions for displaying and debugging MoveIt! data in Rviz via published markers"
 AUTHOR = "Dave Coleman <dave@picknik.ai>"
+ROS_AUTHOR = "Dave Coleman <dave@picknik.ai>"
 HOMEPAGE = "https://github.com/ros-planning/moveit_visual_tools"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "moveit_visual_tools"
 ROS_BPN = "moveit_visual_tools"
 
 ROS_BUILD_DEPENDS = " \
@@ -84,6 +86,7 @@ SRC_URI[sha256sum] = "89188c2b6459781c14abe35014f937e5c199cd11f8fd45f943ff21e1b6
 S = "${WORKDIR}/moveit_visual_tools-release-release-melodic-moveit_visual_tools-3.5.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit-visual-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit-visual-tools', d)}"
@@ -93,4 +96,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-visual-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-visual-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

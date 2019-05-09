@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Combined Robot HW class."
 AUTHOR = "Bence Magyar <bence.magyar.robotics@gmail.com>"
+ROS_AUTHOR = "Toni Oliver <toni@shadowrobot.com>"
 HOMEPAGE = "https://github.com/ros-controls/ros_control/wiki"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_control"
 ROS_BPN = "combined_robot_hw"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "aa5ba158529df1e934c5e0589dfd2c7f8af8f51820c86eb806494cc161
 S = "${WORKDIR}/ros_control-release-release-melodic-combined_robot_hw-0.15.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-control', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-control', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

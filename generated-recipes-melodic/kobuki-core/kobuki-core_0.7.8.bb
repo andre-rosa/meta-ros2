@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Non-ROS software for Kobuki, Yujin Robot's mobile research base."
 AUTHOR = "Daniel Stonier <stonier@yujinrobot.com>"
+ROS_AUTHOR = "Daniel Stonier <stonier@yujinrobot.com>"
 HOMEPAGE = "http://ros.org/wiki/kobuki_core"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "kobuki_core"
 ROS_BPN = "kobuki_core"
 
 ROS_BUILD_DEPENDS = ""
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "56089bc142fb63afa805b19d543123c28f51feee8e17bdd73090831034
 S = "${WORKDIR}/kobuki_core-release-release-melodic-kobuki_core-0.7.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('kobuki-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('kobuki-core', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

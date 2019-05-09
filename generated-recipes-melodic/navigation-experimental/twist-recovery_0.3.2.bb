@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A recovery behavior that performs a particular used-defined twist."
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
+ROS_AUTHOR = "Bhaskara Marthi"
 HOMEPAGE = "http://wiki.ros.org/twist_recovery"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "navigation_experimental"
 ROS_BPN = "twist_recovery"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "8c67a2c46844a984e92f59e344590deedd9525f2bfc7b3201c6a1e8999
 S = "${WORKDIR}/navigation_experimental-release-release-melodic-twist_recovery-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-experimental', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-experimental', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

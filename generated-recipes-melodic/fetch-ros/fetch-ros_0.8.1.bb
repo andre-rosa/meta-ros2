@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Fetch ROS, packages for working with Fetch and Freight"
 AUTHOR = "Alex Moriarty <amoriarty@fetchrobotics.com>"
+ROS_AUTHOR = "Alex Moriarty <amoriarty@fetchrobotics.com>"
 HOMEPAGE = "https://docs.fetchrobotics.com/"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "fetch_ros"
 ROS_BPN = "fetch_ros"
 
 ROS_BUILD_DEPENDS = ""
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "8eee5893c1058c6875ca642fa51dcb92bc7a66d0fa2fb5d7aa800f3058
 S = "${WORKDIR}/fetch_ros-release-release-melodic-fetch_ros-0.8.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fetch-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-ros', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

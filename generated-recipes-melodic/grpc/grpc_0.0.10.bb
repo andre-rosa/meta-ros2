@@ -12,13 +12,11 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "grpc"
 ROS_BPN = "grpc"
 
 ROS_BUILD_DEPENDS = " \
-    autoconf \
     git \
-    libtool \
-    rsync \
     zlib \
 "
 
@@ -48,6 +46,7 @@ SRC_URI[sha256sum] = "c68b25e98a58f726e6d9a86a1a16c943c468e8f1d426781f9086cd31c5
 S = "${WORKDIR}/catkin_grpc-release-release-melodic-grpc-0.0.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('grpc', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('grpc', d)}"
@@ -57,4 +56,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grpc/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grpc/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

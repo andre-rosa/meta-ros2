@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The Industrial deprecated package contains nodes, launch files, etc... that are slated for    deprecation.  This package is the last place something will end up before being deleted.     If you are missing a package/node and find it's contents here, then you should consider    a replacement."
 AUTHOR = "Shaun Edwards <sedwards@swri.org>"
+ROS_AUTHOR = "Shaun M. Edwards"
 HOMEPAGE = "http://ros.org/wiki/industrial_deprecated"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "industrial_core"
 ROS_BPN = "industrial_deprecated"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "22330dbdb44092750340bbd8a283441f65bd0135ddc3c08d5535736d0c
 S = "${WORKDIR}/industrial_core-release-release-melodic-industrial_deprecated-0.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('industrial-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('industrial-core', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

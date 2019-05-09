@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "NASA-1.3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=66432e857bf21180c0bbef7cde4f8a21"
 
+ROS_CN = "exotica_val_description"
 ROS_BPN = "exotica_val_description"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +43,7 @@ SRC_URI[sha256sum] = "9ffa2502040e704ba54e21b691521ba3e3213011535eef52b7af2a4222
 S = "${WORKDIR}/exotica_val_description-release-release-melodic-exotica_val_description-1.0.0-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('exotica-val-description', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('exotica-val-description', d)}"
@@ -51,4 +53,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica-val-description/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica-val-description/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

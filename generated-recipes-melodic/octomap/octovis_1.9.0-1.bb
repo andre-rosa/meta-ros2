@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "octovis is visualization tool for the OctoMap library based on Qt and libQGLViewer. See   http://octomap.github.io for details."
 AUTHOR = "Armin Hornung <armin@hornung.io>"
+ROS_AUTHOR = "Kai M. Wurm <wurm@informatik.uni-freiburg.de>"
 HOMEPAGE = "http://octomap.github.io"
 SECTION = "devel"
 LICENSE = "GPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=fe8b75cf0aba647401e1038bcd69ee74"
 
+ROS_CN = "octomap"
 ROS_BPN = "octovis"
 
 ROS_BUILD_DEPENDS = " \
@@ -59,6 +61,7 @@ SRC_URI[sha256sum] = "3edf836edd904daf7f76b13dad10d4094e37a5a8c5829193fe1b583e62
 S = "${WORKDIR}/octomap-release-release-melodic-octovis-1.9.0-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('octomap', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('octomap', d)}"
@@ -68,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

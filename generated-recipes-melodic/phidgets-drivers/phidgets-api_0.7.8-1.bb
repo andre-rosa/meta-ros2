@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A C++ Wrapper for the Phidgets C API"
 AUTHOR = "Martin Guenther <martin.guenther@dfki.de>"
+ROS_AUTHOR = "Tully Foote"
 HOMEPAGE = "http://ros.org/wiki/phidgets_api"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "phidgets_drivers"
 ROS_BPN = "phidgets_api"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "724401a8a4f5e4046acb595eace743404df64f3d512ad49a51eca5d1b9
 S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_api-0.7.8-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('phidgets-drivers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('phidgets-drivers', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

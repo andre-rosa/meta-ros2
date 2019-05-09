@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Uses opencv to find checkboards and compute their 6D poses with respect to the image. Requires the image to be calibrated.<br/>     Parameters:<br/>     <ul>      <li>display - show the checkerboard detection</li>      <li>rect%d_size_x - size of checker in x direction</li>      <li>rect%d_size_y - size of checker in y direction</li>      <li>grid%d_size_x - number of checkers in x direction</li>      <li>grid%d_size_y - number of checkers in y direction</li>     </ul><br/>         There can be more than one grid%d declared, the numbers should grow consecutively starting at 0."
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Rosen Diankov (rdiankov@cs.cmu.edu)"
 HOMEPAGE = "http://jsk-docs.readthedocs.io/en/latest/jsk_recognition/doc/checkerboard_detector"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_recognition"
 ROS_BPN = "checkerboard_detector"
 
 ROS_BUILD_DEPENDS = " \
@@ -83,6 +85,7 @@ SRC_URI[sha256sum] = "ceea72257d2d72b4e132c9dce6d24a976081fff72abba0b7d607f9803b
 S = "${WORKDIR}/jsk_recognition-release-release-melodic-checkerboard_detector-1.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-recognition', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-recognition', d)}"
@@ -92,4 +95,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

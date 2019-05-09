@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "marti_nav_msgs"
 AUTHOR = "Marc Alban <malban@swri.org>"
+ROS_AUTHOR = "Marc Alban"
 HOMEPAGE = "https://github.com/swri-robotics/marti_messages"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "marti_messages"
 ROS_BPN = "marti_nav_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -62,6 +64,7 @@ SRC_URI[sha256sum] = "d4e787cb1a9e173eda0759738129af2ec90c286bcc3dcc35b4d622198e
 S = "${WORKDIR}/marti_messages-release-release-melodic-marti_nav_msgs-0.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('marti-messages', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('marti-messages', d)}"
@@ -71,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-messages/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-messages/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

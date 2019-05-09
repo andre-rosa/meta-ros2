@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The rc_dynamics_api provides an API for easy handling of the dynamic-state data       streams provided by Roboception's stereo camera with self-localization.       See http://rc-visard.com        Dynamic-state estimates of the rc_visard relate to its self-localization and       ego-motion estimation. These states refer to rc_visard's current pose,       velocity, or acceleration and are published on demand via several data streams.       For a complete list and descriptions of these dynamics states and the       respective data streams please refer to rc_visard's user manual."
 AUTHOR = "Felix Ruess <felix.ruess@roboception.de>"
+ROS_AUTHOR = "Heiko Hirschmueller <heiko.hirschmueller@roboception.de>"
 HOMEPAGE = "http://rc-visard.com"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=23;endline=23;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "rc_dynamics_api"
 ROS_BPN = "rc_dynamics_api"
 
 ROS_BUILD_DEPENDS = " \
@@ -32,7 +34,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     curl \
-    protobuf \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -51,6 +52,7 @@ SRC_URI[sha256sum] = "5d865c30cd327b025024612b430e223e073cc182a7d8cb5c46b2612348
 S = "${WORKDIR}/rc_dynamics_api-release-release-melodic-rc_dynamics_api-0.7.1-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rc-dynamics-api', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-dynamics-api', d)}"
@@ -60,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-dynamics-api/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-dynamics-api/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

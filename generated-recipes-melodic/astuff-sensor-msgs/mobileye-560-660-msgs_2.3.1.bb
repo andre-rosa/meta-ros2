@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Message definitions for the Mobileye 560/660"
 AUTHOR = "AutonomouStuff Software Team <software@autonomoustuff.com>"
+ROS_AUTHOR = "Josh Whitley <jwhitley@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/mobileye_560_660_msgs"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "astuff_sensor_msgs"
 ROS_BPN = "mobileye_560_660_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "8b04f0cb7b653492bdffead10bf58a81273782d2c80128de999cad8a46
 S = "${WORKDIR}/astuff_sensor_msgs-release-release-melodic-mobileye_560_660_msgs-2.3.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('astuff-sensor-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('astuff-sensor-msgs', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

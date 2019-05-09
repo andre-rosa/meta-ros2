@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Messages, services and actions used by MoveIt"
 AUTHOR = "Dave Coleman <dave@dav.ee>"
+ROS_AUTHOR = "Ioan Sucan <isucan@google.com>"
 HOMEPAGE = "http://moveit.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=5ee5b8b046ae48ad94a2037ca953a67b"
 
+ROS_CN = "moveit_msgs"
 ROS_BPN = "moveit_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -72,6 +74,7 @@ SRC_URI[sha256sum] = "d1053ffe57d739fff282835af4753e39f484acad8a596049f8dc97825a
 S = "${WORKDIR}/moveit_msgs-release-release-melodic-moveit_msgs-0.10.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit-msgs', d)}"
@@ -81,4 +84,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

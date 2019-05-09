@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A simulation interface for a hardware interface for ros_control, and loads default joint values from SRDF"
 AUTHOR = "Dave Coleman <davetcoleman@gmail.com>"
+ROS_AUTHOR = "Dave Coleman <davetcoleman@gmail.com>"
 HOMEPAGE = "https://github.com/davetcoleman/moveit_sim_controller"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "moveit_sim_controller"
 ROS_BPN = "moveit_sim_controller"
 
 ROS_BUILD_DEPENDS = " \
@@ -61,6 +63,7 @@ SRC_URI[sha256sum] = "3d7a3062afc99ff36fa906e8796297a7ac3e1a1dea416d71a06ce22bdb
 S = "${WORKDIR}/moveit_sim_controller-release-release-melodic-moveit_sim_controller-0.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit-sim-controller', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit-sim-controller', d)}"
@@ -70,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-sim-controller/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-sim-controller/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A helper node that makes sure everybody knows about all static transforms, even if they are published by multiple publishers."
 AUTHOR = "Martin Pecka <peckama2@fel.cvut.cz>"
+ROS_AUTHOR = "Martin Pecka <peckama2@fel.cvut.cz>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "static_transform_mux"
 ROS_BPN = "static_transform_mux"
 
 ROS_BUILD_DEPENDS = ""
@@ -45,6 +47,7 @@ SRC_URI[sha256sum] = "9b5bce13459bb33c3bcf4eb03f3c72e10e4b9b118f16a5a352ca9d4293
 S = "${WORKDIR}/static_transform_mux-release-release-melodic-static_transform_mux-1.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('static-transform-mux', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('static-transform-mux', d)}"
@@ -54,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/static-transform-mux/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/static-transform-mux/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

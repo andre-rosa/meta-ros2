@@ -7,17 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Low-level build system macros and infrastructure for ROS."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Troy Straszheim"
 HOMEPAGE = "http://www.ros.org/wiki/catkin"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "catkin"
 ROS_BPN = "catkin"
 
-ROS_BUILD_DEPENDS = " \
-    python-catkin-pkg \
-    python-empy \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     cmake-native \
@@ -25,23 +24,17 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     gtest \
-    python-catkin-pkg \
-    python-empy \
-    python-nose \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = " \
     cmake-native \
 "
 
-ROS_EXEC_DEPENDS = " \
-    python-catkin-pkg \
-"
+ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
     python-mock \
-    python-nose \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -57,6 +50,7 @@ SRC_URI[sha256sum] = "316178707bc3f0edcb86a77ec2ec174b98b4d2ccf41306162cefe6588b
 S = "${WORKDIR}/catkin-release-release-melodic-catkin-0.7.17-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('catkin', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('catkin', d)}"
@@ -66,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

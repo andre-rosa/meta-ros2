@@ -7,32 +7,26 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Python implementation of the URDF parser."
 AUTHOR = "Chris Lalancette <clalancette@osrfoundation.org>"
+ROS_AUTHOR = "Thomas Moulard"
 HOMEPAGE = "http://wiki.ros.org/urdfdom_py"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "urdfdom_py"
 ROS_BPN = "urdfdom_py"
 
-ROS_BUILD_DEPENDS = " \
-    python \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    python \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = " \
-    python \
-    python-lxml \
-    python-yamllint-native \
-"
+ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
@@ -52,6 +46,7 @@ SRC_URI[sha256sum] = "9d0663d9bde7a548ba4df458423922d7d1e326a786e50cc33846f0835c
 S = "${WORKDIR}/urdfdom_py-release-release-melodic-urdfdom_py-0.4.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urdfdom-py', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdfdom-py', d)}"
@@ -61,4 +56,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-py/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-py/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

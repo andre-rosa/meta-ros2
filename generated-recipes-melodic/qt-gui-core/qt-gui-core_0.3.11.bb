@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Integration of the ROS package system and ROS-specific plugins for a Qt-based GUI."
 AUTHOR = "D. Hood <dhood@osrfoundation.org>"
+ROS_AUTHOR = "Dirk Thomas"
 HOMEPAGE = "http://ros.org/wiki/qt_gui_core"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "qt_gui_core"
 ROS_BPN = "qt_gui_core"
 
 ROS_BUILD_DEPENDS = ""
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "c49816fb690393c749f341c95ac6e0ee7000121701ea3ec5597297712d
 S = "${WORKDIR}/qt_gui_core-release-release-melodic-qt_gui_core-0.3.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('qt-gui-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('qt-gui-core', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

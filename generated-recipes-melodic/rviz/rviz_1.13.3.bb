@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "3D visualization tool for ROS."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
+ROS_AUTHOR = "Dave Hershberger"
 HOMEPAGE = "http://wiki.ros.org/rviz"
 SECTION = "devel"
 LICENSE = "BSD & CC-BY-SA-3.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rviz"
 ROS_BPN = "rviz"
 
 ROS_BUILD_DEPENDS = " \
@@ -134,6 +136,7 @@ SRC_URI[sha256sum] = "1d30b85b375f6c15a25f690e3ac296f19527fd1740e85fa26ba059d5f8
 S = "${WORKDIR}/rviz-release-release-melodic-rviz-1.13.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rviz', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz', d)}"
@@ -143,4 +146,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "<p>Metapackage that contains visualization package for jsk-ros-pkg</p>"
 AUTHOR = "Ryohei Ueda <ueda@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Ryohei Ueda <ueda@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/jsk_visualization"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_visualization"
 ROS_BPN = "jsk_visualization"
 
 ROS_BUILD_DEPENDS = ""
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "6a77306292fe2644e5cd6ad9df30e442aa904f920bc373a0b8b5ff9a2d
 S = "${WORKDIR}/jsk_visualization-release-release-melodic-jsk_visualization-2.1.5-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-visualization', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-visualization', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

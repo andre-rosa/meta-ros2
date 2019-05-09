@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The urdf_sim_tutorial package"
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
+ROS_AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "urdf_sim_tutorial"
 ROS_BPN = "urdf_sim_tutorial"
 
 ROS_BUILD_DEPENDS = ""
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "520f94f7fe52250069283fc7bdd40b734e9153bdcc11b76309fe952297
 S = "${WORKDIR}/urdf_sim_tutorial-release-release-melodic-urdf_sim_tutorial-0.4.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urdf-sim-tutorial', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdf-sim-tutorial', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-sim-tutorial/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-sim-tutorial/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

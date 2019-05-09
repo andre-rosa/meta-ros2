@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The pheeno_ros_description package"
 AUTHOR = "Zahi Kakish <zkakish@gmail.edu>"
+ROS_AUTHOR = "Zahi Kakish <zkakish@gmail.com>"
 HOMEPAGE = "https://acslaboratory.github.io"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "pheeno_ros_description"
 ROS_BPN = "pheeno_ros_description"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "4849cdf4250dfdbd134a913bd739e1b2647446a89eb50a6dde59bdbc96
 S = "${WORKDIR}/pheeno_ros_description-release-release-melodic-pheeno_ros_description-0.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pheeno-ros-description', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pheeno-ros-description', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pheeno-ros-description/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pheeno-ros-description/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

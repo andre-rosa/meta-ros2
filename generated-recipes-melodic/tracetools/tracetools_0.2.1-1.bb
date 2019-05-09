@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Wrapper interface for tracing libraries"
 AUTHOR = "Ingo Luetkebohle <ingo.luetkebohle@de.bosch.com>"
+ROS_AUTHOR = "Ingo Luetkebohle <ingo.luetkebohle@de.bosch.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "APLv2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=7b404913b4819f2321770961dc72a54f"
 
+ROS_CN = "tracetools"
 ROS_BPN = "tracetools"
 
 ROS_BUILD_DEPENDS = " \
@@ -47,6 +49,7 @@ SRC_URI[sha256sum] = "1c5114e1acce416cfb16dfca419508fd9dfcfd682ffdd63eafbe7a609d
 S = "${WORKDIR}/tracetools-release-release-melodic-tracetools-0.2.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tracetools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tracetools', d)}"
@@ -56,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tracetools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tracetools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

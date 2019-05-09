@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Metapackage of rqt plugins that are particularly used with robots    during its operation.<br/>    <br/>    To run any rqt plugins, just type in a single command &quot;rqt&quot;, then select any plugins you want from the GUI that launches afterwards.<br/>    <br/>    rqt consists of three following metapackages:<br/>     <ul>      <li><a href="http://ros.org/wiki/rqt">rqt</a> - provides a container window          where all rqt tools can be docked at. rqt plugin developers barely          needs to pay attention.</li>      <li><a href="http://ros.org/wiki/rqt_common_plugins">rqt_common_plugins</a> -          ROS backend tools suite that can be used on/off of robot runtime.</li>      <li>rqt_robot_plugins (You're here!)</li>     </ul>"
 AUTHOR = "Aaron Blasdel <ablasdel@gmail.com>"
+ROS_AUTHOR = "Dirk Thomas"
 HOMEPAGE = "http://ros.org/wiki/rqt_robot_plugins"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=22;endline=22;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_robot_plugins"
 ROS_BPN = "rqt_robot_plugins"
 
 ROS_BUILD_DEPENDS = ""
@@ -62,6 +64,7 @@ SRC_URI[sha256sum] = "2fa30a70d1eed9ff4724c1b9d1ef8303066b373bae9abcbf2b8a715a89
 S = "${WORKDIR}/rqt_robot_plugins-release-release-melodic-rqt_robot_plugins-0.5.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-robot-plugins', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-robot-plugins', d)}"
@@ -71,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-plugins/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-plugins/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

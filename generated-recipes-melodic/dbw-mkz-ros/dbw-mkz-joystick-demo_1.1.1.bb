@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Demonstration of drive-by-wire with joystick"
 AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
+ROS_AUTHOR = "Micho Radovnikovich <mradovnikovich@dataspeedinc.com>"
 HOMEPAGE = "http://dataspeedinc.com"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "dbw_mkz_ros"
 ROS_BPN = "dbw_mkz_joystick_demo"
 
 ROS_BUILD_DEPENDS = " \
@@ -63,6 +65,7 @@ SRC_URI[sha256sum] = "ee44e5172a5ab64274e3a62accbe5ed7206cf0d5fe5163b8c24ca857e0
 S = "${WORKDIR}/dbw_mkz_ros-release-release-melodic-dbw_mkz_joystick_demo-1.1.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dbw-mkz-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dbw-mkz-ros', d)}"
@@ -72,4 +75,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-mkz-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-mkz-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

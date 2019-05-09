@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The nanomsg package"
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "nanomsg"
 ROS_BPN = "nanomsg"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "0b9f6215f091598eac4c7c958693a5b4c8cb09838e18a5b18bc9feb7bf
 S = "${WORKDIR}/nanomsg-release-release-melodic-nanomsg-0.4.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('nanomsg', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('nanomsg', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nanomsg/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nanomsg/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

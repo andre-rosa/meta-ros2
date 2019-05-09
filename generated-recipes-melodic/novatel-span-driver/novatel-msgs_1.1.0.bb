@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS messages which represent raw Novatel SPAN data."
 AUTHOR = "Mike Purvis <mpurvis@clearpathrobotics.com>"
+ROS_AUTHOR = "NovAtel Support <support@novatel.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "novatel_span_driver"
 ROS_BPN = "novatel_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "a72561b3f85654b4e209dc7ac5738010ee49bb976023b1a014f4e345a2
 S = "${WORKDIR}/novatel_span_driver-release-release-melodic-novatel_msgs-1.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('novatel-span-driver', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('novatel-span-driver', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/novatel-span-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/novatel-span-driver/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

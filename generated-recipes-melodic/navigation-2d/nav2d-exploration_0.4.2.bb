@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package holds a collection of plugins for the RobotNavigator, that provide     different cooperative exploration strategies for a team of mobile robots."
 AUTHOR = "Sebastian Kasperski <sebastian.kasperski@dfki.de>"
+ROS_AUTHOR = "Sebastian Kasperski <sebastian.kasperski@dfki.de>"
 HOMEPAGE = "http://wiki.ros.org/robot_operator"
 SECTION = "devel"
 LICENSE = "GPL-3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_CN = "navigation_2d"
 ROS_BPN = "nav2d_exploration"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "a66a917dec44f5f164671346050a6c578e51625a1afc22e100a4f2e407
 S = "${WORKDIR}/navigation_2d-release-release-melodic-nav2d_exploration-0.4.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-2d', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-2d', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

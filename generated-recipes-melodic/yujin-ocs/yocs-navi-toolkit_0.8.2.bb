@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Ros navigation utilities."
 AUTHOR = "Daniel Stonier <stonier@yujinrobot.com>"
+ROS_AUTHOR = "Daniel Stonier"
 HOMEPAGE = "https://github.com/yujinrobot/yujin_ocs"
 SECTION = "devel"
 LICENSE = "Yujin-Robot"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=a9f99b3452a89416bf7474e0b60ab849"
 
+ROS_CN = "yujin_ocs"
 ROS_BPN = "yocs_navi_toolkit"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "fbf635ac9b081ac52ced067b1d5b6ffdb7c17a320ba7d229e92d53538a
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_navi_toolkit-0.8.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yujin-ocs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

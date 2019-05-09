@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The tuw_checkerboard package is designed to detect one      checkerboard and to estimate the pose of the checkerboard relative to the camera.     The detection itself is based on the opencv functions for checkerboards."
 AUTHOR = "Florian Beck <florian.beck@tuwien.ac.at>"
+ROS_AUTHOR = "Florian Beck <florian.beck@tuwien.ac.at>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "tuw_marker_detection"
 ROS_BPN = "tuw_checkerboard"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "e7d76c6bb8a14e31094674fc33504b7cca4335d4d0c2362ceda6811633
 S = "${WORKDIR}/tuw_marker_detection-release-release-melodic-tuw_checkerboard-0.1.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tuw-marker-detection', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tuw-marker-detection', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-marker-detection/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-marker-detection/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

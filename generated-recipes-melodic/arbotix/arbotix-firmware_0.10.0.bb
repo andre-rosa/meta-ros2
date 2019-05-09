@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Firmware source code for ArbotiX ROS bindings."
 AUTHOR = "Michael Ferguson <mike@vanadiumlabs.com>"
+ROS_AUTHOR = "Michael Ferguson"
 HOMEPAGE = "http://ros.org/wiki/arbotix_firmware"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "arbotix"
 ROS_BPN = "arbotix_firmware"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "c588a11ade8ae7118deec36d4619c9328a748439456671b39bb41fce43
 S = "${WORKDIR}/arbotix_ros-release-release-melodic-arbotix_firmware-0.10.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('arbotix', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('arbotix', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

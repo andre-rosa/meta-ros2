@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "calibration"
 ROS_BPN = "calibration"
 
 ROS_BUILD_DEPENDS = ""
@@ -62,6 +63,7 @@ SRC_URI[sha256sum] = "7a248b88469868131a91a2f1894aef35a0012d9027cdf3532e39849f56
 S = "${WORKDIR}/calibration-release-release-melodic-calibration-0.10.14-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('calibration', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('calibration', d)}"
@@ -71,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

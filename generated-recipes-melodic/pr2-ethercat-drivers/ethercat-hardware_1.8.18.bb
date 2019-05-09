@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Package for creating a hardware interface to the robot using the EtherCAT motor controller/driver"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "Rob Wheeler <wheeler@willowgarage.com>"
 HOMEPAGE = "http://ros.org/wiki/ethercat_hardware"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pr2_ethercat_drivers"
 ROS_BPN = "ethercat_hardware"
 
 ROS_BUILD_DEPENDS = " \
@@ -78,6 +80,7 @@ SRC_URI[sha256sum] = "43368d575a4d0b4f58a1e1896649012df83ba25fa63311ce42e26f5032
 S = "${WORKDIR}/pr2_ethercat_drivers-release-release-melodic-ethercat_hardware-1.8.18-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-ethercat-drivers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-ethercat-drivers', d)}"
@@ -87,4 +90,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-ethercat-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-ethercat-drivers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

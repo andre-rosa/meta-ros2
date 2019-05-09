@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "sbg_driver"
 ROS_BPN = "sbg_driver"
 
 ROS_BUILD_DEPENDS = " \
@@ -63,6 +64,7 @@ SRC_URI[sha256sum] = "5dcd118009e8bd76fefe8a9abe3467f6ade59058b8ddcc4b386466c8a4
 S = "${WORKDIR}/sbg_ros_driver-release-release-melodic-sbg_driver-1.1.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sbg-driver', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sbg-driver', d)}"
@@ -72,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbg-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbg-driver/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

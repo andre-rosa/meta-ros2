@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Visualization package for rc_visard"
 AUTHOR = "Monika Florek-Jasinska <monika.florek-jasinska@roboception.de>"
+ROS_AUTHOR = "Monika Florek-Jasinska <monika.florek-jasinska@roboception.de>"
 HOMEPAGE = "http://wiki.ros.org/rc_visard_description"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rc_visard"
 ROS_BPN = "rc_visard_description"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "2e824c7bf43dcb567b32bdd999fdc3a2066bbfdf0efa4af3d0124c731b
 S = "${WORKDIR}/rc_visard-release-release-melodic-rc_visard_description-2.5.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rc-visard', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-visard', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

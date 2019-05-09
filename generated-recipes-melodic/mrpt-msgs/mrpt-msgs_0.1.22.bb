@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mrpt_msgs"
 ROS_BPN = "mrpt_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +58,7 @@ SRC_URI[sha256sum] = "baf8fd73e1c316f837c29fcaea20d6cb5cb84d4083813944b09005de92
 S = "${WORKDIR}/mrpt_msgs-release-release-melodic-mrpt_msgs-0.1.22-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-msgs', d)}"
@@ -66,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

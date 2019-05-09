@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "image_pipeline fills the gap between getting raw images from a camera driver and higher-level vision processing."
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
+ROS_AUTHOR = "Patrick Mihelich"
 HOMEPAGE = "http://www.ros.org/wiki/image_pipeline"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_pipeline"
 ROS_BPN = "image_pipeline"
 
 ROS_BUILD_DEPENDS = ""
@@ -58,6 +60,7 @@ SRC_URI[sha256sum] = "a6e5d39fd81ad438d67124e646c3da415e14afb3d0e59931e0d40433a6
 S = "${WORKDIR}/image_pipeline-release-release-melodic-image_pipeline-1.12.23-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-pipeline', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-pipeline', d)}"
@@ -67,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

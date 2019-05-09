@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "multi_map_server provides the"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Manabu Saito"
 HOMEPAGE = "http://ros.org/wiki/map_server"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_common"
 ROS_BPN = "multi_map_server"
 
 ROS_BUILD_DEPENDS = " \
@@ -19,8 +21,6 @@ ROS_BUILD_DEPENDS = " \
     libsdl-image \
     map-server \
     nav-msgs \
-    python-imaging \
-    python-yamllint-native \
     rosconsole \
     roscpp \
     rosmake \
@@ -73,6 +73,7 @@ SRC_URI[sha256sum] = "eda76ab35d2eab0ecd8663973eaa2269cad69e1b4b5bb1e0f3b30594fa
 S = "${WORKDIR}/jsk_common-release-release-melodic-multi_map_server-2.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-common', d)}"
@@ -82,4 +83,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

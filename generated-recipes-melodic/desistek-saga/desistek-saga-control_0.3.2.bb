@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Configuration and launch files to control the Desistek SAGA ROV"
 AUTHOR = "Emre Ege <emre.ege@desistek.com.tr>"
+ROS_AUTHOR = "Emre Ege <emre.ege@desistek.com.tr>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_CN = "desistek_saga"
 ROS_BPN = "desistek_saga_control"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "81fe5ef7f2ef085fcb784c8799971f63dd8f145ea59a04902b1adc9f04
 S = "${WORKDIR}/desistek_saga-release-release-melodic-desistek_saga_control-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('desistek-saga', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('desistek-saga', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/desistek-saga/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/desistek-saga/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

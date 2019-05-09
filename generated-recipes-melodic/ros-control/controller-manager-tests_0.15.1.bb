@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "controller_manager_tests"
 AUTHOR = "Bence Magyar <bence.magyar.robotics@gmail.com>"
+ROS_AUTHOR = "Vijay Pradeep"
 HOMEPAGE = "http://ros.org/wiki/controller_manager_tests"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_control"
 ROS_BPN = "controller_manager_tests"
 
 ROS_BUILD_DEPENDS = " \
@@ -56,6 +58,7 @@ SRC_URI[sha256sum] = "b43edda9914e25875e06aaace29bf7c78afc68d0cc59da2b77dc7e5783
 S = "${WORKDIR}/ros_control-release-release-melodic-controller_manager_tests-0.15.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-control', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-control', d)}"
@@ -65,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

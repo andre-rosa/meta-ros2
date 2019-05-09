@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The sbpl_lattice_planner is a global planner plugin for move_base and wraps     the SBPL search-based planning library."
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
+ROS_AUTHOR = "Michael Phillips"
 HOMEPAGE = "http://wiki.ros.org/sbpl_lattice_planner"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "navigation_experimental"
 ROS_BPN = "sbpl_lattice_planner"
 
 ROS_BUILD_DEPENDS = " \
@@ -71,6 +73,7 @@ SRC_URI[sha256sum] = "e78f8dc5ccf4ffb74f314de47656e49eca331b5cb262d6edfb4ea2729e
 S = "${WORKDIR}/navigation_experimental-release-release-melodic-sbpl_lattice_planner-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-experimental', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-experimental', d)}"
@@ -80,4 +83,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

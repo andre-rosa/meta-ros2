@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Tools for calculating the intersection of interval messages coming     in on several topics. This package is experimental and unstable.     Expect its APIs to change."
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
+ROS_AUTHOR = "Romain Thibaux"
 HOMEPAGE = "http://www.ros.org/wiki/interval_intersection"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "calibration"
 ROS_BPN = "interval_intersection"
 
 ROS_BUILD_DEPENDS = " \
@@ -75,6 +77,7 @@ SRC_URI[sha256sum] = "4466aa2fd48b25d0fa963f756b1ed3c5bb4bcba29d9dc1fc6d392d2dfe
 S = "${WORKDIR}/calibration-release-release-melodic-interval_intersection-0.10.14-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('calibration', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('calibration', d)}"
@@ -84,4 +87,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

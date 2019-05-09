@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "geometry2"
 ROS_BPN = "tf2_py"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +52,7 @@ SRC_URI[sha256sum] = "24fc32a89eb1f6714d2f05c138c5d85741aabe819fc18475e63564aa0e
 S = "${WORKDIR}/geometry2-release-release-melodic-tf2_py-0.6.5-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('geometry2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geometry2', d)}"
@@ -60,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

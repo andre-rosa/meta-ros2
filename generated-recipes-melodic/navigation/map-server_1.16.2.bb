@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "map_server provides the <tt>map_server</tt> ROS <a href="http://www.ros.org/wiki/Nodes">Node</a>, which offers map data as a ROS <a href="http://www.ros.org/wiki/Services">Service</a>. It also provides the <tt>map_saver</tt> command-line utility, which allows dynamically generated maps to be saved to file."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
+ROS_AUTHOR = "Brian Gerkey, Tony Pratkanis"
 HOMEPAGE = "http://wiki.ros.org/map_server"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "navigation"
 ROS_BPN = "map_server"
 
 ROS_BUILD_DEPENDS = " \
@@ -70,6 +72,7 @@ SRC_URI[sha256sum] = "bfa8523b9c697f97956d24e89857dcccc5b4cc09844b42adb0ce066c6d
 S = "${WORKDIR}/navigation-release-release-melodic-map_server-1.16.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation', d)}"
@@ -79,4 +82,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

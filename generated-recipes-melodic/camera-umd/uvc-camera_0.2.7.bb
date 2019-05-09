@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A collection of node(let)s that stream images from USB cameras (UVC)      and provide CameraInfo messages to consumers. Includes a      two-camera node that provides rough synchronization      for stereo vision.       Currently uses the base driver from Morgan Quigley's uvc_cam package."
 AUTHOR = "Ken Tossell <ken@tossell.net>"
+ROS_AUTHOR = "Ken Tossell <ken@tossell.net>"
 HOMEPAGE = "http://ros.org/wiki/uvc_camera"
 SECTION = "devel"
 LICENSE = "GPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=21;endline=21;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "camera_umd"
 ROS_BPN = "uvc_camera"
 
 ROS_BUILD_DEPENDS = " \
@@ -63,6 +65,7 @@ SRC_URI[sha256sum] = "3a760fad6164fa6a5ed47d7cd6302f5378bae282f5018dc568d2666b86
 S = "${WORKDIR}/camera_umd-release-release-melodic-uvc_camera-0.2.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('camera-umd', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('camera-umd', d)}"
@@ -72,4 +75,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/camera-umd/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/camera-umd/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

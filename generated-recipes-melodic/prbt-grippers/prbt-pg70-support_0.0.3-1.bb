@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "prbt_grippers"
 ROS_BPN = "prbt_pg70_support"
 
 ROS_BUILD_DEPENDS = ""
@@ -48,6 +49,7 @@ SRC_URI[sha256sum] = "88d2e623f7b6f8bd400077fb29ec9ec4a4a20747c2100a593c0e7d9400
 S = "${WORKDIR}/prbt_grippers-release-release-melodic-prbt_pg70_support-0.0.3-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('prbt-grippers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('prbt-grippers', d)}"
@@ -57,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prbt-grippers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prbt-grippers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

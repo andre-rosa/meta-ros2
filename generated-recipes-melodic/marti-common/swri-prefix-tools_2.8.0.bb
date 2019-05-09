@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Contains scripts that are useful as prefix commands for nodes     started by roslaunch."
 AUTHOR = "P. J. Reed <preed@swri.org>"
+ROS_AUTHOR = "Elliot Johnson"
 HOMEPAGE = "https://github.com/swri-robotics/marti_common"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "marti_common"
 ROS_BPN = "swri_prefix_tools"
 
 ROS_BUILD_DEPENDS = ""
@@ -24,9 +26,7 @@ ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = " \
-    python-psutil \
-"
+ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = ""
@@ -44,6 +44,7 @@ SRC_URI[sha256sum] = "46d09ae89612b3b84d929e357a45c69e5e2258f62dd7bbb0e22adfa572
 S = "${WORKDIR}/marti_common-release-release-melodic-swri_prefix_tools-2.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('marti-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('marti-common', d)}"
@@ -53,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

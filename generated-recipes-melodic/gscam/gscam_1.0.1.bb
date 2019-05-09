@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS camera driver that uses gstreamer to connect to     devices such as webcams."
 AUTHOR = "Jonathan Bohren <jbo@jhu.edu>"
+ROS_AUTHOR = "Jonathan Bohren <jbo@jhu.edu>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "gscam"
 ROS_BPN = "gscam"
 
 ROS_BUILD_DEPENDS = " \
@@ -68,6 +70,7 @@ SRC_URI[sha256sum] = "bbd838538ef852691f2de43b5b0a5541e0b8f4a8bd1c5ef7d0bb5c5387
 S = "${WORKDIR}/gscam-release-release-melodic-gscam-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('gscam', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gscam', d)}"
@@ -77,4 +80,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gscam/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gscam/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

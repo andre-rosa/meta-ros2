@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The mbf_costmap_nav package contains the costmap navigation server implementation of Move Base Flex (MBF). The costmap navigation server is bound to the <a href="wiki.ros.org/costmap_2d">costmap_2d</a> representation. It provides the Actions for planning, controlling and recovering. At the time of start MBF loads all defined plugins. Therefor, it loads all plugins which are defined in the lists *planners*, *controllers* and *recovery_behaviors*. Each list holds a pair of a *name* and a *type*. The *type* defines which kind of plugin to load. The *name* defines under which name the plugin should be callable by the actions.           Additionally the mbf_costmap_nav package comes with a wrapper for the old navigation stack and the plugins which inherits from the <a href="wiki.ros.org/nav_core">nav_core</a> base classes. Preferably it tries to load plugins for the new API. However, plugins could even support both <a href="wiki.ros.org/move_base">move_base</a> and <a href="wiki.ros.org/move_base_flex">move_base_flex</a> by inheriting both base class interfaces located in the <a href="wiki.ros.org/nav_core">nav_core</a> package and in the <a href="mbf_costmap_core">mbf_costmap_core</a> package."
 AUTHOR = "Sebastian Pütz <spuetz@uos.de>"
+ROS_AUTHOR = "Sebastian Pütz <spuetz@uos.de>"
 HOMEPAGE = "http://wiki.ros.org/move_base_flex"
 SECTION = "devel"
 LICENSE = "3-Clause-BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2a17ba6bda1db7ca47fe93a1560e517b"
 
+ROS_CN = "move_base_flex"
 ROS_BPN = "mbf_costmap_nav"
 
 ROS_BUILD_DEPENDS = " \
@@ -97,6 +99,7 @@ SRC_URI[sha256sum] = "90930d3e6a71b902aa8171c57d1d967a9d2fb131770d854494b932339b
 S = "${WORKDIR}/move_base_flex-release-release-melodic-mbf_costmap_nav-0.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('move-base-flex', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('move-base-flex', d)}"
@@ -106,4 +109,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

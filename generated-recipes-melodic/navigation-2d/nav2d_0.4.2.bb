@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Meta-Package containing modules for 2D-Navigation"
 AUTHOR = "Sebastian Kasperski <sebastian.kasperski@dfki.de>"
+ROS_AUTHOR = "Sebastian Kasperski <sebastian.kasperski@dfki.de>"
 HOMEPAGE = "http://wiki.ros.org/navigation_2d"
 SECTION = "devel"
 LICENSE = "GPL-3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_CN = "navigation_2d"
 ROS_BPN = "nav2d"
 
 ROS_BUILD_DEPENDS = ""
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "290981964bfb9d4a38651fa57f321fe5b777363ac3e0b6f8dc0fd69ba4
 S = "${WORKDIR}/navigation_2d-release-release-melodic-nav2d-0.4.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-2d', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-2d', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

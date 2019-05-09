@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Base implementation for CANopen chains node with support for management services and diagnostics"
 AUTHOR = "Mathias Lüdtke <mathias.luedtke@ipa.fraunhofer.de>"
+ROS_AUTHOR = "Mathias Lüdtke <mathias.luedtke@ipa.fraunhofer.de>"
 HOMEPAGE = "http://wiki.ros.org/canopen_chain_node"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=b691248d2f70cdaeeaf13696ada5d47c"
 
+ROS_CN = "ros_canopen"
 ROS_BPN = "canopen_chain_node"
 
 ROS_BUILD_DEPENDS = " \
@@ -71,6 +73,7 @@ SRC_URI[sha256sum] = "38578e51fcb8c8cf7e3de40d3febe7e318244f107b56346a984c7e5fe1
 S = "${WORKDIR}/ros_canopen-release-release-melodic-canopen_chain_node-0.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-canopen', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-canopen', d)}"
@@ -80,4 +83,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

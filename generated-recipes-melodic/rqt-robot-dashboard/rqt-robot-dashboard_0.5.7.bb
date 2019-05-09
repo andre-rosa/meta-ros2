@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_robot_dashboard provides an infrastructure for building robot dashboard plugins in rqt."
 AUTHOR = "Aaron Blasdel <ablasdel@gmail.com>"
+ROS_AUTHOR = "Ze'ev Klapow"
 HOMEPAGE = "http://wiki.ros.org/rqt_robot_dashboard"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_robot_dashboard"
 ROS_BPN = "rqt_robot_dashboard"
 
 ROS_BUILD_DEPENDS = ""
@@ -62,6 +64,7 @@ SRC_URI[sha256sum] = "19eb8bffb5697ef7e7d7bc23cf7cda4e3446e6415a40e53987095b85bb
 S = "${WORKDIR}/rqt_robot_dashboard-release-release-melodic-rqt_robot_dashboard-0.5.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-robot-dashboard', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-robot-dashboard', d)}"
@@ -71,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-dashboard/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-dashboard/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "sound_play provides a ROS node that translates commands on a ROS topic (<tt>robotsound</tt>) into sounds. The node supports built-in sounds, playing OGG/WAV files, and doing speech synthesis via festival. C++ and Python bindings allow this node to be used without understanding the details of the message format, allowing faster development and resilience to message format changes."
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
+ROS_AUTHOR = "Blaise Gassend"
 HOMEPAGE = "http://ros.org/wiki/sound_play"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=a3ae2ba3f0f44e61270955e8cd98afcf"
 
+ROS_CN = "audio_common"
 ROS_BPN = "sound_play"
 
 ROS_BUILD_DEPENDS = " \
@@ -32,13 +34,7 @@ ROS_EXPORT_DEPENDS = " \
     actionlib-msgs \
     audio-common-msgs \
     diagnostic-msgs \
-    gstreamer1.0 \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-ugly \
     message-runtime \
-    mimic \
-    python-gitdb-native \
     roscpp \
     roslib \
     rospy \
@@ -50,13 +46,7 @@ ROS_EXEC_DEPENDS = " \
     actionlib-msgs \
     audio-common-msgs \
     diagnostic-msgs \
-    gstreamer1.0 \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-ugly \
     message-runtime \
-    mimic \
-    python-gitdb-native \
     roscpp \
     roslib \
     rospy \
@@ -78,6 +68,7 @@ SRC_URI[sha256sum] = "3ac9c2fb8ee7252db6e28c37df5d7591fdee14dbe437408b32cf2d01d1
 S = "${WORKDIR}/audio_common-release-release-melodic-sound_play-0.3.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('audio-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audio-common', d)}"
@@ -87,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

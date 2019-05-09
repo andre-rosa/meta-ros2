@@ -7,30 +7,26 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A Python and C++ implementation of the LZ4 streaming format.  Large data     streams are split into blocks which are compressed using the very fast LZ4     compression algorithm."
 AUTHOR = "Ben Charrow <bcharrow@seas.upenn.edu>"
+ROS_AUTHOR = "Ben Charrow <bcharrow@seas.upenn.edu>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_comm"
 ROS_BPN = "roslz4"
 
-ROS_BUILD_DEPENDS = " \
-    lz4 \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    lz4 \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = " \
-    lz4 \
-"
+ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
@@ -50,6 +46,7 @@ SRC_URI[sha256sum] = "f1cfdca5119fb941e00a174dbd2ad42a577543994efd979e81fd22970f
 S = "${WORKDIR}/ros_comm-release-release-melodic-roslz4-1.14.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-comm', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm', d)}"
@@ -59,4 +56,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

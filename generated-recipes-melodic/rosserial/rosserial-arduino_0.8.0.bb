@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rosserial for Arduino/AVR platforms."
 AUTHOR = "Paul Bouchier <paul.bouchier@gmail.com>"
+ROS_AUTHOR = "Michael Ferguson"
 HOMEPAGE = "http://ros.org/wiki/rosserial_arduino"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rosserial"
 ROS_BPN = "rosserial_arduino"
 
 ROS_BUILD_DEPENDS = " \
@@ -58,6 +60,7 @@ SRC_URI[sha256sum] = "dd4574a7017d7e81ffdf3d68f443017a16946a2788c02daa2ba21cf9ca
 S = "${WORKDIR}/rosserial-release-release-melodic-rosserial_arduino-0.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosserial', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosserial', d)}"
@@ -67,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

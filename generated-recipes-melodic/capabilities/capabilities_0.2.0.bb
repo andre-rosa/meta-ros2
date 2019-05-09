@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Package which implements capabilities, including code to parse capability interface specs, to parse capability provider specs, and implement the capability server."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
+ROS_AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "http://wiki.ros.org/capabilities"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "capabilities"
 ROS_BPN = "capabilities"
 
 ROS_BUILD_DEPENDS = " \
@@ -31,7 +33,6 @@ ROS_EXPORT_DEPENDS = " \
     bondpy \
     message-runtime \
     nodelet \
-    python-yamllint-native \
     roslaunch \
     rospy \
     std-msgs \
@@ -44,7 +45,6 @@ ROS_EXEC_DEPENDS = " \
     bondpy \
     message-runtime \
     nodelet \
-    python-yamllint-native \
     roslaunch \
     rospy \
     std-msgs \
@@ -54,9 +54,7 @@ ROS_EXEC_DEPENDS = " \
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
     geometry-msgs \
-    python-coverage \
     python-mock \
-    python-pep8 \
     rosservice \
 "
 
@@ -73,6 +71,7 @@ SRC_URI[sha256sum] = "adfb1e8a3002fcfc90f654c8def944f6cd7a8753b3e908b5760eca786b
 S = "${WORKDIR}/capabilities-release-release-melodic-capabilities-0.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('capabilities', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('capabilities', d)}"
@@ -82,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/capabilities/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/capabilities/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

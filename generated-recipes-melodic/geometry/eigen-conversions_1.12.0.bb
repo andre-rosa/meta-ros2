@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Conversion functions between:       - Eigen and KDL       - Eigen and geometry_msgs."
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
+ROS_AUTHOR = "Stuart Glaser"
 HOMEPAGE = "http://ros.org/wiki/eigen_conversions"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "geometry"
 ROS_BPN = "eigen_conversions"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "6485f64dd54db8430e4aacfa15b0d09b575aff8cfcf4ad24f946e09000
 S = "${WORKDIR}/geometry-release-release-melodic-eigen_conversions-1.12.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('geometry', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geometry', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS messages for the cartographer_ros package."
 AUTHOR = "The Cartographer Authors <cartographer-owners@googlegroups.com>"
+ROS_AUTHOR = "The Cartographer Authors <google-cartographer@googlegroups.com>"
 HOMEPAGE = "https://github.com/googlecartographer/cartographer_ros"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=b73cebba72f83c5afebf178817283e37"
 
+ROS_CN = "cartographer_ros"
 ROS_BPN = "cartographer_ros_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "f4572cb110370abc6059493e41532e143142c3ee974c6737c6a42aa781
 S = "${WORKDIR}/cartographer_ros-release-release-melodic-cartographer_ros_msgs-1.0.0-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('cartographer-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cartographer-ros', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

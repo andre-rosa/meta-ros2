@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Implement graphSLAM using the mrpt-graphslam library, in an online fashion   	by directly reading measurements off ROS Topics."
 AUTHOR = "Nikos Koukis <nickkouk@gmail.com>"
+ROS_AUTHOR = "Nikos Koukis <nickkouk@gmail.com>"
 HOMEPAGE = "http://www.mrpt.org/"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mrpt_slam"
 ROS_BPN = "mrpt_graphslam_2d"
 
 ROS_BUILD_DEPENDS = " \
@@ -81,6 +83,7 @@ SRC_URI[sha256sum] = "2581a0b10692921efe75fa9456cba7e3f39755e8ec223ad296f44944e1
 S = "${WORKDIR}/mrpt_slam-release-release-melodic-mrpt_graphslam_2d-0.1.9-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-slam', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-slam', d)}"
@@ -90,4 +93,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

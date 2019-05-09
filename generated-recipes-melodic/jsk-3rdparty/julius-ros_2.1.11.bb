@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The julius_ros package"
 AUTHOR = "Yuki Furuta <furushchev@jsk.imi.i.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Yuki Furuta <furushchev@jsk.imi.i.u-tokyo.ac.jp>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "julius_ros"
 
 ROS_BUILD_DEPENDS = ""
@@ -26,8 +28,6 @@ ROS_EXPORT_DEPENDS = " \
     julius \
     julius-voxforge \
     nkf \
-    python-lxml \
-    python-rospkg \
     rospy \
     sound-play \
     speech-recognition-msgs \
@@ -42,8 +42,6 @@ ROS_EXEC_DEPENDS = " \
     julius \
     julius-voxforge \
     nkf \
-    python-lxml \
-    python-rospkg \
     rospy \
     sound-play \
     speech-recognition-msgs \
@@ -68,6 +66,7 @@ SRC_URI[sha256sum] = "d3d22ad29aebb346c90c591b7a9afc1c006becfc8a5a377eaba7691a1e
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-julius_ros-2.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -77,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

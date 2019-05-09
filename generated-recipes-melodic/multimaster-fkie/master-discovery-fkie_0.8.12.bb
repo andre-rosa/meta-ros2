@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Discover the running ROS Masters in local network. The       discovering is done by sending an echo heartbeat messages to a defined       multicast group.      The alternative is to use a zeroconf/avahi daemon to register the ROS       master as service and discover other ROS masters."
 AUTHOR = "Alexander Tiderko <alexander.tiderko@gmail.com>"
+ROS_AUTHOR = "Alexander Tiderko"
 HOMEPAGE = "http://ros.org/wiki/master_discovery_fkie"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "multimaster_fkie"
 ROS_BPN = "master_discovery_fkie"
 
 ROS_BUILD_DEPENDS = " \
@@ -26,7 +28,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     avahi-daemon \
     multimaster-msgs-fkie \
-    python-avahi \
     rosgraph \
     roslib \
     rospy \
@@ -38,7 +39,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     avahi-daemon \
     multimaster-msgs-fkie \
-    python-avahi \
     rosgraph \
     roslib \
     rospy \
@@ -61,6 +61,7 @@ SRC_URI[sha256sum] = "a126c9f12ac3c9b370068d862b423f8476fa0d81b31e8474195049ab2e
 S = "${WORKDIR}/multimaster_fkie-release-release-melodic-master_discovery_fkie-0.8.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('multimaster-fkie', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('multimaster-fkie', d)}"
@@ -70,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

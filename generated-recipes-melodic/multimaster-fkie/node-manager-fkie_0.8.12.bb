@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Graphical interface, written in PySide, to manage the running and       configured ROS nodes on different hosts. For discovering       the running ROS master master_discovery node will be used."
 AUTHOR = "Alexander Tiderko <alexander.tiderko@gmail.com>"
+ROS_AUTHOR = "Alexander Tiderko"
 HOMEPAGE = "http://ros.org/wiki/node_manager_fkie"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=261b66671071bbaa4ac3e568151c48bc"
 
+ROS_CN = "multimaster_fkie"
 ROS_BPN = "node_manager_fkie"
 
 ROS_BUILD_DEPENDS = " \
@@ -31,9 +33,6 @@ ROS_EXPORT_DEPENDS = " \
     master-discovery-fkie \
     master-sync-fkie \
     multimaster-msgs-fkie \
-    ncurses \
-    python-docutils \
-    python-paramiko \
     python-qt-binding \
     rosgraph \
     roslaunch \
@@ -43,7 +42,6 @@ ROS_EXPORT_DEPENDS = " \
     rosservice \
     rqt-gui \
     rqt-reconfigure \
-    screen \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -55,9 +53,6 @@ ROS_EXEC_DEPENDS = " \
     master-discovery-fkie \
     master-sync-fkie \
     multimaster-msgs-fkie \
-    ncurses \
-    python-docutils \
-    python-paramiko \
     python-qt-binding \
     rosgraph \
     roslaunch \
@@ -67,7 +62,6 @@ ROS_EXEC_DEPENDS = " \
     rosservice \
     rqt-gui \
     rqt-reconfigure \
-    screen \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -86,6 +80,7 @@ SRC_URI[sha256sum] = "6b4d7ed02437aa8bb4675c90822d4215267b78598d7125b49bf6b0f1b5
 S = "${WORKDIR}/multimaster_fkie-release-release-melodic-node_manager_fkie-0.8.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('multimaster-fkie', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('multimaster-fkie', d)}"
@@ -95,4 +90,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

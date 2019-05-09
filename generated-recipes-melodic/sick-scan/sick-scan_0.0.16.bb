@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS driver for the SICK TiM and SICK MRS series of laser scanners.     This package is based on the original sick_tim-repository of Martin Günther et al."
 AUTHOR = "Michael Lehning <michael.lehning@lehning.de>"
+ROS_AUTHOR = "Michael Lehning <michael.lehning@lehning.de>"
 HOMEPAGE = "http://wiki.ros.org/sick_scan"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "sick_scan"
 ROS_BPN = "sick_scan"
 
 ROS_BUILD_DEPENDS = " \
@@ -69,6 +71,7 @@ SRC_URI[sha256sum] = "d0c506df63940a7cbee85eb4c56ab229459315184e65e6fa3f9f4aa827
 S = "${WORKDIR}/sick_scan-release-release-melodic-sick_scan-0.0.16-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sick-scan', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sick-scan', d)}"
@@ -78,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sick-scan/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sick-scan/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

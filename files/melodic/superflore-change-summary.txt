@@ -1,4 +1,6 @@
-On branch yocto-bot-qYvXIgIUge
+melodic/superflore-change-summary.txt
+-----
+On branch yocto-bot-ntsGfLlpXX
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
@@ -116,6 +118,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/control-toolbox/control-toolbox_1.17.0.bb
 	new file:   generated-recipes-melodic/convex-decomposition/convex-decomposition_0.1.12.bb
 	new file:   generated-recipes-melodic/costmap-converter/costmap-converter_0.0.9.bb
+	new file:   generated-recipes-melodic/cv-camera/cv-camera_0.4.0-1.bb
 	new file:   generated-recipes-melodic/dataspeed-can/dataspeed-can-msg-filters_1.0.12.bb
 	new file:   generated-recipes-melodic/dataspeed-can/dataspeed-can-tools_1.0.12.bb
 	new file:   generated-recipes-melodic/dataspeed-can/dataspeed-can-usb_1.0.12.bb
@@ -395,6 +398,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/ipr-extern/ros-reflexxes_0.8.8-1.bb
 	new file:   generated-recipes-melodic/ivcon/ivcon_0.1.7.bb
 	new file:   generated-recipes-melodic/joint-state-publisher/joint-state-publisher_1.12.13.bb
+	new file:   generated-recipes-melodic/jointstick/jointstick_0.9.1-2.bb
 	new file:   generated-recipes-melodic/joystick-drivers/joy_1.12.0.bb
 	new file:   generated-recipes-melodic/joystick-drivers/joystick-drivers_1.12.0.bb
 	new file:   generated-recipes-melodic/joystick-drivers/ps3joy_1.12.0.bb
@@ -1040,11 +1044,11 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/rosbag-migration-rule/rosbag-migration-rule_1.0.0.bb
 	new file:   generated-recipes-melodic/rosbag-pandas/rosbag-pandas_0.5.3.bb
 	new file:   generated-recipes-melodic/rosbash-params/rosbash-params_1.0.2.bb
-	new file:   generated-recipes-melodic/rosbridge-suite/rosapi_0.11.0.bb
-	new file:   generated-recipes-melodic/rosbridge-suite/rosbridge-library_0.11.0.bb
-	new file:   generated-recipes-melodic/rosbridge-suite/rosbridge-msgs_0.11.0.bb
-	new file:   generated-recipes-melodic/rosbridge-suite/rosbridge-server_0.11.0.bb
-	new file:   generated-recipes-melodic/rosbridge-suite/rosbridge-suite_0.11.0.bb
+	new file:   generated-recipes-melodic/rosbridge-suite/rosapi_0.11.1-1.bb
+	new file:   generated-recipes-melodic/rosbridge-suite/rosbridge-library_0.11.1-1.bb
+	new file:   generated-recipes-melodic/rosbridge-suite/rosbridge-msgs_0.11.1-1.bb
+	new file:   generated-recipes-melodic/rosbridge-suite/rosbridge-server_0.11.1-1.bb
+	new file:   generated-recipes-melodic/rosbridge-suite/rosbridge-suite_0.11.1-1.bb
 	new file:   generated-recipes-melodic/roscompile/ros-introspection_1.0.1.bb
 	new file:   generated-recipes-melodic/roscompile/roscompile_1.0.1.bb
 	new file:   generated-recipes-melodic/rosconsole-bridge/rosconsole-bridge_0.5.3.bb
@@ -1228,6 +1232,10 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/tuw-msgs/tuw-vehicle-msgs_0.0.13.bb
 	new file:   generated-recipes-melodic/twist-mux-msgs/twist-mux-msgs_2.1.0-6.bb
 	new file:   generated-recipes-melodic/twist-mux/twist-mux_3.1.0-1.bb
+	new file:   generated-recipes-melodic/uav-testing/ksql-airport_0.0.1-1.bb
+	new file:   generated-recipes-melodic/uav-testing/mcmillan-airfield_0.0.1-1.bb
+	new file:   generated-recipes-melodic/uav-testing/sand-island_0.0.1-1.bb
+	new file:   generated-recipes-melodic/uav-testing/yosemite-valley_0.0.1-1.bb
 	new file:   generated-recipes-melodic/um7/um7_0.0.4.bb
 	new file:   generated-recipes-melodic/unique-identifier/unique-id_1.0.6.bb
 	new file:   generated-recipes-melodic/unique-identifier/unique-identifier_1.0.6.bb

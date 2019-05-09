@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides four TurtleBot3 basic example include move using interactive marker, move and stop using LDS, move to goal position, move to custom routes. The interactions node is that you can control the TurtleBot3 front and back side or rotate to goal position. The obstacle node is that when the robot meets an obstacle, it stops. The patrol node is that TurtleBot3 move to custom route. There are 3 route(square, triangle, circle) in this package. You can add your route and move the TurtleBot3. The pointop node is that you can insert goal position include distance x-axis, y-axis and angluar z-axis."
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Gilbert <kkjong@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/turtlebot3_example"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "turtlebot3"
 ROS_BPN = "turtlebot3_example"
 
 ROS_BUILD_DEPENDS = " \
@@ -79,6 +81,7 @@ SRC_URI[sha256sum] = "bc0dbd753ed0334630a38db94dbb4cc73ecda965ad2f61843aa40cba93
 S = "${WORKDIR}/turtlebot3-release-release-melodic-turtlebot3_example-1.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot3', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3', d)}"
@@ -88,4 +91,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

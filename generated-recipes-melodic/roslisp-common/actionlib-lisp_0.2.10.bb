@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "actionlib_lisp is a native implementation of the famous actionlib    in Common Lisp. It provides a client and a simple server."
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
+ROS_AUTHOR = "Bhaskara Marthi"
 HOMEPAGE = "http://wiki.ros.org/actionlib_lisp"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "roslisp_common"
 ROS_BPN = "actionlib_lisp"
 
 ROS_BUILD_DEPENDS = ""
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "f7d69b33db5ed3ca13e17699bb8ec2fb18612b3f193f7bbaa46b9be738
 S = "${WORKDIR}/roslisp_common-release-release-melodic-actionlib_lisp-0.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roslisp-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roslisp-common', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

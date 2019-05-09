@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "lpg_planner: LPGL Planner (http://zeus.ing.unibs.it/lpg/)"
 AUTHOR = "Hitoshi Kamada <h-kamada@jsk.imi.i.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Kei Okada <k-okada@jsk.imi.i.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/downward"
 SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "lpg_planner"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "3b0bcbc42885a9c57b78f21644ea52ef39c14e74b4874f0aafd2ea7222
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-lpg_planner-2.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

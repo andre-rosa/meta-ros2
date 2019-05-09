@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Launch files to open an OpenNI device and load all nodelets to       convert raw depth/RGB/IR streams to depth images, disparity images,       and (registered) point clouds."
 AUTHOR = "Isaac I.Y. Saito <130s@2000.jukuin.keio.ac.jp>"
+ROS_AUTHOR = "Patrick Mihelich"
 HOMEPAGE = "http://www.ros.org/wiki/openni_launch"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "openni_camera"
 ROS_BPN = "openni_launch"
 
 ROS_BUILD_DEPENDS = " \
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "0c4aa79a977973fc48b0c8a829358367a3ef095a8d93323eeee1972c5c
 S = "${WORKDIR}/openni_camera-release-release-melodic-openni_launch-1.11.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('openni-camera', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('openni-camera', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

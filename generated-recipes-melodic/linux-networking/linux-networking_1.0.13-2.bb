@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "TODO"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "linux_networking"
 ROS_BPN = "linux_networking"
 
 ROS_BUILD_DEPENDS = ""
@@ -68,6 +69,7 @@ SRC_URI[sha256sum] = "a8cdf75617afe3c16004467e3866a5de070a7e6ac7e5a4835be27f2a03
 S = "${WORKDIR}/linux_networking-release-release-melodic-linux_networking-1.0.13-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('linux-networking', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
@@ -77,4 +79,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

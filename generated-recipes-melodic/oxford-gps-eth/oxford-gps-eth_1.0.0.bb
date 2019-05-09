@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Ethernet interface to OxTS GPS receivers (NCOM packet structure)"
 AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
+ROS_AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
 HOMEPAGE = "http://wiki.ros.org/oxford_gps_eth"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "oxford_gps_eth"
 ROS_BPN = "oxford_gps_eth"
 
 ROS_BUILD_DEPENDS = " \
@@ -67,6 +69,7 @@ SRC_URI[sha256sum] = "e746691aeed3c6c6613c51e9be0db75d5c0d5c2442453823a466fa15ca
 S = "${WORKDIR}/oxford_gps_eth-release-release-melodic-oxford_gps_eth-1.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('oxford-gps-eth', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('oxford-gps-eth', d)}"
@@ -76,4 +79,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/oxford-gps-eth/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/oxford-gps-eth/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

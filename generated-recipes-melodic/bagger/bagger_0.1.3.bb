@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "An application used to systematically record rosbags"
 AUTHOR = "Brenden Gibbons <bgibbons@squarerobots.com>"
+ROS_AUTHOR = "Brenden Gibbons <bgibbons@squarerobots.com>"
 HOMEPAGE = "http://www.ros.org/wiki/bagger"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "bagger"
 ROS_BPN = "bagger"
 
 ROS_BUILD_DEPENDS = " \
@@ -62,6 +64,7 @@ SRC_URI[sha256sum] = "e8275de0f4ad29f758472ae12d8ce534b53705ec57066e8611498b6077
 S = "${WORKDIR}/bagger-release-release-melodic-bagger-0.1.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('bagger', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('bagger', d)}"
@@ -71,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bagger/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bagger/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

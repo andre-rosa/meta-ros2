@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Extensions for slime to assist in working with ROS packages"
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
+ROS_AUTHOR = "Bhaskara Marthi"
 HOMEPAGE = "https://github.com/code-iai/ros_emacs_utils"
 SECTION = "devel"
 LICENSE = "public_domain"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=c60c465e235b13ecfc23607d3b1b9e2f"
 
+ROS_CN = "ros_emacs_utils"
 ROS_BPN = "slime_ros"
 
 ROS_BUILD_DEPENDS = ""
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "6bfbb259a012cdddcccf9a39af143ba7468decfddb79d77b76be096b31
 S = "${WORKDIR}/ros_emacs_utils-release-release-melodic-slime_ros-0.4.13-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-emacs-utils', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-emacs-utils', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Example files used as tutorials for MRPT ROS packages"
 AUTHOR = "Markus Bader <markus.bader@tuwien.ac.at>"
+ROS_AUTHOR = "Markus Bader"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mrpt_navigation"
 ROS_BPN = "mrpt_tutorials"
 
 ROS_BUILD_DEPENDS = ""
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "c5e608015e00a03be1ea0aa3a86e91cab4da37a2ec842f915eaaa2a893
 S = "${WORKDIR}/mrpt_navigation-release-release-melodic-mrpt_tutorials-0.1.24-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-navigation', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-navigation', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

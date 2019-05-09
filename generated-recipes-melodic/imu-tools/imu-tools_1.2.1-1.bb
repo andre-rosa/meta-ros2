@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d81febe1baeaed0bfd599be384185f36"
 
+ROS_CN = "imu_tools"
 ROS_BPN = "imu_tools"
 
 ROS_BUILD_DEPENDS = ""
@@ -50,6 +51,7 @@ SRC_URI[sha256sum] = "8fd6b517a5550d0e5151db6599ed9e4eacaca2e299846939932f35f5d0
 S = "${WORKDIR}/imu_tools-release-release-melodic-imu_tools-1.2.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('imu-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imu-tools', d)}"
@@ -59,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

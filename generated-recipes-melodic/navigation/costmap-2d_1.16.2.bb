@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides an implementation of a 2D costmap that takes in sensor         data from the world, builds a 2D or 3D occupancy grid of the data (depending         on whether a voxel based implementation is used), and inflates costs in a         2D costmap based on the occupancy grid and a user specified inflation radius.         This package also provides support for map_server based initialization of a         costmap, rolling window based costmaps, and parameter based subscription to         and configuration of sensor topics."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
+ROS_AUTHOR = "Eitan Marder-Eppstein"
 HOMEPAGE = "http://wiki.ros.org/costmap_2d"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=22;endline=22;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "navigation"
 ROS_BPN = "costmap_2d"
 
 ROS_BUILD_DEPENDS = " \
@@ -101,6 +103,7 @@ SRC_URI[sha256sum] = "187901c824e86f552a2412c712120acad3e06efa0a9c8a44bb8c7d6c08
 S = "${WORKDIR}/navigation-release-release-melodic-costmap_2d-1.16.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation', d)}"
@@ -110,4 +113,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

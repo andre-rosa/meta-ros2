@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The Pepperl+Fuchs R2000 laser range finder driver package"
 AUTHOR = "Denis Dillenberger <denis.dillenberger@gmail.com>"
+ROS_AUTHOR = "Denis Dillenberger <denis.dillenberger@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/pepperl_fuchs_r2000"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pepperl_fuchs"
 ROS_BPN = "pepperl_fuchs_r2000"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "833c1e411a45ec3640a3b9711241ef46c5ba36ceaa0ee0496d183f4fbb
 S = "${WORKDIR}/pepperl_fuchs-release-release-melodic-pepperl_fuchs_r2000-0.1.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pepperl-fuchs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pepperl-fuchs', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pepperl-fuchs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pepperl-fuchs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Common code for working with images in ROS."
 AUTHOR = "Jack O'Quin <jack.oquin@gmail.com>"
+ROS_AUTHOR = "Patrick Mihelich"
 HOMEPAGE = "http://www.ros.org/wiki/image_common"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_common"
 ROS_BPN = "image_common"
 
 ROS_BUILD_DEPENDS = ""
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "987bdb08a0bf935d3c657331b79564a3e272f6c4538e5be5d893ab6a13
 S = "${WORKDIR}/image_common-release-release-melodic-image_common-1.11.13-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-common', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

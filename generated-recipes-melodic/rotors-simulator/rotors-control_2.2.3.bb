@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "RotorS control package"
 AUTHOR = "Fadri Furrer <fadri.furrer@mavt.ethz.ch>"
+ROS_AUTHOR = "Fadri Furrer"
 HOMEPAGE = "https://github.com/ethz-asl/rotors_simulator"
 SECTION = "devel"
 LICENSE = "ASL-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=5f4e9e9dcee74b02aa26af144fe2f0af"
 
+ROS_CN = "rotors_simulator"
 ROS_BPN = "rotors_control"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "360134fe15fab3cd01a1869458c0d767006f445a2124532ac6b0c2484e
 S = "${WORKDIR}/rotors_simulator-release-release-melodic-rotors_control-2.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rotors-simulator', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rotors-simulator', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rotors-simulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rotors-simulator/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

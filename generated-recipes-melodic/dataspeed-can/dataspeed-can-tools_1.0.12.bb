@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "CAN bus introspection"
 AUTHOR = "Micho Radovnikovich <mradovnikovich@dataspeedinc.com>"
+ROS_AUTHOR = "Micho Radovnikovich <mradovnikovich@dataspeedinc.com>"
 HOMEPAGE = "http://dataspeedinc.com"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "dataspeed_can"
 ROS_BPN = "dataspeed_can_tools"
 
 ROS_BUILD_DEPENDS = " \
@@ -62,6 +64,7 @@ SRC_URI[sha256sum] = "164f92e63ab8188d83e4107e9cb19fdf9db3c96a44282ffb85833bc0c5
 S = "${WORKDIR}/dataspeed_can-release-release-melodic-dataspeed_can_tools-1.0.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dataspeed-can', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dataspeed-can', d)}"
@@ -71,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

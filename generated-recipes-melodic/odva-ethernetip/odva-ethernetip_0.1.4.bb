@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Library implementing ODVA EtherNet/IP (Industrial Protocol)."
 AUTHOR = "Mike Purvis <mpurvis@clearpathrobotics.com>"
+ROS_AUTHOR = "Kareem Shehata <kareem@shehata.ca>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "odva_ethernetip"
 ROS_BPN = "odva_ethernetip"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "5ab751b07939ccd1fb02691e6d370dcf721b38371208efe92e9ec7d507
 S = "${WORKDIR}/odva_ethernetip-release-release-melodic-odva_ethernetip-0.1.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('odva-ethernetip', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('odva-ethernetip', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/odva-ethernetip/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/odva-ethernetip/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

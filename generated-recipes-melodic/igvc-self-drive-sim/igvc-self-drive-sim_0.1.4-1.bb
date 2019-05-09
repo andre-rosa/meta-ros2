@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "igvc_self_drive_sim"
 ROS_BPN = "igvc_self_drive_sim"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +47,7 @@ SRC_URI[sha256sum] = "8a843a920d6ffe9cb3c37a6c3e9b07e993aa0373599583f68304e58278
 S = "${WORKDIR}/igvc_self_drive_sim-release-release-melodic-igvc_self_drive_sim-0.1.4-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('igvc-self-drive-sim', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('igvc-self-drive-sim', d)}"
@@ -55,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/igvc-self-drive-sim/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/igvc-self-drive-sim/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

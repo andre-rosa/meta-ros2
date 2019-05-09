@@ -7,20 +7,20 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A package to support MongoDB-based storage and analysis for data from a ROS system, eg. saved messages, configurations etc"
 AUTHOR = "Nick Hawes <nickh@robots.ox.ac.uk>"
+ROS_AUTHOR = "Chris Burbridge"
 HOMEPAGE = "http://www.ros.org/wiki/mongodb_store"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "mongodb_store"
 ROS_BPN = "mongodb_store"
 
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     message-generation \
-    mongodb \
     mongodb-store-msgs \
     openssl \
-    python-catkin-pkg \
     roscpp \
     rospy \
     rostest \
@@ -35,9 +35,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     geometry-msgs \
-    mongodb \
     mongodb-store-msgs \
-    python-pymongo \
     roscpp \
     rospy \
     std-msgs \
@@ -49,9 +47,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
-    mongodb \
     mongodb-store-msgs \
-    python-pymongo \
     roscpp \
     rospy \
     std-msgs \
@@ -75,6 +71,7 @@ SRC_URI[sha256sum] = "6a139eb69db2efaa95e3b7a013a61624e082e580bdc4c8ba2f331ecda8
 S = "${WORKDIR}/mongodb_store-release-melodic-mongodb_store-0.5.0-5"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mongodb-store', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mongodb-store', d)}"
@@ -84,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

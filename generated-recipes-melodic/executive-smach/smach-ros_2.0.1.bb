@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The smach_ros package contains extensions for the SMACH library to     integrate it tightly with ROS.  For example, SMACH-ROS can call     ROS services, listen to ROS topics, and integrate     with <a href="http://www.ros.org/wiki/actionlib">actionlib</a>     both as a client, and a provider of action servers.  SMACH is a     new library that takes advantage of very old concepts in order to     quickly create robust robot behavior with maintainable and modular     code."
 AUTHOR = "Isaac I. Y. Saito <gm130s@gmail.com>"
+ROS_AUTHOR = "Jonathan Bohren"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "executive_smach"
 ROS_BPN = "smach_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "2a6062c9bb60b5cea300784b67e7c977b1cd42bc7117c0d5bea7122eb0
 S = "${WORKDIR}/executive_smach-release-release-melodic-smach_ros-2.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('executive-smach', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('executive-smach', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

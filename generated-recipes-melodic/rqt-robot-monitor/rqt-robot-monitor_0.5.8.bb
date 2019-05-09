@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_robot_monitor displays diagnostics_agg topics messages that    are published by <a href="http://www.ros.org/wiki/diagnostic_aggregator">diagnostic_aggregator</a>.    rqt_robot_monitor is a direct port to rqt of    <a href="http://www.ros.org/wiki/robot_monitor">robot_monitor</a>. All    diagnostics are fall into one of three tree panes depending on the status of    diagnostics (normal, warning, error/stale). Status are shown in trees to    represent their hierarchy. Worse status dominates the higher level status.<br/>    <ul>     Ex. 'Computer' category has 3 sub devices. 2 are green but 1 is error. Then         'Computer' becomes error.    </ul>   You can look at the detail of each status by double-clicking the tree nodes.<br/>    Currently re-usable API to other pkgs are not explicitly provided."
 AUTHOR = "Aaron Blasdel <ablasdel@gmail.com>"
+ROS_AUTHOR = "Austin Hendrix"
 HOMEPAGE = "http://wiki.ros.org/rqt_robot_monitor"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=23;endline=23;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_robot_monitor"
 ROS_BPN = "rqt_robot_monitor"
 
 ROS_BUILD_DEPENDS = ""
@@ -23,7 +25,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     diagnostic-msgs \
     python-qt-binding \
-    python-rospkg \
     qt-gui \
     qt-gui-py-common \
     rospy \
@@ -38,7 +39,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     diagnostic-msgs \
     python-qt-binding \
-    python-rospkg \
     qt-gui \
     qt-gui-py-common \
     rospy \
@@ -64,6 +64,7 @@ SRC_URI[sha256sum] = "3f1c272f0f73b0c3f1dc3283e233a183f4a0541ee345408fcb6ac83430
 S = "${WORKDIR}/rqt_robot_monitor-release-release-melodic-rqt_robot_monitor-0.5.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-robot-monitor', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-robot-monitor', d)}"
@@ -73,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-monitor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-monitor/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

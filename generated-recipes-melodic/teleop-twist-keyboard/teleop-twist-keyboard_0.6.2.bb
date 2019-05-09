@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Generic keyboard teleop for twist robots."
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
+ROS_AUTHOR = "Graylin Trevor Jay"
 HOMEPAGE = "http://wiki.ros.org/teleop_twist_keyboard"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "teleop_twist_keyboard"
 ROS_BPN = "teleop_twist_keyboard"
 
 ROS_BUILD_DEPENDS = ""
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "4e15fb28b816cb89a86f7318b75a23d933e6f732ff0072604a967f1068
 S = "${WORKDIR}/teleop_twist_keyboard-release-release-melodic-teleop_twist_keyboard-0.6.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('teleop-twist-keyboard', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teleop-twist-keyboard', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-keyboard/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-keyboard/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

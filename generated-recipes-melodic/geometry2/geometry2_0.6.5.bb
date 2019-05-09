@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A metapackage to bring in the default packages second generation Transform Library in ros, tf2."
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
+ROS_AUTHOR = "Tully Foote"
 HOMEPAGE = "http://www.ros.org/wiki/geometry2"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "geometry2"
 ROS_BPN = "geometry2"
 
 ROS_BUILD_DEPENDS = ""
@@ -64,6 +66,7 @@ SRC_URI[sha256sum] = "077b18d3f1afdc72a99c3fb4e14168da26d82e4ae2e5b18ef90960e187
 S = "${WORKDIR}/geometry2-release-release-melodic-geometry2-0.6.5-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('geometry2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geometry2', d)}"
@@ -73,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

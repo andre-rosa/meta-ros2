@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A Proxy Server for Interactive Markers"
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
+ROS_AUTHOR = "David Gossow <dgossow@willowgarage.com>"
 HOMEPAGE = "http://wiki.ros.org/interactive_marker_proxy"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "interactive_marker_proxy"
 ROS_BPN = "interactive_marker_proxy"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "39123a492c42042c9566254a5342fa930f30cf26c0bc2279b83135477e
 S = "${WORKDIR}/interactive_marker_proxy-release-release-melodic-interactive_marker_proxy-0.1.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('interactive-marker-proxy', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('interactive-marker-proxy', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-marker-proxy/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-marker-proxy/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

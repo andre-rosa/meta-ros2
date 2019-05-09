@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The pr2_tuck_arms_action package"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "Wim Meeussen"
 HOMEPAGE = "http://wiki.ros.org/pr2_tuck_arms_action"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pr2_common_actions"
 ROS_BPN = "pr2_tuck_arms_action"
 
 ROS_BUILD_DEPENDS = " \
@@ -63,6 +65,7 @@ SRC_URI[sha256sum] = "12d791a5cb70ca8bce9093e6dddc5cd0fc718b1d440f62c6006071bd73
 S = "${WORKDIR}/pr2_common_actions-release-release-melodic-pr2_tuck_arms_action-0.0.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-common-actions', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-common-actions', d)}"
@@ -72,4 +75,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

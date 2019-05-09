@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "yp-spur"
 ROS_BPN = "ypspur"
 
 ROS_BUILD_DEPENDS = " \
@@ -47,6 +48,7 @@ SRC_URI[sha256sum] = "35d3539033d2e62e0a731c12c4cce634e0976e41be664aac51ac0da12f
 S = "${WORKDIR}/yp-spur-release-release-melodic-ypspur-1.15.3-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yp-spur', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yp-spur', d)}"
@@ -56,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yp-spur/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yp-spur/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

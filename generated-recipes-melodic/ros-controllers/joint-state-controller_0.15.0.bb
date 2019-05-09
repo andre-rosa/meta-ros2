@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Controller to publish joint state"
 AUTHOR = "Bence Magyar <bence.magyar.robotics@gmail.com>"
+ROS_AUTHOR = "Wim Meeussen"
 HOMEPAGE = "https://github.com/ros-controls/ros_controllers/wiki"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_controllers"
 ROS_BPN = "joint_state_controller"
 
 ROS_BUILD_DEPENDS = " \
@@ -65,6 +67,7 @@ SRC_URI[sha256sum] = "97c1c877b5f1f3fd9377c0c1e8a8fb5ef9b2ab05957d3469d25300bb08
 S = "${WORKDIR}/ros_controllers-release-release-melodic-joint_state_controller-0.15.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-controllers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-controllers', d)}"
@@ -74,4 +77,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

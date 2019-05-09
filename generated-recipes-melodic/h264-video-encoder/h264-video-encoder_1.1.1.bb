@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS1 H264 encoder node"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
+ROS_AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/h264_video_encoder"
 SECTION = "devel"
 LICENSE = "LGPL-2.1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=e181b18ed9533044a61dea448605dcd5"
 
+ROS_CN = "h264_video_encoder"
 ROS_BPN = "h264_video_encoder"
 
 ROS_BUILD_DEPENDS = " \
@@ -58,6 +60,7 @@ SRC_URI[sha256sum] = "c295ba7a0e8cb25eacccc5092b810f0951c20268345218d2634bd6ecc3
 S = "${WORKDIR}/h264_video_encoder-release-release-melodic-h264_video_encoder-1.1.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('h264-video-encoder', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('h264-video-encoder', d)}"
@@ -67,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/h264-video-encoder/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/h264-video-encoder/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

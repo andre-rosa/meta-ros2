@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Tools for directing, throttling, selecting, and otherwise messing with     ROS topics at a meta level. None of the programs in this package actually     know about the topics whose streams they are altering; instead, these     tools deal with messages as generic binary blobs. This means they can be     applied to any ROS topic."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Morgan Quigley"
 HOMEPAGE = "http://ros.org/wiki/topic_tools"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_comm"
 ROS_BPN = "topic_tools"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "11737ac9aee93efcde7615891fd0342a8151e09b03435b1a173ddedef6
 S = "${WORKDIR}/ros_comm-release-release-melodic-topic_tools-1.14.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-comm', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

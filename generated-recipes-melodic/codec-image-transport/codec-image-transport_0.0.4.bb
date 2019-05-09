@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "codec_image_transport"
 ROS_BPN = "codec_image_transport"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +61,7 @@ SRC_URI[sha256sum] = "13bb8181da621d6d7bff7f97900b2bc744a93a4e2c8f5e92030a3e50da
 S = "${WORKDIR}/codec_image_transport-release-release-melodic-codec_image_transport-0.0.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('codec-image-transport', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('codec-image-transport', d)}"
@@ -69,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/codec-image-transport/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/codec-image-transport/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

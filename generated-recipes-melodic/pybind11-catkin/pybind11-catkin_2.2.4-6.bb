@@ -12,12 +12,11 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pybind11_catkin"
 ROS_BPN = "pybind11_catkin"
 
 ROS_BUILD_DEPENDS = " \
     libeigen \
-    python \
-    python-numpy \
     rospy \
 "
 
@@ -27,8 +26,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     libeigen \
-    python \
-    python-numpy \
     rospy \
 "
 
@@ -36,8 +33,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     libeigen \
-    python \
-    python-numpy \
     rospy \
 "
 
@@ -57,6 +52,7 @@ SRC_URI[sha256sum] = "5252e0b91e05e1f8d2cb6bd845b6c29d53e704c82511371a7be979d51a
 S = "${WORKDIR}/pybind11_catkin-release-release-melodic-pybind11_catkin-2.2.4-6"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pybind11-catkin', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pybind11-catkin', d)}"
@@ -66,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pybind11-catkin/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pybind11-catkin/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -12,14 +12,13 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "eigenpy"
 ROS_BPN = "eigenpy"
 
 ROS_BUILD_DEPENDS = " \
     boost \
     git \
     libeigen \
-    python \
-    python-numpy \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -29,8 +28,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     boost \
     libeigen \
-    python \
-    python-numpy \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -38,8 +35,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     boost \
     libeigen \
-    python \
-    python-numpy \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -58,6 +53,7 @@ SRC_URI[sha256sum] = "c8cf3b85343d3d89898496db8b1f5fcdfc1d3c5c43611cafb1871d7594
 S = "${WORKDIR}/eigenpy_catkin-release-release-melodic-eigenpy-1.5.1-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('eigenpy', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('eigenpy', d)}"
@@ -67,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigenpy/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigenpy/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

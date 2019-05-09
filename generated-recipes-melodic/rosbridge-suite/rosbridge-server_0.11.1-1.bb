@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A WebSocket interface to rosbridge."
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
+ROS_AUTHOR = "Jonathan Mace <jonathan.c.mace@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/rosbridge_server"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rosbridge_suite"
 ROS_BPN = "rosbridge_server"
 
 ROS_BUILD_DEPENDS = ""
@@ -26,7 +28,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     python-backports.ssl-match-hostname \
-    python-tornado \
     python-twisted-core \
     rosapi \
     rosauth \
@@ -45,12 +46,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/RobotWebTools-release/rosbridge_suite-release/archive/release/melodic/rosbridge_server/0.11.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "fe48f26ef0c19288707ff2974a69aba4"
-SRC_URI[sha256sum] = "49f8201f557a79486c03ea3d4f7b10a57d55b50b43248459f7dd55fd859f9c97"
-S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosbridge_server-0.11.0-0"
+SRC_URI = "https://github.com/RobotWebTools-release/rosbridge_suite-release/archive/release/melodic/rosbridge_server/0.11.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "2acb65608b68250821e8df6ed8bea450"
+SRC_URI[sha256sum] = "b83363be88585990009d1fe2c35886f6123fcdbaa196729cc44e80555b510bd9"
+S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosbridge_server-0.11.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosbridge-suite', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbridge-suite', d)}"
@@ -60,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

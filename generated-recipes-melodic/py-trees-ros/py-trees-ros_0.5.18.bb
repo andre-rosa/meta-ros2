@@ -7,16 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Ros extensions and behaviours for py_trees."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier"
 HOMEPAGE = "http://ros.org/wiki/py_trees"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "py_trees_ros"
 ROS_BPN = "py_trees_ros"
 
-ROS_BUILD_DEPENDS = " \
-    python-setuptools \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -35,8 +35,6 @@ ROS_EXEC_DEPENDS = " \
     nav-msgs \
     py-trees \
     py-trees-msgs \
-    python-rospkg \
-    python-termcolor \
     rosbag \
     rospy \
     sensor-msgs \
@@ -67,6 +65,7 @@ SRC_URI[sha256sum] = "1bc3f54d395458994329b16c3e3abff63702270a44e1443c5cafafe85a
 S = "${WORKDIR}/py_trees_ros-release-release-melodic-py_trees_ros-0.5.18-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('py-trees-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('py-trees-ros', d)}"
@@ -76,4 +75,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "turtle_actionlib demonstrates how to write an action server and client with the turtlesim. The shape_server provides and action interface for drawing regular polygons with the turtlesim."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Melonee Wise"
 HOMEPAGE = "http://ros.org/wiki/turtle_actionlib"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "common_tutorials"
 ROS_BPN = "turtle_actionlib"
 
 ROS_BUILD_DEPENDS = " \
@@ -72,6 +74,7 @@ SRC_URI[sha256sum] = "692d2a6946d45017346aa4165b4331314b1fde5f0067717ce33bf7ebbc
 S = "${WORKDIR}/common_tutorials-release-release-melodic-turtle_actionlib-0.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('common-tutorials', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-tutorials', d)}"
@@ -81,4 +84,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

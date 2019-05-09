@@ -7,16 +7,17 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ViSP standing for Visual Servoing Platform is a modular cross     platform library that allows prototyping and developing applications     using visual tracking and visual servoing technics at the heart of the     researches done by Inria Lagadic team. ViSP is able to compute control     laws that can be applied to robotic systems. It provides a set of visual     features that can be tracked using real time image processing or computer     vision algorithms. ViSP provides also simulation capabilities.      ViSP can be useful in robotics, computer vision, augmented reality     and computer animation."
 AUTHOR = "Fabien Spindler <Fabien.Spindler@inria.fr>"
+ROS_AUTHOR = "Thomas Moulard, Fabien Spindler"
 HOMEPAGE = "http://www.ros.org/wiki/visp"
 SECTION = "devel"
 LICENSE = "GPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=20;endline=20;md5=fe8b75cf0aba647401e1038bcd69ee74"
 
+ROS_CN = "visp"
 ROS_BPN = "visp"
 
 ROS_BUILD_DEPENDS = " \
     bzip2 \
-    doxygen \
     libcoin80-dev \
     libdc1394-dev \
     libdmtx-dev \
@@ -28,9 +29,7 @@ ROS_BUILD_DEPENDS = " \
     libpng-dev \
     libv4l-dev \
     libx11 \
-    libxml2 \
     opencv \
-    zbar \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -50,9 +49,7 @@ ROS_EXPORT_DEPENDS = " \
     libpng-dev \
     libv4l-dev \
     libx11 \
-    libxml2 \
     opencv \
-    zbar \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -70,9 +67,7 @@ ROS_EXEC_DEPENDS = " \
     libpng-dev \
     libv4l-dev \
     libx11 \
-    libxml2 \
     opencv \
-    zbar \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -91,6 +86,7 @@ SRC_URI[sha256sum] = "346143452a134faec92f55373cdc2be7500a1e98c0c2b4a4459d7511ad
 S = "${WORKDIR}/visp-release-release-melodic-visp-3.2.0-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('visp', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('visp', d)}"
@@ -100,4 +96,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visp/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A ros package that includes plugins and nodes to convert occupied costmap2d cells to primitive types."
 AUTHOR = "Christoph Rösmann <christoph.roesmann@tu-dortmund.de>"
+ROS_AUTHOR = "Christoph Rösmann <christoph.roesmann@tu-dortmund.de>"
 HOMEPAGE = "http://wiki.ros.org/costmap_converter"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "costmap_converter"
 ROS_BPN = "costmap_converter"
 
 ROS_BUILD_DEPENDS = " \
@@ -69,6 +71,7 @@ SRC_URI[sha256sum] = "350d4ffc88daa687ea48b4fb8b04889a95b9213f2f5ef676e49ceba912
 S = "${WORKDIR}/costmap_converter-release-release-melodic-costmap_converter-0.0.9-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('costmap-converter', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('costmap-converter', d)}"
@@ -78,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/costmap-converter/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/costmap-converter/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

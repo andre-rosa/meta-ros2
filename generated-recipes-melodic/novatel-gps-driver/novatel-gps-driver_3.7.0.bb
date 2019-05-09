@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "novatel_gps_driver"
 ROS_BPN = "novatel_gps_driver"
 
 ROS_BUILD_DEPENDS = " \
@@ -96,6 +97,7 @@ SRC_URI[sha256sum] = "8d7d9c7c914c2c60d8ca5e17567bdbc138c12794dc3b1c402acf119880
 S = "${WORKDIR}/novatel_gps_driver-release-release-melodic-novatel_gps_driver-3.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('novatel-gps-driver', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('novatel-gps-driver', d)}"
@@ -105,4 +107,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/novatel-gps-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/novatel-gps-driver/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

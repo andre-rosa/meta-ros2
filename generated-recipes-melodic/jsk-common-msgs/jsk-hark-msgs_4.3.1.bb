@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "jsk_hark_msgs"
 AUTHOR = "Shohei Fujii <s-fujii@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Shohei Fujii <s-fujii@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/jsk_hark_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_common_msgs"
 ROS_BPN = "jsk_hark_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "f9bcc221412c9950f156dc4c57c6dd8ca9aa4eff1201c12a412a05211f
 S = "${WORKDIR}/jsk_common_msgs-release-release-melodic-jsk_hark_msgs-4.3.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-common-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-common-msgs', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

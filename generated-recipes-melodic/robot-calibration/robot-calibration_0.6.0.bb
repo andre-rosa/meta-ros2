@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Calibrate a Robot"
 AUTHOR = "Michael Ferguson <mike@vanadiumlabs.com>"
+ROS_AUTHOR = "Michael Ferguson"
 HOMEPAGE = "http://ros.org/wiki/robot_calibration"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=c93e37fc0c6f510db5735eb91dcc1550"
 
+ROS_CN = "robot_calibration"
 ROS_BPN = "robot_calibration"
 
 ROS_BUILD_DEPENDS = " \
@@ -112,6 +114,7 @@ SRC_URI[sha256sum] = "bd39604970ae9dd0a27d006fac49afbf50604f89ff7d7218e4967c91d8
 S = "${WORKDIR}/robot_calibration-release-release-melodic-robot_calibration-0.6.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robot-calibration', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-calibration', d)}"
@@ -121,4 +124,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-calibration/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-calibration/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

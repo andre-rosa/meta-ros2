@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Meta-package for the universal variant library."
 AUTHOR = "Ralf Kaestner <ralf.kaestner@gmail.com>"
+ROS_AUTHOR = "Ralf Kaestner"
 HOMEPAGE = "http://github.com/ethz-asl/ros-topic-variant"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=146ba316845cfe6058c8baebd902a726"
 
+ROS_CN = "variant"
 ROS_BPN = "variant"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "411a327e244ea82a5a6b105a6e81aad03422b96a22ee148d57ba2abaf9
 S = "${WORKDIR}/variant-release-release-melodic-variant-0.1.5-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('variant', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('variant', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

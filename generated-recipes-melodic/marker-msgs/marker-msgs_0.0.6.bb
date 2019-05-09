@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The marker_msgs package contains messages usable to setup a marker/fiducial system.      The package distinguishes between two types of messages.      First messages to describe the properties of a marker/fiducial detection system and the detected markers.      Secondly messages used to represent a map of markers/features with covariances as it would be produced by a SLAM system or published by a map server for self-localization."
 AUTHOR = "Markus Bader <markus.bader@tuwien.ac.at>"
+ROS_AUTHOR = "Markus Bader"
 HOMEPAGE = "http://wiki.ros.org/marker_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "marker_msgs"
 ROS_BPN = "marker_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "97c6b32ffed3602939b7decce5e38a880e7e64a3d1dd22217512ddf277
 S = "${WORKDIR}/marker_msgs-release-release-melodic-marker_msgs-0.0.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('marker-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('marker-msgs', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marker-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marker-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

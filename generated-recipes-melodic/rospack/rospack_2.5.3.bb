@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS Package Tool"
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Brian Gerkey"
 HOMEPAGE = "http://wiki.ros.org/rospack"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rospack"
 ROS_BPN = "rospack"
 
 ROS_BUILD_DEPENDS = " \
@@ -20,7 +22,6 @@ ROS_BUILD_DEPENDS = " \
     gtest \
     libtinyxml2 \
     pkgconfig \
-    python \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -31,9 +32,6 @@ ROS_EXPORT_DEPENDS = " \
     boost \
     libtinyxml2 \
     pkgconfig \
-    python \
-    python-catkin-pkg \
-    python-rosdep \
     ros-environment \
 "
 
@@ -43,16 +41,11 @@ ROS_EXEC_DEPENDS = " \
     boost \
     libtinyxml2 \
     pkgconfig \
-    python \
-    python-catkin-pkg \
-    python-rosdep \
     ros-environment \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = " \
-    python-coverage \
-"
+ROS_TEST_DEPENDS = ""
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually
@@ -67,6 +60,7 @@ SRC_URI[sha256sum] = "0b9db7d9b7c20d8f36204d3bda08ef5cf41f3f8f7e009862102603b9da
 S = "${WORKDIR}/rospack-release-release-melodic-rospack-2.5.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rospack', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rospack', d)}"
@@ -76,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospack/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospack/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

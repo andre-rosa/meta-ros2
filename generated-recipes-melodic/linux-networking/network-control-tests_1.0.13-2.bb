@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Test suite for the packages that are part of the &quot;WiFi Test Setup&quot; project:     network_monitor_udp, network_traffic_control, hostapd_access_point, linksys_access_point,     ddwrt_access_point."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
+ROS_AUTHOR = "Catalin Drula"
 HOMEPAGE = "http://ros.org/wiki/network_control_tests"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "linux_networking"
 ROS_BPN = "network_control_tests"
 
 ROS_BUILD_DEPENDS = " \
@@ -69,6 +71,7 @@ SRC_URI[sha256sum] = "277a453251b08e5d8616c7c1af2081b1f9a5fde81c7415b7eb5eac329e
 S = "${WORKDIR}/linux_networking-release-release-melodic-network_control_tests-1.0.13-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('linux-networking', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
@@ -78,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

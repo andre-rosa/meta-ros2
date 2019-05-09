@@ -7,18 +7,19 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Mobile robot simulator http://rtv.github.com/Stage"
 AUTHOR = "William Woodall <william@osrfoundation.org>"
+ROS_AUTHOR = "Richard Vaughan <vaughan@sfu.ca>"
 HOMEPAGE = "http://rtv.github.com/Stage"
 SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_CN = "stage"
 ROS_BPN = "stage"
 
 ROS_BUILD_DEPENDS = " \
     gtk2 \
     libfltk-dev \
     libjpeq-turbo \
-    libtool \
     mesa \
 "
 
@@ -61,6 +62,7 @@ SRC_URI[sha256sum] = "3c72bba7242ecd98b26f177e4227aef06ec85915f196ee88ec6103be4d
 S = "${WORKDIR}/stage-release-release-melodic-stage-4.3.0-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('stage', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('stage', d)}"
@@ -70,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

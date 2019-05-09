@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ACADO Toolkit"
 AUTHOR = "Ronald Ensing <r.m.ensing@tudelft.nl>"
+ROS_AUTHOR = "Milan Vukov"
 HOMEPAGE = "http://acado.github.io/"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3460237096e94473a838c16f7071063e"
 
+ROS_CN = "acado"
 ROS_BPN = "acado"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "2d84945378a8f8b6c9d8667b4e1aa02a0001130853e6bb04e29dc19065
 S = "${WORKDIR}/acado-release-release-melodic-acado-1.2.3-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('acado', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('acado', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/acado/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/acado/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Enhanced tools for benchmarks in MoveIt!"
 AUTHOR = "Dave Coleman <dave@picknik.ai>"
+ROS_AUTHOR = "Ryan Luna <rluna@rice.edu>"
 HOMEPAGE = "http://moveit.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "moveit"
 ROS_BPN = "moveit_ros_benchmarks"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "3168565928ff160fe763f5c06a80f70ef3dd4be70cf043eedc35ef1aef
 S = "${WORKDIR}/moveit-release-release-melodic-moveit_ros_benchmarks-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

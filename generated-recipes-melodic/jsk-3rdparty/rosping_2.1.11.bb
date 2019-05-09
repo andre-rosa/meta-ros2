@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rosping is the tool to send ICMP ECHO_REQUEST to network hosts where roscore is running, and send back to you as rostopic message. <br/>     For echoing ROS node, use <a href="http://wiki.ros.org/rosnode">rosnode</a>."
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/rosping"
 SECTION = "devel"
 LICENSE = "Boost-1.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d98785270c85a483b5697dfd09b5f41a"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "rosping"
 
 ROS_BUILD_DEPENDS = " \
@@ -55,6 +57,7 @@ SRC_URI[sha256sum] = "3a791764a80f3b660e57428d8274ecf2b13fefbb7959080aa035f7f8d1
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-rosping-2.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -64,4 +67,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

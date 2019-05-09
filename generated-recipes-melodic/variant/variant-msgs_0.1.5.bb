@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Variant messages are designed to accommodate the information content     of any invariant message. They are truly generic and can freely be     converted to and from specific message objects."
 AUTHOR = "Ralf Kaestner <ralf.kaestner@gmail.com>"
+ROS_AUTHOR = "Ralf Kaestner"
 HOMEPAGE = "http://github.com/ethz-asl/ros-topic-variant"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=146ba316845cfe6058c8baebd902a726"
 
+ROS_CN = "variant"
 ROS_BPN = "variant_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "bc5b26692c4b9223aa4bd83c00fe4b2710a4f5acfe1b9c49cbba0e6f1a
 S = "${WORKDIR}/variant-release-release-melodic-variant_msgs-0.1.5-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('variant', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('variant', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

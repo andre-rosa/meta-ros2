@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_service_caller provides a GUI plugin for calling arbitrary services."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Dorian Scholz"
 HOMEPAGE = "http://wiki.ros.org/rqt_service_caller"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_service_caller"
 ROS_BPN = "rqt_service_caller"
 
 ROS_BUILD_DEPENDS = ""
@@ -21,7 +23,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    python-rospkg \
     rosservice \
     rqt-gui \
     rqt-gui-py \
@@ -31,7 +32,6 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-rospkg \
     rosservice \
     rqt-gui \
     rqt-gui-py \
@@ -54,6 +54,7 @@ SRC_URI[sha256sum] = "574aa580c11737fc800b058f7cac63a7a7b75d144525d04e89c5387164
 S = "${WORKDIR}/rqt_service_caller-release-release-melodic-rqt_service_caller-0.4.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-service-caller', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-service-caller', d)}"
@@ -63,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-service-caller/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-service-caller/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

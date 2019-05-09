@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_bag provides a GUI plugin for displaying and replaying ROS bag files."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Aaron Blasdel"
 HOMEPAGE = "http://wiki.ros.org/rqt_bag"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_bag"
 ROS_BPN = "rqt_bag_plugins"
 
 ROS_BUILD_DEPENDS = ""
@@ -23,7 +25,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     geometry-msgs \
     python-cairo \
-    python-imaging \
     rosbag \
     roslib \
     rospy \
@@ -40,7 +41,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     python-cairo \
-    python-imaging \
     rosbag \
     roslib \
     rospy \
@@ -68,6 +68,7 @@ SRC_URI[sha256sum] = "03951bd0c5ee306b14adec3e97a71804e35aed94d2d7a135c0cea5fb58
 S = "${WORKDIR}/rqt_bag-release-release-melodic-rqt_bag_plugins-0.4.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-bag', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-bag', d)}"
@@ -77,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-bag/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-bag/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

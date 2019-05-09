@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "depthimage_to_laserscan"
 AUTHOR = "Chad Rockey <chadrockey@gmail.com>"
+ROS_AUTHOR = "Chad Rockey"
 HOMEPAGE = "http://ros.org/wiki/depthimage_to_laserscan"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "depthimage_to_laserscan"
 ROS_BPN = "depthimage_to_laserscan"
 
 ROS_BUILD_DEPENDS = " \
@@ -64,6 +66,7 @@ SRC_URI[sha256sum] = "0620a9a74ab3a0601a55d1cbe593abe68bbc838ea3fb6a1dfa57ac7e6e
 S = "${WORKDIR}/depthimage_to_laserscan-release-release-melodic-depthimage_to_laserscan-1.0.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('depthimage-to-laserscan', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('depthimage-to-laserscan', d)}"
@@ -73,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthimage-to-laserscan/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthimage-to-laserscan/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

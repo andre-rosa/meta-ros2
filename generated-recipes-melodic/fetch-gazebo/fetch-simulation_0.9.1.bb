@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Fetch Simulation, packages for working with Fetch and Freight in Gazebo"
 AUTHOR = "Alex Moriarty <amoriarty@fetchrobotics.com>"
+ROS_AUTHOR = "Alex Moriarty <amoriarty@fetchrobotics.com>"
 HOMEPAGE = "https://docs.fetchrobotics.com/gazebo.html"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "fetch_gazebo"
 ROS_BPN = "fetch_simulation"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "a032a7e561c95e807a9a87dd91b7f0fbe9263a0afbd14457813f1850f6
 S = "${WORKDIR}/fetch_gazebo-release-release-melodic-fetch_simulation-0.9.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fetch-gazebo', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-gazebo', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-gazebo/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-gazebo/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

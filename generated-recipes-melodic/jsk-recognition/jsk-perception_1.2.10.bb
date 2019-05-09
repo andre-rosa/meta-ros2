@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS nodes and nodelets for 2-D image perception."
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Manabu Saito"
 HOMEPAGE = "http://jsk-docs.readthedocs.io/en/latest/jsk_recognition/doc/jsk_perception"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_recognition"
 ROS_BPN = "jsk_perception"
 
 ROS_BUILD_DEPENDS = " \
@@ -65,7 +67,6 @@ ROS_EXPORT_DEPENDS = " \
     jsk-recognition-msgs \
     jsk-recognition-utils \
     jsk-topic-tools \
-    leveldb \
     libcmt \
     libeigen \
     message-runtime \
@@ -81,7 +82,6 @@ ROS_EXPORT_DEPENDS = " \
     python-fcn-pip \
     python-h5py \
     python-sklearn \
-    python-yamllint-native \
     robot-self-filter \
     rosbag \
     roscpp \
@@ -115,7 +115,6 @@ ROS_EXEC_DEPENDS = " \
     jsk-recognition-msgs \
     jsk-recognition-utils \
     jsk-topic-tools \
-    leveldb \
     libcmt \
     libeigen \
     message-runtime \
@@ -131,7 +130,6 @@ ROS_EXEC_DEPENDS = " \
     python-fcn-pip \
     python-h5py \
     python-sklearn \
-    python-yamllint-native \
     robot-self-filter \
     rosbag \
     roscpp \
@@ -169,6 +167,7 @@ SRC_URI[sha256sum] = "81431e290cd8a1313d7498f6da53041ec12da6e8b014f4c43215720f67
 S = "${WORKDIR}/jsk_recognition-release-release-melodic-jsk_perception-1.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-recognition', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-recognition', d)}"
@@ -178,4 +177,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

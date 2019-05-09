@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Xacro (XML Macros)      Xacro is an XML macro language. With xacro, you can construct shorter and more readable XML files by using macros that expand to larger XML expressions."
 AUTHOR = "Robert Haschke <rhaschke@techfak.uni-bielefeld.de>"
+ROS_AUTHOR = "Stuart Glaser"
 HOMEPAGE = "http://ros.org/wiki/xacro"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "xacro"
 ROS_BPN = "xacro"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "ef77d1f894a192888232b7b545b9f2748713066bae5c139644af3734aa
 S = "${WORKDIR}/xacro-release-release-melodic-xacro-1.13.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('xacro', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('xacro', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xacro/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xacro/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

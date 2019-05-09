@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A set of tools and interfaces extending the capabilities of c++ to      provide a lightweight, consistent interface with a focus for control     programming."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/ecl_core"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ecl_core"
 ROS_BPN = "ecl_core"
 
 ROS_BUILD_DEPENDS = ""
@@ -86,6 +88,7 @@ SRC_URI[sha256sum] = "faf777d4df832763a55bb0e32b19e5bc391f094d21aaec4acce62c11ed
 S = "${WORKDIR}/ecl_core-release-release-melodic-ecl_core-0.62.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ecl-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-core', d)}"
@@ -95,4 +98,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

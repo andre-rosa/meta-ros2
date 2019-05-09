@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "xsens_driver"
 ROS_BPN = "xsens_driver"
 
 ROS_BUILD_DEPENDS = " \
@@ -65,6 +66,7 @@ SRC_URI[sha256sum] = "bf0a13bb4fd0e2891ca1f6b18c1d8bb071f8eb2446a07ee31abb850d82
 S = "${WORKDIR}/ethzasl_xsens_driver-release-release-melodic-xsens_driver-2.2.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('xsens-driver', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('xsens-driver', d)}"
@@ -74,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xsens-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xsens-driver/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

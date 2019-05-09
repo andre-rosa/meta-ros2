@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "WebRTC Native API"
 AUTHOR = "Timo Röhling <timo.roehling@fkie.fraunhofer.de>"
+ROS_AUTHOR = "Mitchell Wills <mwills@wpi.edu>"
 HOMEPAGE = "http://wiki.ros.org/webrtc"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "webrtc_ros"
 ROS_BPN = "webrtc"
 
 ROS_BUILD_DEPENDS = " \
@@ -25,7 +27,6 @@ ROS_BUILD_DEPENDS = " \
 ROS_BUILDTOOL_DEPENDS = " \
     cmake-native \
     git-native \
-    wget-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
@@ -62,6 +63,7 @@ SRC_URI[sha256sum] = "bdc2b6651bda28702a87bdc1cb9a53dbcd5a47dc7363d71bd81ea87dc0
 S = "${WORKDIR}/webrtc_ros-release-release-melodic-webrtc-59.0.3-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('webrtc-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('webrtc-ros', d)}"
@@ -71,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webrtc-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webrtc-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

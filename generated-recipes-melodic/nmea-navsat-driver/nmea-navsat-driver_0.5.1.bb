@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Package to parse NMEA strings and publish a very simple GPS message. Does not      require or use the GPSD deamon."
 AUTHOR = "Ed Venator <evenator@gmail.com>"
+ROS_AUTHOR = "Eric Perko <eric@ericperko.com>"
 HOMEPAGE = "http://ros.org/wiki/nmea_navsat_driver"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "nmea_navsat_driver"
 ROS_BPN = "nmea_navsat_driver"
 
 ROS_BUILD_DEPENDS = ""
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "c502e261f11dee9d169b96c13eec505a7251157364aeac7201a6518740
 S = "${WORKDIR}/nmea_navsat_driver-release-release-melodic-nmea_navsat_driver-0.5.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('nmea-navsat-driver', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('nmea-navsat-driver', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nmea-navsat-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nmea-navsat-driver/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_py_console is a Python GUI plugin providing an interactive Python console."
 AUTHOR = "Dorian Scholz <scholz@sim.tu-darmstadt.de>"
+ROS_AUTHOR = "Dorian Scholz"
 HOMEPAGE = "http://wiki.ros.org/rqt_py_console"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_py_console"
 ROS_BPN = "rqt_py_console"
 
 ROS_BUILD_DEPENDS = ""
@@ -22,7 +24,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     python-qt-binding \
-    python-rospkg \
     qt-gui \
     qt-gui-py-common \
     rospy \
@@ -34,7 +35,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     python-qt-binding \
-    python-rospkg \
     qt-gui \
     qt-gui-py-common \
     rospy \
@@ -58,6 +58,7 @@ SRC_URI[sha256sum] = "0c5714fce4f464fa175e42a7c8fc0ced483fdcfbd90cf4c8584f40b3cf
 S = "${WORKDIR}/rqt_py_console-release-release-melodic-rqt_py_console-0.4.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-py-console', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-py-console', d)}"
@@ -67,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-py-console/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-py-console/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

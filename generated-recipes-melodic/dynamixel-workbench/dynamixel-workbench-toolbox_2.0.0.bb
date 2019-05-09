@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package is composed of 'dynamixel_item', 'dynamixel_tool', 'dynamixel_driver' and 'dynamixel_workbench' class.     The 'dynamixel_item' is saved as control table item and information of Dynamixels.     The 'dynamixel_tool' class loads its by model number of Dynamixels.     The 'dynamixel_driver' class includes wraped function used in DYNAMIXEL SDK.     The 'dynamixel_workbench' class make simple to use Dynamixels"
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Darby Lim <thlim@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/dynamixel_workbench_toolbox"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "dynamixel-workbench"
 ROS_BPN = "dynamixel_workbench_toolbox"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "98a009c214814fb2ed6fe1b09590dab9503cd3e9fc6b5a9c5942ea7da8
 S = "${WORKDIR}/dynamixel-workbench-release-release-melodic-dynamixel_workbench_toolbox-2.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dynamixel-workbench', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dynamixel-workbench', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

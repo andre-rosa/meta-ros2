@@ -7,17 +7,17 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "<p>Python binding of OpenRTM-AIST (see <a href="http://www.ros.org/wiki/openrtm_aist">openrtm_aist</a> for     further information).</p>     <p><i>OpenRTM-aist is an <a href="http://ieeexplore.ieee.org/xpl/login.jsp?tp=&amp;arnumber=1545521&amp;url=http%3A%2F%2Fieeexplore.ieee.org%2Fiel5%2F10375%2F32977%2F01545521.pdf%3Farnumber%3D1545521">RT-Middleware</a>-baseed,    component-oriented software platform to robotics development that    is made and maintained in AIST (National Institute of Advanced    Industrial Science and Technology) in Japan </i> (<a href="http://openrtm.org/openrtm/en/content/introduction-0">excerpts from here</a>)</p>"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Shinji Kurihara <shinji.kurihara@aist.go.jp>"
 HOMEPAGE = "http://ros.org/wiki/openrtm_aist"
 SECTION = "devel"
 LICENSE = "EPL"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=23;endline=23;md5=b1456987590b6d6fb15d36f398651b8b"
 
+ROS_CN = "openrtm_aist_python"
 ROS_BPN = "openrtm_aist_python"
 
 ROS_BUILD_DEPENDS = " \
-    doxygen \
     python-omniorb \
-    python-setuptools \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -50,6 +50,7 @@ SRC_URI[sha256sum] = "a6be8a4902c0635137c0925289687ecbefe1dabd2dd5e3ba80c3153f5f
 S = "${WORKDIR}/openrtm_aist_python-release-release-melodic-openrtm_aist_python-1.1.0-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('openrtm-aist-python', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('openrtm-aist-python', d)}"
@@ -59,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openrtm-aist-python/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openrtm-aist-python/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

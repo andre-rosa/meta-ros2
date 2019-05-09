@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Robot description for the ECA A9 AUV"
 AUTHOR = "Thibault Pelletier <thp@eca.fr>"
+ROS_AUTHOR = "Thibault Pelletier <thp@eca.fr>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_CN = "eca_a9"
 ROS_BPN = "eca_a9_description"
 
 ROS_BUILD_DEPENDS = ""
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "755c4708260a898bf6311271a70f9f48379327eb3c5721727afba6dc94
 S = "${WORKDIR}/eca_a9-release-release-melodic-eca_a9_description-0.1.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('eca-a9', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('eca-a9', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eca-a9/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eca-a9/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

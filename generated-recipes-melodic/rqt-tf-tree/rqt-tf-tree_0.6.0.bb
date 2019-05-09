@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_tf_tree provides a GUI plugin for visualizing the ROS TF frame tree."
 AUTHOR = "Isaac I.Y. Saito <gm130s@gmail.com>"
+ROS_AUTHOR = "Thibault Kruse"
 HOMEPAGE = "http://wiki.ros.org/rqt_tf_tree"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_tf_tree"
 ROS_BPN = "rqt_tf_tree"
 
 ROS_BUILD_DEPENDS = ""
@@ -23,7 +25,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     geometry-msgs \
     python-qt-binding \
-    python-rospkg \
     qt-dotgraph \
     rospy \
     rqt-graph \
@@ -39,7 +40,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     python-qt-binding \
-    python-rospkg \
     qt-dotgraph \
     rospy \
     rqt-graph \
@@ -68,6 +68,7 @@ SRC_URI[sha256sum] = "c52046ad978eb9ae418a866706d9b909646dee0f8b76deed4fa501e089
 S = "${WORKDIR}/rqt_tf_tree-release-release-melodic-rqt_tf_tree-0.6.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-tf-tree', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-tf-tree', d)}"
@@ -77,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-tf-tree/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-tf-tree/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

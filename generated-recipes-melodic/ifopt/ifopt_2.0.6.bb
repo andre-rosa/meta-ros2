@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "An <a href="http://eigen.tuxfamily.org">Eigen-</a>     based interface to Nonlinear Programming solver     <a href="https://projects.coin-or.org/Ipopt">Ipopt</a>.      Inuitive and efficient C++ implementation of variables, costs and      constraints using Eigen. Easy integration in your projects in catkin     or pure cmake."
 AUTHOR = "Alexander W. Winkler <alexander.w.winkler@gmail.com>"
+ROS_AUTHOR = "Alexander W. Winkler"
 HOMEPAGE = "https://github.com/ethz-adrl/ifopt"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ifopt"
 ROS_BPN = "ifopt"
 
 ROS_BUILD_DEPENDS = " \
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "3f35e3e9837f7f609ac6d1f982742d579f760b4d3f366d9711c1420bb1
 S = "${WORKDIR}/ifopt-release-release-melodic-ifopt-2.0.6-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ifopt', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ifopt', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ifopt/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ifopt/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

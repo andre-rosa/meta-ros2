@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This node does pose estimation for detected fiducials (marker_msgs/FiducialDetection.msg)"
 AUTHOR = "Markus Bader <markus.bader@tuwien.ac.at>"
+ROS_AUTHOR = "Lukas Pfeifhofer"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "tuw_marker_detection"
 ROS_BPN = "tuw_marker_pose_estimation"
 
 ROS_BUILD_DEPENDS = " \
@@ -69,6 +71,7 @@ SRC_URI[sha256sum] = "58ea5472112e231d213667c8977c5910de7398b71471b12a8a9e55dab4
 S = "${WORKDIR}/tuw_marker_detection-release-release-melodic-tuw_marker_pose_estimation-0.1.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tuw-marker-detection', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tuw-marker-detection', d)}"
@@ -78,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-marker-detection/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-marker-detection/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

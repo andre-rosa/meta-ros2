@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Gazebo plugin to provide simulated data from Velodyne laser scanners."
 AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
+ROS_AUTHOR = "Kevin Hallenbeck"
 HOMEPAGE = "http://wiki.ros.org/velodyne_gazebo_plugins"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "velodyne_simulator"
 ROS_BPN = "velodyne_gazebo_plugins"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "894c7ae31607b6f889b86f2ab0d7c13d0d40c291fb09c73c93f394b96b
 S = "${WORKDIR}/velodyne_simulator-release-release-melodic-velodyne_gazebo_plugins-1.0.9-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('velodyne-simulator', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('velodyne-simulator', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

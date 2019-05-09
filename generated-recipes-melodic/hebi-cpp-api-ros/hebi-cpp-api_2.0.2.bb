@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS package providing access to the HEBI C++ API."
 AUTHOR = "Matthew Tesch <matt@hebirobotics.com>"
+ROS_AUTHOR = "Matthew Tesch <matt@hebirobotics.com>"
 HOMEPAGE = "http://docs.hebi.us/tools.html#cpp-api"
 SECTION = "devel"
-LICENSE = "HEBI-C-Software-License-https:-www.hebirobotics.com-softwarelicense-"
+LICENSE = "HEBI-C-Software-License-https-www.hebirobotics.com-softwarelicense-"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=8cc38e87392e4480a4870daca61af5fd"
 
+ROS_CN = "hebi_cpp_api_ros"
 ROS_BPN = "hebi_cpp_api"
 
 ROS_BUILD_DEPENDS = " \
@@ -45,6 +47,7 @@ SRC_URI[sha256sum] = "790c608f30c4ce58df8fc5155a399b01ef523d4f2b81cede90858799d4
 S = "${WORKDIR}/hebi_cpp_api_ros-release-release-melodic-hebi_cpp_api-2.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('hebi-cpp-api-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hebi-cpp-api-ros', d)}"
@@ -54,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hebi-cpp-api-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hebi-cpp-api-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

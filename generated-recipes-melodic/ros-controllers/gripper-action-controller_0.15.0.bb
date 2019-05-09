@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The gripper_action_controller package"
 AUTHOR = "Sachin Chitta <robot.moveit@gmail.com>"
+ROS_AUTHOR = "Sachin Chitta <robot.moveit@gmail.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_controllers"
 ROS_BPN = "gripper_action_controller"
 
 ROS_BUILD_DEPENDS = " \
@@ -84,6 +86,7 @@ SRC_URI[sha256sum] = "7b15202e7175d3352a3855ee222ddbd4db8a5221425436f4637a80e600
 S = "${WORKDIR}/ros_controllers-release-release-melodic-gripper_action_controller-0.15.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-controllers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-controllers', d)}"
@@ -93,4 +96,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

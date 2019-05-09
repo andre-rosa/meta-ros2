@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Twist multiplexer, which multiplex several velocity commands (topics) and       allows to priorize or disable them (locks)."
 AUTHOR = "Enrique Fernandez <efernandez@clearpathrobotics.com>"
+ROS_AUTHOR = "Enrique Fernandez <efernandez@clearpathrobotics.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "CC-BY-NC-SA-4.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=6bc0e2b80b41b84c8240cea714dea709"
 
+ROS_CN = "twist_mux"
 ROS_BPN = "twist_mux"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "aa2888069d0ed77dbab6759a450cef52d03b6f64b09514c006bd2f4938
 S = "${WORKDIR}/twist_mux-release-release-melodic-twist_mux-3.1.0-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('twist-mux', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('twist-mux', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/twist-mux/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/twist-mux/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

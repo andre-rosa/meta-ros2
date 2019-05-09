@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Point Cloud Encoder for Web-Based Streaming"
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
+ROS_AUTHOR = "Julius Kammer <jkammerl@willowgarage.com>"
 HOMEPAGE = "http://ros.org/wiki/depthcloud_encoder"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "depthcloud_encoder"
 ROS_BPN = "depthcloud_encoder"
 
 ROS_BUILD_DEPENDS = " \
@@ -72,6 +74,7 @@ SRC_URI[sha256sum] = "cd0303245ac1fcc135761ad4d18dda3ed256e4165cf4fbbd6a4182037c
 S = "${WORKDIR}/depthcloud_encoder-release-release-melodic-depthcloud_encoder-0.1.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('depthcloud-encoder', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('depthcloud-encoder', d)}"
@@ -81,4 +84,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthcloud-encoder/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthcloud-encoder/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

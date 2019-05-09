@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Simple Kalman Filter in Python"
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
+ROS_AUTHOR = "David V. Lu!!"
 HOMEPAGE = "http://ros.org/wiki/kalman_filter"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "wu_ros_tools"
 ROS_BPN = "kalman_filter"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "dae8cee834dfdb902000812bf4e6141f678bf813a077dd6b6f1580a90a
 S = "${WORKDIR}/wu_ros_tools-release-melodic-kalman_filter-0.2.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('wu-ros-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('wu-ros-tools', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

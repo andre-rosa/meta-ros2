@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Node launcher and monitor for ROS. rosmon is a replacement 		for the roslaunch tool, focused on performance, remote 		monitoring, and usability."
 AUTHOR = "Max Schwarz <max.schwarz@uni-bonn.de>"
+ROS_AUTHOR = "Max Schwarz <max.schwarz@uni-bonn.de>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=75730354549103aaba72b66caf53717b"
 
+ROS_CN = "rosmon"
 ROS_BPN = "rosmon"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "86889a64f484e3a77ff9c176c3c47c185e7c2d1e6a748885e2f658344b
 S = "${WORKDIR}/rosmon-release-release-melodic-rosmon-2.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosmon', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosmon', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosmon/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosmon/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

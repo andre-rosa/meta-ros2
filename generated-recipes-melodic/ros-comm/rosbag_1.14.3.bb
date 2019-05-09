@@ -7,17 +7,18 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This is a set of tools for recording from and playing back to ROS     topics.  It is intended to be high performance and avoids     deserialization and reserialization of the messages."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Tim Field"
 HOMEPAGE = "http://ros.org/wiki/rosbag"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_comm"
 ROS_BPN = "rosbag"
 
 ROS_BUILD_DEPENDS = " \
     boost \
     cpp-common \
-    python-imaging \
     rosbag-storage \
     rosconsole \
     roscpp \
@@ -35,9 +36,7 @@ ROS_EXPORT_DEPENDS = " \
     boost \
     genmsg \
     genpy \
-    python-cryptography \
     python-gnupg \
-    python-rospkg \
     rosbag-storage \
     rosconsole \
     roscpp \
@@ -54,9 +53,7 @@ ROS_EXEC_DEPENDS = " \
     boost \
     genmsg \
     genpy \
-    python-cryptography \
     python-gnupg \
-    python-rospkg \
     rosbag-storage \
     rosconsole \
     roscpp \
@@ -83,6 +80,7 @@ SRC_URI[sha256sum] = "37736a1ad7ddeaddb4f651b8a4d10da75654bdf3ff6a4623f85f467c91
 S = "${WORKDIR}/ros_comm-release-release-melodic-rosbag-1.14.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-comm', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm', d)}"
@@ -92,4 +90,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

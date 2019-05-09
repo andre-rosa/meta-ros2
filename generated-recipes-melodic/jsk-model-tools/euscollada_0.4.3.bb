@@ -7,17 +7,18 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "euscollada"
 AUTHOR = "Yohei Kakiuchi <youhei@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/euscollada"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_model_tools"
 ROS_BPN = "euscollada"
 
 ROS_BUILD_DEPENDS = " \
     assimp-devel \
     cmake-modules \
-    collada-dom \
     collada-parser \
     collada-urdf \
     libqhull \
@@ -40,7 +41,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     assimp-devel \
-    collada-dom \
     collada-parser \
     collada-urdf \
     libqhull \
@@ -58,7 +58,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     assimp-devel \
-    collada-dom \
     collada-parser \
     collada-urdf \
     libqhull \
@@ -92,6 +91,7 @@ SRC_URI[sha256sum] = "0ef764eb030e00b1680f3ce353208fddcc1fa3850e4a7460231bd19357
 S = "${WORKDIR}/jsk_model_tools-release-release-melodic-euscollada-0.4.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-model-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-model-tools', d)}"
@@ -101,4 +101,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-model-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-model-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

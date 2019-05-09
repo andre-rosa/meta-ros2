@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_pose_view provides a GUI plugin for visualizing 3D poses."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Dorian Scholz"
 HOMEPAGE = "http://wiki.ros.org/rqt_pose_view"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_pose_view"
 ROS_BPN = "rqt_pose_view"
 
 ROS_BUILD_DEPENDS = ""
@@ -25,7 +27,6 @@ ROS_EXPORT_DEPENDS = " \
     gl-dependency \
     python-opengl \
     python-qt-binding \
-    python-rospkg \
     rospy \
     rostopic \
     rqt-gui \
@@ -41,7 +42,6 @@ ROS_EXEC_DEPENDS = " \
     gl-dependency \
     python-opengl \
     python-qt-binding \
-    python-rospkg \
     rospy \
     rostopic \
     rqt-gui \
@@ -66,6 +66,7 @@ SRC_URI[sha256sum] = "00e9962e4a7132dcb9082692fb49563d309b9e446b5eb17e65354dd7e1
 S = "${WORKDIR}/rqt_pose_view-release-release-melodic-rqt_pose_view-0.5.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-pose-view', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-pose-view', d)}"
@@ -75,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-pose-view/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-pose-view/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

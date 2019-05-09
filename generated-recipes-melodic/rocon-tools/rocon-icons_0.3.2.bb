@@ -7,16 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Icons for rocon."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier"
 HOMEPAGE = "http://ros.org/wiki/rocon_icons"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rocon_tools"
 ROS_BPN = "rocon_icons"
 
-ROS_BUILD_DEPENDS = " \
-    python-catkin-pkg \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -44,6 +44,7 @@ SRC_URI[sha256sum] = "06a97efd4802a2cd6b1e27fe7d1fa81a67923d0affb7ac21b53954225d
 S = "${WORKDIR}/rocon_tools-release-release-melodic-rocon_icons-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rocon-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rocon-tools', d)}"
@@ -53,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_robot_steering provides a GUI plugin for steering a robot using Twist messages."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Dirk Thomas"
 HOMEPAGE = "http://wiki.ros.org/rqt_robot_steering"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_robot_steering"
 ROS_BPN = "rqt_robot_steering"
 
 ROS_BUILD_DEPENDS = ""
@@ -23,7 +25,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     geometry-msgs \
     python-qt-binding \
-    python-rospkg \
     rostopic \
     rqt-gui \
     rqt-gui-py \
@@ -34,7 +35,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     python-qt-binding \
-    python-rospkg \
     rostopic \
     rqt-gui \
     rqt-gui-py \
@@ -56,6 +56,7 @@ SRC_URI[sha256sum] = "88c3867ac42fc3ad6533f1fabc58ab169a1f3d4cbe9ae0e165edae28ad
 S = "${WORKDIR}/rqt_robot_steering-release-release-melodic-rqt_robot_steering-0.5.9-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-robot-steering', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-robot-steering', d)}"
@@ -65,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-steering/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-steering/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

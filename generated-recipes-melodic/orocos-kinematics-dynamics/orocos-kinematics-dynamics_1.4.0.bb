@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_CN = "orocos_kinematics_dynamics"
 ROS_BPN = "orocos_kinematics_dynamics"
 
 ROS_BUILD_DEPENDS = ""
@@ -48,6 +49,7 @@ SRC_URI[sha256sum] = "2ba6018b3fbbced816694fafd40bf7a9eea586ee7955ec91e4de786449
 S = "${WORKDIR}/orocos-kdl-release-release-melodic-orocos_kinematics_dynamics-1.4.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('orocos-kinematics-dynamics', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('orocos-kinematics-dynamics', d)}"
@@ -57,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/orocos-kinematics-dynamics/${BPN}.in
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/orocos-kinematics-dynamics/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The AR pair tracking package"
 AUTHOR = "Jihoon Lee <jihoonl@yujinrobot.com>"
+ROS_AUTHOR = "Daniel Stonier"
 HOMEPAGE = "http://wiki.ros.org/yocs_ar_pair_tracking"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "yujin_ocs"
 ROS_BPN = "yocs_ar_pair_tracking"
 
 ROS_BUILD_DEPENDS = " \
@@ -69,6 +71,7 @@ SRC_URI[sha256sum] = "60179e49a3644effdd14bf503e183c3ef7c0690f550b89e64847399f39
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_ar_pair_tracking-0.8.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yujin-ocs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
@@ -78,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

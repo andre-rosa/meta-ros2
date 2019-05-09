@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "SOEM is an open source EtherCAT master library written in c. Its      primary target is Linux but can be adapted to other OS and      embedded systems. (http://developer.berlios.de/projects/soem/)       This package contains the original soem c code provided by the Technische Universiteit Eindhoven."
 AUTHOR = "Ruben Smits <ruben@intermodalics.eu>"
+ROS_AUTHOR = "Arthur Ketels and M.J.G. van den Molengraft"
 HOMEPAGE = "http://developer.berlios.de/projects/soem"
 SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d2094aa59491bce7d3aaf0a0450d7783"
 
+ROS_CN = "soem"
 ROS_BPN = "soem"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "79cdd2124448cb591bcccded0b04a2bc74e0a44c030c84187b1e9aaa6a
 S = "${WORKDIR}/soem-gbp-release-melodic-soem-1.3.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('soem', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('soem', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/soem/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/soem/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

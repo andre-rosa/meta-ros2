@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS Python and C++ interfaces for universally unique identifiers."
 AUTHOR = "Jack O'Quin <jack.oquin@gmail.com>"
+ROS_AUTHOR = "Jack O'Quin"
 HOMEPAGE = "http://ros.org/wiki/unique_id"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "unique_identifier"
 ROS_BPN = "unique_id"
 
 ROS_BUILD_DEPENDS = " \
@@ -56,6 +58,7 @@ SRC_URI[sha256sum] = "8f995d23c4bdefadf40cd213fead2b4f4be1285f536a3578823fdaa46c
 S = "${WORKDIR}/unique_identifier-release-release-melodic-unique_id-1.0.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('unique-identifier', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('unique-identifier', d)}"
@@ -65,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

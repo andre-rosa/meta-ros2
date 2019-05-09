@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "urg_node"
 AUTHOR = "Tony Baltovski <tony.baltovski@gmail.com>"
+ROS_AUTHOR = "Chad Rockey <chadrockey@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/urg_node"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "urg_node"
 ROS_BPN = "urg_node"
 
 ROS_BUILD_DEPENDS = " \
@@ -85,6 +87,7 @@ SRC_URI[sha256sum] = "86fec955adf084d6ebdf11e8a17ecb03586afcfab3b15329e02535a773
 S = "${WORKDIR}/urg_node-release-release-melodic-urg_node-0.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urg-node', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urg-node', d)}"
@@ -94,4 +97,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-node/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-node/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

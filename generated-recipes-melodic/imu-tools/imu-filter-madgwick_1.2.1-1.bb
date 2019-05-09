@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Filter which fuses angular velocities, accelerations, and (optionally) magnetic readings from a generic IMU device into an orientation. Based on code by Sebastian Madgwick, http://www.x-io.co.uk/node/8#open_source_ahrs_and_imu_algorithms."
 AUTHOR = "Martin Günther <martin.guenther1980@gmail.com>"
+ROS_AUTHOR = "Ivan Dryanovski"
 HOMEPAGE = "http://ros.org/wiki/imu_filter_madgwick"
 SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_CN = "imu_tools"
 ROS_BPN = "imu_filter_madgwick"
 
 ROS_BUILD_DEPENDS = " \
@@ -77,6 +79,7 @@ SRC_URI[sha256sum] = "508edb7c8f11f0bb31e1ed63f2f4825e19fc4ee5c02b1754c48b03347a
 S = "${WORKDIR}/imu_tools-release-release-melodic-imu_filter_madgwick-1.2.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('imu-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imu-tools', d)}"
@@ -86,4 +89,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

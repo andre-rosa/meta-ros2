@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rosclean: cleanup filesystem resources (e.g. log files)."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Ken Conley"
 HOMEPAGE = "http://ros.org/wiki/rosclean"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros"
 ROS_BPN = "rosclean"
 
 ROS_BUILD_DEPENDS = ""
@@ -20,15 +22,11 @@ ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    python-rospkg \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = " \
-    python-rospkg \
-"
+ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = ""
@@ -46,6 +44,7 @@ SRC_URI[sha256sum] = "f9c6f91fd318a4471c630ba841eca82ee54033ed62be5e7187255f79a5
 S = "${WORKDIR}/ros-release-release-melodic-rosclean-1.14.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros', d)}"
@@ -55,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

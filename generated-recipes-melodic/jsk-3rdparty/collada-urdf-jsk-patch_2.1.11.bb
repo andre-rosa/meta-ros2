@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "unaccepted patch for collada_urdf"
 AUTHOR = "Yohei Kakiuchi <youhei@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
 HOMEPAGE = "http://ros.org/wiki/collada_urdf_jsk_patch"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "collada_urdf_jsk_patch"
 
 ROS_BUILD_DEPENDS = " \
@@ -19,7 +21,6 @@ ROS_BUILD_DEPENDS = " \
     assimp-devel \
     class-loader \
     cmake-modules \
-    collada-dom \
     collada-parser \
     collada-urdf \
     geometric-shapes \
@@ -43,7 +44,6 @@ ROS_EXPORT_DEPENDS = " \
     angles \
     assimp-devel \
     class-loader \
-    collada-dom \
     collada-parser \
     collada-urdf \
     geometric-shapes \
@@ -63,7 +63,6 @@ ROS_EXEC_DEPENDS = " \
     angles \
     assimp-devel \
     class-loader \
-    collada-dom \
     collada-parser \
     collada-urdf \
     geometric-shapes \
@@ -93,6 +92,7 @@ SRC_URI[sha256sum] = "96f21834e4f40d960368a0c133af23d613603f69fbd2f3976195b45568
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-collada_urdf_jsk_patch-2.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -102,4 +102,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

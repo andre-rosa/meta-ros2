@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "tools for streaming JPEG-formatted CompressedImage topics over HTTP"
 AUTHOR = "Ken Tossell <ken@tossell.net>"
+ROS_AUTHOR = "Ken Tossell <ken@tossell.net>"
 HOMEPAGE = "http://ros.org/wiki/jpeg_streamer"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "camera_umd"
 ROS_BPN = "jpeg_streamer"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "2f2d7e91f8743383d48353d1fc7fbbcd47ad1438a9029949cdd499ce38
 S = "${WORKDIR}/camera_umd-release-release-melodic-jpeg_streamer-0.2.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('camera-umd', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('camera-umd', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/camera-umd/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/camera-umd/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

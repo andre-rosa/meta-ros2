@@ -7,23 +7,21 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ff: pddl planner. see http://www.loria.fr/~hoffmanj/ff.html"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "J.Hoffmann"
 SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "ff"
 
 ROS_BUILD_DEPENDS = " \
-    bison \
-    ca-certificates \
-    flex \
     mk \
     openssl \
     rosbash \
     rosbuild \
     roslib \
     rospack \
-    unzip \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -52,6 +50,7 @@ SRC_URI[sha256sum] = "659fc4d1dd3a388860d8daffe67a537beed9a9cb2cf1ec447546a2e90a
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-ff-2.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -61,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

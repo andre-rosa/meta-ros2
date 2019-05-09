@@ -7,18 +7,19 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The nodelet package is designed to provide a way to run multiple     algorithms in the same process with zero copy transport between     algorithms.      This package provides both the nodelet base class needed for     implementing a nodelet, as well as the NodeletLoader class used     for instantiating nodelets."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
+ROS_AUTHOR = "Tully Foote"
 HOMEPAGE = "http://ros.org/wiki/nodelet"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "nodelet_core"
 ROS_BPN = "nodelet"
 
 ROS_BUILD_DEPENDS = " \
     bondcpp \
     boost \
     cmake-modules \
-    crossguid \
     message-generation \
     pluginlib \
     rosconsole \
@@ -33,7 +34,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     bondcpp \
     boost \
-    crossguid \
     pluginlib \
     rosconsole \
     roscpp \
@@ -45,7 +45,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     bondcpp \
     boost \
-    crossguid \
     message-runtime \
     pluginlib \
     rosconsole \
@@ -70,6 +69,7 @@ SRC_URI[sha256sum] = "3a9e9701df570659d70f871eb7e1970dacd3b89c02513c456f8f0ea1a4
 S = "${WORKDIR}/nodelet_core-release-release-melodic-nodelet-1.9.16-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('nodelet-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('nodelet-core', d)}"
@@ -79,4 +79,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nodelet-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nodelet-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

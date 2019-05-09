@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "polled_camera contains a service and C++ helper classes for implementing a polled      camera driver node and requesting images from it. The package is currently for      internal use as the API is still under development."
 AUTHOR = "Jack O'Quin <jack.oquin@gmail.com>"
+ROS_AUTHOR = "Patrick Mihelich"
 HOMEPAGE = "http://ros.org/wiki/polled_camera"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_common"
 ROS_BPN = "polled_camera"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "87717ae0569b27aeccb0c84c372ef5e5b16ea23e4549f918d7a2ad1ba8
 S = "${WORKDIR}/image_common-release-release-melodic-polled_camera-1.11.13-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-common', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

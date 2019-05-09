@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "rospilot"
 ROS_BPN = "rospilot"
 
 ROS_BUILD_DEPENDS = " \
@@ -19,7 +20,6 @@ ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     libgphoto-dev \
     libjpeq-turbo \
-    libmicrohttpd \
     libnl-3-dev \
     message-generation \
     opencv \
@@ -39,7 +39,6 @@ ROS_EXPORT_DEPENDS = " \
     dnsmasq \
     gdal-bin \
     geometry-msgs \
-    hostapd \
     libnl-3 \
     mapnik-utils \
     mavlink \
@@ -47,9 +46,7 @@ ROS_EXPORT_DEPENDS = " \
     osm2pgsql \
     postgresql-postgis \
     python-cherrypy \
-    python-colorama \
     python-mapnik \
-    python-psutil \
     python-serial \
     python-tilestache \
     rosbash \
@@ -59,9 +56,7 @@ ROS_EXPORT_DEPENDS = " \
     sensor-msgs \
     std-msgs \
     std-srvs \
-    unzip \
     vision-opencv \
-    wget \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -71,7 +66,6 @@ ROS_EXEC_DEPENDS = " \
     dnsmasq \
     gdal-bin \
     geometry-msgs \
-    hostapd \
     libnl-3 \
     mapnik-utils \
     mavlink \
@@ -79,9 +73,7 @@ ROS_EXEC_DEPENDS = " \
     osm2pgsql \
     postgresql-postgis \
     python-cherrypy \
-    python-colorama \
     python-mapnik \
-    python-psutil \
     python-serial \
     python-tilestache \
     rosbash \
@@ -91,9 +83,7 @@ ROS_EXEC_DEPENDS = " \
     sensor-msgs \
     std-msgs \
     std-srvs \
-    unzip \
     vision-opencv \
-    wget \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -112,6 +102,7 @@ SRC_URI[sha256sum] = "3e393fbfff16e69384d1a4d186439df31ff3667f3062c0b6fc28cebc4a
 S = "${WORKDIR}/rospilot-release-release-melodic-rospilot-1.5.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rospilot', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rospilot', d)}"
@@ -121,4 +112,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospilot/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospilot/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

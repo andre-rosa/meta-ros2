@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS-enabled OpenManipulator is a full open robot platform consisting of OpenSoftware​, OpenHardware and OpenCR(Embedded board)​.     The OpenManipulator is allowed users to control it more easily by linking with the MoveIt! package. Moreover it has full hardware compatibility with TurtleBot3​.      Even if you do not have a real robot, you can control the robot in the Gazebo simulator​."
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Darby Lim <thlim@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/open_manipulator_with_tb3"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "open_manipulator_with_tb3"
 ROS_BPN = "open_manipulator_with_tb3"
 
 ROS_BUILD_DEPENDS = ""
@@ -47,6 +49,7 @@ SRC_URI[sha256sum] = "92ac21aa5766a9a50f0d1db22e4585628d48d3e3fcafe7b397420e3e43
 S = "${WORKDIR}/open_manipulator_with_tb3-release-release-melodic-open_manipulator_with_tb3-1.1.0-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('open-manipulator-with-tb3', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('open-manipulator-with-tb3', d)}"
@@ -56,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

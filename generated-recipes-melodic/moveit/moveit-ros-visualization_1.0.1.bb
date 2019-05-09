@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Components of MoveIt! that offer visualization"
 AUTHOR = "Jon Binney <jon.binney@gmail.com>"
+ROS_AUTHOR = "Ioan Sucan <isucan@google.com>"
 HOMEPAGE = "http://moveit.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "moveit"
 ROS_BPN = "moveit_ros_visualization"
 
 ROS_BUILD_DEPENDS = " \
@@ -92,6 +94,7 @@ SRC_URI[sha256sum] = "dbd5ecd8a6d7bc84c82e54ae85c28908e317387cf59999ead83e1808b2
 S = "${WORKDIR}/moveit-release-release-melodic-moveit_ros_visualization-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
@@ -101,4 +104,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

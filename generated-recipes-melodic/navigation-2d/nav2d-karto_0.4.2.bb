@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Graph-based Simultaneous Localization and Mapping module.     Includes OpenKarto GraphSLAM library by &quot;SRI International&quot;."
 AUTHOR = "Sebastian Kasperski <sebastian.kasperski@dfki.de>"
+ROS_AUTHOR = "Sebastian Kasperski <sebastian.kasperski@dfki.de>"
 HOMEPAGE = "http://wiki.ros.org/robot_operator"
 SECTION = "devel"
 LICENSE = "GPL-3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_CN = "navigation_2d"
 ROS_BPN = "nav2d_karto"
 
 ROS_BUILD_DEPENDS = " \
@@ -22,7 +24,6 @@ ROS_BUILD_DEPENDS = " \
     nav2d-msgs \
     roscpp \
     suitesparse \
-    tbb \
     tf \
     visualization-msgs \
 "
@@ -39,7 +40,6 @@ ROS_EXPORT_DEPENDS = " \
     nav2d-msgs \
     roscpp \
     suitesparse \
-    tbb \
     tf \
     visualization-msgs \
 "
@@ -54,7 +54,6 @@ ROS_EXEC_DEPENDS = " \
     nav2d-msgs \
     roscpp \
     suitesparse \
-    tbb \
     tf \
     visualization-msgs \
 "
@@ -75,6 +74,7 @@ SRC_URI[sha256sum] = "43cc5478e64f5499139be34e4cdc8015fa3ca70d03bd49134c85b83e69
 S = "${WORKDIR}/navigation_2d-release-release-melodic-nav2d_karto-0.4.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-2d', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-2d', d)}"
@@ -84,4 +84,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

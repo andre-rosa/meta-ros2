@@ -7,15 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Python system and ros utilities."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier"
 HOMEPAGE = "http://ros.org/wiki/rocon_python_utils"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rocon_tools"
 ROS_BPN = "rocon_python_utils"
 
 ROS_BUILD_DEPENDS = " \
-    python-catkin-pkg \
     rostest \
 "
 
@@ -24,8 +25,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    python-catkin-pkg \
-    python-rospkg \
     rocon-std-msgs \
     roslib \
     rospy \
@@ -34,8 +33,6 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-catkin-pkg \
-    python-rospkg \
     rocon-std-msgs \
     roslib \
     rospy \
@@ -59,6 +56,7 @@ SRC_URI[sha256sum] = "276c59565857a8553d7b92113ae9c7567bcb2eeee5ea5f517e91066a33
 S = "${WORKDIR}/rocon_tools-release-release-melodic-rocon_python_utils-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rocon-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rocon-tools', d)}"
@@ -68,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

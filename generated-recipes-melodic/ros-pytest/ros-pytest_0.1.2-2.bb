@@ -12,10 +12,10 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "ros_pytest"
 ROS_BPN = "ros_pytest"
 
 ROS_BUILD_DEPENDS = " \
-    python-pytest \
     rospy \
 "
 
@@ -24,14 +24,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    python-pytest \
     rospy \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-pytest \
     rospy \
 "
 
@@ -53,6 +51,7 @@ SRC_URI[sha256sum] = "8204f445e165a048869660415c84fa1f478c1d1ecf8dabd79dd9a1187b
 S = "${WORKDIR}/ros_pytest-release-release-melodic-ros_pytest-0.1.2-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-pytest', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-pytest', d)}"
@@ -62,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-pytest/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-pytest/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

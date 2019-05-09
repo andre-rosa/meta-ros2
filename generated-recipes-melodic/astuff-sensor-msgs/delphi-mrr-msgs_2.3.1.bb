@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Message definitions for the Delphi MRR"
 AUTHOR = "AutonomouStuff Software Team <software@autonomoustuff.com>"
+ROS_AUTHOR = "Daniel Stanek <dstanek@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/delphi_mrr_msgs"
 SECTION = "devel"
 LICENSE = "GPL-3"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_CN = "astuff_sensor_msgs"
 ROS_BPN = "delphi_mrr_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "0f47230b42a53123e4f4a38eba9c775e8388bd3d04350273601fbe9988
 S = "${WORKDIR}/astuff_sensor_msgs-release-release-melodic-delphi_mrr_msgs-2.3.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('astuff-sensor-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('astuff-sensor-msgs', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

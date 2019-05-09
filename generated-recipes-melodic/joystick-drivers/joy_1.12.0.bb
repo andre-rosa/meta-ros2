@@ -7,16 +7,17 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS driver for a generic Linux joystick.     The joy package contains joy_node, a node that interfaces a     generic Linux joystick to ROS. This node publishes a &quot;Joy&quot;     message, which contains the current state of each one of the     joystick's buttons and axes."
 AUTHOR = "Jonathan Bohren <jbo@jhu.edu>"
+ROS_AUTHOR = "Morgan Quigley"
 HOMEPAGE = "http://www.ros.org/wiki/joy"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=4;endline=4;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "joystick_drivers"
 ROS_BPN = "joy"
 
 ROS_BUILD_DEPENDS = " \
     diagnostic-updater \
-    libsdl \
     roscpp \
     sensor-msgs \
 "
@@ -27,7 +28,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     diagnostic-updater \
-    libsdl \
     roscpp \
     sensor-msgs \
 "
@@ -36,7 +36,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     diagnostic-updater \
-    libsdl \
     roscpp \
     sensor-msgs \
 "
@@ -59,6 +58,7 @@ SRC_URI[sha256sum] = "b2942c8164aec9fee0c21d0cb7f8c1e77c3e5e555b10489024e3795de2
 S = "${WORKDIR}/joystick_drivers-release-release-melodic-joy-1.12.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('joystick-drivers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('joystick-drivers', d)}"
@@ -68,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

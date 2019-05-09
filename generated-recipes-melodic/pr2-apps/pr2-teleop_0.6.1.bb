@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "TODO"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "pr2_apps"
 ROS_BPN = "pr2_teleop"
 
 ROS_BUILD_DEPENDS = " \
@@ -69,6 +70,7 @@ SRC_URI[sha256sum] = "58621f94cdf383410e0b4e896be17b09320461196422f8e14e28e19a58
 S = "${WORKDIR}/pr2_apps-release-release-melodic-pr2_teleop-0.6.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-apps', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-apps', d)}"
@@ -78,4 +80,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

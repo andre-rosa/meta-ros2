@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rosmsg contains two command-line tools: <tt>rosmsg</tt> and     <tt>rossrv</tt>. <tt>rosmsg</tt> is a command-line tool for     displaying information about <a href="http://www.ros.org/wiki/msg">ROS Message     types</a>. <tt>rossrv</tt> is a command-line tool for displaying     information about <a href="http://www.ros.org/wiki/srv">ROS     Service types</a>."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Ken Conley"
 HOMEPAGE = "http://ros.org/wiki/rosmsg"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_comm"
 ROS_BPN = "rosmsg"
 
 ROS_BUILD_DEPENDS = ""
@@ -24,7 +26,6 @@ ROS_EXPORT_DEPENDS = " \
     catkin \
     genmsg \
     genpy \
-    python-rospkg \
     rosbag \
     roslib \
 "
@@ -35,7 +36,6 @@ ROS_EXEC_DEPENDS = " \
     catkin \
     genmsg \
     genpy \
-    python-rospkg \
     rosbag \
     roslib \
 "
@@ -58,6 +58,7 @@ SRC_URI[sha256sum] = "d6b76ae3f2df2b92e423f03b57ddd325f928e6d16b1fbcac2939fd173c
 S = "${WORKDIR}/ros_comm-release-release-melodic-rosmsg-1.14.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-comm', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm', d)}"
@@ -67,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

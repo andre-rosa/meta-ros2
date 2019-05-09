@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The Extensible Optimization Toolset (EXOTica) is a library for defining problems for robot motion planning. This package serves similar to a metapackage and contains dependencies onto all core-released exotica packages. It also builds the documentation."
 AUTHOR = "Vladimir Ivan <v.ivan@ed.ac.uk>"
+ROS_AUTHOR = "Vladimir Ivan <v.ivan@ed.ac.uk>"
 HOMEPAGE = "https://github.com/ipab-slmc/exotica"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "exotica"
 ROS_BPN = "exotica"
 
 ROS_BUILD_DEPENDS = ""
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "c765e57dd0796114cc5b4bdaaeb8f8f55dd9311bbcc7320273be1fc4d6
 S = "${WORKDIR}/exotica-release-release-melodic-exotica-5.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('exotica', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('exotica', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

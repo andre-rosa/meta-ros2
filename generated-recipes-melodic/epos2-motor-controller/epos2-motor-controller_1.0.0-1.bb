@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "EPOS2 motor controller driver"
 AUTHOR = "Sebastian Pütz <spuetz@uos.de>"
+ROS_AUTHOR = "Martí Morta Garriga <mmorta@iri.upc.edu>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_CN = "epos2_motor_controller"
 ROS_BPN = "epos2_motor_controller"
 
 ROS_BUILD_DEPENDS = " \
@@ -44,6 +46,7 @@ SRC_URI[sha256sum] = "11d26dcb5fc80fa69dd59c57b0a07ecae949192e92489d817a5fcaa5ff
 S = "${WORKDIR}/epos2_motor_controller-release-release-melodic-epos2_motor_controller-1.0.0-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('epos2-motor-controller', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('epos2-motor-controller', d)}"
@@ -53,4 +56,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/epos2-motor-controller/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/epos2-motor-controller/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

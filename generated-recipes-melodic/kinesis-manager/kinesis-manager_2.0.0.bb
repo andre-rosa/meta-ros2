@@ -7,18 +7,19 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "AWS Kinesis stream management library intended for use with the Kinesis Video Producer SDK"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
+ROS_AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/kinesis_manager"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "kinesis_manager"
 ROS_BPN = "kinesis_manager"
 
 ROS_BUILD_DEPENDS = " \
     aws-common \
     boost \
     curl \
-    log4cplus \
     openssl \
 "
 
@@ -31,7 +32,6 @@ ROS_EXPORT_DEPENDS = " \
     aws-common \
     boost \
     curl \
-    log4cplus \
     openssl \
 "
 
@@ -41,7 +41,6 @@ ROS_EXEC_DEPENDS = " \
     aws-common \
     boost \
     curl \
-    log4cplus \
     openssl \
 "
 
@@ -63,6 +62,7 @@ SRC_URI[sha256sum] = "455faeba33ec5a7f671ac3311e0afb2a4a6081da7a36cf5fdddbd83704
 S = "${WORKDIR}/kinesis_manager-release-release-melodic-kinesis_manager-2.0.0-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('kinesis-manager', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('kinesis-manager', d)}"
@@ -72,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-manager/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-manager/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

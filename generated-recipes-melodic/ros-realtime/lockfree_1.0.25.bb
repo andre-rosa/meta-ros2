@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The lockfree package contains lock-free data structures for use in multithreaded programming.  These      kinds of data structures are generally not as easy to use as single-threaded equivalents, and are not      always faster.  If you don't know you need to use one, try another structure with a lock around it      first."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
+ROS_AUTHOR = "Josh Faust"
 HOMEPAGE = "http://ros.org/wiki/lockfree"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_realtime"
 ROS_BPN = "lockfree"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "659c8d7707b844cc4c8c9eeab40e3e33fdd65f1ca0e07f71b471dd4dad
 S = "${WORKDIR}/ros_realtime-release-release-melodic-lockfree-1.0.25-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-realtime', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-realtime', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

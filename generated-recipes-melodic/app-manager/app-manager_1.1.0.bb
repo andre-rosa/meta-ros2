@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "app_manager"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "Jeremy Leibs"
 HOMEPAGE = "http://ros.org/wiki/app_manager"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "app_manager"
 ROS_BPN = "app_manager"
 
 ROS_BUILD_DEPENDS = " \
@@ -64,6 +66,7 @@ SRC_URI[sha256sum] = "1b206bd525d456027f4dcf75e78671fe6cbae7b78ebacc3707eb1d6116
 S = "${WORKDIR}/app_manager-release-release-melodic-app_manager-1.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('app-manager', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('app-manager', d)}"
@@ -73,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/app-manager/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/app-manager/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

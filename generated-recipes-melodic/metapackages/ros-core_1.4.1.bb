@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A metapackage to aggregate the packages required to use publish / subscribe, services, launch files, and other core ROS concepts."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
+ROS_AUTHOR = "Dirk Thomas"
 HOMEPAGE = "https://github.com/ros/metapackages"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "metapackages"
 ROS_BPN = "ros_core"
 
 ROS_BUILD_DEPENDS = ""
@@ -67,6 +69,7 @@ SRC_URI[sha256sum] = "390d24da9397fce3a11f1dc7a0a23fb0886b81a4cfd2473906508358a6
 S = "${WORKDIR}/metapackages-release-release-melodic-ros_core-1.4.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('metapackages', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('metapackages', d)}"
@@ -76,4 +79,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/metapackages/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/metapackages/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "camera_calibration_parsers contains routines for reading and writing camera calibration parameters."
 AUTHOR = "Jack O'Quin <jack.oquin@gmail.com>"
+ROS_AUTHOR = "Patrick Mihelich"
 HOMEPAGE = "http://ros.org/wiki/camera_calibration_parsers"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_common"
 ROS_BPN = "camera_calibration_parsers"
 
 ROS_BUILD_DEPENDS = " \
@@ -65,6 +67,7 @@ SRC_URI[sha256sum] = "dd350061b03da5dba0315515f603daa31204e71c43389cf9e57bf09c06
 S = "${WORKDIR}/image_common-release-release-melodic-camera_calibration_parsers-1.11.13-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-common', d)}"
@@ -74,4 +77,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Quickly load variables from rosparam with good command line error checking."
 AUTHOR = "Dave Coleman <davetcoleman@gmail.com>"
+ROS_AUTHOR = "Dave Coleman <davetcoleman@gmail.com>"
 HOMEPAGE = "https://github.com/davetcoleman/rosparam_shortcuts"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rosparam_shortcuts"
 ROS_BPN = "rosparam_shortcuts"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "98ae1e0dfc847978257e1ec58b7c183ac4304dc620ac460356d33473ad
 S = "${WORKDIR}/rosparam_shortcuts-release-release-melodic-rosparam_shortcuts-0.3.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosparam-shortcuts', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosparam-shortcuts', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosparam-shortcuts/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosparam-shortcuts/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

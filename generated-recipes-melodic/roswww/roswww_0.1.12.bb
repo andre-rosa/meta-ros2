@@ -7,16 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Feathery lightweight web server for ROS, that is based on <a href="http://www.tornadoweb.org/en/stable">Tornado</a> web server module."
 AUTHOR = "Isaac I.Y. Saito <iisaito@kinugarage.com>"
+ROS_AUTHOR = "Jonathan Mace"
 HOMEPAGE = "http://wiki.ros.org/roswww"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "roswww"
 ROS_BPN = "roswww"
 
-ROS_BUILD_DEPENDS = " \
-    python-catkin-pkg \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -56,6 +56,7 @@ SRC_URI[sha256sum] = "108f7156256acfd659a62d57362a1b92e59114962829148cd451b032d4
 S = "${WORKDIR}/roswww-release-release-melodic-roswww-0.1.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roswww', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roswww', d)}"
@@ -65,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roswww/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roswww/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

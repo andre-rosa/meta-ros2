@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The interactive_marker_tutorials package"
 AUTHOR = "William Woodall <william@osrfoundation.org>"
+ROS_AUTHOR = "David Gossow"
 HOMEPAGE = "http://ros.org/wiki/interactive_marker_tutorials"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "visualization_tutorials"
 ROS_BPN = "interactive_marker_tutorials"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "9871ffc4468273f1bd8f38a84e6dafa224057f8ebd89db86e0ab174ab4
 S = "${WORKDIR}/visualization_tutorials-release-release-melodic-interactive_marker_tutorials-0.10.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('visualization-tutorials', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('visualization-tutorials', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

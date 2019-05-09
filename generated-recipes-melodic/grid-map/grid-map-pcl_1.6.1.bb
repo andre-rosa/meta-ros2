@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Conversions between grid maps and Point Cloud Library (PCL) types."
 AUTHOR = "Péter Fankhauser <pfankhauser@anybotics.com>"
+ROS_AUTHOR = "Dominic Jud <djud@ethz.ch>"
 HOMEPAGE = "http://github.com/ethz-asl/grid_map"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "grid_map"
 ROS_BPN = "grid_map_pcl"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "cd37b6d275b0d1afa0755a76162c63914f46c02465318338481db82341
 S = "${WORKDIR}/grid_map-release-release-melodic-grid_map_pcl-1.6.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('grid-map', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('grid-map', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grid-map/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grid-map/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

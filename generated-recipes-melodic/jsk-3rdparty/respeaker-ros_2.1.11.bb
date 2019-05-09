@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The respeaker_ros package"
 AUTHOR = "Yuki Furuta <furushchev@jsk.imi.i.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Yuki Furuta <furushchev@jsk.imi.i.u-tokyo.ac.jp>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-1.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=211ba54883815de9f52a3dcd9f281523"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "respeaker_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -27,7 +29,6 @@ ROS_EXPORT_DEPENDS = " \
     audio-common-msgs \
     dynamic-reconfigure \
     geometry-msgs \
-    python-numpy \
     python-pyaudio \
     python-pyusb-pip \
     std-msgs \
@@ -41,7 +42,6 @@ ROS_EXEC_DEPENDS = " \
     audio-common-msgs \
     dynamic-reconfigure \
     geometry-msgs \
-    python-numpy \
     python-pyaudio \
     python-pyusb-pip \
     std-msgs \
@@ -64,6 +64,7 @@ SRC_URI[sha256sum] = "d497d9fe2e707120d60d0ce824e8476a9b65b3409d36d8e899cacc9325
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-respeaker_ros-2.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -73,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "async_comm"
 ROS_BPN = "async_comm"
 
 ROS_BUILD_DEPENDS = " \
@@ -47,6 +48,7 @@ SRC_URI[sha256sum] = "9a87d3e8db68cf7c7fc3c318f1d31d6660dd5ca39172d0f78efdf6330d
 S = "${WORKDIR}/async_comm-release-release-melodic-async_comm-0.1.1-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('async-comm', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('async-comm', d)}"
@@ -56,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-comm/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

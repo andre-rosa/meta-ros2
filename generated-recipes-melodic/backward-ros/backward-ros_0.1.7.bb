@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "backward_ros"
 ROS_BPN = "backward_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +52,7 @@ SRC_URI[sha256sum] = "3cec255db3ff1af9bfc80b31ca88a9be50f11d663d9213edf457b0a7ed
 S = "${WORKDIR}/backward_ros-release-release-melodic-backward_ros-0.1.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('backward-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('backward-ros', d)}"
@@ -60,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/backward-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/backward-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

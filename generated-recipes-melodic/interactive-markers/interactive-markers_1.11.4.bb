@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "3D interactive marker communication library for RViz and similar tools."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
+ROS_AUTHOR = "David Gossow"
 HOMEPAGE = "http://ros.org/wiki/interactive_markers"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=5ee5b8b046ae48ad94a2037ca953a67b"
 
+ROS_CN = "interactive_markers"
 ROS_BPN = "interactive_markers"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "600001c06acb4e88fe5c9f512476d50b41a795356643bb02e528748b15
 S = "${WORKDIR}/interactive_markers-release-release-melodic-interactive_markers-1.11.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('interactive-markers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('interactive-markers', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-markers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-markers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

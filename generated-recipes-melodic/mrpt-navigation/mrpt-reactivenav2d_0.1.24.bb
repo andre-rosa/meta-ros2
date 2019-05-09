@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Reactive navigation for 2D robots using MRPT navigation algorithms (TP-Space)"
 AUTHOR = "Jose-Luis Blanco-Claraco <jlblanco@ual.es>"
+ROS_AUTHOR = "Jose-Luis Blanco-Claraco <jlblanco@ual.es>"
 HOMEPAGE = "http://wiki.ros.org/mrpt_reactivenav2d"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mrpt_navigation"
 ROS_BPN = "mrpt_reactivenav2d"
 
 ROS_BUILD_DEPENDS = " \
@@ -72,6 +74,7 @@ SRC_URI[sha256sum] = "9ed18349bd87a33282aebd32c8a56faae62fe5bbb19330f3ba29ffd6c8
 S = "${WORKDIR}/mrpt_navigation-release-release-melodic-mrpt_reactivenav2d-0.1.24-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-navigation', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-navigation', d)}"
@@ -81,4 +84,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

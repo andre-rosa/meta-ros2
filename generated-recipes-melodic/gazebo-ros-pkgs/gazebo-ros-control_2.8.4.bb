@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "gazebo_ros_control"
 AUTHOR = "Jose Luis Rivero <jrivero@osrfoundation.org>"
+ROS_AUTHOR = "Jonathan Bohren"
 HOMEPAGE = "http://ros.org/wiki/gazebo_ros_control"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "gazebo_ros_pkgs"
 ROS_BPN = "gazebo_ros_control"
 
 ROS_BUILD_DEPENDS = " \
@@ -77,6 +79,7 @@ SRC_URI[sha256sum] = "bf13aeb1f6a28b8510e759106a5f8d5b0c34d2e05dee6078e1bd12447f
 S = "${WORKDIR}/gazebo_ros_pkgs-release-release-melodic-gazebo_ros_control-2.8.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('gazebo-ros-pkgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gazebo-ros-pkgs', d)}"
@@ -86,4 +89,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gazebo-ros-pkgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gazebo-ros-pkgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

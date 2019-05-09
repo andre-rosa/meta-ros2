@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Assorted filters designed to operate on 2D planar laser scanners,     which use the sensor_msgs/LaserScan type."
 AUTHOR = "Jon Binney <jon.binney@gmail.com>"
+ROS_AUTHOR = "Tully Foote"
 HOMEPAGE = "http://ros.org/wiki/laser_filters"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "laser_filters"
 ROS_BPN = "laser_filters"
 
 ROS_BUILD_DEPENDS = " \
@@ -70,6 +72,7 @@ SRC_URI[sha256sum] = "7429472a08b080cae1e101e9e96443b884791926ad59479c5538096693
 S = "${WORKDIR}/laser_filters-release-release-melodic-laser_filters-1.8.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('laser-filters', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-filters', d)}"
@@ -79,4 +82,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filters/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filters/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

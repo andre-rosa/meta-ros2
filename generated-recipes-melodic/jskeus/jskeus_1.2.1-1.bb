@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "EusLisp software developed and used by JSK at The University of Tokyo"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "JSK Alumnis"
 HOMEPAGE = "http://euslisp.github.io/jskeus/manual.html"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "jskeus"
 ROS_BPN = "jskeus"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "7029b7cebfd39f6ff41fe8988b972ec265072336cad162905116689fea
 S = "${WORKDIR}/jskeus-release-release-melodic-jskeus-1.2.1-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jskeus', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jskeus', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jskeus/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jskeus/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

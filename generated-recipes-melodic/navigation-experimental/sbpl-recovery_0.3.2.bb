@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A recovery behavior that uses the sbpl lattice planner and the pose     follower to try to plan in full 3D to get the robot out of really tricky     situations."
 AUTHOR = "Martin Günther <martin.guenther@dfki.de>"
+ROS_AUTHOR = "Eitan Marder-Eppstein"
 HOMEPAGE = "http://wiki.ros.org/sbpl_recovery"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "navigation_experimental"
 ROS_BPN = "sbpl_recovery"
 
 ROS_BUILD_DEPENDS = " \
@@ -69,6 +71,7 @@ SRC_URI[sha256sum] = "b9c8d77b01c68be444f7e4c5dfa555f55c23076a8e6b060b755ca6883e
 S = "${WORKDIR}/navigation_experimental-release-release-melodic-sbpl_recovery-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-experimental', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-experimental', d)}"
@@ -78,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains a tool for setting and publishing joint state values for a given URDF."
 AUTHOR = "Chris Lalancette <clalancette@osrfoundation.org>"
+ROS_AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/joint_state_publisher"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "joint_state_publisher"
 ROS_BPN = "joint_state_publisher"
 
 ROS_BUILD_DEPENDS = ""
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "47bcd5c3c46ffd2d73ee0910bf584a3a23be56e2e423f3849b8771e55f
 S = "${WORKDIR}/joint_state_publisher-release-release-melodic-joint_state_publisher-1.12.13-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('joint-state-publisher', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('joint-state-publisher', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joint-state-publisher/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joint-state-publisher/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The move_base_flex messages package providing the action definition files for the action GetPath, ExePath, Recovery and MoveBase. The action servers providing these action are implemented in <a href="http://wiki.ros.org/mbf_abstract_nav">mbf_abstract_nav</a>."
 AUTHOR = "Jorge Santos <santos@magazino.eu>"
+ROS_AUTHOR = "Jorge Santos <santos@magazino.eu>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "3-Clause-BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=2a17ba6bda1db7ca47fe93a1560e517b"
 
+ROS_CN = "move_base_flex"
 ROS_BPN = "mbf_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -62,6 +64,7 @@ SRC_URI[sha256sum] = "9ce647ffa0b672e1cda95157baf45218b9000882e3cad50dd384c5c59a
 S = "${WORKDIR}/move_base_flex-release-release-melodic-mbf_msgs-0.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('move-base-flex', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('move-base-flex', d)}"
@@ -71,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

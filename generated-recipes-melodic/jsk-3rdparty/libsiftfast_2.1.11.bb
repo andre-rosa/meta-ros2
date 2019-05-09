@@ -7,21 +7,21 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Library to compute SIFT features"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "zerofrog"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "libsiftfast"
 
 ROS_BUILD_DEPENDS = " \
     boost \
     mk \
-    python-numpy \
     rosboost-cfg \
     roslib \
     rospack \
-    subversion \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -30,14 +30,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     boost \
-    python-numpy \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     boost \
-    python-numpy \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -56,6 +54,7 @@ SRC_URI[sha256sum] = "ca3a75a0f18b137f41486124251c3fc8319bbe4b7b6b959662f46067df
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-libsiftfast-2.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -65,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

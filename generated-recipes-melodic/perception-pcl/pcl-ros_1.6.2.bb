@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "PCL (Point Cloud Library) ROS interface stack. PCL-ROS is the preferred   bridge for 3D applications involving n-D Point Clouds and 3D geometry   processing in ROS."
 AUTHOR = "Paul Bovbel <paul@bovbel.com>"
+ROS_AUTHOR = "Open Perception"
 HOMEPAGE = "http://ros.org/wiki/perception_pcl"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=20;endline=20;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "perception_pcl"
 ROS_BPN = "pcl_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -95,6 +97,7 @@ SRC_URI[sha256sum] = "deb1b59fcc5f3f9247e9fa90e7f5bde35d22668aa13a9300a4d6d33155
 S = "${WORKDIR}/perception_pcl-release-release-melodic-pcl_ros-1.6.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('perception-pcl', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('perception-pcl', d)}"
@@ -104,4 +107,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/perception-pcl/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/perception-pcl/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

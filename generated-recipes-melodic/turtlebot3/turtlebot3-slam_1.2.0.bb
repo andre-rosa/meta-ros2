@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The turtlebot3_slam package provides roslaunch scripts for starting the SLAM"
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Pyo <pyo@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/turtlebot3_slam"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "turtlebot3"
 ROS_BPN = "turtlebot3_slam"
 
 ROS_BUILD_DEPENDS = " \
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "dd2f8644cf9019753493e5e080b06f28b097bd90e02669b859e708291f
 S = "${WORKDIR}/turtlebot3-release-release-melodic-turtlebot3_slam-1.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot3', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

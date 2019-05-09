@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This is an implementation of the EtherCAT master protocol for the PR2       robot based on the work done at Flanders' Mechatronics Technology Centre."
 AUTHOR = "David Feil-Seifer <dave@cse.unr.edu>"
+ROS_AUTHOR = "Austin Hendrix"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Binary-Only"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=a99890d7e16071ac30156cdebd292056"
 
+ROS_CN = "eml"
 ROS_BPN = "eml"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "be4a25b2632c6064f9d2567a5d1f9915aca203bebd8eda03e9cb3758d9
 S = "${WORKDIR}/eml-release-release-melodic-eml-1.8.15-2"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('eml', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('eml', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eml/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eml/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

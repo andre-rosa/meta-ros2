@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The configuration node loads a given launch configuration and offers services to       list or start the contained nodes. It provides additional description       extracted from launch file. This is used by node_manager_fkie."
 AUTHOR = "Alexander Tiderko <alexander.tiderko@gmail.com>"
+ROS_AUTHOR = "Alexander Tiderko"
 HOMEPAGE = "http://ros.org/wiki/default_cfg_fkie"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "multimaster_fkie"
 ROS_BPN = "default_cfg_fkie"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "0b43fafcadef2aeff4fd5e7325daac4eeab711e5323c32fb37606bd318
 S = "${WORKDIR}/multimaster_fkie-release-release-melodic-default_cfg_fkie-0.8.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('multimaster-fkie', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('multimaster-fkie', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

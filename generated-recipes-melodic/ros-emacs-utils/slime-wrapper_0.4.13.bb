@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "public_domain"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=90cf8e14bb501c1f6d3eda81e45e438a"
 
+ROS_CN = "ros_emacs_utils"
 ROS_BPN = "slime_wrapper"
 
 ROS_BUILD_DEPENDS = ""
@@ -20,15 +21,11 @@ ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    readline \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = " \
-    readline \
-"
+ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = ""
@@ -46,6 +43,7 @@ SRC_URI[sha256sum] = "e2a2cbbdcc477518699369b9a35fdfb1dd21ca3e9fed2615fe87c1a5fe
 S = "${WORKDIR}/ros_emacs_utils-release-release-melodic-slime_wrapper-0.4.13-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-emacs-utils', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-emacs-utils', d)}"
@@ -55,4 +53,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

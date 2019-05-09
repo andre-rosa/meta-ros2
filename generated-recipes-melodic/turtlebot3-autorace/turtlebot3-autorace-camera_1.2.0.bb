@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "TurtleBot3 AutoRace ROS package that controls Raspberry Pi Camera, and process the image"
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Gilbert <kkjong@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/turtlebot3_autorace_camera"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "turtlebot3_autorace"
 ROS_BPN = "turtlebot3_autorace_camera"
 
 ROS_BUILD_DEPENDS = " \
@@ -31,8 +33,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     cv-bridge \
     dynamic-reconfigure \
-    python-enum34 \
-    python-numpy \
     python-opencv \
     rospy \
     sensor-msgs \
@@ -54,6 +54,7 @@ SRC_URI[sha256sum] = "fe6adfc679b7e08c054367e89c6a94da5cbecbd7f51411298fd4d795c6
 S = "${WORKDIR}/turtlebot3_autorace-release-release-melodic-turtlebot3_autorace_camera-1.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot3-autorace', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3-autorace', d)}"
@@ -63,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-autorace/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-autorace/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

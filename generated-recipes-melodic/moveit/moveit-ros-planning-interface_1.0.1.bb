@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Components of MoveIt! that offer simpler interfaces to planning and execution"
 AUTHOR = "Michael Ferguson <mferguson@fetchrobotics.com>"
+ROS_AUTHOR = "Ioan Sucan <isucan@google.com>"
 HOMEPAGE = "http://moveit.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "moveit"
 ROS_BPN = "moveit_ros_planning_interface"
 
 ROS_BUILD_DEPENDS = " \
@@ -23,7 +25,6 @@ ROS_BUILD_DEPENDS = " \
     moveit-ros-move-group \
     moveit-ros-planning \
     moveit-ros-warehouse \
-    python \
     rosconsole \
     roscpp \
     rospy \
@@ -35,7 +36,6 @@ ROS_BUILD_DEPENDS = " \
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
-    python-catkin-pkg-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
@@ -46,7 +46,6 @@ ROS_EXPORT_DEPENDS = " \
     moveit-ros-move-group \
     moveit-ros-planning \
     moveit-ros-warehouse \
-    python \
     rosconsole \
     roscpp \
     rospy \
@@ -66,7 +65,6 @@ ROS_EXEC_DEPENDS = " \
     moveit-ros-move-group \
     moveit-ros-planning \
     moveit-ros-warehouse \
-    python \
     rosconsole \
     roscpp \
     rospy \
@@ -95,6 +93,7 @@ SRC_URI[sha256sum] = "3d9447fa2f84157ef3613cc32133286a7475fee7410a3bdbaa6653833a
 S = "${WORKDIR}/moveit-release-release-melodic-moveit_ros_planning_interface-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit', d)}"
@@ -104,4 +103,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

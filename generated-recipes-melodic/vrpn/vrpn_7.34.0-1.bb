@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The VRPN is a library and set of servers that interfaces with virtual-reality systems, such as VICON, OptiTrack, and others."
 AUTHOR = "Paul Bovbel <paul@bovbel.com>"
+ROS_AUTHOR = "Russell M. Taylor"
 HOMEPAGE = "https://github.com/vrpn/vrpn/wiki"
 SECTION = "devel"
 LICENSE = "BSL1.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=1c7945be8716a98e36e855a20dc9b844"
 
+ROS_CN = "vrpn"
 ROS_BPN = "vrpn"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "1dd53934e26a049fba648ddb79d87c96a229181479c14a8c743fde9bdd
 S = "${WORKDIR}/vrpn-release-release-melodic-vrpn-7.34.0-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('vrpn', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vrpn', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrpn/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrpn/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,18 +7,18 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The core rosbridge package, repsonsible for interpreting JSON andperforming     the appropriate ROS action, like subscribe, publish, call service, and     interact with params."
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
+ROS_AUTHOR = "Jonathan Mace <jonathan.c.mace@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/rosbridge_library"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rosbridge_suite"
 ROS_BPN = "rosbridge_library"
 
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     message-generation \
-    python-bson \
-    python-imaging \
     std-msgs \
 "
 
@@ -33,8 +33,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     message-runtime \
-    python-bson \
-    python-imaging \
     roscpp \
     rosgraph \
     rospy \
@@ -65,12 +63,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/RobotWebTools-release/rosbridge_suite-release/archive/release/melodic/rosbridge_library/0.11.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "3707cda6622d748363eee6fd2d9b8525"
-SRC_URI[sha256sum] = "e4fef5ce861e53fd8e2536b7545147f92af1fab2c07e61d6c15a53f9ce3de06d"
-S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosbridge_library-0.11.0-0"
+SRC_URI = "https://github.com/RobotWebTools-release/rosbridge_suite-release/archive/release/melodic/rosbridge_library/0.11.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "85f9844ee5f82257e48a69387fe8bab4"
+SRC_URI[sha256sum] = "7e1d6306830260a6eb609ab2e70f84b75127b9080047fd5f038de9ef9a394e01"
+S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosbridge_library-0.11.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosbridge-suite', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbridge-suite', d)}"
@@ -80,4 +79,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

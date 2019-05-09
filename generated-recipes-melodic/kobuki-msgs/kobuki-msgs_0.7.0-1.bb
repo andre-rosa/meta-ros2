@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "<p>       Kobuki message and service types: custom messages and services for Kobuki packages.     </p>"
 AUTHOR = "Daniel Stonier <stonier@yujinrobot.com>"
+ROS_AUTHOR = "Daniel Stonier <stonier@yujinrobot.com>"
 HOMEPAGE = "http://ros.org/wiki/kobuki_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "kobuki_msgs"
 ROS_BPN = "kobuki_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "11990d638a2cea62be1b3f6a33e17a6ac080ec52eda926bb69c173d7c1
 S = "${WORKDIR}/kobuki_msgs-release-release-melodic-kobuki_msgs-0.7.0-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('kobuki-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('kobuki-msgs', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

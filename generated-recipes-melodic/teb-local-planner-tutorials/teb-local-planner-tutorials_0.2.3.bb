@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The teb_local_planner_tutorials package"
 AUTHOR = "Christoph Rösmann <christoph.roesmann@tu-dortmund.de>"
+ROS_AUTHOR = "Christoph Rösmann <christoph.roesmann@tu-dortmund.de>"
 HOMEPAGE = "http://wiki.ros.org/teb_local_planner_tutorials"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "teb_local_planner_tutorials"
 ROS_BPN = "teb_local_planner_tutorials"
 
 ROS_BUILD_DEPENDS = ""
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "0a565d87f210b89666efd8a62608439a79462561b64a5fa731756ec5af
 S = "${WORKDIR}/teb_local_planner_tutorials-release-release-melodic-teb_local_planner_tutorials-0.2.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('teb-local-planner-tutorials', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teb-local-planner-tutorials', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner-tutorials/${BPN}.i
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner-tutorials/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

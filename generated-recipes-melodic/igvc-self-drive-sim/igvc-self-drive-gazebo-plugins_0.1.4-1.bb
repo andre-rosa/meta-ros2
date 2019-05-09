@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Gazebo plugins for IGVC Self-Drive simulator"
 AUTHOR = "Micho Radovnikovich <mtradovn@oakland.edu>"
+ROS_AUTHOR = "Micho Radovnikovich <mtradovn@oakland.edu>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=6c4b0dfc2c040991f7798d2c24b8fc03"
 
+ROS_CN = "igvc_self_drive_sim"
 ROS_BPN = "igvc_self_drive_gazebo_plugins"
 
 ROS_BUILD_DEPENDS = " \
@@ -58,6 +60,7 @@ SRC_URI[sha256sum] = "b05458848d4831c3a1dda0396285a2380bca48743fd980319fcacd645e
 S = "${WORKDIR}/igvc_self_drive_sim-release-release-melodic-igvc_self_drive_gazebo_plugins-0.1.4-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('igvc-self-drive-sim', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('igvc-self-drive-sim', d)}"
@@ -67,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/igvc-self-drive-sim/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/igvc-self-drive-sim/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

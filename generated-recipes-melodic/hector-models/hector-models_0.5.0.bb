@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "hector_models contains (urdf) models of robots, sensors etc."
 AUTHOR = "Johannes Meyer <johannes@intermodalics.eu>"
+ROS_AUTHOR = "Stefan Kohlbrecher <kohlbrecher@sim.tu-darmstadt.de>"
 HOMEPAGE = "http://ros.org/wiki/hector_models"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "hector_models"
 ROS_BPN = "hector_models"
 
 ROS_BUILD_DEPENDS = ""
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "aea206089e02162e6f34440dd82a3c9f0c66f4030e8dc4738838c77a9a
 S = "${WORKDIR}/hector_models-release-release-melodic-hector_models-0.5.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('hector-models', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hector-models', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

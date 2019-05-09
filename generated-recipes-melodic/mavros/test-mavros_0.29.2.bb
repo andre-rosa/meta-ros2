@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Tests for MAVROS package"
 AUTHOR = "Vladimir Ermakov <vooon341@gmail.com>"
+ROS_AUTHOR = "Nuno Marques <n.marques21@hotmail.com>"
 HOMEPAGE = "https://github.com/mavlink/mavros.git"
 SECTION = "devel"
 LICENSE = "BSD & GPL-3 & LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mavros"
 ROS_BPN = "test_mavros"
 
 ROS_BUILD_DEPENDS = " \
@@ -74,6 +76,7 @@ SRC_URI[sha256sum] = "de15444e834540abb574c250800527f2d808fe7590139785ea7df46a07
 S = "${WORKDIR}/mavros-release-release-melodic-test_mavros-0.29.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mavros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mavros', d)}"
@@ -83,4 +86,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

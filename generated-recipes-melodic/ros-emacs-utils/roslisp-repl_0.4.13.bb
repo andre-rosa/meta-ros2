@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides a script that launches Emacs with Slime (the     Superior Lisp Interaction Mode) ready for Lisp development and     roslisp."
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
+ROS_AUTHOR = "Lorenz Moesenlechner"
 HOMEPAGE = "https://github.com/code-iai/ros_emacs_utils"
 SECTION = "devel"
 LICENSE = "public_domain"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=90cf8e14bb501c1f6d3eda81e45e438a"
 
+ROS_CN = "ros_emacs_utils"
 ROS_BPN = "roslisp_repl"
 
 ROS_BUILD_DEPENDS = ""
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "8a3c6a1532c2cda1967b880e2a26474c04966c606d4cf5ef5a1fcbe65f
 S = "${WORKDIR}/ros_emacs_utils-release-release-melodic-roslisp_repl-0.4.13-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-emacs-utils', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-emacs-utils', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

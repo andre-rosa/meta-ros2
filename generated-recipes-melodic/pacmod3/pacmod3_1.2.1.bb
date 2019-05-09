@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "AutonomouStuff PACMod v3 Driver Package"
 AUTHOR = "AutonomouStuff Software Team <software@autonomoustuff.com>"
+ROS_AUTHOR = "Joe Driscoll <jdriscoll@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/pacmod3"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "pacmod3"
 ROS_BPN = "pacmod3"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "daff58bf63c7d7e4d76b098f59076691ba3bb27401201eb39681d229ad
 S = "${WORKDIR}/pacmod3-release-release-melodic-pacmod3-1.2.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pacmod3', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pacmod3', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pacmod3/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pacmod3/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

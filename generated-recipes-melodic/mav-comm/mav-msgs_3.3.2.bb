@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Package containing messages for communicating with rotary wing MAVs"
 AUTHOR = "Rik Bähnemann <brik@ethz.ch>"
+ROS_AUTHOR = "Simon Lynen"
 HOMEPAGE = "https://github.com/ethz-asl/mav_comm"
 SECTION = "devel"
 LICENSE = "ASL-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=19;endline=19;md5=5f4e9e9dcee74b02aa26af144fe2f0af"
 
+ROS_CN = "mav_comm"
 ROS_BPN = "mav_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -61,6 +63,7 @@ SRC_URI[sha256sum] = "32087bfaf586c5c054af80c396360bbe6997998cec9f6ac44233020ce9
 S = "${WORKDIR}/mav_comm-release-release-melodic-mav_msgs-3.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mav-comm', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mav-comm', d)}"
@@ -70,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mav-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mav-comm/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

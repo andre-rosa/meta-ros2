@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Defines an API for access point control based on      dynamic_reconfigure. Other packages must     implement the API for various access-point models:      for example: hostapd_access_point for hostapd-based control or     linksys_access_point for Linksys router web interface."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
+ROS_AUTHOR = "Catalin Drula"
 HOMEPAGE = "http://ros.org/wiki/access_point_control"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "linux_networking"
 ROS_BPN = "access_point_control"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "39437c7678dd643ca15a57d31c319e44d806e652a955b8f040cda62393
 S = "${WORKDIR}/linux_networking-release-release-melodic-access_point_control-1.0.13-2"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('linux-networking', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Makes it possible to run the ros_ethercat_loop without using sudo. Forked from pr2-grant"
 AUTHOR = "Shadow Robot's software team <software@shadowrobot.com>"
+ROS_AUTHOR = "Ugo Cupcic <software@shadowrobot.com>"
 HOMEPAGE = "http://www.shadowrobot.com/"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ethercat_grant"
 ROS_BPN = "ethercat_grant"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "3b5baa1b6b84b2538af53dcc410d980579cbfc932f002dcf3cc25071bb
 S = "${WORKDIR}/ethercat_grant-release-release-melodic-ethercat_grant-0.2.5-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ethercat-grant', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ethercat-grant', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ethercat-grant/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ethercat-grant/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

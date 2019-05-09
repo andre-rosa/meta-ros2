@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS Package for controlling the AStuff PACMod with a Joystick"
 AUTHOR = "AutonomouStuff Software Development Team <software@autonomoustuff.com>"
+ROS_AUTHOR = "Joe Driscoll <jdriscoll@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/pacmod_game_control"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "pacmod_game_control"
 ROS_BPN = "pacmod_game_control"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "279a95661041ef6f88cf7ba26f5f61af4010fac0ca579a38eddad0088f
 S = "${WORKDIR}/pacmod_game_control-release-release-melodic-pacmod_game_control-2.3.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pacmod-game-control', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pacmod-game-control', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pacmod-game-control/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pacmod-game-control/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Provides nodes to assemble point clouds from either LaserScan or PointCloud messages"
 AUTHOR = "Jonathan Binney <jon.binney@gmail.com>"
+ROS_AUTHOR = "Vijay Pradeep"
 HOMEPAGE = "http://ros.org/wiki/laser_assembler"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "laser_assembler"
 ROS_BPN = "laser_assembler"
 
 ROS_BUILD_DEPENDS = " \
@@ -70,6 +72,7 @@ SRC_URI[sha256sum] = "e9f578692846ccaf041da048fcfcef51d1a421a2869c94d2970541af31
 S = "${WORKDIR}/laser_assembler-release-release-melodic-laser_assembler-1.7.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('laser-assembler', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-assembler', d)}"
@@ -79,4 +82,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-assembler/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-assembler/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

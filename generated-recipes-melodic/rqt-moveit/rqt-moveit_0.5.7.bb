@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "An rqt-based tool that assists monitoring tasks    for <a href="http://ros.org/wiki/moveit">MoveIt!</a> motion planner    developers and users. Currently the following items are monitored if they    are either running, existing or published:    <ul>    <li>Node: /move_group</li>    <li>Parameter: [/robot_description, /robot_description_semantic]</li>    <li>Topic: Following types are monitored. Published &quot;names&quot; are ignored.<br/>        [sensor_msgs/PointCloud, sensor_msgs/PointCloud2,         sensor_msgs/Image, sensor_msgs/CameraInfo]</li>    </ul>    Since this package is not made by the MoveIt! development team (although with    assistance from the them), please post issue reports to the designated    tracker (not MoveIt!'s main tracker)."
 AUTHOR = "Isaac I.Y. Saito <iisaito@kinugarage.com>"
+ROS_AUTHOR = "Isaac Saito"
 HOMEPAGE = "http://wiki.ros.org/rqt_moveit"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=26;endline=26;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_moveit"
 ROS_BPN = "rqt_moveit"
 
 ROS_BUILD_DEPENDS = ""
@@ -62,6 +64,7 @@ SRC_URI[sha256sum] = "979c1ec400699c3597ee3bc9044aeab021f3cbb79bdf2edfe7572c0ee7
 S = "${WORKDIR}/rqt_moveit-release-release-melodic-rqt_moveit-0.5.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-moveit', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-moveit', d)}"
@@ -71,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-moveit/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-moveit/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

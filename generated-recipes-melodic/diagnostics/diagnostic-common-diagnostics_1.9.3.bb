@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "diagnostic_common_diagnostics"
 AUTHOR = "Austin Hendrix <namniart@gmail.com>"
+ROS_AUTHOR = "Brice Rebsamen <brice.rebsamen@gmail.com>"
 HOMEPAGE = "http://ros.org/wiki/diagnostic_common_diagnostics"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "diagnostics"
 ROS_BPN = "diagnostic_common_diagnostics"
 
 ROS_BUILD_DEPENDS = " \
@@ -26,8 +28,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     diagnostic-updater \
-    hddtemp \
-    python-psutil \
     rospy \
     tf \
 "
@@ -36,8 +36,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     diagnostic-updater \
-    hddtemp \
-    python-psutil \
     rospy \
     tf \
 "
@@ -58,6 +56,7 @@ SRC_URI[sha256sum] = "e9729593c5e73825e769d670d78ba809db061ffb344132201020eae878
 S = "${WORKDIR}/diagnostics-release-release-melodic-diagnostic_common_diagnostics-1.9.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('diagnostics', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('diagnostics', d)}"
@@ -67,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

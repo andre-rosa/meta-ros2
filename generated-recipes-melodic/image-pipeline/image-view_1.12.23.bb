@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A simple viewer for ROS image topics. Includes a specialized viewer   for stereo + disparity images."
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
+ROS_AUTHOR = "Patrick Mihelich"
 HOMEPAGE = "http://www.ros.org/wiki/image_view"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_pipeline"
 ROS_BPN = "image_view"
 
 ROS_BUILD_DEPENDS = " \
@@ -80,6 +82,7 @@ SRC_URI[sha256sum] = "db828d83d6f3afbd0b9478c6311ea0da425a062269e91a001da1aaadcd
 S = "${WORKDIR}/image_pipeline-release-release-melodic-image_view-1.12.23-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-pipeline', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-pipeline', d)}"
@@ -89,4 +92,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Converts a 3D Point Cloud into a 2D laser scan. This is useful for making devices like the Kinect appear like a laser scanner for 2D-based algorithms (e.g. laser-based SLAM)."
 AUTHOR = "Paul Bovbel <paul@bovbel.com>"
+ROS_AUTHOR = "Paul Bovbel <paul@bovbel.com>"
 HOMEPAGE = "http://ros.org/wiki/perception_pcl"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "pointcloud_to_laserscan"
 ROS_BPN = "pointcloud_to_laserscan"
 
 ROS_BUILD_DEPENDS = " \
@@ -68,6 +70,7 @@ SRC_URI[sha256sum] = "58e4c4ce3d73beaebecfda86a761f17d4680cad274ab57d361ab9bdfe7
 S = "${WORKDIR}/pointcloud_to_laserscan-release-release-melodic-pointcloud_to_laserscan-1.4.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pointcloud-to-laserscan', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pointcloud-to-laserscan', d)}"
@@ -77,4 +80,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pointcloud-to-laserscan/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pointcloud-to-laserscan/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

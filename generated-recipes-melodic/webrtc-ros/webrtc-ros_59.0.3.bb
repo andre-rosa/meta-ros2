@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A collection of ROS utilities for using WebRTC with ROS"
 AUTHOR = "Timo Röhling <timo.roehling@fkie.fraunhofer.de>"
+ROS_AUTHOR = "Mitchell Wills <mwills@wpi.edu>"
 HOMEPAGE = "http://wiki.ros.org/webrtc_ros"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "webrtc_ros"
 ROS_BPN = "webrtc_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -63,6 +65,7 @@ SRC_URI[sha256sum] = "2e24d39a6cf8c98c8f2b9229dd5a0fabd731cf495abf76547baf476d26
 S = "${WORKDIR}/webrtc_ros-release-release-melodic-webrtc_ros-59.0.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('webrtc-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('webrtc-ros', d)}"
@@ -72,4 +75,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webrtc-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webrtc-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Metapackage allowing easy installation of Velodyne simulation components."
 AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
+ROS_AUTHOR = "Kevin Hallenbeck"
 HOMEPAGE = "http://wiki.ros.org/velodyne_simulator"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "velodyne_simulator"
 ROS_BPN = "velodyne_simulator"
 
 ROS_BUILD_DEPENDS = ""
@@ -45,6 +47,7 @@ SRC_URI[sha256sum] = "d6cbbbf0f73845a641801a326ecb69780982d3e6523330cb0358093e16
 S = "${WORKDIR}/velodyne_simulator-release-release-melodic-velodyne_simulator-1.0.9-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('velodyne-simulator', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('velodyne-simulator', d)}"
@@ -54,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

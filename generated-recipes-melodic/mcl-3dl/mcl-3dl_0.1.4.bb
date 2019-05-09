@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "3-D/6-DOF localization for mobile robots with 3-D LIDAR(s)"
 AUTHOR = "Atsushi Watanabe <atsushi.w@ieee.org>"
+ROS_AUTHOR = "Atsushi Watanabe <atsushi.w@ieee.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mcl_3dl"
 ROS_BPN = "mcl_3dl"
 
 ROS_BUILD_DEPENDS = " \
@@ -91,6 +93,7 @@ SRC_URI[sha256sum] = "28b8194bd2312f9add9f1d4350364f6adcaab721056dbaa6924d99e727
 S = "${WORKDIR}/mcl_3dl-release-release-melodic-mcl_3dl-0.1.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mcl-3dl', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mcl-3dl', d)}"
@@ -100,4 +103,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mcl-3dl/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mcl-3dl/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

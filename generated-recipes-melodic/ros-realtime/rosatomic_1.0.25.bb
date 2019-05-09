@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rosatomic provides the C++11-style atomic operations by pulling symbols from the proposed Boost.Atomic      package into the ros namespace.  Once C++11-style atomics (std::atomic) are available from compilers, rosatomic will      conditionally use those instead."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
+ROS_AUTHOR = "Josh Faust"
 HOMEPAGE = "http://ros.org/wiki/rosatomic"
 SECTION = "devel"
 LICENSE = "BSD & Boost-1.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_realtime"
 ROS_BPN = "rosatomic"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "d4f38df7e64e7cef90ce597674a5832653f0e564dbc4163f5232fa1802
 S = "${WORKDIR}/ros_realtime-release-release-melodic-rosatomic-1.0.25-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-realtime', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-realtime', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

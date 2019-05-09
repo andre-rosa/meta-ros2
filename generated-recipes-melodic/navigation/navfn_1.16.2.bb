@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "navfn provides a fast interpolated navigation function that can be used to create plans for         a mobile base. The planner assumes a circular robot and operates on a costmap to find a         minimum cost plan from a start point to an end point in a grid. The navigation function is         computed with Dijkstra's algorithm, but support for an A* heuristic may also be added in the         near future. navfn also provides a ROS wrapper for the navfn planner that adheres to the         nav_core::BaseGlobalPlanner interface specified in <a href="http://wiki.ros.org/nav_core">nav_core</a>."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
+ROS_AUTHOR = "Kurt Konolige"
 HOMEPAGE = "http://wiki.ros.org/navfn"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=22;endline=22;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "navigation"
 ROS_BPN = "navfn"
 
 ROS_BUILD_DEPENDS = " \
@@ -81,6 +83,7 @@ SRC_URI[sha256sum] = "d4795ca8a10f1cb8d8ff7a2949637be11bb6e14ca0d2878731cdd82d20
 S = "${WORKDIR}/navigation-release-release-melodic-navfn-1.16.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation', d)}"
@@ -90,4 +93,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

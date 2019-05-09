@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The robot_activity package implements ROS node lifecycle"
 AUTHOR = "Maciej ZURAD <maciej.zurad@gmail.com>"
+ROS_AUTHOR = "Maciej ZURAD <maciej.zurad@gmail.com>"
 HOMEPAGE = "http://www.ros.org/wiki/robot_activity"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "robot_activity"
 ROS_BPN = "robot_activity"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "9aea7f4b03a74445c52faddfcd58ea086b7ad8af058a6a3749e9b99284
 S = "${WORKDIR}/robot_activity-release-release-melodic-robot_activity-0.1.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robot-activity', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-activity', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-activity/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-activity/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

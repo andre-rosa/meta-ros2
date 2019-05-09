@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "pilz_robots"
 ROS_BPN = "prbt_gazebo"
 
 ROS_BUILD_DEPENDS = ""
@@ -54,6 +55,7 @@ SRC_URI[sha256sum] = "26d15da4c7351b10b0b1ef5fce051afb1f5a904d9c9c1972fa7e910aa2
 S = "${WORKDIR}/pilz_robots-release-release-melodic-prbt_gazebo-0.5.3-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pilz-robots', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pilz-robots', d)}"
@@ -63,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

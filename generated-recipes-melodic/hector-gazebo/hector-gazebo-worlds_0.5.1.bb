@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "hector_gazebo_worlds provides gazebo scenarios used by Team Hector Darmstadt"
 AUTHOR = "Johannes Meyer <johannes@intermodalics.eu>"
+ROS_AUTHOR = "Stefan Kohlbrecher <kohlbrecher@sim.tu-darmstadt.de>"
 HOMEPAGE = "http://ros.org/wiki/hector_gazebo_worlds"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "hector_gazebo"
 ROS_BPN = "hector_gazebo_worlds"
 
 ROS_BUILD_DEPENDS = ""
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "71ada41731ad64e3a1815c57a0f4ef98f526afaf0decf58eb26745721a
 S = "${WORKDIR}/hector_gazebo-release-release-melodic-hector_gazebo_worlds-0.5.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('hector-gazebo', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hector-gazebo', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

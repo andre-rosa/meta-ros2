@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "TODO"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "usb_cam_hardware"
 ROS_BPN = "usb_cam_hardware"
 
 ROS_BUILD_DEPENDS = " \
@@ -63,6 +64,7 @@ SRC_URI[sha256sum] = "29d9274d9b3cf8787c3f80c5354eb605608205118e6ccf56a2aabd2601
 S = "${WORKDIR}/usb_cam_hardware-release-release-melodic-usb_cam_hardware-0.0.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('usb-cam-hardware', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('usb-cam-hardware', d)}"
@@ -72,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam-hardware/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam-hardware/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

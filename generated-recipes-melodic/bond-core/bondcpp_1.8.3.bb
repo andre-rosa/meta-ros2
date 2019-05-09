@@ -7,18 +7,19 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "C++ implementation of bond, a mechanism for checking when     another process has terminated."
 AUTHOR = "Mikael Arguedas <mikael@osrfoundation.org>"
+ROS_AUTHOR = "Stuart Glaser"
 HOMEPAGE = "http://www.ros.org/wiki/bondcpp"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "bond_core"
 ROS_BPN = "bondcpp"
 
 ROS_BUILD_DEPENDS = " \
     bond \
     boost \
     cmake-modules \
-    crossguid \
     roscpp \
     smclib \
 "
@@ -30,7 +31,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     bond \
     boost \
-    crossguid \
     roscpp \
     smclib \
 "
@@ -40,7 +40,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     bond \
     boost \
-    crossguid \
     roscpp \
     smclib \
 "
@@ -61,6 +60,7 @@ SRC_URI[sha256sum] = "617c5cf1ac30c5af9d02024bef3b9a010ff70fb3779220d77eb9e48635
 S = "${WORKDIR}/bond_core-release-release-melodic-bondcpp-1.8.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('bond-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('bond-core', d)}"
@@ -70,4 +70,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

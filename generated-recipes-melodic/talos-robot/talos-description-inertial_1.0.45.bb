@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "CC-BY-NC-ND-4.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=c34cc4dbd73e2cebfa3f363105f53fd5"
 
+ROS_CN = "talos_robot"
 ROS_BPN = "talos_description_inertial"
 
 ROS_BUILD_DEPENDS = ""
@@ -44,6 +45,7 @@ SRC_URI[sha256sum] = "03af558efe948f9f6e0babd3a08d1f83819ad86011e25edca8402a9e2b
 S = "${WORKDIR}/talos_robot-release-release-melodic-talos_description_inertial-1.0.45-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('talos-robot', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('talos-robot', d)}"
@@ -53,4 +55,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/talos-robot/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/talos-robot/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,24 +7,23 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "<p>This package does not only wrap <a href="http://www.openrtp.jp/openhrp3/en/index.html">OpenHRP3</a> but actually provides the built artifact from the code from its <a href="https://openrtp.jp/svn/hrg/openhrp">mainstream repository</a>. Being ROS-agnostic by itself, you can also use this via ROS together with the packages in <a href="http://www.ros.org/wiki/rtmros_common">rtmros_common</a> that bridge between two framework.</p>    <p><i>OpenHRP3 (Open Architecture Human-centered Robotics Platform version 3) is an integrated software platform for robot simulations and software developments. It allows the users to inspect an original robot model and control program by dynamics simulation. In addition, OpenHRP3 provides various software components and calculation libraries that can be used for robotics related software developments</i> (<a href="http://www.openrtp.jp/openhrp3/en/about.html">excerpts from here</a>). </p>    <p>The package version number is synchronized to that of mainstream, based on <a href="http://code.google.com/p/rtm-ros-robotics/issues/detail?id=165#c5">this decision</a>.</p>"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "AIST"
 HOMEPAGE = "https://openrtp.jp/svn/hrg/openhrp/"
 SECTION = "devel"
 LICENSE = "EPL"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=b1456987590b6d6fb15d36f398651b8b"
 
+ROS_CN = "openhrp3"
 ROS_BPN = "openhrp3"
 
 ROS_BUILD_DEPENDS = " \
     atlas \
     boost \
-    collada-dom \
-    doxygen \
     f2c \
     jython \
     libeigen \
     libjpeq-turbo \
     libpng-dev \
-    libxml2 \
     openrtm-aist \
     python-omniorb \
 "
@@ -37,13 +36,11 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     atlas \
     boost \
-    collada-dom \
     f2c \
     jython \
     libeigen \
     libjpeq-turbo \
     libpng-dev \
-    libxml2 \
     openrtm-aist \
     python-omniorb \
 "
@@ -53,13 +50,11 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     atlas \
     boost \
-    collada-dom \
     f2c \
     jython \
     libeigen \
     libjpeq-turbo \
     libpng-dev \
-    libxml2 \
     openrtm-aist \
     python-omniorb \
 "
@@ -80,6 +75,7 @@ SRC_URI[sha256sum] = "a496dc351a7f8873f465610ae85a49851570fa1debd59161f0ea302193
 S = "${WORKDIR}/openhrp3-release-release-melodic-openhrp3-3.1.9-2"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('openhrp3', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('openhrp3', d)}"
@@ -89,4 +85,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openhrp3/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openhrp3/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

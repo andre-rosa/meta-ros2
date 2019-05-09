@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "SainSmart USB relay driver controller"
 AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
+ROS_AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
 HOMEPAGE = "http://wiki.ros.org/sainsmart_relay_usb"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "sainsmart_relay_usb"
 ROS_BPN = "sainsmart_relay_usb"
 
 ROS_BUILD_DEPENDS = " \
@@ -55,6 +57,7 @@ SRC_URI[sha256sum] = "73e7449cf27e9caa518695cb6996d8909422ae70540708e07580a66656
 S = "${WORKDIR}/sainsmart_relay_usb-release-release-melodic-sainsmart_relay_usb-0.0.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sainsmart-relay-usb', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sainsmart-relay-usb', d)}"
@@ -64,4 +67,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sainsmart-relay-usb/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sainsmart-relay-usb/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

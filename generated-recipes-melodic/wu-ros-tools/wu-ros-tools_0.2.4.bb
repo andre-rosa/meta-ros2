@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A collection of tools for making a variety of generic ROS-related tasks easier."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
+ROS_AUTHOR = "David V. Lu!!"
 HOMEPAGE = "http://ros.org/wiki/wu_ros_tools"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "wu_ros_tools"
 ROS_BPN = "wu_ros_tools"
 
 ROS_BUILD_DEPENDS = ""
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "c27fe7753efad044328dfe5dc67e04deb7ea2a9d69b54b1fe34bdcbdc8
 S = "${WORKDIR}/wu_ros_tools-release-melodic-wu_ros_tools-0.2.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('wu-ros-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('wu-ros-tools', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "gps_umd"
 ROS_BPN = "gps_common"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +67,7 @@ SRC_URI[sha256sum] = "ff84f3a082027035d2363ffcda76b01b2ac06432da53ccc6ee73898d3c
 S = "${WORKDIR}/gps_umd-release-release-melodic-gps_common-0.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('gps-umd', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gps-umd', d)}"
@@ -75,4 +77,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

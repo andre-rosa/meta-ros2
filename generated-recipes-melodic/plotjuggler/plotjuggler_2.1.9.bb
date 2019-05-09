@@ -7,15 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "PlotJuggler: juggle with data"
 AUTHOR = "Davide Faconti <davide.faconti@gmail.com>"
+ROS_AUTHOR = "Davide Faconti <davide.faconti@gmail.com>"
 HOMEPAGE = "https://github.com/facontidavide/PlotJuggler"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=a9a72c186797ff98a79f90205c589abf"
 
+ROS_CN = "plotjuggler"
 ROS_BPN = "plotjuggler"
 
 ROS_BUILD_DEPENDS = " \
-    binutils \
     qtbase \
     qtdeclarative5-dev \
     qtmultimedia5-dev \
@@ -34,7 +35,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    binutils \
     qtbase \
     qtdeclarative5-dev \
     qtmultimedia5-dev \
@@ -51,7 +51,6 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    binutils \
     qtbase \
     qtdeclarative5-dev \
     qtmultimedia5-dev \
@@ -81,6 +80,7 @@ SRC_URI[sha256sum] = "0a93dd9c3dd1fc1e579699a8c8b776bec347349364ae53fc97e2a541d7
 S = "${WORKDIR}/plotjuggler-release-release-melodic-plotjuggler-2.1.9-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('plotjuggler', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('plotjuggler', d)}"
@@ -90,4 +90,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/plotjuggler/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/plotjuggler/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

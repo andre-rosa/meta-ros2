@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package is a ROS wrapper for Alvar, an open source AR tag tracking library."
 AUTHOR = "Scott Niekum <sniekum@cs.umass.edu>"
+ROS_AUTHOR = "Scott Niekum <sniekum@cs.umass.edu>"
 HOMEPAGE = "http://ros.org/wiki/ar_track_alvar"
 SECTION = "devel"
 LICENSE = "LGPL-2.1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=061abe8dc89f326789675967c8760541"
 
+ROS_CN = "ar_track_alvar"
 ROS_BPN = "ar_track_alvar"
 
 ROS_BUILD_DEPENDS = " \
@@ -100,6 +102,7 @@ SRC_URI[sha256sum] = "7b822678ef7330b5a3ecf5fd63547162178335534caf6bf4a739ad35c7
 S = "${WORKDIR}/ar_track_alvar-release-release-melodic-ar_track_alvar-0.7.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ar-track-alvar', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ar-track-alvar', d)}"
@@ -109,4 +112,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ar-track-alvar/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ar-track-alvar/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

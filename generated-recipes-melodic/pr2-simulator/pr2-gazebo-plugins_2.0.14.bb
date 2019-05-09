@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Gazebo Plugins for various PR2-specific sensors and actuators on the robot."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "John Hsu"
 HOMEPAGE = "http://ros.org/wiki/pr2_gazebo_plugins"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pr2_simulator"
 ROS_BPN = "pr2_gazebo_plugins"
 
 ROS_BUILD_DEPENDS = " \
@@ -117,6 +119,7 @@ SRC_URI[sha256sum] = "f13b8d70bb7029d167343772dc662a7aff687349c40ecb02e27020a36a
 S = "${WORKDIR}/pr2_simulator-release-release-melodic-pr2_gazebo_plugins-2.0.14-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-simulator', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-simulator', d)}"
@@ -126,4 +129,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

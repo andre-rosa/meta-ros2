@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Package enabling a robot to speak with a human voice by providing a Text-To-Speech ROS service"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
+ROS_AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/tts"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "tts"
 ROS_BPN = "tts"
 
 ROS_BUILD_DEPENDS = " \
@@ -67,6 +69,7 @@ SRC_URI[sha256sum] = "1d5dd8813c3e0cf4e9e75bd364a93f1b0b02072ddd561fa0d316a75cd0
 S = "${WORKDIR}/tts-release-release-melodic-tts-1.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tts', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tts', d)}"
@@ -76,4 +79,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tts/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tts/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

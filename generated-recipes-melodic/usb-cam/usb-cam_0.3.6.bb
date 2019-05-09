@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS Driver for V4L USB Cameras"
 AUTHOR = "Russell Toris <rctoris@wpi.edu>"
+ROS_AUTHOR = "Benjamin Pitzer <benjamin.pitzer@bosch.com>"
 HOMEPAGE = "http://wiki.ros.org/usb_cam"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "usb_cam"
 ROS_BPN = "usb_cam"
 
 ROS_BUILD_DEPENDS = " \
@@ -36,7 +38,6 @@ ROS_EXPORT_DEPENDS = " \
     sensor-msgs \
     std-msgs \
     std-srvs \
-    v4l-utils \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -49,7 +50,6 @@ ROS_EXEC_DEPENDS = " \
     sensor-msgs \
     std-msgs \
     std-srvs \
-    v4l-utils \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -68,6 +68,7 @@ SRC_URI[sha256sum] = "21a2fa956af929b771c989bdb53a572443481b101cea0ba0b66547e044
 S = "${WORKDIR}/usb_cam-release-release-melodic-usb_cam-0.3.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('usb-cam', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('usb-cam', d)}"
@@ -77,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

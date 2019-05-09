@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A simple USB camera driver for the FLIR BOSON using OpenCV"
 AUTHOR = "AutonomouStuff Software Development Team <software@autonomoustuff.com>"
+ROS_AUTHOR = "Joe Driscoll <jdriscoll@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/flir_boson_usb"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "flir_boson_usb"
 ROS_BPN = "flir_boson_usb"
 
 ROS_BUILD_DEPENDS = " \
@@ -64,6 +66,7 @@ SRC_URI[sha256sum] = "79c3e1f53669699fa6af61305dd25dfabddbf213bfa36df3b3419950dc
 S = "${WORKDIR}/flir_boson_usb-release-release-melodic-flir_boson_usb-1.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('flir-boson-usb', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('flir-boson-usb', d)}"
@@ -73,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flir-boson-usb/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flir-boson-usb/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

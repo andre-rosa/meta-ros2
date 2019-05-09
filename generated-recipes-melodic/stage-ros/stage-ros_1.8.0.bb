@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides ROS specific hooks for stage"
 AUTHOR = "William Woodall <william@osrfoundation.org>"
+ROS_AUTHOR = "Brian Gerky <gerky@osrfoundation.org>"
 HOMEPAGE = "http://ros.org/wiki/stage_ros"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "stage_ros"
 ROS_BPN = "stage_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -73,6 +75,7 @@ SRC_URI[sha256sum] = "5762c477b0401c12f43573895f7a94ec3bdfddc4aa9fe3a127d3acc1ce
 S = "${WORKDIR}/stage_ros-release-release-melodic-stage_ros-1.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('stage-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('stage-ros', d)}"
@@ -82,4 +85,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

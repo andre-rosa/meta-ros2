@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The mongodb_store_msgs package"
 AUTHOR = "Nick Hawes <nickh@robots.ox.ac.uk>"
+ROS_AUTHOR = "Nick Hawes <nickh@robots.ox.ac.uk>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "mongodb_store"
 ROS_BPN = "mongodb_store_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "b5df2309a7ca62a19b97e73cf22e30ccf3e8b320ef40e8faf07f9ed144
 S = "${WORKDIR}/mongodb_store-release-melodic-mongodb_store_msgs-0.5.0-5"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mongodb-store', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mongodb-store', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

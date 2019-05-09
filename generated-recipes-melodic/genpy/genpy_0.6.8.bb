@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Python ROS message and service generators."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Ken Conley"
 HOMEPAGE = "https://github.com/ros/genpy/issues"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "genpy"
 ROS_BPN = "genpy"
 
 ROS_BUILD_DEPENDS = " \
@@ -24,14 +26,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     genmsg \
-    python-yamllint-native \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     genmsg \
-    python-yamllint-native \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -50,6 +50,7 @@ SRC_URI[sha256sum] = "22a962f2463d4a60fa0caefe4377195f0f294481af0736f68d50034461
 S = "${WORKDIR}/genpy-release-release-melodic-genpy-0.6.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('genpy', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('genpy', d)}"
@@ -59,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genpy/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genpy/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

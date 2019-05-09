@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The tuw_marker_detection package"
 AUTHOR = "Markus Bader <markus.bader@tuwien.ac.at>"
+ROS_AUTHOR = "Markus Bader"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=2c00b8d2854109dbebef7818b4dae1e2"
 
+ROS_CN = "tuw_marker_detection"
 ROS_BPN = "tuw_marker_detection"
 
 ROS_BUILD_DEPENDS = ""
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "4b831ec3d6f8678dad02b5e96201e7944af7210da72b19a90d72d48ed4
 S = "${WORKDIR}/tuw_marker_detection-release-release-melodic-tuw_marker_detection-0.1.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tuw-marker-detection', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tuw-marker-detection', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-marker-detection/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-marker-detection/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

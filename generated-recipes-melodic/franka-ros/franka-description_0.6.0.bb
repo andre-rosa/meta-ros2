@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "franka_description contains URDF files and meshes of Franka Emika robots"
 AUTHOR = "Franka Emika GmbH <support@franka.de>"
+ROS_AUTHOR = "Franka Emika GmbH"
 HOMEPAGE = "http://wiki.ros.org/franka_description"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "franka_ros"
 ROS_BPN = "franka_description"
 
 ROS_BUILD_DEPENDS = ""
@@ -44,6 +46,7 @@ SRC_URI[sha256sum] = "06d66f1cfccb5d012babe67314e1f34870c7f272a15b6d14c83701f514
 S = "${WORKDIR}/franka_ros-release-release-melodic-franka_description-0.6.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('franka-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('franka-ros', d)}"
@@ -53,4 +56,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/franka-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/franka-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

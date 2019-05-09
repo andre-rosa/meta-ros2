@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=5;endline=5;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "sparse_bundle_adjustment"
 ROS_BPN = "sparse_bundle_adjustment"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +58,7 @@ SRC_URI[sha256sum] = "ab87c65d8f8d392258c9d733edf76c417488f78b564a7ce7000bd67ed5
 S = "${WORKDIR}/sparse_bundle_adjustment-release-release-melodic-sparse_bundle_adjustment-0.4.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sparse-bundle-adjustment', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sparse-bundle-adjustment', d)}"
@@ -66,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sparse-bundle-adjustment/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sparse-bundle-adjustment/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

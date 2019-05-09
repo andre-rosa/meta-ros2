@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Common Manipulation Messages and Services Used in RAIL Manipulation Packages"
 AUTHOR = "David Kent <dekent@gatech.edu>"
+ROS_AUTHOR = "David Kent <dekent@gatech.edu>"
 HOMEPAGE = "http://ros.org/wiki/rail_manipulation_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rail_manipulation_msgs"
 ROS_BPN = "rail_manipulation_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "2d8effa0a61ce81ef4a037ce360defc578616e2b6e5c1981144ba08e89
 S = "${WORKDIR}/rail_manipulation_msgs-release-release-melodic-rail_manipulation_msgs-0.0.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rail-manipulation-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rail-manipulation-msgs', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rail-manipulation-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rail-manipulation-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

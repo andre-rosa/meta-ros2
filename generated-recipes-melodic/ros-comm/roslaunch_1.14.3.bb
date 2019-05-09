@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "roslaunch is a tool for easily launching multiple ROS <a href="http://ros.org/wiki/Nodes">nodes</a> locally and remotely     via SSH, as well as setting parameters on the <a href="http://ros.org/wiki/Parameter Server">Parameter     Server</a>. It includes options to automatically respawn processes     that have already died. roslaunch takes in one or more XML     configuration files (with the <tt>.launch</tt> extension) that     specify the parameters to set and nodes to launch, as well as the     machines that they should be run on."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Ken Conley"
 HOMEPAGE = "http://ros.org/wiki/roslaunch"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_comm"
 ROS_BPN = "roslaunch"
 
 ROS_BUILD_DEPENDS = ""
@@ -21,9 +23,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    python-paramiko \
-    python-rospkg \
-    python-yamllint-native \
     rosclean \
     rosgraph-msgs \
     roslib \
@@ -36,9 +35,6 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-paramiko \
-    python-rospkg \
-    python-yamllint-native \
     rosclean \
     rosgraph-msgs \
     roslib \
@@ -66,6 +62,7 @@ SRC_URI[sha256sum] = "6332d21a5e4ba14d3cdc2d0a0492eb1ba63615e78c63dfbb828df59c93
 S = "${WORKDIR}/ros_comm-release-release-melodic-roslaunch-1.14.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-comm', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm', d)}"
@@ -75,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

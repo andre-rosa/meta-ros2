@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=1fcc2f243daac9b962ca04b90988c4f3"
 
+ROS_CN = "urdf_test"
 ROS_BPN = "urdf_test"
 
 ROS_BUILD_DEPENDS = " \
@@ -49,6 +50,7 @@ SRC_URI[sha256sum] = "0c218b7644479fe4c625fd32883d1e45d945f3662f73152e60e45bbf3c
 S = "${WORKDIR}/urdf_test-release-release-melodic-urdf_test-1.0.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urdf-test', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdf-test', d)}"
@@ -58,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-test/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf-test/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

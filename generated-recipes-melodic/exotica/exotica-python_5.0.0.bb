@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "exotica"
 ROS_BPN = "exotica_python"
 
 ROS_BUILD_DEPENDS = " \
@@ -19,7 +20,6 @@ ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     moveit-msgs \
     pybind11-catkin \
-    python-matplotlib \
     python-pyassimp \
     shape-msgs \
 "
@@ -33,7 +33,6 @@ ROS_EXPORT_DEPENDS = " \
     geometry-msgs \
     moveit-msgs \
     pybind11-catkin \
-    python-matplotlib \
     python-pyassimp \
     shape-msgs \
 "
@@ -45,7 +44,6 @@ ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     moveit-msgs \
     pybind11-catkin \
-    python-matplotlib \
     python-pyassimp \
     shape-msgs \
 "
@@ -66,6 +64,7 @@ SRC_URI[sha256sum] = "e99dd7fd355c172861401fd6634dbda4e64f18fc28b4187504a8b83dbd
 S = "${WORKDIR}/exotica-release-release-melodic-exotica_python-5.0.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('exotica', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('exotica', d)}"
@@ -75,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

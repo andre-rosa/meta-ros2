@@ -7,16 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Commands for performing common operations when   developing on the robots. For help, run `fetch -h` and `fetch   COMMAND -h`."
 AUTHOR = "Russell Toris <rtoris@fetchrobotics.com>"
+ROS_AUTHOR = "Alex Henning"
 HOMEPAGE = "https://github.com/fetchrobotics/fetch_tools/blob/master/README.md"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "fetch_tools"
 ROS_BPN = "fetch_tools"
 
-ROS_BUILD_DEPENDS = " \
-    python-rospkg \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -49,6 +49,7 @@ SRC_URI[sha256sum] = "1dc7b3cc138e2c8bd7aefabfe41c5330f581f101b7d668e4873fc5657b
 S = "${WORKDIR}/fetch_tools-release-release-melodic-fetch_tools-0.2.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fetch-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-tools', d)}"
@@ -58,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

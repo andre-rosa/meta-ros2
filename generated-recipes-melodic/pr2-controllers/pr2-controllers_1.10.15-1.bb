@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Contains the controllers that run in realtime on the PR2 and supporting packages."
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "Stuart Glaser sglaser@willowgarage.com"
 HOMEPAGE = "http://ros.org/wiki/pr2_controllers"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "pr2_controllers"
 ROS_BPN = "pr2_controllers"
 
 ROS_BUILD_DEPENDS = ""
@@ -64,6 +66,7 @@ SRC_URI[sha256sum] = "2d412c962cbfc58de7b38a1fc9c006e1598a72bb0457b124555ac97366
 S = "${WORKDIR}/pr2_controllers-release-release-melodic-pr2_controllers-1.10.15-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-controllers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-controllers', d)}"
@@ -73,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-controllers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-controllers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

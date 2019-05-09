@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A cascade of PID controllers for acceleration, velocity, and position control."
 AUTHOR = "Musa Morena Marcusso Manhaes <musa.marcusso@de.bosch.com>"
+ROS_AUTHOR = "Musa Morena Marcusso Manhaes <musa.marcusso@de.bosch.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=82f0323c08605e5b6f343b05213cf7cc"
 
+ROS_CN = "uuv_simulator"
 ROS_BPN = "uuv_control_cascaded_pid"
 
 ROS_BUILD_DEPENDS = " \
@@ -32,7 +34,6 @@ ROS_EXEC_DEPENDS = " \
     dynamic-reconfigure \
     geometry-msgs \
     nav-msgs \
-    python-numpy \
     rospy \
     tf \
 "
@@ -53,6 +54,7 @@ SRC_URI[sha256sum] = "3d75578e17e9f0a19fdffea6ba51a69e0d066fdc8fae96cf88672466e6
 S = "${WORKDIR}/uuv_simulator-release-release-melodic-uuv_control_cascaded_pid-0.6.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('uuv-simulator', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('uuv-simulator', d)}"
@@ -62,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uuv-simulator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uuv-simulator/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

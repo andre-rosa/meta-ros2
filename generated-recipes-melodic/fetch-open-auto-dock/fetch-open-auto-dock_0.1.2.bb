@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "An open-source version of the Fetch charge docking system."
 AUTHOR = "Russell Toris <rtoris@fetchrobotics.com>"
+ROS_AUTHOR = "Michael Ferguson"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=b691248d2f70cdaeeaf13696ada5d47c"
 
+ROS_CN = "fetch_open_auto_dock"
 ROS_BPN = "fetch_open_auto_dock"
 
 ROS_BUILD_DEPENDS = " \
@@ -82,6 +84,7 @@ SRC_URI[sha256sum] = "73cbede7be9f363559992d9bab141eea8b9c4ac72928fb567e0542cfb0
 S = "${WORKDIR}/fetch_open_auto_dock-gbp-release-melodic-fetch_open_auto_dock-0.1.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fetch-open-auto-dock', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-open-auto-dock', d)}"
@@ -91,4 +94,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-open-auto-dock/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-open-auto-dock/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

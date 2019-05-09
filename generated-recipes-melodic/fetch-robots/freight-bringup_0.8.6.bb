@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Bringup for freight"
 AUTHOR = "Eric Relson <erelson@fetchrobotics.com>"
+ROS_AUTHOR = "Michael Ferguson"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=1fcc2f243daac9b962ca04b90988c4f3"
 
+ROS_CN = "fetch_robots"
 ROS_BPN = "freight_bringup"
 
 ROS_BUILD_DEPENDS = ""
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "303f84a14b664ef2e11fc0d5cde7727ceda68cd925a10ff5ddefdec542
 S = "${WORKDIR}/fetch_robots-release-release-melodic-freight_bringup-0.8.6-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fetch-robots', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-robots', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

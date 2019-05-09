@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_graph provides a GUI plugin for visualizing the ROS       computation graph.<br/>       Its components are made generic so that other packages       where you want to achieve graph representation can depend upon this pkg       (use <a href="http://www.ros.org/wiki/rqt_dep">rqt_dep</a> to find out       the pkgs that depend. rqt_dep itself depends on rqt_graph too)."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Dirk Thomas"
 HOMEPAGE = "http://wiki.ros.org/rqt_graph"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_graph"
 ROS_BPN = "rqt_graph"
 
 ROS_BUILD_DEPENDS = ""
@@ -22,7 +24,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     python-qt-binding \
-    python-rospkg \
     qt-dotgraph \
     rosgraph \
     rosgraph-msgs \
@@ -39,7 +40,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     python-qt-binding \
-    python-rospkg \
     qt-dotgraph \
     rosgraph \
     rosgraph-msgs \
@@ -68,6 +68,7 @@ SRC_URI[sha256sum] = "42392c916b12e8c40f044840f42090981ae5bdf5925bcaccd716416e2a
 S = "${WORKDIR}/rqt_graph-release-release-melodic-rqt_graph-0.4.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-graph', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-graph', d)}"
@@ -77,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-graph/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-graph/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

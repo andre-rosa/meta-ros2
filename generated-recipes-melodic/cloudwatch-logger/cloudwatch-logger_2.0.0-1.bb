@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "CloudWatch Logger node for publishing logs to AWS CloudWatch Logs"
 AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
+ROS_AUTHOR = "AWS RoboMaker <ros-contributions@amazon.com>"
 HOMEPAGE = "http://wiki.ros.org/cloudwatch_logger"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "cloudwatch_logger"
 ROS_BPN = "cloudwatch_logger"
 
 ROS_BUILD_DEPENDS = " \
@@ -59,6 +61,7 @@ SRC_URI[sha256sum] = "1807f520e5a757a72c0c46f40c1e114e7b743ad0ff5e9452579496be85
 S = "${WORKDIR}/cloudwatch_logger-release-release-melodic-cloudwatch_logger-2.0.0-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('cloudwatch-logger', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cloudwatch-logger', d)}"
@@ -68,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-logger/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-logger/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

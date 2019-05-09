@@ -7,16 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Internal packaging of the 0.91 version of the simple python     <a href="http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form">EBNF</a>     parser written by LParis."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "LParis"
 HOMEPAGE = "http://lparis45.free.fr/rp.html"
 SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_CN = "rocon_tools"
 ROS_BPN = "rocon_ebnf"
 
-ROS_BUILD_DEPENDS = " \
-    python-catkin-pkg \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -46,6 +46,7 @@ SRC_URI[sha256sum] = "90319996d97b66a6313bc7ac6a4c9377ca608582bce668f3040d671e8c
 S = "${WORKDIR}/rocon_tools-release-release-melodic-rocon_ebnf-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rocon-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rocon-tools', d)}"
@@ -55,4 +56,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

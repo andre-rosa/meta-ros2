@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Message defined in the BRICS project"
 AUTHOR = "Walter Nowak <nowak@locomotec.com>"
+ROS_AUTHOR = "Alexander Bubeck"
 HOMEPAGE = "http://ros.org/wiki/brics_actuator"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "brics_actuator"
 ROS_BPN = "brics_actuator"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "20a7643aa378c2f934d712eb798a3ad3a89e86728e22da9debfae0c62e
 S = "${WORKDIR}/brics_actuator-release-release-melodic-brics_actuator-0.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('brics-actuator', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('brics-actuator', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/brics-actuator/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/brics-actuator/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

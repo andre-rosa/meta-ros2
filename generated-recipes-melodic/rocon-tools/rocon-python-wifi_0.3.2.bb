@@ -7,16 +7,16 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The pythonwifi package is available through pypi, but not through a      deb package. This is copy of the package suitable for use through the     ROS ecosystem."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Róman Joost"
 HOMEPAGE = "http://pythonwifi.wikispot.org/"
 SECTION = "devel"
 LICENSE = "GPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=fe8b75cf0aba647401e1038bcd69ee74"
 
+ROS_CN = "rocon_tools"
 ROS_BPN = "rocon_python_wifi"
 
-ROS_BUILD_DEPENDS = " \
-    python-catkin-pkg \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -44,6 +44,7 @@ SRC_URI[sha256sum] = "a0fe115a173a08330e7680b085161aae0bde090b2749f58fbd5ee764fe
 S = "${WORKDIR}/rocon_tools-release-release-melodic-rocon_python_wifi-0.3.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rocon-tools', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rocon-tools', d)}"
@@ -53,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

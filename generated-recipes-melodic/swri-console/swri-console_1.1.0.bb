@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A rosout GUI viewer developed at Southwest Research Insititute as an      alternative to rqt_console."
 AUTHOR = "Elliot Johnson <elliot.johnson@swri.org>"
+ROS_AUTHOR = "Elliot Johnson <elliot.johnson@swri.org>"
 HOMEPAGE = "http://ros.org/wiki/swri_console"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "swri_console"
 ROS_BPN = "swri_console"
 
 ROS_BUILD_DEPENDS = " \
@@ -61,6 +63,7 @@ SRC_URI[sha256sum] = "3b316832e42c12ebf733b8f9f299ad56326bdeea281c36e1323dfe6c19
 S = "${WORKDIR}/swri_console-release-release-melodic-swri_console-1.1.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('swri-console', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('swri-console', d)}"
@@ -70,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/swri-console/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/swri-console/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

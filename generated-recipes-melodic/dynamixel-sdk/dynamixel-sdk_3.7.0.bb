@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package is wrapping version of ROBOTIS Dynamxel SDK for ROS. The ROBOTIS Dynamixel SDK, or SDK, is a software development library that provides Dynamixel control functions for packet communication. The API is designed for Dynamixel actuators and Dynamixel-based platforms."
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Gilbert <kkjong@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/dynamixel_sdk"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "dynamixel_sdk"
 ROS_BPN = "dynamixel_sdk"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "f6e3f4d552bb5e39c857b79e0c53233791f44ec01cbc768a507fb434f6
 S = "${WORKDIR}/DynamixelSDK-release-release-melodic-dynamixel_sdk-3.7.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dynamixel-sdk', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dynamixel-sdk', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-sdk/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-sdk/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

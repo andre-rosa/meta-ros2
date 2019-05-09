@@ -12,12 +12,10 @@ SECTION = "devel"
 LICENSE = "GPL-1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=162b49cfbae9eadf37c9b89b2d2ac6be"
 
+ROS_CN = "jsk_3rdparty"
 ROS_BPN = "ffha"
 
 ROS_BUILD_DEPENDS = " \
-    bison \
-    flex \
-    gawk \
     mk \
     rosbuild \
     roslib \
@@ -50,6 +48,7 @@ SRC_URI[sha256sum] = "416be0691253151483d926b11df4f86f949a4e7e3b10bc505dd467e020
 S = "${WORKDIR}/jsk_3rdparty-release-release-melodic-ffha-2.1.11-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-3rdparty', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-3rdparty', d)}"
@@ -59,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-3rdparty/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

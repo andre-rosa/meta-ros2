@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A plugin to image_transport for transparently sending images encoded with ImageZero."
 AUTHOR = "P. J. Reed <preed@swri.org>"
+ROS_AUTHOR = "P. J. Reed"
 HOMEPAGE = "http://www.ros.org/wiki/image_transport_plugins"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "imagezero_transport"
 ROS_BPN = "imagezero_image_transport"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +62,7 @@ SRC_URI[sha256sum] = "4c9fbc7c319b30bb24174343cc8e901e9908725890f11cdca4866fbd4f
 S = "${WORKDIR}/imagezero_transport-release-release-melodic-imagezero_image_transport-0.2.4-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('imagezero-transport', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imagezero-transport', d)}"
@@ -69,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imagezero-transport/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imagezero-transport/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

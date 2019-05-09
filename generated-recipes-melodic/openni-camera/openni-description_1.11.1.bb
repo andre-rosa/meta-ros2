@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Model files of OpenNI device."
 AUTHOR = "Isaac I.Y. Saito <130s@2000.jukuin.keio.ac.jp>"
+ROS_AUTHOR = "Isaac I.Y. Saito <isaac.saito@plusonerobotics.com>"
 HOMEPAGE = "http://www.ros.org/wiki/openni_description"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "openni_camera"
 ROS_BPN = "openni_description"
 
 ROS_BUILD_DEPENDS = ""
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "709e253ea9d2ba4d1c81fe758da31e8359a8e00f4e0105405f37a6e68e
 S = "${WORKDIR}/openni_camera-release-release-melodic-openni_description-1.11.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('openni-camera', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('openni-camera', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

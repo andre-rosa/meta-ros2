@@ -5,33 +5,36 @@
 
 inherit ros_superflore_generated
 
-DESCRIPTION = "Provides service calls for getting ros meta-information, like list of     topics, services, params, etc."
-AUTHOR = "Russell Toris <rctoris@wpi.edu>"
-HOMEPAGE = "http://ros.org/wiki/rosapi"
+DESCRIPTION = "Package containing message files"
+AUTHOR = "Hans-Joachim Krauch <achim@intermodalics.eu>"
+ROS_AUTHOR = "Hans-Joachim Krauch <achim@intermodalics.eu>"
+HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
-ROS_BPN = "rosapi"
+ROS_CN = "rosbridge_suite"
+ROS_BPN = "rosbridge_msgs"
 
 ROS_BUILD_DEPENDS = " \
     message-generation \
+    std-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    message-runtime \
+    std-msgs \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     message-runtime \
-    rosbridge-library \
-    rosgraph \
-    rosnode \
-    rospy \
+    std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -44,12 +47,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/RobotWebTools-release/rosbridge_suite-release/archive/release/melodic/rosapi/0.11.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "752d4bb0047daba9e96f519467abd65a"
-SRC_URI[sha256sum] = "a267e4c4c19156dc78278f5efe291fc40f84e12fde5516279738f4f68110540d"
-S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosapi-0.11.0-0"
+SRC_URI = "https://github.com/RobotWebTools-release/rosbridge_suite-release/archive/release/melodic/rosbridge_msgs/0.11.1-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "1913f4da7f7ec545671621c75742d5d0"
+SRC_URI[sha256sum] = "2c76b5cba7a842647144ed70ac6ca6dede85c0b08c6721836568f79d4807ef6c"
+S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosbridge_msgs-0.11.1-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosbridge-suite', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbridge-suite', d)}"
@@ -59,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

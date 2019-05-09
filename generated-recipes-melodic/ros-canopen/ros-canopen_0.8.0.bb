@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A generic canopen implementation for ROS"
 AUTHOR = "Mathias Lüdtke <mathias.luedtke@ipa.fraunhofer.de>"
+ROS_AUTHOR = "Florian Weisshardt <fmw@ipa.fhg.de>"
 HOMEPAGE = "http://ros.org/wiki/ros_canopen"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_CN = "ros_canopen"
 ROS_BPN = "ros_canopen"
 
 ROS_BUILD_DEPENDS = ""
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "8a5c65352a4fdb30215c811264abe1e29d326afebac95bb06f50124bb7
 S = "${WORKDIR}/ros_canopen-release-release-melodic-ros_canopen-0.8.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-canopen', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-canopen', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

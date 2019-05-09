@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS driver for IBEO LUX"
 AUTHOR = "AutonomouStuff Software Development Team <software@autonomoustuff.com>"
+ROS_AUTHOR = "Joe Kale <jkale@autonomoustuff.com>"
 HOMEPAGE = "http://wiki.ros.org/ibeo_lux"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=6;endline=6;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "ibeo_lux"
 ROS_BPN = "ibeo_lux"
 
 ROS_BUILD_DEPENDS = " \
@@ -69,6 +71,7 @@ SRC_URI[sha256sum] = "0aa9797cbee3936a930074405e44de2f604c0eaf99b7b4e6b60d377324
 S = "${WORKDIR}/ibeo_lux-release-release-melodic-ibeo_lux-2.0.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ibeo-lux', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ibeo-lux', d)}"
@@ -78,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-lux/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-lux/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

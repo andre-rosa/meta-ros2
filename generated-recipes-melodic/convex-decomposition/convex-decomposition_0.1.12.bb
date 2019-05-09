@@ -7,30 +7,26 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Convex Decomposition Tool for Robot Model"
 AUTHOR = "ROS Orphaned Package Maintainers <ros-orphaned-packages@googlegroups.com>"
+ROS_AUTHOR = "John W. Ratcliff <jratcliff@infiniplex.net>"
 HOMEPAGE = "http://codesuppository.blogspot.com"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "convex_decomposition"
 ROS_BPN = "convex_decomposition"
 
-ROS_BUILD_DEPENDS = " \
-    unzip \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    unzip \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = " \
-    unzip \
-"
+ROS_EXEC_DEPENDS = ""
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = ""
@@ -48,6 +44,7 @@ SRC_URI[sha256sum] = "853e052839ccfe26f6ae8d94e157ad06cfa7c520c3fe12cf33783107ca
 S = "${WORKDIR}/convex_decomposition-release-release-melodic-convex_decomposition-0.1.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('convex-decomposition', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('convex-decomposition', d)}"
@@ -57,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/convex-decomposition/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/convex-decomposition/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Localization Manager helps to localize robot's position with annotated information"
 AUTHOR = "Jihoon Lee <jihoonl@yujinrobot.com>"
+ROS_AUTHOR = "Jihoon Lee"
 HOMEPAGE = "http://wiki.ros.org/yocs_localization_manager"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "yujin_ocs"
 ROS_BPN = "yocs_localization_manager"
 
 ROS_BUILD_DEPENDS = " \
@@ -64,6 +66,7 @@ SRC_URI[sha256sum] = "eb2e39a17f8f78cbe98c04b73a63d666fb5937156490539ae49ad1e94b
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_localization_manager-0.8.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yujin-ocs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
@@ -73,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

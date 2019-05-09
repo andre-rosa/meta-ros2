@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "self_test"
 AUTHOR = "Brice Rebsamen <brice.rebsamen@gmail.com>"
+ROS_AUTHOR = "Kevin Watts"
 HOMEPAGE = "http://www.ros.org/wiki/self_test"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "diagnostics"
 ROS_BPN = "self_test"
 
 ROS_BUILD_DEPENDS = " \
@@ -55,6 +57,7 @@ SRC_URI[sha256sum] = "cf23d9e067a2cf40f2264386a257c0059656e83854509ad42c00b4c037
 S = "${WORKDIR}/diagnostics-release-release-melodic-self_test-1.9.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('diagnostics', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('diagnostics', d)}"
@@ -64,4 +67,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

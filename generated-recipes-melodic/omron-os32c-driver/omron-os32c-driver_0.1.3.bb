@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Interface driver for Omron OS32C Lidar via Ethernet/IP (Industrial Protocol)"
 AUTHOR = "Rein Appeldoorn <rein@ruvu.nl>"
+ROS_AUTHOR = "Kareem Shehata <kareem@shehata.ca>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "omron_os32c_driver"
 ROS_BPN = "omron_os32c_driver"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +68,7 @@ SRC_URI[sha256sum] = "ebf659a3b4a959dc4c76afcd198ebcb73f574772b9af68d3279965d14a
 S = "${WORKDIR}/omron-release-release-melodic-omron_os32c_driver-0.1.3-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('omron-os32c-driver', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('omron-os32c-driver', d)}"
@@ -75,4 +78,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/omron-os32c-driver/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/omron-os32c-driver/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

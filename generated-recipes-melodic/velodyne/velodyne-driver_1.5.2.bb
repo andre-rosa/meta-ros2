@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS device driver for Velodyne 3D LIDARs."
 AUTHOR = "Josh Whitley <jwhitley@autonomoustuff.com>"
+ROS_AUTHOR = "Jack O'Quin"
 HOMEPAGE = "http://www.ros.org/wiki/velodyne_driver"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "velodyne"
 ROS_BPN = "velodyne_driver"
 
 ROS_BUILD_DEPENDS = " \
@@ -72,6 +74,7 @@ SRC_URI[sha256sum] = "81b88ba93fe2af5da93cb4e2a8865912c11f35985cbb3636bf480c568b
 S = "${WORKDIR}/velodyne-release-release-melodic-velodyne_driver-1.5.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('velodyne', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('velodyne', d)}"
@@ -81,4 +84,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

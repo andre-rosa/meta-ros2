@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "RQT plugin for monitoring ROS processes."
 AUTHOR = "Dan Lazewatsky <dan@lazewatsky.com>"
+ROS_AUTHOR = "Dan Lazewatsky <dan@lazewatsky.com>"
 HOMEPAGE = "http://wiki.ros.org/rqt_top"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_top"
 ROS_BPN = "rqt_top"
 
 ROS_BUILD_DEPENDS = ""
@@ -21,7 +23,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    python-psutil \
     python-qt-binding \
     rospy \
     rqt-gui \
@@ -31,7 +32,6 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-psutil \
     python-qt-binding \
     rospy \
     rqt-gui \
@@ -54,6 +54,7 @@ SRC_URI[sha256sum] = "06a64dcb66e010ec7fa6e474dcd0b50efac71516ecb6a247c38652d309
 S = "${WORKDIR}/rqt_top-release-release-melodic-rqt_top-0.4.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-top', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-top', d)}"
@@ -63,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-top/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-top/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

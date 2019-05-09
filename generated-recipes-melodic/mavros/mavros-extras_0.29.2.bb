@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Extra nodes and plugins for <a href="http://wiki.ros.org/mavros">MAVROS</a>."
 AUTHOR = "Vladimir Ermakov <vooon341@gmail.com>"
+ROS_AUTHOR = "Vladimir Ermakov <vooon341@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/mavros_extras"
 SECTION = "devel"
 LICENSE = "GPL-3 & LGPL-2 & BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=1e7b3bcc2e271699c77c769685058cbe"
 
+ROS_CN = "mavros"
 ROS_BPN = "mavros_extras"
 
 ROS_BUILD_DEPENDS = " \
@@ -76,6 +78,7 @@ SRC_URI[sha256sum] = "1331ad93923e651a54cf17a666cb86b3b16d94255a4dbcb73dadc6cef7
 S = "${WORKDIR}/mavros-release-release-melodic-mavros_extras-0.29.2-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mavros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mavros', d)}"
@@ -85,4 +88,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The rc_visard_driver provides data from a Roboception rc_visard 3D sensor on several ROS topics."
 AUTHOR = "Felix Ruess <felix.ruess@roboception.de>"
+ROS_AUTHOR = "Heiko Hirschmueller <heiko.hirschmueller@roboception.de>"
 HOMEPAGE = "http://wiki.ros.org/rc_visard_driver"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rc_visard"
 ROS_BPN = "rc_visard_driver"
 
 ROS_BUILD_DEPENDS = " \
@@ -67,7 +69,6 @@ ROS_EXEC_DEPENDS = " \
     message-runtime \
     nav-msgs \
     nodelet \
-    protobuf \
     rc-dynamics-api \
     rc-genicam-api \
     roscpp \
@@ -94,6 +95,7 @@ SRC_URI[sha256sum] = "c22eca62d0d777efcc0589eb80b8f1a5a6b4ee31964696c6e4cd22b5d6
 S = "${WORKDIR}/rc_visard-release-release-melodic-rc_visard_driver-2.5.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rc-visard', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-visard', d)}"
@@ -103,4 +105,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

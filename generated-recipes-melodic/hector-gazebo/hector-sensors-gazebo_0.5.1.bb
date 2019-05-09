@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "hector_sensors_gazebo depends on the necessary plugins for using the sensors from the hector_models repository."
 AUTHOR = "Johannes Meyer <johannes@intermodalics.eu>"
+ROS_AUTHOR = "Stefan Kohlbrecher <kohlbrecher@sim.tu-darmstadt.de>"
 HOMEPAGE = "http://ros.org/wiki/hector_sensors_gazebo"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "hector_gazebo"
 ROS_BPN = "hector_sensors_gazebo"
 
 ROS_BUILD_DEPENDS = ""
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "f6c2dbc7c925947b911f5fc7065443bd12d24193b7a9168347c560fab1
 S = "${WORKDIR}/hector_gazebo-release-release-melodic-hector_sensors_gazebo-0.5.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('hector-gazebo', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hector-gazebo', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

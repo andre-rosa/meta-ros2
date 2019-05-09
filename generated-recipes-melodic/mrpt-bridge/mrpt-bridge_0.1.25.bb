@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "C++ library to convert between ROS messages and MRPT classes"
 AUTHOR = "Jose-Luis Blanco-Claraco <jlblanco@ual.es>"
+ROS_AUTHOR = "Markus Bader <markus.bader@tuwien.ac.at>"
 HOMEPAGE = "http://wiki.ros.org/mrpt_bridge"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mrpt_bridge"
 ROS_BPN = "mrpt_bridge"
 
 ROS_BUILD_DEPENDS = " \
@@ -88,6 +90,7 @@ SRC_URI[sha256sum] = "58292956027c9b5bc85b4223fc9ce1220d88b975e68206ad1a963728ca
 S = "${WORKDIR}/mrpt_bridge-release-release-melodic-mrpt_bridge-0.1.25-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-bridge', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-bridge', d)}"
@@ -97,4 +100,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-bridge/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-bridge/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

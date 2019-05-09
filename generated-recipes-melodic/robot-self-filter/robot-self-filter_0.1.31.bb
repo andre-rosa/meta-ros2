@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Filters the robot's body out of point clouds."
 AUTHOR = "Devon Ash <dash@clearpathrobotics.com>"
+ROS_AUTHOR = "Eitan Marder-Eppstein"
 HOMEPAGE = "http://ros.org/wiki/robot_self_filter"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "robot_self_filter"
 ROS_BPN = "robot_self_filter"
 
 ROS_BUILD_DEPENDS = " \
@@ -79,6 +81,7 @@ SRC_URI[sha256sum] = "8a6538dd30770242d25476003332f8ac072fbb0837e50cdde55600dc7d
 S = "${WORKDIR}/robot_self_filter-gbp-release-melodic-robot_self_filter-0.1.31-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robot-self-filter', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-self-filter', d)}"
@@ -88,4 +91,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-self-filter/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-self-filter/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

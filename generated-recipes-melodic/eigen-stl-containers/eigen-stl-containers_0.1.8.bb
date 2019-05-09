@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides a set of typedef's that allow   using Eigen datatypes in STL containers"
 AUTHOR = "Chris Lalancette <clalancette@osrfoundation.org>"
+ROS_AUTHOR = "Ioan Sucan <isucan@willowgarage.com>"
 HOMEPAGE = "http://eigen.tuxfamily.org/dox/TopicUnalignedArrayAssert.html"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "eigen_stl_containers"
 ROS_BPN = "eigen_stl_containers"
 
 ROS_BUILD_DEPENDS = " \
@@ -49,6 +51,7 @@ SRC_URI[sha256sum] = "e10632b9c182ffc09170b5fc80bf0a0f3cb8ab1091c01b44953042ba71
 S = "${WORKDIR}/eigen_stl_containers-release-release-melodic-eigen_stl_containers-0.1.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('eigen-stl-containers', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('eigen-stl-containers', d)}"
@@ -58,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigen-stl-containers/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eigen-stl-containers/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

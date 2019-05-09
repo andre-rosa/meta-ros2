@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Package for TurtleBot3 fake node. With this package, simple tests can be done without a robot.     You can do simple tests using this package on rviz without real robots."
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Pyo <pyo@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/turtlebot3_fake"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "turtlebot3_simulations"
 ROS_BPN = "turtlebot3_fake"
 
 ROS_BUILD_DEPENDS = " \
@@ -67,6 +69,7 @@ SRC_URI[sha256sum] = "5e76727354184cc0f97b0cf61d4c3743301e431c5d46bbd87436fbed8f
 S = "${WORKDIR}/turtlebot3_simulations-release-release-melodic-turtlebot3_fake-1.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot3-simulations', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3-simulations', d)}"
@@ -76,4 +79,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-simulations/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-simulations/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

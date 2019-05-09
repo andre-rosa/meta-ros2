@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A Python GUI plugin for introspecting available ROS message types.   Note that the msgs available through this plugin is the ones that are stored   on your machine, not on the ROS core your rqt instance connects to."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Aaron Blasdel"
 HOMEPAGE = "http://wiki.ros.org/rqt_msg"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_msg"
 ROS_BPN = "rqt_msg"
 
 ROS_BUILD_DEPENDS = ""
@@ -22,7 +24,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     python-qt-binding \
-    python-rospkg \
     roslib \
     rosmsg \
     rospy \
@@ -36,7 +37,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     python-qt-binding \
-    python-rospkg \
     roslib \
     rosmsg \
     rospy \
@@ -62,6 +62,7 @@ SRC_URI[sha256sum] = "ec3e88d3c822856ace98a11ab03950fb0e9390829122b7abfabc863180
 S = "${WORKDIR}/rqt_msg-release-release-melodic-rqt_msg-0.4.8-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-msg', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-msg', d)}"
@@ -71,4 +72,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-msg/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-msg/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

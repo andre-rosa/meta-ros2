@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_nav_view provides a gui for viewing navigation maps and paths."
 AUTHOR = "Aaron Blasdel <ablasdel@gmail.com>"
+ROS_AUTHOR = "Ze'ev Klapow"
 HOMEPAGE = "http://wiki.ros.org/rqt_nav_view"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_nav_view"
 ROS_BPN = "rqt_nav_view"
 
 ROS_BUILD_DEPENDS = ""
@@ -62,6 +64,7 @@ SRC_URI[sha256sum] = "a531ad91a1753f9dd2b74d56b519c52aebeac013373f76c6e4e6b19c66
 S = "${WORKDIR}/rqt_nav_view-release-release-melodic-rqt_nav_view-0.5.7-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-nav-view', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-nav-view', d)}"
@@ -71,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-nav-view/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-nav-view/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

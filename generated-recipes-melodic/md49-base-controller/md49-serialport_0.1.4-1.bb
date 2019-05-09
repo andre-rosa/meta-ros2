@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The md49_serialport package"
 AUTHOR = "Fabian Prinzing <scheik.todeswache@googlemail.com>"
+ROS_AUTHOR = "Fabian Prinzing <scheik.todeswache@googlemail.com>"
 HOMEPAGE = "http://www.the-starbearer.de"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "md49_base_controller"
 ROS_BPN = "md49_serialport"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "fa9045a3f94fdde980a537997f23ae3d74accc8f0019fa18172c007862
 S = "${WORKDIR}/md49_base_controller-release-release-melodic-md49_serialport-0.1.4-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('md49-base-controller', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('md49-base-controller', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/md49-base-controller/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/md49-base-controller/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

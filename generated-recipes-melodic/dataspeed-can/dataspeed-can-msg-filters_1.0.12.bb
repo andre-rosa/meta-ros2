@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Time synchronize multiple CAN messages to get a single callback"
 AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
+ROS_AUTHOR = "Kevin Hallenbeck <khallenbeck@dataspeedinc.com>"
 HOMEPAGE = "http://dataspeedinc.com"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "dataspeed_can"
 ROS_BPN = "dataspeed_can_msg_filters"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "042a76185f2ede3e557deb37f3dad0b56eaa8f7e25e5fa31c4d333e16c
 S = "${WORKDIR}/dataspeed_can-release-release-melodic-dataspeed_can_msg_filters-1.0.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dataspeed-can', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dataspeed-can', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

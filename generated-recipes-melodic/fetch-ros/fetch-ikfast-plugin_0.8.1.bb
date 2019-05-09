@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Kinematics plugin for Fetch robot, generated through IKFast"
 AUTHOR = "Russell Toris <rtoris@fetchrobotics.com>"
+ROS_AUTHOR = "Michael Ferguson"
 HOMEPAGE = "http://docs.fetchrobotics.com/manipulation.html"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=c93e37fc0c6f510db5735eb91dcc1550"
 
+ROS_CN = "fetch_ros"
 ROS_BPN = "fetch_ikfast_plugin"
 
 ROS_BUILD_DEPENDS = " \
@@ -62,6 +64,7 @@ SRC_URI[sha256sum] = "62c825a29e1ea77397875b05777eacde641a4a67ceba2c5b2f3ab161ef
 S = "${WORKDIR}/fetch_ros-release-release-melodic-fetch_ikfast_plugin-0.8.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fetch-ros', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-ros', d)}"
@@ -71,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

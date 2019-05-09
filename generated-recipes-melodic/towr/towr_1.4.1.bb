@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A light-weight, Eigen-based     C++ library for trajectory optimization for legged robots.      This library provides implementations for variables, costs and constraints     that can be used to represent a legged locomotion problem.      The resulting Nonlinear Programming Problem (NLP) can then be solved with     off-the-shelf solvers, e.g. Ipopt using the generic optimizer interface      <a href="http://wiki.ros.org/ifopt">ifopt</a>."
 AUTHOR = "Alexander W. Winkler <alexander.w.winkler@gmail.com>"
+ROS_AUTHOR = "Alexander W. Winkler"
 HOMEPAGE = "http://github.com/ethz-adrl/towr"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "towr"
 ROS_BPN = "towr"
 
 ROS_BUILD_DEPENDS = " \
@@ -52,6 +54,7 @@ SRC_URI[sha256sum] = "62df4c4444a14ce7bfb5bef8fbcd602942cb97a36b24ed7a7413575568
 S = "${WORKDIR}/towr-release-release-melodic-towr-1.4.1-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('towr', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('towr', d)}"
@@ -61,4 +64,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/towr/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/towr/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

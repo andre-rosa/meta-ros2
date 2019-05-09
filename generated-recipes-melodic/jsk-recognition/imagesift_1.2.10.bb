@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "For every image, computes its sift features and send a new message with the image, its intrinsic parameters, and the features.     Parameters include:     display - shows the image on the local computer"
 AUTHOR = "Kei Okada <k-okada@jsk.t.u-tokyo.ac.jp>"
+ROS_AUTHOR = "Rosen Diankov (rdiankov@cs.cmu.edu), Kei Okada"
 HOMEPAGE = "http://jsk-docs.readthedocs.io/en/latest/jsk_recognition/doc/imagesift"
 SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_CN = "jsk_recognition"
 ROS_BPN = "imagesift"
 
 ROS_BUILD_DEPENDS = " \
@@ -75,6 +77,7 @@ SRC_URI[sha256sum] = "322d64597608e08314224ee31b4fd32f1d3ab7fe3b6fea7cbff20131e4
 S = "${WORKDIR}/jsk_recognition-release-release-melodic-imagesift-1.2.10-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-recognition', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-recognition', d)}"
@@ -84,4 +87,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

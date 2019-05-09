@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The mongodb_log package"
 AUTHOR = "Marc Hanheide <marc@hanheide.net>"
+ROS_AUTHOR = "Tim Niemueller <tim@niemueller.de>"
 HOMEPAGE = "http://ros.org/wiki/mongodb_log"
 SECTION = "devel"
 LICENSE = "GPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=fe8b75cf0aba647401e1038bcd69ee74"
 
+ROS_CN = "mongodb_store"
 ROS_BPN = "mongodb_log"
 
 ROS_BUILD_DEPENDS = " \
@@ -31,7 +33,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     mongodb-store \
-    python-pymongo \
     rosgraph \
     roslib \
     rospy \
@@ -44,7 +45,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     mongodb-store \
-    python-pymongo \
     rosgraph \
     roslib \
     rospy \
@@ -69,6 +69,7 @@ SRC_URI[sha256sum] = "5ce0f217758fb3d15c24d5e6a00c59116028201b7ae95e3b5fa91af0ed
 S = "${WORKDIR}/mongodb_store-release-melodic-mongodb_log-0.5.0-5"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mongodb-store', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mongodb-store', d)}"
@@ -78,4 +79,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

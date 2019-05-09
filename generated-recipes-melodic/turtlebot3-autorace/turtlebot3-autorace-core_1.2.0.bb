@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "TurtleBot3 AutoRace ROS package that TurtleBot3 Auto's core"
 AUTHOR = "Pyo <pyo@robotis.com>"
+ROS_AUTHOR = "Gilbert <kkjong@robotis.com>"
 HOMEPAGE = "http://wiki.ros.org/turtlebot3_autorace_core"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3dce4ba60d7e51ec64f3c3dc18672dd3"
 
+ROS_CN = "turtlebot3_autorace"
 ROS_BPN = "turtlebot3_autorace_core"
 
 ROS_BUILD_DEPENDS = ""
@@ -25,8 +27,6 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    python-enum34 \
-    python-numpy \
     roslaunch \
     rospy \
     std-msgs \
@@ -48,6 +48,7 @@ SRC_URI[sha256sum] = "cd350672e9b7912409d33cd0e9f7f0deccddc9eac9999778f9fe08f0ea
 S = "${WORKDIR}/turtlebot3_autorace-release-release-melodic-turtlebot3_autorace_core-1.2.0-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot3-autorace', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3-autorace', d)}"
@@ -57,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-autorace/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-autorace/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The ros_type_introspection package allows the user to parse and deserialize   ROS messages which type is unknown at compilation time."
 AUTHOR = "Davide Faconti <faconti@icarustechnology.com>"
+ROS_AUTHOR = "Davide Faconti <faconti@icarustechnology.com>"
 HOMEPAGE = "http://www.ros.org/wiki/ros_type_introspection"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ros_type_introspection"
 ROS_BPN = "ros_type_introspection"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "df29da398149ab315bb922a74ef712841a546a8056554e3d9bc54ff016
 S = "${WORKDIR}/ros_type_introspection-release-release-melodic-ros_type_introspection-1.3.2-1"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-type-introspection', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-type-introspection', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-type-introspection/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-type-introspection/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

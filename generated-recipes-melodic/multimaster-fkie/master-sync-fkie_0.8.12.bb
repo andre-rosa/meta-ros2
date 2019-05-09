@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Synchronize the local ROS master to the remote masters       discovered by master_discovery_fkie node. The registration      of topics and services is only perform by local ROS master."
 AUTHOR = "Alexander Tiderko <alexander.tiderko@gmail.com>"
+ROS_AUTHOR = "Alexander Tiderko"
 HOMEPAGE = "http://ros.org/wiki/master_sync_fkie"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "multimaster_fkie"
 ROS_BPN = "master_sync_fkie"
 
 ROS_BUILD_DEPENDS = " \
@@ -57,6 +59,7 @@ SRC_URI[sha256sum] = "14b81d9024f42cd1ad4eb7e35af79cdddc3682c38bbc867fea10915636
 S = "${WORKDIR}/multimaster_fkie-release-release-melodic-master_sync_fkie-0.8.12-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('multimaster-fkie', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('multimaster-fkie', d)}"
@@ -66,4 +69,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

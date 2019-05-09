@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Serial is a cross-platform, simple to use library for using serial ports on computers.  This library provides a C++, object oriented interface for interacting with RS-232 like devices on Linux and Windows."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
+ROS_AUTHOR = "William Woodall <wjwwood@gmail.com>"
 HOMEPAGE = "http://wjwwood.github.com/serial/"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "serial"
 ROS_BPN = "serial"
 
 ROS_BUILD_DEPENDS = ""
@@ -44,6 +46,7 @@ SRC_URI[sha256sum] = "2509a47393feef491a0876997beb0fd9af9ecc4e6ed6ceb533f3b88404
 S = "${WORKDIR}/serial-release-release-melodic-serial-1.2.1-0"
 
 ROS_BUILD_TYPE = "catkin"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('serial', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('serial', d)}"
@@ -53,4 +56,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/serial/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/serial/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}
