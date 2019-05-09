@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Ecl frontend to a linear matrix package (currently eigen)."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/ecl_linear_algebra"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ecl_core"
 ROS_BPN = "ecl_linear_algebra"
 
 ROS_BUILD_DEPENDS = " \
@@ -64,6 +66,7 @@ SRC_URI[sha256sum] = "f5a5be624ca3ea6bc470d459a4395f3b74944c615c24987124e235922b
 S = "${WORKDIR}/ecl_core-release-release-crystal-ecl_linear_algebra-1.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ecl-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-core', d)}"
@@ -73,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

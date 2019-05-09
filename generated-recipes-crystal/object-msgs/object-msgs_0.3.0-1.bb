@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package defines messages for NCS inference"
 AUTHOR = "Xiaojun Huang <xiaojun.huang@intel.com>"
+ROS_AUTHOR = "Xiaojun Huang <xiaojun.huang@intel.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=a530e7e8bd0b9c8e6d4e5d32904af192"
 
+ROS_CN = "object_msgs"
 ROS_BPN = "object_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "0ff91ee611ff83f2c486675907db807660ca39f61db519a77b59543d62
 S = "${WORKDIR}/ros2_object_msgs-release-release-crystal-object_msgs-0.3.0-1"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('object-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('object-msgs', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/object-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/object-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

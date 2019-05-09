@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "robot_state_publisher"
 ROS_BPN = "robot_state_publisher"
 
 ROS_BUILD_DEPENDS = " \
@@ -63,6 +64,7 @@ SRC_URI[sha256sum] = "d849ccbb30a8a45c01a4a67ab1c7fbcfa331902a2786e127739eb63182
 S = "${WORKDIR}/robot_state_publisher-release-release-crystal-robot_state_publisher-2.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robot-state-publisher', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-state-publisher', d)}"
@@ -72,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-state-publisher/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-state-publisher/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

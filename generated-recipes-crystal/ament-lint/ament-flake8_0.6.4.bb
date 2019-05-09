@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The ability to check code for style and syntax conventions with flake8."
 AUTHOR = "Steven! Ragnarok <steven@osrfoundation.org>"
+ROS_AUTHOR = "D. Hood <dhood@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "ament_lint"
 ROS_BPN = "ament_flake8"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "6ca0be3c8b206bba1c02c67147ac5a3fb36abda8dec3b867d397dfa123
 S = "${WORKDIR}/ament_lint-release-release-crystal-ament_flake8-0.6.4-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ament-lint', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-lint', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-lint/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-lint/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

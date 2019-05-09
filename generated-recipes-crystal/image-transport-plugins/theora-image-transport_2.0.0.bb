@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Theora_image_transport provides a plugin to image_transport for     transparently sending an image stream encoded with the Theora codec."
 AUTHOR = "Julius Kammerl <jkammerl@willowgarage.com>"
+ROS_AUTHOR = "Patrick Mihelich"
 HOMEPAGE = "http://www.ros.org/wiki/image_transport_plugins"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_transport_plugins"
 ROS_BPN = "theora_image_transport"
 
 ROS_BUILD_DEPENDS = " \
@@ -71,6 +73,7 @@ SRC_URI[sha256sum] = "748543b146e6a8816a560c6ccf5a48c9648c0b1b6a956cd3e7c67390ee
 S = "${WORKDIR}/image_transport_plugins-release-release-crystal-theora_image_transport-2.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-transport-plugins', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-transport-plugins', d)}"
@@ -80,4 +83,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

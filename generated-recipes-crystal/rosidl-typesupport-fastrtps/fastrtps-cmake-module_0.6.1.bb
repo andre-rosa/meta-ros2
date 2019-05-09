@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Provide CMake module to find eProsima FastRTPS."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Ricardo González"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "rosidl_typesupport_fastrtps"
 ROS_BPN = "fastrtps_cmake_module"
 
 ROS_BUILD_DEPENDS = ""
@@ -45,6 +47,7 @@ SRC_URI[sha256sum] = "f2a152b916a700341bd1fdb6c2730e06f094e773fac5b42b3706cabbaf
 S = "${WORKDIR}/rosidl_typesupport_fastrtps-release-release-crystal-fastrtps_cmake_module-0.6.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosidl-typesupport-fastrtps', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl-typesupport-fastrtps', d)}"
@@ -54,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-typesupport-fastrtps/${BPN}.i
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-typesupport-fastrtps/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

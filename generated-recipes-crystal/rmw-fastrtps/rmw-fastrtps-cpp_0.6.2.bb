@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Implement the ROS middleware interface using eProsima FastRTPS static code generation in C++."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Ricardo González"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "rmw_fastrtps"
 ROS_BPN = "rmw_fastrtps_cpp"
 
 ROS_BUILD_DEPENDS = " \
@@ -76,6 +78,7 @@ SRC_URI[sha256sum] = "309efba86d62ecbb153d05b71b10b362ab9f89b52f4b324a885c861000
 S = "${WORKDIR}/rmw_fastrtps-release-release-crystal-rmw_fastrtps_cpp-0.6.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rmw-fastrtps', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rmw-fastrtps', d)}"
@@ -85,4 +88,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-fastrtps/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-fastrtps/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

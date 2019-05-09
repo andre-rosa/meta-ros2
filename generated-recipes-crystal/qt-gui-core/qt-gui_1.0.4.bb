@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "qt_gui provides the infrastructure for an integrated graphical user interface based on Qt.     It is extensible with Python- and C++-based plugins (implemented in separate packages) which can contribute arbitrary widgets.     It requires either PyQt or PySide bindings."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Dirk Thomas"
 HOMEPAGE = "http://ros.org/wiki/qt_gui"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "qt_gui_core"
 ROS_BPN = "qt_gui"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "e55f3120d946b1293506485fb15feca7531fa9caa80494ed117381a4d2
 S = "${WORKDIR}/qt_gui_core-release-release-crystal-qt_gui-1.0.4-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('qt-gui-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('qt-gui-core', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

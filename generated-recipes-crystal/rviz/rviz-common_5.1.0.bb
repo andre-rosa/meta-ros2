@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Common rviz API, used by rviz plugins and applications."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
+ROS_AUTHOR = "Dave Hershberger"
 HOMEPAGE = "https://github.com/ros2/rviz/blob/ros2/README.md"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rviz"
 ROS_BPN = "rviz_common"
 
 ROS_BUILD_DEPENDS = " \
@@ -99,6 +101,7 @@ SRC_URI[sha256sum] = "8fde07fc584f5c242e3849c258f00d85452c6507816c6ed6a9b543383b
 S = "${WORKDIR}/rviz-release-release-crystal-rviz_common-5.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rviz', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz', d)}"
@@ -108,4 +111,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

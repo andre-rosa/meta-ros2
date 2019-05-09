@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides a C++ interface for camera calibration      information.  It provides CameraInfo, and handles SetCameraInfo      service requests, saving and restoring the camera calibration      data."
 AUTHOR = "Michael Carroll <michael@openrobotics.org>"
+ROS_AUTHOR = "Jack O'Quin"
 HOMEPAGE = "http://ros.org/wiki/camera_info_manager"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_common"
 ROS_BPN = "camera_info_manager"
 
 ROS_BUILD_DEPENDS = " \
@@ -61,6 +63,7 @@ SRC_URI[sha256sum] = "65a8f9750504734de8a7033629376d64487c7a0467394f8438b92ff98a
 S = "${WORKDIR}/image_common-release-release-crystal-camera_info_manager-2.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-common', d)}"
@@ -70,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

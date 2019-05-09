@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_publisher provides a GUI plugin for publishing arbitrary messages with fixed or computed field values."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Dorian Scholz"
 HOMEPAGE = "http://wiki.ros.org/rqt_publisher"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_publisher"
 ROS_BPN = "rqt_publisher"
 
 ROS_BUILD_DEPENDS = ""
@@ -49,6 +51,7 @@ SRC_URI[sha256sum] = "8d6b4cc21b3b3a1a0e1394eba2afd3921d28af0482c12af5e466d0a208
 S = "${WORKDIR}/rqt_publisher-release-release-crystal-rqt_publisher-1.0.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-publisher', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-publisher', d)}"
@@ -58,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-publisher/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-publisher/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

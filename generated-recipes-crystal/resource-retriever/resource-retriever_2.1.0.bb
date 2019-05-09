@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package retrieves data from url-format files such as http://,    ftp://, package:// file://, etc., and loads the data into memory.    The package:// url for ros packages is translated into a local    file:// url.  The resourse retriever was initially designed to load    mesh files into memory, but it can be used for any type of    data. The resource retriever is based on the the libcurl library."
 AUTHOR = "Chris Lalancette <clalancette@osrfoundation.org>"
+ROS_AUTHOR = "Josh Faust <jfaust@willowgarage.com>"
 HOMEPAGE = "http://ros.org/wiki/resource_retriever"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=18;endline=18;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "resource_retriever"
 ROS_BPN = "resource_retriever"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "9db42f615c9c1240dcae2f0ef91495e1177ab7c97acd884dfb38507e5d
 S = "${WORKDIR}/resource_retriever-release-release-crystal-resource_retriever-2.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('resource-retriever', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('resource-retriever', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

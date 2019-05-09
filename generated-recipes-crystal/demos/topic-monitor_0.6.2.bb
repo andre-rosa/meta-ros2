@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Package containing tools for monitoring ROS 2 topics."
 AUTHOR = "Scott K Logan <scott@openrobotics.org>"
+ROS_AUTHOR = "D. Hood"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "demos"
 ROS_BPN = "topic_monitor"
 
 ROS_BUILD_DEPENDS = " \
@@ -35,7 +37,6 @@ ROS_EXEC_DEPENDS = " \
 ROS_TEST_DEPENDS = " \
     ament-flake8 \
     ament-pep257 \
-    python3-pytest \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -51,6 +52,7 @@ SRC_URI[sha256sum] = "6cad0a1877a05bd2e7e7888f06f26f4739e442726da85a548f4ddb6578
 S = "${WORKDIR}/demos-release-release-crystal-topic_monitor-0.6.2-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('demos', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('demos', d)}"
@@ -60,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

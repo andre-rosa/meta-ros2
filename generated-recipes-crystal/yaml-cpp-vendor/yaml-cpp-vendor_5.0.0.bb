@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0 & MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=f12ef8c0445c08084ae92cf2dcb7ee92"
 
+ROS_CN = "yaml_cpp_vendor"
 ROS_BPN = "yaml_cpp_vendor"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +43,7 @@ SRC_URI[sha256sum] = "40ebab2a3298b5c6f44d69b287d305097cc267912e38722e181f1a903e
 S = "${WORKDIR}/yaml_cpp_vendor-release-release-crystal-yaml_cpp_vendor-5.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yaml-cpp-vendor', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yaml-cpp-vendor', d)}"
@@ -51,4 +53,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yaml-cpp-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yaml-cpp-vendor/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A set of plugins for publishing and subscribing to sensor_msgs/Image topics     in representations other than raw pixel data. For example, for viewing a     stream of images off-robot, a video codec will give much lower bandwidth     and latency. For low frame rate tranport of high-definition images, you     might prefer sending them as JPEG or PNG-compressed form."
 AUTHOR = "Michael Carroll <michael@openrobotics.org>"
+ROS_AUTHOR = "Patrick Mihelich"
 HOMEPAGE = "http://www.ros.org/wiki/image_transport_plugins"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=18;endline=18;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_transport_plugins"
 ROS_BPN = "image_transport_plugins"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "31adddd619d0be5f1561ae22d965b98da156ee9b5f0bfa0d7f06534c7e
 S = "${WORKDIR}/image_transport_plugins-release-release-crystal-image_transport_plugins-2.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-transport-plugins', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-transport-plugins', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

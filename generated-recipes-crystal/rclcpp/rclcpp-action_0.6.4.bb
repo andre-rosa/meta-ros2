@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "rclcpp"
 ROS_BPN = "rclcpp_action"
 
 ROS_BUILD_DEPENDS = " \
@@ -66,6 +67,7 @@ SRC_URI[sha256sum] = "4d76ff4572c3b0e802314b47bfca794d51ccd5ccb2996b8a33b7436656
 S = "${WORKDIR}/rclcpp-release-release-crystal-rclcpp_action-0.6.4-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rclcpp', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rclcpp', d)}"
@@ -75,4 +77,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclcpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclcpp/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package defines messages commonly used in mapping packages."
 AUTHOR = "David V. Lu!! <davidvlu@gmail.com>"
+ROS_AUTHOR = "Stéphane Magnenat"
 HOMEPAGE = "http://ros.org/wiki/map_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=16;endline=16;md5=01c2bc31767ccb3a68e12f02612b2a97"
 
+ROS_CN = "navigation_msgs"
 ROS_BPN = "map_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "73777431375ad7b3d56e25f88ed4655e757047b218ae32ff4ce34affce
 S = "${WORKDIR}/navigation_msgs-release-release-crystal-map_msgs-2.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-msgs', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

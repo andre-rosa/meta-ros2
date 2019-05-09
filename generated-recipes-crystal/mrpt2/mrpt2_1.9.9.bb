@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Mobile Robot Programming Toolkit (MRPT) version 2.x"
 AUTHOR = "Jose-Luis Blanco-Claraco <joseluisblancoc@gmail.com>"
+ROS_AUTHOR = "Jose-Luis Blanco-Claraco <joseluisblancoc@gmail.com>"
 HOMEPAGE = "https://www.mrpt.org/"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "mrpt2"
 ROS_BPN = "mrpt2"
 
 ROS_BUILD_DEPENDS = " \
@@ -81,6 +83,7 @@ SRC_URI[sha256sum] = "f53bc01e9cecf69776f34c50e4ca8e675327efca9f672b3cf5a4ef8ba5
 S = "${WORKDIR}/mrpt2-release-release-crystal-mrpt2-1.9.9-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt2', d)}"
@@ -90,4 +93,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

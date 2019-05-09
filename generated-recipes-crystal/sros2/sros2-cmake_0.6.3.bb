@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Cmake macros to configure security for nodes"
 AUTHOR = "AWS B9 Team <aws-b9-platform@amazon.com>"
+ROS_AUTHOR = "AWS B9 Team <aws-b9-platform@amazon.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=80318c4afef111a7690eaf237460856b"
 
+ROS_CN = "sros2"
 ROS_BPN = "sros2_cmake"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "80042b41404ecbb8cc07a61aa45b2b93fb2c15adfb8e6043fb1e5ef662
 S = "${WORKDIR}/sros2-release-release-crystal-sros2_cmake-0.6.3-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sros2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sros2', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

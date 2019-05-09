@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "qt_dotgraph provides helpers to work with dot graphs."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Thibault Kruse"
 HOMEPAGE = "http://ros.org/wiki/qt_dotgraph"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "qt_gui_core"
 ROS_BPN = "qt_dotgraph"
 
 ROS_BUILD_DEPENDS = ""
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "b6b2ce385ac3ec80556af694fd4d539836eeda8393c115fd9836768334
 S = "${WORKDIR}/qt_gui_core-release-release-crystal-qt_dotgraph-1.0.4-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('qt-gui-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('qt-gui-core', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

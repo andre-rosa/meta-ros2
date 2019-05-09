@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "rcl_interfaces"
 ROS_BPN = "test_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -56,6 +57,7 @@ SRC_URI[sha256sum] = "74f8874674cec9d9f6b53a41aa24ab578358a710dec1b0b96ac9090aba
 S = "${WORKDIR}/rcl_interfaces-release-release-crystal-test_msgs-0.6.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rcl-interfaces', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rcl-interfaces', d)}"
@@ -65,4 +67,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-interfaces/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-interfaces/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

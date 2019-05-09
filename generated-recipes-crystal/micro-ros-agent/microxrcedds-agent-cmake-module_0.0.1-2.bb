@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Provide CMake module to find eProsima Micro XRCE-DDS Agent"
 AUTHOR = "Borja Outerelo <borjaouterelo@eprosima.com>"
+ROS_AUTHOR = "Borja Outerelo"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "micro-ROS-Agent"
 ROS_BPN = "microxrcedds_agent_cmake_module"
 
 ROS_BUILD_DEPENDS = " \
@@ -49,6 +51,7 @@ SRC_URI[sha256sum] = "98f5c52ea0905c8db2c03ad4a66fef5efa557767387384243bffdff042
 S = "${WORKDIR}/micro-ROS-Agent-release-release-crystal-microxrcedds_agent_cmake_module-0.0.1-2"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('micro-ros-agent', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('micro-ros-agent', d)}"
@@ -58,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-ros-agent/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-ros-agent/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

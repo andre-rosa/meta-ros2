@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "C API providing common interface to a shared library wrapping 3rd party loggers."
 AUTHOR = "Amazon B9 <amazon-b9-ros@amazon.com>"
+ROS_AUTHOR = "Nick Burek <amazon-b9-ros@amazon.com>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "rcl_logging"
 ROS_BPN = "rcl_logging_log4cxx"
 
 ROS_BUILD_DEPENDS = " \
@@ -56,6 +58,7 @@ SRC_URI[sha256sum] = "3b3814094f4ece619ceaf2f4da10e8727a961951ddc6f83812f355a8e8
 S = "${WORKDIR}/rcl_logging-release-release-crystal-rcl_logging_log4cxx-0.2.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rcl-logging', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rcl-logging', d)}"
@@ -65,4 +68,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

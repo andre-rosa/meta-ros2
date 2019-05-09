@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "AprilTag detector library"
 AUTHOR = "Christian Rauch <Rauch.Christian@gmx.de>"
+ROS_AUTHOR = "Edwin Olson <ebolson@umich.edu>"
 HOMEPAGE = "https://april.eecs.umich.edu/software/apriltag.html"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "apriltag2"
 ROS_BPN = "apriltag"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +44,7 @@ SRC_URI[sha256sum] = "3f021fcda7c06021420a3edbd25dcac2df45bb01d90de64e6cade44e94
 S = "${WORKDIR}/apriltag2-release-release-crystal-apriltag-0.9.8-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('apriltag2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('apriltag2', d)}"
@@ -51,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

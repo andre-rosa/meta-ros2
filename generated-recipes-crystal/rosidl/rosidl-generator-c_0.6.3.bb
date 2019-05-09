@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "rosidl"
 ROS_BPN = "rosidl_generator_c"
 
 ROS_BUILD_DEPENDS = " \
@@ -56,6 +57,7 @@ SRC_URI[sha256sum] = "faf3e8c0b436926f12be1f2ae3190685d52e0fc6856aff7dc159bceb34
 S = "${WORKDIR}/rosidl-release-release-crystal-rosidl_generator_c-0.6.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosidl', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl', d)}"
@@ -65,4 +67,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

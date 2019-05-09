@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Display object analytics result in rviz"
 AUTHOR = "Chris Ye <chris.ye@intel.com>"
+ROS_AUTHOR = "Chris Ye"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "ros2_object_analytics"
 ROS_BPN = "object_analytics_rviz"
 
 ROS_BUILD_DEPENDS = " \
@@ -65,6 +67,7 @@ SRC_URI[sha256sum] = "00f9f160d4740e7ca9799da65b83e5337aa482e4dac4cc151ce8c84dea
 S = "${WORKDIR}/ros2_object_analytics-release-release-crystal-object_analytics_rviz-0.5.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros2-object-analytics', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros2-object-analytics', d)}"
@@ -74,4 +77,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-object-analytics/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-object-analytics/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

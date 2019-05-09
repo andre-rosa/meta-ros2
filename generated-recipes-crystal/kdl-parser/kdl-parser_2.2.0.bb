@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "The Kinematics and Dynamics Library (KDL) defines a tree structure    to represent the kinematic and dynamic parameters of a robot    mechanism. <tt>kdl_parser</tt> provides tools to construct a KDL    tree from an XML robot representation in URDF."
 AUTHOR = "Chris Lalancette <clalancette@osrfoundation.org>"
+ROS_AUTHOR = "Wim Meeussen <wim@willowgarage.com>"
 HOMEPAGE = "https://github.com/ros2/kdl_parser"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "kdl_parser"
 ROS_BPN = "kdl_parser"
 
 ROS_BUILD_DEPENDS = " \
@@ -59,6 +61,7 @@ SRC_URI[sha256sum] = "9f3e1d9af948522e30fceb48dc27cd55cf2726965b00b6d3f745f205e4
 S = "${WORKDIR}/kdl_parser-release-release-crystal-kdl_parser-2.2.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('kdl-parser', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('kdl-parser', d)}"
@@ -68,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kdl-parser/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kdl-parser/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

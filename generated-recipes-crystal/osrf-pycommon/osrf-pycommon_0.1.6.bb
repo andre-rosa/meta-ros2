@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "osrf_pycommon"
 ROS_BPN = "osrf_pycommon"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +43,7 @@ SRC_URI[sha256sum] = "0b57f393c62abbe990c23c9b55272fc0e97d402ef68d2e9f7fc3c3a66f
 S = "${WORKDIR}/osrf_pycommon-release-release-crystal-osrf_pycommon-0.1.6-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('osrf-pycommon', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('osrf-pycommon', d)}"
@@ -51,4 +53,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-pycommon/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-pycommon/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

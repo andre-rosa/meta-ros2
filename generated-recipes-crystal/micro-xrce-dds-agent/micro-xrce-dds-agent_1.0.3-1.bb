@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "micro-xrce-dds-agent"
 ROS_BPN = "micro-xrce-dds-agent"
 
 ROS_BUILD_DEPENDS = " \
@@ -52,6 +53,7 @@ SRC_URI[sha256sum] = "2527ae37b394541a98465ecdfbf05b9de141c0b66a1675ccf19f7e149d
 S = "${WORKDIR}/Micro-XRCE-DDS-Agent-release-release-crystal-micro-xrce-dds-agent-1.0.3-1"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('micro-xrce-dds-agent', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('micro-xrce-dds-agent', d)}"
@@ -61,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-xrce-dds-agent/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-xrce-dds-agent/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

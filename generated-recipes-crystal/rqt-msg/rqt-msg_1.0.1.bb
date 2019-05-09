@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A Python GUI plugin for introspecting available ROS message types.   Note that the msgs available through this plugin is the ones that are stored   on your machine, not on the ROS core your rqt instance connects to."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Aaron Blasdel"
 HOMEPAGE = "http://wiki.ros.org/rqt_msg"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_msg"
 ROS_BPN = "rqt_msg"
 
 ROS_BUILD_DEPENDS = ""
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "60afac52d8e0054ba07516357ddf272edea74802ee7b779ed0c89a9d39
 S = "${WORKDIR}/rqt_msg-release-release-crystal-rqt_msg-1.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-msg', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-msg', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-msg/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-msg/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

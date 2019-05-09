@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "ROS messages for universally unique identifiers."
 AUTHOR = "Jacob Perron <jacob@openrobotics.org>"
+ROS_AUTHOR = "Jack O'Quin"
 HOMEPAGE = "http://ros.org/wiki/unique_identifier_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "unique_identifier_msgs"
 ROS_BPN = "unique_identifier_msgs"
 
 ROS_BUILD_DEPENDS = ""
@@ -45,6 +47,7 @@ SRC_URI[sha256sum] = "87eed67a35931d8ae852ed650b8b98049ee7af773fa97ba29ab0f0d42b
 S = "${WORKDIR}/unique_identifier_msgs-release-release-crystal-unique_identifier_msgs-2.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('unique-identifier-msgs', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('unique-identifier-msgs', d)}"
@@ -54,4 +57,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier-msgs/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier-msgs/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Library which provides the 3D rendering functionality in rviz."
 AUTHOR = "William Woodall <william@osrfoundation.org>"
+ROS_AUTHOR = "Dave Hershberger"
 HOMEPAGE = "https://github.com/ros2/rviz/blob/ros2/README.md"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rviz"
 ROS_BPN = "rviz_rendering"
 
 ROS_BUILD_DEPENDS = " \
@@ -68,6 +70,7 @@ SRC_URI[sha256sum] = "96086e823a93382820f721d1ef80ed07afdef6a433d8d5bff33265ae94
 S = "${WORKDIR}/rviz-release-release-crystal-rviz_rendering-5.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rviz', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz', d)}"
@@ -77,4 +80,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

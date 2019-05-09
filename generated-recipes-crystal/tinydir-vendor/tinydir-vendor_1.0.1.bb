@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "tinydir_vendor"
 ROS_BPN = "tinydir_vendor"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +43,7 @@ SRC_URI[sha256sum] = "993a5b8000c90a3284ca05971c79f13f7e71fa2b92e02f865d8d730b9c
 S = "${WORKDIR}/tinydir_vendor-release-release-crystal-tinydir_vendor-1.0.1-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tinydir-vendor', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tinydir-vendor', d)}"
@@ -51,4 +53,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinydir-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tinydir-vendor/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "launch"
 ROS_BPN = "launch_ros"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,7 +51,6 @@ ROS_TEST_DEPENDS = " \
     ament-copyright \
     ament-flake8 \
     ament-pep257 \
-    python3-pytest \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -66,6 +66,7 @@ SRC_URI[sha256sum] = "480257659d78e901745518c17ae0e35e6def35dbb7bc7a1d5867a3f1f3
 S = "${WORKDIR}/launch-release-release-crystal-launch_ros-0.7.4-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('launch', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('launch', d)}"
@@ -75,4 +76,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

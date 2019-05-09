@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "osrf_testing_tools_cpp"
 ROS_BPN = "osrf_testing_tools_cpp"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +43,7 @@ SRC_URI[sha256sum] = "853939b29d8c0e8889459cd6bb22fdd69cba853bfaf2099bd4ae5a1b18
 S = "${WORKDIR}/osrf_testings_tools_cpp-release-release-crystal-osrf_testing_tools_cpp-1.1.0-0"
 
 ROS_BUILD_TYPE = "cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('osrf-testing-tools-cpp', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('osrf-testing-tools-cpp', d)}"
@@ -51,4 +53,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-testing-tools-cpp/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/osrf-testing-tools-cpp/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

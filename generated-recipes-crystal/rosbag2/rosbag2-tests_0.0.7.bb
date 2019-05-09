@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "rosbag2"
 ROS_BPN = "rosbag2_tests"
 
 ROS_BUILD_DEPENDS = " \
@@ -63,6 +64,7 @@ SRC_URI[sha256sum] = "c29de4e032b989e2d724d9270d9ed4aedd45354b9c989d99c7ff09265c
 S = "${WORKDIR}/rosbag2-release-release-crystal-rosbag2_tests-0.0.7-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosbag2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbag2', d)}"
@@ -72,4 +74,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

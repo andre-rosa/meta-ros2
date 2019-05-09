@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "image_transport should always be used to subscribe to and publish images. It provides transparent      support for transporting images in low-bandwidth compressed formats. Examples (provided by separate      plugin packages) include JPEG/PNG compression and Theora streaming video."
 AUTHOR = "Michael Carroll <michael@openrobotics.org>"
+ROS_AUTHOR = "Patrick Mihelich"
 HOMEPAGE = "http://ros.org/wiki/image_transport"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "image_common"
 ROS_BPN = "image_transport"
 
 ROS_BUILD_DEPENDS = " \
@@ -61,6 +63,7 @@ SRC_URI[sha256sum] = "80d28aee0a7cf9c2412f589e27638afab061a33740970935efeb990c31
 S = "${WORKDIR}/image_common-release-release-crystal-image_transport-2.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-common', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-common', d)}"
@@ -70,4 +73,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

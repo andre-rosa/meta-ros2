@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "LGPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=23;endline=23;md5=46ee8693f40a89a31023e97ae17ecf19"
 
+ROS_CN = "navigation2"
 ROS_BPN = "nav2_amcl"
 
 ROS_BUILD_DEPENDS = " \
@@ -95,6 +96,7 @@ SRC_URI[sha256sum] = "620d841b5f5db364761592c12a070d998a234a9fb44a94626f6f634486
 S = "${WORKDIR}/navigation2-release-release-crystal-nav2_amcl-0.1.7-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation2', d)}"
@@ -104,4 +106,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

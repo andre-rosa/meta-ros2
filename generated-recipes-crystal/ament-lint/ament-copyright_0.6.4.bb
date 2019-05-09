@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=ee09441fd2874bd55740e281e9f11b69"
 
+ROS_CN = "ament_lint"
 ROS_BPN = "ament_copyright"
 
 ROS_BUILD_DEPENDS = ""
@@ -28,7 +29,6 @@ ROS_EXEC_DEPENDS = ""
 ROS_TEST_DEPENDS = " \
     ament-flake8 \
     ament-pep257 \
-    python3-pytest \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -44,6 +44,7 @@ SRC_URI[sha256sum] = "3ff8c5e00112dd4024dd76eb261662386100e6ba21ff545d230aee1591
 S = "${WORKDIR}/ament_lint-release-release-crystal-ament_copyright-0.6.4-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ament-lint', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-lint', d)}"
@@ -53,4 +54,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-lint/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-lint/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

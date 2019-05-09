@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_gui provides the main to start an instance of the ROS integrated graphical user interface provided by qt_gui."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Dirk Thomas"
 HOMEPAGE = "http://ros.org/wiki/rqt_gui"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt"
 ROS_BPN = "rqt_gui"
 
 ROS_BUILD_DEPENDS = " \
@@ -51,6 +53,7 @@ SRC_URI[sha256sum] = "4e256bfa84d8af087d1201e8e2564f34e2ea8642f6c3e35000be52f35d
 S = "${WORKDIR}/rqt-release-release-crystal-rqt_gui-1.0.2-0"
 
 ROS_BUILD_TYPE = "ament_python"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt', d)}"
@@ -60,4 +63,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

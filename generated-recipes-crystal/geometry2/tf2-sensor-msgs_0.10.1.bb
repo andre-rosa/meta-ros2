@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Small lib to transform sensor_msgs with tf. Most notably, PointCloud2"
 AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
+ROS_AUTHOR = "Vincent Rabaud"
 HOMEPAGE = "http://www.ros.org/wiki/tf2_ros"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "geometry2"
 ROS_BPN = "tf2_sensor_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -59,6 +61,7 @@ SRC_URI[sha256sum] = "9dd7df4d7dbc5eb6b757acf55b5d356d22903aefccabe59a1d770813c1
 S = "${WORKDIR}/geometry2-release-release-crystal-tf2_sensor_msgs-0.10.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('geometry2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geometry2', d)}"
@@ -68,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

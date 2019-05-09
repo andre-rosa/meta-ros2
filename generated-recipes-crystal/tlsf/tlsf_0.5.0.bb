@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "TLSF allocator version 2.4.6"
 AUTHOR = "Chris Lalancette <clalancette@openrobotics.org>"
+ROS_AUTHOR = "Jackie Kay <jackie@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "LGPL-2.1"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=3badeab1074cb0c993003745c15d12f0"
 
+ROS_CN = "tlsf"
 ROS_BPN = "tlsf"
 
 ROS_BUILD_DEPENDS = " \
@@ -49,6 +51,7 @@ SRC_URI[sha256sum] = "fb30080b58ef1610f857ff1ddcf1416325f24a247267e2c49f09a5759a
 S = "${WORKDIR}/tlsf-release-release-crystal-tlsf-0.5.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tlsf', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tlsf', d)}"
@@ -58,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tlsf/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tlsf/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Generate the ROS interfaces in Python."
 AUTHOR = "Scott K Logan <scott@openrobotics.org>"
+ROS_AUTHOR = "Esteve Fernandez"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "rosidl_python"
 ROS_BPN = "rosidl_generator_py"
 
 ROS_BUILD_DEPENDS = ""
@@ -47,7 +49,6 @@ ROS_TEST_DEPENDS = " \
     ament-lint-auto \
     ament-lint-common \
     python-cmake-module \
-    python3-pytest \
     rmw \
     rmw-implementation \
     rmw-implementation-cmake \
@@ -70,6 +71,7 @@ SRC_URI[sha256sum] = "6afe8899ecf01ee8636a5afc1f970cc2ac3ceb992349a34f1887b722bb
 S = "${WORKDIR}/rosidl_python-release-release-crystal-rosidl_generator_py-0.6.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosidl-python', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl-python', d)}"
@@ -79,4 +81,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-python/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-python/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

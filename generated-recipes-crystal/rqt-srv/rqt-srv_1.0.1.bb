@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "A Python GUI plugin for introspecting available ROS message types.   Note that the srvs available through this plugin is the ones that are stored   on your machine, not on the ROS core your rqt instance connects to."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Aaron Blasdel"
 HOMEPAGE = "http://wiki.ros.org/rqt_srv"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_srv"
 ROS_BPN = "rqt_srv"
 
 ROS_BUILD_DEPENDS = ""
@@ -47,6 +49,7 @@ SRC_URI[sha256sum] = "06feb31b523415f057448cbd3190cfb4c60d97ac41a6a5233a2e93d6f0
 S = "${WORKDIR}/rqt_srv-release-release-crystal-rqt_srv-1.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-srv', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-srv', d)}"
@@ -56,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-srv/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-srv/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

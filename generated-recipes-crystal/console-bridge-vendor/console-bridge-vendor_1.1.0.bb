@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0 & BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=f12ef8c0445c08084ae92cf2dcb7ee92"
 
+ROS_CN = "console_bridge_vendor"
 ROS_BPN = "console_bridge_vendor"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +49,7 @@ SRC_URI[sha256sum] = "1a8eb7126fa9825f35ad4f5373646c2df8b68595d0d6e4c2a595c3916e
 S = "${WORKDIR}/console_bridge_vendor-release-release-crystal-console_bridge_vendor-1.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('console-bridge-vendor', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('console-bridge-vendor', d)}"
@@ -57,4 +59,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/console-bridge-vendor/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

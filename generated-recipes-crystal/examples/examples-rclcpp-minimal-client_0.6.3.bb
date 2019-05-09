@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Examples of minimal service clients"
 AUTHOR = "Jacob Perron <jacob@openrobotics.org>"
+ROS_AUTHOR = "Mikael Arguedas"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "examples"
 ROS_BPN = "examples_rclcpp_minimal_client"
 
 ROS_BUILD_DEPENDS = " \
@@ -48,6 +50,7 @@ SRC_URI[sha256sum] = "f752e4565af0a8dab10f84d6a24c1220a30673f768b91cb82d3baab823
 S = "${WORKDIR}/examples-release-release-crystal-examples_rclcpp_minimal_client-0.6.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('examples', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('examples', d)}"
@@ -57,4 +60,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

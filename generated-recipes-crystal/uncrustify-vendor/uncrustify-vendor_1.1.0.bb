@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0 & GPL-2"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=f12ef8c0445c08084ae92cf2dcb7ee92"
 
+ROS_CN = "uncrustify_vendor"
 ROS_BPN = "uncrustify_vendor"
 
 ROS_BUILD_DEPENDS = ""
@@ -42,6 +43,7 @@ SRC_URI[sha256sum] = "e81702fda146eb9e430cb382a925c852d768aee7f801fe35df14c91cc2
 S = "${WORKDIR}/uncrustify_vendor-release-release-crystal-uncrustify_vendor-1.1.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('uncrustify-vendor', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('uncrustify-vendor', d)}"
@@ -51,4 +53,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uncrustify-vendor/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uncrustify-vendor/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

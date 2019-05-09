@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides the Behavior Trees core library."
 AUTHOR = "Davide Faconti <davide.faconti@gmail.com>"
+ROS_AUTHOR = "Michele Colledanchise"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "behaviotree_cpp_v3"
 ROS_BPN = "behaviortree_cpp_v3"
 
 ROS_BUILD_DEPENDS = " \
@@ -53,6 +55,7 @@ SRC_URI[sha256sum] = "b2807d1238adbba82ece6d5045a0335bd3c461e7c38ec96cdc6e369b2b
 S = "${WORKDIR}/behaviortree_cpp_v3-release-release-crystal-behaviortree_cpp_v3-3.0.4-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('behaviotree-cpp-v3', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('behaviotree-cpp-v3', d)}"
@@ -62,4 +65,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviotree-cpp-v3/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviotree-cpp-v3/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

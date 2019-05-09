@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
+ROS_CN = "apriltag2_node"
 ROS_BPN = "apriltag2_node"
 
 ROS_BUILD_DEPENDS = " \
@@ -64,6 +65,7 @@ SRC_URI[sha256sum] = "096c7aba240c1767464228f85390ab0162b0443d470887944047d7b0b9
 S = "${WORKDIR}/apriltag2_node-release-release-crystal-apriltag2_node-1.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('apriltag2-node', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('apriltag2-node', d)}"
@@ -73,4 +75,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2-node/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/apriltag2-node/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

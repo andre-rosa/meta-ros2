@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "common_interfaces"
 ROS_BPN = "sensor_msgs"
 
 ROS_BUILD_DEPENDS = " \
@@ -55,6 +56,7 @@ SRC_URI[sha256sum] = "09309c9ac332be8eedaf4c74f6342d60be5c8f729079edd2ee26a42ed3
 S = "${WORKDIR}/common_interfaces-release-release-crystal-sensor_msgs-0.6.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('common-interfaces', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-interfaces', d)}"
@@ -64,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-interfaces/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-interfaces/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

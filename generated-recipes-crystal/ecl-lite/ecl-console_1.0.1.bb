@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Color codes for ansii consoles."
 AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
+ROS_AUTHOR = "Daniel Stonier <d.stonier@gmail.com>"
 HOMEPAGE = "http://wiki.ros.org/ecl_console"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "ecl_lite"
 ROS_BPN = "ecl_console"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,6 +52,7 @@ SRC_URI[sha256sum] = "4c6c0d24df184f7b818373d6db1e430079772dfbf33741e96bdd589259
 S = "${WORKDIR}/ecl_lite-release-release-crystal-ecl_console-1.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ecl-lite', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-lite', d)}"
@@ -59,4 +62,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-lite/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

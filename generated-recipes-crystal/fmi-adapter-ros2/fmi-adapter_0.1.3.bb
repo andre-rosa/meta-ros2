@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "fmi_adapter_ros2"
 ROS_BPN = "fmi_adapter"
 
 ROS_BUILD_DEPENDS = " \
@@ -60,6 +61,7 @@ SRC_URI[sha256sum] = "9fef64ebe842649540c8cf39e015113ac89ae520f644c7119340064d82
 S = "${WORKDIR}/fmi_adapter_ros2-release-release-crystal-fmi_adapter-0.1.3-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fmi-adapter-ros2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fmi-adapter-ros2', d)}"
@@ -69,4 +71,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter-ros2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter-ros2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

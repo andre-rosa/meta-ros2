@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_shell is a Python GUI plugin providing an interactive shell."
 AUTHOR = "Dorian Scholz <scholz@sim.tu-darmstadt.de>"
+ROS_AUTHOR = "Dorian Scholz"
 HOMEPAGE = "http://wiki.ros.org/rqt_shell"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_shell"
 ROS_BPN = "rqt_shell"
 
 ROS_BUILD_DEPENDS = ""
@@ -49,6 +51,7 @@ SRC_URI[sha256sum] = "5a8ea5e58a69cf9d636cf5fb54acc62e8c3d2ad5acea86c0361c2d613c
 S = "${WORKDIR}/rqt_shell-release-release-crystal-rqt_shell-1.0.0-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-shell', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-shell', d)}"
@@ -58,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-shell/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-shell/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

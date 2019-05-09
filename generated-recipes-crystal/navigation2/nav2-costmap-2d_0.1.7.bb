@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=18;endline=18;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "navigation2"
 ROS_BPN = "nav2_costmap_2d"
 
 ROS_BUILD_DEPENDS = " \
@@ -111,6 +112,7 @@ SRC_URI[sha256sum] = "d334601046ce22f40bb0abe4f43ec89531f3a21890d4e678e98b4e3289
 S = "${WORKDIR}/navigation2-release-release-crystal-nav2_costmap_2d-0.1.7-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation2', d)}"
@@ -120,4 +122,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

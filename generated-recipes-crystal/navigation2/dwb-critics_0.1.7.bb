@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "navigation2"
 ROS_BPN = "dwb_critics"
 
 ROS_BUILD_DEPENDS = " \
@@ -86,6 +87,7 @@ SRC_URI[sha256sum] = "0e3089d57956c995c412f80fd13e621dc44777f3d006c4eaf0128f694e
 S = "${WORKDIR}/navigation2-release-release-crystal-dwb_critics-0.1.7-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation2', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation2', d)}"
@@ -95,4 +97,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation2/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

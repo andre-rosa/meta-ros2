@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "Generic joystick teleop for twist robots."
 AUTHOR = "Chris Lalancette <clalancette@openrobotics.org>"
+ROS_AUTHOR = "Mike Purvis <mpurvis@clearpathrobotics.com>"
 HOMEPAGE = "http://wiki.ros.org/teleop_twist_joy"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "teleop_twist_joy"
 ROS_BPN = "teleop_twist_joy"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "a7d77f7bc4efb63a825c9f06c88703e9373dafe9a615473f6a1a7c4866
 S = "${WORKDIR}/teleop_twist_joy-release-release-crystal-teleop_twist_joy-2.1.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('teleop-twist-joy', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teleop-twist-joy', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

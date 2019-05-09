@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "qt_gui_cpp provides the foundation for C++-bindings for qt_gui and creates bindings for every generator available.     At least one specific binding must be available in order to use C++-plugins."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Dirk Thomas"
 HOMEPAGE = "http://ros.org/wiki/qt_gui_cpp"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "qt_gui_core"
 ROS_BPN = "qt_gui_cpp"
 
 ROS_BUILD_DEPENDS = " \
@@ -54,6 +56,7 @@ SRC_URI[sha256sum] = "5930b2323ee7bc08451cf3342bd79a0a13ffb9af35dcff5070d0f90749
 S = "${WORKDIR}/qt_gui_core-release-release-crystal-qt_gui_cpp-1.0.4-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('qt-gui-core', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('qt-gui-core', d)}"
@@ -63,4 +66,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

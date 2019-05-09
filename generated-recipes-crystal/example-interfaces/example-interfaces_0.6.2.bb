@@ -12,6 +12,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
+ROS_CN = "example_interfaces"
 ROS_BPN = "example_interfaces"
 
 ROS_BUILD_DEPENDS = " \
@@ -50,6 +51,7 @@ SRC_URI[sha256sum] = "0c93953b378fdd65af4e4b68d46bb155e4dbb2ae469e8f04c9c445e3cd
 S = "${WORKDIR}/example_interfaces-release-release-crystal-example_interfaces-0.6.2-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('example-interfaces', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('example-interfaces', d)}"
@@ -59,4 +61,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/example-interfaces/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/example-interfaces/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

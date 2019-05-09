@@ -7,11 +7,13 @@ inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_service_caller provides a GUI plugin for calling arbitrary services."
 AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+ROS_AUTHOR = "Dorian Scholz"
 HOMEPAGE = "http://wiki.ros.org/rqt_service_caller"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
+ROS_CN = "rqt_service_caller"
 ROS_BPN = "rqt_service_caller"
 
 ROS_BUILD_DEPENDS = ""
@@ -46,6 +48,7 @@ SRC_URI[sha256sum] = "d8850f2897289e4414da4a2daf77e2f00e81c24e6753668e18c257b32a
 S = "${WORKDIR}/rqt_service_caller-release-release-crystal-rqt_service_caller-1.0.1-0"
 
 ROS_BUILD_TYPE = "ament_cmake"
+ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-service-caller', d)}"
 
 # Allow the above settings to be overridden.
 ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-service-caller', d)}"
@@ -55,4 +58,5 @@ include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-service-caller/${BPN}.inc
 include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-service-caller/${BPN}-${PV}.inc
 
 inherit ros_distro_${ROS_DISTRO}
+inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}
