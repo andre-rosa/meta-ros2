@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Drivers for Orbbec Astra Devices."
@@ -65,16 +66,15 @@ SRC_URI[md5sum] = "c3a7587850e9cfadcec3746d7addb910"
 SRC_URI[sha256sum] = "21269326784bcf416424404ffbfdd1a1d6abc5eb83efdafc4fc8abaa700bebd8"
 S = "${WORKDIR}/ros_astra_camera-release-release-bouncy-astra_camera-2.1.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-astra-camera', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-astra-camera', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-astra-camera', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-astra-camera/ros-astra-camera_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-astra-camera/ros-astra-camera-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-astra-camera/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-astra-camera/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-astra-camera', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-astra-camera/ros-astra-camera_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-astra-camera/ros-astra-camera-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-astra-camera/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-astra-camera/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

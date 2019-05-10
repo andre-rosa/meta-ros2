@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "CMake shim over the poco library."
@@ -56,16 +57,15 @@ SRC_URI[md5sum] = "9bfd9524341e48ab4e97f5f83d76b778"
 SRC_URI[sha256sum] = "cda587f77c5cc377deac90d5b13d8b6e1f61b7781f51ac86a76bf997ccd35add"
 S = "${WORKDIR}/poco_vendor-release-release-bouncy-poco_vendor-1.1.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('poco-vendor', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('poco-vendor', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('poco-vendor', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/poco-vendor/poco-vendor_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/poco-vendor/poco-vendor-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/poco-vendor/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/poco-vendor/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('poco-vendor', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/poco-vendor/poco-vendor_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/poco-vendor/poco-vendor-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/poco-vendor/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/poco-vendor/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

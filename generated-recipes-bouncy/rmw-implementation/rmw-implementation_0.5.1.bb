@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The decision which ROS middleware implementation should be used for C++."
@@ -60,16 +61,15 @@ SRC_URI[md5sum] = "9b0b99fe49b2ef75f440699eb25841c8"
 SRC_URI[sha256sum] = "fd7b8bb67e04c312a0b00ed8ba54b23ce6aea443078bd6366f21e530150d68b9"
 S = "${WORKDIR}/rmw_implementation-release-release-bouncy-rmw_implementation-0.5.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rmw-implementation', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rmw-implementation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rmw-implementation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-implementation/rmw-implementation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-implementation/rmw-implementation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-implementation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-implementation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rmw-implementation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw-implementation/rmw-implementation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw-implementation/rmw-implementation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw-implementation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw-implementation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

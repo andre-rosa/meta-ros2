@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The ROS specific CMake bits in the ament buildsystem."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "9a8f007511f615e3dcee2f04ce5515c5"
 SRC_URI[sha256sum] = "cc191a3b4c9b489ec62c46ec7f92b499c5138ef7795e7166cb7bdc5cbb47ff18"
 S = "${WORKDIR}/ament_cmake_ros-release-release-bouncy-ament_cmake_ros-0.5.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ament-cmake-ros', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ament-cmake-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-cmake-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/ament-cmake-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/ament-cmake-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ament-cmake-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-cmake-ros/ament-cmake-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-cmake-ros/ament-cmake-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-cmake-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-cmake-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

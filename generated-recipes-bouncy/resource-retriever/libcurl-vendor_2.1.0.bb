@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Wrapper around libcurl, it provides a fixed CMake module and an ExternalProject build of it."
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "e1c43763c78c1d471f061243137207a2"
 SRC_URI[sha256sum] = "42bade1696caa4699aebdf4daaec5b5083e7d344c5bf2633670a0d8315e765fb"
 S = "${WORKDIR}/resource_retriever-release-release-bouncy-libcurl_vendor-2.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('resource-retriever', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('resource-retriever', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('resource-retriever', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/resource-retriever_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/resource-retriever-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('resource-retriever', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/resource-retriever/resource-retriever_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/resource-retriever/resource-retriever-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/resource-retriever/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/resource-retriever/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Metapackage aggregating the turtlebot2 demo packages"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "6a09960b80a834284fc1896eada1ff88"
 SRC_URI[sha256sum] = "ab842dc1c6a516d94035de7b97d1a356e1a9e9b93dab6af8ac91b6c48e1c1954"
 S = "${WORKDIR}/turtlebot2_demo-release-release-bouncy-turtlebot2_demo-0.5.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('turtlebot2-demo', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot2-demo', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot2-demo', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot2-demo/turtlebot2-demo_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot2-demo/turtlebot2-demo-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot2-demo/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot2-demo/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('turtlebot2-demo', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot2-demo/turtlebot2-demo_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot2-demo/turtlebot2-demo-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot2-demo/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot2-demo/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains a recent version of the Kinematics and Dynamics     Library (KDL), distributed by the Orocos Project."
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "e28fd99376063237bf3107629da57a70"
 SRC_URI[sha256sum] = "9902b1fbe014a218f8e31b389c02e70ecf74da795888d000bfcaa1e8d1755bab"
 S = "${WORKDIR}/orocos_kinematics_dynamics-release-release-bouncy-orocos_kdl-3.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('orocos-kinematics-dynamics', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('orocos-kinematics-dynamics', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('orocos-kinematics-dynamics', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/orocos-kinematics-dynamics/orocos-kinematics-dynamics_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/orocos-kinematics-dynamics/orocos-kinematics-dynamics-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/orocos-kinematics-dynamics/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/orocos-kinematics-dynamics/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('orocos-kinematics-dynamics', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/orocos-kinematics-dynamics/orocos-kinematics-dynamics_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/orocos-kinematics-dynamics/orocos-kinematics-dynamics-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/orocos-kinematics-dynamics/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/orocos-kinematics-dynamics/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

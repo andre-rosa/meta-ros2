@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Examples of creating and using exectors to run multiple nodes in the same process"
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "0072658565bc958015e0ef0d701e2ad0"
 SRC_URI[sha256sum] = "4620789b5fa7810409d651eff05b4127d6b5cf33a181f14a24f136a7915c94f3"
 S = "${WORKDIR}/examples-release-release-bouncy-examples_rclpy_executors-0.5.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('examples', d)}"
 ROS_BUILD_TYPE = "ament_python"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('examples', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('examples', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/examples_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/examples-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('examples', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/examples/examples_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/examples/examples-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/examples/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/examples/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

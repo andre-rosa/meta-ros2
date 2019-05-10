@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "depthimage_to_laserscan"
@@ -60,16 +61,15 @@ SRC_URI[md5sum] = "404fab2cbe73411fc38e2d05b11bf413"
 SRC_URI[sha256sum] = "909bf014f689eed98f1e790afa350f4f87ca2eecc1bc52763b24bac8374ef395"
 S = "${WORKDIR}/depthimage_to_laserscan-release-release-bouncy-depthimage_to_laserscan-2.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('depthimage-to-laserscan', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('depthimage-to-laserscan', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('depthimage-to-laserscan', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthimage-to-laserscan/depthimage-to-laserscan_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthimage-to-laserscan/depthimage-to-laserscan-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthimage-to-laserscan/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/depthimage-to-laserscan/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('depthimage-to-laserscan', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/depthimage-to-laserscan/depthimage-to-laserscan_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/depthimage-to-laserscan/depthimage-to-laserscan-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/depthimage-to-laserscan/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/depthimage-to-laserscan/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

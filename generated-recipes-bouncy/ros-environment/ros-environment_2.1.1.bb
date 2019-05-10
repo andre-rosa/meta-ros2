@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The package provides the environment variables `ROS_VERSION` and `ROS_DISTRO`."
@@ -42,16 +43,15 @@ SRC_URI[md5sum] = "5efcbc266af99d6b87476801adfea5e9"
 SRC_URI[sha256sum] = "e8c88e2f9929c22893b687112aca58337fda0d056d33c32a3524a79251c9506c"
 S = "${WORKDIR}/ros_environment-release-release-bouncy-ros_environment-2.1.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-environment', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-environment', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-environment', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/ros-environment_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/ros-environment-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-environment', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-environment/ros-environment_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-environment/ros-environment-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-environment/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-environment/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

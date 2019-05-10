@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Instrumentation library for real-time performance testing"
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "9e8e68db2e38e65c05b8c8ea80b4967f"
 SRC_URI[sha256sum] = "41d6ed6b03234309699f43a26934fa36739b16465c1adf4d36ad339666e5c3b0"
 S = "${WORKDIR}/realtime_support-release-release-bouncy-rttest-0.5.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('realtime-support', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('realtime-support', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('realtime-support', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/realtime-support_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/realtime-support-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-support/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('realtime-support', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/realtime-support/realtime-support_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/realtime-support/realtime-support-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/realtime-support/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/realtime-support/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The parser for the manifest files in the ament buildsystem."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "75e98209706f6eed8bbb449c3e3194d1"
 SRC_URI[sha256sum] = "bca69aac44d4010473a9c8b2676eef3539679f003b80994ea1f75c35141bffe2"
 S = "${WORKDIR}/ament_package-release-release-bouncy-ament_package-0.5.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ament-package', d)}"
 ROS_BUILD_TYPE = "ament_python"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ament-package', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-package', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-package/ament-package_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-package/ament-package-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-package/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-package/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ament-package', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-package/ament-package_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-package/ament-package-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-package/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-package/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

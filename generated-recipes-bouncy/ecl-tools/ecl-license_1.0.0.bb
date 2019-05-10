@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Maintains the ecl licenses and also provides an install      target for deploying licenses with the ecl libraries."
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "4a3cba5d5f196139b7c13f76b1585ed7"
 SRC_URI[sha256sum] = "8c7f4f6aabccdfafac836060fd63f5ee55ad7fd8b897487c0bc6eb53474ba547"
 S = "${WORKDIR}/ecl_tools-release-release-bouncy-ecl_license-1.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ecl-tools', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ecl-tools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-tools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-tools/ecl-tools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-tools/ecl-tools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-tools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-tools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ecl-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-tools/ecl-tools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-tools/ecl-tools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-tools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-tools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

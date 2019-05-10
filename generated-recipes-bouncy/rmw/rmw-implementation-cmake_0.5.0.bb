@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "CMake functions which can discover and enumerate available implementations."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "9016adaa44a0429938c0614f99d3159c"
 SRC_URI[sha256sum] = "09b0254962e8830e603158351d839392f9d8546c21365afc348b1e5d69be5e13"
 S = "${WORKDIR}/rmw-release-release-bouncy-rmw_implementation_cmake-0.5.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rmw', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rmw', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rmw', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw/rmw_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw/rmw-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rmw', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw/rmw_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw/rmw-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

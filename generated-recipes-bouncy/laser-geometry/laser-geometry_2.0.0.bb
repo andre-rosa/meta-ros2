@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains a class for converting from a 2D laser scan as defined by     sensor_msgs/LaserScan into a point cloud as defined by sensor_msgs/PointCloud     or sensor_msgs/PointCloud2. In particular, it contains functionality to account     for the skew resulting from moving robots or tilting laser scanners."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "83b93cfe150b0fa259a4e45678ea5cca"
 SRC_URI[sha256sum] = "c049c41b52ce6be24ba955f6e545d644201ec707e2c5953bcb3284b9802bfda8"
 S = "${WORKDIR}/laser_geometry-release-release-bouncy-laser_geometry-2.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('laser-geometry', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('laser-geometry', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-geometry', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-geometry/laser-geometry_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-geometry/laser-geometry-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-geometry/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-geometry/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('laser-geometry', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-geometry/laser-geometry_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-geometry/laser-geometry-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-geometry/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-geometry/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

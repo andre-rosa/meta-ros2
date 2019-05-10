@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Generate the type support for C++ messages."
@@ -60,16 +61,15 @@ SRC_URI[md5sum] = "219e2df46038df4c399a418610e44781"
 SRC_URI[sha256sum] = "744fa2251aa4b6aaf0038977af58657fa4ed1e17f5c7ca70aac909821135b39d"
 S = "${WORKDIR}/rosidl_typesupport-release-release-bouncy-rosidl_typesupport_cpp-0.5.0-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosidl-typesupport', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosidl-typesupport', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl-typesupport', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-typesupport/rosidl-typesupport_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-typesupport/rosidl-typesupport-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-typesupport/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-typesupport/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosidl-typesupport', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-typesupport/rosidl-typesupport_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-typesupport/rosidl-typesupport-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-typesupport/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-typesupport/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

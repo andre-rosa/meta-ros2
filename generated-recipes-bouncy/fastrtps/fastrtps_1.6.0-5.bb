@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Implementation of RTPS standard."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "7e12300a73ada5e04e81ed1489e9a8df"
 SRC_URI[sha256sum] = "17ad3833c0e8405c3f991e1f2b4fa4fab42b0919f481a34dab7c46b61aa365d6"
 S = "${WORKDIR}/fastrtps-release-release-bouncy-fastrtps-1.6.0-5"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('fastrtps', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fastrtps', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fastrtps', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastrtps/fastrtps_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastrtps/fastrtps-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastrtps/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastrtps/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('fastrtps', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fastrtps/fastrtps_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fastrtps/fastrtps-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fastrtps/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fastrtps/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

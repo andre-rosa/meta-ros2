@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Provides the prefix level environment files for ROS 2 packages."
@@ -45,16 +46,15 @@ SRC_URI[md5sum] = "bd8bc263aa7558b4610dfb69ee41c035"
 SRC_URI[sha256sum] = "2417d917dd856d122f0b332ecca368c2e2a7eb9d06626c073383a55b5e1fa403"
 S = "${WORKDIR}/ros_workspace-release-release-bouncy-ros_workspace-0.5.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-workspace', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-workspace', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-workspace', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-workspace/ros-workspace_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-workspace/ros-workspace-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-workspace/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-workspace/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-workspace', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-workspace/ros-workspace_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-workspace/ros-workspace-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-workspace/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-workspace/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

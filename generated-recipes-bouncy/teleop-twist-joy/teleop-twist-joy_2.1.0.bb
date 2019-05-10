@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Generic joystick teleop for twist robots."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "dfba91ed0f9dfa94f85ea279c1cd4409"
 SRC_URI[sha256sum] = "d2aa20f24742dd110f441a47da19d30c4ac5d8bcd8e2493790d2fa4c97ffba5f"
 S = "${WORKDIR}/teleop_twist_joy-release-release-bouncy-teleop_twist_joy-2.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('teleop-twist-joy', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('teleop-twist-joy', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teleop-twist-joy', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/teleop-twist-joy_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/teleop-twist-joy-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-joy/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('teleop-twist-joy', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-joy/teleop-twist-joy_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-joy/teleop-twist-joy-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-joy/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-joy/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

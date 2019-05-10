@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Cartographer is a system that provides real-time simultaneous localization     and mapping (SLAM) in 2D and 3D across multiple platforms and sensor     configurations. This package provides Cartographer's ROS integration."
@@ -89,16 +90,15 @@ SRC_URI[md5sum] = "9f8e7d05aff4e7f62905bcec29d719b8"
 SRC_URI[sha256sum] = "da9a2272b74e22831ea49a8bd77b16097a18111f6d0eb5b47d71aa897b7b127c"
 S = "${WORKDIR}/cartographer_ros-release-release-bouncy-cartographer_ros-2.1.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('cartographer-ros', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('cartographer-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cartographer-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/cartographer-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/cartographer-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('cartographer-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartographer-ros/cartographer-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartographer-ros/cartographer-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartographer-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartographer-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

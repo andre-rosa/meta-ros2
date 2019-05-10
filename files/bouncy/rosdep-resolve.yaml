@@ -49,7 +49,7 @@ python3-opencv: opencv@meta-oe
 python3-pep8: python3-pep8@meta-ros
 python3-pkg-resources: python3-setuptools@openembedded-core
 python3-pydot: python3-pydot@meta-ros
-python3-pytest: python3-pytest
+python3-pytest: python3-pytest@meta-python
 python3-setuptools: python3-setuptools@openembedded-core
 python3-yaml: python3-pyyaml@meta-python
 qtbase5-dev: qtbase@meta-qt5

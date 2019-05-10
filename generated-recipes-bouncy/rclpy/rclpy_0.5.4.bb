@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Package containing the Python client."
@@ -63,16 +64,15 @@ SRC_URI[md5sum] = "fc0f7b3f142f60df9e7067c384fc2bfa"
 SRC_URI[sha256sum] = "7490e1537fb30ba4fc0a0b0b506de11bea02556a0bb9567fd5fb5f2c1dc2f16f"
 S = "${WORKDIR}/rclpy-release-release-bouncy-rclpy-0.5.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rclpy', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rclpy', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rclpy', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclpy/rclpy_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclpy/rclpy-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclpy/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclpy/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rclpy', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rclpy/rclpy_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rclpy/rclpy-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rclpy/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rclpy/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

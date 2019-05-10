@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A package which extends 'ros_core' and includes other basic functionalities like tf2 and urdf."
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "5a2c58c6e01a4b5c43d6e1b6da5f0f73"
 SRC_URI[sha256sum] = "9fa5ef6c16d0be2dc78e923a57c7dd8b08ab38c088162b4d273a525371745399"
 S = "${WORKDIR}/variants-release-release-bouncy-ros_base-0.5.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('variants', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('variants', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('variants', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variants/variants_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variants/variants-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variants/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variants/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('variants', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variants/variants_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variants/variants-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variants/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variants/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}
