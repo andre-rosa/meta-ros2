@@ -6,21 +6,17 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Package containing demos for lifecycle implementation"
+DESCRIPTION = "dummy robot bringup"
 AUTHOR = "Karsten Knese <karsten@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "lifecycle"
+ROS_BPN = "dummy_robot_bringup"
 
-ROS_BUILD_DEPENDS = " \
-    lifecycle-msgs \
-    rclcpp-lifecycle \
-    std-msgs \
-"
+ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
@@ -31,14 +27,18 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    lifecycle-msgs \
-    rclcpp-lifecycle \
+    ament-index-python \
+    dummy-map-server \
+    dummy-sensors \
+    launch \
+    launch-ros \
+    robot-state-publisher \
     ros2run \
-    std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
+    ament-cmake-gtest \
     ament-lint-auto \
     ament-lint-common \
 "
@@ -50,10 +50,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/lifecycle/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "ed8deda67da14f80be789f097b39d162"
-SRC_URI[sha256sum] = "48ea6033662a3adaa694c93e06069db2d8ae5c2adff44fd9006f5a69eb6bec2b"
-S = "${WORKDIR}/demos-release-release-dashing-lifecycle-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/dummy_robot_bringup/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "288f4c857502f528e25f1dd88dfb4caf"
+SRC_URI[sha256sum] = "f6a1a58c1c93de4dcd4d6078610e8ac05bf4a0453354384e13c2a25044431155"
+S = "${WORKDIR}/demos-release-release-dashing-dummy_robot_bringup-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

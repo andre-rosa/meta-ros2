@@ -6,41 +6,39 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "dummy robot bringup"
-AUTHOR = "Karsten Knese <karsten@osrfoundation.org>"
+DESCRIPTION = "Package containing tools for monitoring ROS 2 topics."
+AUTHOR = "Scott K Logan <scott@openrobotics.org>"
+ROS_AUTHOR = "D. Hood"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "dummy_robot_bringup"
+ROS_BPN = "topic_monitor"
 
-ROS_BUILD_DEPENDS = ""
-
-ROS_BUILDTOOL_DEPENDS = " \
-    ament-cmake-native \
+ROS_BUILD_DEPENDS = " \
+    rclpy \
 "
+
+ROS_BUILDTOOL_DEPENDS = ""
 
 ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    ament-index-python \
-    dummy-map-server \
-    dummy-sensors \
     launch \
     launch-ros \
-    robot-state-publisher \
-    ros2run \
+    rclpy \
+    std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    ament-cmake-gtest \
-    ament-lint-auto \
-    ament-lint-common \
+    ament-flake8 \
+    ament-pep257 \
+    python3-pytest \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -50,13 +48,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/dummy_robot_bringup/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "fb9ff0e61a2252e4295e6ac54306b0d9"
-SRC_URI[sha256sum] = "f449ebe4ef0cfbaec04861c1e8793ecf72e30b558e9a6a014720036df4d100cd"
-S = "${WORKDIR}/demos-release-release-dashing-dummy_robot_bringup-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/topic_monitor/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "00a3f6dfac7f70638ac990321a0b64d1"
+SRC_URI[sha256sum] = "3324527e8bb3256a981a164b3ca3979fb2d7d07d808aebc0957f551a626e73d0"
+S = "${WORKDIR}/demos-release-release-dashing-topic_monitor-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
-ROS_BUILD_TYPE = "ament_cmake"
+ROS_BUILD_TYPE = "ament_python"
 
 # Allow the above settings to be overridden.
 ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('demos', d)}"

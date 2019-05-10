@@ -6,39 +6,49 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "dummy map server node"
-AUTHOR = "Karsten Knese <karsten@osrfoundation.org>"
+DESCRIPTION = "C++ nodes which access the native handles of the rmw implemenation."
+AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "dummy_map_server"
+ROS_BPN = "demo_nodes_cpp_native"
 
 ROS_BUILD_DEPENDS = " \
-    nav-msgs \
     rclcpp \
+    rmw-fastrtps-cpp \
+    std-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    rclcpp \
+    rmw-fastrtps-cpp \
+    std-msgs \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    nav-msgs \
     rclcpp \
+    rmw-fastrtps-cpp \
+    std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    ament-cmake-gtest \
+    ament-cmake-pytest \
     ament-lint-auto \
     ament-lint-common \
+    launch \
+    launch-testing \
+    launch-testing-ament-cmake \
+    launch-testing-ros \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -48,10 +58,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/dummy_map_server/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "cb5aa6fc40c456b865760f180243230a"
-SRC_URI[sha256sum] = "155ffa53f71b19642cf83476c553753581d6905950edcd9a6a393c55ff98fa41"
-S = "${WORKDIR}/demos-release-release-dashing-dummy_map_server-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/demo_nodes_cpp_native/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "58b23978ac2233eeffcf40863caa2170"
+SRC_URI[sha256sum] = "af9b2523e0959bdf0ae9a561bb2dfe1e97e0b2feb23b46b16876495ee807083e"
+S = "${WORKDIR}/demos-release-release-dashing-demo_nodes_cpp_native-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

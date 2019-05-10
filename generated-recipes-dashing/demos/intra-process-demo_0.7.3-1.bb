@@ -6,22 +6,21 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Demonstrates ROS 2's realtime capabilities with a simulated inverted pendulum."
-AUTHOR = "Michael Carroll <michael@openrobotics.org>"
-ROS_AUTHOR = "Jackie Kay"
+DESCRIPTION = "Demonstrations of intra process communication."
+AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "pendulum_control"
+ROS_BPN = "intra_process_demo"
 
 ROS_BUILD_DEPENDS = " \
-    pendulum-msgs \
+    opencv \
     rclcpp \
-    rttest \
-    tlsf-cpp \
+    sensor-msgs \
+    std-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -33,10 +32,9 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    pendulum-msgs \
+    opencv \
     rclcpp \
-    rttest \
-    tlsf-cpp \
+    sensor-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -47,9 +45,7 @@ ROS_TEST_DEPENDS = " \
     launch \
     launch-testing \
     launch-testing-ament-cmake \
-    launch-testing-ros \
     rmw-implementation-cmake \
-    ros2run \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -59,10 +55,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/pendulum_control/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "95185d1f2425331c124db9df80b9e0c3"
-SRC_URI[sha256sum] = "abdd27807a3e4ede3c8a6dacf54a22429ac27a56da71f1a19f0ac42c77fb835d"
-S = "${WORKDIR}/demos-release-release-dashing-pendulum_control-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/intra_process_demo/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "65b0b712292cc5c1a327a561b0f7d4bc"
+SRC_URI[sha256sum] = "897b1c84b60b3e4e95829c2ed0d36f439ea1241cedc48ea2984c170b09fe128d"
+S = "${WORKDIR}/demos-release-release-dashing-intra_process_demo-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

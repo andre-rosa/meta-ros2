@@ -6,21 +6,22 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Examples for composing multiple nodes in a single process."
-AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+DESCRIPTION = "C++ nodes which were previously in the ros2/examples repository but are now just used for demo purposes."
+AUTHOR = "William Woodall <william@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "composition"
+ROS_BPN = "demo_nodes_cpp"
 
 ROS_BUILD_DEPENDS = " \
     example-interfaces \
     rclcpp \
-    rclcpp-components \
     rcutils \
+    rmw \
+    rmw-implementation-cmake \
     std-msgs \
 "
 
@@ -36,8 +37,8 @@ ROS_EXEC_DEPENDS = " \
     example-interfaces \
     launch-ros \
     rclcpp \
-    rclcpp-components \
     rcutils \
+    rmw \
     std-msgs \
 "
 
@@ -50,7 +51,6 @@ ROS_TEST_DEPENDS = " \
     launch-testing \
     launch-testing-ament-cmake \
     launch-testing-ros \
-    rmw-implementation-cmake \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -60,10 +60,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/composition/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "9613d569b1a297b64688d5ff1173c55f"
-SRC_URI[sha256sum] = "65b84ca2b92088d653aabcba808be72a629875ec3f4ee303929daa3f1558a27f"
-S = "${WORKDIR}/demos-release-release-dashing-composition-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/demo_nodes_cpp/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "b9c672ca676d5ad33bd7ad9d08d1c016"
+SRC_URI[sha256sum] = "12e0eba8c8f83d30a4b64b9294ae7cd433da3a4e7fad0883c4e47f3e3aac558f"
+S = "${WORKDIR}/demos-release-release-dashing-demo_nodes_cpp-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
