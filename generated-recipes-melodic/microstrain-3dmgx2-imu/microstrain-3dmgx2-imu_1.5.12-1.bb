@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A driver for IMUs compatible the microstrain 3DM-GX2 and 3DM-GX3 protocol. Includes      a heavily modified standalone driver pulled from the player distribution,      and a ROS node."
@@ -73,16 +74,15 @@ SRC_URI[md5sum] = "90f8fb648a0fe8e80d5f803d24485ec9"
 SRC_URI[sha256sum] = "25b441c8be65da409431657796fe7577585e401b74e363c0a81f72177d9fd2e4"
 S = "${WORKDIR}/microstrain_3dmgx2_imu-release-release-melodic-microstrain_3dmgx2_imu-1.5.12-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('microstrain-3dmgx2-imu', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('microstrain-3dmgx2-imu', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('microstrain-3dmgx2-imu', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/microstrain-3dmgx2-imu/microstrain-3dmgx2-imu_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/microstrain-3dmgx2-imu/microstrain-3dmgx2-imu-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/microstrain-3dmgx2-imu/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/microstrain-3dmgx2-imu/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('microstrain-3dmgx2-imu', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/microstrain-3dmgx2-imu/microstrain-3dmgx2-imu_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/microstrain-3dmgx2-imu/microstrain-3dmgx2-imu-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/microstrain-3dmgx2-imu/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/microstrain-3dmgx2-imu/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Network interfaces and messages."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "69dd293365a0e2a788102e28068ed096"
 SRC_URI[sha256sum] = "5998b4fc5c5a96474d6a2ab83d3c55f7f5e847af5f909f00176deda4f6612ccf"
 S = "${WORKDIR}/network_interface-release-release-melodic-network_interface-2.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('network-interface', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('network-interface', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('network-interface', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/network-interface/network-interface_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/network-interface/network-interface-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/network-interface/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/network-interface/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('network-interface', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/network-interface/network-interface_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/network-interface/network-interface-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/network-interface/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/network-interface/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The pythonwifi package is available through pypi, but not through a      deb package. This is copy of the package suitable for use through the     ROS ecosystem."
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "6fde25c930ad72d04a71be681ea4357b"
 SRC_URI[sha256sum] = "a0fe115a173a08330e7680b085161aae0bde090b2749f58fbd5ee764fedc3765"
 S = "${WORKDIR}/rocon_tools-release-release-melodic-rocon_python_wifi-0.3.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rocon-tools', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rocon-tools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rocon-tools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/rocon-tools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/rocon-tools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rocon-tools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rocon-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rocon-tools/rocon-tools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rocon-tools/rocon-tools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rocon-tools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rocon-tools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

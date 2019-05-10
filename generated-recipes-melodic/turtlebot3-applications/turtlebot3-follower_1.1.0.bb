@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The follower demo was implemented using a 360 Laser Distance Sensor LDS-01. The classification algorithm is used based on previous fitting with samples of person and obstacles positions to take actions. It follows someone in front of the robot within a 50 centimeter range and 140 degrees."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "0740a5820818f00077fbae1b0b3ba238"
 SRC_URI[sha256sum] = "f2059a2728165ba5974739c04cabd2e782f3c06bff35299c149836c98bc6a429"
 S = "${WORKDIR}/turtlebot3_applications-release-release-melodic-turtlebot3_follower-1.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('turtlebot3-applications', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot3-applications', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3-applications', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/turtlebot3-applications_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/turtlebot3-applications-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('turtlebot3-applications', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-applications/turtlebot3-applications_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-applications/turtlebot3-applications-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-applications/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-applications/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

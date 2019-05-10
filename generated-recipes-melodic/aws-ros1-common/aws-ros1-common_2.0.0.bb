@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Common utilities for ROS1 nodes using Amazon Web Services"
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "6eae0fbff73df6f3d21d1db1276679b0"
 SRC_URI[sha256sum] = "34ab3879ab871a990b6b3eb591794dcdc7c62c32ef2687d011db9fdf14fcd354"
 S = "${WORKDIR}/aws_ros1_common-release-release-melodic-aws_ros1_common-2.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('aws-ros1-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('aws-ros1-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('aws-ros1-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-ros1-common/aws-ros1-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-ros1-common/aws-ros1-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-ros1-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-ros1-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('aws-ros1-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/aws-ros1-common/aws-ros1-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/aws-ros1-common/aws-ros1-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/aws-ros1-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/aws-ros1-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

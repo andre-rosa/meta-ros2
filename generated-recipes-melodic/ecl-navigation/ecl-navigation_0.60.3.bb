@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This stack aims to bring the common tools and algorithms needed to     develop navigation algorithms, in particular slam. It does not focus on     the end-point solution, rather the tools needed to create a variety of     end-point solutions."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "551a5aa47684bb7ef0d5b8cde262252c"
 SRC_URI[sha256sum] = "1d3e834b6aa0b70617f25fc03c9c7f275e5280ed6a75570483b0db48ecd5b32d"
 S = "${WORKDIR}/ecl_navigation-release-release-melodic-ecl_navigation-0.60.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ecl-navigation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ecl-navigation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-navigation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/ecl-navigation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/ecl-navigation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-navigation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ecl-navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-navigation/ecl-navigation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-navigation/ecl-navigation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-navigation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-navigation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

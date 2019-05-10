@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Extension of locomotor that implements move_base's functionality."
@@ -62,16 +63,15 @@ SRC_URI[md5sum] = "57c104a2d0bd3fbbd9e755dc7e9aede7"
 SRC_URI[sha256sum] = "f8eb11d52a5e4b23ba8563021f1273b28f5be9f690335ab490ae50ca34f23b30"
 S = "${WORKDIR}/robot_navigation-release-release-melodic-locomove_base-0.2.5-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('robot-navigation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robot-navigation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-navigation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-navigation/robot-navigation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-navigation/robot-navigation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-navigation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-navigation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('robot-navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-navigation/robot-navigation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-navigation/robot-navigation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-navigation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-navigation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

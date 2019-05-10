@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Helper scripts and functionality to test industrial motion generation"
@@ -57,16 +58,15 @@ SRC_URI[md5sum] = "9b19aa9430adab43321db5d1430337a5"
 SRC_URI[sha256sum] = "8cacbe2c01a7a31208f5e212e965daf275ee72258112d6691e6206f096dedf9a"
 S = "${WORKDIR}/pilz_industrial_motion-release-release-melodic-pilz_industrial_motion_testutils-0.4.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pilz-industrial-motion', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pilz-industrial-motion', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pilz-industrial-motion', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-industrial-motion/pilz-industrial-motion_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-industrial-motion/pilz-industrial-motion-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-industrial-motion/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-industrial-motion/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pilz-industrial-motion', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-industrial-motion/pilz-industrial-motion_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-industrial-motion/pilz-industrial-motion-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-industrial-motion/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-industrial-motion/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS tools for those who live in Emacs."
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "c7f9386edd204ce08c8987eabc5c2af0"
 SRC_URI[sha256sum] = "80a2911c8cf86b70a771060e8304d9234b375b2f221fb42e63bfe5bfbf8f36a1"
 S = "${WORKDIR}/ros_emacs_utils-release-release-melodic-rosemacs-0.4.13-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-emacs-utils', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-emacs-utils', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-emacs-utils', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/ros-emacs-utils_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/ros-emacs-utils-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-emacs-utils/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-emacs-utils', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-emacs-utils/ros-emacs-utils_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-emacs-utils/ros-emacs-utils-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-emacs-utils/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-emacs-utils/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

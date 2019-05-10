@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The lockfree package contains lock-free data structures for use in multithreaded programming.  These      kinds of data structures are generally not as easy to use as single-threaded equivalents, and are not      always faster.  If you don't know you need to use one, try another structure with a lock around it      first."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "a039a910dd86e18e45037fbe6fbaa189"
 SRC_URI[sha256sum] = "659c8d7707b844cc4c8c9eeab40e3e33fdd65f1ca0e07f71b471dd4dad633e4f"
 S = "${WORKDIR}/ros_realtime-release-release-melodic-lockfree-1.0.25-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-realtime', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-realtime', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-realtime', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/ros-realtime_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/ros-realtime-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-realtime', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/ros-realtime_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/ros-realtime-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

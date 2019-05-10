@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Source for the WGE100 Ethernet camera: Verilog source for the     FPGA, Forth source for the camera firmware.  Intended for camera     developers.  Note that a built binary from this package is checked     in under wge100_camera/firmware_images/"
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "6c55238e0b26506f44a7e44f1f579fd5"
 SRC_URI[sha256sum] = "4e0908e101472e4247b1c23782764c9576b37103db122bd196de406e9e951e50"
 S = "${WORKDIR}/wge100_driver-release-release-melodic-wge100_camera_firmware-1.8.2-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('wge100-driver', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('wge100-driver', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('wge100-driver', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wge100-driver/wge100-driver_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wge100-driver/wge100-driver-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wge100-driver/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wge100-driver/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('wge100-driver', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wge100-driver/wge100-driver_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wge100-driver/wge100-driver-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wge100-driver/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wge100-driver/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

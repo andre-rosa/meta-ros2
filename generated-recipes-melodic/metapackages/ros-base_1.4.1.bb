@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A metapackage which extends ros_core and includes other basic non-robot tools like actionlib, dynamic reconfigure, nodelets, and pluginlib."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "75dd0c783c46b77f9302b86f728b1dfc"
 SRC_URI[sha256sum] = "0b0cab7cb298a642bd33a0c4d7e17f10ac6533a1a59745a11e96c58d238f47eb"
 S = "${WORKDIR}/metapackages-release-release-melodic-ros_base-1.4.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('metapackages', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('metapackages', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('metapackages', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/metapackages/metapackages_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/metapackages/metapackages-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/metapackages/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/metapackages/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('metapackages', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/metapackages/metapackages_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/metapackages/metapackages-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/metapackages/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/metapackages/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The sbpl_lattice_planner is a global planner plugin for move_base and wraps     the SBPL search-based planning library."
@@ -72,16 +73,15 @@ SRC_URI[md5sum] = "509ed907bf7209247dff1eaf82e56bf9"
 SRC_URI[sha256sum] = "e78f8dc5ccf4ffb74f314de47656e49eca331b5cb262d6edfb4ea2729eab56c8"
 S = "${WORKDIR}/navigation_experimental-release-release-melodic-sbpl_lattice_planner-0.3.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('navigation-experimental', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-experimental', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-experimental', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/navigation-experimental_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/navigation-experimental-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('navigation-experimental', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/navigation-experimental_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/navigation-experimental-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Helper functions for displaying and debugging MoveIt! data in Rviz via published markers"
@@ -85,16 +86,15 @@ SRC_URI[md5sum] = "9dc314f7b764099af9ca342f3239a1b7"
 SRC_URI[sha256sum] = "89188c2b6459781c14abe35014f937e5c199cd11f8fd45f943ff21e1b654ec84"
 S = "${WORKDIR}/moveit_visual_tools-release-release-melodic-moveit_visual_tools-3.5.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('moveit-visual-tools', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit-visual-tools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit-visual-tools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-visual-tools/moveit-visual-tools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-visual-tools/moveit-visual-tools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-visual-tools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-visual-tools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('moveit-visual-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-visual-tools/moveit-visual-tools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-visual-tools/moveit-visual-tools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-visual-tools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-visual-tools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

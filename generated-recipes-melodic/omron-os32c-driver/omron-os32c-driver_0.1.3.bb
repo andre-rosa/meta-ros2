@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Interface driver for Omron OS32C Lidar via Ethernet/IP (Industrial Protocol)"
@@ -67,16 +68,15 @@ SRC_URI[md5sum] = "df8439045825808904fe41a2f9815956"
 SRC_URI[sha256sum] = "ebf659a3b4a959dc4c76afcd198ebcb73f574772b9af68d3279965d14a3369b8"
 S = "${WORKDIR}/omron-release-release-melodic-omron_os32c_driver-0.1.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('omron-os32c-driver', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('omron-os32c-driver', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('omron-os32c-driver', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/omron-os32c-driver/omron-os32c-driver_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/omron-os32c-driver/omron-os32c-driver-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/omron-os32c-driver/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/omron-os32c-driver/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('omron-os32c-driver', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/omron-os32c-driver/omron-os32c-driver_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/omron-os32c-driver/omron-os32c-driver-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/omron-os32c-driver/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/omron-os32c-driver/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

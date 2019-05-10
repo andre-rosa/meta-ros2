@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Launch files to start the openni2_camera drivers using rgbd_launch."
@@ -63,16 +64,15 @@ SRC_URI[md5sum] = "79efdc2b10a6858cb9e157a35cf7c720"
 SRC_URI[sha256sum] = "51d7ca0ca441737e619194d4ffbfcf7dd76a586724845ca4641394967d2286a1"
 S = "${WORKDIR}/openni2_camera-release-release-melodic-openni2_launch-0.4.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('openni2-camera', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('openni2-camera', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('openni2-camera', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni2-camera/openni2-camera_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni2-camera/openni2-camera-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni2-camera/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni2-camera/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('openni2-camera', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openni2-camera/openni2-camera_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openni2-camera/openni2-camera-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openni2-camera/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openni2-camera/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

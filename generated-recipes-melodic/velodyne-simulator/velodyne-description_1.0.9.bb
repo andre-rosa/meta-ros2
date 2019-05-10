@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "URDF and meshes describing Velodyne laser scanners."
@@ -46,16 +47,15 @@ SRC_URI[md5sum] = "0e4bd32ebbbe24ce07c5375c6de3a23a"
 SRC_URI[sha256sum] = "3c21ef0d86e8d52e10b95d846d089c029d80b58f6f12b52bf19ed7f3a94c3094"
 S = "${WORKDIR}/velodyne_simulator-release-release-melodic-velodyne_description-1.0.9-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('velodyne-simulator', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('velodyne-simulator', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('velodyne-simulator', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/velodyne-simulator_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/velodyne-simulator-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne-simulator/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('velodyne-simulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/velodyne-simulator/velodyne-simulator_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/velodyne-simulator/velodyne-simulator-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/velodyne-simulator/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/velodyne-simulator/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

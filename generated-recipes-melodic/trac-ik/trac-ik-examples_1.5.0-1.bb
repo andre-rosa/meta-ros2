@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains the source code for testing and comparing trac_ik"
@@ -57,16 +58,15 @@ SRC_URI[md5sum] = "3002c5220357ec63f11cfcd1385261f4"
 SRC_URI[sha256sum] = "49d6aacadb0b51e61c60dfadbcb86be6408dd9887a126fb6db9b429f96d380c3"
 S = "${WORKDIR}/trac_ik-release-release-melodic-trac_ik_examples-1.5.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('trac-ik', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('trac-ik', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('trac-ik', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/trac-ik_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/trac-ik-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('trac-ik', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/trac-ik/trac-ik_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/trac-ik/trac-ik-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/trac-ik/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/trac-ik/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

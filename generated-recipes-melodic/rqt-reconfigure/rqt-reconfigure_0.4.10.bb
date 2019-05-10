@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This rqt plugin succeeds former dynamic_reconfigure's GUI 		(reconfigure_gui), and provides the way to view and edit the parameters 		that are accessible via dynamic_reconfigure.<br/> 		<br/> 		(12/27/2012) In the future, arbitrary parameters that are not associated 		with any nodes (which are not handled by dynamic_reconfigure) might 		become handled. 		However, currently as the name indicates, this pkg solely is dependent 		on dynamic_reconfigure that allows access to only those params latched 		to nodes."
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "a2ead65c72b082038b91199375a84958"
 SRC_URI[sha256sum] = "7dfe332ee9d603a0981832a698c817c14b0fa00c3cc0de4ab7a6676c90d598b4"
 S = "${WORKDIR}/rqt_reconfigure-release-release-melodic-rqt_reconfigure-0.4.10-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt-reconfigure', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-reconfigure', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-reconfigure', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-reconfigure/rqt-reconfigure_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-reconfigure/rqt-reconfigure-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-reconfigure/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-reconfigure/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt-reconfigure', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-reconfigure/rqt-reconfigure_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-reconfigure/rqt-reconfigure-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-reconfigure/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-reconfigure/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

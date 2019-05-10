@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "OpenManipulator 3D model description for visualization and simulation"
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "ee6653cf91a489770777a0ca72cb6447"
 SRC_URI[sha256sum] = "f44f4bb8965b79fffdf4906f742e4fccd178a55c8ee11e3abacc24828e5ae9c5"
 S = "${WORKDIR}/open_manipulator-release-release-melodic-open_manipulator_description-2.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('open-manipulator', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('open-manipulator', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('open-manipulator', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator/open-manipulator_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator/open-manipulator-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('open-manipulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator/open-manipulator_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator/open-manipulator-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

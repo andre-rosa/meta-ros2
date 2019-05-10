@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The package provides the environment variables `ROS_VERSION`, `ROS_DISTRO`, `ROS_PACKAGE_PATH`, and `ROS_ETC_DIR`."
@@ -42,16 +43,15 @@ SRC_URI[md5sum] = "37822c8c4f58086a6876b22b8f4ea3ed"
 SRC_URI[sha256sum] = "2bb4a8d5947bd81fb1b6f7b1e9e822e69ccf99bec2cca7a68fd654017e69993f"
 S = "${WORKDIR}/ros_environment-release-release-melodic-ros_environment-1.2.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-environment', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-environment', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-environment', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/ros-environment_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/ros-environment-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-environment/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-environment', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-environment/ros-environment_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-environment/ros-environment-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-environment/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-environment/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

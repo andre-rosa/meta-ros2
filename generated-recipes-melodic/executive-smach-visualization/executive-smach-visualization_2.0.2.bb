@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This metapackage depends on the SMACH visualization tools."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "077f6d6a3f7edf87dd64c41231da179d"
 SRC_URI[sha256sum] = "75b50684f1fcbe42e1b5307402ff4ac6f5b598d2f2ff67acc3c746af9e83b2c8"
 S = "${WORKDIR}/executive_smach_visualization-release-release-melodic-executive_smach_visualization-2.0.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('executive-smach-visualization', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('executive-smach-visualization', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('executive-smach-visualization', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach-visualization/executive-smach-visualization_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach-visualization/executive-smach-visualization-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach-visualization/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach-visualization/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('executive-smach-visualization', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/executive-smach-visualization/executive-smach-visualization_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/executive-smach-visualization/executive-smach-visualization-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/executive-smach-visualization/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/executive-smach-visualization/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

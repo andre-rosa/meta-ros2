@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Message and service types: custom messages and services for TurtleBot3 packages"
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "1e96d2e1e240dc3e6de68a3a527d9a6f"
 SRC_URI[sha256sum] = "45317e8776023604286708e4f7f9b206d3d64e59601af91849a5f80b94cbd0db"
 S = "${WORKDIR}/turtlebot3_msgs-release-release-melodic-turtlebot3_msgs-1.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('turtlebot3-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot3-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-msgs/turtlebot3-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-msgs/turtlebot3-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('turtlebot3-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-msgs/turtlebot3-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-msgs/turtlebot3-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

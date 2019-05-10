@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Generic keyboard teleop for twist robots."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "66b86d71b03474c40fd799ac16626b67"
 SRC_URI[sha256sum] = "4e15fb28b816cb89a86f7318b75a23d933e6f732ff0072604a967f10681e9203"
 S = "${WORKDIR}/teleop_twist_keyboard-release-release-melodic-teleop_twist_keyboard-0.6.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('teleop-twist-keyboard', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('teleop-twist-keyboard', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teleop-twist-keyboard', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-keyboard/teleop-twist-keyboard_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-keyboard/teleop-twist-keyboard-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-keyboard/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-keyboard/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('teleop-twist-keyboard', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-keyboard/teleop-twist-keyboard_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-keyboard/teleop-twist-keyboard-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-keyboard/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-keyboard/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

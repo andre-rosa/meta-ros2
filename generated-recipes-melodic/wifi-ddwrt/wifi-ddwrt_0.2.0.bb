@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Access to the DD-WRT wifi"
@@ -66,16 +67,15 @@ SRC_URI[md5sum] = "2e43ddfc6ac811f1634982f164935c75"
 SRC_URI[sha256sum] = "d9315fb98ca9d63cd7fd67895b3430e832d674a01469a5af7ec18fbd0c57dc7e"
 S = "${WORKDIR}/wifi_ddwrt-release-release-melodic-wifi_ddwrt-0.2.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('wifi-ddwrt', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('wifi-ddwrt', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('wifi-ddwrt', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wifi-ddwrt/wifi-ddwrt_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wifi-ddwrt/wifi-ddwrt-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wifi-ddwrt/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wifi-ddwrt/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('wifi-ddwrt', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wifi-ddwrt/wifi-ddwrt_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wifi-ddwrt/wifi-ddwrt-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wifi-ddwrt/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wifi-ddwrt/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

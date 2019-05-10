@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "cpp_common contains C++ code for doing things that are not necessarily ROS     related, but are useful for multiple packages. This includes things like     the ROS_DEPRECATED and ROS_FORCE_INLINE macros, as well as code for getting     backtraces.      This package is a component of <a href="http://www.ros.org/wiki/roscpp">roscpp</a>."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "cf2ca0ce58e761bd51a9120fd05b5b8a"
 SRC_URI[sha256sum] = "af9fef611fcdbaf9296af1f04ee2af940412d36a3bdddc6098cf77a7c795dffa"
 S = "${WORKDIR}/roscpp_core-release-release-melodic-cpp_common-0.6.12-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roscpp-core', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roscpp-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roscpp-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/roscpp-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/roscpp-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('roscpp-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/roscpp-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/roscpp-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

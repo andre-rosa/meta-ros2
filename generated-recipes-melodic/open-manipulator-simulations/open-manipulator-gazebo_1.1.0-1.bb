@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Gazebo configurations package for OpenManipulator"
@@ -67,16 +68,15 @@ SRC_URI[md5sum] = "abdc69edd0209f9ed7d9f9ffdc11b967"
 SRC_URI[sha256sum] = "1c5055d46fc7e08fce26a98cef9ca8bd79496f0e56aa44de49ff0c3e8675be84"
 S = "${WORKDIR}/open_manipulator_simulations-release-release-melodic-open_manipulator_gazebo-1.1.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('open-manipulator-simulations', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('open-manipulator-simulations', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('open-manipulator-simulations', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-simulations/open-manipulator-simulations_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-simulations/open-manipulator-simulations-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-simulations/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-simulations/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('open-manipulator-simulations', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-simulations/open-manipulator-simulations_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-simulations/open-manipulator-simulations-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-simulations/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-simulations/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Improved ROS message filters"
@@ -60,16 +61,15 @@ SRC_URI[md5sum] = "a7842733a0f8af5b3f85fbeb692b8384"
 SRC_URI[sha256sum] = "938b5bff6f2fb9ec9e2fe36b383f0b81828c5147f0870cda2650b2cc863e2652"
 S = "${WORKDIR}/message_filters-release-release-melodic-fkie_message_filters-1.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('fkie-message-filters', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fkie-message-filters', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fkie-message-filters', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-message-filters/fkie-message-filters_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-message-filters/fkie-message-filters-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-message-filters/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fkie-message-filters/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('fkie-message-filters', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fkie-message-filters/fkie-message-filters_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fkie-message-filters/fkie-message-filters-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fkie-message-filters/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fkie-message-filters/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

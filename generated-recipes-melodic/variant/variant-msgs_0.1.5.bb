@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Variant messages are designed to accommodate the information content     of any invariant message. They are truly generic and can freely be     converted to and from specific message objects."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "ff76930b40abff976c90897c31f7c2c8"
 SRC_URI[sha256sum] = "bc5b26692c4b9223aa4bd83c00fe4b2710a4f5acfe1b9c49cbba0e6f1ad3a16f"
 S = "${WORKDIR}/variant-release-release-melodic-variant_msgs-0.1.5-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('variant', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('variant', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('variant', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/variant_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/variant-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('variant', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variant/variant_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variant/variant-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variant/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variant/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

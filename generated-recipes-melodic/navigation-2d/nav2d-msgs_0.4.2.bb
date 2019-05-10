@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Messages used for 2D-Navigation."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "b51abc0b4b61068def4b5e3926bd540a"
 SRC_URI[sha256sum] = "0905a0e0fde94cf6fc3876a5ff6f0f987b66dd9ffb756d578e45c71f22148b51"
 S = "${WORKDIR}/navigation_2d-release-release-melodic-nav2d_msgs-0.4.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('navigation-2d', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-2d', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-2d', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/navigation-2d_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/navigation-2d-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('navigation-2d', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-2d/navigation-2d_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-2d/navigation-2d-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-2d/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-2d/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

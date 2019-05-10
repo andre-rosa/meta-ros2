@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The mrpt_map is able to publish a mrpt map as ros occupancy grid like the map_server"
@@ -66,16 +67,15 @@ SRC_URI[md5sum] = "85f22ed91c7df7b0557d5607f1d17740"
 SRC_URI[sha256sum] = "0d3b69ed360dd1b9f7be6bc81108e7cb2f16c218d4c445b47af66315c0df6ebc"
 S = "${WORKDIR}/mrpt_navigation-release-release-melodic-mrpt_map-0.1.24-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mrpt-navigation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-navigation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-navigation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/mrpt-navigation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/mrpt-navigation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mrpt-navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/mrpt-navigation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/mrpt-navigation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

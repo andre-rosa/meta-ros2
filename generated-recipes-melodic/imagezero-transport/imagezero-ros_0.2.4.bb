@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A library that provides convenient methods for manipulating ROS images with ImageZero"
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "64de98560dc388460756dca2d7e1bb5d"
 SRC_URI[sha256sum] = "3bebcdd5695eedb7733be8f49515ff4c8d341fe5f75f09442ddb2e5ca44a1766"
 S = "${WORKDIR}/imagezero_transport-release-release-melodic-imagezero_ros-0.2.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('imagezero-transport', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('imagezero-transport', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imagezero-transport', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imagezero-transport/imagezero-transport_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imagezero-transport/imagezero-transport-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imagezero-transport/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imagezero-transport/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('imagezero-transport', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imagezero-transport/imagezero-transport_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imagezero-transport/imagezero-transport-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imagezero-transport/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imagezero-transport/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

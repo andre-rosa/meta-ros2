@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This metapackage depends on the SMACH library and ROS SMACH integration     packages."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "19ae42cd6e954e8da1c64e79e8599c7c"
 SRC_URI[sha256sum] = "5266563dc0f5888791fbf077127b3bb5539550c93496a103a4b0f3e1bafef697"
 S = "${WORKDIR}/executive_smach-release-release-melodic-executive_smach-2.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('executive-smach', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('executive-smach', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('executive-smach', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach/executive-smach_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach/executive-smach-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/executive-smach/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('executive-smach', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/executive-smach/executive-smach_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/executive-smach/executive-smach-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/executive-smach/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/executive-smach/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

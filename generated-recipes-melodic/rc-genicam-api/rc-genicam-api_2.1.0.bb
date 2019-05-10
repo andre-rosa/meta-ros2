@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "GenICam/GigE Vision Convenience Layer.        This package combines the Roboception convenience layer for images with the       GenICam reference implementation and a GigE Vision transport layer. It is a       self contained package that permits configuration and image streaming of       GenICam / GigE Vision 2.0 compatible cameras like the Roboception rc_visard.        This package also provides some tools that can be called from the command line       for discovering cameras, changing their configuration and streaming images.       Although the tools are meant to be useful when working in a shell or in a       script, their main purpose is to serve as example on how to use the API for       reading and setting parameters, streaming and synchronizing images.        See LICENSE.md for licensing terms of the different parts."
@@ -45,16 +46,15 @@ SRC_URI[md5sum] = "5943e86bc80c47d858b6ffa112891132"
 SRC_URI[sha256sum] = "eac83cc05a1e39716b5839146c3b15098ea1071599b783a4243af3f922cd4987"
 S = "${WORKDIR}/rc_genicam_api-release-release-melodic-rc_genicam_api-2.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rc-genicam-api', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rc-genicam-api', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-genicam-api', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-genicam-api/rc-genicam-api_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-genicam-api/rc-genicam-api-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-genicam-api/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-genicam-api/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rc-genicam-api', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-genicam-api/rc-genicam-api_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-genicam-api/rc-genicam-api-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-genicam-api/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-genicam-api/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

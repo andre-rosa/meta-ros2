@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Conversions between grid maps and OctoMap types."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "43796696aa9dc629610caba04f025001"
 SRC_URI[sha256sum] = "b21ce231c7f9c9bb20d94c48d608be6b1e0d640067542de8570227eef05cd520"
 S = "${WORKDIR}/grid_map-release-release-melodic-grid_map_octomap-1.6.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('grid-map', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('grid-map', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('grid-map', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grid-map/grid-map_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grid-map/grid-map-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grid-map/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grid-map/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('grid-map', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grid-map/grid-map_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grid-map/grid-map-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grid-map/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grid-map/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

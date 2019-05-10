@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "EusLisp ROS message and service generators."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "6b86a8f574359869529f9d224e3c1794"
 SRC_URI[sha256sum] = "aadb96f7266f5584813ea6033317b1decf6a7358d01cf257239ae4c04ffb67c6"
 S = "${WORKDIR}/geneus-release-release-melodic-geneus-2.2.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('geneus', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('geneus', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geneus', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geneus/geneus_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geneus/geneus-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geneus/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geneus/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('geneus', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geneus/geneus_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geneus/geneus-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geneus/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geneus/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Interface to the Dataspeed Inc. Power Distribution System (PDS)"
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "d59c4c90ca1e108bb24a54eb2af33460"
 SRC_URI[sha256sum] = "d69d2b28ac8d0d207b3873acf559044a47c3b99d20fd20f01de6aa51cfe4feed"
 S = "${WORKDIR}/dataspeed_pds-release-release-melodic-dataspeed_pds-1.0.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dataspeed-pds', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dataspeed-pds', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dataspeed-pds', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-pds/dataspeed-pds_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-pds/dataspeed-pds-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-pds/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-pds/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('dataspeed-pds', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-pds/dataspeed-pds_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-pds/dataspeed-pds-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-pds/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-pds/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

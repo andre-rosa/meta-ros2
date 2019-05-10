@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides the Behavior Trees core library."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "d87c7dc6746f5f63e550c6ef91fdf062"
 SRC_URI[sha256sum] = "fefe63e715f3e2c0e6b1a9a3b57848639f70576986a4f24d7b88a5d8e838b257"
 S = "${WORKDIR}/behaviortree_cpp_v3-release-release-melodic-behaviortree_cpp_v3-3.0.7-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('behaviotree-cpp-v3', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('behaviotree-cpp-v3', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('behaviotree-cpp-v3', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviotree-cpp-v3/behaviotree-cpp-v3_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviotree-cpp-v3/behaviotree-cpp-v3-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviotree-cpp-v3/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/behaviotree-cpp-v3/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('behaviotree-cpp-v3', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviotree-cpp-v3/behaviotree-cpp-v3_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviotree-cpp-v3/behaviotree-cpp-v3-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviotree-cpp-v3/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviotree-cpp-v3/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

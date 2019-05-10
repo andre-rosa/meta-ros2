@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Package for turtlebot3 automatic_parking. You need a reflective tape and real robots. You can see parking spot using this pacakge on rviz."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "ec658037806fbceae4462c6a44a5dffe"
 SRC_URI[sha256sum] = "5ab127fe3a3ff9c1eb767058c423d2e7625925a482c808ddf35047daaa4852be"
 S = "${WORKDIR}/turtlebot3_applications-release-release-melodic-turtlebot3_automatic_parking-1.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('turtlebot3-applications', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot3-applications', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3-applications', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/turtlebot3-applications_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/turtlebot3-applications-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3-applications/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('turtlebot3-applications', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-applications/turtlebot3-applications_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-applications/turtlebot3-applications-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-applications/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3-applications/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

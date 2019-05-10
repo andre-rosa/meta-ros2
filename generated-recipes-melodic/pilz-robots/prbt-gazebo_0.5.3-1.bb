@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Launch prbt robot in an empty Gazebo world."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "daed9f048d606eee980aa02df3a52bb0"
 SRC_URI[sha256sum] = "26d15da4c7351b10b0b1ef5fce051afb1f5a904d9c9c1972fa7e910aa2547aeb"
 S = "${WORKDIR}/pilz_robots-release-release-melodic-prbt_gazebo-0.5.3-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pilz-robots', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pilz-robots', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pilz-robots', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/pilz-robots_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/pilz-robots-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pilz-robots', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-robots/pilz-robots_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-robots/pilz-robots-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-robots/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-robots/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

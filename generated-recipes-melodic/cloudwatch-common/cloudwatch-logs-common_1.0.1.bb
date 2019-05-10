@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "AWS CloudWatch management library used by ROS1/2 node to publish logs to CloudWatch service"
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "b0155194eb11ae9742fd9697952aaa3d"
 SRC_URI[sha256sum] = "cda8f3c7329460e52f3d90c4072ab345cfd7de20b8faee0b99895644f0639312"
 S = "${WORKDIR}/cloudwatch_common-release-release-melodic-cloudwatch_logs_common-1.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('cloudwatch-common', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('cloudwatch-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cloudwatch-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-common/cloudwatch-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-common/cloudwatch-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cloudwatch-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('cloudwatch-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cloudwatch-common/cloudwatch-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cloudwatch-common/cloudwatch-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cloudwatch-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cloudwatch-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

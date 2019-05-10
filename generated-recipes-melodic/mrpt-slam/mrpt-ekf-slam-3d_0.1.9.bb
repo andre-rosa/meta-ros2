@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package is a wrapper for the implementation of EKF-based SLAM with range-bearing sensors, odometry, a full 6D robot pose, and 3D landmarks."
@@ -84,16 +85,15 @@ SRC_URI[md5sum] = "a8331d54e58fd4fc208520dad833f310"
 SRC_URI[sha256sum] = "3af75a1f55059892760c9d6d5939c46e48d9d9bc4b6087c0755209bafba88039"
 S = "${WORKDIR}/mrpt_slam-release-release-melodic-mrpt_ekf_slam_3d-0.1.9-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mrpt-slam', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-slam', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-slam', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/mrpt-slam_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/mrpt-slam-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mrpt-slam', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-slam/mrpt-slam_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-slam/mrpt-slam-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-slam/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-slam/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

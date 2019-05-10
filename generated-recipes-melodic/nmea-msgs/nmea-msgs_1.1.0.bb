@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The nmea_msgs package contains messages related to data in the NMEA format."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "ae39b772360787ab09e67a65bb3caaae"
 SRC_URI[sha256sum] = "40ed33263afe8cac7ccc4b58c3458cbda636f9e4ac54475b754a3c869105ba14"
 S = "${WORKDIR}/nmea_msgs-release-release-melodic-nmea_msgs-1.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('nmea-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('nmea-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('nmea-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nmea-msgs/nmea-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nmea-msgs/nmea-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nmea-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nmea-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('nmea-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nmea-msgs/nmea-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nmea-msgs/nmea-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nmea-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nmea-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Standard implementations of the GoalChecker       and TrajectoryGenerators for dwb_local_planner"
@@ -73,16 +74,15 @@ SRC_URI[md5sum] = "6e886338b920b771c66a65315cfc190c"
 SRC_URI[sha256sum] = "b329ba183c9e033d2b85423f19ebd060d36df1f05ae4d425b46a868ca87900b1"
 S = "${WORKDIR}/robot_navigation-release-release-melodic-dwb_plugins-0.2.5-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('robot-navigation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robot-navigation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-navigation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-navigation/robot-navigation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-navigation/robot-navigation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-navigation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-navigation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('robot-navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-navigation/robot-navigation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-navigation/robot-navigation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-navigation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-navigation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

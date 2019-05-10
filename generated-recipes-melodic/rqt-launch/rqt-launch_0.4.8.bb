@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This rqt plugin ROS package provides easy view of .launch files.   User can also start and end node by node that are defined in those files."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "a3165be8884c5ccac21136c1c441891e"
 SRC_URI[sha256sum] = "7aab0c6b78ad90736d40ae6b7ce54048936ef38c0f032858b65a8347b4cbccc8"
 S = "${WORKDIR}/rqt_launch-release-release-melodic-rqt_launch-0.4.8-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt-launch', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-launch', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-launch', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-launch/rqt-launch_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-launch/rqt-launch-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-launch/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-launch/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt-launch', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-launch/rqt-launch_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-launch/rqt-launch-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-launch/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-launch/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

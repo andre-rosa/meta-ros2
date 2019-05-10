@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "<p>Metapackage that contains visualization package for jsk-ros-pkg</p>"
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "a50434c9ff4cf6bc75493df4c6249cba"
 SRC_URI[sha256sum] = "6a77306292fe2644e5cd6ad9df30e442aa904f920bc373a0b8b5ff9a2d0e0411"
 S = "${WORKDIR}/jsk_visualization-release-release-melodic-jsk_visualization-2.1.5-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('jsk-visualization', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-visualization', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-visualization', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/jsk-visualization_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/jsk-visualization-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-visualization/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('jsk-visualization', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-visualization/jsk-visualization_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-visualization/jsk-visualization-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-visualization/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-visualization/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

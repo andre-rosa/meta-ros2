@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Precisely stamped URG driver for ROS"
@@ -56,16 +57,15 @@ SRC_URI[md5sum] = "97bf4d02c8846cc8c33c05fb5f46a54d"
 SRC_URI[sha256sum] = "61fcca882388f29606ea22d0017c5e19cec9c4edb2b970816693598b38609678"
 S = "${WORKDIR}/urg_stamped-release-release-melodic-urg_stamped-0.0.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('urg-stamped', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urg-stamped', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urg-stamped', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-stamped/urg-stamped_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-stamped/urg-stamped-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-stamped/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urg-stamped/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('urg-stamped', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urg-stamped/urg-stamped_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urg-stamped/urg-stamped-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urg-stamped/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urg-stamped/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

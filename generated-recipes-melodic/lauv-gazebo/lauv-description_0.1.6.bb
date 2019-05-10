@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Robot description files for the LAUV."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "c7919e7673ac7e51c5fbb7ddc6a7cf6b"
 SRC_URI[sha256sum] = "a3cd50cb68d4034daf6aa283fee53329c9e70c3177c0fe1bfdd169a236e4ab5c"
 S = "${WORKDIR}/lauv_gazebo-release-release-melodic-lauv_description-0.1.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('lauv-gazebo', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('lauv-gazebo', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('lauv-gazebo', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lauv-gazebo/lauv-gazebo_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lauv-gazebo/lauv-gazebo-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lauv-gazebo/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lauv-gazebo/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('lauv-gazebo', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/lauv-gazebo/lauv-gazebo_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/lauv-gazebo/lauv-gazebo-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/lauv-gazebo/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/lauv-gazebo/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "forward_command_controller"
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "47bc2d4804d915699b6d7cd3050d54db"
 SRC_URI[sha256sum] = "811c1ec365f2d1e20a0c2269f4b678683e6b71788a4adc5c64379e3e523c2ab0"
 S = "${WORKDIR}/ros_controllers-release-release-melodic-forward_command_controller-0.15.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-controllers', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-controllers', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-controllers', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/ros-controllers_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/ros-controllers-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-controllers/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-controllers', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-controllers/ros-controllers_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-controllers/ros-controllers-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-controllers/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-controllers/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

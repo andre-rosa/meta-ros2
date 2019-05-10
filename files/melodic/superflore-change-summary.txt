@@ -1,6 +1,6 @@
 melodic/superflore-change-summary.txt
 -----
-On branch yocto-bot-ntsGfLlpXX
+On branch yocto-bot-ZiPBREcWzV
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
@@ -694,6 +694,17 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/neonavigation-msgs/trajectory-tracker-msgs_0.3.1.bb
 	new file:   generated-recipes-melodic/neonavigation-rviz-plugins/neonavigation-rviz-plugins_0.3.0.bb
 	new file:   generated-recipes-melodic/neonavigation-rviz-plugins/trajectory-tracker-rviz-plugins_0.3.0.bb
+	new file:   generated-recipes-melodic/neonavigation/costmap-cspace_0.4.0-1.bb
+	new file:   generated-recipes-melodic/neonavigation/joystick-interrupt_0.4.0-1.bb
+	new file:   generated-recipes-melodic/neonavigation/map-organizer_0.4.0-1.bb
+	new file:   generated-recipes-melodic/neonavigation/neonavigation-common_0.4.0-1.bb
+	new file:   generated-recipes-melodic/neonavigation/neonavigation-launch_0.4.0-1.bb
+	new file:   generated-recipes-melodic/neonavigation/neonavigation_0.4.0-1.bb
+	new file:   generated-recipes-melodic/neonavigation/obj-to-pointcloud_0.4.0-1.bb
+	new file:   generated-recipes-melodic/neonavigation/planner-cspace_0.4.0-1.bb
+	new file:   generated-recipes-melodic/neonavigation/safety-limiter_0.4.0-1.bb
+	new file:   generated-recipes-melodic/neonavigation/track-odometry_0.4.0-1.bb
+	new file:   generated-recipes-melodic/neonavigation/trajectory-tracker_0.4.0-1.bb
 	new file:   generated-recipes-melodic/nerian-stereo/nerian-stereo_3.3.2.bb
 	new file:   generated-recipes-melodic/network-interface/network-interface_2.1.0.bb
 	new file:   generated-recipes-melodic/nmea-msgs/nmea-msgs_1.1.0.bb
@@ -1333,8 +1344,8 @@ Changes not staged for commit:
 	new file:   generated-recipes-melodic/xsens-driver/xsens-driver_2.2.2.bb
 	new file:   generated-recipes-melodic/xv-11-laser-driver/xv-11-laser-driver_0.3.0.bb
 	new file:   generated-recipes-melodic/yocs-msgs/yocs-msgs_0.7.0.bb
-	new file:   generated-recipes-melodic/yp-spur/ypspur_1.15.3.bb
-	new file:   generated-recipes-melodic/ypspur-ros/ypspur-ros_0.2.0.bb
+	new file:   generated-recipes-melodic/yp-spur/ypspur_1.16.0-1.bb
+	new file:   generated-recipes-melodic/ypspur-ros/ypspur-ros_0.3.0-1.bb
 	new file:   generated-recipes-melodic/yujin-ocs/yocs-ar-marker-tracking_0.8.2.bb
 	new file:   generated-recipes-melodic/yujin-ocs/yocs-ar-pair-approach_0.8.2.bb
 	new file:   generated-recipes-melodic/yujin-ocs/yocs-ar-pair-tracking_0.8.2.bb

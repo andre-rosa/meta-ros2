@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains the manipulation API and functions for controlling the manipulator."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "7bff035707c9f31e402b9a14834d4740"
 SRC_URI[sha256sum] = "3e32af08b49c5a8b698e9e98b01c1fee182559c0b5e96025fc1be922ff306478"
 S = "${WORKDIR}/robotis_manipulator-release-release-melodic-robotis_manipulator-1.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('robotis-manipulator', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robotis-manipulator', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robotis-manipulator', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robotis-manipulator/robotis-manipulator_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robotis-manipulator/robotis-manipulator-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robotis-manipulator/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robotis-manipulator/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('robotis-manipulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robotis-manipulator/robotis-manipulator_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robotis-manipulator/robotis-manipulator-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robotis-manipulator/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robotis-manipulator/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

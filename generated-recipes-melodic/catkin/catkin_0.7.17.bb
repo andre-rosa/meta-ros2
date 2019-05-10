@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Low-level build system macros and infrastructure for ROS."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "cce6712edd262faad496e1ca2827f270"
 SRC_URI[sha256sum] = "316178707bc3f0edcb86a77ec2ec174b98b4d2ccf41306162cefe6588b3a9d41"
 S = "${WORKDIR}/catkin-release-release-melodic-catkin-0.7.17-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('catkin', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('catkin', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('catkin', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin/catkin_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin/catkin-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catkin/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('catkin', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/catkin/catkin_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/catkin/catkin-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/catkin/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/catkin/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Metapackage for audibot"
@@ -45,16 +46,15 @@ SRC_URI[md5sum] = "02273e6d0ded254bcb1f64dcc3d43073"
 SRC_URI[sha256sum] = "7e76b4daa4f12f798cfe9d6cb369a346f4c99ab31dc013ea460d3ee9c4b94570"
 S = "${WORKDIR}/audibot-release-release-melodic-audibot-0.1.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('audibot', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('audibot', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audibot', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/audibot_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/audibot-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audibot/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('audibot', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audibot/audibot_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audibot/audibot-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audibot/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audibot/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

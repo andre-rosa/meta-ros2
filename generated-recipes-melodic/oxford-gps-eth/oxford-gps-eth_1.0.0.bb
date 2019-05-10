@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Ethernet interface to OxTS GPS receivers (NCOM packet structure)"
@@ -68,16 +69,15 @@ SRC_URI[md5sum] = "bbbd7d2c6ffb2cb571df6c4995ccdf94"
 SRC_URI[sha256sum] = "e746691aeed3c6c6613c51e9be0db75d5c0d5c2442453823a466fa15cac9ee7e"
 S = "${WORKDIR}/oxford_gps_eth-release-release-melodic-oxford_gps_eth-1.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('oxford-gps-eth', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('oxford-gps-eth', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('oxford-gps-eth', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/oxford-gps-eth/oxford-gps-eth_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/oxford-gps-eth/oxford-gps-eth-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/oxford-gps-eth/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/oxford-gps-eth/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('oxford-gps-eth', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/oxford-gps-eth/oxford-gps-eth_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/oxford-gps-eth/oxford-gps-eth-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/oxford-gps-eth/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/oxford-gps-eth/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

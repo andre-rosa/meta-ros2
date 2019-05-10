@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS node that allows control of network emulation parameters such as bandwidth, loss and latency for a Linux network interface."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "11f7202bd71c62da1151b517f91e8428"
 SRC_URI[sha256sum] = "a6ab6e3990f79606e3b67d8e1ee877c85a13469f3fcfc51faa321d79dfceafe1"
 S = "${WORKDIR}/linux_networking-release-release-melodic-network_traffic_control-1.0.13-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('linux-networking', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('linux-networking', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/linux-networking_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/linux-networking-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('linux-networking', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/linux-networking_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/linux-networking-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

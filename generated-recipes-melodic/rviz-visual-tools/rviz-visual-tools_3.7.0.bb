@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Utility functions for displaying and debugging data in Rviz via published markers"
@@ -91,16 +92,15 @@ SRC_URI[md5sum] = "acafdb2e4c90f566518da55721d26dd8"
 SRC_URI[sha256sum] = "e8e3e49bb0e1512cf87c0fbfe97639e415e0c304dc83bc357a0da93c56c45674"
 S = "${WORKDIR}/rviz_visual_tools-release-release-melodic-rviz_visual_tools-3.7.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rviz-visual-tools', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rviz-visual-tools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz-visual-tools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz-visual-tools/rviz-visual-tools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz-visual-tools/rviz-visual-tools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz-visual-tools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz-visual-tools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rviz-visual-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rviz-visual-tools/rviz-visual-tools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rviz-visual-tools/rviz-visual-tools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rviz-visual-tools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rviz-visual-tools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

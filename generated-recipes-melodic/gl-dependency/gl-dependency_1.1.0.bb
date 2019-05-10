@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This encapsulates the GL dependency for a specific ROS distribution and its Qt version"
@@ -46,16 +47,15 @@ SRC_URI[md5sum] = "ae960bd88ab9e1d167b43377cdaeac95"
 SRC_URI[sha256sum] = "268881107d9d7d88c38530235fe1c38bd6343ffa7d326c451136895e06f3422e"
 S = "${WORKDIR}/gl_dependency-release-release-melodic-gl_dependency-1.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('gl-dependency', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('gl-dependency', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gl-dependency', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gl-dependency/gl-dependency_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gl-dependency/gl-dependency-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gl-dependency/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gl-dependency/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('gl-dependency', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gl-dependency/gl-dependency_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gl-dependency/gl-dependency-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gl-dependency/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gl-dependency/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

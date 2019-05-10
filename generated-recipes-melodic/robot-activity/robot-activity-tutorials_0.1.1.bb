@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The robot_activity_tutorials package"
@@ -56,16 +57,15 @@ SRC_URI[md5sum] = "b2ced329663eff0191356893a131bc1b"
 SRC_URI[sha256sum] = "8d4cb4eb59c9bbcb053aef3cd75652525a4f7276d424cc3600a4d0e443807fd2"
 S = "${WORKDIR}/robot_activity-release-release-melodic-robot_activity_tutorials-0.1.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('robot-activity', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robot-activity', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-activity', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-activity/robot-activity_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-activity/robot-activity-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-activity/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-activity/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('robot-activity', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-activity/robot-activity_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-activity/robot-activity-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-activity/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-activity/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

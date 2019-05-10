@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The rexrov2_control package"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "69e59bcc13f08638f59280af5484bd63"
 SRC_URI[sha256sum] = "9a67201f385a31d026e498160846d97db310a798104f41aa97173e6827211ae6"
 S = "${WORKDIR}/rexrov2-release-release-melodic-rexrov2_control-0.1.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rexrov2', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rexrov2', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rexrov2', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rexrov2/rexrov2_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rexrov2/rexrov2-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rexrov2/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rexrov2/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rexrov2', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rexrov2/rexrov2_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rexrov2/rexrov2-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rexrov2/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rexrov2/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "URDF for Fetch Robot."
@@ -46,16 +47,15 @@ SRC_URI[md5sum] = "5a9369a4e2ee2d2ba92b3af637ab0def"
 SRC_URI[sha256sum] = "5cb7bb5e9f9f1eefc1f99d5c5375ebbeef60d10d62ed7d02478be238d9969087"
 S = "${WORKDIR}/fetch_ros-release-release-melodic-fetch_description-0.8.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('fetch-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fetch-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/fetch-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/fetch-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('fetch-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-ros/fetch-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-ros/fetch-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

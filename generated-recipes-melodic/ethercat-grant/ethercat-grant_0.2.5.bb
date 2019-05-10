@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Makes it possible to run the ros_ethercat_loop without using sudo. Forked from pr2-grant"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "2ce34ddb094ad09cf6e0f2dce28568d3"
 SRC_URI[sha256sum] = "3b5baa1b6b84b2538af53dcc410d980579cbfc932f002dcf3cc25071bb452a52"
 S = "${WORKDIR}/ethercat_grant-release-release-melodic-ethercat_grant-0.2.5-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ethercat-grant', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ethercat-grant', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ethercat-grant', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ethercat-grant/ethercat-grant_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ethercat-grant/ethercat-grant-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ethercat-grant/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ethercat-grant/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ethercat-grant', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ethercat-grant/ethercat-grant_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ethercat-grant/ethercat-grant-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ethercat-grant/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ethercat-grant/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

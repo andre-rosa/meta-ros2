@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This ROS package wraps documentation tools like doxygen, sphinx,     and epydoc, making it convenient to generate ROS package     documentation.      It also generates online documentation for the ROS wiki."
@@ -53,16 +54,15 @@ SRC_URI[md5sum] = "8dd1f2cae8577da7ffe827bcefe446b9"
 SRC_URI[sha256sum] = "56baa614cb5b9b10171336c2a62470104cba4b85d16b8a4e952d1384fb4433ce"
 S = "${WORKDIR}/rosdoc_lite-release-release-melodic-rosdoc_lite-0.2.9-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosdoc-lite', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosdoc-lite', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosdoc-lite', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosdoc-lite/rosdoc-lite_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosdoc-lite/rosdoc-lite-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosdoc-lite/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosdoc-lite/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosdoc-lite', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosdoc-lite/rosdoc-lite_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosdoc-lite/rosdoc-lite-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosdoc-lite/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosdoc-lite/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Drive-by-wire messages for the Lincoln MKZ"
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "49d3dd864602dfdd3a1614db296696ba"
 SRC_URI[sha256sum] = "e8dedab69c722847607dbbd6cb5f5d0f3270e023f450f76251852b0e36cd154d"
 S = "${WORKDIR}/dbw_mkz_ros-release-release-melodic-dbw_mkz_msgs-1.1.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dbw-mkz-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dbw-mkz-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dbw-mkz-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-mkz-ros/dbw-mkz-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-mkz-ros/dbw-mkz-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-mkz-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-mkz-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('dbw-mkz-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-mkz-ros/dbw-mkz-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-mkz-ros/dbw-mkz-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-mkz-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-mkz-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

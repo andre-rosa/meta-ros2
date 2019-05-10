@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Leg Detector using a machine learning approach to find leg-like patterns of laser scanner readings."
@@ -90,16 +91,15 @@ SRC_URI[md5sum] = "7fc4444f3c7bc4fe1c20caa4d63031b8"
 SRC_URI[sha256sum] = "e1865c4b5c768ff408d3d1cb531bf26dd6acac28f2a7ad5d25fe11cf6ed85bb8"
 S = "${WORKDIR}/people-release-release-melodic-leg_detector-1.1.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('people', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('people', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('people', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/people_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/people-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('people', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/people_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/people-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

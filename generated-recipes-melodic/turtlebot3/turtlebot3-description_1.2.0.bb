@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "3D models of the TurtleBot3 for simulation and visualization"
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "cd031499b8d056a527d9e30f4a1f28c3"
 SRC_URI[sha256sum] = "1a16e0a23bc531a33c583cc6c3a34fed5903a831334ce8bb71e778c912406969"
 S = "${WORKDIR}/turtlebot3-release-release-melodic-turtlebot3_description-1.2.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('turtlebot3', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('turtlebot3', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('turtlebot3', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3/turtlebot3_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3/turtlebot3-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/turtlebot3/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('turtlebot3', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3/turtlebot3_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3/turtlebot3-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/turtlebot3/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Launch scripts for simulating the PR2 in <a href="http://ros.org/wiki/gazebo">gazebo</a>.     The simulation equivalent of pr2.launch is found here.     pr2_fingertip_pressure_contact_translator produces the same ROS topics as fingertip_pressure package for simulated PR2."
@@ -109,16 +110,15 @@ SRC_URI[md5sum] = "677819668fecbcf7feb4048c8aa4f7e2"
 SRC_URI[sha256sum] = "65a61813255f0e2fd52200aceb94b18f0e19ed5e4f9c07c521558541015392a9"
 S = "${WORKDIR}/pr2_simulator-release-release-melodic-pr2_gazebo-2.0.14-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-simulator', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-simulator', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-simulator', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/pr2-simulator_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/pr2-simulator-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-simulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-simulator/pr2-simulator_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-simulator/pr2-simulator-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-simulator/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-simulator/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

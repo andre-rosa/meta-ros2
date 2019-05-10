@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "mrpt_slam"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "96116e195c441928a587683d64b1e5c6"
 SRC_URI[sha256sum] = "3170fb5eacbd6bf03b50022ea4c324dd4e147fbcecbee376c4203e52ca004a95"
 S = "${WORKDIR}/mrpt_slam-release-release-melodic-mrpt_slam-0.1.9-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mrpt-slam', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-slam', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-slam', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/mrpt-slam_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/mrpt-slam-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-slam/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mrpt-slam', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-slam/mrpt-slam_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-slam/mrpt-slam-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-slam/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-slam/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

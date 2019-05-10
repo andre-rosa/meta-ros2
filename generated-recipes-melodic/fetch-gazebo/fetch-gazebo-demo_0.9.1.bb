@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Demos for fetch_gazebo package."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "ca4a26cb9684e08be6222188dbcea0d3"
 SRC_URI[sha256sum] = "07c57825c60fb935a99013eec3b272268a0b4d4564b9d68599dbdf7eff3e5389"
 S = "${WORKDIR}/fetch_gazebo-release-release-melodic-fetch_gazebo_demo-0.9.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('fetch-gazebo', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fetch-gazebo', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-gazebo', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-gazebo/fetch-gazebo_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-gazebo/fetch-gazebo-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-gazebo/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-gazebo/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('fetch-gazebo', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-gazebo/fetch-gazebo_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-gazebo/fetch-gazebo-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-gazebo/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-gazebo/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Tools related to the Mobile Robot Programming Toolkit (MRPT).     Refer to http://wiki.ros.org/mrpt_navigation for further documentation."
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "f7e015064631275adbf72bdd94d709b6"
 SRC_URI[sha256sum] = "a54df1d35bffe4dbed64661144226c3077f14fbcb2097c6e84720ecaca7f7540"
 S = "${WORKDIR}/mrpt_navigation-release-release-melodic-mrpt_navigation-0.1.24-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mrpt-navigation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-navigation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-navigation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/mrpt-navigation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/mrpt-navigation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mrpt-navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/mrpt-navigation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/mrpt-navigation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

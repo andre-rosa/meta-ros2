@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS Libraries for filtering specific kinds of laser scans"
@@ -46,16 +47,15 @@ SRC_URI[md5sum] = "902da717920705306773602caa625ce8"
 SRC_URI[sha256sum] = "d5aed79a7f8e17e1ffc7f9e88fa741a3d7d3a6134b822428cb8e0eab2326be62"
 S = "${WORKDIR}/laser_filtering_release-release-melodic-laser_filtering-0.0.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('laser-filtering', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('laser-filtering', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-filtering', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/laser-filtering_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/laser-filtering-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-filtering/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('laser-filtering', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-filtering/laser-filtering_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-filtering/laser-filtering-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-filtering/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-filtering/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

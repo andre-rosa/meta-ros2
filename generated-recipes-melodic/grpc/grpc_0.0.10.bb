@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Catkinized gRPC Package"
@@ -45,16 +46,15 @@ SRC_URI[md5sum] = "6deb0491866113c3b07932bcfbc08801"
 SRC_URI[sha256sum] = "c68b25e98a58f726e6d9a86a1a16c943c468e8f1d426781f9086cd31c525e7b2"
 S = "${WORKDIR}/catkin_grpc-release-release-melodic-grpc-0.0.10-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('grpc', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('grpc', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('grpc', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grpc/grpc_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grpc/grpc-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grpc/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grpc/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('grpc', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grpc/grpc_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grpc/grpc-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grpc/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grpc/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

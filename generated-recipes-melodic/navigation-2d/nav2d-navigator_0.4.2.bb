@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides a node for higher level navigation of a mobile     robot in a planar environment. It needs a map and the robot's position     within this map to create a plan for navigation. When used together with     a SLAM module it can also be used to perform autonomous exploration of     the robot's workspace."
@@ -76,16 +77,15 @@ SRC_URI[md5sum] = "eb3d66029cedf33110771bdc4630a499"
 SRC_URI[sha256sum] = "d2f314f6da94486aaa5a19d27aa7c1a598950b95287b37a494359ba2911881aa"
 S = "${WORKDIR}/navigation_2d-release-release-melodic-nav2d_navigator-0.4.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('navigation-2d', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-2d', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-2d', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/navigation-2d_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/navigation-2d-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-2d/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('navigation-2d', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-2d/navigation-2d_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-2d/navigation-2d-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-2d/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-2d/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS driver for the SICK TiM and SICK MRS series of laser scanners.     This package is based on the original sick_tim-repository of Martin Günther et al."
@@ -70,16 +71,15 @@ SRC_URI[md5sum] = "b0703ab09cd9d4c90020acbef85dd09b"
 SRC_URI[sha256sum] = "d0c506df63940a7cbee85eb4c56ab229459315184e65e6fa3f9f4aa827fe324a"
 S = "${WORKDIR}/sick_scan-release-release-melodic-sick_scan-0.0.16-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('sick-scan', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sick-scan', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sick-scan', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sick-scan/sick-scan_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sick-scan/sick-scan-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sick-scan/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sick-scan/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('sick-scan', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sick-scan/sick-scan_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sick-scan/sick-scan-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sick-scan/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sick-scan/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

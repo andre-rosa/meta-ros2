@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Provides a node that reports how long a subset of joints has been      settled. That is, it calculates how long a set of joints has remained      within a specified threshold. This package is experimental and unstable.      Expect its APIs to change."
@@ -67,16 +68,15 @@ SRC_URI[md5sum] = "c35a99fa1e634a24b41bd32c785ae427"
 SRC_URI[sha256sum] = "7625fdf3c7c87b21dd67a05f53faa5d09926c6065251b5d761b1ec3a23f79654"
 S = "${WORKDIR}/calibration-release-release-melodic-joint_states_settler-0.10.14-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('calibration', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('calibration', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('calibration', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/calibration_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/calibration-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('calibration', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/calibration_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/calibration-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

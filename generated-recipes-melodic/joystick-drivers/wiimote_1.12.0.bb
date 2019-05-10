@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The wiimote package allows ROS nodes to communicate with a Nintendo Wiimote     and its related peripherals, including the Nunchuk, Motion Plus, and     (experimentally) the Classic. The package implements a ROS node that uses     Bluetooth to communicate with the Wiimote device, obtaining accelerometer     and gyro data, the state of LEDs, the IR camera, rumble (vibrator),     buttons, joystick, and battery state. The node additionally enables ROS     nodes to control the Wiimote's LEDs and vibration for feedback to the human     Wiimote operator. LEDs and vibration may be switched on and off, or made to     operate according to a timed pattern."
@@ -76,16 +77,15 @@ SRC_URI[md5sum] = "4f5d9c00ba6fe618d354c0ade2a1b0b7"
 SRC_URI[sha256sum] = "89cc9d0267879d69c478f2d1fafb2462142c7d462c87c9458345b76063654be8"
 S = "${WORKDIR}/joystick_drivers-release-release-melodic-wiimote-1.12.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('joystick-drivers', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('joystick-drivers', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('joystick-drivers', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/joystick-drivers_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/joystick-drivers-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('joystick-drivers', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/joystick-drivers/joystick-drivers_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/joystick-drivers/joystick-drivers-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/joystick-drivers/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/joystick-drivers/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

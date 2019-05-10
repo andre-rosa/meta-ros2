@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "rospilot"
@@ -101,16 +102,15 @@ SRC_URI[md5sum] = "0d767ddb7a37ed1e0ee262f43cfd14ac"
 SRC_URI[sha256sum] = "3e393fbfff16e69384d1a4d186439df31ff3667f3062c0b6fc28cebc4a689ee8"
 S = "${WORKDIR}/rospilot-release-release-melodic-rospilot-1.5.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rospilot', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rospilot', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rospilot', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospilot/rospilot_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospilot/rospilot-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospilot/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospilot/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rospilot', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rospilot/rospilot_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rospilot/rospilot-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rospilot/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rospilot/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Bindings and low-level controllers for ArbotiX-powered robots."
@@ -65,16 +66,15 @@ SRC_URI[md5sum] = "e80930a781d1d4766aa1b585a0c44d2d"
 SRC_URI[sha256sum] = "cef79742fd412330d7bf8982775ca8aac8ddc936b1ebe0744ac07a47375a5469"
 S = "${WORKDIR}/arbotix_ros-release-release-melodic-arbotix_python-0.10.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('arbotix', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('arbotix', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('arbotix', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/arbotix_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/arbotix-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/arbotix/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('arbotix', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/arbotix/arbotix_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/arbotix/arbotix-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/arbotix/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/arbotix/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

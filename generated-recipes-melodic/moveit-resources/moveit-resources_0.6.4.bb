@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Resources used for MoveIt! testing"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "8ffb330de16991652589411a2edbcc93"
 SRC_URI[sha256sum] = "ae728a1d284591ce8080f4cad69bcb5d143211ba07ef05055585541a3fe94915"
 S = "${WORKDIR}/moveit_resources-release-release-melodic-moveit_resources-0.6.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('moveit-resources', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit-resources', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit-resources', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-resources/moveit-resources_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-resources/moveit-resources-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-resources/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-resources/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('moveit-resources', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-resources/moveit-resources_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-resources/moveit-resources-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-resources/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-resources/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

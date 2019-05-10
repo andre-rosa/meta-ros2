@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides a C++ interface for camera calibration      information.  It provides CameraInfo, and handles SetCameraInfo      service requests, saving and restoring the camera calibration      data."
@@ -67,16 +68,15 @@ SRC_URI[md5sum] = "1ac538ff74bd50a73f191c29b21af6d7"
 SRC_URI[sha256sum] = "c24f43db36b8922346fb722119850fdd6a0fafe87fa38521edba5c8c6ed4e98d"
 S = "${WORKDIR}/image_common-release-release-melodic-camera_info_manager-1.11.13-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('image-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/image-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/image-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('image-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-common/image-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-common/image-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

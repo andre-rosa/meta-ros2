@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The ibeo_core package"
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "a797367bdd442bfdf63c30c4da8940c8"
 SRC_URI[sha256sum] = "c2ee7a2ea9424ee0c40e44d9cf22ab00bface29f418167a42451c6fae071071b"
 S = "${WORKDIR}/ibeo_core-release-release-melodic-ibeo_core-2.0.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ibeo-core', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ibeo-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ibeo-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-core/ibeo-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-core/ibeo-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ibeo-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ibeo-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ibeo-core/ibeo-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ibeo-core/ibeo-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ibeo-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ibeo-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

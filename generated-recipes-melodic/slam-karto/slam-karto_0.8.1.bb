@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package pulls in the Karto mapping library, and provides a ROS      wrapper for using it."
@@ -77,16 +78,15 @@ SRC_URI[md5sum] = "92146d6603533718383657285f5857a5"
 SRC_URI[sha256sum] = "5a602df47e9778bf47a4e51c2e263c27188f949686e525bb8a446c2eb6637eea"
 S = "${WORKDIR}/slam_karto-release-release-melodic-slam_karto-0.8.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('slam-karto', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('slam-karto', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('slam-karto', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/slam-karto/slam-karto_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/slam-karto/slam-karto-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/slam-karto/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/slam-karto/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('slam-karto', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/slam-karto/slam-karto_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/slam-karto/slam-karto-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/slam-karto/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/slam-karto/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

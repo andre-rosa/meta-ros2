@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The core rosbridge package, repsonsible for interpreting JSON andperforming     the appropriate ROS action, like subscribe, publish, call service, and     interact with params."
@@ -68,16 +69,15 @@ SRC_URI[md5sum] = "85f9844ee5f82257e48a69387fe8bab4"
 SRC_URI[sha256sum] = "7e1d6306830260a6eb609ab2e70f84b75127b9080047fd5f038de9ef9a394e01"
 S = "${WORKDIR}/rosbridge_suite-release-release-melodic-rosbridge_library-0.11.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosbridge-suite', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosbridge-suite', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbridge-suite', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/rosbridge-suite_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/rosbridge-suite-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbridge-suite/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosbridge-suite', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbridge-suite/rosbridge-suite_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbridge-suite/rosbridge-suite-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbridge-suite/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbridge-suite/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The tuw_nav_msgs package"
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "2cd316f87a8032656b58c3374b8e3245"
 SRC_URI[sha256sum] = "6dd62f9b473be78c32bafb0b1f9c9410d2ed6f2b87586ce77f51e84f49132c39"
 S = "${WORKDIR}/tuw_msgs-release-release-melodic-tuw_nav_msgs-0.0.13-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('tuw-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tuw-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tuw-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-msgs/tuw-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-msgs/tuw-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('tuw-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tuw-msgs/tuw-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tuw-msgs/tuw-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tuw-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tuw-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

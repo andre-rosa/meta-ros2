@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Mapping tools to be used with the <a href="https://octomap.github.io/">OctoMap library</a>, implementing a 3D occupancy grid mapping."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "4192204aca1af87dd121ab62b7f1ae2b"
 SRC_URI[sha256sum] = "4de0af1b402b7e50dd92835c84a45f9ce90467fe3bf16a714d185e6830891b4e"
 S = "${WORKDIR}/octomap_mapping-release-release-melodic-octomap_mapping-0.6.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('octomap-mapping', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('octomap-mapping', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('octomap-mapping', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-mapping/octomap-mapping_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-mapping/octomap-mapping-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-mapping/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-mapping/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('octomap-mapping', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap-mapping/octomap-mapping_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap-mapping/octomap-mapping-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap-mapping/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap-mapping/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

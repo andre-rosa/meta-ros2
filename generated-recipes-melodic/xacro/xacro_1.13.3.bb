@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Xacro (XML Macros)      Xacro is an XML macro language. With xacro, you can construct shorter and more readable XML files by using macros that expand to larger XML expressions."
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "9c6d81aaa1d99befc7e36586aab12314"
 SRC_URI[sha256sum] = "ef77d1f894a192888232b7b545b9f2748713066bae5c139644af3734aa09541d"
 S = "${WORKDIR}/xacro-release-release-melodic-xacro-1.13.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('xacro', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('xacro', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('xacro', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xacro/xacro_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xacro/xacro-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xacro/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xacro/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('xacro', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/xacro/xacro_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/xacro/xacro-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/xacro/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/xacro/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

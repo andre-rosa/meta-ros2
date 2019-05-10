@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS messages and interfaces for universally unique identifiers.      Not needed for wet packages, use only to resolve dry stack     dependencies."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "acbc6d10cfe1c18eedd8539ce13d4476"
 SRC_URI[sha256sum] = "d1e54e7f1f8f2d9a6e7d481ee0c300dc7440f3033915afba621257aac6ff7d8b"
 S = "${WORKDIR}/unique_identifier-release-release-melodic-unique_identifier-1.0.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('unique-identifier', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('unique-identifier', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('unique-identifier', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier/unique-identifier_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier/unique-identifier-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('unique-identifier', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/unique-identifier/unique-identifier_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/unique-identifier/unique-identifier-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/unique-identifier/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/unique-identifier/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

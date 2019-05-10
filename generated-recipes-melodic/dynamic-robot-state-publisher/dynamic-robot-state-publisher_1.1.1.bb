@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Improved ROS robot_state_publisher which can update the robot model via dynamic_reconfigure."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "4f70bbd7524d117a242e1102be940bdb"
 SRC_URI[sha256sum] = "d31428da9f939d33337bd61e9cefca16a4d820d208c3d75637999dc912d6629e"
 S = "${WORKDIR}/dynamic_robot_state_publisher-release-release-melodic-dynamic_robot_state_publisher-1.1.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dynamic-robot-state-publisher', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dynamic-robot-state-publisher', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dynamic-robot-state-publisher', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamic-robot-state-publisher/dynamic-robot-state-publisher_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamic-robot-state-publisher/dynamic-robot-state-publisher-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamic-robot-state-publisher/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamic-robot-state-publisher/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('dynamic-robot-state-publisher', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamic-robot-state-publisher/dynamic-robot-state-publisher_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamic-robot-state-publisher/dynamic-robot-state-publisher-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamic-robot-state-publisher/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamic-robot-state-publisher/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

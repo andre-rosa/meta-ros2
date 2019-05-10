@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ViSP standing for Visual Servoing Platform is a modular cross     platform library that allows prototyping and developing applications     using visual tracking and visual servoing technics at the heart of the     researches done by Inria Lagadic team. ViSP is able to compute control     laws that can be applied to robotic systems. It provides a set of visual     features that can be tracked using real time image processing or computer     vision algorithms. ViSP provides also simulation capabilities.      ViSP can be useful in robotics, computer vision, augmented reality     and computer animation."
@@ -85,16 +86,15 @@ SRC_URI[md5sum] = "a15b6d28a6a07a62723b6fb7ebad57ec"
 SRC_URI[sha256sum] = "346143452a134faec92f55373cdc2be7500a1e98c0c2b4a4459d7511adeea98c"
 S = "${WORKDIR}/visp-release-release-melodic-visp-3.2.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('visp', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('visp', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('visp', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visp/visp_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visp/visp-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visp/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visp/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('visp', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/visp/visp_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/visp/visp-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/visp/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/visp/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

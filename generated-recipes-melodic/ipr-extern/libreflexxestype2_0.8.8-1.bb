@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Package with ReflexxesTypeII implementation and header files"
@@ -42,16 +43,15 @@ SRC_URI[md5sum] = "f038cc03b1af5b180c3b04054ab8059c"
 SRC_URI[sha256sum] = "ff69ec96c35d48bc4b768dc25812ea2dbece052f25a8d3de96f5460296eb0ccf"
 S = "${WORKDIR}/ipr_extern-release-release-melodic-libreflexxestype2-0.8.8-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ipr-extern', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ipr-extern', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ipr-extern', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/ipr-extern_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/ipr-extern-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ipr-extern/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ipr-extern', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ipr-extern/ipr-extern_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ipr-extern/ipr-extern-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ipr-extern/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ipr-extern/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

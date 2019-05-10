@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Model files of OpenNI device."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "504595e0ff6bcc4f0a11dc9e308f7d9e"
 SRC_URI[sha256sum] = "709e253ea9d2ba4d1c81fe758da31e8359a8e00f4e0105405f37a6e68e011dc8"
 S = "${WORKDIR}/openni_camera-release-release-melodic-openni_description-1.11.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('openni-camera', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('openni-camera', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('openni-camera', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/openni-camera_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/openni-camera-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openni-camera/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('openni-camera', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openni-camera/openni-camera_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openni-camera/openni-camera-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openni-camera/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openni-camera/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

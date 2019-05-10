@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Cartographer is a system that provides real-time simultaneous localization     and mapping (SLAM) in 2D and 3D across multiple platforms and sensor     configurations. This package provides Cartographer's RViz integration."
@@ -73,16 +74,15 @@ SRC_URI[md5sum] = "2453f413fbf7ee88ae808767c8f18d44"
 SRC_URI[sha256sum] = "4eeb8e97c9723d89c14718afc7d81ce1a0a47d41cd5e1d73a8144865840dc523"
 S = "${WORKDIR}/cartographer_ros-release-release-melodic-cartographer_rviz-1.0.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('cartographer-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('cartographer-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cartographer-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/cartographer-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/cartographer-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartographer-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('cartographer-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartographer-ros/cartographer-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartographer-ros/cartographer-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartographer-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartographer-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

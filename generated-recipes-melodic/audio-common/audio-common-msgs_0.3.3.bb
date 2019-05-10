@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Messages for transmitting audio via ROS"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "c26a3ecc5b7106f095678bff7f84b99b"
 SRC_URI[sha256sum] = "119fea466f5d72ff6fab2bb92fed76cf3665441eb4b6012ff202817c5c42fe02"
 S = "${WORKDIR}/audio_common-release-release-melodic-audio_common_msgs-0.3.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('audio-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('audio-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audio-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/audio-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/audio-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('audio-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audio-common/audio-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audio-common/audio-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audio-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audio-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

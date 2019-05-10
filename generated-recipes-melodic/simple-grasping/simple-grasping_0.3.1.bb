@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Basic grasping applications and demos."
@@ -82,16 +83,15 @@ SRC_URI[md5sum] = "e9a38f71ab09284978ed8131748ca923"
 SRC_URI[sha256sum] = "1dada4bbf81347bac9d7fee738e20246ec4f6f25a8983a7edda10894bd896a54"
 S = "${WORKDIR}/simple_grasping-release-release-melodic-simple_grasping-0.3.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('simple-grasping', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('simple-grasping', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('simple-grasping', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/simple-grasping/simple-grasping_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/simple-grasping/simple-grasping-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/simple-grasping/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/simple-grasping/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('simple-grasping', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/simple-grasping/simple-grasping_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/simple-grasping/simple-grasping-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/simple-grasping/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/simple-grasping/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

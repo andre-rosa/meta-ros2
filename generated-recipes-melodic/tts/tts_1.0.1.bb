@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Package enabling a robot to speak with a human voice by providing a Text-To-Speech ROS service"
@@ -68,16 +69,15 @@ SRC_URI[md5sum] = "446c310c5d47518e735c604d311ed2ea"
 SRC_URI[sha256sum] = "1d5dd8813c3e0cf4e9e75bd364a93f1b0b02072ddd561fa0d316a75cd0a9d708"
 S = "${WORKDIR}/tts-release-release-melodic-tts-1.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('tts', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tts', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tts', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tts/tts_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tts/tts-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tts/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tts/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('tts', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tts/tts_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tts/tts-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tts/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tts/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The diagnostic_analysis package can convert a log of diagnostics data     into a series of CSV files. Robot logs are recorded with rosbag, and     can be processed offline using the scripts in this package."
@@ -56,16 +57,15 @@ SRC_URI[md5sum] = "8dd5c6b28bea79299437432e7cfea70c"
 SRC_URI[sha256sum] = "72eb7b968b92d97d5c95a15a4e9e573c9f025158e2a4e4375ad18b744858093f"
 S = "${WORKDIR}/diagnostics-release-release-melodic-diagnostic_analysis-1.9.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('diagnostics', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('diagnostics', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('diagnostics', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/diagnostics_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/diagnostics-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('diagnostics', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/diagnostics/diagnostics_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/diagnostics/diagnostics-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/diagnostics/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/diagnostics/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

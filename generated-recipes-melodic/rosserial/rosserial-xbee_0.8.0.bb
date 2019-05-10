@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Allows multipoint communication between rosserial      nodes connected to an xbee. All nodes communicate back      to a master xbee connected to a computer running ROS.       This software currently only works with Series 1 Xbees.       This pkg includes python code from the python-xbee project:      http://code.google.com/p/python-xbee/"
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "71e5e25305517984a19a07c9813b9afe"
 SRC_URI[sha256sum] = "6efbc90d56bf2d6caad0e830fe206c9c7cb3c1edfe08507caf2721589f5d7a5b"
 S = "${WORKDIR}/rosserial-release-release-melodic-rosserial_xbee-0.8.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosserial', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosserial', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosserial', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/rosserial_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/rosserial-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosserial/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosserial', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosserial/rosserial_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosserial/rosserial-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosserial/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosserial/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

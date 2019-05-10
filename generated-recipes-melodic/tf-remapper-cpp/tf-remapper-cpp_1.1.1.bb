@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "More efficient version of tf/tf_remap able to handle TFs at kHz with tens of subscribers."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "616d6c583bc2e89c634e3f4e8ace0f13"
 SRC_URI[sha256sum] = "e212a7354d6e6f6eb42f9f8a90551b26cc4ffd427324bfe6f82ccbcd4603f77a"
 S = "${WORKDIR}/tf_remapper_cpp-release-release-melodic-tf_remapper_cpp-1.1.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('tf-remapper-cpp', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tf-remapper-cpp', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tf-remapper-cpp', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf-remapper-cpp/tf-remapper-cpp_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf-remapper-cpp/tf-remapper-cpp-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf-remapper-cpp/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf-remapper-cpp/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('tf-remapper-cpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tf-remapper-cpp/tf-remapper-cpp_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tf-remapper-cpp/tf-remapper-cpp-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tf-remapper-cpp/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tf-remapper-cpp/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

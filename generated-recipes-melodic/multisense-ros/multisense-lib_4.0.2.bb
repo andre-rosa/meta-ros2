@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "multisense_lib"
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "18fd76d04e70ab3b943f82f19e343d5e"
 SRC_URI[sha256sum] = "61da457dbdd57bfa74ac34de1523552ddb166945e81b648107bcaa7ef2eb7686"
 S = "${WORKDIR}/multisense_ros-release-release-melodic-multisense_lib-4.0.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('multisense-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('multisense-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('multisense-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multisense-ros/multisense-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multisense-ros/multisense-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multisense-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multisense-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('multisense-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/multisense-ros/multisense-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/multisense-ros/multisense-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/multisense-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/multisense-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

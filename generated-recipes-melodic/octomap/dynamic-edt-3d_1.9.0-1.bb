@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The dynamicEDT3D library implements an inrementally updatable Euclidean distance transform (EDT) in 3D. It comes with a wrapper to use the OctoMap 3D representation and hooks into the change detection of the OctoMap library to propagate changes to the EDT."
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "8d93b94001942ea05b80c5eff02f00eb"
 SRC_URI[sha256sum] = "b3da422d3baebaea5aa422558b878f02058f7695617e5b116ee7bdf1723c12cc"
 S = "${WORKDIR}/octomap-release-release-melodic-dynamic_edt_3d-1.9.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('octomap', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('octomap', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('octomap', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/octomap_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/octomap-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('octomap', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap/octomap_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap/octomap-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "hector_sensors_description contains URDF xacro macros for sensors, so they are easily attachable to robot models and usable in gazebo."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "8fde1a85996245082a0c5b8af8335be5"
 SRC_URI[sha256sum] = "622a110133e72bcaaffeb45ed9eed1fd4f7f24eaabebd9e52442dc7c81d194f0"
 S = "${WORKDIR}/hector_models-release-release-melodic-hector_sensors_description-0.5.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('hector-models', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('hector-models', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hector-models', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/hector-models_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/hector-models-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('hector-models', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-models/hector-models_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-models/hector-models-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-models/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-models/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

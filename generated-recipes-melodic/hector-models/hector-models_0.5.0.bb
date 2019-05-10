@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "hector_models contains (urdf) models of robots, sensors etc."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "bcbe2abc08a427816c49b9a59382f3fb"
 SRC_URI[sha256sum] = "aea206089e02162e6f34440dd82a3c9f0c66f4030e8dc4738838c77a9afc6701"
 S = "${WORKDIR}/hector_models-release-release-melodic-hector_models-0.5.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('hector-models', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('hector-models', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hector-models', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/hector-models_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/hector-models-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-models/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('hector-models', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-models/hector-models_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-models/hector-models-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-models/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-models/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

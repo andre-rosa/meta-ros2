@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "YP-Spur is a mobile robot motion control software with coordinate frame based commands."
@@ -42,21 +43,20 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/openspur/yp-spur-release/archive/release/melodic/ypspur/1.15.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "12c5dfa46d7b3601bc24d474a37d4077"
-SRC_URI[sha256sum] = "35d3539033d2e62e0a731c12c4cce634e0976e41be664aac51ac0da12fae19a2"
-S = "${WORKDIR}/yp-spur-release-release-melodic-ypspur-1.15.3-0"
+SRC_URI = "https://github.com/openspur/yp-spur-release/archive/release/melodic/ypspur/1.16.0-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "fa6ca32de9b36a36f2b4b816b84754b1"
+SRC_URI[sha256sum] = "25896b5bc94699faa2318d80f78b857fa7bdd36444f7941a34947ad970a3f211"
+S = "${WORKDIR}/yp-spur-release-release-melodic-ypspur-1.16.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('yp-spur', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yp-spur', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yp-spur', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yp-spur/yp-spur_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yp-spur/yp-spur-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yp-spur/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yp-spur/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('yp-spur', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yp-spur/yp-spur_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yp-spur/yp-spur-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yp-spur/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yp-spur/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

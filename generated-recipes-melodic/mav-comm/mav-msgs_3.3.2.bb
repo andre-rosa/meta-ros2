@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Package containing messages for communicating with rotary wing MAVs"
@@ -62,16 +63,15 @@ SRC_URI[md5sum] = "4fd44d26bf7291538bb78edfb6744bcc"
 SRC_URI[sha256sum] = "32087bfaf586c5c054af80c396360bbe6997998cec9f6ac44233020ce9ca4c43"
 S = "${WORKDIR}/mav_comm-release-release-melodic-mav_msgs-3.3.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mav-comm', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mav-comm', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mav-comm', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mav-comm/mav-comm_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mav-comm/mav-comm-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mav-comm/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mav-comm/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mav-comm', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mav-comm/mav-comm_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mav-comm/mav-comm-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mav-comm/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mav-comm/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

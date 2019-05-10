@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A Levenberg-Marquardt solver for EXOTica"
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "bb872960faf09ce1580374fa34092e27"
 SRC_URI[sha256sum] = "8de5b8fb856c5ca84c37447698c4635251f39b39db82d323f6b788aea4b1d93f"
 S = "${WORKDIR}/exotica-release-release-melodic-exotica_levenberg_marquardt_solver-5.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('exotica', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('exotica', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('exotica', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/exotica_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/exotica-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('exotica', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica/exotica_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica/exotica-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

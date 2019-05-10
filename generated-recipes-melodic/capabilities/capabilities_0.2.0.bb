@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Package which implements capabilities, including code to parse capability interface specs, to parse capability provider specs, and implement the capability server."
@@ -70,16 +71,15 @@ SRC_URI[md5sum] = "d9dc76bfdb7994d8aa2351f3edb8f6d3"
 SRC_URI[sha256sum] = "adfb1e8a3002fcfc90f654c8def944f6cd7a8753b3e908b5760eca786b1546ef"
 S = "${WORKDIR}/capabilities-release-release-melodic-capabilities-0.2.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('capabilities', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('capabilities', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('capabilities', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/capabilities/capabilities_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/capabilities/capabilities-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/capabilities/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/capabilities/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('capabilities', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/capabilities/capabilities_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/capabilities/capabilities-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/capabilities/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/capabilities/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

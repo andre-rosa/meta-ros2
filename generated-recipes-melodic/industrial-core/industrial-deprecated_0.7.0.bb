@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The Industrial deprecated package contains nodes, launch files, etc... that are slated for    deprecation.  This package is the last place something will end up before being deleted.     If you are missing a package/node and find it's contents here, then you should consider    a replacement."
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "b7128af1a4566e7b399793209d826ddf"
 SRC_URI[sha256sum] = "22330dbdb44092750340bbd8a283441f65bd0135ddc3c08d5535736d0ceec9c9"
 S = "${WORKDIR}/industrial_core-release-release-melodic-industrial_deprecated-0.7.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('industrial-core', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('industrial-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('industrial-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/industrial-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/industrial-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('industrial-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/industrial-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/industrial-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

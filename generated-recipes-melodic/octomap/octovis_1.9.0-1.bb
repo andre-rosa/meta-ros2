@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "octovis is visualization tool for the OctoMap library based on Qt and libQGLViewer. See   http://octomap.github.io for details."
@@ -60,16 +61,15 @@ SRC_URI[md5sum] = "f8cf9f457cc619905308c4278e1c217d"
 SRC_URI[sha256sum] = "3edf836edd904daf7f76b13dad10d4094e37a5a8c5829193fe1b583e62f2c8ef"
 S = "${WORKDIR}/octomap-release-release-melodic-octovis-1.9.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('octomap', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('octomap', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('octomap', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/octomap_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/octomap-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('octomap', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap/octomap_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap/octomap-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "<p>         This package contains the robot model that is used by the realtime         controllers         inside <a href="http://www.ros.org/wiki/pr2_controller_manager">controller            manager</a>. This robot model focuses on controlling the robot         mechanism in a realtime control loop, and therefore it only contains         the components of a robot that are relevant in realtime: the robot         joints (with encoders, transmisisons and actuators) and the         kinematic/dynamic model of the robot.      </p>      <p>         The pr2_mechanism_model package is well tested and is released with a stable API.      </p>"
@@ -73,16 +74,15 @@ SRC_URI[md5sum] = "aedacbdca952462c0aa53df752f92c39"
 SRC_URI[sha256sum] = "d20f677226a4c6286216f0b159340ec70dfc1a7473623ddd4c39c526f25947e0"
 S = "${WORKDIR}/pr2_mechanism-release-release-melodic-pr2_mechanism_model-1.8.18-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-mechanism', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-mechanism', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-mechanism', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/pr2-mechanism_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/pr2-mechanism-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-mechanism', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/pr2-mechanism_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/pr2-mechanism-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

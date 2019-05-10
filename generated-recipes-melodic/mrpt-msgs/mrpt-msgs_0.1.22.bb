@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS messages for MRPT classes and objects"
@@ -57,16 +58,15 @@ SRC_URI[md5sum] = "fcc25ae883e1be9ea366cb6310261991"
 SRC_URI[sha256sum] = "baf8fd73e1c316f837c29fcaea20d6cb5cb84d4083813944b09005de9297de1d"
 S = "${WORKDIR}/mrpt_msgs-release-release-melodic-mrpt_msgs-0.1.22-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mrpt-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-msgs/mrpt-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-msgs/mrpt-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mrpt-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-msgs/mrpt-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-msgs/mrpt-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

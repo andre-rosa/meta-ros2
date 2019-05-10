@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Trajectory critics for the dwb_local_planner that work well together with the SBPL global planner on the MiR robot"
@@ -82,16 +83,15 @@ SRC_URI[md5sum] = "668d82e44b20faf07e41b76c42dc1f5e"
 SRC_URI[sha256sum] = "72ef1187b0c85ee0de3f41cf602bb84854fbfdfb65422ea25b44d9e70b6b76f4"
 S = "${WORKDIR}/mir_robot-release-release-melodic-mir_dwb_critics-1.0.4-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mir-robot', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mir-robot', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mir-robot', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/mir-robot_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/mir-robot-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mir-robot/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mir-robot', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mir-robot/mir-robot_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mir-robot/mir-robot-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mir-robot/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mir-robot/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A simple viewer for ROS image topics. Includes a specialized viewer   for stereo + disparity images."
@@ -81,16 +82,15 @@ SRC_URI[md5sum] = "172cdfd656acd5ee768d80670fceaf0a"
 SRC_URI[sha256sum] = "db828d83d6f3afbd0b9478c6311ea0da425a062269e91a001da1aaadcdabd5b4"
 S = "${WORKDIR}/image_pipeline-release-release-melodic-image_view-1.12.23-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('image-pipeline', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-pipeline', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-pipeline', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/image-pipeline_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/image-pipeline-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('image-pipeline', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-pipeline/image-pipeline_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-pipeline/image-pipeline-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-pipeline/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-pipeline/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

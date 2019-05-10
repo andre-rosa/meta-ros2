@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The find_object_2d package"
@@ -77,16 +78,15 @@ SRC_URI[md5sum] = "b5ba626c2bdecf46b4acd92d2315cc20"
 SRC_URI[sha256sum] = "7f868aa64cabd58c39cc11179f4d935c4c8399d9ebc5a59a561f352831eae527"
 S = "${WORKDIR}/find_object_2d-release-release-melodic-find_object_2d-0.6.2-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('find-object-2d', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('find-object-2d', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('find-object-2d', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/find-object-2d/find-object-2d_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/find-object-2d/find-object-2d-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/find-object-2d/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/find-object-2d/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('find-object-2d', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/find-object-2d/find-object-2d_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/find-object-2d/find-object-2d-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/find-object-2d/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/find-object-2d/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

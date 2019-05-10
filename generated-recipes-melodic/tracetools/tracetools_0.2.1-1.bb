@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Wrapper interface for tracing libraries"
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "8a311734e321056bf799eb3c276f7ba5"
 SRC_URI[sha256sum] = "1c5114e1acce416cfb16dfca419508fd9dfcfd682ffdd63eafbe7a609d5f14f7"
 S = "${WORKDIR}/tracetools-release-release-melodic-tracetools-0.2.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('tracetools', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tracetools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tracetools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tracetools/tracetools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tracetools/tracetools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tracetools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tracetools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('tracetools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tracetools/tracetools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tracetools/tracetools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tracetools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tracetools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

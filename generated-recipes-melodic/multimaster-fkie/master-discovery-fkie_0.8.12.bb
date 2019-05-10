@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Discover the running ROS Masters in local network. The       discovering is done by sending an echo heartbeat messages to a defined       multicast group.      The alternative is to use a zeroconf/avahi daemon to register the ROS       master as service and discover other ROS masters."
@@ -60,16 +61,15 @@ SRC_URI[md5sum] = "e8f504062cf8cba1c075339df743ef77"
 SRC_URI[sha256sum] = "a126c9f12ac3c9b370068d862b423f8476fa0d81b31e8474195049ab2ec28918"
 S = "${WORKDIR}/multimaster_fkie-release-release-melodic-master_discovery_fkie-0.8.12-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('multimaster-fkie', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('multimaster-fkie', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('multimaster-fkie', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/multimaster-fkie_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/multimaster-fkie-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/multimaster-fkie/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('multimaster-fkie', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/multimaster-fkie/multimaster-fkie_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/multimaster-fkie/multimaster-fkie-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/multimaster-fkie/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/multimaster-fkie/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

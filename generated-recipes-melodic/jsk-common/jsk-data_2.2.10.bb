@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The jsk_data package"
@@ -82,16 +83,15 @@ SRC_URI[md5sum] = "13eff7e8e39335b069254ae920bfe25c"
 SRC_URI[sha256sum] = "2a23f49d88eb32f0ecc762fa43fccef0a549e2f6f68d78f54e8eaf11fd415f0b"
 S = "${WORKDIR}/jsk_common-release-release-melodic-jsk_data-2.2.10-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('jsk-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/jsk-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/jsk-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('jsk-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common/jsk-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common/jsk-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

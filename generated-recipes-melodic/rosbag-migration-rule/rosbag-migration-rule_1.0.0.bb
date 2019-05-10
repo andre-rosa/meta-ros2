@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This empty package allows to export rosbag migration rule files without depending on rosbag."
@@ -42,16 +43,15 @@ SRC_URI[md5sum] = "202d1867e3c6ab313ebbe1cdcb2a5f2e"
 SRC_URI[sha256sum] = "985744e58043e42585c195d72c7f8c0a265b646ca9dbfdf7d67d4488ed2a2a11"
 S = "${WORKDIR}/rosbag_migration_rule-release-release-melodic-rosbag_migration_rule-1.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosbag-migration-rule', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosbag-migration-rule', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbag-migration-rule', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag-migration-rule/rosbag-migration-rule_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag-migration-rule/rosbag-migration-rule-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag-migration-rule/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag-migration-rule/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosbag-migration-rule', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbag-migration-rule/rosbag-migration-rule_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbag-migration-rule/rosbag-migration-rule-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbag-migration-rule/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbag-migration-rule/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

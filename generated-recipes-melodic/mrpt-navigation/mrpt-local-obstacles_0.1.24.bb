@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Maintains a local obstacle map (point cloud,    voxels or occupancy grid) from recent sensor readings within a    configurable time window."
@@ -67,16 +68,15 @@ SRC_URI[md5sum] = "21e0e6d9c34e84c930f76de9d84c1467"
 SRC_URI[sha256sum] = "15f6abde9e318e1e0afaf27bc6cc20bd84943a5d14cb0f22f509686bf4a492a6"
 S = "${WORKDIR}/mrpt_navigation-release-release-melodic-mrpt_local_obstacles-0.1.24-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mrpt-navigation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt-navigation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt-navigation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/mrpt-navigation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/mrpt-navigation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt-navigation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mrpt-navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/mrpt-navigation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/mrpt-navigation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt-navigation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

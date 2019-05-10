@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This encapsulates the WebKit dependency for a specific ROS distribution and its Qt version"
@@ -46,16 +47,15 @@ SRC_URI[md5sum] = "49eccdbfa8b9dc5ec16f1b2489c721fc"
 SRC_URI[sha256sum] = "a187ab79ea2545b2dec0f48d74af9b4f3875f73ac649c8527e54e9ea6cda0e29"
 S = "${WORKDIR}/webkit_dependency-release-release-melodic-webkit_dependency-1.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('webkit-dependency', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('webkit-dependency', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('webkit-dependency', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webkit-dependency/webkit-dependency_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webkit-dependency/webkit-dependency-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webkit-dependency/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webkit-dependency/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('webkit-dependency', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/webkit-dependency/webkit-dependency_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/webkit-dependency/webkit-dependency-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/webkit-dependency/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/webkit-dependency/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

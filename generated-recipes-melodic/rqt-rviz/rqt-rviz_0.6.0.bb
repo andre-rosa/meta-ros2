@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_rviz provides a GUI plugin embedding <a href="http://www.ros.org/wiki/rviz">RViz</a>.     Note that this rqt plugin does NOT supersede RViz but depends on it."
@@ -62,16 +63,15 @@ SRC_URI[md5sum] = "7aa4297a6423d833a8a7033cbfb3aa2e"
 SRC_URI[sha256sum] = "23e3aa89701e33665c95e1bd0f0df853a52a8bfd433c352071ba9ff597b8ecb7"
 S = "${WORKDIR}/rqt_rviz-release-release-melodic-rqt_rviz-0.6.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt-rviz', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-rviz', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-rviz', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-rviz/rqt-rviz_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-rviz/rqt-rviz-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-rviz/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-rviz/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt-rviz', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-rviz/rqt-rviz_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-rviz/rqt-rviz-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-rviz/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-rviz/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

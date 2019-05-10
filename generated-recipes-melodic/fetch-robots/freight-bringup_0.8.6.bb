@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Bringup for freight"
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "917365fc5c4ccbd46fdd105f37b241ad"
 SRC_URI[sha256sum] = "303f84a14b664ef2e11fc0d5cde7727ceda68cd925a10ff5ddefdec5420a9676"
 S = "${WORKDIR}/fetch_robots-release-release-melodic-freight_bringup-0.8.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('fetch-robots', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fetch-robots', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fetch-robots', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/fetch-robots_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/fetch-robots-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fetch-robots/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('fetch-robots', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-robots/fetch-robots_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-robots/fetch-robots-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-robots/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fetch-robots/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

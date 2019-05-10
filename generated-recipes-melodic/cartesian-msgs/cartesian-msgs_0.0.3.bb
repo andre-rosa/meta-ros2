@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Stream cartesian commands"
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "fa0de57bf0d8e5fc084d949af9301bf6"
 SRC_URI[sha256sum] = "25a7fcf876ffdfc7ee4515d150b777726bca7090c6aa689268643c4dc8d4eb73"
 S = "${WORKDIR}/cartesian_msgs-release-release-melodic-cartesian_msgs-0.0.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('cartesian-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('cartesian-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cartesian-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartesian-msgs/cartesian-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartesian-msgs/cartesian-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartesian-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cartesian-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('cartesian-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartesian-msgs/cartesian-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartesian-msgs/cartesian-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartesian-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cartesian-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Metapackage of rqt plugins that are particularly used with robots    during its operation.<br/>    <br/>    To run any rqt plugins, just type in a single command &quot;rqt&quot;, then select any plugins you want from the GUI that launches afterwards.<br/>    <br/>    rqt consists of three following metapackages:<br/>     <ul>      <li><a href="http://ros.org/wiki/rqt">rqt</a> - provides a container window          where all rqt tools can be docked at. rqt plugin developers barely          needs to pay attention.</li>      <li><a href="http://ros.org/wiki/rqt_common_plugins">rqt_common_plugins</a> -          ROS backend tools suite that can be used on/off of robot runtime.</li>      <li>rqt_robot_plugins (You're here!)</li>     </ul>"
@@ -63,16 +64,15 @@ SRC_URI[md5sum] = "8ce70e69520d0cf5a7e6a6e7bfe703de"
 SRC_URI[sha256sum] = "2fa30a70d1eed9ff4724c1b9d1ef8303066b373bae9abcbf2b8a715a89e515ba"
 S = "${WORKDIR}/rqt_robot_plugins-release-release-melodic-rqt_robot_plugins-0.5.7-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt-robot-plugins', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-robot-plugins', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-robot-plugins', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-plugins/rqt-robot-plugins_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-plugins/rqt-robot-plugins-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-plugins/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-robot-plugins/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt-robot-plugins', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-robot-plugins/rqt-robot-plugins_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-robot-plugins/rqt-robot-plugins-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-robot-plugins/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-robot-plugins/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Processors for sensor_msgs::Imu data"
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "151cdfab6de148f5afa3b9402557c1b2"
 SRC_URI[sha256sum] = "68dd63390a89e5634e7ae241aa2e8c21e8e80753d49eaf8569de7f8ac1c8dfd3"
 S = "${WORKDIR}/imu_pipeline-release-release-melodic-imu_processors-0.2.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('imu-pipeline', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('imu-pipeline', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imu-pipeline', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/imu-pipeline_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/imu-pipeline-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-pipeline/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('imu-pipeline', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imu-pipeline/imu-pipeline_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imu-pipeline/imu-pipeline-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imu-pipeline/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imu-pipeline/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

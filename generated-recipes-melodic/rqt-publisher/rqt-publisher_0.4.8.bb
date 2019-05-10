@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_publisher provides a GUI plugin for publishing arbitrary messages with fixed or computed field values."
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "77510be0066aadc900af66ab429a9370"
 SRC_URI[sha256sum] = "9411fa1eb8fefee5ab7653c83dc2baa44cf352797759436fdfaa48de29e098e3"
 S = "${WORKDIR}/rqt_publisher-release-release-melodic-rqt_publisher-0.4.8-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt-publisher', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-publisher', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-publisher', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-publisher/rqt-publisher_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-publisher/rqt-publisher-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-publisher/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-publisher/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt-publisher', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-publisher/rqt-publisher_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-publisher/rqt-publisher-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-publisher/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-publisher/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

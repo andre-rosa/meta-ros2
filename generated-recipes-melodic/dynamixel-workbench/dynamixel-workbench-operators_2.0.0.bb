@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains nodes that control the Dynamixel by communicating with the server registered in the 'dynamixel_workbench_controllers' package"
@@ -67,16 +68,15 @@ SRC_URI[md5sum] = "7919837fec0fb29907d1c1ade3bcb9a8"
 SRC_URI[sha256sum] = "3b6f638d34a57d08365ca8029049067af23b0c8cbd185762ff4c2a65e07207f6"
 S = "${WORKDIR}/dynamixel-workbench-release-release-melodic-dynamixel_workbench_operators-2.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dynamixel-workbench', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dynamixel-workbench', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dynamixel-workbench', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/dynamixel-workbench_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/dynamixel-workbench-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-workbench/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('dynamixel-workbench', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamixel-workbench/dynamixel-workbench_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamixel-workbench/dynamixel-workbench-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamixel-workbench/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamixel-workbench/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS wrapper for the sparse bundle adjustment (sba) library (needed for slam_karto)"
@@ -57,16 +58,15 @@ SRC_URI[md5sum] = "7b99d5be6c70d16d0023d9df3264a4dc"
 SRC_URI[sha256sum] = "ab87c65d8f8d392258c9d733edf76c417488f78b564a7ce7000bd67ed5bd26fd"
 S = "${WORKDIR}/sparse_bundle_adjustment-release-release-melodic-sparse_bundle_adjustment-0.4.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('sparse-bundle-adjustment', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sparse-bundle-adjustment', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sparse-bundle-adjustment', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sparse-bundle-adjustment/sparse-bundle-adjustment_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sparse-bundle-adjustment/sparse-bundle-adjustment-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sparse-bundle-adjustment/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sparse-bundle-adjustment/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('sparse-bundle-adjustment', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sparse-bundle-adjustment/sparse-bundle-adjustment_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sparse-bundle-adjustment/sparse-bundle-adjustment-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sparse-bundle-adjustment/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sparse-bundle-adjustment/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

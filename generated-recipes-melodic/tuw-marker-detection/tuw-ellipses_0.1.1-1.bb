@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The tuw_ellipses package contains a computer vision library which is able to detect ellipses within images.       The package is able to estimate the pose of the circle related to the ellipse the circle diameter as well as the camera parameter are known.     A dynamic reconfigure interface allows the user to tune the parameter of the system to ones needs.     But be aware that the pose of a projected circle within a image (ellipse) has two solutions and only one is published as TF."
@@ -75,16 +76,15 @@ SRC_URI[md5sum] = "03e13bdbd3d6dd4f90863a66bddd5d48"
 SRC_URI[sha256sum] = "6f40eb7c0d83f05f8dac8ce03ca8fd2c6a30876e06174e16d80d8909b84d8749"
 S = "${WORKDIR}/tuw_marker_detection-release-release-melodic-tuw_ellipses-0.1.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('tuw-marker-detection', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tuw-marker-detection', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tuw-marker-detection', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-marker-detection/tuw-marker-detection_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-marker-detection/tuw-marker-detection-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-marker-detection/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tuw-marker-detection/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('tuw-marker-detection', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tuw-marker-detection/tuw-marker-detection_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tuw-marker-detection/tuw-marker-detection-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tuw-marker-detection/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tuw-marker-detection/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

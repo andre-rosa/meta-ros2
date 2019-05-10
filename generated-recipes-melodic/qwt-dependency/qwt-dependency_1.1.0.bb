@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This encapsulates the Qwt dependency for a specific ROS distribution and its Qt version"
@@ -42,16 +43,15 @@ SRC_URI[md5sum] = "a48078a61292dc15b851070fc7e594c9"
 SRC_URI[sha256sum] = "7d171d5a7bb5226de322e8146262b5ca73461ec9c71afc3675c5b353e90e42f5"
 S = "${WORKDIR}/qwt_dependency-release-release-melodic-qwt_dependency-1.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('qwt-dependency', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('qwt-dependency', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('qwt-dependency', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qwt-dependency/qwt-dependency_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qwt-dependency/qwt-dependency-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qwt-dependency/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qwt-dependency/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('qwt-dependency', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qwt-dependency/qwt-dependency_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qwt-dependency/qwt-dependency-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qwt-dependency/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qwt-dependency/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

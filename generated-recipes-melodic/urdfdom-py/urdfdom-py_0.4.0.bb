@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Python implementation of the URDF parser."
@@ -45,16 +46,15 @@ SRC_URI[md5sum] = "0836179118272260e2715455133fda4b"
 SRC_URI[sha256sum] = "9d0663d9bde7a548ba4df458423922d7d1e326a786e50cc33846f0835c4843f6"
 S = "${WORKDIR}/urdfdom_py-release-release-melodic-urdfdom_py-0.4.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('urdfdom-py', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urdfdom-py', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdfdom-py', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-py/urdfdom-py_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-py/urdfdom-py-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-py/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-py/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('urdfdom-py', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom-py/urdfdom-py_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom-py/urdfdom-py-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom-py/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom-py/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

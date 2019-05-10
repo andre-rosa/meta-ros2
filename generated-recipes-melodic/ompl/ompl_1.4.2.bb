@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "OMPL is a free sampling-based motion planning library."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "1c9fad89415a5004f76ce911005d5ad7"
 SRC_URI[sha256sum] = "35d69fbf80c64944c92a69d468823e68bcd7d776750720c7f50c3af09feb1b93"
 S = "${WORKDIR}/ompl-release-release-melodic-ompl-1.4.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ompl', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ompl', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ompl', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ompl/ompl_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ompl/ompl-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ompl/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ompl/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ompl', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ompl/ompl_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ompl/ompl-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ompl/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ompl/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

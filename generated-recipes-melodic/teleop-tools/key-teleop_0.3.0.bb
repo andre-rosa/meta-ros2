@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A text-based interface to send a robot movement commands"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "0788e9c2dddbafd4e75e81b9300ea0e9"
 SRC_URI[sha256sum] = "06f164a11e5deeab452048a9d404d302ac6b82f351df562da48abaf604019286"
 S = "${WORKDIR}/teleop_tools-release-release-melodic-key_teleop-0.3.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('teleop-tools', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('teleop-tools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teleop-tools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/teleop-tools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/teleop-tools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-tools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('teleop-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-tools/teleop-tools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-tools/teleop-tools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-tools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-tools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

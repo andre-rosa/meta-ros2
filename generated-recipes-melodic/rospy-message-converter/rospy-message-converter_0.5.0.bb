@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Converts between Python dictionaries and JSON to rospy messages."
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "2c1d3b93889d33e204465e73185a9e71"
 SRC_URI[sha256sum] = "c35584b4ef0c7fed1e90a35bfeb17ad63ec36a9a86ba1aaf74547cdcbd1cea37"
 S = "${WORKDIR}/rospy_message_converter-release-release-melodic-rospy_message_converter-0.5.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rospy-message-converter', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rospy-message-converter', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rospy-message-converter', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospy-message-converter/rospy-message-converter_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospy-message-converter/rospy-message-converter-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospy-message-converter/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rospy-message-converter/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rospy-message-converter', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rospy-message-converter/rospy-message-converter_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rospy-message-converter/rospy-message-converter-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rospy-message-converter/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rospy-message-converter/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

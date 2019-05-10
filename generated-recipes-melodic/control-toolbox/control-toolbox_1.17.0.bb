@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The control toolbox contains modules that are useful across all controllers."
@@ -69,16 +70,15 @@ SRC_URI[md5sum] = "53934c060496938b94a56ad5f367c979"
 SRC_URI[sha256sum] = "87d87fd3110630b61fba232464add3e10dca4f7e6a080cf4900827cccf711c56"
 S = "${WORKDIR}/control_toolbox-release-release-melodic-control_toolbox-1.17.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('control-toolbox', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('control-toolbox', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('control-toolbox', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-toolbox/control-toolbox_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-toolbox/control-toolbox-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-toolbox/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-toolbox/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('control-toolbox', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/control-toolbox/control-toolbox_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/control-toolbox/control-toolbox-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/control-toolbox/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/control-toolbox/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

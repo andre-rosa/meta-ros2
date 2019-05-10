@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Common messages for interacting with Amazon Lex using the lex_node package"
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "8a8fa3e20cf98eb4a6c37d0cd52cb595"
 SRC_URI[sha256sum] = "38bc675f3d1607953a04c92775548a0cda08aa90b0699ed3c8ae3cd0d5d3c98d"
 S = "${WORKDIR}/lex_node-release-release-melodic-lex_common_msgs-2.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('lex-node', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('lex-node', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('lex-node', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lex-node/lex-node_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lex-node/lex-node-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lex-node/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/lex-node/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('lex-node', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/lex-node/lex-node_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/lex-node/lex-node-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/lex-node/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/lex-node/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

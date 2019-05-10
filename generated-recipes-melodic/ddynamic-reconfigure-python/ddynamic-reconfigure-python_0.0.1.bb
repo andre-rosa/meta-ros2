@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The ddynamic_reconfigure_python package contains     a class to instantiate dynamic reconfigure servers on the fly     registering variables"
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "1bf35dca956a27b59619382126239f08"
 SRC_URI[sha256sum] = "bc8dcf50274a8e4a0548a9044f4af8ef90d207eab61b8a3ff4e474582b88121c"
 S = "${WORKDIR}/ddynamic_reconfigure_python-release-release-melodic-ddynamic_reconfigure_python-0.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ddynamic-reconfigure-python', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ddynamic-reconfigure-python', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ddynamic-reconfigure-python', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ddynamic-reconfigure-python/ddynamic-reconfigure-python_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ddynamic-reconfigure-python/ddynamic-reconfigure-python-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ddynamic-reconfigure-python/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ddynamic-reconfigure-python/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ddynamic-reconfigure-python', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ddynamic-reconfigure-python/ddynamic-reconfigure-python_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ddynamic-reconfigure-python/ddynamic-reconfigure-python-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ddynamic-reconfigure-python/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ddynamic-reconfigure-python/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

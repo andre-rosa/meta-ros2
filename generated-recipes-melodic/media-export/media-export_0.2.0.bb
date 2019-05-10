@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Placeholder package enabling generic export of media paths."
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "cb8242be44f235d4883958bdb5f18acb"
 SRC_URI[sha256sum] = "dba5a590101d4f4969a5f963f8fba90fff5a095e0c19770166787d22bdb799e3"
 S = "${WORKDIR}/media_export-release-release-melodic-media_export-0.2.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('media-export', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('media-export', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('media-export', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/media-export/media-export_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/media-export/media-export-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/media-export/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/media-export/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('media-export', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/media-export/media-export_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/media-export/media-export-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/media-export/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/media-export/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

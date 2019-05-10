@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Messages relating to the ROS Computation Graph. These are generally considered to be low-level messages that end users do not interact with."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "1385b903a4046da68a47991444d3e752"
 SRC_URI[sha256sum] = "5aa9e1b1adbf5e86931e771b1a154384485803a73e50804e0c739f83767270c9"
 S = "${WORKDIR}/ros_comm_msgs-release-release-melodic-rosgraph_msgs-1.11.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-comm-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-comm-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-comm-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm-msgs/ros-comm-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm-msgs/ros-comm-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-comm-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-comm-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-comm-msgs/ros-comm-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-comm-msgs/ros-comm-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-comm-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-comm-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

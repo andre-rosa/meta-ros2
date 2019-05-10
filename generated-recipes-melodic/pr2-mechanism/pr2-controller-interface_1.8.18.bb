@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package specifies the interface to a realtime controller. A    controller that implements this interface can be executed by the     <a href="http://www.ros.org/wiki/pr2_controller_manager">controller   manager</a> in the real time control loop. The package basically   contains the C++ controller base class that all controllers need to   inherit from."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "4084084a1df93084b87175a077c1e627"
 SRC_URI[sha256sum] = "0a6ffaecfd981a9b21e8895ac582bff371da30a6526c97a933827b9a97bf7607"
 S = "${WORKDIR}/pr2_mechanism-release-release-melodic-pr2_controller_interface-1.8.18-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-mechanism', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-mechanism', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-mechanism', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/pr2-mechanism_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/pr2-mechanism-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-mechanism', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/pr2-mechanism_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/pr2-mechanism-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

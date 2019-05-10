@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package containes numerous examples of how to use SMACH. See the examples directory."
@@ -65,16 +66,15 @@ SRC_URI[md5sum] = "f7f4d9b0f1aa7787d3f2d6bb657742ab"
 SRC_URI[sha256sum] = "ca0024ddfd9f62f4c76291300d9cf50e15fbc87e64af3823255db33e4285792e"
 S = "${WORKDIR}/linux_networking-release-release-melodic-asmach_tutorials-1.0.13-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('linux-networking', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('linux-networking', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/linux-networking_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/linux-networking-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('linux-networking', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/linux-networking_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/linux-networking-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

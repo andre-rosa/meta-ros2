@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A path planner library and node."
@@ -75,16 +76,15 @@ SRC_URI[md5sum] = "713ba51d1578ca679c8e942c5b19e900"
 SRC_URI[sha256sum] = "78802bdb91c6f0e8f194cbe2cfd7b68dca7a4c394c219aa8aba1b17d31e48c1a"
 S = "${WORKDIR}/navigation-release-release-melodic-global_planner-1.16.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('navigation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/navigation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/navigation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation/navigation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation/navigation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

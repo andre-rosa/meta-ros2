@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides ROS specific hooks for stage"
@@ -74,16 +75,15 @@ SRC_URI[md5sum] = "2cca864078011b5bf1968e771850e368"
 SRC_URI[sha256sum] = "5762c477b0401c12f43573895f7a94ec3bdfddc4aa9fe3a127d3acc1ce2960d8"
 S = "${WORKDIR}/stage_ros-release-release-melodic-stage_ros-1.8.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('stage-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('stage-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('stage-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage-ros/stage-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage-ros/stage-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('stage-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/stage-ros/stage-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/stage-ros/stage-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/stage-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/stage-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

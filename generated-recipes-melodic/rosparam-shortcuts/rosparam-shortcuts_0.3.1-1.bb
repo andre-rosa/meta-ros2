@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Quickly load variables from rosparam with good command line error checking."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "ae291798743da99e16e11b7f1de67642"
 SRC_URI[sha256sum] = "98ae1e0dfc847978257e1ec58b7c183ac4304dc620ac460356d33473adba7042"
 S = "${WORKDIR}/rosparam_shortcuts-release-release-melodic-rosparam_shortcuts-0.3.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosparam-shortcuts', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosparam-shortcuts', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosparam-shortcuts', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosparam-shortcuts/rosparam-shortcuts_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosparam-shortcuts/rosparam-shortcuts-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosparam-shortcuts/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosparam-shortcuts/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosparam-shortcuts', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosparam-shortcuts/rosparam-shortcuts_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosparam-shortcuts/rosparam-shortcuts-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosparam-shortcuts/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosparam-shortcuts/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

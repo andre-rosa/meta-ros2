@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides access to the PR2 fingertip pressure sensors. This information includes:"
@@ -62,16 +63,15 @@ SRC_URI[md5sum] = "e1e5ff6b4de438fef4e0ae10cfcac796"
 SRC_URI[sha256sum] = "b4ed5a369a34c342f410d4fbfb050d286cb4ff8db96482684e0e6354c66e5ac5"
 S = "${WORKDIR}/pr2_ethercat_drivers-release-release-melodic-fingertip_pressure-1.8.18-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-ethercat-drivers', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-ethercat-drivers', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-ethercat-drivers', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-ethercat-drivers/pr2-ethercat-drivers_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-ethercat-drivers/pr2-ethercat-drivers-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-ethercat-drivers/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-ethercat-drivers/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-ethercat-drivers', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-ethercat-drivers/pr2-ethercat-drivers_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-ethercat-drivers/pr2-ethercat-drivers-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-ethercat-drivers/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-ethercat-drivers/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

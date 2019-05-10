@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "SainSmart USB relay driver controller"
@@ -56,16 +57,15 @@ SRC_URI[md5sum] = "ba389b068f0c56dbe3322f13d3155757"
 SRC_URI[sha256sum] = "73e7449cf27e9caa518695cb6996d8909422ae70540708e07580a666560ddd66"
 S = "${WORKDIR}/sainsmart_relay_usb-release-release-melodic-sainsmart_relay_usb-0.0.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('sainsmart-relay-usb', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sainsmart-relay-usb', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sainsmart-relay-usb', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sainsmart-relay-usb/sainsmart-relay-usb_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sainsmart-relay-usb/sainsmart-relay-usb-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sainsmart-relay-usb/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sainsmart-relay-usb/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('sainsmart-relay-usb', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sainsmart-relay-usb/sainsmart-relay-usb_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sainsmart-relay-usb/sainsmart-relay-usb-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sainsmart-relay-usb/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sainsmart-relay-usb/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

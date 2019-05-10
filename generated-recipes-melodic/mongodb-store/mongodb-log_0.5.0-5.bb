@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The mongodb_log package"
@@ -68,16 +69,15 @@ SRC_URI[md5sum] = "61f1eaf88310b82cdb6a258d6fb1b0b2"
 SRC_URI[sha256sum] = "5ce0f217758fb3d15c24d5e6a00c59116028201b7ae95e3b5fa91af0ed8d5f2d"
 S = "${WORKDIR}/mongodb_store-release-melodic-mongodb_log-0.5.0-5"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mongodb-store', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mongodb-store', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mongodb-store', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/mongodb-store_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/mongodb-store-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mongodb-store/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mongodb-store', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mongodb-store/mongodb-store_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mongodb-store/mongodb-store-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mongodb-store/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mongodb-store/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

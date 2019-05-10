@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "CAN bus introspection"
@@ -63,16 +64,15 @@ SRC_URI[md5sum] = "00a90c4f6ba3027eb5752c7d5ed3e1fc"
 SRC_URI[sha256sum] = "164f92e63ab8188d83e4107e9cb19fdf9db3c96a44282ffb85833bc0c58bfb98"
 S = "${WORKDIR}/dataspeed_can-release-release-melodic-dataspeed_can_tools-1.0.12-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dataspeed-can', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dataspeed-can', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dataspeed-can', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/dataspeed-can_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/dataspeed-can-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('dataspeed-can', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-can/dataspeed-can_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-can/dataspeed-can-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-can/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-can/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

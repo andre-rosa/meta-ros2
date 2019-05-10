@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "common_msgs contains messages that are widely used by other ROS packages.     These includes messages for     actions (<a href="http://wiki.ros.org/actionlib_msgs">actionlib_msgs</a>),     diagnostics (<a href="http://wiki.ros.org/diagnostic_msgs">diagnostic_msgs</a>),     geometric primitives (<a href="http://wiki.ros.org/geometry_msgs">geometry_msgs</a>),     robot navigation (<a href="http://wiki.ros.org/nav_msgs">nav_msgs</a>),     and common sensors (<a href="http://wiki.ros.org/sensor_msgs">sensor_msgs</a>), such as laser range finders, cameras, point clouds."
@@ -62,16 +63,15 @@ SRC_URI[md5sum] = "07cad3850713b2badfeecd32822cd86f"
 SRC_URI[sha256sum] = "631a7674053674e50d7fdadc741dcd4f112f0f12c62c179b438e0db457e86a36"
 S = "${WORKDIR}/common_msgs-release-release-melodic-common_msgs-1.12.7-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('common-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('common-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/common-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/common-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('common-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-msgs/common-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-msgs/common-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

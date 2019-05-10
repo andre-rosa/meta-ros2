@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A Proxy Server for Interactive Markers"
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "b23c09a8ed857d64b9d3a104780d391b"
 SRC_URI[sha256sum] = "39123a492c42042c9566254a5342fa930f30cf26c0bc2279b83135477ef56bce"
 S = "${WORKDIR}/interactive_marker_proxy-release-release-melodic-interactive_marker_proxy-0.1.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('interactive-marker-proxy', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('interactive-marker-proxy', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('interactive-marker-proxy', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-marker-proxy/interactive-marker-proxy_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-marker-proxy/interactive-marker-proxy-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-marker-proxy/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/interactive-marker-proxy/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('interactive-marker-proxy', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/interactive-marker-proxy/interactive-marker-proxy_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/interactive-marker-proxy/interactive-marker-proxy-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/interactive-marker-proxy/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/interactive-marker-proxy/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

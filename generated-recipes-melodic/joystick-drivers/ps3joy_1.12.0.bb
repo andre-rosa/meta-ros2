@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Playstation 3 SIXAXIS or DUAL SHOCK 3 joystick driver.     Driver for the Sony PlayStation 3 SIXAXIS or DUAL SHOCK 3     joysticks. In its current state, this driver is not compatible     with the use of other Bluetooth HID devices. The driver listens     for a connection on the HID ports, starts the joystick     streaming data, and passes the data to the Linux uinput device     so that it shows up as a normal joystick."
@@ -64,16 +65,15 @@ SRC_URI[md5sum] = "3abe4171ab17ff27d84941b53e1360fd"
 SRC_URI[sha256sum] = "c3b9aa3c6b572091d412fa7e2904b1c799471ba99aed7dd1b906f2b9e35b0f2a"
 S = "${WORKDIR}/joystick_drivers-release-release-melodic-ps3joy-1.12.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('joystick-drivers', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('joystick-drivers', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('joystick-drivers', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/joystick-drivers_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/joystick-drivers-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/joystick-drivers/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('joystick-drivers', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/joystick-drivers/joystick-drivers_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/joystick-drivers/joystick-drivers-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/joystick-drivers/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/joystick-drivers/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

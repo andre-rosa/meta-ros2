@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A collection of navigation plugins and tools: Various recovery behaviors,     local and global planner plugins for move_base, a teleop filter for     obstacle avoidance, a simple control-based move_base replacement     etc."
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "3ac9b733135d014a9ff43b07b528f777"
 SRC_URI[sha256sum] = "79834c6c9f70411161eb2604ba1e6b13ecd2d28c89eeefd583530f237a8f851f"
 S = "${WORKDIR}/navigation_experimental-release-release-melodic-navigation_experimental-0.3.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('navigation-experimental', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-experimental', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-experimental', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/navigation-experimental_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/navigation-experimental-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('navigation-experimental', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/navigation-experimental_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/navigation-experimental-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

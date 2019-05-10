@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_image_view provides a GUI plugin for displaying images using image_transport."
@@ -65,16 +66,15 @@ SRC_URI[md5sum] = "018d24cfe03c30ce71059ef99d55bea0"
 SRC_URI[sha256sum] = "adbd60be7c1f3517942285d3bcb166f838d362e88a910192bdaa35dc193126e3"
 S = "${WORKDIR}/rqt_image_view-release-release-melodic-rqt_image_view-0.4.13-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt-image-view', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-image-view', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-image-view', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-image-view/rqt-image-view_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-image-view/rqt-image-view-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-image-view/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-image-view/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt-image-view', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-image-view/rqt-image-view_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-image-view/rqt-image-view-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-image-view/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-image-view/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

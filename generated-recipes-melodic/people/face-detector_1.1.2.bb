@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Face detection in images."
@@ -107,16 +108,15 @@ SRC_URI[md5sum] = "8a0e59320ab84479c93a9261fc50839d"
 SRC_URI[sha256sum] = "ae5364cd22c42db83150c148f0d9981ff3568b5285630029b87b491f64b6e1a5"
 S = "${WORKDIR}/people-release-release-melodic-face_detector-1.1.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('people', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('people', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('people', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/people_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/people-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('people', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/people_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/people-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

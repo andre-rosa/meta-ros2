@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The robot description files for the Desistek SAGA ROV underwater vehicle"
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "9d13ac739ffbe638e309ce7ece4948e1"
 SRC_URI[sha256sum] = "1d23906087b0f5b4119ca5b63d3d621a40f93709a58a61fdab09330e3f712126"
 S = "${WORKDIR}/desistek_saga-release-release-melodic-desistek_saga_description-0.3.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('desistek-saga', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('desistek-saga', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('desistek-saga', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/desistek-saga/desistek-saga_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/desistek-saga/desistek-saga-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/desistek-saga/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/desistek-saga/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('desistek-saga', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/desistek-saga/desistek-saga_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/desistek-saga/desistek-saga-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/desistek-saga/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/desistek-saga/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

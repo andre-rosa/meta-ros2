@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "actionlib_msgs defines the common messages to interact with an      action server and an action client.  For full documentation of      the actionlib API see      the <a href="http://wiki.ros.org/actionlib">actionlib</a>      package."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "685cfd2c33d00088811514e144ef5526"
 SRC_URI[sha256sum] = "0ad19d4f8698df04a22979c4b64f21991696c55877c952dc592e92ffb82122f0"
 S = "${WORKDIR}/common_msgs-release-release-melodic-actionlib_msgs-1.12.7-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('common-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('common-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/common-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/common-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('common-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-msgs/common-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-msgs/common-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

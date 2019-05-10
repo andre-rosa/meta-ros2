@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS wrapper for the mobile robot control platform YP-Spur"
@@ -17,12 +18,10 @@ ROS_CN = "ypspur_ros"
 ROS_BPN = "ypspur_ros"
 
 ROS_BUILD_DEPENDS = " \
+    diagnostic-msgs \
     geometry-msgs \
     nav-msgs \
     roscpp \
-    roslint \
-    rospy \
-    rostest \
     sensor-msgs \
     std-msgs \
     tf \
@@ -35,10 +34,10 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    diagnostic-msgs \
     geometry-msgs \
     nav-msgs \
     roscpp \
-    rospy \
     sensor-msgs \
     std-msgs \
     tf \
@@ -49,10 +48,10 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    diagnostic-msgs \
     geometry-msgs \
     nav-msgs \
     roscpp \
-    rospy \
     sensor-msgs \
     std-msgs \
     tf \
@@ -61,7 +60,10 @@ ROS_EXEC_DEPENDS = " \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = ""
+ROS_TEST_DEPENDS = " \
+    roslint \
+    rostest \
+"
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually
@@ -70,21 +72,20 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/openspur/ypspur_ros-release/archive/release/melodic/ypspur_ros/0.2.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "cd315904a96c58487b604aa8ce344dfb"
-SRC_URI[sha256sum] = "aa18debf2c372f040b3ac8ae242bac35a325e0135b2761b59d1b2a6b0797b8ca"
-S = "${WORKDIR}/ypspur_ros-release-release-melodic-ypspur_ros-0.2.0-0"
+SRC_URI = "https://github.com/openspur/ypspur_ros-release/archive/release/melodic/ypspur_ros/0.3.0-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "d141907cdc02da0457ed0aeba72f8dab"
+SRC_URI[sha256sum] = "58b894206e18dfa8c85d4c3a067cb2c5f3b0bba75bc66e9d9dffb40833bb26f5"
+S = "${WORKDIR}/ypspur_ros-release-release-melodic-ypspur_ros-0.3.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ypspur-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ypspur-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ypspur-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ypspur-ros/ypspur-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ypspur-ros/ypspur-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ypspur-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ypspur-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ypspur-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ypspur-ros/ypspur-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ypspur-ros/ypspur-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ypspur-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ypspur-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

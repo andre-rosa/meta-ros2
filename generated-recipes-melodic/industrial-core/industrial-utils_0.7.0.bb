@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Industrial utils is a library package that captures common funcitonality for the ROS-Industrial distribution."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "69f8604d1184758305c06c715b79fb0c"
 SRC_URI[sha256sum] = "6615952de07963890fa787cba410b69c8a7d947158281eefc629c8e92c88bf51"
 S = "${WORKDIR}/industrial_core-release-release-melodic-industrial_utils-0.7.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('industrial-core', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('industrial-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('industrial-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/industrial-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/industrial-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('industrial-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/industrial-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/industrial-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

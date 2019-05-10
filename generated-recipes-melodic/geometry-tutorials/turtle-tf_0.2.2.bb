@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "turtle_tf demonstrates how to write a tf broadcaster and listener with the turtlesim. The tutle_tf_listener commands turtle2 to follow turtle1 around as you drive turtle1 using the keyboard."
@@ -64,16 +65,15 @@ SRC_URI[md5sum] = "cb2163eaf9512cd951a52a8f3b960466"
 SRC_URI[sha256sum] = "182947fcfff5ec44a27e343306a78fd488fbcaff6d8ca894ed0646846293f02d"
 S = "${WORKDIR}/geometry_tutorials-release-release-melodic-turtle_tf-0.2.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('geometry-tutorials', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('geometry-tutorials', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geometry-tutorials', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry-tutorials/geometry-tutorials_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry-tutorials/geometry-tutorials-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry-tutorials/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry-tutorials/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('geometry-tutorials', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geometry-tutorials/geometry-tutorials_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geometry-tutorials/geometry-tutorials-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geometry-tutorials/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geometry-tutorials/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

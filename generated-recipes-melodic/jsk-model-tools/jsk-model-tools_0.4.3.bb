@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "<p>Metapackage that contains model_tools package for jsk-ros-pkg</p>"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "3a160e37d70e615aff7fb0b3a719186b"
 SRC_URI[sha256sum] = "41abafed65016c7f1f4825f689b95a45fcf1d8d93eeec12752ea0f1f728521a2"
 S = "${WORKDIR}/jsk_model_tools-release-release-melodic-jsk_model_tools-0.4.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('jsk-model-tools', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-model-tools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-model-tools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-model-tools/jsk-model-tools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-model-tools/jsk-model-tools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-model-tools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-model-tools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('jsk-model-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-model-tools/jsk-model-tools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-model-tools/jsk-model-tools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-model-tools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-model-tools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

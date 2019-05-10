@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Math toolkit for Yujin open control system. This package is intended to contain common use functions,     mostly for simple mathematics but also for tf-related conversions.     By no means it pretends to be an efficient and robust, widely used math library, but a play ground where     to put common code that is typically repeated in many robot control programs."
@@ -70,16 +71,15 @@ SRC_URI[md5sum] = "3192d907e5e1c3560a13558cae9e3d41"
 SRC_URI[sha256sum] = "53550a80b4e50074b5c5b15fe44f2d4e463ff9f768e6e662b7a7b3d65f2c32fd"
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_math_toolkit-0.8.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('yujin-ocs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yujin-ocs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('yujin-ocs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/yujin-ocs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/yujin-ocs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

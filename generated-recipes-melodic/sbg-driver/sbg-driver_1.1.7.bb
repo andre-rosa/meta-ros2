@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The SBG ROS Driver package"
@@ -63,16 +64,15 @@ SRC_URI[md5sum] = "e5463d485ee361d4cf0deb551b2b8a5d"
 SRC_URI[sha256sum] = "5dcd118009e8bd76fefe8a9abe3467f6ade59058b8ddcc4b386466c8a419be65"
 S = "${WORKDIR}/sbg_ros_driver-release-release-melodic-sbg_driver-1.1.7-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('sbg-driver', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sbg-driver', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sbg-driver', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbg-driver/sbg-driver_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbg-driver/sbg-driver-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbg-driver/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbg-driver/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('sbg-driver', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sbg-driver/sbg-driver_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sbg-driver/sbg-driver-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sbg-driver/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sbg-driver/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

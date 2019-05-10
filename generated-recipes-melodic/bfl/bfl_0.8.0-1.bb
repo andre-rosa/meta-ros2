@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains a recent version of the Bayesian Filtering   Library (BFL), distributed by the Orocos Project.  For stability   reasons, this package is currently locked to revision 31655 (April   19, 2010), but this revision will be updated on a regular basis to   the latest available BFL trunk.  This ROS package does not modify   BFL in any way, it simply provides a convenient way to download and   compile the library, because BFL is not available from an OS package   manager.  This ROS package compiles BFL with the Boost library for   matrix operations and random number generation."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "22d32d2877f10884bcfa0bf831c79846"
 SRC_URI[sha256sum] = "7c4c61c15768d1cd276cdaaf9a9f5e3088f478383789ffec9fdee325dafc0990"
 S = "${WORKDIR}/bfl-release-release-melodic-bfl-0.8.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('bfl', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('bfl', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('bfl', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bfl/bfl_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bfl/bfl-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bfl/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bfl/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('bfl', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/bfl/bfl_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/bfl/bfl-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/bfl/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/bfl/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

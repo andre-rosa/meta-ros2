@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The `pr2_mechanism_diagnostics` node subscribes to `mechanism_statistics` and publishes diagnostics data for joints and controllers on `/diagnostics`."
@@ -76,16 +77,15 @@ SRC_URI[md5sum] = "907071121d4c2c406e2eab13aeb8663f"
 SRC_URI[sha256sum] = "3d6fbbd7282c6a07b6ea340848aa1fb79444832f19224508ed20fab0e73bf98c"
 S = "${WORKDIR}/pr2_mechanism-release-release-melodic-pr2_mechanism_diagnostics-1.8.18-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-mechanism', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-mechanism', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-mechanism', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/pr2-mechanism_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/pr2-mechanism-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-mechanism/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-mechanism', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/pr2-mechanism_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/pr2-mechanism-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-mechanism/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

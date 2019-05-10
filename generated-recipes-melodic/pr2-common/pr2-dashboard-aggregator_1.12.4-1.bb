@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A simple script that aggregates all of the topics that a &quot;pr2_dashboard&quot; app might be interested in."
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "cee1392c0591e987e083101d3bc1a705"
 SRC_URI[sha256sum] = "59e2885baab0aae9d693d4fc6b659a37b4f88ea3331f3e9c38c2e9cc22878576"
 S = "${WORKDIR}/pr2_common-release-release-melodic-pr2_dashboard_aggregator-1.12.4-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/pr2-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/pr2-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common/pr2-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common/pr2-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

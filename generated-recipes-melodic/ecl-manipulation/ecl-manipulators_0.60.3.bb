@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Deploys various manipulation algorithms, currently just      feedforward filters (interpolations)."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "f37916e257789a21752781264ddcef36"
 SRC_URI[sha256sum] = "29d59a85307ce361a71f362a25d9b1ff94aaafd5a2df8a51d0659f74d3d735d9"
 S = "${WORKDIR}/ecl_manipulation-release-release-melodic-ecl_manipulators-0.60.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ecl-manipulation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ecl-manipulation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-manipulation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-manipulation/ecl-manipulation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-manipulation/ecl-manipulation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-manipulation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-manipulation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ecl-manipulation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-manipulation/ecl-manipulation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-manipulation/ecl-manipulation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-manipulation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-manipulation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A simulation interface for a hardware interface for ros_control, and loads default joint values from SRDF"
@@ -62,16 +63,15 @@ SRC_URI[md5sum] = "420ce6591daa6529c3becdf0686abfa4"
 SRC_URI[sha256sum] = "3d7a3062afc99ff36fa906e8796297a7ac3e1a1dea416d71a06ce22bdbfe18e9"
 S = "${WORKDIR}/moveit_sim_controller-release-release-melodic-moveit_sim_controller-0.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('moveit-sim-controller', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('moveit-sim-controller', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('moveit-sim-controller', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-sim-controller/moveit-sim-controller_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-sim-controller/moveit-sim-controller-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-sim-controller/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/moveit-sim-controller/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('moveit-sim-controller', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-sim-controller/moveit-sim-controller_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-sim-controller/moveit-sim-controller-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-sim-controller/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/moveit-sim-controller/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

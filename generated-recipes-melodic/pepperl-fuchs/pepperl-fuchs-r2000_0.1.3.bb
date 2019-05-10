@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The Pepperl+Fuchs R2000 laser range finder driver package"
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "9b170f6a4bc8617663557590598a1d53"
 SRC_URI[sha256sum] = "833c1e411a45ec3640a3b9711241ef46c5ba36ceaa0ee0496d183f4fbb246c1f"
 S = "${WORKDIR}/pepperl_fuchs-release-release-melodic-pepperl_fuchs_r2000-0.1.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pepperl-fuchs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pepperl-fuchs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pepperl-fuchs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pepperl-fuchs/pepperl-fuchs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pepperl-fuchs/pepperl-fuchs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pepperl-fuchs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pepperl-fuchs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pepperl-fuchs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pepperl-fuchs/pepperl-fuchs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pepperl-fuchs/pepperl-fuchs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pepperl-fuchs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pepperl-fuchs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

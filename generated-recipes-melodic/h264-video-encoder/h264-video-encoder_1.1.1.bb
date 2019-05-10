@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS1 H264 encoder node"
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "bb1eac25232a8a8105199bcd5494b027"
 SRC_URI[sha256sum] = "c295ba7a0e8cb25eacccc5092b810f0951c20268345218d2634bd6ecc30d0608"
 S = "${WORKDIR}/h264_video_encoder-release-release-melodic-h264_video_encoder-1.1.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('h264-video-encoder', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('h264-video-encoder', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('h264-video-encoder', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/h264-video-encoder/h264-video-encoder_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/h264-video-encoder/h264-video-encoder-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/h264-video-encoder/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/h264-video-encoder/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('h264-video-encoder', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/h264-video-encoder/h264-video-encoder_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/h264-video-encoder/h264-video-encoder-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/h264-video-encoder/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/h264-video-encoder/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

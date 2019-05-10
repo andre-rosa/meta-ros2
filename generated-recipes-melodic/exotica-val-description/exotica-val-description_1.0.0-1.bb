@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "val_description version including our updated meshes for unit testing and visualisation. Based on the OpenHumanoids fork of the val_description package by NASA JSC. The most current version of the original package can be found at http://gitlab.com/nasa-jsc-robotics/val_description"
@@ -42,16 +43,15 @@ SRC_URI[md5sum] = "830b6ab09268097d33c6f0b755dded3c"
 SRC_URI[sha256sum] = "9ffa2502040e704ba54e21b691521ba3e3213011535eef52b7af2a4222dcc8cd"
 S = "${WORKDIR}/exotica_val_description-release-release-melodic-exotica_val_description-1.0.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('exotica-val-description', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('exotica-val-description', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('exotica-val-description', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica-val-description/exotica-val-description_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica-val-description/exotica-val-description-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica-val-description/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica-val-description/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('exotica-val-description', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica-val-description/exotica-val-description_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica-val-description/exotica-val-description-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica-val-description/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica-val-description/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

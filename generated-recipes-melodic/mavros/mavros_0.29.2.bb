@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "MAVROS -- MAVLink extendable communication node for ROS     with proxy for Ground Control Station."
@@ -110,16 +111,15 @@ SRC_URI[md5sum] = "d70ec153d55c64e84c6a5e8129ed5f6b"
 SRC_URI[sha256sum] = "7999a1395dc5dfddba5225bcea8be7816ad1bf15a9221b1e0ac3d7fe2dad53e3"
 S = "${WORKDIR}/mavros-release-release-melodic-mavros-0.29.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mavros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mavros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mavros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/mavros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/mavros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mavros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mavros/mavros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mavros/mavros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mavros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mavros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

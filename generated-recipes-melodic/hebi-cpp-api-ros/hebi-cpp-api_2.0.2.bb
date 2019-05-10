@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS package providing access to the HEBI C++ API."
@@ -46,16 +47,15 @@ SRC_URI[md5sum] = "c79ea9d5383e7d1edd725ae6942465d4"
 SRC_URI[sha256sum] = "790c608f30c4ce58df8fc5155a399b01ef523d4f2b81cede90858799d4f3ee0b"
 S = "${WORKDIR}/hebi_cpp_api_ros-release-release-melodic-hebi_cpp_api-2.0.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('hebi-cpp-api-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('hebi-cpp-api-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hebi-cpp-api-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hebi-cpp-api-ros/hebi-cpp-api-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hebi-cpp-api-ros/hebi-cpp-api-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hebi-cpp-api-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hebi-cpp-api-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('hebi-cpp-api-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hebi-cpp-api-ros/hebi-cpp-api-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hebi-cpp-api-ros/hebi-cpp-api-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hebi-cpp-api-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hebi-cpp-api-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

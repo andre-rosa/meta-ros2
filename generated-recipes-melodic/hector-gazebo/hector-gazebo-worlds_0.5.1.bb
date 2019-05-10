@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "hector_gazebo_worlds provides gazebo scenarios used by Team Hector Darmstadt"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "1f254e4b7c7bb4cc80b04ff603d07d7c"
 SRC_URI[sha256sum] = "71ada41731ad64e3a1815c57a0f4ef98f526afaf0decf58eb26745721a39ce5b"
 S = "${WORKDIR}/hector_gazebo-release-release-melodic-hector_gazebo_worlds-0.5.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('hector-gazebo', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('hector-gazebo', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('hector-gazebo', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/hector-gazebo_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/hector-gazebo-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/hector-gazebo/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('hector-gazebo', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-gazebo/hector-gazebo_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-gazebo/hector-gazebo-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-gazebo/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/hector-gazebo/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

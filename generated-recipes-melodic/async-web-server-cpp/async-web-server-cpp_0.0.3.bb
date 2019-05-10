@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Asynchronous Web/WebSocket Server in C++"
@@ -56,16 +57,15 @@ SRC_URI[md5sum] = "9a727454a9d206b7bdf2d58afa84f3c9"
 SRC_URI[sha256sum] = "45d13cce4a77b0e5e67b9ed7be20691e0425861c5a48a653d4a3bdff997840c6"
 S = "${WORKDIR}/async_web_server_cpp-release-release-melodic-async_web_server_cpp-0.0.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('async-web-server-cpp', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('async-web-server-cpp', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('async-web-server-cpp', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-web-server-cpp/async-web-server-cpp_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-web-server-cpp/async-web-server-cpp-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-web-server-cpp/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-web-server-cpp/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('async-web-server-cpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/async-web-server-cpp/async-web-server-cpp_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/async-web-server-cpp/async-web-server-cpp-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/async-web-server-cpp/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/async-web-server-cpp/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

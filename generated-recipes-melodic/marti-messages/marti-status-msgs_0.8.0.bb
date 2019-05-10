@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "marti_status_msgs"
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "0da800bb01c2e3c640bdb77168190afc"
 SRC_URI[sha256sum] = "bd4b4f53d0139048213d1131994307fd26bcbcde7418764247d6253e4bbd2099"
 S = "${WORKDIR}/marti_messages-release-release-melodic-marti_status_msgs-0.8.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('marti-messages', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('marti-messages', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('marti-messages', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-messages/marti-messages_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-messages/marti-messages-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-messages/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/marti-messages/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('marti-messages', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/marti-messages/marti-messages_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/marti-messages/marti-messages-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/marti-messages/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/marti-messages/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

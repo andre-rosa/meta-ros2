@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Package modeling the build-time dependencies for generating language bindings of messages."
@@ -56,16 +57,15 @@ SRC_URI[md5sum] = "dbf72e609e6abb8e8a607fdd3b0e7344"
 SRC_URI[sha256sum] = "e868cdae2dcb54701e86484cb186fad8814bbd295db8a0224c4c14c3651d9303"
 S = "${WORKDIR}/message_generation-release-release-melodic-message_generation-0.4.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('message-generation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('message-generation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('message-generation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-generation/message-generation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-generation/message-generation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-generation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-generation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('message-generation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-generation/message-generation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-generation/message-generation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-generation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-generation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

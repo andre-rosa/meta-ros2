@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A C++ library for asynchronous serial communication"
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "acd4969fd445ab94f1ae6e5b8a224063"
 SRC_URI[sha256sum] = "9a87d3e8db68cf7c7fc3c318f1d31d6660dd5ca39172d0f78efdf6330de49bcc"
 S = "${WORKDIR}/async_comm-release-release-melodic-async_comm-0.1.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('async-comm', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('async-comm', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('async-comm', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-comm/async-comm_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-comm/async-comm-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-comm/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/async-comm/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('async-comm', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/async-comm/async-comm_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/async-comm/async-comm-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/async-comm/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/async-comm/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

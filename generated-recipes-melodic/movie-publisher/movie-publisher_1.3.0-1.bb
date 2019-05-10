@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Node for using a video file as video topic source."
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "02decd74a325c5b5ce0964f468a476fc"
 SRC_URI[sha256sum] = "d25ff36cadc9c0e22259a1e55b9e761efcc0e9ed0f4c1fcd30c1f919dfb90f4b"
 S = "${WORKDIR}/movie_publisher-release-release-melodic-movie_publisher-1.3.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('movie-publisher', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('movie-publisher', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('movie-publisher', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/movie-publisher/movie-publisher_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/movie-publisher/movie-publisher-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/movie-publisher/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/movie-publisher/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('movie-publisher', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/movie-publisher/movie-publisher_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/movie-publisher/movie-publisher-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/movie-publisher/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/movie-publisher/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

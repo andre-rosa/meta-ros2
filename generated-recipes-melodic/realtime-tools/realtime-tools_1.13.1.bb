@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Contains a set of tools that can be used from a hard     realtime thread, without breaking the realtime behavior.  The     tools currently only provides the realtime publisher, which makes     it possible to publish messages to a ROS topic from a realtime     thread. We plan to add a basic implementation of a realtime     buffer, to make it possible to get data from a (non-realtime)     topic callback into the realtime loop. Once the lockfree buffer is     created, the realtime publisher will start using it, which will     result in major API changes for the realtime publisher (removal of     all lock methods)."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "81dc82a9e2f3045d8cd5d81fdafa3860"
 SRC_URI[sha256sum] = "399aca3a72c59e2bd7bfc508e7dca8cb53d95ee76f067f4b11ecdaa49ea7e225"
 S = "${WORKDIR}/realtime_tools-release-release-melodic-realtime_tools-1.13.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('realtime-tools', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('realtime-tools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('realtime-tools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-tools/realtime-tools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-tools/realtime-tools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-tools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/realtime-tools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('realtime-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/realtime-tools/realtime-tools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/realtime-tools/realtime-tools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/realtime-tools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/realtime-tools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

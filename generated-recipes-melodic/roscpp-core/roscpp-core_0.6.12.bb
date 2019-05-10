@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Underlying data libraries for roscpp messages."
@@ -53,16 +54,15 @@ SRC_URI[md5sum] = "24a26bd29cf56f77e1c4352370de1f4a"
 SRC_URI[sha256sum] = "814ea5bddeba2cabb4229baa27006fe21dbc56f0fd51bf3afd5e20a22b4582ec"
 S = "${WORKDIR}/roscpp_core-release-release-melodic-roscpp_core-0.6.12-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roscpp-core', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roscpp-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roscpp-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/roscpp-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/roscpp-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('roscpp-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/roscpp-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/roscpp-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

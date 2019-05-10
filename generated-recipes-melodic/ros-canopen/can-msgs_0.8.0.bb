@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "CAN related message types."
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "742cc8298da446571ca0ab94a413fbb2"
 SRC_URI[sha256sum] = "54a5a705875b8d67403a724d0771fb4af9cdb1a9406504fe05cae90c43a813fa"
 S = "${WORKDIR}/ros_canopen-release-release-melodic-can_msgs-0.8.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-canopen', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-canopen', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-canopen', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/ros-canopen_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/ros-canopen-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-canopen', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-canopen/ros-canopen_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-canopen/ros-canopen-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-canopen/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-canopen/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

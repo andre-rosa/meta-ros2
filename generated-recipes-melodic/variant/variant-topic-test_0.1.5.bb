@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Variant topic tools testing suites."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "1a02dbbfa341a14ff18569e7ecff735e"
 SRC_URI[sha256sum] = "bfb1f587202ae563d3c7c967de21660efdd00723675a8e16ae0b9592fc7d5142"
 S = "${WORKDIR}/variant-release-release-melodic-variant_topic_test-0.1.5-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('variant', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('variant', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('variant', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/variant_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/variant-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/variant/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('variant', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variant/variant_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variant/variant-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variant/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/variant/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

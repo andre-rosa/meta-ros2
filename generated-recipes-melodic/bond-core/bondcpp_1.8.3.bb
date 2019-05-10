@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "C++ implementation of bond, a mechanism for checking when     another process has terminated."
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "1814bf1f4328a3281cae1559e06061bb"
 SRC_URI[sha256sum] = "617c5cf1ac30c5af9d02024bef3b9a010ff70fb3779220d77eb9e4863530c790"
 S = "${WORKDIR}/bond_core-release-release-melodic-bondcpp-1.8.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('bond-core', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('bond-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('bond-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/bond-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/bond-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/bond-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('bond-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/bond-core/bond-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/bond-core/bond-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/bond-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/bond-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

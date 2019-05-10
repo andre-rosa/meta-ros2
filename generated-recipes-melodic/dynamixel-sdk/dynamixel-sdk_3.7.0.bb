@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package is wrapping version of ROBOTIS Dynamxel SDK for ROS. The ROBOTIS Dynamixel SDK, or SDK, is a software development library that provides Dynamixel control functions for packet communication. The API is designed for Dynamixel actuators and Dynamixel-based platforms."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "825fbb133349514f23f1b01e58cf9f98"
 SRC_URI[sha256sum] = "f6e3f4d552bb5e39c857b79e0c53233791f44ec01cbc768a507fb434f67d4492"
 S = "${WORKDIR}/DynamixelSDK-release-release-melodic-dynamixel_sdk-3.7.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dynamixel-sdk', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dynamixel-sdk', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dynamixel-sdk', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-sdk/dynamixel-sdk_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-sdk/dynamixel-sdk-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-sdk/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dynamixel-sdk/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('dynamixel-sdk', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamixel-sdk/dynamixel-sdk_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamixel-sdk/dynamixel-sdk-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamixel-sdk/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dynamixel-sdk/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

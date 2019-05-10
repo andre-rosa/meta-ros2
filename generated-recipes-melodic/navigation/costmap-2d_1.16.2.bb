@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package provides an implementation of a 2D costmap that takes in sensor         data from the world, builds a 2D or 3D occupancy grid of the data (depending         on whether a voxel based implementation is used), and inflates costs in a         2D costmap based on the occupancy grid and a user specified inflation radius.         This package also provides support for map_server based initialization of a         costmap, rolling window based costmaps, and parameter based subscription to         and configuration of sensor topics."
@@ -102,16 +103,15 @@ SRC_URI[md5sum] = "c9913b302cbeb318ff74877a1312ea32"
 SRC_URI[sha256sum] = "187901c824e86f552a2412c712120acad3e06efa0a9c8a44bb8c7d6c0832a1a1"
 S = "${WORKDIR}/navigation-release-release-melodic-costmap_2d-1.16.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('navigation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/navigation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/navigation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('navigation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation/navigation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation/navigation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

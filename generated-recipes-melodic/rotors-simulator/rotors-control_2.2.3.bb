@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "RotorS control package"
@@ -67,16 +68,15 @@ SRC_URI[md5sum] = "a7cba684d0e4f71c6915287fea98dd7a"
 SRC_URI[sha256sum] = "360134fe15fab3cd01a1869458c0d767006f445a2124532ac6b0c2484e4cc38f"
 S = "${WORKDIR}/rotors_simulator-release-release-melodic-rotors_control-2.2.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rotors-simulator', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rotors-simulator', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rotors-simulator', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rotors-simulator/rotors-simulator_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rotors-simulator/rotors-simulator-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rotors-simulator/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rotors-simulator/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rotors-simulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rotors-simulator/rotors-simulator_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rotors-simulator/rotors-simulator-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rotors-simulator/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rotors-simulator/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

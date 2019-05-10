@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "WebRTC Native API"
@@ -62,16 +63,15 @@ SRC_URI[md5sum] = "b0fa8f24a41aa98f18cd835b1cdec6a7"
 SRC_URI[sha256sum] = "bdc2b6651bda28702a87bdc1cb9a53dbcd5a47dc7363d71bd81ea87dc0271e77"
 S = "${WORKDIR}/webrtc_ros-release-release-melodic-webrtc-59.0.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('webrtc-ros', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('webrtc-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('webrtc-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webrtc-ros/webrtc-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webrtc-ros/webrtc-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webrtc-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/webrtc-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('webrtc-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/webrtc-ros/webrtc-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/webrtc-ros/webrtc-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/webrtc-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/webrtc-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

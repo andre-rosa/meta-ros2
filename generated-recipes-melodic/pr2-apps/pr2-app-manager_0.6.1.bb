@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Scripts and tools for running the application manager on the PR2."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "5b6e5a6fe0459eda8a03fae6343e167b"
 SRC_URI[sha256sum] = "efb64b17c3475ef039056ad31ceeebc17296ff0be259a5507b0b8e6fdcffb93b"
 S = "${WORKDIR}/pr2_apps-release-release-melodic-pr2_app_manager-0.6.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-apps', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-apps', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-apps', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/pr2-apps_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/pr2-apps-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-apps/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-apps', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-apps/pr2-apps_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-apps/pr2-apps-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-apps/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-apps/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

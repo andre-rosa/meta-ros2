@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "laser_proc"
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "3f7ceafdf1a225ec7866d238a864c9f3"
 SRC_URI[sha256sum] = "bd596ebcfc3016970ba1c6abcd0d8c550e9b96a19ec6ab23ec8f5f3bc0f3d7c5"
 S = "${WORKDIR}/laser_proc-release-release-melodic-laser_proc-0.1.5-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('laser-proc', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('laser-proc', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-proc', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-proc/laser-proc_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-proc/laser-proc-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-proc/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-proc/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('laser-proc', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-proc/laser-proc_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-proc/laser-proc-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-proc/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-proc/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

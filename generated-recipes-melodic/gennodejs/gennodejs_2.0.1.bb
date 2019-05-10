@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Javascript ROS message and service generators."
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "0f4e2609eb2faa411c7c50baa8395b3b"
 SRC_URI[sha256sum] = "09d5f9ee001d83dd19c111dc8c2d995b9e9a90e21df2a379b882ac555b9bc9b1"
 S = "${WORKDIR}/gennodejs-release-release-melodic-gennodejs-2.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('gennodejs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('gennodejs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gennodejs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gennodejs/gennodejs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gennodejs/gennodejs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gennodejs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gennodejs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('gennodejs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gennodejs/gennodejs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gennodejs/gennodejs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gennodejs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gennodejs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

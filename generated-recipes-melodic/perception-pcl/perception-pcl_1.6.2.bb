@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "PCL (Point Cloud Library) ROS interface stack. PCL-ROS is the preferred   bridge for 3D applications involving n-D Point Clouds and 3D geometry   processing in ROS."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "df4db256bee2dda65176dca9eb6dfb53"
 SRC_URI[sha256sum] = "05249c482602e692fdbcc13a26ed22ac2b0de79d93c08661ec8bcd0b87b6f3ad"
 S = "${WORKDIR}/perception_pcl-release-release-melodic-perception_pcl-1.6.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('perception-pcl', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('perception-pcl', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('perception-pcl', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/perception-pcl/perception-pcl_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/perception-pcl/perception-pcl-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/perception-pcl/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/perception-pcl/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('perception-pcl', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/perception-pcl/perception-pcl_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/perception-pcl/perception-pcl-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/perception-pcl/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/perception-pcl/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains a C++ parser for the Unified Robot Description     Format (URDF), which is an XML format for representing a robot model.     The code API of the parser has been through our review process and will remain     backwards compatible in future releases."
@@ -66,16 +67,15 @@ SRC_URI[md5sum] = "5ab3e046cb4b2d41c94f4f753fbd5bfc"
 SRC_URI[sha256sum] = "2d16536bc8a59e01339b034539828f411245a3b170abc65d8e1f99f1305ae4f0"
 S = "${WORKDIR}/urdf-release-release-melodic-urdf-1.13.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('urdf', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urdf', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdf', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/urdf_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/urdf-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('urdf', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdf/urdf_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdf/urdf-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdf/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdf/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

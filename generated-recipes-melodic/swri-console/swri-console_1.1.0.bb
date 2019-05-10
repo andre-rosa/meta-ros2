@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A rosout GUI viewer developed at Southwest Research Insititute as an      alternative to rqt_console."
@@ -62,16 +63,15 @@ SRC_URI[md5sum] = "2b98e9caa1c9ab45ec119aa6e92b4c87"
 SRC_URI[sha256sum] = "3b316832e42c12ebf733b8f9f299ad56326bdeea281c36e1323dfe6c195a4cfe"
 S = "${WORKDIR}/swri_console-release-release-melodic-swri_console-1.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('swri-console', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('swri-console', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('swri-console', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/swri-console/swri-console_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/swri-console/swri-console-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/swri-console/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/swri-console/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('swri-console', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/swri-console/swri-console_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/swri-console/swri-console-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/swri-console/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/swri-console/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The ksql_airport package"
@@ -44,16 +45,15 @@ SRC_URI[md5sum] = "248960d7e7c1e69094ba69856e704bcc"
 SRC_URI[sha256sum] = "b889d36b4514ad7eb0585a6a63a596a04cc2b909d1ba90ef3ca858be9a99de47"
 S = "${WORKDIR}/uav_testing-release-release-melodic-ksql_airport-0.0.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('uav-testing', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('uav-testing', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('uav-testing', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uav-testing/uav-testing_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uav-testing/uav-testing-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uav-testing/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uav-testing/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('uav-testing', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/uav-testing/uav-testing_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/uav-testing/uav-testing-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/uav-testing/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/uav-testing/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

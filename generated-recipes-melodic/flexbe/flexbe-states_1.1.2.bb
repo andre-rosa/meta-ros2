@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "flexbe_states provides a collection of predefined states.      Feel free to add new states."
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "b39f69f740b900838ec7a6c4d00a59dd"
 SRC_URI[sha256sum] = "bed0175b4a9722d2bd629c2098a0ca682adbbc576f81f93878a1851b841f085b"
 S = "${WORKDIR}/flexbe_behavior_engine-release-release-melodic-flexbe_states-1.1.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('flexbe', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('flexbe', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('flexbe', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/flexbe_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/flexbe-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flexbe/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('flexbe', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/flexbe/flexbe_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/flexbe/flexbe-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/flexbe/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/flexbe/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS utility nodelets for pointcloud perception."
@@ -193,16 +194,15 @@ SRC_URI[md5sum] = "3b51dd121049fa872c669296c43aa85f"
 SRC_URI[sha256sum] = "6e7df993656d79db72135ba155b72bc4f7876ef122d082f42cbf09e4e9304382"
 S = "${WORKDIR}/jsk_recognition-release-release-melodic-jsk_pcl_ros_utils-1.2.10-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('jsk-recognition', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-recognition', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-recognition', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/jsk-recognition_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/jsk-recognition-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('jsk-recognition', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-recognition/jsk-recognition_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-recognition/jsk-recognition-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-recognition/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-recognition/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

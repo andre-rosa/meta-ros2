@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Common taskmaps provided with EXOTica."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "015ff0c3ad4614ae030cfcfd37715a88"
 SRC_URI[sha256sum] = "3a3613b62c0ad3be115ad5c6214e3ed1d8b55280d5bd7b20555ad4585d3b0b49"
 S = "${WORKDIR}/exotica-release-release-melodic-exotica_core_task_maps-5.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('exotica', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('exotica', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('exotica', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/exotica_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/exotica-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/exotica/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('exotica', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica/exotica_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica/exotica-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/exotica/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

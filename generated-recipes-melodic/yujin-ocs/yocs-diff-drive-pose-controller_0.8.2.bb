@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A controller for driving a differential drive base to a pose goal or along a path specified by multiple poses.     A pose consists of a 2D position (x,y) and a 1D orientation (theta)."
@@ -76,16 +77,15 @@ SRC_URI[md5sum] = "be3dc89d1b5117429cf5ae6d40cfe4b7"
 SRC_URI[sha256sum] = "fbe23c95911cfbb840e28142bf91da168207ff3cde4ef61f703674672c2e5431"
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_diff_drive_pose_controller-0.8.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('yujin-ocs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yujin-ocs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('yujin-ocs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/yujin-ocs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/yujin-ocs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

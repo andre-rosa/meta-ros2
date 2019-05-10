@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Lisp client library for ROS, the Robot Operating System."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "717583e59edbf7c03721f9438881dae3"
 SRC_URI[sha256sum] = "83844af11c1d8a5baf84efcef5a107629966d66b14973723446cd8803fc9781a"
 S = "${WORKDIR}/roslisp-release-release-melodic-roslisp-1.9.22-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roslisp', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roslisp', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roslisp', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp/roslisp_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp/roslisp-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roslisp/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('roslisp', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roslisp/roslisp_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roslisp/roslisp-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roslisp/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roslisp/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "turtlesim is a tool made for teaching ROS and ROS packages."
@@ -76,16 +77,15 @@ SRC_URI[md5sum] = "befdf83849b7d7e8c5411e22aacc431a"
 SRC_URI[sha256sum] = "eb38cc5c4153b4001fdb8a0dbc1ec95952b7f510abb1d9709e13b6e08a301cef"
 S = "${WORKDIR}/ros_tutorials-release-release-melodic-turtlesim-0.9.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-tutorials', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-tutorials', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-tutorials', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/ros-tutorials_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/ros-tutorials-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-tutorials/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-tutorials', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-tutorials/ros-tutorials_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-tutorials/ros-tutorials-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-tutorials/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-tutorials/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

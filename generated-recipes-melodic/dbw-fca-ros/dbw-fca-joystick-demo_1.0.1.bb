@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Demonstration of drive-by-wire with joystick"
@@ -64,16 +65,15 @@ SRC_URI[md5sum] = "08cc56b694b6b7843813bba6fd8bc6f0"
 SRC_URI[sha256sum] = "7e0a5b980a8b2ec5a014e3acc25ed73986f5d141d87bf1483f73ce8944fe6b89"
 S = "${WORKDIR}/dbw_fca_ros-release-release-melodic-dbw_fca_joystick_demo-1.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dbw-fca-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dbw-fca-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dbw-fca-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/dbw-fca-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/dbw-fca-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('dbw-fca-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-fca-ros/dbw-fca-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-fca-ros/dbw-fca-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-fca-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-fca-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

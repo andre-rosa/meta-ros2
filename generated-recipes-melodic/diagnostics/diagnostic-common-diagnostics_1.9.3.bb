@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "diagnostic_common_diagnostics"
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "e501446840309caf287f976a99329854"
 SRC_URI[sha256sum] = "e9729593c5e73825e769d670d78ba809db061ffb344132201020eae878c1359c"
 S = "${WORKDIR}/diagnostics-release-release-melodic-diagnostic_common_diagnostics-1.9.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('diagnostics', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('diagnostics', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('diagnostics', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/diagnostics_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/diagnostics-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/diagnostics/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('diagnostics', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/diagnostics/diagnostics_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/diagnostics/diagnostics-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/diagnostics/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/diagnostics/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

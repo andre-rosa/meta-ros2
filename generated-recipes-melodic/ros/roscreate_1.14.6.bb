@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "roscreate contains a tool that assists in the creation of ROS filesystem resources.      It provides: <tt>roscreate-pkg</tt>, which creates a new package directory,      including the appropriate build and manifest files."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "3019bfc9d34e7859acfefe11f071e302"
 SRC_URI[sha256sum] = "00feca079aa2df6b49f19098c964312824216bffc015e1d64d1960df066ddcc4"
 S = "${WORKDIR}/ros-release-release-melodic-roscreate-1.14.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

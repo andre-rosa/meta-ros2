@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "USB Video Class camera driver"
@@ -66,16 +67,15 @@ SRC_URI[md5sum] = "ac238971affc3f251ef4054431996e78"
 SRC_URI[sha256sum] = "2ea19c5821e70fe6c63da750b35c6ae0dfff43faadca9f951c0137e5701834b0"
 S = "${WORKDIR}/libuvc_ros-release-release-melodic-libuvc_camera-0.0.10-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('libuvc-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('libuvc-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('libuvc-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc-ros/libuvc-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc-ros/libuvc-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('libuvc-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libuvc-ros/libuvc-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libuvc-ros/libuvc-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libuvc-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libuvc-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "JSON transport for ROS"
@@ -56,16 +57,15 @@ SRC_URI[md5sum] = "4b3f8af4e6687772aa16614ed1583ebf"
 SRC_URI[sha256sum] = "c7077ff6fff4119b0383218c2426ac4629ee02485af8e569920149031f791b2c"
 S = "${WORKDIR}/json_transport-release-release-melodic-json_transport-0.0.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('json-transport', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('json-transport', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('json-transport', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/json-transport/json-transport_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/json-transport/json-transport-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/json-transport/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/json-transport/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('json-transport', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/json-transport/json-transport_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/json-transport/json-transport-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/json-transport/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/json-transport/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

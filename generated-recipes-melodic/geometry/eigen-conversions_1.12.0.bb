@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Conversion functions between:       - Eigen and KDL       - Eigen and geometry_msgs."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "585ac82f481d188939805c93e9bdb14a"
 SRC_URI[sha256sum] = "6485f64dd54db8430e4aacfa15b0d09b575aff8cfcf4ad24f946e090004521ad"
 S = "${WORKDIR}/geometry-release-release-melodic-eigen_conversions-1.12.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('geometry', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('geometry', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geometry', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry/geometry_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry/geometry-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geometry/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('geometry', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geometry/geometry_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geometry/geometry-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geometry/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geometry/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

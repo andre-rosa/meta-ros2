@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The assisted_teleop node subscribes to a desired trajectory topic     (geometry_msgs/Twist) and uses TrajectoryPlannerROS to find a valid     trajectory close to the desired trajectory before republishing. Useful for     filtering teleop commands while avoiding obstacles. This package also     contains LaserScanMaxRangeFilter, which is a LaserScan filter plugin that     takes max range values in a scan and turns them into valid values that are     slightly less than max range."
@@ -88,16 +89,15 @@ SRC_URI[md5sum] = "dc9577f4a24e14fc4c629d1382f1e022"
 SRC_URI[sha256sum] = "5cf3f26df26c9c7a8045f5d75aa0b6b6fecccd58a38495b850c49b94540969e5"
 S = "${WORKDIR}/navigation_experimental-release-release-melodic-assisted_teleop-0.3.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('navigation-experimental', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-experimental', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-experimental', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/navigation-experimental_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/navigation-experimental-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-experimental/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('navigation-experimental', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/navigation-experimental_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/navigation-experimental-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-experimental/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

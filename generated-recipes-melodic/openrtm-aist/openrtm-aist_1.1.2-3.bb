@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "<p>This package represents <a href="http://openrtm.org/">OpenRTM-aist</a> that's built within ROS eco system. Although being ROS-agnostic by itself, you can use this via ROS together with the packages in <a href="http://www.ros.org/wiki/rtmros_common">rtmros_common</a> that bridge between two framework.</p>    <p><i>OpenRTM-aist is an <a href="http://ieeexplore.ieee.org/xpl/login.jsp?tp=&amp;arnumber=1545521&amp;url=http%3A%2F%2Fieeexplore.ieee.org%2Fiel5%2F10375%2F32977%2F01545521.pdf%3Farnumber%3D1545521">RT-Middleware</a>-baseed, component-oriented software platform to robotics development that is made and maintained in AIST (National Institute of Advanced Industrial Science and Technology) in Japan </i> (<a href="http://openrtm.org/openrtm/en/content/introduction-0">excerpts from here</a>)</p>     <p>Its development is happening at <a href="http://www.openrtm.org/pub/OpenRTM-aist/">openrtm.org/pub/OpenRTM-aist</a>. The repository listed below is where the development of its ROS wrapper happening.</p>"
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "6d513e0de00a1d378ffa5bf124bb9d52"
 SRC_URI[sha256sum] = "9e3839327b8c0851e91d541cbaf85d0fec16a95bd32522deeed45deb3e404320"
 S = "${WORKDIR}/openrtm_aist-release-release-melodic-openrtm_aist-1.1.2-3"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('openrtm-aist', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('openrtm-aist', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('openrtm-aist', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openrtm-aist/openrtm-aist_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openrtm-aist/openrtm-aist-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openrtm-aist/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openrtm-aist/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('openrtm-aist', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openrtm-aist/openrtm-aist_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openrtm-aist/openrtm-aist-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openrtm-aist/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openrtm-aist/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Common-Lisp ROS message and service generators."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "e5610339a72360fa6582370ecd156b6e"
 SRC_URI[sha256sum] = "0da61ebbb633656062ce030fc94b5931bf3cdf3b5cf896116895608a739a520a"
 S = "${WORKDIR}/genlisp-release-release-melodic-genlisp-0.4.16-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('genlisp', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('genlisp', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('genlisp', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genlisp/genlisp_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genlisp/genlisp-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genlisp/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/genlisp/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('genlisp', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/genlisp/genlisp_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/genlisp/genlisp-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/genlisp/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/genlisp/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

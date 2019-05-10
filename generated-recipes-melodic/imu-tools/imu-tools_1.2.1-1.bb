@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Various tools for IMU devices"
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "b8abe1cf0fb5662e3c194a596321ccb4"
 SRC_URI[sha256sum] = "8fd6b517a5550d0e5151db6599ed9e4eacaca2e299846939932f35f5d0ca3569"
 S = "${WORKDIR}/imu_tools-release-release-melodic-imu_tools-1.2.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('imu-tools', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('imu-tools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('imu-tools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/imu-tools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/imu-tools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/imu-tools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('imu-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imu-tools/imu-tools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imu-tools/imu-tools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imu-tools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/imu-tools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

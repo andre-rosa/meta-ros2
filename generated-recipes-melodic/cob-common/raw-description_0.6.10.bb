@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains the description (mechanical, kinematic, visual,   etc.) of the Care-O-bot robot. The files in this package are parsed and used by   a variety of other components. Most users will not interact directly   with this package."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "d3e37df8b2e1c7a3d09cbb71be4188cb"
 SRC_URI[sha256sum] = "6e238ded8f4fde81b5e6244573d2b29fe9523662f034833d4c8d8252f6ecaf1e"
 S = "${WORKDIR}/cob_common-release-release-melodic-raw_description-0.6.10-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('cob-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('cob-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cob-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-common/cob-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-common/cob-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cob-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('cob-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cob-common/cob-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cob-common/cob-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cob-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cob-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

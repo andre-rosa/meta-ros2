@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "3-D/6-DOF localization for mobile robots with 3-D LIDAR(s)"
@@ -92,16 +93,15 @@ SRC_URI[md5sum] = "f10f058df13ec5d91b03fe4e3902d981"
 SRC_URI[sha256sum] = "28b8194bd2312f9add9f1d4350364f6adcaab721056dbaa6924d99e727137371"
 S = "${WORKDIR}/mcl_3dl-release-release-melodic-mcl_3dl-0.1.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mcl-3dl', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mcl-3dl', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mcl-3dl', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mcl-3dl/mcl-3dl_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mcl-3dl/mcl-3dl-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mcl-3dl/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mcl-3dl/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mcl-3dl', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mcl-3dl/mcl-3dl_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mcl-3dl/mcl-3dl-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mcl-3dl/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mcl-3dl/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

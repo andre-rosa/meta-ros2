@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The roscompile package"
@@ -56,16 +57,15 @@ SRC_URI[md5sum] = "42d5510382090071112afc0228b50cf4"
 SRC_URI[sha256sum] = "09449c45a4b93695d6faf539f2d2a59f91c971d54f38beb9b0ecd317f18e702c"
 S = "${WORKDIR}/roscompile-release-release-melodic-roscompile-1.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roscompile', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roscompile', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roscompile', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/roscompile_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/roscompile-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscompile/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('roscompile', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscompile/roscompile_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscompile/roscompile-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscompile/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscompile/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

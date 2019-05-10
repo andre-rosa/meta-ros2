@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Simple simulation interface and template for setting up a hardware interface for ros_control"
@@ -87,16 +88,15 @@ SRC_URI[md5sum] = "90bce63741e3756f50d9f2ee42661a2e"
 SRC_URI[sha256sum] = "b597b2799ddfb59bdc4e395c3392f794594606bf24e929ebcf03e4cb253dc576"
 S = "${WORKDIR}/ros_control_boilerplate-release-release-melodic-ros_control_boilerplate-0.4.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-control-boilerplate', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-control-boilerplate', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-control-boilerplate', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control-boilerplate/ros-control-boilerplate_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control-boilerplate/ros-control-boilerplate-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control-boilerplate/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-control-boilerplate/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-control-boilerplate', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-control-boilerplate/ros-control-boilerplate_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-control-boilerplate/ros-control-boilerplate-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-control-boilerplate/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-control-boilerplate/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Track the output of the leg_detector to indicate the velocity of person."
@@ -65,16 +66,15 @@ SRC_URI[md5sum] = "340aa4d884c4ddc33787d1943239687d"
 SRC_URI[sha256sum] = "57da6c218e5e9b052299795c8143a4efae4123d78dedb160a66ffa59251bc93c"
 S = "${WORKDIR}/people-release-release-melodic-people_velocity_tracker-1.1.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('people', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('people', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('people', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/people_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/people-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/people/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('people', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/people_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/people-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/people/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

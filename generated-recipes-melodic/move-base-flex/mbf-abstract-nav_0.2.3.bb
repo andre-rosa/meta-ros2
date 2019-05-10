@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The mbf_abstract_nav package contains the abstract navigation server implementation of Move Base Flex (MBF). The abstract navigation server is not bound to any map representation. It provides the actions for planning, controlling and recovering. MBF loads all defined plugins at the program start. Therefor, it loads all plugins which are defined in the lists *planners*, *controllers* and *recovery_behaviors*. Each list holds a pair of a *name* and a *type*. The *type* defines which kind of plugin to load. The *name* defines under which name the plugin should be callable by the actions."
@@ -85,16 +86,15 @@ SRC_URI[md5sum] = "7507a7289d49eb6f79168350d5479d7f"
 SRC_URI[sha256sum] = "10abefaac5fac575dce38f004b4c92047014cfc577578d990cca8a1783fb91bb"
 S = "${WORKDIR}/move_base_flex-release-release-melodic-mbf_abstract_nav-0.2.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('move-base-flex', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('move-base-flex', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('move-base-flex', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/move-base-flex_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/move-base-flex-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('move-base-flex', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/move-base-flex/move-base-flex_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/move-base-flex/move-base-flex-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/move-base-flex/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/move-base-flex/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

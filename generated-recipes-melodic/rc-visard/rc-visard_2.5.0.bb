@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Roboception rc_visard support meta package"
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "bcdd5a34c14e5c6df044eec3ce95feb2"
 SRC_URI[sha256sum] = "94eeab456e9143fa51ff0ad860be0cd10cfb400972cc6eef6f8c757753c12f44"
 S = "${WORKDIR}/rc_visard-release-release-melodic-rc_visard-2.5.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rc-visard', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rc-visard', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-visard', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/rc-visard_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/rc-visard-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rc-visard', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-visard/rc-visard_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-visard/rc-visard-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-visard/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-visard/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

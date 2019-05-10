@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "jsk_hark_msgs"
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "6665266193c8631631d14d8e287b36b0"
 SRC_URI[sha256sum] = "f9bcc221412c9950f156dc4c57c6dd8ca9aa4eff1201c12a412a05211fcd07ea"
 S = "${WORKDIR}/jsk_common_msgs-release-release-melodic-jsk_hark_msgs-4.3.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('jsk-common-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-common-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-common-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common-msgs/jsk-common-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common-msgs/jsk-common-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('jsk-common-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common-msgs/jsk-common-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common-msgs/jsk-common-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

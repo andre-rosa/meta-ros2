@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS-enabled OpenManipulator is a full open robot platform consisting of OpenSoftware​, OpenHardware and OpenCR(Embedded board)​.     The OpenManipulator is allowed users to control it more easily by linking with the MoveIt! package. Moreover it has full hardware compatibility with TurtleBot3​.      Even if you do not have a real robot, you can control the robot in the Gazebo simulator​."
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "17e09978aba2ffebca13ed83da3fd6e6"
 SRC_URI[sha256sum] = "92ac21aa5766a9a50f0d1db22e4585628d48d3e3fcafe7b397420e3e431ca3e2"
 S = "${WORKDIR}/open_manipulator_with_tb3-release-release-melodic-open_manipulator_with_tb3-1.1.0-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('open-manipulator-with-tb3', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('open-manipulator-with-tb3', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('open-manipulator-with-tb3', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/open-manipulator-with-tb3_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/open-manipulator-with-tb3-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('open-manipulator-with-tb3', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-with-tb3/open-manipulator-with-tb3_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-with-tb3/open-manipulator-with-tb3-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-with-tb3/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-with-tb3/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

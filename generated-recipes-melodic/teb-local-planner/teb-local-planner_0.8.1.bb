@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The teb_local_planner package implements a plugin     to the base_local_planner of the 2D navigation stack.     The underlying method called Timed Elastic Band locally optimizes     the robot's trajectory with respect to trajectory execution time,     separation from obstacles and compliance with kinodynamic constraints at runtime."
@@ -97,16 +98,15 @@ SRC_URI[md5sum] = "2b7e04e6454943e273b5fcf82bfd2e59"
 SRC_URI[sha256sum] = "0f6781263817af727d483e50ac7316f162c00dc079234f23acbc796f44959894"
 S = "${WORKDIR}/teb_local_planner-release-release-melodic-teb_local_planner-0.8.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('teb-local-planner', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('teb-local-planner', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teb-local-planner', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner/teb-local-planner_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner/teb-local-planner-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('teb-local-planner', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teb-local-planner/teb-local-planner_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teb-local-planner/teb-local-planner-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teb-local-planner/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teb-local-planner/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

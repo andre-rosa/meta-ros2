@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Uses opencv to find checkboards and compute their 6D poses with respect to the image. Requires the image to be calibrated.<br/>     Parameters:<br/>     <ul>      <li>display - show the checkerboard detection</li>      <li>rect%d_size_x - size of checker in x direction</li>      <li>rect%d_size_y - size of checker in y direction</li>      <li>grid%d_size_x - number of checkers in x direction</li>      <li>grid%d_size_y - number of checkers in y direction</li>     </ul><br/>         There can be more than one grid%d declared, the numbers should grow consecutively starting at 0."
@@ -84,16 +85,15 @@ SRC_URI[md5sum] = "6afc3f0dca10db96e9f5c2b84a879af6"
 SRC_URI[sha256sum] = "ceea72257d2d72b4e132c9dce6d24a976081fff72abba0b7d607f9803b1bd8ad"
 S = "${WORKDIR}/jsk_recognition-release-release-melodic-checkerboard_detector-1.2.10-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('jsk-recognition', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-recognition', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-recognition', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/jsk-recognition_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/jsk-recognition-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-recognition/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('jsk-recognition', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-recognition/jsk-recognition_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-recognition/jsk-recognition-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-recognition/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-recognition/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

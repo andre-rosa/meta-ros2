@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The ros_type_introspection package allows the user to parse and deserialize   ROS messages which type is unknown at compilation time."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "9f5aa03dc0ca1bc5948ec7c8004089e0"
 SRC_URI[sha256sum] = "df29da398149ab315bb922a74ef712841a546a8056554e3d9bc54ff0169e9eb3"
 S = "${WORKDIR}/ros_type_introspection-release-release-melodic-ros_type_introspection-1.3.2-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-type-introspection', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-type-introspection', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-type-introspection', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-type-introspection/ros-type-introspection_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-type-introspection/ros-type-introspection-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-type-introspection/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-type-introspection/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-type-introspection', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-type-introspection/ros-type-introspection_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-type-introspection/ros-type-introspection-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-type-introspection/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-type-introspection/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

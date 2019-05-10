@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "<p>API for interacting with running RT-Components and managing RTM-based systems using OpenRTM-aist.</p>"
@@ -45,16 +46,15 @@ SRC_URI[md5sum] = "47177eff1db5f840a112aaa4ad009d4a"
 SRC_URI[sha256sum] = "f9280467a035e2c5e4fe4e74674cfae7930406ccf24da0b9ce0bab1f864ddb68"
 S = "${WORKDIR}/rtctree-release-release-melodic-rtctree-3.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rtctree', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rtctree', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rtctree', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtctree/rtctree_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtctree/rtctree-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtctree/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtctree/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rtctree', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rtctree/rtctree_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rtctree/rtctree-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rtctree/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rtctree/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

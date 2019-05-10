@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The rostate_machine package"
@@ -62,16 +63,15 @@ SRC_URI[md5sum] = "d1d4f58b59b43db7d4c057e8dac952cf"
 SRC_URI[sha256sum] = "a7eae9ee6371319fc4b598f00322101431141a52b07ed6ef2c0ee5588a050253"
 S = "${WORKDIR}/rostate_machine-release-release-melodic-rostate_machine-0.0.2-3"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rostate-machine', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rostate-machine', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rostate-machine', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rostate-machine/rostate-machine_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rostate-machine/rostate-machine-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rostate-machine/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rostate-machine/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rostate-machine', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rostate-machine/rostate-machine_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rostate-machine/rostate-machine-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rostate-machine/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rostate-machine/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

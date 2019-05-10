@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A collection of .mk include files for building ROS architectural elements.     Most package authors should use cmake .mk, which calls CMake for the build of the package.     The other files in this package are intended for use in exotic situations that mostly arise when importing 3rdparty code."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "7f550b16acc51d5b340f994ebf498986"
 SRC_URI[sha256sum] = "1382c3d63ce096921a1c157c850962bb220f806dc2fa9ca88c45f3d0017bd5e2"
 S = "${WORKDIR}/ros-release-release-melodic-mk-1.14.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

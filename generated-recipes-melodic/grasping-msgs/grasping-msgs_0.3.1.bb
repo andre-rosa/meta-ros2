@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Messages for describing objects and how to grasp them."
@@ -64,16 +65,15 @@ SRC_URI[md5sum] = "0b6ac8dd3f0d00f26a0177e105f01f51"
 SRC_URI[sha256sum] = "1deeb71cb90294e0027a324105670add8ffd4dabbcd454cc4d2b9508f4fe89af"
 S = "${WORKDIR}/grasping_msgs-gbp-release-melodic-grasping_msgs-0.3.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('grasping-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('grasping-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('grasping-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grasping-msgs/grasping-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grasping-msgs/grasping-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grasping-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/grasping-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('grasping-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grasping-msgs/grasping-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grasping-msgs/grasping-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grasping-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/grasping-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

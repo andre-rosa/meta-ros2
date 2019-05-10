@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "polled_camera contains a service and C++ helper classes for implementing a polled      camera driver node and requesting images from it. The package is currently for      internal use as the API is still under development."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "53c13fd64e960476569cbc388dad14dd"
 SRC_URI[sha256sum] = "87717ae0569b27aeccb0c84c372ef5e5b16ea23e4549f918d7a2ad1ba88464f3"
 S = "${WORKDIR}/image_common-release-release-melodic-polled_camera-1.11.13-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('image-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/image-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/image-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('image-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-common/image-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-common/image-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

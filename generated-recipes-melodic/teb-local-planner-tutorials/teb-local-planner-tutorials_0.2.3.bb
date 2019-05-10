@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The teb_local_planner_tutorials package"
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "8a0971930fc8c6d1d92428931b271ee0"
 SRC_URI[sha256sum] = "0a565d87f210b89666efd8a62608439a79462561b64a5fa731756ec5af290b37"
 S = "${WORKDIR}/teb_local_planner_tutorials-release-release-melodic-teb_local_planner_tutorials-0.2.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('teb-local-planner-tutorials', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('teb-local-planner-tutorials', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teb-local-planner-tutorials', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner-tutorials/teb-local-planner-tutorials_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner-tutorials/teb-local-planner-tutorials-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner-tutorials/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teb-local-planner-tutorials/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('teb-local-planner-tutorials', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teb-local-planner-tutorials/teb-local-planner-tutorials_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teb-local-planner-tutorials/teb-local-planner-tutorials-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teb-local-planner-tutorials/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teb-local-planner-tutorials/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

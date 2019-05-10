@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Messages specific to MAV planning, especially polynomial planning."
@@ -73,16 +74,15 @@ SRC_URI[md5sum] = "49d01739597da94695e4546cb0897969"
 SRC_URI[sha256sum] = "54bf3cce82bd9924dc58e2cd95da0314127ef73818f625b56fb687ff0fe694d0"
 S = "${WORKDIR}/mav_comm-release-release-melodic-mav_planning_msgs-3.3.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mav-comm', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mav-comm', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mav-comm', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mav-comm/mav-comm_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mav-comm/mav-comm-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mav-comm/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mav-comm/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mav-comm', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mav-comm/mav-comm_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mav-comm/mav-comm-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mav-comm/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mav-comm/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

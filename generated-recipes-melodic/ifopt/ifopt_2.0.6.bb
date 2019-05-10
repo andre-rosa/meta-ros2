@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "An <a href="http://eigen.tuxfamily.org">Eigen-</a>     based interface to Nonlinear Programming solver     <a href="https://projects.coin-or.org/Ipopt">Ipopt</a>.      Inuitive and efficient C++ implementation of variables, costs and      constraints using Eigen. Easy integration in your projects in catkin     or pure cmake."
@@ -53,16 +54,15 @@ SRC_URI[md5sum] = "33725b58093a0b48334aa6505f7a2dd1"
 SRC_URI[sha256sum] = "3f35e3e9837f7f609ac6d1f982742d579f760b4d3f366d9711c1420bb136b4e2"
 S = "${WORKDIR}/ifopt-release-release-melodic-ifopt-2.0.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ifopt', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ifopt', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ifopt', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ifopt/ifopt_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ifopt/ifopt-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ifopt/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ifopt/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ifopt', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ifopt/ifopt_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ifopt/ifopt-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ifopt/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ifopt/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This stack contains the ROS driver and firmware for the WGE100 camera used on the PR2 robot."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "bfecaf94c7acd5b49862636d09728a76"
 SRC_URI[sha256sum] = "1ad42f5a276e3238007f5c28d16536288c3cccb009e4a0822eaf86304d2ec153"
 S = "${WORKDIR}/wge100_driver-release-release-melodic-wge100_driver-1.8.2-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('wge100-driver', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('wge100-driver', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('wge100-driver', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wge100-driver/wge100-driver_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wge100-driver/wge100-driver-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wge100-driver/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wge100-driver/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('wge100-driver', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wge100-driver/wge100-driver_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wge100-driver/wge100-driver-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wge100-driver/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wge100-driver/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Tile map provides a slippy map style interface for visualizing       OpenStreetMap and GooleMap tiles.  A mapviz visualization plug-in is also      implemented"
@@ -77,16 +78,15 @@ SRC_URI[md5sum] = "b52b983bb283e918865358f38e5f1009"
 SRC_URI[sha256sum] = "1c07be1cd9cc43bf83905aad8ca0ab00072857482342ff7e7416cf2031a46ad8"
 S = "${WORKDIR}/mapviz-release-release-melodic-tile_map-1.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mapviz', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mapviz', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mapviz', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mapviz/mapviz_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mapviz/mapviz-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mapviz/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mapviz/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mapviz', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mapviz/mapviz_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mapviz/mapviz-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mapviz/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mapviz/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

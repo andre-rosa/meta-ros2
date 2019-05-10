@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Simple Kalman Filter in Python"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "ad040a33af771afc7d750458b49b0498"
 SRC_URI[sha256sum] = "dae8cee834dfdb902000812bf4e6141f678bf813a077dd6b6f1580a90a909876"
 S = "${WORKDIR}/wu_ros_tools-release-melodic-kalman_filter-0.2.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('wu-ros-tools', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('wu-ros-tools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('wu-ros-tools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/wu-ros-tools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/wu-ros-tools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('wu-ros-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wu-ros-tools/wu-ros-tools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wu-ros-tools/wu-ros-tools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wu-ros-tools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wu-ros-tools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

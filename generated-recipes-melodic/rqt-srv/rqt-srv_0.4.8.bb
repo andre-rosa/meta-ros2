@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A Python GUI plugin for introspecting available ROS message types.   Note that the srvs available through this plugin is the ones that are stored   on your machine, not on the ROS core your rqt instance connects to."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "7a15bd968cb8a9c03b253c261bcbe80f"
 SRC_URI[sha256sum] = "601cd2f2679ebf45e306a1b9e6ddaca9dcbb2c614c26cdedc87e2e65c1c2571f"
 S = "${WORKDIR}/rqt_srv-release-release-melodic-rqt_srv-0.4.8-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt-srv', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-srv', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-srv', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-srv/rqt-srv_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-srv/rqt-srv-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-srv/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-srv/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt-srv', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-srv/rqt-srv_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-srv/rqt-srv-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-srv/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-srv/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

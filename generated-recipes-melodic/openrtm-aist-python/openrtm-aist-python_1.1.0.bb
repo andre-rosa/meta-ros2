@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "<p>Python binding of OpenRTM-AIST (see <a href="http://www.ros.org/wiki/openrtm_aist">openrtm_aist</a> for     further information).</p>     <p><i>OpenRTM-aist is an <a href="http://ieeexplore.ieee.org/xpl/login.jsp?tp=&amp;arnumber=1545521&amp;url=http%3A%2F%2Fieeexplore.ieee.org%2Fiel5%2F10375%2F32977%2F01545521.pdf%3Farnumber%3D1545521">RT-Middleware</a>-baseed,    component-oriented software platform to robotics development that    is made and maintained in AIST (National Institute of Advanced    Industrial Science and Technology) in Japan </i> (<a href="http://openrtm.org/openrtm/en/content/introduction-0">excerpts from here</a>)</p>"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "3d0a7030374a3a763e8aecd1771c39b7"
 SRC_URI[sha256sum] = "a6be8a4902c0635137c0925289687ecbefe1dabd2dd5e3ba80c3153f5fd142b5"
 S = "${WORKDIR}/openrtm_aist_python-release-release-melodic-openrtm_aist_python-1.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('openrtm-aist-python', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('openrtm-aist-python', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('openrtm-aist-python', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openrtm-aist-python/openrtm-aist-python_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openrtm-aist-python/openrtm-aist-python-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openrtm-aist-python/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/openrtm-aist-python/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('openrtm-aist-python', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openrtm-aist-python/openrtm-aist-python_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openrtm-aist-python/openrtm-aist-python-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openrtm-aist-python/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/openrtm-aist-python/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

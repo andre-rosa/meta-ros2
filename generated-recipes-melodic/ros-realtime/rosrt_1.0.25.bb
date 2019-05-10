@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "rosrt provides classes for interfacing with ROS from within realtime systems, such as realtime-safe Publisher and Subscriber classes."
@@ -67,16 +68,15 @@ SRC_URI[md5sum] = "51cbf3bed72f9eeef53128ee15edbf06"
 SRC_URI[sha256sum] = "ab1cb91949e270a78898a6d03547538b9c4da40d82d9da354cda672ba8585f11"
 S = "${WORKDIR}/ros_realtime-release-release-melodic-rosrt-1.0.25-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-realtime', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-realtime', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-realtime', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/ros-realtime_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/ros-realtime-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-realtime', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/ros-realtime_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/ros-realtime-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains a C++ base class for URDF parsers."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "58fe71decfe877316057af76fb3819da"
 SRC_URI[sha256sum] = "7031baf19ed479dcc35455fc5090a740ccc28592c8fd565154ea6556aa80f747"
 S = "${WORKDIR}/urdf-release-release-melodic-urdf_parser_plugin-1.13.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('urdf', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urdf', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdf', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/urdf_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/urdf-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdf/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('urdf', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdf/urdf_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdf/urdf-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdf/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdf/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

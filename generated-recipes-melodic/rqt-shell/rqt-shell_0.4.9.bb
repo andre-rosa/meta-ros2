@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_shell is a Python GUI plugin providing an interactive shell."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "b6a9b830d75c05e8d1bb8128bf497d3f"
 SRC_URI[sha256sum] = "522e34ae2cf5e4af2d14805e70767f394ec88043033a1c6e44324ae58a139001"
 S = "${WORKDIR}/rqt_shell-release-release-melodic-rqt_shell-0.4.9-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt-shell', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-shell', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-shell', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-shell/rqt-shell_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-shell/rqt-shell-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-shell/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-shell/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt-shell', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-shell/rqt-shell_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-shell/rqt-shell-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-shell/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-shell/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

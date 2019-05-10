@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The abseil_cpp package"
@@ -42,16 +43,15 @@ SRC_URI[md5sum] = "3309ca5a257142e5b445e663908dc72b"
 SRC_URI[sha256sum] = "016b0cb70355a46ec06fa709a09117aaed9f8c7351a216634cefdfc642456b91"
 S = "${WORKDIR}/abseil_cpp-release-release-melodic-abseil_cpp-0.2.3-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('abseil-cpp', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('abseil-cpp', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('abseil-cpp', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/abseil-cpp/abseil-cpp_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/abseil-cpp/abseil-cpp-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/abseil-cpp/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/abseil-cpp/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('abseil-cpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/abseil-cpp/abseil-cpp_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/abseil-cpp/abseil-cpp-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/abseil-cpp/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/abseil-cpp/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

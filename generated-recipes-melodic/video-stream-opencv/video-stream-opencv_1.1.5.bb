@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The video_stream_opencv package contains a node to publish a video stream (the protocols that     opencv supports are supported, including rtsp, webcams on /dev/video and video files) in ROS image topics, it supports camera info and basic image flipping (horizontal, vertical or both) capabilities, also adjusting publishing rate."
@@ -64,16 +65,15 @@ SRC_URI[md5sum] = "3d478edd9ab26d4c46fbb8d4cc603c47"
 SRC_URI[sha256sum] = "ed2b46c502c9f63dbc62af074bbf0407d249c84f8509227ae5d2346204fe1186"
 S = "${WORKDIR}/video_stream_opencv-release-release-melodic-video_stream_opencv-1.1.5-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('video-stream-opencv', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('video-stream-opencv', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('video-stream-opencv', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/video-stream-opencv/video-stream-opencv_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/video-stream-opencv/video-stream-opencv-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/video-stream-opencv/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/video-stream-opencv/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('video-stream-opencv', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/video-stream-opencv/video-stream-opencv_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/video-stream-opencv/video-stream-opencv-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/video-stream-opencv/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/video-stream-opencv/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

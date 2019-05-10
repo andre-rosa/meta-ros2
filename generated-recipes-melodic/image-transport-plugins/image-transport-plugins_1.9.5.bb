@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A set of plugins for publishing and subscribing to sensor_msgs/Image topics     in representations other than raw pixel data. For example, for viewing a     stream of images off-robot, a video codec will give much lower bandwidth     and latency. For low frame rate tranport of high-definition images, you     might prefer sending them as JPEG or PNG-compressed form."
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "48eff7e9620d983b4432a3f0f8c999fc"
 SRC_URI[sha256sum] = "1838bdad50e903b572a00fcb66935326e81c5e706af3356a64c0322927361ecd"
 S = "${WORKDIR}/image_transport_plugins-release-release-melodic-image_transport_plugins-1.9.5-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('image-transport-plugins', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-transport-plugins', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-transport-plugins', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/image-transport-plugins_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/image-transport-plugins-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('image-transport-plugins', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-transport-plugins/image-transport-plugins_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-transport-plugins/image-transport-plugins-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-transport-plugins/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-transport-plugins/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

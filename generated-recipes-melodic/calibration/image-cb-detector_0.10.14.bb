@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Provide a node that extracts checkerboard corners from ROS images.     This package is still experimental and unstable.     Expect its APIs to change."
@@ -79,16 +80,15 @@ SRC_URI[md5sum] = "7ac417af6e0cfa37971e99009f089320"
 SRC_URI[sha256sum] = "b979f5db4bef45b9072a8392e5abb0f8608a5ebd06ba6dbbb5c51cb48e2ed335"
 S = "${WORKDIR}/calibration-release-release-melodic-image_cb_detector-0.10.14-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('calibration', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('calibration', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('calibration', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/calibration_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/calibration-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('calibration', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/calibration_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/calibration-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

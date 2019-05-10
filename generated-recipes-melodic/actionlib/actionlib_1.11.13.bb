@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The actionlib stack provides a standardized interface for     interfacing with preemptable tasks. Examples of this include moving     the base to a target location, performing a laser scan and returning     the resulting point cloud, detecting the handle of a door, etc."
@@ -71,16 +72,15 @@ SRC_URI[md5sum] = "d6cfeae887924722542b9cca12a971fa"
 SRC_URI[sha256sum] = "7b6d1fba25d1f4de6d3b87d82cac1aae73a88bc4811e7e55626f9b21db34f99c"
 S = "${WORKDIR}/actionlib-release-release-melodic-actionlib-1.11.13-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('actionlib', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('actionlib', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('actionlib', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/actionlib/actionlib_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/actionlib/actionlib-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/actionlib/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/actionlib/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('actionlib', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/actionlib/actionlib_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/actionlib/actionlib-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/actionlib/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/actionlib/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

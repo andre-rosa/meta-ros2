@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS integration for the Catch unit test framework"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "2d1b7e1073a753378982f07cce405957"
 SRC_URI[sha256sum] = "186ec627d219a896f681446242ce546c8595429ac4f058fab5ac4aebec4f261b"
 S = "${WORKDIR}/catch_ros-release-release-melodic-catch_ros-0.3.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('catch-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('catch-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('catch-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catch-ros/catch-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catch-ros/catch-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catch-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/catch-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('catch-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/catch-ros/catch-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/catch-ros/catch-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/catch-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/catch-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

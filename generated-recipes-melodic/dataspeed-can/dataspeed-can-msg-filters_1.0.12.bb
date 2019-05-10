@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Time synchronize multiple CAN messages to get a single callback"
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "345d556b55bb07e4ad93e4a71ffbdaa5"
 SRC_URI[sha256sum] = "042a76185f2ede3e557deb37f3dad0b56eaa8f7e25e5fa31c4d333e16c3ec082"
 S = "${WORKDIR}/dataspeed_can-release-release-melodic-dataspeed_can_msg_filters-1.0.12-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dataspeed-can', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dataspeed-can', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dataspeed-can', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/dataspeed-can_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/dataspeed-can-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dataspeed-can/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('dataspeed-can', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-can/dataspeed-can_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-can/dataspeed-can-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-can/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dataspeed-can/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

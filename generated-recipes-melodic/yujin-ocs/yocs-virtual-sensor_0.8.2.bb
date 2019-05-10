@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Virtual sensor that uses semantic map information to &quot;see&quot; obstacles undetectable by robot sensors.              Current implementation cannot read obstacles from YAML files. Until this feature gets implemented, we       use auxiliary scripts to read and publish files' content. Data directory contains some example files."
@@ -70,16 +71,15 @@ SRC_URI[md5sum] = "eceff2da688e2afa46a66dfc57b88b97"
 SRC_URI[sha256sum] = "4505ba05080e444b2000591f1628a4e204e1efb9e9e45be6a8ccb19506193631"
 S = "${WORKDIR}/yujin_ocs-release-release-melodic-yocs_virtual_sensor-0.8.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('yujin-ocs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('yujin-ocs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('yujin-ocs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/yujin-ocs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/yujin-ocs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('yujin-ocs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/yujin-ocs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/yujin-ocs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/yujin-ocs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

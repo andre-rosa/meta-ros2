@@ -12,7 +12,7 @@ ROS_VERSION = "1"
 ROS_PYTHON_VERSION = "2"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190509044100"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190509235705"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     catkin-virtualenv \
@@ -180,6 +180,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     convex-decomposition \
     costmap-2d \
     costmap-converter \
+    costmap-cspace \
     costmap-cspace-msgs \
     costmap-queue \
     cpp-common \
@@ -492,6 +493,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     joy-listener \
     joy-teleop \
     joystick-drivers \
+    joystick-interrupt \
     jpeg-streamer \
     jsk-3rdparty \
     jsk-common \
@@ -584,6 +586,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     map-laser \
     map-merge-3d \
     map-msgs \
+    map-organizer \
     map-organizer-msgs \
     map-server \
     mapviz \
@@ -730,6 +733,9 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     navigation-experimental \
     navigation-layers \
     neobotix-usboard-msgs \
+    neonavigation \
+    neonavigation-common \
+    neonavigation-launch \
     neonavigation-msgs \
     neonavigation-rviz-plugins \
     nerian-stereo \
@@ -750,6 +756,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     novatel-gps-msgs \
     novatel-msgs \
     novatel-span-driver \
+    obj-to-pointcloud \
     object-recognition-msgs \
     ocean-battery-driver \
     octomap \
@@ -834,6 +841,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     pilz-testutils \
     pilz-trajectory-generation \
     pinocchio \
+    planner-cspace \
     planner-cspace-msgs \
     plotjuggler \
     pluginlib \
@@ -1136,6 +1144,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     rviz-plugin-tutorials \
     rviz-python-tutorial \
     rviz-visual-tools \
+    safety-limiter \
     sainsmart-relay-usb \
     sand-island \
     sbg-driver \
@@ -1239,7 +1248,9 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     trac-ik-lib \
     trac-ik-python \
     tracetools \
+    track-odometry \
     trajectory-msgs \
+    trajectory-tracker \
     trajectory-tracker-msgs \
     trajectory-tracker-rviz-plugins \
     transmission-interface \
@@ -1533,6 +1544,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     convex-decomposition_0.1.12 \
     costmap-2d_1.16.2 \
     costmap-converter_0.0.9 \
+    costmap-cspace_0.4.0-1 \
     costmap-cspace-msgs_0.3.1 \
     costmap-queue_0.2.5-1 \
     cpp-common_0.6.12 \
@@ -1845,6 +1857,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     joy-listener_0.2.4 \
     joy-teleop_0.3.0 \
     joystick-drivers_1.12.0 \
+    joystick-interrupt_0.4.0-1 \
     jpeg-streamer_0.2.7 \
     jsk-3rdparty_2.1.11 \
     jsk-common_2.2.10 \
@@ -1937,6 +1950,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     map-laser_0.0.4 \
     map-merge-3d_0.1.1 \
     map-msgs_1.13.0 \
+    map-organizer_0.4.0-1 \
     map-organizer-msgs_0.3.1 \
     map-server_1.16.2 \
     mapviz_1.1.0 \
@@ -2083,6 +2097,9 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     navigation-experimental_0.3.2 \
     navigation-layers_0.5.0 \
     neobotix-usboard-msgs_2.3.1 \
+    neonavigation_0.4.0-1 \
+    neonavigation-common_0.4.0-1 \
+    neonavigation-launch_0.4.0-1 \
     neonavigation-msgs_0.3.1 \
     neonavigation-rviz-plugins_0.3.0 \
     nerian-stereo_3.3.2 \
@@ -2103,6 +2120,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     novatel-gps-msgs_3.7.0 \
     novatel-msgs_1.1.0 \
     novatel-span-driver_1.1.0 \
+    obj-to-pointcloud_0.4.0-1 \
     object-recognition-msgs_0.4.1 \
     ocean-battery-driver_1.1.7 \
     octomap_1.9.0-1 \
@@ -2187,6 +2205,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     pilz-testutils_0.5.3-1 \
     pilz-trajectory-generation_0.4.3 \
     pinocchio_2.1.3-1 \
+    planner-cspace_0.4.0-1 \
     planner-cspace-msgs_0.3.1 \
     plotjuggler_2.1.9 \
     pluginlib_1.12.1 \
@@ -2489,6 +2508,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     rviz-plugin-tutorials_0.10.3 \
     rviz-python-tutorial_0.10.3 \
     rviz-visual-tools_3.7.0 \
+    safety-limiter_0.4.0-1 \
     sainsmart-relay-usb_0.0.2 \
     sand-island_0.0.1-1 \
     sbg-driver_1.1.7 \
@@ -2592,7 +2612,9 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     trac-ik-lib_1.5.0-1 \
     trac-ik-python_1.5.0-1 \
     tracetools_0.2.1-1 \
+    track-odometry_0.4.0-1 \
     trajectory-msgs_1.12.7 \
+    trajectory-tracker_0.4.0-1 \
     trajectory-tracker-msgs_0.3.1 \
     trajectory-tracker-rviz-plugins_0.3.0 \
     transmission-interface_0.15.1 \
@@ -2756,8 +2778,8 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     yocs-waypoint-provider_0.8.2 \
     yocs-waypoints-navi_0.8.2 \
     yosemite-valley_0.0.1-1 \
-    ypspur_1.15.3 \
-    ypspur-ros_0.2.0 \
+    ypspur_1.16.0-1 \
+    ypspur-ros_0.3.0-1 \
     yujin-ocs_0.8.2 \
     zeroconf-msgs_0.2.1 \
 "
@@ -2888,6 +2910,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     convex-decomposition \
     costmap-2d \
     costmap-converter \
+    costmap-cspace \
     costmap-cspace-msgs \
     costmap-queue \
     cpp-common \
@@ -3200,6 +3223,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     joy-listener \
     joy-teleop \
     joystick-drivers \
+    joystick-interrupt \
     jpeg-streamer \
     jsk-3rdparty \
     jsk-common \
@@ -3292,6 +3316,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     map-laser \
     map-merge-3d \
     map-msgs \
+    map-organizer \
     map-organizer-msgs \
     map-server \
     mapviz \
@@ -3438,6 +3463,9 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     navigation-experimental \
     navigation-layers \
     neobotix-usboard-msgs \
+    neonavigation \
+    neonavigation-common \
+    neonavigation-launch \
     neonavigation-msgs \
     neonavigation-rviz-plugins \
     nerian-stereo \
@@ -3458,6 +3486,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     novatel-gps-msgs \
     novatel-msgs \
     novatel-span-driver \
+    obj-to-pointcloud \
     object-recognition-msgs \
     ocean-battery-driver \
     octomap \
@@ -3542,6 +3571,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     pilz-testutils \
     pilz-trajectory-generation \
     pinocchio \
+    planner-cspace \
     planner-cspace-msgs \
     plotjuggler \
     pluginlib \
@@ -3844,6 +3874,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     rviz-plugin-tutorials \
     rviz-python-tutorial \
     rviz-visual-tools \
+    safety-limiter \
     sainsmart-relay-usb \
     sand-island \
     sbg-driver \
@@ -3947,7 +3978,9 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     trac-ik-lib \
     trac-ik-python \
     tracetools \
+    track-odometry \
     trajectory-msgs \
+    trajectory-tracker \
     trajectory-tracker-msgs \
     trajectory-tracker-rviz-plugins \
     transmission-interface \
@@ -4574,6 +4607,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     navigation-experimental \
     navigation-layers \
     navigation-msgs \
+    neonavigation \
     neonavigation-msgs \
     neonavigation-rviz-plugins \
     nerian-stereo \

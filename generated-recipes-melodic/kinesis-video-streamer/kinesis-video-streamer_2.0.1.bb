@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Kinesis Video Streams producer node"
@@ -70,16 +71,15 @@ SRC_URI[md5sum] = "94777b21d2f4f21faac8bc284e0cd295"
 SRC_URI[sha256sum] = "63f75867b432622944356a87a290bd76e4ad6bd76b5dc98306905eade52c16f1"
 S = "${WORKDIR}/kinesis_video_streamer-release-release-melodic-kinesis_video_streamer-2.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('kinesis-video-streamer', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('kinesis-video-streamer', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('kinesis-video-streamer', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-video-streamer/kinesis-video-streamer_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-video-streamer/kinesis-video-streamer-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-video-streamer/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-video-streamer/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('kinesis-video-streamer', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kinesis-video-streamer/kinesis-video-streamer_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kinesis-video-streamer/kinesis-video-streamer-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kinesis-video-streamer/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kinesis-video-streamer/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

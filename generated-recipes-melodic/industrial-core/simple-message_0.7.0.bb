@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "simple_message defines a simple messaging connection and protocol for communicating  	with an industrial robot controller.  Additional handler and manager classes are  	included for handling connection limited systems.  This package is part of the ROS-Industrial  	program."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "57d23157ada21da275a8499bb104ac1e"
 SRC_URI[sha256sum] = "5c8e3ff246f5d757272ddf918cd28c6256bfca757437ec78fd606fc68ca53e87"
 S = "${WORKDIR}/industrial_core-release-release-melodic-simple_message-0.7.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('industrial-core', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('industrial-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('industrial-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/industrial-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/industrial-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/industrial-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('industrial-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/industrial-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/industrial-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/industrial-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

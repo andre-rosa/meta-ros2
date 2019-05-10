@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Message definitions for neonavigation package"
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "75487a57c2fce33f912aa4fe6fa715db"
 SRC_URI[sha256sum] = "7d971fab567d6f8c40daf97a1d1c7a8251a23576fa5a69396babfa98813ada18"
 S = "${WORKDIR}/neonavigation_msgs-release-release-melodic-neonavigation_msgs-0.3.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('neonavigation-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('neonavigation-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('neonavigation-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/neonavigation-msgs/neonavigation-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/neonavigation-msgs/neonavigation-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/neonavigation-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/neonavigation-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('neonavigation-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/neonavigation-msgs/neonavigation-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/neonavigation-msgs/neonavigation-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/neonavigation-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/neonavigation-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

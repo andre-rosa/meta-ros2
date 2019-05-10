@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Demonstration of drive-by-wire with joystick"
@@ -64,16 +65,15 @@ SRC_URI[md5sum] = "73dacb93ae3d77ebed3a7fa450a5d831"
 SRC_URI[sha256sum] = "ee44e5172a5ab64274e3a62accbe5ed7206cf0d5fe5163b8c24ca857e082bc2e"
 S = "${WORKDIR}/dbw_mkz_ros-release-release-melodic-dbw_mkz_joystick_demo-1.1.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dbw-mkz-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dbw-mkz-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dbw-mkz-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-mkz-ros/dbw-mkz-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-mkz-ros/dbw-mkz-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-mkz-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-mkz-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('dbw-mkz-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-mkz-ros/dbw-mkz-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-mkz-ros/dbw-mkz-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-mkz-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-mkz-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

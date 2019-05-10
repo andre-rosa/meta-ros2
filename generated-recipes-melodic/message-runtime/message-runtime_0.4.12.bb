@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Package modeling the run-time dependencies for language bindings of messages."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "18abcc106881077c8837b1c6309e928c"
 SRC_URI[sha256sum] = "70669611054c91c2d65ae94d5e2474198970929338cbb76411cb560902b1c800"
 S = "${WORKDIR}/message_runtime-release-release-melodic-message_runtime-0.4.12-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('message-runtime', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('message-runtime', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('message-runtime', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-runtime/message-runtime_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-runtime/message-runtime-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-runtime/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-runtime/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('message-runtime', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-runtime/message-runtime_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-runtime/message-runtime-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-runtime/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-runtime/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The ros_pytest package"
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "807928403051be4fb1dbb0b8ea248fea"
 SRC_URI[sha256sum] = "8204f445e165a048869660415c84fa1f478c1d1ecf8dabd79dd9a1187b95048e"
 S = "${WORKDIR}/ros_pytest-release-release-melodic-ros_pytest-0.1.2-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-pytest', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-pytest', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-pytest', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-pytest/ros-pytest_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-pytest/ros-pytest-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-pytest/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-pytest/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-pytest', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-pytest/ros-pytest_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-pytest/ros-pytest-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-pytest/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-pytest/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

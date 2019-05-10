@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Defines the messages that are used to communicate with the     p2os_driver package and the ROS infrastructure."
@@ -53,16 +54,15 @@ SRC_URI[md5sum] = "fd4e28a2d4fdff114da379fee685305f"
 SRC_URI[sha256sum] = "03bd75df3567d74a4b0e3357d73ae5cf4085fc772aa1c65e36078f4afb566b9f"
 S = "${WORKDIR}/p2os-release-release-melodic-p2os_msgs-2.1.1-3"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('p2os', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('p2os', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('p2os', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/p2os_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/p2os-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('p2os', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/p2os/p2os_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/p2os/p2os-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/p2os/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/p2os/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

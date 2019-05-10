@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The pr2_simulator package"
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "2239ed8e2c60e7e0b2739eee9c4b2d0c"
 SRC_URI[sha256sum] = "4502d2d3680adc3ad5bb876120527c7deb7642208da743e0c853353d8524b0cc"
 S = "${WORKDIR}/pr2_simulator-release-release-melodic-pr2_simulator-2.0.14-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-simulator', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-simulator', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-simulator', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/pr2-simulator_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/pr2-simulator-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-simulator/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-simulator', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-simulator/pr2-simulator_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-simulator/pr2-simulator-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-simulator/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-simulator/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

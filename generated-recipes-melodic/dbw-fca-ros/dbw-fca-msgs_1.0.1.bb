@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Drive-by-wire messages for the Chrysler Pacifica"
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "c489b33c15f8ce870cfd2f6de394cd4c"
 SRC_URI[sha256sum] = "c88dcd572943e157cb201add7fcc19f1a1ee7080d6af6b027c2c67bf2d61e041"
 S = "${WORKDIR}/dbw_fca_ros-release-release-melodic-dbw_fca_msgs-1.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dbw-fca-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('dbw-fca-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('dbw-fca-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/dbw-fca-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/dbw-fca-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/dbw-fca-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('dbw-fca-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-fca-ros/dbw-fca-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-fca-ros/dbw-fca-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-fca-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/dbw-fca-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

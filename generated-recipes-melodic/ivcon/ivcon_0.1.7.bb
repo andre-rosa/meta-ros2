@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Mesh Conversion Utility  Used to generate '.iv' files from '.stl' files.  This package has not been changed since 2001 and appears to be very stable.  We plan on keeping this package in this revision for mesh conversions.  This package is only available as a single source file for download.  There are no local modifications to this package."
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "b136c5b0548d6df802215048a00a8fc2"
 SRC_URI[sha256sum] = "cbf6855c3a967f5e124a3ea7c6c954bbb57345030d77b22e2f76a77a17bcd3f3"
 S = "${WORKDIR}/ivcon-release-release-melodic-ivcon-0.1.7-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ivcon', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ivcon', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ivcon', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ivcon/ivcon_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ivcon/ivcon-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ivcon/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ivcon/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ivcon', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ivcon/ivcon_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ivcon/ivcon-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ivcon/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ivcon/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

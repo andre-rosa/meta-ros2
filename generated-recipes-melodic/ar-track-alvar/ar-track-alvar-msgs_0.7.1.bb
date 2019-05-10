@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package is a ROS wrapper for Alvar, an open source AR tag tracking library."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "fdc2a1ad61419cb83d1e6e318bcdb3df"
 SRC_URI[sha256sum] = "0c39c3c9732ca3712a78f43bcc2545f90b846aff2559de8a5fc7a9b4a6efb27f"
 S = "${WORKDIR}/ar_track_alvar-release-release-melodic-ar_track_alvar_msgs-0.7.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ar-track-alvar', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ar-track-alvar', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ar-track-alvar', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ar-track-alvar/ar-track-alvar_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ar-track-alvar/ar-track-alvar-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ar-track-alvar/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ar-track-alvar/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ar-track-alvar', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ar-track-alvar/ar-track-alvar_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ar-track-alvar/ar-track-alvar-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ar-track-alvar/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ar-track-alvar/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

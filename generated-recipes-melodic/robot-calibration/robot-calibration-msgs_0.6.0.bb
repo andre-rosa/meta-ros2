@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Messages for calibrating a robot"
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "f0184460021b115d55df332c2694aa2e"
 SRC_URI[sha256sum] = "ea0ffb952c39266c63a6a96dea7b3763b0c36c4b28363c08d41171ed1a021097"
 S = "${WORKDIR}/robot_calibration-release-release-melodic-robot_calibration_msgs-0.6.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('robot-calibration', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robot-calibration', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-calibration', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-calibration/robot-calibration_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-calibration/robot-calibration-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-calibration/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-calibration/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('robot-calibration', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-calibration/robot-calibration_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-calibration/robot-calibration-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-calibration/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-calibration/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A common repository for CMake Modules which are not distributed with CMake but are commonly used by ROS packages."
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "c788358b7850eb9a6732b572a78247cb"
 SRC_URI[sha256sum] = "3598bda2ce4a55fdbe097c3d5c16cee1735b180cf234fea89628d78ea88da0bb"
 S = "${WORKDIR}/cmake_modules-release-release-melodic-cmake_modules-0.4.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('cmake-modules', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('cmake-modules', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('cmake-modules', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cmake-modules/cmake-modules_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cmake-modules/cmake-modules-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cmake-modules/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/cmake-modules/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('cmake-modules', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cmake-modules/cmake-modules_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cmake-modules/cmake-modules-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cmake-modules/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/cmake-modules/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

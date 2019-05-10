@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Holds the action description and relevant messages for the move_base package"
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "e14d25abf910733cf162330337f88aca"
 SRC_URI[sha256sum] = "a9b1ee115c3252718a9915a94ba16421a39309ed237a33d790f486d468f8a1ef"
 S = "${WORKDIR}/navigation_msgs-release-release-melodic-move_base_msgs-1.13.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('navigation-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('navigation-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('navigation-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-msgs/navigation-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-msgs/navigation-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/navigation-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('navigation-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-msgs/navigation-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-msgs/navigation-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/navigation-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

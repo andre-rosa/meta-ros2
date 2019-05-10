@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "USB Video Class driver library"
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "458ea77ae163a577b8bf3754ac70ab95"
 SRC_URI[sha256sum] = "06a553e6d043735a10fff606d5f71a20661fc9b6be392b69a06c35b8aca8d3f6"
 S = "${WORKDIR}/libuvc-release-release-melodic-libuvc-0.0.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('libuvc', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('libuvc', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('libuvc', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc/libuvc_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc/libuvc-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libuvc/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('libuvc', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libuvc/libuvc_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libuvc/libuvc-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libuvc/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libuvc/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

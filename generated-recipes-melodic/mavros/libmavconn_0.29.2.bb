@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "MAVLink communication library.     This library provide unified connection handling classes     and URL to connection object mapper.      This library can be used in standalone programs."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "78df0c101150b0d567e58e4e92a29280"
 SRC_URI[sha256sum] = "01a2d5c29791a6b4a85dc55a16b5a904fa22c58e73c99df0172cf8e8870c02b2"
 S = "${WORKDIR}/mavros-release-release-melodic-libmavconn-0.29.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mavros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mavros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mavros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/mavros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/mavros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mavros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mavros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mavros/mavros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mavros/mavros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mavros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mavros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

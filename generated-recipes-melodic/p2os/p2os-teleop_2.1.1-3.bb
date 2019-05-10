@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A teleoperation node for the p2os_driver package."
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "a8c5563b7b02d0013162b2cab2a47b52"
 SRC_URI[sha256sum] = "f263fffb042a86ffea63279e319c18b59efe102b6ad0f0d2f868ddd86e754fc2"
 S = "${WORKDIR}/p2os-release-release-melodic-p2os_teleop-2.1.1-3"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('p2os', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('p2os', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('p2os', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/p2os_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/p2os-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/p2os/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('p2os', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/p2os/p2os_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/p2os/p2os-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/p2os/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/p2os/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

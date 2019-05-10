@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS driver node for AVT/Prosilica Gigabit Ethernet (GigE) cameras."
@@ -83,16 +84,15 @@ SRC_URI[md5sum] = "04ffedd2e103c0593a91d12c0d4195b2"
 SRC_URI[sha256sum] = "7c2aafe58194390d9dbaaf25cf54cf5ba4060742e2ef9f10a0bb207c377d8202"
 S = "${WORKDIR}/prosilica_driver-release-release-melodic-prosilica_camera-1.9.4-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('prosilica-driver', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('prosilica-driver', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('prosilica-driver', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prosilica-driver/prosilica-driver_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prosilica-driver/prosilica-driver-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prosilica-driver/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prosilica-driver/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('prosilica-driver', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/prosilica-driver/prosilica-driver_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/prosilica-driver/prosilica-driver-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/prosilica-driver/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/prosilica-driver/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "dynamically set the tf trensformation"
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "384dd9f1003d829f81b8862ea32d27f5"
 SRC_URI[sha256sum] = "a6f34176461073a9a15126d6c6948988f94fc3de6d9698a9c94d7784e941a914"
 S = "${WORKDIR}/jsk_common-release-release-melodic-dynamic_tf_publisher-2.2.10-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('jsk-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/jsk-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/jsk-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('jsk-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common/jsk-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common/jsk-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

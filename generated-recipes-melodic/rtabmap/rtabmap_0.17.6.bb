@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "RTAB-Map's standalone library. RTAB-Map is a RGB-D SLAM approach with real-time constraints."
@@ -76,16 +77,15 @@ SRC_URI[md5sum] = "485491e9757220a4b57a4d4a5831daf0"
 SRC_URI[sha256sum] = "ef29a24868205118c1363dc6d9b8700ece63647ee2c10b2cbefd1b2741f76a6d"
 S = "${WORKDIR}/rtabmap-release-release-melodic-rtabmap-0.17.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rtabmap', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rtabmap', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rtabmap', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtabmap/rtabmap_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtabmap/rtabmap-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtabmap/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rtabmap/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rtabmap', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rtabmap/rtabmap_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rtabmap/rtabmap-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rtabmap/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rtabmap/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

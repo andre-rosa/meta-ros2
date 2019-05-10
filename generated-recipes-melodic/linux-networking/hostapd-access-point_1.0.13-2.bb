@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A ROS node that controls a hostapd-based access     point. It is mainly intended for use with a wireless      network adapter running in master mode. It implements      the dynamic_reconfigure interface defined     in the [[access_point_control]] package."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "1ab425c8f46dc8b872d4ee3b8369ab8d"
 SRC_URI[sha256sum] = "bea0177adb3f798682f1b3a981dbf8c76443c5b0588d067fef6ee2cd3adffb61"
 S = "${WORKDIR}/linux_networking-release-release-melodic-hostapd_access_point-1.0.13-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('linux-networking', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('linux-networking', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('linux-networking', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/linux-networking_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/linux-networking-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/linux-networking/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('linux-networking', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/linux-networking_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/linux-networking-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/linux-networking/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

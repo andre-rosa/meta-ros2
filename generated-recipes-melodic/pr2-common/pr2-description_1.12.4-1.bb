@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains the description (mechanical, kinematic, visual,   etc.) of the PR2 robot.  The files in this package are parsed and used by   a variety of other components.  Most users will not interact directly   with this package."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "54d56eca2aa96010ac7cfc7ea01d9137"
 SRC_URI[sha256sum] = "8614f27c6963296dfcd6091bb406ac8cb85b3d3ddc240ad390b6da44363d341e"
 S = "${WORKDIR}/pr2_common-release-release-melodic-pr2_description-1.12.4-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/pr2-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/pr2-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common/pr2-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common/pr2-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

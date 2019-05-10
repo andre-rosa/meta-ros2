@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS messages for power measurement and breaker control."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "de2f9eb8d9d696257767811d54e73e5b"
 SRC_URI[sha256sum] = "97f1dcb8217d6baa4939f53e64b59498cc550a26c3ed03f13249041f78ff120b"
 S = "${WORKDIR}/power_msgs-release-release-melodic-power_msgs-0.3.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('power-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('power-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('power-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/power-msgs/power-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/power-msgs/power-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/power-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/power-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('power-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/power-msgs/power-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/power-msgs/power-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/power-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/power-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

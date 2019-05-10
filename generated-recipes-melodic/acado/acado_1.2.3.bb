@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ACADO Toolkit"
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "bdce9ba4f9a7ca68b91c65be9cdfc6a5"
 SRC_URI[sha256sum] = "2d84945378a8f8b6c9d8667b4e1aa02a0001130853e6bb04e29dc1906582598e"
 S = "${WORKDIR}/acado-release-release-melodic-acado-1.2.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('acado', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('acado', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('acado', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/acado/acado_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/acado/acado-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/acado/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/acado/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('acado', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/acado/acado_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/acado/acado-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/acado/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/acado/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Basic ROS support for the Velodyne 3D LIDARs."
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "183ace23282972b70c0b32eb26245e87"
 SRC_URI[sha256sum] = "31d4489ac69e37ba7a4d928e66b9d25af331252dca9ebdd9a3be6a2a0c52dde9"
 S = "${WORKDIR}/velodyne-release-release-melodic-velodyne-1.5.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('velodyne', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('velodyne', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('velodyne', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne/velodyne_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne/velodyne-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/velodyne/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('velodyne', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/velodyne/velodyne_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/velodyne/velodyne-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/velodyne/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/velodyne/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

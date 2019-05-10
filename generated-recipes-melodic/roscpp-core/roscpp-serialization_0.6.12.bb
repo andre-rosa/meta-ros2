@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "roscpp_serialization contains the code for serialization as described in     <a href="http://www.ros.org/wiki/roscpp/Overview/MessagesSerializationAndAdaptingTypes">MessagesSerializationAndAdaptingTypes</a>.      This package is a component of <a href="http://www.ros.org/wiki/roscpp">roscpp</a>."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "a9ddcfa3b0f9820e4289356f6411de64"
 SRC_URI[sha256sum] = "ba4ea435dc1d1680f6242b142f06376785ca3abeed71862c23bd6dd0220833e5"
 S = "${WORKDIR}/roscpp_core-release-release-melodic-roscpp_serialization-0.6.12-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roscpp-core', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roscpp-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roscpp-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/roscpp-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/roscpp-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roscpp-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('roscpp-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/roscpp-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/roscpp-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roscpp-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

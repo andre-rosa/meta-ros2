@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The mbf_utility package"
@@ -64,16 +65,15 @@ SRC_URI[md5sum] = "c689c8db957b162d566904aa484cd0e9"
 SRC_URI[sha256sum] = "7bd062652a4d93996bf5c705a3a02bf2506313a2c99993d0efd89210bd7fd5bf"
 S = "${WORKDIR}/move_base_flex-release-release-melodic-mbf_utility-0.2.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('move-base-flex', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('move-base-flex', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('move-base-flex', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/move-base-flex_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/move-base-flex-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/move-base-flex/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('move-base-flex', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/move-base-flex/move-base-flex_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/move-base-flex/move-base-flex-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/move-base-flex/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/move-base-flex/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

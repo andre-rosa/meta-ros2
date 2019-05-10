@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The md49_base_controller package"
@@ -67,16 +68,15 @@ SRC_URI[md5sum] = "45b384ab5b88825628e499ed1e0385dd"
 SRC_URI[sha256sum] = "dc2871ad616ad8cefde86ba1025f9b5d06059328741d2850d5503770f95700ac"
 S = "${WORKDIR}/md49_base_controller-release-release-melodic-md49_base_controller-0.1.4-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('md49-base-controller', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('md49-base-controller', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('md49-base-controller', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/md49-base-controller/md49-base-controller_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/md49-base-controller/md49-base-controller-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/md49-base-controller/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/md49-base-controller/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('md49-base-controller', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/md49-base-controller/md49-base-controller_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/md49-base-controller/md49-base-controller-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/md49-base-controller/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/md49-base-controller/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

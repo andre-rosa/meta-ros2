@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The rc_hand_eye_calibration_client package"
@@ -67,16 +68,15 @@ SRC_URI[md5sum] = "a87f8b5b7b439b8eef752669d666f520"
 SRC_URI[sha256sum] = "4a0f8dbf4cf73db3976b83dea3cb12c86d3bc81e41241ec3a1b00bdb23245c85"
 S = "${WORKDIR}/rc_visard-release-release-melodic-rc_hand_eye_calibration_client-2.5.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rc-visard', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rc-visard', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rc-visard', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/rc-visard_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/rc-visard-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rc-visard/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rc-visard', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-visard/rc-visard_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-visard/rc-visard-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-visard/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rc-visard/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

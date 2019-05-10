@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Assorted shell commands for using ros with bash."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "be2e1100278862070ac61b18940a0b28"
 SRC_URI[sha256sum] = "8aa3f8849a9e6f158a85db00420299e5f3fc31222ccaf53dc025904548535bcb"
 S = "${WORKDIR}/ros-release-release-melodic-rosbash-1.14.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

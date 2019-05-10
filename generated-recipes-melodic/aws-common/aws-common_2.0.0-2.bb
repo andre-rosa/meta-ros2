@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Common AWS SDK utilities, intended for use by ROS packages using the AWS SDK"
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "6a8f3e28026b699a24faf5cd38ed9c58"
 SRC_URI[sha256sum] = "fd9f9814aef06e687d94c1158f8f401e035005b187e8e22321567cf5db602dcd"
 S = "${WORKDIR}/aws_common-release-release-melodic-aws_common-2.0.0-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('aws-common', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('aws-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('aws-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-common/aws-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-common/aws-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/aws-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('aws-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/aws-common/aws-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/aws-common/aws-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/aws-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/aws-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

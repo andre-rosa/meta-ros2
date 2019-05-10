@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The usb_cam_hardware package"
@@ -63,16 +64,15 @@ SRC_URI[md5sum] = "e61800817d205f17ca45fd40c8e83a7f"
 SRC_URI[sha256sum] = "29d9274d9b3cf8787c3f80c5354eb605608205118e6ccf56a2aabd26011f7b43"
 S = "${WORKDIR}/usb_cam_hardware-release-release-melodic-usb_cam_hardware-0.0.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('usb-cam-hardware', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('usb-cam-hardware', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('usb-cam-hardware', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam-hardware/usb-cam-hardware_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam-hardware/usb-cam-hardware-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam-hardware/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/usb-cam-hardware/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('usb-cam-hardware', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/usb-cam-hardware/usb-cam-hardware_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/usb-cam-hardware/usb-cam-hardware-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/usb-cam-hardware/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/usb-cam-hardware/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

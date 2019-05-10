@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Mobile Robot Programming Toolkit (MRPT) version 1.5.x"
@@ -89,16 +90,15 @@ SRC_URI[md5sum] = "fc470b0cb447f723551bb22f26a66226"
 SRC_URI[sha256sum] = "15161645758ce908438710546a1d48be2b0c663e8c22b764a2c291b166fc3287"
 S = "${WORKDIR}/mrpt1-release-release-melodic-mrpt1-1.5.8-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mrpt1', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mrpt1', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mrpt1', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt1/mrpt1_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt1/mrpt1-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt1/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mrpt1/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mrpt1', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt1/mrpt1_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt1/mrpt1-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt1/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mrpt1/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "turtle_actionlib demonstrates how to write an action server and client with the turtlesim. The shape_server provides and action interface for drawing regular polygons with the turtlesim."
@@ -73,16 +74,15 @@ SRC_URI[md5sum] = "8dd6fdc5fb70a8cc81f3bd42c96168af"
 SRC_URI[sha256sum] = "692d2a6946d45017346aa4165b4331314b1fde5f0067717ce33bf7ebbce1bc94"
 S = "${WORKDIR}/common_tutorials-release-release-melodic-turtle_actionlib-0.1.11-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('common-tutorials', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('common-tutorials', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('common-tutorials', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/common-tutorials_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/common-tutorials-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/common-tutorials/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('common-tutorials', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-tutorials/common-tutorials_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-tutorials/common-tutorials-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-tutorials/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/common-tutorials/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

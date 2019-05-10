@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Control hardware functions of the PRBT manipulator like STO for Stop1 functionality."
@@ -65,16 +66,15 @@ SRC_URI[md5sum] = "c4a4aa7b940e5c012c96047f73f754fc"
 SRC_URI[sha256sum] = "8833ee4869bd8c34bf8d4b9d76ec465235de9121403da7989ed73c31f648d5f0"
 S = "${WORKDIR}/pilz_robots-release-release-melodic-prbt_hardware_support-0.5.3-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pilz-robots', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pilz-robots', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pilz-robots', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/pilz-robots_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/pilz-robots-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pilz-robots/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pilz-robots', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-robots/pilz-robots_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-robots/pilz-robots-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-robots/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pilz-robots/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

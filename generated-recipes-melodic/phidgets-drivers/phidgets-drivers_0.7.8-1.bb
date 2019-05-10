@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "API and ROS drivers for Phidgets devices"
@@ -53,16 +54,15 @@ SRC_URI[md5sum] = "8ad27b260b688d4a157647d34562005b"
 SRC_URI[sha256sum] = "b60da069198bc4f8ffd9b5ddaab268d81929ba1331cb64b40fcdc80286b80595"
 S = "${WORKDIR}/phidgets_drivers-release-release-melodic-phidgets_drivers-0.7.8-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('phidgets-drivers', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('phidgets-drivers', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('phidgets-drivers', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/phidgets-drivers_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/phidgets-drivers-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/phidgets-drivers/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('phidgets-drivers', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/phidgets-drivers/phidgets-drivers_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/phidgets-drivers/phidgets-drivers-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/phidgets-drivers/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/phidgets-drivers/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

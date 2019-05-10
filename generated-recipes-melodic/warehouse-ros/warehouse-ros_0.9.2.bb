@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Persistent storage of ROS messages"
@@ -69,16 +70,15 @@ SRC_URI[md5sum] = "022b26e6247ea69f56bc33497cb921f7"
 SRC_URI[sha256sum] = "8e5fa9db4aea56c8bebc4514900b75d2f8bfdeb3d7ae664b4f991273f59b4dfe"
 S = "${WORKDIR}/warehouse_ros-release-release-melodic-warehouse_ros-0.9.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('warehouse-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('warehouse-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('warehouse-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/warehouse-ros/warehouse-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/warehouse-ros/warehouse-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/warehouse-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/warehouse-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('warehouse-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/warehouse-ros/warehouse-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/warehouse-ros/warehouse-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/warehouse-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/warehouse-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

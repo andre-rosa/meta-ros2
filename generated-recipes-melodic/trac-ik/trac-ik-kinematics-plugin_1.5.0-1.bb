@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A MoveIt! Kinematics plugin using TRAC-IK"
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "41a11fb36ab66cd69eb1f47ff38738ce"
 SRC_URI[sha256sum] = "9ac973d39470f1f0648e6e01cdd11b7207d61f3482bf7a4c302e43b7ae53896f"
 S = "${WORKDIR}/trac_ik-release-release-melodic-trac_ik_kinematics_plugin-1.5.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('trac-ik', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('trac-ik', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('trac-ik', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/trac-ik_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/trac-ik-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/trac-ik/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('trac-ik', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/trac-ik/trac-ik_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/trac-ik/trac-ik-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/trac-ik/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/trac-ik/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

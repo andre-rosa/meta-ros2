@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Object_recognition_msgs contains the ROS message and the actionlib definition used in object_recognition_core"
@@ -64,16 +65,15 @@ SRC_URI[md5sum] = "b02d7cfddd894d20d4f7f8683b26e07b"
 SRC_URI[sha256sum] = "0d4a39404ca6ce3fe26eb6a00df0edf208a58651c7605d42f20c9c6a2df9be72"
 S = "${WORKDIR}/object_recognition_msgs-release-release-melodic-object_recognition_msgs-0.4.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('object-recognition-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('object-recognition-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('object-recognition-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/object-recognition-msgs/object-recognition-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/object-recognition-msgs/object-recognition-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/object-recognition-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/object-recognition-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('object-recognition-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/object-recognition-msgs/object-recognition-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/object-recognition-msgs/object-recognition-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/object-recognition-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/object-recognition-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

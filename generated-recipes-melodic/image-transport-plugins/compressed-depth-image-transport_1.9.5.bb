@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Compressed_depth_image_transport provides a plugin to image_transport for transparently sending     depth images (raw, floating-point) using PNG compression."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "a2f0d95d183a79568d1d9d5ee26fa631"
 SRC_URI[sha256sum] = "344ba8616aae571668169db0759f432c049e9f2c272dbcbb2a82371ff285c212"
 S = "${WORKDIR}/image_transport_plugins-release-release-melodic-compressed_depth_image_transport-1.9.5-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('image-transport-plugins', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-transport-plugins', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-transport-plugins', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/image-transport-plugins_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/image-transport-plugins-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-transport-plugins/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('image-transport-plugins', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-transport-plugins/image-transport-plugins_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-transport-plugins/image-transport-plugins-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-transport-plugins/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-transport-plugins/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

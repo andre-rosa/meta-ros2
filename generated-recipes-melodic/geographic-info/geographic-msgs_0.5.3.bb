@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS messages for Geographic Information Systems."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "1111931e3c0a17a179d50cc1b044e32d"
 SRC_URI[sha256sum] = "68d46a359b8eec02f2ee60c6997f9bf3399925e9f93c453839a07125ce8f959f"
 S = "${WORKDIR}/geographic_info-release-release-melodic-geographic_msgs-0.5.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('geographic-info', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('geographic-info', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('geographic-info', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geographic-info/geographic-info_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geographic-info/geographic-info-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geographic-info/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/geographic-info/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('geographic-info', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geographic-info/geographic-info_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geographic-info/geographic-info-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geographic-info/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/geographic-info/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

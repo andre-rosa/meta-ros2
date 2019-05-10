@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Contains aligned allocation functions, as well as an STL-compatible AlignedAllocator class."
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "b982e500dbebc509fcd4a169c19fcbed"
 SRC_URI[sha256sum] = "585ef0525e4b0613ee2b9aca41a692dc9efab13c0a8e78ffe36e8efc03bd8810"
 S = "${WORKDIR}/ros_realtime-release-release-melodic-allocators-1.0.25-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-realtime', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-realtime', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-realtime', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/ros-realtime_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/ros-realtime-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-realtime/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-realtime', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/ros-realtime_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/ros-realtime-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-realtime/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

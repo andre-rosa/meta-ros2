@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "OpenManipulator 3D model description for visualization and simulation"
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "118b17702e90520352879ada770f9057"
 SRC_URI[sha256sum] = "75b91b560d2d284556401d76dd7160eb216813715fd5da607f139b3fc5f6e68d"
 S = "${WORKDIR}/open_manipulator_with_tb3-release-release-melodic-open_manipulator_with_tb3_description-1.1.0-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('open-manipulator-with-tb3', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('open-manipulator-with-tb3', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('open-manipulator-with-tb3', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/open-manipulator-with-tb3_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/open-manipulator-with-tb3-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/open-manipulator-with-tb3/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('open-manipulator-with-tb3', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-with-tb3/open-manipulator-with-tb3_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-with-tb3/open-manipulator-with-tb3-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-with-tb3/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/open-manipulator-with-tb3/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

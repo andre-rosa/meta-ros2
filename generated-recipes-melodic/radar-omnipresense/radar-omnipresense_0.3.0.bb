@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This is the radar driver package developed for the omnipresense radar module."
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "089eb496e99024f53c615f0cb7de668e"
 SRC_URI[sha256sum] = "f82a2ead3bd79d78a4b0e123824adb03e08ca62c227ed8359c866e7f7e6fc56d"
 S = "${WORKDIR}/radar_omnipresense-release-release-melodic-radar_omnipresense-0.3.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('radar-omnipresense', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('radar-omnipresense', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('radar-omnipresense', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/radar-omnipresense/radar-omnipresense_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/radar-omnipresense/radar-omnipresense-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/radar-omnipresense/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/radar-omnipresense/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('radar-omnipresense', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/radar-omnipresense/radar-omnipresense_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/radar-omnipresense/radar-omnipresense-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/radar-omnipresense/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/radar-omnipresense/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

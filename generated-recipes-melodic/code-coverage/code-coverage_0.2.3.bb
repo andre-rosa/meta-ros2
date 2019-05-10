@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "CMake configuration to run coverage"
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "e2292ee3345fda73c9e6e3d1fccd0e56"
 SRC_URI[sha256sum] = "aaf9d0b3b00d1b1af932e9099dbb3a92475ee92e45f189b3bfb3559e8abb1c50"
 S = "${WORKDIR}/code_coverage-gbp-release-melodic-code_coverage-0.2.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('code-coverage', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('code-coverage', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('code-coverage', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/code-coverage/code-coverage_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/code-coverage/code-coverage-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/code-coverage/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/code-coverage/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('code-coverage', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/code-coverage/code-coverage_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/code-coverage/code-coverage-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/code-coverage/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/code-coverage/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

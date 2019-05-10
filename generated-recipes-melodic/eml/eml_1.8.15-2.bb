@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This is an implementation of the EtherCAT master protocol for the PR2       robot based on the work done at Flanders' Mechatronics Technology Centre."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "dbf40bab81a111f0696c00898eb5e295"
 SRC_URI[sha256sum] = "be4a25b2632c6064f9d2567a5d1f9915aca203bebd8eda03e9cb3758d90e3c2c"
 S = "${WORKDIR}/eml-release-release-melodic-eml-1.8.15-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('eml', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('eml', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('eml', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eml/eml_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eml/eml-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eml/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/eml/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('eml', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/eml/eml_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/eml/eml-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/eml/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/eml/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_action provides a feature to introspect all available ROS   action (from actionlib) types. By utilizing rqt_msg, the output format is   unified with it and rqt_srv. Note that the actions shown on this plugin   is the ones that are stored on your machine, not on the ROS core your rqt   instance connects to."
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "f86fdfcc836a16e0b304457cb99ee7f6"
 SRC_URI[sha256sum] = "5ac33f2d857d43c2c79f82f73070f6dec9bf326ea6bc0b3bce4e49c3d5b8c7d8"
 S = "${WORKDIR}/rqt_action-release-release-melodic-rqt_action-0.4.9-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt-action', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-action', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-action', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-action/rqt-action_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-action/rqt-action-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-action/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-action/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt-action', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-action/rqt-action_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-action/rqt-action-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-action/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-action/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

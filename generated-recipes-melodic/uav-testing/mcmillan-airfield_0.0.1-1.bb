@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The mcmillan_airfield package"
@@ -44,16 +45,15 @@ SRC_URI[md5sum] = "9426e12381660500f666263b8e2c5811"
 SRC_URI[sha256sum] = "68b3833258188f562362e22fb6e06645950ceace55d877c9a2f651719860152f"
 S = "${WORKDIR}/uav_testing-release-release-melodic-mcmillan_airfield-0.0.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('uav-testing', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('uav-testing', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('uav-testing', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uav-testing/uav-testing_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uav-testing/uav-testing-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uav-testing/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/uav-testing/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('uav-testing', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/uav-testing/uav-testing_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/uav-testing/uav-testing-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/uav-testing/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/uav-testing/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

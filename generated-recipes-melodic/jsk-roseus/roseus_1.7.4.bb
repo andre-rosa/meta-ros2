@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "EusLisp client for ROS Robot Operating System."
@@ -118,16 +119,15 @@ SRC_URI[md5sum] = "73377eb7303704b3ba90a835f2deaba0"
 SRC_URI[sha256sum] = "e68ad89c7896f6b30f8a8dea7b8a0216dc5bfad5988cf8f287dd148069f5ccd1"
 S = "${WORKDIR}/jsk_roseus-release-release-melodic-roseus-1.7.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('jsk-roseus', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jsk-roseus', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jsk-roseus', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-roseus/jsk-roseus_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-roseus/jsk-roseus-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-roseus/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jsk-roseus/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('jsk-roseus', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-roseus/jsk-roseus_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-roseus/jsk-roseus-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-roseus/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jsk-roseus/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

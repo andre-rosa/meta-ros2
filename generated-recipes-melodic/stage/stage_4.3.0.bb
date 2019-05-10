@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Mobile robot simulator http://rtv.github.com/Stage"
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "1f11e6c8f902c20bb6d216091a8189be"
 SRC_URI[sha256sum] = "3c72bba7242ecd98b26f177e4227aef06ec85915f196ee88ec6103be4dfb492d"
 S = "${WORKDIR}/stage-release-release-melodic-stage-4.3.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('stage', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('stage', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('stage', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage/stage_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage/stage-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/stage/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('stage', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/stage/stage_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/stage/stage-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/stage/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/stage/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

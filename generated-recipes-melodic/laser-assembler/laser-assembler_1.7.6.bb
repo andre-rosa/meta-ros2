@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Provides nodes to assemble point clouds from either LaserScan or PointCloud messages"
@@ -71,16 +72,15 @@ SRC_URI[md5sum] = "2aa959221813993a53d4d017d86de83b"
 SRC_URI[sha256sum] = "e9f578692846ccaf041da048fcfcef51d1a421a2869c94d2970541af319d3823"
 S = "${WORKDIR}/laser_assembler-release-release-melodic-laser_assembler-1.7.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('laser-assembler', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('laser-assembler', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('laser-assembler', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-assembler/laser-assembler_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-assembler/laser-assembler-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-assembler/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/laser-assembler/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('laser-assembler', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-assembler/laser-assembler_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-assembler/laser-assembler-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-assembler/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/laser-assembler/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

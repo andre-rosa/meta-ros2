@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Holds maps of Willow Garage that can be used for a number of different applications."
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "ec8bb71652a113ef314f88aef265ad85"
 SRC_URI[sha256sum] = "8c9dbbaeabb4464c98637228bddfd69f2b0e8692e40d9a0f0921b4b910e0dfe9"
 S = "${WORKDIR}/willow_maps-release-release-melodic-willow_maps-1.0.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('willow-maps', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('willow-maps', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('willow-maps', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/willow-maps/willow-maps_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/willow-maps/willow-maps-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/willow-maps/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/willow-maps/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('willow-maps', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/willow-maps/willow-maps_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/willow-maps/willow-maps-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/willow-maps/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/willow-maps/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

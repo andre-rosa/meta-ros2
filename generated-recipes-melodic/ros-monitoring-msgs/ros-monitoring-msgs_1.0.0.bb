@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Messages for publishing monitoring data about ROS systems"
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "af947bf5c181bd6620e0cc5a5daf6418"
 SRC_URI[sha256sum] = "3f7de8101df1c96e947d8123e8eef5a129edc09a1e5ce723e9d91409c9cba565"
 S = "${WORKDIR}/ros_monitoring_msgs-release-release-melodic-ros_monitoring_msgs-1.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-monitoring-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-monitoring-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-monitoring-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-monitoring-msgs/ros-monitoring-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-monitoring-msgs/ros-monitoring-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-monitoring-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-monitoring-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-monitoring-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-monitoring-msgs/ros-monitoring-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-monitoring-msgs/ros-monitoring-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-monitoring-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-monitoring-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

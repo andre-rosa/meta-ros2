@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Neato XV-11 Laser Driver. This driver works with the laser when it is removed from the XV-11 Robot as opposed to reading scans from the Neato's USB port."
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "7c8dc18e70ebaefaff703e7b850bfe06"
 SRC_URI[sha256sum] = "7c6485e8b062b95fd61b2eceb47f042f5d069f1c6aad947f5c237f8968ec595c"
 S = "${WORKDIR}/xv_11_laser_driver-release-release-melodic-xv_11_laser_driver-0.3.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('xv-11-laser-driver', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('xv-11-laser-driver', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('xv-11-laser-driver', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xv-11-laser-driver/xv-11-laser-driver_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xv-11-laser-driver/xv-11-laser-driver-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xv-11-laser-driver/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/xv-11-laser-driver/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('xv-11-laser-driver', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/xv-11-laser-driver/xv-11-laser-driver_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/xv-11-laser-driver/xv-11-laser-driver-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/xv-11-laser-driver/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/xv-11-laser-driver/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Convex Decomposition Tool for Robot Model"
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "a9a996fe8c73dd0c54807126ef869334"
 SRC_URI[sha256sum] = "853e052839ccfe26f6ae8d94e157ad06cfa7c520c3fe12cf33783107caeee369"
 S = "${WORKDIR}/convex_decomposition-release-release-melodic-convex_decomposition-0.1.12-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('convex-decomposition', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('convex-decomposition', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('convex-decomposition', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/convex-decomposition/convex-decomposition_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/convex-decomposition/convex-decomposition-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/convex-decomposition/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/convex-decomposition/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('convex-decomposition', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/convex-decomposition/convex-decomposition_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/convex-decomposition/convex-decomposition-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/convex-decomposition/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/convex-decomposition/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "AVT GigE SDK version 1.26 for ROS"
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "859886d255d3b1055ebbf5448b801564"
 SRC_URI[sha256sum] = "3ba1f4695e70b0a8d831ec38c0e76b5d018e589d74cbf0436c828ce934e0ab3d"
 S = "${WORKDIR}/prosilica_gige_sdk-release-release-melodic-prosilica_gige_sdk-1.26.3-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('prosilica-gige-sdk', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('prosilica-gige-sdk', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('prosilica-gige-sdk', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prosilica-gige-sdk/prosilica-gige-sdk_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prosilica-gige-sdk/prosilica-gige-sdk-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prosilica-gige-sdk/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/prosilica-gige-sdk/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('prosilica-gige-sdk', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/prosilica-gige-sdk/prosilica-gige-sdk_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/prosilica-gige-sdk/prosilica-gige-sdk-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/prosilica-gige-sdk/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/prosilica-gige-sdk/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

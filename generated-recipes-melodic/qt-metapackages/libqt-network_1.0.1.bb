@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "libqt-network metapackage supporting qt4 and qt5"
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "49fe20000fe22a1effce24ce26f36b3f"
 SRC_URI[sha256sum] = "8c33c79ec52d6aa7513f01a41fbdc7fd770f727a854d84bfbb7a31ca4c93dbea"
 S = "${WORKDIR}/qt_metapackages-release-release-melodic-libqt_network-1.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('qt-metapackages', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('qt-metapackages', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('qt-metapackages', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-metapackages/qt-metapackages_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-metapackages/qt-metapackages-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-metapackages/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-metapackages/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('qt-metapackages', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qt-metapackages/qt-metapackages_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qt-metapackages/qt-metapackages-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qt-metapackages/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qt-metapackages/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

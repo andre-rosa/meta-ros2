@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The ROS package for the RobotX competition running in Gazebo."
@@ -73,16 +74,15 @@ SRC_URI[md5sum] = "31e4cd75dfa99045f279aec842aa9d4b"
 SRC_URI[sha256sum] = "d6a4a9bdd86e6645bd539ec12ebcde5a87f46368643f4485561e3fae9478e951"
 S = "${WORKDIR}/vrx-release-release-melodic-vrx_gazebo-1.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('vrx', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('vrx', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vrx', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/vrx_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/vrx-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vrx/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('vrx', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/vrx/vrx_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/vrx/vrx-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/vrx/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/vrx/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

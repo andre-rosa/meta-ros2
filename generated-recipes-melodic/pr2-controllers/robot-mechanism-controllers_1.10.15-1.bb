@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Generic Mechanism Controller Library"
@@ -114,16 +115,15 @@ SRC_URI[md5sum] = "c3d7fcb2dc59cb73ec24d4c45a8eb1be"
 SRC_URI[sha256sum] = "3edf4bf3c0aec34188fe768259562f3af1e4795c971f6ce581febdd56a186dfd"
 S = "${WORKDIR}/pr2_controllers-release-release-melodic-robot_mechanism_controllers-1.10.15-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-controllers', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-controllers', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-controllers', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-controllers/pr2-controllers_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-controllers/pr2-controllers-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-controllers/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-controllers/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-controllers', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-controllers/pr2-controllers_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-controllers/pr2-controllers-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-controllers/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-controllers/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

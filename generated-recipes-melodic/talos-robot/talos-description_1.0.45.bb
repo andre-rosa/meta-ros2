@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The talos_description package"
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "1fac79000367eb41a4221c02eaa71b5b"
 SRC_URI[sha256sum] = "a50d729ebe08f18e3cf29dc44d284453434e04c9dc2b41be74bf5e7ec79832c0"
 S = "${WORKDIR}/talos_robot-release-release-melodic-talos_description-1.0.45-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('talos-robot', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('talos-robot', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('talos-robot', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/talos-robot/talos-robot_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/talos-robot/talos-robot-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/talos-robot/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/talos-robot/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('talos-robot', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/talos-robot/talos-robot_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/talos-robot/talos-robot-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/talos-robot/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/talos-robot/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

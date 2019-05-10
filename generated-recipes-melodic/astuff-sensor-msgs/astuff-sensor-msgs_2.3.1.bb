@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Messages specific to AStuff-provided sensors."
@@ -53,16 +54,15 @@ SRC_URI[md5sum] = "200ab21862e037bb865160daa7ccd154"
 SRC_URI[sha256sum] = "91f67f406cc09d6509d9639f61822a74c8ee42c17b423a06f21616576cd349ff"
 S = "${WORKDIR}/astuff_sensor_msgs-release-release-melodic-astuff_sensor_msgs-2.3.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('astuff-sensor-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('astuff-sensor-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('astuff-sensor-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/astuff-sensor-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/astuff-sensor-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/astuff-sensor-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('astuff-sensor-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/astuff-sensor-msgs/astuff-sensor-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/astuff-sensor-msgs/astuff-sensor-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/astuff-sensor-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/astuff-sensor-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

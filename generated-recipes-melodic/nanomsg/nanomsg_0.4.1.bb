@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The nanomsg package"
@@ -43,16 +44,15 @@ SRC_URI[md5sum] = "a30dc32d47ac680a715656f47f201bb2"
 SRC_URI[sha256sum] = "0b9f6215f091598eac4c7c958693a5b4c8cb09838e18a5b18bc9feb7bf97dfff"
 S = "${WORKDIR}/nanomsg-release-release-melodic-nanomsg-0.4.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('nanomsg', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('nanomsg', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('nanomsg', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nanomsg/nanomsg_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nanomsg/nanomsg-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nanomsg/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nanomsg/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('nanomsg', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nanomsg/nanomsg_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nanomsg/nanomsg-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nanomsg/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nanomsg/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

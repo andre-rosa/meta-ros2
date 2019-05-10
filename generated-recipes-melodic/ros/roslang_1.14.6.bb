@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "roslang is a common package that all <a href="http://www.ros.org/wiki/Client%20Libraries">ROS client libraries</a> depend on.     This is mainly used to find client libraries (via 'rospack depends-on1 roslang')."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "d2555b46fa07dcef60b3b0cffcab30fc"
 SRC_URI[sha256sum] = "147d2f848b96ebd2b38f17bd62b485e3b213c1ac672c497d5216038f5c5f5bda"
 S = "${WORKDIR}/ros-release-release-melodic-roslang-1.14.6-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

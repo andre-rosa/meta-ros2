@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "gps_umd metapackage"
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "b10ff858cc8753d0c42082e5cf7755d5"
 SRC_URI[sha256sum] = "8a74ec06defb2718bb21ef216302cc99a063ddf7f3cca8fe8b5a836a9aca9cb8"
 S = "${WORKDIR}/gps_umd-release-release-melodic-gps_umd-0.2.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('gps-umd', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('gps-umd', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('gps-umd', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/gps-umd_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/gps-umd-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/gps-umd/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('gps-umd', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gps-umd/gps-umd_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gps-umd/gps-umd-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gps-umd/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/gps-umd/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

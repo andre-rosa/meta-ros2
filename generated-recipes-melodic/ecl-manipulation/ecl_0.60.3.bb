@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Metapackage bringing all of ecl together."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "6f865f9ec47802cd840a6fc378e158a9"
 SRC_URI[sha256sum] = "bbcf9a596091fbf4158e2593c652fe8329338bcf39ab3258abc93f4ac42289ae"
 S = "${WORKDIR}/ecl_manipulation-release-release-melodic-ecl-0.60.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ecl-manipulation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ecl-manipulation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ecl-manipulation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-manipulation/ecl-manipulation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-manipulation/ecl-manipulation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-manipulation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ecl-manipulation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ecl-manipulation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-manipulation/ecl-manipulation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-manipulation/ecl-manipulation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-manipulation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ecl-manipulation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

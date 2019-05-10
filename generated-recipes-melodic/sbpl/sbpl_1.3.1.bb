@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Search-based planning library (SBPL)."
@@ -45,16 +46,15 @@ SRC_URI[md5sum] = "1cc8d0b5148187c75d01348aaa399aaf"
 SRC_URI[sha256sum] = "9f24887428cc4e548e8cb297b225d952a1085e3c1f555a847350016c21c7cef2"
 S = "${WORKDIR}/sbpl-release-release-melodic-sbpl-1.3.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('sbpl', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sbpl', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sbpl', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbpl/sbpl_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbpl/sbpl-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbpl/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sbpl/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('sbpl', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sbpl/sbpl_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sbpl/sbpl-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sbpl/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sbpl/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

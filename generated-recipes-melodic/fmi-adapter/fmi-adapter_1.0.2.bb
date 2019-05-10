@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Wraps FMUs for co-simulation"
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "7de6e181ed741ff2c6e5c13b4ecbea59"
 SRC_URI[sha256sum] = "bfe24f7aa9671c953277071e419fc78de19d4ff33b5342fb7aef9e0b8f964f49"
 S = "${WORKDIR}/fmi_adapter-release-release-melodic-fmi_adapter-1.0.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('fmi-adapter', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fmi-adapter', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fmi-adapter', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter/fmi-adapter_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter/fmi-adapter-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('fmi-adapter', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fmi-adapter/fmi-adapter_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fmi-adapter/fmi-adapter-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fmi-adapter/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fmi-adapter/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

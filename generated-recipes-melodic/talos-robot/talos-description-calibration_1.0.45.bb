@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package contains the description of the hand-eye calibration of the TALOS robot.  The files in this package are used also from the talos_description package."
@@ -46,16 +47,15 @@ SRC_URI[md5sum] = "7a10c211724bbbcffd21e1373777e7d9"
 SRC_URI[sha256sum] = "d5e6dc7ae7fcb932718a916c9be6c892b135ff83c5be3795c87cd4b9412f72e0"
 S = "${WORKDIR}/talos_robot-release-release-melodic-talos_description_calibration-1.0.45-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('talos-robot', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('talos-robot', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('talos-robot', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/talos-robot/talos-robot_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/talos-robot/talos-robot-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/talos-robot/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/talos-robot/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('talos-robot', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/talos-robot/talos-robot_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/talos-robot/talos-robot-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/talos-robot/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/talos-robot/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

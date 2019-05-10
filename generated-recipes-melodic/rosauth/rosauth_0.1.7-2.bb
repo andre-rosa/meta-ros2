@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Server Side tools for Authorization and Authentication of ROS Clients"
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "450a3ecb512b1784fb08c575b69d2609"
 SRC_URI[sha256sum] = "9d3f956efc11d59d7fb973249d34a497dfe1649d77dffe76da6cc29a485a6c31"
 S = "${WORKDIR}/rosauth-release-release-melodic-rosauth-0.1.7-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosauth', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosauth', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosauth', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosauth/rosauth_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosauth/rosauth-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosauth/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosauth/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosauth', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosauth/rosauth_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosauth/rosauth-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosauth/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosauth/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

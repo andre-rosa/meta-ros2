@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Tutorial showing how to compile your own C++ program with RViz displays and features."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "55c61bfefe1eba71ad0452a5a4928bcc"
 SRC_URI[sha256sum] = "65aad5382b304957a927f31695570cc9e8ff720bea22e8ca72bd049a80b54fa0"
 S = "${WORKDIR}/visualization_tutorials-release-release-melodic-librviz_tutorial-0.10.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('visualization-tutorials', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('visualization-tutorials', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('visualization-tutorials', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/visualization-tutorials_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/visualization-tutorials-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/visualization-tutorials/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('visualization-tutorials', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/visualization-tutorials/visualization-tutorials_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/visualization-tutorials/visualization-tutorials-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/visualization-tutorials/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/visualization-tutorials/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

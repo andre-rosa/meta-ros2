@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package is currently for internal use only. Its API may change     without warning in the future.  This package is deprecated."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "f8c4874d1e918fc14e3fc1d93eeed5d9"
 SRC_URI[sha256sum] = "dabb75248bb8528c603d556f7533df6bf701870db84b5d5c5983e2d7f08464b0"
 S = "${WORKDIR}/driver_common-release-release-melodic-timestamp_tools-1.6.8-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('driver-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('driver-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('driver-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/driver-common/driver-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/driver-common/driver-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/driver-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/driver-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('driver-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/driver-common/driver-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/driver-common/driver-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/driver-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/driver-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

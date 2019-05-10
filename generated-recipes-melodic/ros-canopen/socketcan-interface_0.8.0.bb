@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Generic CAN interface description with helpers for filtering and driver implementation. Further a socketcan implementation based on boost::asio is included."
@@ -57,16 +58,15 @@ SRC_URI[md5sum] = "d9b066a4e3bcabe34c74036f26cd0ca1"
 SRC_URI[sha256sum] = "46aa16fc7db59c4b0353cba915f7ccadeff9eb1b4b1d521d166d51a10b6d53a5"
 S = "${WORKDIR}/ros_canopen-release-release-melodic-socketcan_interface-0.8.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-canopen', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros-canopen', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros-canopen', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/ros-canopen_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/ros-canopen-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros-canopen/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros-canopen', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-canopen/ros-canopen_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-canopen/ros-canopen-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-canopen/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros-canopen/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

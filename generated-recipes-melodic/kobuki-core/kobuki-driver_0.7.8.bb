@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "C++ driver library for Kobuki:     Pure C++ driver library for Kobuki. This is for those who do not wish to use ROS on their systems."
@@ -68,16 +69,15 @@ SRC_URI[md5sum] = "fb1becd0b45cb57aaced3b9c5d9fe998"
 SRC_URI[sha256sum] = "7cfcc4b9309c4a352fa54c9a6cb0fb0b53a5da43a0243aa13556670ec97bd34e"
 S = "${WORKDIR}/kobuki_core-release-release-melodic-kobuki_driver-0.7.8-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('kobuki-core', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('kobuki-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('kobuki-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-core/kobuki-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-core/kobuki-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kobuki-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('kobuki-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kobuki-core/kobuki-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kobuki-core/kobuki-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kobuki-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kobuki-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

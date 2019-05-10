@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "joint_trajectory_action_tools"
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "65ecb91117f30d09a78756cb00943913"
 SRC_URI[sha256sum] = "cff217c086340f75d87f968fe96ab08c5485fb39779aa8d1af8699bcb993f356"
 S = "${WORKDIR}/pr2_common_actions-release-release-melodic-joint_trajectory_action_tools-0.0.11-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pr2-common-actions', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pr2-common-actions', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pr2-common-actions', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/pr2-common-actions_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/pr2-common-actions-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pr2-common-actions/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pr2-common-actions', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common-actions/pr2-common-actions_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common-actions/pr2-common-actions-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common-actions/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pr2-common-actions/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Gazebo models and runtime configuration for igvc_self_drive simulator"
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "ceb7de4d1591679a5ae2d421b66de108"
 SRC_URI[sha256sum] = "8b83406423a8bcc6de599c32df446a7165145353418a9c5e279c43a0b9f08e4e"
 S = "${WORKDIR}/igvc_self_drive_sim-release-release-melodic-igvc_self_drive_gazebo-0.1.4-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('igvc-self-drive-sim', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('igvc-self-drive-sim', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('igvc-self-drive-sim', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/igvc-self-drive-sim/igvc-self-drive-sim_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/igvc-self-drive-sim/igvc-self-drive-sim-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/igvc-self-drive-sim/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/igvc-self-drive-sim/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('igvc-self-drive-sim', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/igvc-self-drive-sim/igvc-self-drive-sim_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/igvc-self-drive-sim/igvc-self-drive-sim-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/igvc-self-drive-sim/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/igvc-self-drive-sim/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

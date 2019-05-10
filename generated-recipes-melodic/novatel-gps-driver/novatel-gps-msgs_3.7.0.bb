@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Messages for proprietary (non-NMEA) sentences from Novatel GPS receivers."
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "941f5c60ff87774a89e340c6599a4743"
 SRC_URI[sha256sum] = "b7b44054b32cbdfbf30134b7af3c8c9d1ec0763872d7e230c9a7eaac0f1a317d"
 S = "${WORKDIR}/novatel_gps_driver-release-release-melodic-novatel_gps_msgs-3.7.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('novatel-gps-driver', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('novatel-gps-driver', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('novatel-gps-driver', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/novatel-gps-driver/novatel-gps-driver_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/novatel-gps-driver/novatel-gps-driver-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/novatel-gps-driver/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/novatel-gps-driver/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('novatel-gps-driver', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/novatel-gps-driver/novatel-gps-driver_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/novatel-gps-driver/novatel-gps-driver-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/novatel-gps-driver/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/novatel-gps-driver/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

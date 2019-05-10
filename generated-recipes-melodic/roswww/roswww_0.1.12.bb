@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Feathery lightweight web server for ROS, that is based on <a href="http://www.tornadoweb.org/en/stable">Tornado</a> web server module."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "6c12edaf325f62a7cc7ebd2e9fa6dfa9"
 SRC_URI[sha256sum] = "108f7156256acfd659a62d57362a1b92e59114962829148cd451b032d450d3f7"
 S = "${WORKDIR}/roswww-release-release-melodic-roswww-0.1.12-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roswww', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('roswww', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('roswww', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roswww/roswww_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roswww/roswww-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roswww/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/roswww/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('roswww', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roswww/roswww_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roswww/roswww-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roswww/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/roswww/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

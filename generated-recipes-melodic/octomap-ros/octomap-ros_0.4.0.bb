@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "octomap_ros provides conversion functions between ROS and OctoMap's native types.     This enables a convenvient use of the octomap package in ROS."
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "21059dd71d5b3e891df42d2e56fe10ec"
 SRC_URI[sha256sum] = "50dca555a5c7883b74068ae676db17671fa15da854f2985ed4999feff70089fd"
 S = "${WORKDIR}/octomap_ros-release-release-melodic-octomap_ros-0.4.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('octomap-ros', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('octomap-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('octomap-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-ros/octomap-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-ros/octomap-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/octomap-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('octomap-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap-ros/octomap-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap-ros/octomap-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/octomap-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

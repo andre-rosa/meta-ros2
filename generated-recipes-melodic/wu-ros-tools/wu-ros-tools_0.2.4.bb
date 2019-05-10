@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A collection of tools for making a variety of generic ROS-related tasks easier."
@@ -53,16 +54,15 @@ SRC_URI[md5sum] = "14a1702ba12ea6f323e6b73585b8cdd3"
 SRC_URI[sha256sum] = "c27fe7753efad044328dfe5dc67e04deb7ea2a9d69b54b1fe34bdcbdc82d7335"
 S = "${WORKDIR}/wu_ros_tools-release-melodic-wu_ros_tools-0.2.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('wu-ros-tools', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('wu-ros-tools', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('wu-ros-tools', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/wu-ros-tools_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/wu-ros-tools-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/wu-ros-tools/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('wu-ros-tools', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wu-ros-tools/wu-ros-tools_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wu-ros-tools/wu-ros-tools-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wu-ros-tools/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/wu-ros-tools/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

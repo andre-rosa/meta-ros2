@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS messages for robots using Ackermann steering."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "17fe0820b1355c3956776afdd8548a92"
 SRC_URI[sha256sum] = "2696633432ef72489b77e8ff6b0d4782e2e526a62fda01c92d984348b4b0e13b"
 S = "${WORKDIR}/ackermann_msgs-release-release-melodic-ackermann_msgs-1.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ackermann-msgs', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ackermann-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ackermann-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ackermann-msgs/ackermann-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ackermann-msgs/ackermann-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ackermann-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ackermann-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ackermann-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ackermann-msgs/ackermann-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ackermann-msgs/ackermann-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ackermann-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ackermann-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

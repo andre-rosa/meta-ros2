@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Listens on a ImageFeatures topic, and waits for the data to settle.      This package is experimental and unstable.      Expect its APIs to change."
@@ -64,16 +65,15 @@ SRC_URI[md5sum] = "4ae91876c0e6c619b66ca28af2e5b4dd"
 SRC_URI[sha256sum] = "e071a63f48ee1ed211bca1e5bcd85a46afce004dc18ba4226aee484dc7e309c7"
 S = "${WORKDIR}/calibration-release-release-melodic-monocam_settler-0.10.14-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('calibration', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('calibration', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('calibration', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/calibration_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/calibration-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/calibration/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('calibration', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/calibration_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/calibration-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/calibration/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The driver_common stack contains classes and tools that are useful     throughout the driver stacks. It currently contains:      driver_base: A base class for sensors to provide a consistent state machine     (retries, error handling, etc.) and interface      timestamp_tools: Classes to help timestamp hardware events"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "491def89fa6f80a362d08eec8492b693"
 SRC_URI[sha256sum] = "ea3516b1e1c6ad29343302b5c174ea896dc280f60800fe0c6d0e34e08b31d465"
 S = "${WORKDIR}/driver_common-release-release-melodic-driver_common-1.6.8-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('driver-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('driver-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('driver-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/driver-common/driver-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/driver-common/driver-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/driver-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/driver-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('driver-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/driver-common/driver-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/driver-common/driver-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/driver-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/driver-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

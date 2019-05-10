@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The quaternion_operation package"
@@ -57,16 +58,15 @@ SRC_URI[md5sum] = "fa86dcc8a74ace696b8516321a03f2c3"
 SRC_URI[sha256sum] = "f33f3b9910bd5212fd5bc408af7d8f858c97fb58bc27f88fc5ca17ceeaccd15b"
 S = "${WORKDIR}/quaternion_operation-release-release-melodic-quaternion_operation-0.0.1-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('quaternion-operation', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('quaternion-operation', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('quaternion-operation', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/quaternion-operation/quaternion-operation_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/quaternion-operation/quaternion-operation-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/quaternion-operation/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/quaternion-operation/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('quaternion-operation', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/quaternion-operation/quaternion-operation_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/quaternion-operation/quaternion-operation-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/quaternion-operation/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/quaternion-operation/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

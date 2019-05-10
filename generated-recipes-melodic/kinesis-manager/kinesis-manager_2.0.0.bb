@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "AWS Kinesis stream management library intended for use with the Kinesis Video Producer SDK"
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "d9473b772bb43fac0aa378ee685533b6"
 SRC_URI[sha256sum] = "455faeba33ec5a7f671ac3311e0afb2a4a6081da7a36cf5fdddbd83704b95b39"
 S = "${WORKDIR}/kinesis_manager-release-release-melodic-kinesis_manager-2.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('kinesis-manager', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('kinesis-manager', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('kinesis-manager', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-manager/kinesis-manager_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-manager/kinesis-manager-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-manager/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kinesis-manager/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('kinesis-manager', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kinesis-manager/kinesis-manager_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kinesis-manager/kinesis-manager-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kinesis-manager/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kinesis-manager/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

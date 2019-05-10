@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This library provides a standardized interface for processing data as a sequence      of filters.  This package contains a base class upon which to build specific implementations     as well as an interface which dynamically loads filters based on runtime parameters."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "7ebb7ea94ead71c5d1a5990dbce28a75"
 SRC_URI[sha256sum] = "850380ab0564923c37a6ee93227fe934647a1c4e5dfb4c5d2502f156b6b17d3f"
 S = "${WORKDIR}/filters-release-release-melodic-filters-1.8.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('filters', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('filters', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('filters', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/filters/filters_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/filters/filters-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/filters/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/filters/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('filters', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/filters/filters_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/filters/filters-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/filters/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/filters/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

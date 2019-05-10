@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The Kinematics and Dynamics Library (KDL) defines a tree structure    to represent the kinematic and dynamic parameters of a robot    mechanism. <tt>kdl_parser_py</tt> provides Python tools to construct a KDL    tree from an XML robot representation in URDF."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "1e0380ca518a1ced4b8de78ba070cebe"
 SRC_URI[sha256sum] = "66da27c1d53a445cc5334768a54a2f792df8c46475fe24a91ff486675082c86a"
 S = "${WORKDIR}/kdl_parser-release-release-melodic-kdl_parser_py-1.13.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('kdl-parser', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('kdl-parser', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('kdl-parser', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kdl-parser/kdl-parser_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kdl-parser/kdl-parser-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kdl-parser/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/kdl-parser/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('kdl-parser', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kdl-parser/kdl-parser_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kdl-parser/kdl-parser-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kdl-parser/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/kdl-parser/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

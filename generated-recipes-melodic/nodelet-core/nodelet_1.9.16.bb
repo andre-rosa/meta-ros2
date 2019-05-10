@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The nodelet package is designed to provide a way to run multiple     algorithms in the same process with zero copy transport between     algorithms.      This package provides both the nodelet base class needed for     implementing a nodelet, as well as the NodeletLoader class used     for instantiating nodelets."
@@ -68,16 +69,15 @@ SRC_URI[md5sum] = "405be4cc42091670f96ebd2d7fb567bc"
 SRC_URI[sha256sum] = "3a9e9701df570659d70f871eb7e1970dacd3b89c02513c456f8f0ea1a446d15a"
 S = "${WORKDIR}/nodelet_core-release-release-melodic-nodelet-1.9.16-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('nodelet-core', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('nodelet-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('nodelet-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nodelet-core/nodelet-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nodelet-core/nodelet-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nodelet-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/nodelet-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('nodelet-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nodelet-core/nodelet-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nodelet-core/nodelet-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nodelet-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/nodelet-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

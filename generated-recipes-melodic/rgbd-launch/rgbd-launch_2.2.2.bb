@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Launch files to open an RGBD device and load all nodelets to       convert raw depth/RGB/IR streams to depth images, disparity images,       and (registered) point clouds."
@@ -60,16 +61,15 @@ SRC_URI[md5sum] = "8bc18e4a10fe2de121632c4d750c8594"
 SRC_URI[sha256sum] = "973d8f054d8b7447e8951b5dc8dc65d860a3ce48431789fee0f582d8d56d7f68"
 S = "${WORKDIR}/rgbd_launch-release-release-melodic-rgbd_launch-2.2.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rgbd-launch', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rgbd-launch', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rgbd-launch', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rgbd-launch/rgbd-launch_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rgbd-launch/rgbd-launch-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rgbd-launch/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rgbd-launch/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rgbd-launch', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rgbd-launch/rgbd-launch_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rgbd-launch/rgbd-launch-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rgbd-launch/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rgbd-launch/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

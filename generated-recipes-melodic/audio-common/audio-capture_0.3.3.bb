@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Transports audio from a source to a destination. Audio sources can come       from a microphone or file. The destination can play the audio or save it       to an mp3 file."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "952046920adf51bfaedef5ef93fe1ed7"
 SRC_URI[sha256sum] = "c24552309d44459372bb344e5d02af47ce6f9451329cb1f73e99e57833d734cb"
 S = "${WORKDIR}/audio_common-release-release-melodic-audio_capture-0.3.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('audio-common', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('audio-common', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('audio-common', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/audio-common_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/audio-common-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/audio-common/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('audio-common', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audio-common/audio-common_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audio-common/audio-common-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audio-common/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/audio-common/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

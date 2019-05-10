@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "multires_image"
@@ -79,16 +80,15 @@ SRC_URI[md5sum] = "dc7cfabd11b879fe01c4f011324493eb"
 SRC_URI[sha256sum] = "f7c8afa9753d8b540f5b10af86adecf209bec63d12f99370da58b373cecd8f59"
 S = "${WORKDIR}/mapviz-release-release-melodic-multires_image-1.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('mapviz', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('mapviz', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('mapviz', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mapviz/mapviz_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mapviz/mapviz-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mapviz/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/mapviz/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('mapviz', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mapviz/mapviz_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mapviz/mapviz-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mapviz/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/mapviz/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

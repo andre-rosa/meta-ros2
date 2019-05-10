@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "OS1 ROS client"
@@ -57,16 +58,15 @@ SRC_URI[md5sum] = "a580ea452d38216a7eb97f974019e6f7"
 SRC_URI[sha256sum] = "7f68cc7f16bf51c84ddf73d6db82c8352089ee1da21d2e6b1da177ce3697a950"
 S = "${WORKDIR}/ouster-release-release-melodic-ouster_driver-0.1.7-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ouster', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ouster', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ouster', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ouster/ouster_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ouster/ouster-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ouster/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ouster/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ouster', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ouster/ouster_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ouster/ouster-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ouster/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ouster/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

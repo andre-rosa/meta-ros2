@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Republishing of Selected TFs"
@@ -70,16 +71,15 @@ SRC_URI[md5sum] = "ba3bba001c382c2848f5c3d3d16530f8"
 SRC_URI[sha256sum] = "401fcc79bf11e5071e8304b1053bf8afed6f3e91d3df30c0823c87c82b741420"
 S = "${WORKDIR}/tf2_web_republisher-release-release-melodic-tf2_web_republisher-0.3.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('tf2-web-republisher', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('tf2-web-republisher', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('tf2-web-republisher', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf2-web-republisher/tf2-web-republisher_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf2-web-republisher/tf2-web-republisher-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf2-web-republisher/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/tf2-web-republisher/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('tf2-web-republisher', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tf2-web-republisher/tf2-web-republisher_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tf2-web-republisher/tf2-web-republisher-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tf2-web-republisher/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/tf2-web-republisher/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

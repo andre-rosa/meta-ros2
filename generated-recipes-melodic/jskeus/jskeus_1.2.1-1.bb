@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "EusLisp software developed and used by JSK at The University of Tokyo"
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "5c006f5fea5a4df61600fae7f2d41ea8"
 SRC_URI[sha256sum] = "7029b7cebfd39f6ff41fe8988b972ec265072336cad162905116689fea92e59a"
 S = "${WORKDIR}/jskeus-release-release-melodic-jskeus-1.2.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('jskeus', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('jskeus', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('jskeus', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jskeus/jskeus_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jskeus/jskeus-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jskeus/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/jskeus/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('jskeus', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jskeus/jskeus_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jskeus/jskeus-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jskeus/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/jskeus/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

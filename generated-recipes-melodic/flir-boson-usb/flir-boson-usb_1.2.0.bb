@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A simple USB camera driver for the FLIR BOSON using OpenCV"
@@ -65,16 +66,15 @@ SRC_URI[md5sum] = "ca0c7cb80e431d7bf1a1aa62853631bb"
 SRC_URI[sha256sum] = "79c3e1f53669699fa6af61305dd25dfabddbf213bfa36df3b3419950dcf3568f"
 S = "${WORKDIR}/flir_boson_usb-release-release-melodic-flir_boson_usb-1.2.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('flir-boson-usb', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('flir-boson-usb', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('flir-boson-usb', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flir-boson-usb/flir-boson-usb_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flir-boson-usb/flir-boson-usb-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flir-boson-usb/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/flir-boson-usb/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('flir-boson-usb', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/flir-boson-usb/flir-boson-usb_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/flir-boson-usb/flir-boson-usb-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/flir-boson-usb/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/flir-boson-usb/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

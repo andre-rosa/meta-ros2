@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Catkin package Ariles serialization/configuration library"
@@ -57,16 +58,15 @@ SRC_URI[md5sum] = "85d180a0d90d4a07f025f363e4e7e2c4"
 SRC_URI[sha256sum] = "dee2ca2288b1f598165e3f8026581e78436f1cb86b46bf995996392173b7f483"
 S = "${WORKDIR}/ariles-release-release-melodic-ariles_ros-1.1.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ariles-ros', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ariles-ros', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ariles-ros', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ariles-ros/ariles-ros_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ariles-ros/ariles-ros-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ariles-ros/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ariles-ros/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ariles-ros', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ariles-ros/ariles-ros_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ariles-ros/ariles-ros-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ariles-ros/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ariles-ros/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}
