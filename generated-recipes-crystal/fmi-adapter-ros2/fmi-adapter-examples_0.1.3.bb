@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Provides small examples for use of the fmi_adapter package"
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "fe3903c62402f6fe819efdfbbfb52e28"
 SRC_URI[sha256sum] = "d7f11e0bf4166888fe9cbdee74a25ae52063a844708dc92accfe267c6f025c4a"
 S = "${WORKDIR}/fmi_adapter_ros2-release-release-crystal-fmi_adapter_examples-0.1.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('fmi-adapter-ros2', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fmi-adapter-ros2', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fmi-adapter-ros2', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter-ros2/fmi-adapter-ros2_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter-ros2/fmi-adapter-ros2-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter-ros2/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fmi-adapter-ros2/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('fmi-adapter-ros2', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fmi-adapter-ros2/fmi-adapter-ros2_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fmi-adapter-ros2/fmi-adapter-ros2-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fmi-adapter-ros2/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fmi-adapter-ros2/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

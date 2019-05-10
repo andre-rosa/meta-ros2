@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "qt_gui_app provides the main to start an instance of the integrated graphical user interface provided by qt_gui."
@@ -49,16 +50,15 @@ SRC_URI[md5sum] = "c809621136a14e8aaa01e1c11dfcbd13"
 SRC_URI[sha256sum] = "77c6b17ca375d948bce415805eb3eacce1c7d3177d0c9ee31cf086cc09d8a53d"
 S = "${WORKDIR}/qt_gui_core-release-release-crystal-qt_gui_app-1.0.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('qt-gui-core', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('qt-gui-core', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('qt-gui-core', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/qt-gui-core_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/qt-gui-core-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/qt-gui-core/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('qt-gui-core', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qt-gui-core/qt-gui-core_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qt-gui-core/qt-gui-core-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qt-gui-core/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/qt-gui-core/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

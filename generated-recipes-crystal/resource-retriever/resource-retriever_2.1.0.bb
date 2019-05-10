@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package retrieves data from url-format files such as http://,    ftp://, package:// file://, etc., and loads the data into memory.    The package:// url for ros packages is translated into a local    file:// url.  The resourse retriever was initially designed to load    mesh files into memory, but it can be used for any type of    data. The resource retriever is based on the the libcurl library."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "734237c4a14e90216776fbb5887a8a37"
 SRC_URI[sha256sum] = "9db42f615c9c1240dcae2f0ef91495e1177ab7c97acd884dfb38507e5d41660b"
 S = "${WORKDIR}/resource_retriever-release-release-crystal-resource_retriever-2.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('resource-retriever', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('resource-retriever', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('resource-retriever', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/resource-retriever_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/resource-retriever-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/resource-retriever/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('resource-retriever', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/resource-retriever/resource-retriever_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/resource-retriever/resource-retriever-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/resource-retriever/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/resource-retriever/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

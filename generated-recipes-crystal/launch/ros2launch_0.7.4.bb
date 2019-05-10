@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The launch command for ROS 2 command line tools."
@@ -63,16 +64,15 @@ SRC_URI[md5sum] = "b9fc11fc5f0692b69be4e4ba9215e6eb"
 SRC_URI[sha256sum] = "3d01086b81c441f2d45bfeeb3860f45d5e74a8b3988029ce280755ccdcc65cb1"
 S = "${WORKDIR}/launch-release-release-crystal-ros2launch-0.7.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('launch', d)}"
 ROS_BUILD_TYPE = "ament_python"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('launch', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('launch', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/launch_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/launch-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/launch/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('launch', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/launch/launch_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/launch/launch-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/launch/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/launch/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

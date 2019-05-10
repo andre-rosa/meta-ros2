@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Generate the message type support for dynamic message construction in C."
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "c7c79ef5494b4d91134754a2bfc54634"
 SRC_URI[sha256sum] = "23fc3046491d1816be15edcd3a210ee401c3efef2b6030efe82dbd2fee1fa783"
 S = "${WORKDIR}/rosidl-release-release-crystal-rosidl_typesupport_introspection_c-0.6.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosidl', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosidl', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/rosidl_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/rosidl-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosidl', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl/rosidl_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl/rosidl-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The ability to export libraries to downstream packages in the ament buildsystem in CMake."
@@ -44,16 +45,15 @@ SRC_URI[md5sum] = "d227f141ceab519b84479bb7772915a7"
 SRC_URI[sha256sum] = "33037387d8ac0af0329716607dde7ad1532d91cc3a585cff344470f1e033ec81"
 S = "${WORKDIR}/ament_cmake-release-release-crystal-ament_cmake_export_libraries-0.6.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ament-cmake', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ament-cmake', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ament-cmake', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/ament-cmake_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/ament-cmake-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ament-cmake/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ament-cmake', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-cmake/ament-cmake_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-cmake/ament-cmake-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-cmake/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ament-cmake/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Capture keyboard input from the local computer and publish it to ROS"
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "76932a1609fa7117fedfd0945e1462d6"
 SRC_URI[sha256sum] = "8307e9b7ca167d02250975689b9b77be1663f0525eb04e866f4f47d1c8b0980c"
 S = "${WORKDIR}/ros2-keystroke-release-release-crystal-keystroke-0.3.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('keystroke', d)}"
 ROS_BUILD_TYPE = "ament_python"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('keystroke', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('keystroke', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/keystroke_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/keystroke-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/keystroke/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('keystroke', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/keystroke/keystroke_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/keystroke/keystroke-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/keystroke/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/keystroke/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

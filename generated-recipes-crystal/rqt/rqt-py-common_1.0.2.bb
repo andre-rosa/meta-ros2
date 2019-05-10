@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_py_common provides common functionality for rqt plugins written in Python.     Despite no plugin is provided, this package is part of the rqt_common_plugins     repository to keep refactoring generic functionality from these common plugins     into this package as easy as possible.      Functionality included in this package should cover generic ROS concepts and     should not introduce any special dependencies beside &quot;ros_base&quot;."
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "5f4cb9241c947ab95542f162ccabccbb"
 SRC_URI[sha256sum] = "9aab24d68ce8ddf28c893ad4e015ee82092f937f456cbf904e8eba4bf7db4fcd"
 S = "${WORKDIR}/rqt-release-release-crystal-rqt_py_common-1.0.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt/rqt_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt/rqt-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt/rqt_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt/rqt-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

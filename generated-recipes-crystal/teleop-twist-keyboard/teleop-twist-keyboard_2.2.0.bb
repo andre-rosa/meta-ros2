@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A robot-agnostic teleoperation node to convert keyboard commands to Twist     messages."
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "4be42040e2081cb858d82d3a0a731313"
 SRC_URI[sha256sum] = "2b900f9b7189e874bb2d13b56426e6d1c2c6d632e92e69890b1aa32bd9d04ddb"
 S = "${WORKDIR}/teleop_twist_keyboard-release-release-crystal-teleop_twist_keyboard-2.2.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('teleop-twist-keyboard', d)}"
 ROS_BUILD_TYPE = "ament_python"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('teleop-twist-keyboard', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('teleop-twist-keyboard', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-keyboard/teleop-twist-keyboard_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-keyboard/teleop-twist-keyboard-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-keyboard/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/teleop-twist-keyboard/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('teleop-twist-keyboard', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-keyboard/teleop-twist-keyboard_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-keyboard/teleop-twist-keyboard-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-keyboard/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/teleop-twist-keyboard/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

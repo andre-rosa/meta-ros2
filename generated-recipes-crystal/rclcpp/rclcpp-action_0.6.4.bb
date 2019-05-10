@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Adds action APIs for C++."
@@ -66,16 +67,15 @@ SRC_URI[md5sum] = "40940328c460bbbc02bf62078bfe783c"
 SRC_URI[sha256sum] = "4d76ff4572c3b0e802314b47bfca794d51ccd5ccb2996b8a33b7436656e13f68"
 S = "${WORKDIR}/rclcpp-release-release-crystal-rclcpp_action-0.6.4-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rclcpp', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rclcpp', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rclcpp', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclcpp/rclcpp_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclcpp/rclcpp-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclcpp/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rclcpp/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rclcpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rclcpp/rclcpp_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rclcpp/rclcpp-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rclcpp/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rclcpp/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

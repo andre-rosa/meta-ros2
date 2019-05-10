@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Minimalist examples of composing nodes in the same   process"
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "1647e4df805a67080f20b7200a6938d1"
 SRC_URI[sha256sum] = "e52d9d3afa270e4a1c01f3dc1197578dd66a33d328a7789b186035338b86e4ca"
 S = "${WORKDIR}/examples-release-release-crystal-examples_rclcpp_minimal_composition-0.6.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('examples', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('examples', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('examples', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/examples_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/examples-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/examples/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('examples', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/examples/examples_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/examples/examples-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/examples/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/examples/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

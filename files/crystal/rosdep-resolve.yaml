@@ -77,7 +77,7 @@ python3-pkg-resources: python3-setuptools@openembedded-core
 python3-psutil: python3-psutil@meta-python
 python3-pydot: python3-pydot@meta-ros
 python3-pygraphviz: python3-pygraphviz@meta-ros
-python3-pytest: python3-pytest
+python3-pytest: python3-pytest@meta-python
 python3-qt5-bindings: python3-pyqt5@meta-qt5
 python3-setuptools: python3-setuptools@openembedded-core
 python3-yaml: python3-pyyaml@meta-python
@@ -89,7 +89,7 @@ suitesparse: suitesparse@meta-ros
 tango-icon-theme: tango-icon-theme@meta-ros
 tinyxml: libtinyxml@meta-oe
 tinyxml2: libtinyxml2@meta-oe
-udev: eudev@openembedded-core
+udev: udev@openembedded-core
 wx-common: wxwidgets@meta-ros
 wxwidgets: wxwidgets@meta-ros
 yaml: libyaml@openembedded-core

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Demonstrates ROS 2's realtime capabilities with a simulated inverted pendulum."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "3556c19c9e4ae7e870ffd0c5a051512f"
 SRC_URI[sha256sum] = "160c00093e5a42d1b3a66f3000c322ee41dd3c43a04103b6372c99db57475f98"
 S = "${WORKDIR}/demos-release-release-crystal-pendulum_control-0.6.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('demos', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('demos', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/demos_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/demos-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('demos', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/demos_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/demos-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

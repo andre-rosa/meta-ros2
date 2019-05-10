@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Provide CMake module to find eProsima Micro XRCE-DDS Agent"
@@ -50,16 +51,15 @@ SRC_URI[md5sum] = "ced41669d4ffea0658c95fc4e72071ca"
 SRC_URI[sha256sum] = "98f5c52ea0905c8db2c03ad4a66fef5efa557767387384243bffdff042bf8282"
 S = "${WORKDIR}/micro-ROS-Agent-release-release-crystal-microxrcedds_agent_cmake_module-0.0.1-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('micro-ros-agent', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('micro-ros-agent', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('micro-ros-agent', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-ros-agent/micro-ros-agent_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-ros-agent/micro-ros-agent-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-ros-agent/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/micro-ros-agent/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('micro-ros-agent', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/micro-ros-agent/micro-ros-agent_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/micro-ros-agent/micro-ros-agent-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/micro-ros-agent/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/micro-ros-agent/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

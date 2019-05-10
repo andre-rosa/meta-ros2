@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Implement the ROS middleware interface using eProsima FastRTPS  static code generation in C++."
@@ -69,16 +70,15 @@ SRC_URI[md5sum] = "8877ca31de810a713c97c6f3f208acae"
 SRC_URI[sha256sum] = "1213ab6b6f2916ca6c8718ceb31aaf58c8434a8525e26af9313b99e1f3ba6e3e"
 S = "${WORKDIR}/rmw_fastrtps-release-release-crystal-rmw_fastrtps_dynamic_cpp-0.6.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rmw-fastrtps', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rmw-fastrtps', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rmw-fastrtps', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-fastrtps/rmw-fastrtps_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-fastrtps/rmw-fastrtps-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-fastrtps/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rmw-fastrtps/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rmw-fastrtps', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw-fastrtps/rmw-fastrtps_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw-fastrtps/rmw-fastrtps-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw-fastrtps/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rmw-fastrtps/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

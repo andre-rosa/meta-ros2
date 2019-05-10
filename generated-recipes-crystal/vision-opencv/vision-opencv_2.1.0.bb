@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Packages for interfacing ROS2 with OpenCV, a library of programming functions for real time computer vision."
@@ -46,16 +47,15 @@ SRC_URI[md5sum] = "3be38279c30e2e794fe1a7f8adda1df1"
 SRC_URI[sha256sum] = "c5c3156bb5a3c568428b126aa2f70fc9f811283d834d0a01b74c452dbde8f2e9"
 S = "${WORKDIR}/vision_opencv-release-release-crystal-vision_opencv-2.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('vision-opencv', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('vision-opencv', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('vision-opencv', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-opencv/vision-opencv_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-opencv/vision-opencv-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-opencv/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/vision-opencv/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('vision-opencv', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/vision-opencv/vision-opencv_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/vision-opencv/vision-opencv-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/vision-opencv/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/vision-opencv/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

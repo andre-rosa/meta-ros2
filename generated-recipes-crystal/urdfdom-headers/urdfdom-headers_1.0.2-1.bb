@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "C++ headers for URDF."
@@ -42,16 +43,15 @@ SRC_URI[md5sum] = "25c60fc2b4c9d18021bc0cdebba8bfa5"
 SRC_URI[sha256sum] = "57ca69ecd0c2de926bc758d5f7a32dce4cd2ebc7f902c69b22ee34f9647e62fa"
 S = "${WORKDIR}/urdfdom_headers-release-release-crystal-urdfdom_headers-1.0.2-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('urdfdom-headers', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urdfdom-headers', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdfdom-headers', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-headers/urdfdom-headers_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-headers/urdfdom-headers-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-headers/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom-headers/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('urdfdom-headers', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom-headers/urdfdom-headers_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom-headers/urdfdom-headers-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom-headers/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom-headers/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

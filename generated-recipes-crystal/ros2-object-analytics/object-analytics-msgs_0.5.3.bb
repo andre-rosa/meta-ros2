@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "object analytics message definition"
@@ -58,16 +59,15 @@ SRC_URI[md5sum] = "de94add5ab32c0abf03a7d5d0f6fc924"
 SRC_URI[sha256sum] = "cfa7e51f2ab2c6e644bb41065ea62712cd8fc4b20e16741eda5d6512ab9619ae"
 S = "${WORKDIR}/ros2_object_analytics-release-release-crystal-object_analytics_msgs-0.5.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros2-object-analytics', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ros2-object-analytics', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ros2-object-analytics', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-object-analytics/ros2-object-analytics_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-object-analytics/ros2-object-analytics-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-object-analytics/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ros2-object-analytics/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ros2-object-analytics', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros2-object-analytics/ros2-object-analytics_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros2-object-analytics/ros2-object-analytics-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros2-object-analytics/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ros2-object-analytics/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

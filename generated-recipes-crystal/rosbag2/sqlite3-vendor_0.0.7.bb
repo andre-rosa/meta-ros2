@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "SQLite 3 vendor package"
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "47f23ee4cea139c6e9d36eaf92dde825"
 SRC_URI[sha256sum] = "243bb62d135e78429dd88a5f21c18293ccf173041cc274b3031c948f0c77c5c6"
 S = "${WORKDIR}/rosbag2-release-release-crystal-sqlite3_vendor-0.0.7-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosbag2', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosbag2', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosbag2', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/rosbag2_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/rosbag2-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosbag2/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosbag2', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbag2/rosbag2_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbag2/rosbag2-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbag2/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosbag2/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

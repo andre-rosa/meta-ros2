@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "This package defines messages for NCS inference"
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "580f215036b296e715d18c447faaf45f"
 SRC_URI[sha256sum] = "0ff91ee611ff83f2c486675907db807660ca39f61db519a77b59543d627735c2"
 S = "${WORKDIR}/ros2_object_msgs-release-release-crystal-object_msgs-0.3.0-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('object-msgs', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('object-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('object-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/object-msgs/object-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/object-msgs/object-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/object-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/object-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('object-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/object-msgs/object-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/object-msgs/object-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/object-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/object-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

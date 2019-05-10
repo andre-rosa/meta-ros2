@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Generate the C interfaces for eProsima FastRTPS."
@@ -65,16 +66,15 @@ SRC_URI[md5sum] = "97318c780659b70ed547e3b9dfe5746f"
 SRC_URI[sha256sum] = "7b6a807031603ef8dd4c18a8a78316fba8a333fca59e6ff65b6be32da4b5534a"
 S = "${WORKDIR}/rosidl_typesupport_fastrtps-release-release-crystal-rosidl_typesupport_fastrtps_c-0.6.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosidl-typesupport-fastrtps', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosidl-typesupport-fastrtps', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl-typesupport-fastrtps', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-typesupport-fastrtps/rosidl-typesupport-fastrtps_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-typesupport-fastrtps/rosidl-typesupport-fastrtps-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-typesupport-fastrtps/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-typesupport-fastrtps/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosidl-typesupport-fastrtps', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-typesupport-fastrtps/rosidl-typesupport-fastrtps_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-typesupport-fastrtps/rosidl-typesupport-fastrtps-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-typesupport-fastrtps/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-typesupport-fastrtps/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

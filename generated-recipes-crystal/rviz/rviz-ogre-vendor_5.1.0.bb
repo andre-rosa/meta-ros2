@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Wrapper around ogre3d, it provides a fixed CMake module and an ExternalProject build of ogre."
@@ -61,16 +62,15 @@ SRC_URI[md5sum] = "d95c62249e8af73f32b1d5f15982c4c2"
 SRC_URI[sha256sum] = "804f35dd8c1bf6183eb37bae744861da954bce63188ed3c11e1ed2bd135aecdb"
 S = "${WORKDIR}/rviz-release-release-crystal-rviz_ogre_vendor-5.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rviz', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rviz', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rviz', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/rviz_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/rviz-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rviz/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rviz', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rviz/rviz_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rviz/rviz-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rviz/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rviz/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

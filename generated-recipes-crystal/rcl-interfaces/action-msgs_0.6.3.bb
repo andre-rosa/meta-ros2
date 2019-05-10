@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Messages and service definitions common among all ROS actions."
@@ -57,16 +58,15 @@ SRC_URI[md5sum] = "edcb7fc5d1c55e875f9b03a9979d7c0b"
 SRC_URI[sha256sum] = "f2e941f36e7ab54f4f676606371c1ded0d3cc072721e14669c47cc66897fdd4d"
 S = "${WORKDIR}/rcl_interfaces-release-release-crystal-action_msgs-0.6.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rcl-interfaces', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rcl-interfaces', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rcl-interfaces', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-interfaces/rcl-interfaces_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-interfaces/rcl-interfaces-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-interfaces/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-interfaces/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rcl-interfaces', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rcl-interfaces/rcl-interfaces_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rcl-interfaces/rcl-interfaces-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rcl-interfaces/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rcl-interfaces/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

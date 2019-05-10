@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Provide CMake module with extra functionality for Python."
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "aa06b00f8780c3a49abb0abb4467fc7d"
 SRC_URI[sha256sum] = "235463eab00214e06dfd277ca45e4866039703e46edb6747320e251f915bb622"
 S = "${WORKDIR}/rosidl_python-release-release-crystal-python_cmake_module-0.6.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosidl-python', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosidl-python', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl-python', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-python/rosidl-python_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-python/rosidl-python-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-python/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-python/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosidl-python', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-python/rosidl-python_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-python/rosidl-python-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-python/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-python/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

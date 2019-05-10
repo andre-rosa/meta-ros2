@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Interfaces used by py_trees_ros and py_trees_ros_tutorials."
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "083fcaa6c78022c58e0c8af82ecb30c2"
 SRC_URI[sha256sum] = "d4792a78173a09b204e0f4bffc654a22b3401ff0bf8b6018930e085d18ea72ba"
 S = "${WORKDIR}/py_trees_ros_interfaces-release-release-crystal-py_trees_ros_interfaces-1.1.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('py-trees-ros-interfaces', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('py-trees-ros-interfaces', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('py-trees-ros-interfaces', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros-interfaces/py-trees-ros-interfaces_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros-interfaces/py-trees-ros-interfaces-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros-interfaces/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/py-trees-ros-interfaces/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('py-trees-ros-interfaces', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/py-trees-ros-interfaces/py-trees-ros-interfaces_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/py-trees-ros-interfaces/py-trees-ros-interfaces-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/py-trees-ros-interfaces/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/py-trees-ros-interfaces/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

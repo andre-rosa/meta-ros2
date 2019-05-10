@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "dummy sensor nodes"
@@ -52,16 +53,15 @@ SRC_URI[md5sum] = "3988b787ba5aab5a113412a1214c9d65"
 SRC_URI[sha256sum] = "9ad027e3adbca974a195d5ef9140a6b3042333e39d017c0520590127884e494c"
 S = "${WORKDIR}/demos-release-release-crystal-dummy_sensors-0.6.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('demos', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('demos', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/demos_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/demos-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('demos', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/demos_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/demos-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

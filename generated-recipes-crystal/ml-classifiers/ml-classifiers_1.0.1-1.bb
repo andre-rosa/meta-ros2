@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ml_classifiers"
@@ -69,16 +70,15 @@ SRC_URI[md5sum] = "0969fc98feed3baf7f76900ced60e00e"
 SRC_URI[sha256sum] = "fe5ced50553b27c4c5ffd272d1d51ccc8264289d8c506eba7600efd82ff9bed8"
 S = "${WORKDIR}/ml_classifiers-release-release-crystal-ml_classifiers-1.0.1-1"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ml-classifiers', d)}"
 ROS_BUILD_TYPE = "catkin"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('ml-classifiers', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('ml-classifiers', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ml-classifiers/ml-classifiers_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ml-classifiers/ml-classifiers-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ml-classifiers/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/ml-classifiers/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('ml-classifiers', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ml-classifiers/ml-classifiers_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ml-classifiers/ml-classifiers-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ml-classifiers/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/ml-classifiers/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

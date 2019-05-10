@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Wrapper around libyaml, provides the last version (1.8.0 rc) that ships with a CMake module"
@@ -42,16 +43,15 @@ SRC_URI[md5sum] = "c70cb2bfde7747051c052bb3c839d6e6"
 SRC_URI[sha256sum] = "54515207095b2974e152995adc92a9d0bf88b885336bbefcc26ca404af305188"
 S = "${WORKDIR}/libyaml_vendor-release-release-crystal-libyaml_vendor-1.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('libyaml-vendor', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('libyaml-vendor', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('libyaml-vendor', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libyaml-vendor/libyaml-vendor_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libyaml-vendor/libyaml-vendor-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libyaml-vendor/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/libyaml-vendor/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('libyaml-vendor', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libyaml-vendor/libyaml-vendor_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libyaml-vendor/libyaml-vendor-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libyaml-vendor/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/libyaml-vendor/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

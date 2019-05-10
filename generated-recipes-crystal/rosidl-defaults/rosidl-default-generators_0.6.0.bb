@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A configuration package defining the default ROS interface generators."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "1ee10c955b39f3f0055b313abb92b07b"
 SRC_URI[sha256sum] = "0d994dd35ba40f84ae30f6ef0d14a5d00acfd24ca660e55b05a3882e811802a3"
 S = "${WORKDIR}/rosidl_defaults-release-release-crystal-rosidl_default_generators-0.6.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosidl-defaults', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosidl-defaults', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl-defaults', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-defaults/rosidl-defaults_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-defaults/rosidl-defaults-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-defaults/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-defaults/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosidl-defaults', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-defaults/rosidl-defaults_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-defaults/rosidl-defaults-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-defaults/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-defaults/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

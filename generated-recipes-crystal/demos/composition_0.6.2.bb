@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Examples for composing multiple nodes in a single process."
@@ -66,16 +67,15 @@ SRC_URI[md5sum] = "6d262c6edd1a0c4c6167e2790bdf76c8"
 SRC_URI[sha256sum] = "c85ad022454c92e1dd338ca1a30bf24033a260aa49eb582b4b022d35becba0e9"
 S = "${WORKDIR}/demos-release-release-crystal-composition-0.6.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('demos', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('demos', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/demos_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/demos-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/demos/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('demos', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/demos_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/demos-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/demos/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

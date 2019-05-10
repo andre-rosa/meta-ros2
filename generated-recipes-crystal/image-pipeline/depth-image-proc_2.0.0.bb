@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Contains nodelets for processing depth images such as those      produced by OpenNI camera. Functions include creating disparity      images and point clouds, as well as registering (reprojecting)      a depth image into another camera frame."
@@ -65,16 +66,15 @@ SRC_URI[md5sum] = "027231754dc674cda242e8a929f823f2"
 SRC_URI[sha256sum] = "ffea92a4b087654cdee1786eda631c4a98b1e7725e9824630a5706a8309b2f58"
 S = "${WORKDIR}/image_pipeline-release-release-crystal-depth_image_proc-2.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('image-pipeline', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('image-pipeline', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('image-pipeline', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/image-pipeline_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/image-pipeline-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/image-pipeline/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('image-pipeline', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-pipeline/image-pipeline_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-pipeline/image-pipeline-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-pipeline/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/image-pipeline/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

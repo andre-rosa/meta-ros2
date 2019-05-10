@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS messages for universally unique identifiers."
@@ -46,16 +47,15 @@ SRC_URI[md5sum] = "7f33e2f814062f22b40c70b9d44d04c8"
 SRC_URI[sha256sum] = "87eed67a35931d8ae852ed650b8b98049ee7af773fa97ba29ab0f0d42b5f3636"
 S = "${WORKDIR}/unique_identifier_msgs-release-release-crystal-unique_identifier_msgs-2.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('unique-identifier-msgs', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('unique-identifier-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('unique-identifier-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier-msgs/unique-identifier-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier-msgs/unique-identifier-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/unique-identifier-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('unique-identifier-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/unique-identifier-msgs/unique-identifier-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/unique-identifier-msgs/unique-identifier-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/unique-identifier-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/unique-identifier-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

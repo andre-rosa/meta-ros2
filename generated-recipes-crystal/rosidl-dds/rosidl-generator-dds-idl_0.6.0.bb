@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Generate the DDS interfaces for ROS interfaces."
@@ -48,16 +49,15 @@ SRC_URI[md5sum] = "84b07b413d321d949ff4ac288cd9a107"
 SRC_URI[sha256sum] = "48f52d487269aacba9ec8e4aa8a0d0646a659daea3042708c1b5a9ac1a32596a"
 S = "${WORKDIR}/rosidl_dds-release-release-crystal-rosidl_generator_dds_idl-0.6.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosidl-dds', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rosidl-dds', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rosidl-dds', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-dds/rosidl-dds_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-dds/rosidl-dds-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-dds/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rosidl-dds/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rosidl-dds', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-dds/rosidl-dds_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-dds/rosidl-dds-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-dds/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rosidl-dds/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

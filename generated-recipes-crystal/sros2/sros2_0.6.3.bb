@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Command line tools for managing SROS2 keys"
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "27030a4530d42ffd386622afe4a7b9b5"
 SRC_URI[sha256sum] = "006a7b5eef7f2d33a38be6367659eec3a17a901a35339c1b30fd64b4ab2b4f76"
 S = "${WORKDIR}/sros2-release-release-crystal-sros2-0.6.3-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('sros2', d)}"
 ROS_BUILD_TYPE = "ament_python"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sros2', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sros2', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/sros2_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/sros2-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sros2/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('sros2', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sros2/sros2_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sros2/sros2-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sros2/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sros2/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

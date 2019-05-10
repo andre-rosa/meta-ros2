@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Provides conversions from PCL data types and ROS message types"
@@ -59,16 +60,15 @@ SRC_URI[md5sum] = "9bbc58df44c99d29b6836e64301642a8"
 SRC_URI[sha256sum] = "10639c7bb949fbb1640fa0c27d8e4d3a98c05ce8d896314a9d68551b9d476c55"
 S = "${WORKDIR}/pcl_conversions-release-release-crystal-pcl_conversions-2.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pcl-conversions', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pcl-conversions', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pcl-conversions', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-conversions/pcl-conversions_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-conversions/pcl-conversions-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-conversions/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pcl-conversions/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pcl-conversions', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pcl-conversions/pcl-conversions_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pcl-conversions/pcl-conversions-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pcl-conversions/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pcl-conversions/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A library to access URDFs using the DOM model."
@@ -55,16 +56,15 @@ SRC_URI[md5sum] = "ad1ef872a612427434362728807f4d44"
 SRC_URI[sha256sum] = "27275c8ea3647c50538c85816341e1de41618345e4b54b9d30314886f9525b89"
 S = "${WORKDIR}/urdfdom-release-release-crystal-urdfdom-2.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('urdfdom', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('urdfdom', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('urdfdom', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom/urdfdom_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom/urdfdom-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/urdfdom/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('urdfdom', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom/urdfdom_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom/urdfdom-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/urdfdom/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

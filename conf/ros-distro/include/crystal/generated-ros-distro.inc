@@ -12,7 +12,7 @@ ROS_VERSION = "2"
 ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190509031251"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190509231909"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
@@ -1248,6 +1248,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     sqlite3 \
     suitesparse \
     tango-icon-theme \
+    udev \
     virtual/kernel \
     wxwidgets \
     zeromq \

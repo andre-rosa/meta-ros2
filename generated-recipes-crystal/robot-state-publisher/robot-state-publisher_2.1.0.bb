@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "ROS2 version of the robot_state_publisher package"
@@ -63,16 +64,15 @@ SRC_URI[md5sum] = "85d9320ca8251b76bd646912ad93024c"
 SRC_URI[sha256sum] = "d849ccbb30a8a45c01a4a67ab1c7fbcfa331902a2786e127739eb63182b539a1"
 S = "${WORKDIR}/robot_state_publisher-release-release-crystal-robot_state_publisher-2.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('robot-state-publisher', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('robot-state-publisher', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('robot-state-publisher', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-state-publisher/robot-state-publisher_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-state-publisher/robot-state-publisher-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-state-publisher/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/robot-state-publisher/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('robot-state-publisher', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-state-publisher/robot-state-publisher_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-state-publisher/robot-state-publisher-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-state-publisher/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/robot-state-publisher/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

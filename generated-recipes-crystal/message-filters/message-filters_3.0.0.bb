@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "A set of ROS2 message filters which take in messages and may output those messages at a later time, based on the conditions that filter needs met."
@@ -54,16 +55,15 @@ SRC_URI[md5sum] = "0ed19c71a6142e737191d8d21b7ef894"
 SRC_URI[sha256sum] = "8fe2f16068afc46bdb688496deda0717a80a87a0ec6730f1c6361c9176f63f9e"
 S = "${WORKDIR}/ros2_message_filters-release-release-crystal-message_filters-3.0.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('message-filters', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('message-filters', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('message-filters', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/message-filters_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/message-filters-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/message-filters/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('message-filters', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-filters/message-filters_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-filters/message-filters-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-filters/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/message-filters/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

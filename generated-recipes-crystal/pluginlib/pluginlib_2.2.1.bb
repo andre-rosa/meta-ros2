@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "The pluginlib package provides tools for writing and dynamically loading plugins using the ROS build infrastructure.     To work, these tools require plugin providers to register their plugins in the package.xml of their package."
@@ -60,16 +61,15 @@ SRC_URI[md5sum] = "0c5b93886e2b64f4335312c6d01e3612"
 SRC_URI[sha256sum] = "f520bff44d60282657c97f75a9eee211d9e49e0ed605450997a0155f774adbaf"
 S = "${WORKDIR}/pluginlib-release-release-crystal-pluginlib-2.2.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('pluginlib', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('pluginlib', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('pluginlib', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/pluginlib_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/pluginlib-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/pluginlib/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('pluginlib', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pluginlib/pluginlib_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pluginlib/pluginlib-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pluginlib/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/pluginlib/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

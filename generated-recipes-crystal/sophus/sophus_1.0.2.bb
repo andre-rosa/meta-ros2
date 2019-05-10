@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "C++ implementation of Lie Groups using Eigen."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "b35e8cb2a638c846d1258f10a13ee3f3"
 SRC_URI[sha256sum] = "bf2d15f293ed5fc5710b76bf6be309ddee55b910a37f34cc259b69bce11ef6f2"
 S = "${WORKDIR}/sophus-release-release-crystal-sophus-1.0.2-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('sophus', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('sophus', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('sophus', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sophus/sophus_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sophus/sophus-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sophus/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/sophus/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('sophus', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sophus/sophus_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sophus/sophus-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sophus/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/sophus/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "control_msgs contains base messages and actions useful for     controlling robots.  It provides representations for controller     setpoints and joint and cartesian trajectories."
@@ -65,16 +66,15 @@ SRC_URI[md5sum] = "fac8eb0b6daa69cdb897550f6d782766"
 SRC_URI[sha256sum] = "1d934b64b7a9fbb74be9ce80d1b4f1791c8c40e1128abf787845853e10bd4842"
 S = "${WORKDIR}/control_msgs-release-release-crystal-control_msgs-2.1.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('control-msgs', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('control-msgs', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('control-msgs', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-msgs/control-msgs_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-msgs/control-msgs-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-msgs/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/control-msgs/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('control-msgs', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/control-msgs/control-msgs_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/control-msgs/control-msgs-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/control-msgs/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/control-msgs/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

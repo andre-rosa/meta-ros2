@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "Library for capturing data from the Intel(R) RealSense(TM) SR300 and D400 cameras. This effort was initiated to better support researchers, creative coders, and app developers in domains such as robotics, virtual reality, and the internet of things. Several often-requested features of RealSense(TM); devices are implemented in this project, including multi-camera capture."
@@ -17,13 +18,13 @@ ROS_CN = "librealsense"
 ROS_BPN = "librealsense2"
 
 ROS_BUILD_DEPENDS = " \
-    eudev \
     glfw \
     gtk+3 \
     libusb1 \
     mesa \
     openssl \
     pkgconfig \
+    udev \
     virtual/kernel \
 "
 
@@ -32,24 +33,24 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    eudev \
     glfw \
     gtk+3 \
     libusb1 \
     mesa \
     openssl \
+    udev \
     virtual/kernel \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    eudev \
     glfw \
     gtk+3 \
     libusb1 \
     mesa \
     openssl \
+    udev \
     virtual/kernel \
 "
 
@@ -68,16 +69,15 @@ SRC_URI[md5sum] = "4c5b4cdf1c029e1163baa004464c0385"
 SRC_URI[sha256sum] = "cb95505e6a9a4d16ebb6ca7542eee7bca1afdfca36fd46aa6de30cb011d96b97"
 S = "${WORKDIR}/librealsense-release-release-crystal-librealsense2-2.16.5-2"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('librealsense', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('librealsense', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('librealsense', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/librealsense/librealsense_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/librealsense/librealsense-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/librealsense/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/librealsense/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('librealsense', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/librealsense/librealsense_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/librealsense/librealsense-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/librealsense/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/librealsense/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

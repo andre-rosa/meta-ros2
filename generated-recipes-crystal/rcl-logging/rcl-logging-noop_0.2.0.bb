@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "An rcl logger implementation that doesn't do anything with log messages."
@@ -51,16 +52,15 @@ SRC_URI[md5sum] = "6ef9d0ed2c776c8528af4fed9d037e66"
 SRC_URI[sha256sum] = "7820b3b21a0cd3964df0a6a60e6f385d4cd89ecc3dc59e8ae9c28b44f9bc0139"
 S = "${WORKDIR}/rcl_logging-release-release-crystal-rcl_logging_noop-0.2.0-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rcl-logging', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rcl-logging', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rcl-logging', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/rcl-logging_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/rcl-logging-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rcl-logging/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rcl-logging', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rcl-logging/rcl-logging_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rcl-logging/rcl-logging-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rcl-logging/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rcl-logging/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

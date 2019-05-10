@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "rqt_service_caller provides a GUI plugin for calling arbitrary services."
@@ -47,16 +48,15 @@ SRC_URI[md5sum] = "64c486ba9eebbbdd974d75c4ff8a874a"
 SRC_URI[sha256sum] = "d8850f2897289e4414da4a2daf77e2f00e81c24e6753668e18c257b32ad53917"
 S = "${WORKDIR}/rqt_service_caller-release-release-crystal-rqt_service_caller-1.0.1-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rqt-service-caller', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('rqt-service-caller', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('rqt-service-caller', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-service-caller/rqt-service-caller_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-service-caller/rqt-service-caller-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-service-caller/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/rqt-service-caller/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('rqt-service-caller', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-service-caller/rqt-service-caller_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-service-caller/rqt-service-caller-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-service-caller/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/rqt-service-caller/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}

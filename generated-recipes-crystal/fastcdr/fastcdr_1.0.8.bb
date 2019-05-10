@@ -3,6 +3,7 @@
 # Copyright 2019 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
+inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
 DESCRIPTION = "CDR serialization implementation."
@@ -42,16 +43,15 @@ SRC_URI[md5sum] = "522cafb80356c7e1488ce0f83eb9f290"
 SRC_URI[sha256sum] = "4ad70c34ca0db3146a4b1eaf0cefb85ffceb28087da57e4b0fd06345607d5935"
 S = "${WORKDIR}/fastcdr-release-release-crystal-fastcdr-1.0.8-0"
 
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('fastcdr', d)}"
 ROS_BUILD_TYPE = "cmake"
-ROS_COMPONENT_TYPE = "${@ros_common__get_component_type('fastcdr', d)}"
 
 # Allow the above settings to be overridden.
-ROS_RECIPES_TREE := "${@ros_superflore_generated__get_recipes_tree('fastcdr', d)}"
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastcdr/fastcdr_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastcdr/fastcdr-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastcdr/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_RECIPES_TREE}/fastcdr/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('fastcdr', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fastcdr/fastcdr_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fastcdr/fastcdr-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fastcdr/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/fastcdr/${BPN}-${PV}.inc
 
-inherit ros_distro_${ROS_DISTRO}
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}
