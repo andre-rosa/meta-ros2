@@ -16,3 +16,6 @@ PNBLACKLIST[packagegroup-ros1-kobuki] ?= "Not a ROS 2 package"
 # Initially, blacklist any non-platform recipes with multiple versions found by "bitbake-layers show-recipes --multiple". Remove
 # from the blacklist once a PREFERRED_VERSION_<PN> setting is made in ros-distro-preferred-versions.inc .
 # (none)
+
+# Others
+PNBLACKLIST[libyaml] ?= "Provided by libyaml-vendor"

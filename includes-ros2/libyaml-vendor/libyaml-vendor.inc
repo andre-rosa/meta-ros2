@@ -8,3 +8,6 @@ RPROVIDES_${PN}_bouncy += "libyaml"
 
 PROVIDES_crystal += "libyaml"
 RPROVIDES_${PN}_crystal += "libyaml"
+
+PROVIDES_dashing += "libyaml"
+RPROVIDES_${PN}_dashing += "libyaml"
