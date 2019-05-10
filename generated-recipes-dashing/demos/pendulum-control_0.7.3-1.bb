@@ -6,39 +6,50 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Package containing tools for monitoring ROS 2 topics."
-AUTHOR = "Scott K Logan <scott@openrobotics.org>"
-ROS_AUTHOR = "D. Hood"
+DESCRIPTION = "Demonstrates ROS 2's realtime capabilities with a simulated inverted pendulum."
+AUTHOR = "Michael Carroll <michael@openrobotics.org>"
+ROS_AUTHOR = "Jackie Kay"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "topic_monitor"
+ROS_BPN = "pendulum_control"
 
 ROS_BUILD_DEPENDS = " \
-    rclpy \
+    pendulum-msgs \
+    rclcpp \
+    rttest \
+    tlsf-cpp \
 "
 
-ROS_BUILDTOOL_DEPENDS = ""
+ROS_BUILDTOOL_DEPENDS = " \
+    ament-cmake-native \
+"
 
 ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    launch \
-    launch-ros \
-    rclpy \
-    std-msgs \
+    pendulum-msgs \
+    rclcpp \
+    rttest \
+    tlsf-cpp \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    ament-flake8 \
-    ament-pep257 \
-    python3-pytest \
+    ament-cmake-pytest \
+    ament-lint-auto \
+    ament-lint-common \
+    launch \
+    launch-testing \
+    launch-testing-ament-cmake \
+    launch-testing-ros \
+    rmw-implementation-cmake \
+    ros2run \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -48,13 +59,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/topic_monitor/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "550be88ad6c3309b767f78e01fa53e00"
-SRC_URI[sha256sum] = "df7cfc1d4a460eff08ef6c214cf71e4979359876bc8871090412acffc4baf057"
-S = "${WORKDIR}/demos-release-release-dashing-topic_monitor-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/pendulum_control/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "ed645ab2c7c9a8162a33eedddefea631"
+SRC_URI[sha256sum] = "7ae66b89986361373a79e463989b67e0d2c49439eb8c7f3f2e62b03eeecf076e"
+S = "${WORKDIR}/demos-release-release-dashing-pendulum_control-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
-ROS_BUILD_TYPE = "ament_python"
+ROS_BUILD_TYPE = "ament_cmake"
 
 # Allow the above settings to be overridden.
 ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('demos', d)}"

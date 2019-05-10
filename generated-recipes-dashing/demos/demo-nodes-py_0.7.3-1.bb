@@ -6,49 +6,37 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "C++ nodes which access the native handles of the rmw implemenation."
-AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+DESCRIPTION = "Python nodes which were previously in the ros2/examples repository but are now just used for demo purposes."
+AUTHOR = "Michael Carroll <michael@openrobotics.org>"
+ROS_AUTHOR = "Mikael Arguedas"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "demo_nodes_cpp_native"
+ROS_BPN = "demo_nodes_py"
 
-ROS_BUILD_DEPENDS = " \
-    rclcpp \
-    rmw-fastrtps-cpp \
-    std-msgs \
-"
+ROS_BUILD_DEPENDS = ""
 
-ROS_BUILDTOOL_DEPENDS = " \
-    ament-cmake-native \
-"
+ROS_BUILDTOOL_DEPENDS = ""
 
-ROS_EXPORT_DEPENDS = " \
-    rclcpp \
-    rmw-fastrtps-cpp \
-    std-msgs \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    rclcpp \
-    rmw-fastrtps-cpp \
+    example-interfaces \
+    rclpy \
     std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    ament-cmake-pytest \
-    ament-lint-auto \
-    ament-lint-common \
-    launch \
-    launch-testing \
-    launch-testing-ament-cmake \
-    launch-testing-ros \
+    ament-copyright \
+    ament-flake8 \
+    ament-pep257 \
+    python3-pytest \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -58,13 +46,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/demo_nodes_cpp_native/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "8489618530e1690237274e25a7fa6d58"
-SRC_URI[sha256sum] = "85c0bd034b1033457a12c1a218fd1f833a0de2e3dc40cae6d4aa24cf15ae8961"
-S = "${WORKDIR}/demos-release-release-dashing-demo_nodes_cpp_native-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/demo_nodes_py/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "01bac16a4cdfa8e42dcbea603a480f1e"
+SRC_URI[sha256sum] = "7047fc2b1c13ad16b4eb1ade48cf8450bcc2d5dc2ff064914c579f6bbe731139"
+S = "${WORKDIR}/demos-release-release-dashing-demo_nodes_py-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
-ROS_BUILD_TYPE = "ament_cmake"
+ROS_BUILD_TYPE = "ament_python"
 
 # Allow the above settings to be overridden.
 ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('demos', d)}"

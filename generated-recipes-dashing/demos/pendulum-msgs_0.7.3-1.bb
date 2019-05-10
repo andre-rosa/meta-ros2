@@ -6,19 +6,20 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "dummy sensor nodes"
-AUTHOR = "Karsten Knese <karsten@osrfoundation.org>"
+DESCRIPTION = "Custom messages for real-time pendulum control."
+AUTHOR = "Michael Carroll <michael@openrobotics.org>"
+ROS_AUTHOR = "Jackie Kay"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "dummy_sensors"
+ROS_BPN = "pendulum_msgs"
 
 ROS_BUILD_DEPENDS = " \
-    rclcpp \
-    sensor-msgs \
+    builtin-interfaces \
+    rosidl-default-generators \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -30,16 +31,12 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    rclcpp \
-    sensor-msgs \
+    builtin-interfaces \
+    rosidl-default-runtime \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = " \
-    ament-cmake-gtest \
-    ament-lint-auto \
-    ament-lint-common \
-"
+ROS_TEST_DEPENDS = ""
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually
@@ -48,10 +45,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/dummy_sensors/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "710f4fca5d3cb712f71f25fc325fde4e"
-SRC_URI[sha256sum] = "75b1360a0d1325f453c0944d1a51a339e54b619b3959748eaab4aca66aa2683d"
-S = "${WORKDIR}/demos-release-release-dashing-dummy_sensors-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/pendulum_msgs/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "79ab75c494e453d643d486299a0aa60f"
+SRC_URI[sha256sum] = "647199d4494b475125d62a5cbc91fbf7ddf3d73ed1bf6e13d35ed285836556f4"
+S = "${WORKDIR}/demos-release-release-dashing-pendulum_msgs-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

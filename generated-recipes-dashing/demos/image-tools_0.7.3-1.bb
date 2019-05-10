@@ -6,15 +6,15 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Demonstrations of intra process communication."
-AUTHOR = "William Woodall <william@osrfoundation.org>"
+DESCRIPTION = "Tools to capture and play back images to and from DDS subscriptions and publications."
+AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "intra_process_demo"
+ROS_BPN = "image_tools"
 
 ROS_BUILD_DEPENDS = " \
     opencv \
@@ -35,6 +35,7 @@ ROS_EXEC_DEPENDS = " \
     opencv \
     rclcpp \
     sensor-msgs \
+    std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -45,6 +46,7 @@ ROS_TEST_DEPENDS = " \
     launch \
     launch-testing \
     launch-testing-ament-cmake \
+    launch-testing-ros \
     rmw-implementation-cmake \
 "
 
@@ -55,10 +57,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/intra_process_demo/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "9715c1672e1b8b4f5718d4aa3381bf37"
-SRC_URI[sha256sum] = "1b58273ca3ca7a1497be3c44c771887de86166b4da5b41f62a472fed6fb82a0d"
-S = "${WORKDIR}/demos-release-release-dashing-intra_process_demo-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/image_tools/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "93bafdf23c6f9271258335749dde3816"
+SRC_URI[sha256sum] = "29d12daeed5853315a6ce8cc71191f03765309b0157040b0f4280b5149db6692"
+S = "${WORKDIR}/demos-release-release-dashing-image_tools-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
