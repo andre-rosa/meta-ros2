@@ -19,6 +19,7 @@ DISTRO_FEATURES_append = " ros-behaviortree-cpp-v3"
 # ROS_EXEC_DEPEND are also build tools. Manually add them here.
 ROS_SUPERFLORE_GENERATED_BUILDTOOLS += " \
     poco-vendor-native \
+    rcpputils-native \
     rcutils-native \
     rmw-native \
     rmw-fastrtps-cpp-native \
