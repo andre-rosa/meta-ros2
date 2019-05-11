@@ -7,6 +7,9 @@ RDEPENDS_${PN}_remove = "ament-cmake-clang-format"
 # Not used by "crystal"; this allows us to defer fixing log4cxx v0.10.0-13 until working on "melodic".
 RDEPENDS_${PN}_remove = "rcl-logging-log4cxx"
 
+# Needs work to launch qemu to run tests on image on build machine.
+RDEPENDS_${PN}_remove = "launch-testing-ament-cmake"
+
 # | CMake Error at .../cartographer/1.0.0-1-r0/recipe-sysroot/usr/lib/cmake/Ceres/CeresConfig.cmake:88 (message):
 # |   Failed to find Ceres - Missing requested Ceres components: [SuiteSparse]
 # |   (components requested: [SuiteSparse]).  Detected Ceres version: 1.14.0
