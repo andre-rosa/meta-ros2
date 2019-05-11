@@ -6,3 +6,7 @@ ROS_BUILD_DEPENDS += " \
     rosidl-typesupport-c \
     rosidl-typesupport-cpp \
 "
+
+ROS_BUILDTOOL_DEPENDS += " \
+    python3-numpy-native \
+"
