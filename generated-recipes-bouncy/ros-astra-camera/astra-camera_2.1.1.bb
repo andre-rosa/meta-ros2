@@ -20,11 +20,11 @@ ROS_BPN = "astra_camera"
 ROS_BUILD_DEPENDS = " \
     boost \
     builtin-interfaces \
-    eudev \
     git \
     libusb1 \
     rclcpp \
     sensor-msgs \
+    udev \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -34,10 +34,10 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     boost \
     builtin-interfaces \
-    eudev \
     libusb1 \
     rclcpp \
     sensor-msgs \
+    udev \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -45,10 +45,10 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     boost \
     builtin-interfaces \
-    eudev \
     libusb1 \
     rclcpp \
     sensor-msgs \
+    udev \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

@@ -12,7 +12,7 @@ ROS_VERSION = "2"
 ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190509232544"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190516002159"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
@@ -834,7 +834,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     cppcheck \
     cppunit \
     curl \
-    eudev \
     freetype \
     gflags \
     git \
@@ -872,6 +871,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     python3-pyyaml \
     python3-setuptools \
     qtbase \
+    udev \
     yaml-cpp \
     zlib \
 "
