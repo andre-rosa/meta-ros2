@@ -46,10 +46,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/RoverRobotics/ros2-keystroke-release/archive/release/crystal/keystroke/0.3.0-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "76932a1609fa7117fedfd0945e1462d6"
-SRC_URI[sha256sum] = "8307e9b7ca167d02250975689b9b77be1663f0525eb04e866f4f47d1c8b0980c"
-S = "${WORKDIR}/ros2-keystroke-release-release-crystal-keystroke-0.3.0-1"
+SRC_URI = "https://github.com/RoverRobotics/ros2-keystroke-release/archive/release/crystal/keystroke/0.3.0-2.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "01a3288a33d62084b34bd75b8c6ff376"
+SRC_URI[sha256sum] = "7f8f328829b31d38c84025fc2e56eaa55c6e194ee25bcb9b8487fcc67fd19cc1"
+S = "${WORKDIR}/ros2-keystroke-release-release-crystal-keystroke-0.3.0-2"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('keystroke', d)}"
 ROS_BUILD_TYPE = "ament_python"

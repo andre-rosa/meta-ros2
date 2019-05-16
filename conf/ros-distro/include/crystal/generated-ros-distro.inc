@@ -12,7 +12,7 @@ ROS_VERSION = "2"
 ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190509231909"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190516000627"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
@@ -554,7 +554,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     intra-process-demo_0.6.2 \
     joy_2.2.0-1 \
     kdl-parser_2.2.0 \
-    keystroke_0.3.0-1 \
+    keystroke_0.3.0-2 \
     laser-geometry_2.0.0 \
     launch_0.7.4 \
     launch-ros_0.7.4 \
@@ -1188,7 +1188,6 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     cppunit \
     curl \
     elfutils \
-    eudev \
     ffmpeg \
     freeglut \
     freetype \

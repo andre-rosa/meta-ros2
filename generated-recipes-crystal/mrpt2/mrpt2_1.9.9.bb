@@ -19,7 +19,6 @@ ROS_BPN = "mrpt2"
 
 ROS_BUILD_DEPENDS = " \
     assimp \
-    eudev \
     ffmpeg \
     freeglut \
     libeigen \
@@ -28,6 +27,7 @@ ROS_BUILD_DEPENDS = " \
     libusb1 \
     opencv \
     suitesparse \
+    udev \
     wxwidgets \
     zlib \
 "
@@ -38,7 +38,6 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     assimp \
-    eudev \
     ffmpeg \
     freeglut \
     libeigen \
@@ -47,6 +46,7 @@ ROS_EXPORT_DEPENDS = " \
     libusb1 \
     opencv \
     suitesparse \
+    udev \
     wxwidgets \
     zlib \
 "
@@ -55,7 +55,6 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     assimp \
-    eudev \
     ffmpeg \
     freeglut \
     libeigen \
@@ -64,6 +63,7 @@ ROS_EXEC_DEPENDS = " \
     libusb1 \
     opencv \
     suitesparse \
+    udev \
     wxwidgets \
     zlib \
 "
