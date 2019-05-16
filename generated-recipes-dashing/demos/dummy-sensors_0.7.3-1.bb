@@ -6,21 +6,19 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Tools to capture and play back images to and from DDS subscriptions and publications."
-AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
+DESCRIPTION = "dummy sensor nodes"
+AUTHOR = "Karsten Knese <karsten@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "image_tools"
+ROS_BPN = "dummy_sensors"
 
 ROS_BUILD_DEPENDS = " \
-    opencv \
     rclcpp \
     sensor-msgs \
-    std-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -32,22 +30,15 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    opencv \
     rclcpp \
     sensor-msgs \
-    std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    ament-cmake-pytest \
+    ament-cmake-gtest \
     ament-lint-auto \
     ament-lint-common \
-    launch \
-    launch-testing \
-    launch-testing-ament-cmake \
-    launch-testing-ros \
-    rmw-implementation-cmake \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -57,10 +48,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/image_tools/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "b753343bc9e06f861050aed4fc2dbb9a"
-SRC_URI[sha256sum] = "473832f647a876247db327ed7ffb62b224dc01425e7ec84db1098290fdcbd360"
-S = "${WORKDIR}/demos-release-release-dashing-image_tools-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/dummy_sensors/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "948e668ff435dd511bf2caa8d11c6c67"
+SRC_URI[sha256sum] = "777ba90b898fbc13f5bb789e25f5ffcaf44d90edb830445289d1c2a7977a4023"
+S = "${WORKDIR}/demos-release-release-dashing-dummy_sensors-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

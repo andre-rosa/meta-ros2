@@ -6,27 +6,28 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "C++ nodes which were previously in the ros2/examples repository but are now just used for demo purposes."
-AUTHOR = "William Woodall <william@osrfoundation.org>"
+DESCRIPTION = "Examples for using and configuring loggers."
+AUTHOR = "Scott K Logan <scott@openrobotics.org>"
+ROS_AUTHOR = "D. Hood"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "demo_nodes_cpp"
+ROS_BPN = "logging_demo"
 
 ROS_BUILD_DEPENDS = " \
-    example-interfaces \
     rclcpp \
+    rclcpp-components \
     rcutils \
-    rmw \
-    rmw-implementation-cmake \
+    rosidl-cmake \
     std-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
+    rosidl-default-generators-native \
 "
 
 ROS_EXPORT_DEPENDS = ""
@@ -34,11 +35,10 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    example-interfaces \
-    launch-ros \
     rclcpp \
+    rclcpp-components \
     rcutils \
-    rmw \
+    rosidl-default-runtime \
     std-msgs \
 "
 
@@ -51,6 +51,7 @@ ROS_TEST_DEPENDS = " \
     launch-testing \
     launch-testing-ament-cmake \
     launch-testing-ros \
+    rmw-implementation-cmake \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -60,10 +61,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/demo_nodes_cpp/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "ebd1c183acb4abac10555fc95d0846f9"
-SRC_URI[sha256sum] = "3f5ae2d33aafef822201ccd8c305b251c10d8762208a6fea05b8ac5a1828e4bd"
-S = "${WORKDIR}/demos-release-release-dashing-demo_nodes_cpp-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/logging_demo/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "d1a323cb27cfe28d52a68e6f278fe69d"
+SRC_URI[sha256sum] = "61e3d0702f44c7c0b1e21ac2e5bb4c30b5faec7e4370038f8d5084878547078d"
+S = "${WORKDIR}/demos-release-release-dashing-logging_demo-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

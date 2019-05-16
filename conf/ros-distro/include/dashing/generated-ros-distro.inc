@@ -12,7 +12,7 @@ ROS_VERSION = "2"
 ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190510170731"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190516003007"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
@@ -151,6 +151,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     map-msgs \
     message-filters \
     nav-msgs \
+    object-msgs \
     orocos-kdl \
     osrf-pycommon \
     osrf-testing-tools-cpp \
@@ -354,17 +355,17 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     cartographer_1.0.0-1 \
     class-loader_1.3.1-1 \
     common-interfaces_0.7.0-1 \
-    composition_0.7.2-1 \
+    composition_0.7.3-1 \
     composition-interfaces_0.7.2-1 \
     console-bridge-vendor_1.2.0-1 \
     cv-bridge_2.1.1-1 \
-    demo-nodes-cpp_0.7.2-1 \
-    demo-nodes-cpp-rosnative_0.7.2-1 \
-    demo-nodes-py_0.7.2-1 \
+    demo-nodes-cpp_0.7.3-1 \
+    demo-nodes-cpp-rosnative_0.7.3-1 \
+    demo-nodes-py_0.7.3-1 \
     diagnostic-msgs_0.7.0-1 \
-    dummy-map-server_0.7.2-1 \
-    dummy-robot-bringup_0.7.2-1 \
-    dummy-sensors_0.7.2-1 \
+    dummy-map-server_0.7.3-1 \
+    dummy-robot-bringup_0.7.3-1 \
+    dummy-sensors_0.7.3-1 \
     example-interfaces_0.7.0-1 \
     examples-rclcpp-minimal-action-client_0.7.1-1 \
     examples-rclcpp-minimal-action-server_0.7.1-1 \
@@ -388,9 +389,9 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     gmock-vendor_1.8.9000-1 \
     gtest-vendor_1.8.9000-1 \
     image-geometry_2.1.1-1 \
-    image-tools_0.7.2-1 \
+    image-tools_0.7.3-1 \
     image-transport_2.1.0-1 \
-    intra-process-demo_0.7.2-1 \
+    intra-process-demo_0.7.3-1 \
     joy_2.2.0-1 \
     kdl-parser_2.2.0-1 \
     laser-geometry_2.0.0 \
@@ -401,18 +402,19 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     launch-testing-ros_0.8.1-1 \
     libcurl-vendor_2.1.0-2 \
     libyaml-vendor_1.0.0-1 \
-    lifecycle_0.7.2-1 \
+    lifecycle_0.7.3-1 \
     lifecycle-msgs_0.7.2-1 \
-    logging-demo_0.7.2-1 \
+    logging-demo_0.7.3-1 \
     map-msgs_2.0.1 \
     message-filters_3.1.1-1 \
     nav-msgs_0.7.0-1 \
+    object-msgs_0.4.0 \
     orocos-kdl_3.2.0-1 \
     osrf-pycommon_0.1.7-1 \
     osrf-testing-tools-cpp_1.2.0-1 \
     pcl-conversions_2.0.0-1 \
-    pendulum-control_0.7.2-1 \
-    pendulum-msgs_0.7.2-1 \
+    pendulum-control_0.7.3-1 \
+    pendulum-msgs_0.7.3-1 \
     pluginlib_2.3.1-1 \
     poco-vendor_1.2.0-1 \
     python-cmake-module_0.7.3-1 \
@@ -540,7 +542,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     tinyxml2-vendor_0.6.1-1 \
     tlsf_0.5.0-1 \
     tlsf-cpp_0.7.1-1 \
-    topic-monitor_0.7.2-1 \
+    topic-monitor_0.7.3-1 \
     trajectory-msgs_0.7.0-1 \
     uncrustify-vendor_1.2.0-1 \
     unique-identifier-msgs_2.1.0-1 \
@@ -665,6 +667,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     map-msgs \
     message-filters \
     nav-msgs \
+    object-msgs \
     orocos-kdl \
     osrf-pycommon \
     osrf-testing-tools-cpp \
@@ -989,6 +992,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     libyaml-vendor \
     message-filters \
     navigation-msgs \
+    object-msgs \
     orocos-kinematics-dynamics \
     osrf-pycommon \
     osrf-testing-tools-cpp \

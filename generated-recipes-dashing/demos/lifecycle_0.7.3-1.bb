@@ -6,28 +6,24 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Examples for using and configuring loggers."
-AUTHOR = "Scott K Logan <scott@openrobotics.org>"
-ROS_AUTHOR = "D. Hood"
+DESCRIPTION = "Package containing demos for lifecycle implementation"
+AUTHOR = "Karsten Knese <karsten@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "logging_demo"
+ROS_BPN = "lifecycle"
 
 ROS_BUILD_DEPENDS = " \
-    rclcpp \
-    rclcpp-components \
-    rcutils \
-    rosidl-cmake \
+    lifecycle-msgs \
+    rclcpp-lifecycle \
     std-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
-    rosidl-default-generators-native \
 "
 
 ROS_EXPORT_DEPENDS = ""
@@ -35,23 +31,16 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    rclcpp \
-    rclcpp-components \
-    rcutils \
-    rosidl-default-runtime \
+    lifecycle-msgs \
+    rclcpp-lifecycle \
+    ros2run \
     std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    ament-cmake-pytest \
     ament-lint-auto \
     ament-lint-common \
-    launch \
-    launch-testing \
-    launch-testing-ament-cmake \
-    launch-testing-ros \
-    rmw-implementation-cmake \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -61,10 +50,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/logging_demo/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "ca91e55cd1a5df0e8f02bea5b4ba3cb9"
-SRC_URI[sha256sum] = "c6a7ba26ff069f9ffcae4f706b7f59999eab2091ca49ebc8f99b3bb11a3834c1"
-S = "${WORKDIR}/demos-release-release-dashing-logging_demo-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/lifecycle/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "6d0f5664124ada54c5937ea1666043a8"
+SRC_URI[sha256sum] = "c0de7b6097ac780ca27178b38c9e09befc4ab02c76ebb04dc145411ad51c5ef1"
+S = "${WORKDIR}/demos-release-release-dashing-lifecycle-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

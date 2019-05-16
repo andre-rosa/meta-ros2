@@ -6,20 +6,22 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Custom messages for real-time pendulum control."
-AUTHOR = "Michael Carroll <michael@openrobotics.org>"
-ROS_AUTHOR = "Jackie Kay"
+DESCRIPTION = "Examples for composing multiple nodes in a single process."
+AUTHOR = "Dirk Thomas <dthomas@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "pendulum_msgs"
+ROS_BPN = "composition"
 
 ROS_BUILD_DEPENDS = " \
-    builtin-interfaces \
-    rosidl-default-generators \
+    example-interfaces \
+    rclcpp \
+    rclcpp-components \
+    rcutils \
+    std-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -31,12 +33,25 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    builtin-interfaces \
-    rosidl-default-runtime \
+    example-interfaces \
+    launch-ros \
+    rclcpp \
+    rclcpp-components \
+    rcutils \
+    std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = ""
+ROS_TEST_DEPENDS = " \
+    ament-cmake-pytest \
+    ament-lint-auto \
+    ament-lint-common \
+    launch \
+    launch-testing \
+    launch-testing-ament-cmake \
+    launch-testing-ros \
+    rmw-implementation-cmake \
+"
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually
@@ -45,10 +60,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/pendulum_msgs/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "e1edd8d0e61272bd21c6cafb76928f99"
-SRC_URI[sha256sum] = "c180a464b7b5a3bd5df9d980ec88195d0579c41b2eb4ef7aca83a37915718e2d"
-S = "${WORKDIR}/demos-release-release-dashing-pendulum_msgs-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/composition/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "4767b9e715288cb076dc15cfcd878f0a"
+SRC_URI[sha256sum] = "42926d19fea689fddd1e96860ca6f7263634255d3fbc06459867f7664e701b4c"
+S = "${WORKDIR}/demos-release-release-dashing-composition-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

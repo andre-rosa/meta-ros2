@@ -6,37 +6,39 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Python nodes which were previously in the ros2/examples repository but are now just used for demo purposes."
-AUTHOR = "Michael Carroll <michael@openrobotics.org>"
-ROS_AUTHOR = "Mikael Arguedas"
+DESCRIPTION = "dummy map server node"
+AUTHOR = "Karsten Knese <karsten@osrfoundation.org>"
 HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=12c26a18c7f493fdc7e8a93b16b7c04f"
 
 ROS_CN = "demos"
-ROS_BPN = "demo_nodes_py"
+ROS_BPN = "dummy_map_server"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    nav-msgs \
+    rclcpp \
+"
 
-ROS_BUILDTOOL_DEPENDS = ""
+ROS_BUILDTOOL_DEPENDS = " \
+    ament-cmake-native \
+"
 
 ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    example-interfaces \
-    rclpy \
-    std-msgs \
+    nav-msgs \
+    rclcpp \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
-    ament-copyright \
-    ament-flake8 \
-    ament-pep257 \
-    python3-pytest \
+    ament-cmake-gtest \
+    ament-lint-auto \
+    ament-lint-common \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
@@ -46,13 +48,13 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/demo_nodes_py/0.7.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "826990a6059319324dbad63fb2ca1549"
-SRC_URI[sha256sum] = "3b0f15baf527b4019f7581736327c99665ca600291a3fc8f1129d6bd52816f96"
-S = "${WORKDIR}/demos-release-release-dashing-demo_nodes_py-0.7.2-1"
+SRC_URI = "https://github.com/ros2-gbp/demos-release/archive/release/dashing/dummy_map_server/0.7.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "ebe263bf3fbfcb1678f6d1e5ae561133"
+SRC_URI[sha256sum] = "d62c3b66936b3c4376a9a9921787709edd9808477f8bc2fa96bc75515a8f831e"
+S = "${WORKDIR}/demos-release-release-dashing-dummy_map_server-0.7.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('demos', d)}"
-ROS_BUILD_TYPE = "ament_python"
+ROS_BUILD_TYPE = "ament_cmake"
 
 # Allow the above settings to be overridden.
 ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('demos', d)}"

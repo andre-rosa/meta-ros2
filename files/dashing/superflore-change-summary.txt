@@ -1,6 +1,6 @@
 dashing/superflore-change-summary.txt
 -----
-On branch yocto-bot-qCZfkqzcoU
+On branch yocto-bot-xkDFndLSMQ
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
@@ -69,20 +69,20 @@ Changes not staged for commit:
 	new file:   generated-recipes-dashing/common-interfaces/trajectory-msgs_0.7.0-1.bb
 	new file:   generated-recipes-dashing/common-interfaces/visualization-msgs_0.7.0-1.bb
 	new file:   generated-recipes-dashing/console-bridge-vendor/console-bridge-vendor_1.2.0-1.bb
-	new file:   generated-recipes-dashing/demos/composition_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/demo-nodes-cpp-rosnative_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/demo-nodes-cpp_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/demo-nodes-py_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/dummy-map-server_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/dummy-robot-bringup_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/dummy-sensors_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/image-tools_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/intra-process-demo_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/lifecycle_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/logging-demo_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/pendulum-control_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/pendulum-msgs_0.7.2-1.bb
-	new file:   generated-recipes-dashing/demos/topic-monitor_0.7.2-1.bb
+	new file:   generated-recipes-dashing/demos/composition_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/demo-nodes-cpp-rosnative_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/demo-nodes-cpp_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/demo-nodes-py_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/dummy-map-server_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/dummy-robot-bringup_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/dummy-sensors_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/image-tools_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/intra-process-demo_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/lifecycle_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/logging-demo_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/pendulum-control_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/pendulum-msgs_0.7.3-1.bb
+	new file:   generated-recipes-dashing/demos/topic-monitor_0.7.3-1.bb
 	new file:   generated-recipes-dashing/example-interfaces/example-interfaces_0.7.0-1.bb
 	new file:   generated-recipes-dashing/examples/examples-rclcpp-minimal-action-client_0.7.1-1.bb
 	new file:   generated-recipes-dashing/examples/examples-rclcpp-minimal-action-server_0.7.1-1.bb
@@ -124,6 +124,7 @@ Changes not staged for commit:
 	new file:   generated-recipes-dashing/libyaml-vendor/libyaml-vendor_1.0.0-1.bb
 	new file:   generated-recipes-dashing/message-filters/message-filters_3.1.1-1.bb
 	new file:   generated-recipes-dashing/navigation-msgs/map-msgs_2.0.1.bb
+	new file:   generated-recipes-dashing/object-msgs/object-msgs_0.4.0.bb
 	new file:   generated-recipes-dashing/orocos-kinematics-dynamics/orocos-kdl_3.2.0-1.bb
 	new file:   generated-recipes-dashing/osrf-pycommon/osrf-pycommon_0.1.7-1.bb
 	new file:   generated-recipes-dashing/osrf-testing-tools-cpp/osrf-testing-tools-cpp_1.2.0-1.bb
