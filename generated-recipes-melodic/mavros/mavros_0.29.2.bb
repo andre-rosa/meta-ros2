@@ -25,6 +25,7 @@ ROS_BUILD_DEPENDS = " \
     diagnostic-updater \
     eigen-conversions \
     geographic-msgs \
+    geographiclib \
     geographiclib-tools \
     geometry-msgs \
     libeigen \
@@ -52,6 +53,7 @@ ROS_EXPORT_DEPENDS = " \
     diagnostic-updater \
     eigen-conversions \
     geographic-msgs \
+    geographiclib \
     geographiclib-tools \
     geometry-msgs \
     libeigen \

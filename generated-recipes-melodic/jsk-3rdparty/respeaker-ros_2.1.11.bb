@@ -30,6 +30,7 @@ ROS_EXPORT_DEPENDS = " \
     audio-common-msgs \
     dynamic-reconfigure \
     geometry-msgs \
+    python-numpy \
     python-pyaudio \
     python-pyusb-pip \
     std-msgs \
@@ -43,6 +44,7 @@ ROS_EXEC_DEPENDS = " \
     audio-common-msgs \
     dynamic-reconfigure \
     geometry-msgs \
+    python-numpy \
     python-pyaudio \
     python-pyusb-pip \
     std-msgs \

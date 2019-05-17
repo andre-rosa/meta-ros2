@@ -21,6 +21,7 @@ ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     moveit-msgs \
     pybind11-catkin \
+    python-matplotlib \
     python-pyassimp \
     shape-msgs \
 "
@@ -34,6 +35,7 @@ ROS_EXPORT_DEPENDS = " \
     geometry-msgs \
     moveit-msgs \
     pybind11-catkin \
+    python-matplotlib \
     python-pyassimp \
     shape-msgs \
 "
@@ -45,6 +47,7 @@ ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     moveit-msgs \
     pybind11-catkin \
+    python-matplotlib \
     python-pyassimp \
     shape-msgs \
 "

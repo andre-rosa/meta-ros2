@@ -32,6 +32,8 @@ ROS_EXPORT_DEPENDS = " \
     py-trees \
     py-trees-msgs \
     python-pygraphviz \
+    python-rospkg \
+    python-termcolor \
     qt-dotgraph \
     rospy \
     rqt-bag \
@@ -48,6 +50,8 @@ ROS_EXEC_DEPENDS = " \
     py-trees \
     py-trees-msgs \
     python-pygraphviz \
+    python-rospkg \
+    python-termcolor \
     qt-dotgraph \
     rospy \
     rqt-bag \

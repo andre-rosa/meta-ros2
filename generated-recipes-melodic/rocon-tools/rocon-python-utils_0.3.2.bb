@@ -18,6 +18,7 @@ ROS_CN = "rocon_tools"
 ROS_BPN = "rocon_python_utils"
 
 ROS_BUILD_DEPENDS = " \
+    python-catkin-pkg \
     rostest \
 "
 
@@ -26,6 +27,8 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    python-catkin-pkg \
+    python-rospkg \
     rocon-std-msgs \
     roslib \
     rospy \
@@ -34,6 +37,8 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    python-catkin-pkg \
+    python-rospkg \
     rocon-std-msgs \
     roslib \
     rospy \

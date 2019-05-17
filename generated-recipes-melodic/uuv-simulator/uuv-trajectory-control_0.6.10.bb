@@ -29,7 +29,10 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     nav-msgs \
+    python-matplotlib \
+    python-numpy \
     python-scipy \
+    python-yaml \
     roslib \
     rospy \
     std-msgs \

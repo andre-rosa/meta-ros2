@@ -24,6 +24,7 @@ ROS_BUILD_DEPENDS = " \
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
+    python-catkin-pkg-native \
 "
 
 ROS_EXPORT_DEPENDS = " \

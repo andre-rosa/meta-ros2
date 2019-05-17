@@ -35,6 +35,7 @@ ROS_EXPORT_DEPENDS = " \
     angles \
     boost \
     libeigen \
+    python-numpy \
     roscpp \
     sensor-msgs \
     tf \
@@ -46,6 +47,7 @@ ROS_EXEC_DEPENDS = " \
     angles \
     boost \
     libeigen \
+    python-numpy \
     roscpp \
     sensor-msgs \
     tf \

@@ -17,12 +17,16 @@ ROS_CN = "jsk_3rdparty"
 ROS_BPN = "ff"
 
 ROS_BUILD_DEPENDS = " \
+    bison \
+    ca-certificates \
+    flex \
     mk \
     openssl \
     rosbash \
     rosbuild \
     roslib \
     rospack \
+    unzip \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \

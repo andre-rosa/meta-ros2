@@ -54,10 +54,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/facontidavide/ros_type_introspection-release/archive/release/melodic/ros_type_introspection/1.3.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "9f5aa03dc0ca1bc5948ec7c8004089e0"
-SRC_URI[sha256sum] = "df29da398149ab315bb922a74ef712841a546a8056554e3d9bc54ff0169e9eb3"
-S = "${WORKDIR}/ros_type_introspection-release-release-melodic-ros_type_introspection-1.3.2-1"
+SRC_URI = "https://github.com/facontidavide/ros_type_introspection-release/archive/release/melodic/ros_type_introspection/1.3.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "c55f8ff69d934ab204e5fd1948285324"
+SRC_URI[sha256sum] = "95cc396b2deeddef4a447980088c3a45ebaf58b5200417d9c7c9b0ff96c77e19"
+S = "${WORKDIR}/ros_type_introspection-release-release-melodic-ros_type_introspection-1.3.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('ros-type-introspection', d)}"
 ROS_BUILD_TYPE = "catkin"

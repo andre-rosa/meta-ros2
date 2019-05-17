@@ -27,6 +27,7 @@ ROS_EXPORT_DEPENDS = " \
     catkin \
     genmsg \
     genpy \
+    python-rospkg \
     rosbag \
     roslib \
 "
@@ -37,6 +38,7 @@ ROS_EXEC_DEPENDS = " \
     catkin \
     genmsg \
     genpy \
+    python-rospkg \
     rosbag \
     roslib \
 "

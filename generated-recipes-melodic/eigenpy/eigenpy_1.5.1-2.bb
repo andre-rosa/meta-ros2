@@ -20,6 +20,8 @@ ROS_BUILD_DEPENDS = " \
     boost \
     git \
     libeigen \
+    python \
+    python-numpy \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -29,6 +31,8 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     boost \
     libeigen \
+    python \
+    python-numpy \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -36,6 +40,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     boost \
     libeigen \
+    python \
+    python-numpy \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

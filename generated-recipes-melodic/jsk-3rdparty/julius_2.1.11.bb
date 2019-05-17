@@ -20,17 +20,28 @@ ROS_BUILD_DEPENDS = " \
     mk \
     roslib \
     rospack \
+    rsync \
+    unzip \
+    wget \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    rsync \
+    unzip \
+    wget \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = ""
+ROS_EXEC_DEPENDS = " \
+    rsync \
+    unzip \
+    wget \
+"
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = ""

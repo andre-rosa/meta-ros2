@@ -25,6 +25,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     calibration-msgs \
+    python-matplotlib \
     python-orocos-kdl \
     python-scipy \
     rospy \
@@ -38,6 +39,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     calibration-msgs \
+    python-matplotlib \
     python-orocos-kdl \
     python-scipy \
     rospy \

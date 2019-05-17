@@ -56,10 +56,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/roslisp_common/0.2.10-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "3a0bf0c218d66a30febba0ce9826b78c"
-SRC_URI[sha256sum] = "08017837c37e5b4edb4a27ebe6c26b7468afca2ce261104cdbf22df54d044491"
-S = "${WORKDIR}/roslisp_common-release-release-melodic-roslisp_common-0.2.10-0"
+SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/roslisp_common/0.2.11-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "64cad90d5f8bde39111d7ae6cf4444a6"
+SRC_URI[sha256sum] = "9713aa6ed10fbf44506b1c8cb072dda99d99bcc1562f723de47eefbe0690773c"
+S = "${WORKDIR}/roslisp_common-release-release-melodic-roslisp_common-0.2.11-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roslisp-common', d)}"
 ROS_BUILD_TYPE = "catkin"

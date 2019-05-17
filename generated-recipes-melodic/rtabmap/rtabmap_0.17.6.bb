@@ -18,6 +18,7 @@ ROS_CN = "rtabmap"
 ROS_BPN = "rtabmap"
 
 ROS_BUILD_DEPENDS = " \
+    acpica \
     cv-bridge \
     libfreenect-dev \
     libg2o \

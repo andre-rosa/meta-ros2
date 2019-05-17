@@ -35,6 +35,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     message-runtime \
+    python-yaml \
     rospy \
     std-msgs \
     tf \

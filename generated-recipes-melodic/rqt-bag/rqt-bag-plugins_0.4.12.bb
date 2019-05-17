@@ -26,6 +26,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     geometry-msgs \
     python-cairo \
+    python-imaging \
     rosbag \
     roslib \
     rospy \
@@ -42,6 +43,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     python-cairo \
+    python-imaging \
     rosbag \
     roslib \
     rospy \

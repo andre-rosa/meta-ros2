@@ -34,6 +34,7 @@ ROS_EXPORT_DEPENDS = " \
     bondpy \
     message-runtime \
     nodelet \
+    python-yaml \
     roslaunch \
     rospy \
     std-msgs \
@@ -46,6 +47,7 @@ ROS_EXEC_DEPENDS = " \
     bondpy \
     message-runtime \
     nodelet \
+    python-yaml \
     roslaunch \
     rospy \
     std-msgs \
@@ -55,7 +57,9 @@ ROS_EXEC_DEPENDS = " \
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
     geometry-msgs \
+    python-coverage \
     python-mock \
+    python-pep8 \
     rosservice \
 "
 

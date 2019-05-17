@@ -20,9 +20,11 @@ ROS_BPN = "libsiftfast"
 ROS_BUILD_DEPENDS = " \
     boost \
     mk \
+    python-numpy \
     rosboost-cfg \
     roslib \
     rospack \
+    subversion \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -31,12 +33,14 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     boost \
+    python-numpy \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     boost \
+    python-numpy \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

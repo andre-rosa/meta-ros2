@@ -18,7 +18,9 @@ ROS_CN = "openrtm_aist_python"
 ROS_BPN = "openrtm_aist_python"
 
 ROS_BUILD_DEPENDS = " \
+    doxygen \
     python-omniorb \
+    python-setuptools \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \

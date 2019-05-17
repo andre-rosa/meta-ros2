@@ -28,12 +28,16 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     cv-bridge \
+    iproute2 \
     jsk-gui-msgs \
     jsk-network-tools \
     jsk-topic-tools \
+    python-colorama \
     python-percol \
     python-progressbar \
     python-pygithub3 \
+    python-requests \
+    python-rosdep \
     python-slacker-cli \
     python-tabulate-pip \
     python-texttable \
@@ -48,12 +52,16 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     cv-bridge \
+    iproute2 \
     jsk-gui-msgs \
     jsk-network-tools \
     jsk-topic-tools \
+    python-colorama \
     python-percol \
     python-progressbar \
     python-pygithub3 \
+    python-requests \
+    python-rosdep \
     python-slacker-cli \
     python-tabulate-pip \
     python-texttable \

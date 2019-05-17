@@ -19,6 +19,7 @@ ROS_BPN = "trac_ik_python"
 
 ROS_BUILD_DEPENDS = " \
     rospy \
+    swig \
     tf-conversions \
     trac-ik-lib \
 "
@@ -29,6 +30,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     rospy \
+    swig \
     tf \
     tf-conversions \
     trac-ik-lib \
@@ -38,6 +40,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     rospy \
+    swig \
     tf \
     tf-conversions \
     trac-ik-lib \

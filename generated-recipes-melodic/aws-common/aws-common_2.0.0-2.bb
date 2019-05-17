@@ -19,6 +19,7 @@ ROS_BPN = "aws_common"
 
 ROS_BUILD_DEPENDS = " \
     catkin \
+    crossguid \
     curl \
     openssl \
     ros-environment \
@@ -30,6 +31,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    crossguid \
     curl \
     openssl \
     zlib \
@@ -38,6 +40,7 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    crossguid \
     curl \
     openssl \
     zlib \

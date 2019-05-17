@@ -34,6 +34,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     cv-bridge \
     dynamic-reconfigure \
+    python-enum34 \
+    python-numpy \
     python-opencv \
     rospy \
     sensor-msgs \

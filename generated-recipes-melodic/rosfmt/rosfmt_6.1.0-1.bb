@@ -47,10 +47,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/xqms/rosfmt-release/archive/release/melodic/rosfmt/6.0.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "9bca04c255f31b4a7513c4ffd0a16d74"
-SRC_URI[sha256sum] = "e1ad333968f25d127063d05379f33345f56fa5fa9d195f24c69d9139b9013770"
-S = "${WORKDIR}/rosfmt-release-release-melodic-rosfmt-6.0.0-0"
+SRC_URI = "https://github.com/xqms/rosfmt-release/archive/release/melodic/rosfmt/6.1.0-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "41d4f01a334eb428a8f76ef4d9e3eb54"
+SRC_URI[sha256sum] = "8863afa48a520a2e262575c5a650c6258e5da038400063889cc44ef42bfcce3d"
+S = "${WORKDIR}/rosfmt-release-release-melodic-rosfmt-6.1.0-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('rosfmt', d)}"
 ROS_BUILD_TYPE = "catkin"

@@ -22,6 +22,7 @@ ROS_BUILD_DEPENDS = " \
     actionlib-msgs \
     actionlib-tutorials \
     angles \
+    coreutils \
     dynamic-reconfigure \
     euslisp \
     geneus \

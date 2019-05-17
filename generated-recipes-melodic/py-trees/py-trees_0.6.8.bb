@@ -17,7 +17,9 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9de
 ROS_CN = "py_trees"
 ROS_BPN = "py_trees"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    python-setuptools \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -28,6 +30,7 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    python-enum34 \
     python-pydot \
 "
 

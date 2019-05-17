@@ -18,11 +18,13 @@ ROS_BPN = "assimp_devel"
 
 ROS_BUILD_DEPENDS = " \
     boost \
+    ca-certificates \
     git \
     mk \
     openssl \
     rosboost-cfg \
     rosbuild \
+    unzip \
     zlib \
 "
 

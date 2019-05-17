@@ -26,6 +26,7 @@ ROS_BUILD_DEPENDS = " \
     moveit-ros-move-group \
     moveit-ros-planning \
     moveit-ros-warehouse \
+    python \
     rosconsole \
     roscpp \
     rospy \
@@ -37,6 +38,7 @@ ROS_BUILD_DEPENDS = " \
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
+    python-catkin-pkg-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
@@ -47,6 +49,7 @@ ROS_EXPORT_DEPENDS = " \
     moveit-ros-move-group \
     moveit-ros-planning \
     moveit-ros-warehouse \
+    python \
     rosconsole \
     roscpp \
     rospy \
@@ -66,6 +69,7 @@ ROS_EXEC_DEPENDS = " \
     moveit-ros-move-group \
     moveit-ros-planning \
     moveit-ros-warehouse \
+    python \
     rosconsole \
     roscpp \
     rospy \

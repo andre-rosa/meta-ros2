@@ -28,6 +28,7 @@ ROS_BUILD_DEPENDS = " \
 ROS_BUILDTOOL_DEPENDS = " \
     cmake-native \
     git-native \
+    wget-native \
 "
 
 ROS_EXPORT_DEPENDS = " \

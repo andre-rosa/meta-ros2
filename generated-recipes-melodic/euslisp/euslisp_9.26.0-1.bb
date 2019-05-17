@@ -23,6 +23,7 @@ ROS_BUILD_DEPENDS = " \
     libpng-dev \
     libpq-dev \
     libx11 \
+    libxext \
     mesa \
     mk \
     xfonts-100dpi \
@@ -38,6 +39,7 @@ ROS_EXPORT_DEPENDS = " \
     libpng-dev \
     libpq-dev \
     libx11 \
+    libxext \
     mesa \
     xfonts-100dpi \
     xfonts-75dpi \
@@ -50,6 +52,7 @@ ROS_EXEC_DEPENDS = " \
     libpng-dev \
     libpq-dev \
     libx11 \
+    libxext \
     mesa \
     xfonts-100dpi \
     xfonts-75dpi \

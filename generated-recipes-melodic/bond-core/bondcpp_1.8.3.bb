@@ -21,6 +21,7 @@ ROS_BUILD_DEPENDS = " \
     bond \
     boost \
     cmake-modules \
+    crossguid \
     roscpp \
     smclib \
 "
@@ -32,6 +33,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     bond \
     boost \
+    crossguid \
     roscpp \
     smclib \
 "
@@ -41,6 +43,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     bond \
     boost \
+    crossguid \
     roscpp \
     smclib \
 "

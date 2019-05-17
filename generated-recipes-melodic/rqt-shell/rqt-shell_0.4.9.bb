@@ -25,6 +25,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     python-qt-binding \
+    python-rospkg \
     qt-gui \
     qt-gui-py-common \
     rqt-gui \
@@ -35,6 +36,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     python-qt-binding \
+    python-rospkg \
     qt-gui \
     qt-gui-py-common \
     rqt-gui \

@@ -25,6 +25,9 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     genpy \
+    python-numpy \
+    python-rospkg \
+    python-yaml \
     roscpp \
     rosgraph \
     rosgraph-msgs \
@@ -36,6 +39,9 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     genpy \
+    python-numpy \
+    python-rospkg \
+    python-yaml \
     roscpp \
     rosgraph \
     rosgraph-msgs \

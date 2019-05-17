@@ -53,6 +53,7 @@ ROS_EXPORT_DEPENDS = " \
     image-transport \
     message-runtime \
     nodelet \
+    python-numpy \
     python-opencv \
     python-scipy \
     roscpp \
@@ -80,6 +81,7 @@ ROS_EXEC_DEPENDS = " \
     image-transport \
     message-runtime \
     nodelet \
+    python-numpy \
     python-opencv \
     python-scipy \
     roscpp \

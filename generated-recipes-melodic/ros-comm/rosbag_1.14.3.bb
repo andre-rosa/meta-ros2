@@ -20,6 +20,7 @@ ROS_BPN = "rosbag"
 ROS_BUILD_DEPENDS = " \
     boost \
     cpp-common \
+    python-imaging \
     rosbag-storage \
     rosconsole \
     roscpp \
@@ -37,7 +38,9 @@ ROS_EXPORT_DEPENDS = " \
     boost \
     genmsg \
     genpy \
+    python-cryptography \
     python-gnupg \
+    python-rospkg \
     rosbag-storage \
     rosconsole \
     roscpp \
@@ -54,7 +57,9 @@ ROS_EXEC_DEPENDS = " \
     boost \
     genmsg \
     genpy \
+    python-cryptography \
     python-gnupg \
+    python-rospkg \
     rosbag-storage \
     rosconsole \
     roscpp \

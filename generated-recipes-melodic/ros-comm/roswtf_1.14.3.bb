@@ -26,6 +26,8 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    python-paramiko \
+    python-rospkg \
     rosbuild \
     rosgraph \
     roslaunch \
@@ -37,6 +39,8 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    python-paramiko \
+    python-rospkg \
     rosbuild \
     rosgraph \
     roslaunch \

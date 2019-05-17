@@ -29,6 +29,7 @@ ROS_EXPORT_DEPENDS = " \
     moveit-commander \
     pilz-msgs \
     pilz-trajectory-generation \
+    python-psutil \
     rospy \
     tf \
     tf-conversions \
@@ -40,6 +41,7 @@ ROS_EXEC_DEPENDS = " \
     moveit-commander \
     pilz-msgs \
     pilz-trajectory-generation \
+    python-psutil \
     rospy \
     tf \
     tf-conversions \
@@ -50,6 +52,7 @@ ROS_TEST_DEPENDS = " \
     pilz-industrial-motion-testutils \
     prbt-moveit-config \
     prbt-pg70-support \
+    python-coverage \
     python-docopt \
     rostest \
 "

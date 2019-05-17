@@ -23,6 +23,7 @@ ROS_BUILD_DEPENDS = " \
     gtest \
     libtinyxml2 \
     pkgconfig \
+    python \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -33,6 +34,9 @@ ROS_EXPORT_DEPENDS = " \
     boost \
     libtinyxml2 \
     pkgconfig \
+    python \
+    python-catkin-pkg \
+    python-rosdep \
     ros-environment \
 "
 
@@ -42,11 +46,16 @@ ROS_EXEC_DEPENDS = " \
     boost \
     libtinyxml2 \
     pkgconfig \
+    python \
+    python-catkin-pkg \
+    python-rosdep \
     ros-environment \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = ""
+ROS_TEST_DEPENDS = " \
+    python-coverage \
+"
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually

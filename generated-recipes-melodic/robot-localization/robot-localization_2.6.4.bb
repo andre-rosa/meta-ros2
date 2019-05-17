@@ -29,6 +29,7 @@ ROS_BUILD_DEPENDS = " \
     message-generation \
     nav-msgs \
     nodelet \
+    python-catkin-pkg \
     roscpp \
     roslint \
     sensor-msgs \

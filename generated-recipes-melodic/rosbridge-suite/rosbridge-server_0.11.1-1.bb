@@ -29,6 +29,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     python-backports.ssl-match-hostname \
+    python-tornado \
     python-twisted-core \
     rosapi \
     rosauth \

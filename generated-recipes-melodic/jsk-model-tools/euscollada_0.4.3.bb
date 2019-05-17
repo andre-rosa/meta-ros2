@@ -20,6 +20,7 @@ ROS_BPN = "euscollada"
 ROS_BUILD_DEPENDS = " \
     assimp-devel \
     cmake-modules \
+    collada-dom \
     collada-parser \
     collada-urdf \
     libqhull \
@@ -42,6 +43,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     assimp-devel \
+    collada-dom \
     collada-parser \
     collada-urdf \
     libqhull \
@@ -59,6 +61,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     assimp-devel \
+    collada-dom \
     collada-parser \
     collada-urdf \
     libqhull \

@@ -18,7 +18,9 @@ ROS_CN = "joystick_drivers"
 ROS_BPN = "ps3joy"
 
 ROS_BUILD_DEPENDS = " \
+    bluez5 \
     diagnostic-msgs \
+    libsdl \
     libusb-dev \
     python-bluez \
     rosgraph \
@@ -31,7 +33,9 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    bluez5 \
     diagnostic-msgs \
+    libsdl \
     libusb-dev \
     python-bluez \
     rosgraph \
@@ -42,7 +46,9 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    bluez5 \
     diagnostic-msgs \
+    libsdl \
     libusb-dev \
     python-bluez \
     rosgraph \

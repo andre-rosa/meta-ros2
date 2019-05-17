@@ -20,8 +20,10 @@ ROS_BPN = "mongodb_store"
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     message-generation \
+    mongodb \
     mongodb-store-msgs \
     openssl \
+    python-catkin-pkg \
     roscpp \
     rospy \
     rostest \
@@ -36,7 +38,9 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     geometry-msgs \
+    mongodb \
     mongodb-store-msgs \
+    python-pymongo \
     roscpp \
     rospy \
     std-msgs \
@@ -48,7 +52,9 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
+    mongodb \
     mongodb-store-msgs \
+    python-pymongo \
     roscpp \
     rospy \
     std-msgs \

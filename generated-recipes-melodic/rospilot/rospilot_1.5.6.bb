@@ -21,6 +21,7 @@ ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     libgphoto-dev \
     libjpeq-turbo \
+    libmicrohttpd \
     libnl-3-dev \
     message-generation \
     opencv \
@@ -40,6 +41,7 @@ ROS_EXPORT_DEPENDS = " \
     dnsmasq \
     gdal-bin \
     geometry-msgs \
+    hostapd \
     libnl-3 \
     mapnik-utils \
     mavlink \
@@ -47,7 +49,9 @@ ROS_EXPORT_DEPENDS = " \
     osm2pgsql \
     postgresql-postgis \
     python-cherrypy \
+    python-colorama \
     python-mapnik \
+    python-psutil \
     python-serial \
     python-tilestache \
     rosbash \
@@ -57,7 +61,9 @@ ROS_EXPORT_DEPENDS = " \
     sensor-msgs \
     std-msgs \
     std-srvs \
+    unzip \
     vision-opencv \
+    wget \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -67,6 +73,7 @@ ROS_EXEC_DEPENDS = " \
     dnsmasq \
     gdal-bin \
     geometry-msgs \
+    hostapd \
     libnl-3 \
     mapnik-utils \
     mavlink \
@@ -74,7 +81,9 @@ ROS_EXEC_DEPENDS = " \
     osm2pgsql \
     postgresql-postgis \
     python-cherrypy \
+    python-colorama \
     python-mapnik \
+    python-psutil \
     python-serial \
     python-tilestache \
     rosbash \
@@ -84,7 +93,9 @@ ROS_EXEC_DEPENDS = " \
     sensor-msgs \
     std-msgs \
     std-srvs \
+    unzip \
     vision-opencv \
+    wget \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

@@ -29,6 +29,8 @@ ROS_EXPORT_DEPENDS = " \
     julius \
     julius-voxforge \
     nkf \
+    python-lxml \
+    python-rospkg \
     rospy \
     sound-play \
     speech-recognition-msgs \
@@ -43,6 +45,8 @@ ROS_EXEC_DEPENDS = " \
     julius \
     julius-voxforge \
     nkf \
+    python-lxml \
+    python-rospkg \
     rospy \
     sound-play \
     speech-recognition-msgs \

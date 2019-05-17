@@ -18,6 +18,7 @@ ROS_CN = "plotjuggler"
 ROS_BPN = "plotjuggler"
 
 ROS_BUILD_DEPENDS = " \
+    binutils \
     qtbase \
     qtdeclarative5-dev \
     qtmultimedia5-dev \
@@ -36,6 +37,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    binutils \
     qtbase \
     qtdeclarative5-dev \
     qtmultimedia5-dev \
@@ -52,6 +54,7 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    binutils \
     qtbase \
     qtdeclarative5-dev \
     qtmultimedia5-dev \

@@ -70,6 +70,7 @@ ROS_EXEC_DEPENDS = " \
     message-runtime \
     nav-msgs \
     nodelet \
+    protobuf \
     rc-dynamics-api \
     rc-genicam-api \
     roscpp \

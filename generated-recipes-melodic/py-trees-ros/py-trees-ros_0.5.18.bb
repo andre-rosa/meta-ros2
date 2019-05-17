@@ -17,7 +17,9 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9de
 ROS_CN = "py_trees_ros"
 ROS_BPN = "py_trees_ros"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    python-setuptools \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
@@ -36,6 +38,8 @@ ROS_EXEC_DEPENDS = " \
     nav-msgs \
     py-trees \
     py-trees-msgs \
+    python-rospkg \
+    python-termcolor \
     rosbag \
     rospy \
     sensor-msgs \

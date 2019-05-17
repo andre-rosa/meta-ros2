@@ -18,11 +18,17 @@ ROS_CN = "parrot_arsdk"
 ROS_BPN = "parrot_arsdk"
 
 ROS_BUILD_DEPENDS = " \
+    autoconf \
+    automake \
     curl \
     ffmpeg \
     libavahi-client-dev \
     libavahi-core-dev \
     libncurses-dev \
+    libtool \
+    nasm \
+    unzip \
+    yasm \
     zlib \
 "
 

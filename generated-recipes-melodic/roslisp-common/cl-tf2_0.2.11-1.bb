@@ -6,16 +6,16 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "cl_urdf"
+DESCRIPTION = "Client implementation to use TF2 from Common Lisp"
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
-ROS_AUTHOR = "Lorenz Moesenlechner"
-HOMEPAGE = "http://ros.org/wiki/cl_urdf"
+ROS_AUTHOR = "Georg Bartels"
+HOMEPAGE = "https://github.com/ros/roslisp_common/issues"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "roslisp_common"
-ROS_BPN = "cl_urdf"
+ROS_BPN = "cl_tf2"
 
 ROS_BUILD_DEPENDS = ""
 
@@ -24,15 +24,21 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    cl-transforms \
+    actionlib-lisp \
+    cl-transforms-stamped \
+    cl-utils \
     roslisp \
+    tf2-msgs \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    cl-transforms \
+    actionlib-lisp \
+    cl-transforms-stamped \
+    cl-utils \
     roslisp \
+    tf2-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -45,10 +51,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/cl_urdf/0.2.10-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "f6b9c14fcf43e756f04d1b8c04f76f94"
-SRC_URI[sha256sum] = "d2b3ee247057cc0bee65484510f44e0342fff7fc1efcbfc4545914edf5efaa72"
-S = "${WORKDIR}/roslisp_common-release-release-melodic-cl_urdf-0.2.10-0"
+SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/cl_tf2/0.2.11-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "bb29e16c3547c78d6135b165fbadae95"
+SRC_URI[sha256sum] = "5044a8f65eff7eef03f6be69ce1fd2a761381deac628dcd9cd8c817d7b9df5ce"
+S = "${WORKDIR}/roslisp_common-release-release-melodic-cl_tf2-0.2.11-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roslisp-common', d)}"
 ROS_BUILD_TYPE = "catkin"

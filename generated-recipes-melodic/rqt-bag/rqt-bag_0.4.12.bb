@@ -25,6 +25,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     python-qt-binding \
+    python-rospkg \
     rosbag \
     rosgraph-msgs \
     roslib \
@@ -38,6 +39,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     python-qt-binding \
+    python-rospkg \
     rosbag \
     rosgraph-msgs \
     roslib \

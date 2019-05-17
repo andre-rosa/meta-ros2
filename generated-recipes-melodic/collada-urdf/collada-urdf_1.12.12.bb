@@ -21,6 +21,7 @@ ROS_BUILD_DEPENDS = " \
     angles \
     assimp \
     cmake-modules \
+    collada-dom \
     collada-parser \
     geometric-shapes \
     libeigen \
@@ -43,6 +44,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     assimp \
+    collada-dom \
     collada-parser \
     geometric-shapes \
     liburdfdom-dev \

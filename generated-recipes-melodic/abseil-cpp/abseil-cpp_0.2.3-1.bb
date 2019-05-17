@@ -16,7 +16,9 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=211ba54883815de
 ROS_CN = "abseil_cpp"
 ROS_BPN = "abseil_cpp"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    rsync \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \

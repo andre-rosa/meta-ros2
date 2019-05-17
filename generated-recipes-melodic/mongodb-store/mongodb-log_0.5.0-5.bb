@@ -34,6 +34,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     mongodb-store \
+    python-pymongo \
     rosgraph \
     roslib \
     rospy \
@@ -46,6 +47,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     mongodb-store \
+    python-pymongo \
     rosgraph \
     roslib \
     rospy \

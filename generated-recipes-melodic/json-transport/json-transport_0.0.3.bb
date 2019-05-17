@@ -35,6 +35,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     json-msgs \
+    python-msgpack \
     roscpp \
 "
 

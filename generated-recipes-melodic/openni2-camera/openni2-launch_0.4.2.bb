@@ -18,6 +18,7 @@ ROS_CN = "openni2_camera"
 ROS_BPN = "openni2_launch"
 
 ROS_BUILD_DEPENDS = " \
+    python-catkin-pkg \
     roslaunch \
 "
 
@@ -34,6 +35,7 @@ ROS_EXPORT_DEPENDS = " \
     rospy \
     roswtf \
     tf \
+    usbutils \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -47,6 +49,7 @@ ROS_EXEC_DEPENDS = " \
     rospy \
     roswtf \
     tf \
+    usbutils \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

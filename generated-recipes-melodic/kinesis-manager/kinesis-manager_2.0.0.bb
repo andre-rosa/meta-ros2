@@ -21,6 +21,7 @@ ROS_BUILD_DEPENDS = " \
     aws-common \
     boost \
     curl \
+    log4cplus \
     openssl \
 "
 
@@ -33,6 +34,7 @@ ROS_EXPORT_DEPENDS = " \
     aws-common \
     boost \
     curl \
+    log4cplus \
     openssl \
 "
 
@@ -42,6 +44,7 @@ ROS_EXEC_DEPENDS = " \
     aws-common \
     boost \
     curl \
+    log4cplus \
     openssl \
 "
 

@@ -17,18 +17,26 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=19;endline=19;md5=b691248d2f70c
 ROS_CN = "mavlink"
 ROS_BPN = "mavlink"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    python \
+    python-futures \
+    python-lxml \
+    python-setuptools \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     cmake-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    python \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     catkin \
+    python \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

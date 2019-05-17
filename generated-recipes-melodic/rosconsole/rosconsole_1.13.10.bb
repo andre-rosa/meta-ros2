@@ -18,6 +18,7 @@ ROS_CN = "rosconsole"
 ROS_BPN = "rosconsole"
 
 ROS_BUILD_DEPENDS = " \
+    apr \
     boost \
     cpp-common \
     log4cxx \
@@ -30,6 +31,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    apr \
     cpp-common \
     log4cxx \
     rosbuild \
@@ -39,6 +41,7 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    apr \
     cpp-common \
     log4cxx \
     rosbuild \

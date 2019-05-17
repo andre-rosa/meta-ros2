@@ -20,6 +20,8 @@ ROS_BPN = "rosbridge_library"
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
     message-generation \
+    python-bson \
+    python-imaging \
     std-msgs \
 "
 
@@ -34,6 +36,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     message-runtime \
+    python-bson \
+    python-imaging \
     roscpp \
     rosgraph \
     rospy \

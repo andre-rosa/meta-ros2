@@ -53,6 +53,7 @@ ROS_EXEC_DEPENDS = " \
     libncurses-dev \
     message-generation \
     message-runtime \
+    ncurses \
     rosbag \
     roscpp \
     rqt-bag \

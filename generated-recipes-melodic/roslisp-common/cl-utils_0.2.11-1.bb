@@ -6,16 +6,16 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Implementation of TF datatypes"
+DESCRIPTION = "Common Lisp utility libraries"
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
-ROS_AUTHOR = "Lorenz Moesenlechner"
-HOMEPAGE = "http://ros.org/wiki/cl_transforms_stamped"
+ROS_AUTHOR = "Bhaskara Marthi"
+HOMEPAGE = "http://wiki.ros.org/cl_utils"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "roslisp_common"
-ROS_BPN = "cl_transforms_stamped"
+ROS_BPN = "cl_utils"
 
 ROS_BUILD_DEPENDS = ""
 
@@ -24,19 +24,13 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    cl-transforms \
-    geometry-msgs \
-    roslisp \
-    std-msgs \
+    sbcl \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    cl-transforms \
-    geometry-msgs \
-    roslisp \
-    std-msgs \
+    sbcl \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -49,10 +43,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/cl_transforms_stamped/0.2.10-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "11ebac5b92281dcd11d2d26af6564987"
-SRC_URI[sha256sum] = "8bb4cba56d66bb1a706d682930d296c70c682782f71a4843f623e386bec7c834"
-S = "${WORKDIR}/roslisp_common-release-release-melodic-cl_transforms_stamped-0.2.10-0"
+SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/cl_utils/0.2.11-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "0c74dcdc183e78792755842c4b9d2208"
+SRC_URI[sha256sum] = "2c46beef0097cb671d5cda59d121f5c711055ccbad85c893827b1d78af44ade4"
+S = "${WORKDIR}/roslisp_common-release-release-melodic-cl_utils-0.2.11-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roslisp-common', d)}"
 ROS_BUILD_TYPE = "catkin"

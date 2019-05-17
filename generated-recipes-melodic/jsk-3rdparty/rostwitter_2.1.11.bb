@@ -19,6 +19,10 @@ ROS_BPN = "rostwitter"
 ROS_BUILD_DEPENDS = " \
     git \
     mk \
+    python-requests \
+    python-requests-oauthlib \
+    python-setuptools \
+    python-simplejson \
     rospy \
     std-msgs \
 "
@@ -28,6 +32,9 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    python-requests \
+    python-requests-oauthlib \
+    python-simplejson \
     rospy \
     std-msgs \
 "
@@ -35,6 +42,9 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    python-requests \
+    python-requests-oauthlib \
+    python-simplejson \
     rospy \
     std-msgs \
 "

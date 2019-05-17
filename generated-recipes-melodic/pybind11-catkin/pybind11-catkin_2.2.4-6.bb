@@ -18,6 +18,8 @@ ROS_BPN = "pybind11_catkin"
 
 ROS_BUILD_DEPENDS = " \
     libeigen \
+    python \
+    python-numpy \
     rospy \
 "
 
@@ -27,6 +29,8 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     libeigen \
+    python \
+    python-numpy \
     rospy \
 "
 
@@ -34,6 +38,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     libeigen \
+    python \
+    python-numpy \
     rospy \
 "
 

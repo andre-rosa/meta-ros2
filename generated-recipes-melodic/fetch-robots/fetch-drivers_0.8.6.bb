@@ -29,6 +29,7 @@ ROS_BUILD_DEPENDS = " \
     mk \
     nav-msgs \
     power-msgs \
+    python \
     robot-calibration-msgs \
     robot-controllers \
     robot-controllers-interface \
@@ -57,6 +58,7 @@ ROS_EXPORT_DEPENDS = " \
     liburdfdom-dev \
     nav-msgs \
     power-msgs \
+    python \
     robot-calibration-msgs \
     robot-controllers \
     robot-controllers-interface \
@@ -82,6 +84,7 @@ ROS_EXEC_DEPENDS = " \
     liburdfdom-dev \
     nav-msgs \
     power-msgs \
+    python \
     robot-calibration-msgs \
     robot-controllers \
     robot-controllers-interface \

@@ -35,6 +35,7 @@ ROS_EXEC_DEPENDS = " \
     dynamic-reconfigure \
     geometry-msgs \
     nav-msgs \
+    python-numpy \
     rospy \
     tf \
 "

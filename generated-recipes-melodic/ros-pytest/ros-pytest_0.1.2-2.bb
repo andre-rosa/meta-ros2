@@ -17,6 +17,7 @@ ROS_CN = "ros_pytest"
 ROS_BPN = "ros_pytest"
 
 ROS_BUILD_DEPENDS = " \
+    python-pytest \
     rospy \
 "
 
@@ -25,12 +26,14 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    python-pytest \
     rospy \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    python-pytest \
     rospy \
 "
 

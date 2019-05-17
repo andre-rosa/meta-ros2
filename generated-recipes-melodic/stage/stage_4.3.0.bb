@@ -21,6 +21,7 @@ ROS_BUILD_DEPENDS = " \
     gtk2 \
     libfltk-dev \
     libjpeq-turbo \
+    libtool \
     mesa \
 "
 

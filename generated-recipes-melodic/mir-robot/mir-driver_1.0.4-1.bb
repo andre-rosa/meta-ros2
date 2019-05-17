@@ -26,6 +26,7 @@ ROS_BUILD_DEPENDS = " \
     mir-msgs \
     move-base-msgs \
     nav-msgs \
+    python-websocket-client \
     rosgraph-msgs \
     roslaunch \
     rospy \
@@ -49,6 +50,7 @@ ROS_EXPORT_DEPENDS = " \
     mir-msgs \
     move-base-msgs \
     nav-msgs \
+    python-websocket-client \
     rosgraph-msgs \
     rospy \
     rospy-message-converter \
@@ -70,6 +72,7 @@ ROS_EXEC_DEPENDS = " \
     mir-msgs \
     move-base-msgs \
     nav-msgs \
+    python-websocket-client \
     robot-state-publisher \
     rosgraph-msgs \
     rospy \

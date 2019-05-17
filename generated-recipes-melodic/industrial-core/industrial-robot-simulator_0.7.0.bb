@@ -31,6 +31,7 @@ ROS_EXEC_DEPENDS = " \
     control-msgs \
     industrial-msgs \
     industrial-robot-client \
+    python-rospkg \
     rospy \
     sensor-msgs \
     trajectory-msgs \

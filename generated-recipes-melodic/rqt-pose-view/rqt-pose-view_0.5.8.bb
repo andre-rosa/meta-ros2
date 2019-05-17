@@ -28,6 +28,7 @@ ROS_EXPORT_DEPENDS = " \
     gl-dependency \
     python-opengl \
     python-qt-binding \
+    python-rospkg \
     rospy \
     rostopic \
     rqt-gui \
@@ -43,6 +44,7 @@ ROS_EXEC_DEPENDS = " \
     gl-dependency \
     python-opengl \
     python-qt-binding \
+    python-rospkg \
     rospy \
     rostopic \
     rqt-gui \

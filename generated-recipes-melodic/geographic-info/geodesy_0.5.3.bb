@@ -21,6 +21,7 @@ ROS_BUILD_DEPENDS = " \
     angles \
     geographic-msgs \
     geometry-msgs \
+    python-catkin-pkg \
     sensor-msgs \
     tf \
     unique-id \
@@ -34,6 +35,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     geographic-msgs \
     geometry-msgs \
+    python-pyproj \
     sensor-msgs \
     tf \
     unique-id \
@@ -45,6 +47,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geographic-msgs \
     geometry-msgs \
+    python-pyproj \
     sensor-msgs \
     tf \
     unique-id \

@@ -21,6 +21,7 @@ ROS_BUILD_DEPENDS = " \
     bondcpp \
     boost \
     cmake-modules \
+    crossguid \
     message-generation \
     pluginlib \
     rosconsole \
@@ -35,6 +36,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     bondcpp \
     boost \
+    crossguid \
     pluginlib \
     rosconsole \
     roscpp \
@@ -46,6 +48,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     bondcpp \
     boost \
+    crossguid \
     message-runtime \
     pluginlib \
     rosconsole \

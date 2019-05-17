@@ -27,6 +27,7 @@ ROS_BUILD_DEPENDS = " \
     filters \
     geometry-msgs \
     kdl-parser \
+    libtool \
     message-filters \
     message-generation \
     pluginlib \
@@ -56,6 +57,7 @@ ROS_EXPORT_DEPENDS = " \
     filters \
     geometry-msgs \
     kdl-parser \
+    libtool \
     message-filters \
     message-runtime \
     pluginlib \
@@ -84,6 +86,7 @@ ROS_EXEC_DEPENDS = " \
     filters \
     geometry-msgs \
     kdl-parser \
+    libtool \
     message-filters \
     message-runtime \
     pluginlib \

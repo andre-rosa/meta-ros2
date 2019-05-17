@@ -42,10 +42,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/DataspeedInc-release/dataspeed_ulc_ros-release/archive/release/melodic/dataspeed_ulc/0.0.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "c725304eb77580b2df5dff65cb55cdde"
-SRC_URI[sha256sum] = "471b98597bb7b5f02af67b0c268f2285f4defa360d371091972f5d826d2f25e4"
-S = "${WORKDIR}/dataspeed_ulc_ros-release-release-melodic-dataspeed_ulc-0.0.3-0"
+SRC_URI = "https://github.com/DataspeedInc-release/dataspeed_ulc_ros-release/archive/release/melodic/dataspeed_ulc/0.0.4-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "bcfe057bbe0c8d579ff7e1613c9b3957"
+SRC_URI[sha256sum] = "af1df86c0a3c7bf3149e94f3eec80104933eb75b0fe9e1a639ffbc1a71aeac95"
+S = "${WORKDIR}/dataspeed_ulc_ros-release-release-melodic-dataspeed_ulc-0.0.4-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dataspeed-ulc-ros', d)}"
 ROS_BUILD_TYPE = "catkin"

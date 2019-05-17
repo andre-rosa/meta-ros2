@@ -18,6 +18,7 @@ ROS_CN = "marti_common"
 ROS_BPN = "swri_transform_util"
 
 ROS_BUILD_DEPENDS = " \
+    acpica \
     boost \
     cv-bridge \
     diagnostic-msgs \
@@ -43,6 +44,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    acpica \
     boost \
     cv-bridge \
     diagnostic-msgs \
@@ -65,6 +67,7 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    acpica \
     boost \
     cv-bridge \
     diagnostic-msgs \

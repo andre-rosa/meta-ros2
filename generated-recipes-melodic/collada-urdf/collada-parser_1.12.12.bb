@@ -19,6 +19,7 @@ ROS_BPN = "collada_parser"
 
 ROS_BUILD_DEPENDS = " \
     class-loader \
+    collada-dom \
     liburdfdom-headers-dev \
     rosconsole \
     urdf \
@@ -38,6 +39,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     class-loader \
+    collada-dom \
     rosconsole \
     urdf-parser-plugin \
 "

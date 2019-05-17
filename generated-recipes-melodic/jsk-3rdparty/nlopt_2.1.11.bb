@@ -18,6 +18,7 @@ ROS_BPN = "nlopt"
 
 ROS_BUILD_DEPENDS = " \
     cmake-modules \
+    libtool \
     mk \
     rosbuild \
     rospack \

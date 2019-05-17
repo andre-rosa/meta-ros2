@@ -31,6 +31,8 @@ ROS_EXEC_DEPENDS = " \
     gazebo-msgs \
     geometry-msgs \
     nav-msgs \
+    python-numpy \
+    python-yaml \
     rospy \
     std-msgs \
     uuv-control-msgs \

@@ -20,11 +20,14 @@ ROS_BPN = "openhrp3"
 ROS_BUILD_DEPENDS = " \
     atlas \
     boost \
+    collada-dom \
+    doxygen \
     f2c \
     jython \
     libeigen \
     libjpeq-turbo \
     libpng-dev \
+    libxml2 \
     openrtm-aist \
     python-omniorb \
 "
@@ -37,11 +40,13 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     atlas \
     boost \
+    collada-dom \
     f2c \
     jython \
     libeigen \
     libjpeq-turbo \
     libpng-dev \
+    libxml2 \
     openrtm-aist \
     python-omniorb \
 "
@@ -51,11 +56,13 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     atlas \
     boost \
+    collada-dom \
     f2c \
     jython \
     libeigen \
     libjpeq-turbo \
     libpng-dev \
+    libxml2 \
     openrtm-aist \
     python-omniorb \
 "

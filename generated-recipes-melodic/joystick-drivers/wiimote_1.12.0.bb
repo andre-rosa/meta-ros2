@@ -22,6 +22,7 @@ ROS_BUILD_DEPENDS = " \
     genmsg \
     geometry-msgs \
     python-cwiid \
+    python-numpy \
     roscpp \
     roslib \
     roslint \
@@ -39,6 +40,7 @@ ROS_EXPORT_DEPENDS = " \
     genmsg \
     geometry-msgs \
     python-cwiid \
+    python-numpy \
     roscpp \
     roslib \
     rospy \
@@ -54,6 +56,7 @@ ROS_EXEC_DEPENDS = " \
     genmsg \
     geometry-msgs \
     python-cwiid \
+    python-numpy \
     roscpp \
     roslib \
     rospy \

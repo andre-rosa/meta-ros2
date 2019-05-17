@@ -17,7 +17,9 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=fe8b75cf0aba6
 ROS_CN = "rocon_tools"
 ROS_BPN = "rocon_python_wifi"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    python-catkin-pkg \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \

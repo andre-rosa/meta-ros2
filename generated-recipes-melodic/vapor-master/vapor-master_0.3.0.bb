@@ -21,6 +21,7 @@ ROS_BUILD_DEPENDS = ""
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
+    nodejs-native \
     npm-native \
 "
 
@@ -29,6 +30,7 @@ ROS_EXPORT_DEPENDS = ""
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    nodejs \
     rospack \
 "
 

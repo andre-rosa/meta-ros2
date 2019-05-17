@@ -17,10 +17,13 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=12;endline=12;md5=d566ef916e9de
 ROS_CN = "moveit"
 ROS_BPN = "moveit_commander"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    python \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
+    python-catkin-pkg-native \
 "
 
 ROS_EXPORT_DEPENDS = ""
@@ -31,6 +34,7 @@ ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     moveit-msgs \
     moveit-ros-planning-interface \
+    python \
     python-pyassimp \
     rospy \
     sensor-msgs \

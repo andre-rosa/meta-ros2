@@ -6,16 +6,16 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Client implementation to use TF from Common Lisp"
+DESCRIPTION = "actionlib_lisp is a native implementation of the famous actionlib    in Common Lisp. It provides a client and a simple server."
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
-ROS_AUTHOR = "Lorenz Moesenlechner"
-HOMEPAGE = "http://ros.org/wiki/cl_tf"
+ROS_AUTHOR = "Bhaskara Marthi"
+HOMEPAGE = "http://wiki.ros.org/actionlib_lisp"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "roslisp_common"
-ROS_BPN = "cl_tf"
+ROS_BPN = "actionlib_lisp"
 
 ROS_BUILD_DEPENDS = ""
 
@@ -24,19 +24,19 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    cl-transforms \
-    cl-transforms-stamped \
+    actionlib-msgs \
+    cl-utils \
+    message-runtime \
     roslisp \
-    tf \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    cl-transforms \
-    cl-transforms-stamped \
+    actionlib-msgs \
+    cl-utils \
+    message-runtime \
     roslisp \
-    tf \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -49,10 +49,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/cl_tf/0.2.10-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "ffdf04370f28d2d92fe5d2ddc34d61e4"
-SRC_URI[sha256sum] = "babd91787b5937bb5e3d17353dd5bded7a26a75dd62c339f51a3a3d44e137dd0"
-S = "${WORKDIR}/roslisp_common-release-release-melodic-cl_tf-0.2.10-0"
+SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/actionlib_lisp/0.2.11-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "8651847454237548ff6fa0699b049c06"
+SRC_URI[sha256sum] = "5046f94d69a0b3d61c7f7faef39d7c9c17b182dec698f7308512c6668ab083d9"
+S = "${WORKDIR}/roslisp_common-release-release-melodic-actionlib_lisp-0.2.11-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roslisp-common', d)}"
 ROS_BUILD_TYPE = "catkin"

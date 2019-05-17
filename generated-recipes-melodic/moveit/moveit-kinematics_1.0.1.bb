@@ -51,6 +51,7 @@ ROS_EXEC_DEPENDS = " \
     moveit-ros-planning \
     orocos-kdl \
     pluginlib \
+    python-lxml \
     roscpp \
     tf2 \
     tf2-kdl \

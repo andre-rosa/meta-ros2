@@ -68,6 +68,7 @@ ROS_EXPORT_DEPENDS = " \
     jsk-recognition-msgs \
     jsk-recognition-utils \
     jsk-topic-tools \
+    leveldb \
     libcmt \
     libeigen \
     message-runtime \
@@ -83,6 +84,7 @@ ROS_EXPORT_DEPENDS = " \
     python-fcn-pip \
     python-h5py \
     python-sklearn \
+    python-yaml \
     robot-self-filter \
     rosbag \
     roscpp \
@@ -116,6 +118,7 @@ ROS_EXEC_DEPENDS = " \
     jsk-recognition-msgs \
     jsk-recognition-utils \
     jsk-topic-tools \
+    leveldb \
     libcmt \
     libeigen \
     message-runtime \
@@ -131,6 +134,7 @@ ROS_EXEC_DEPENDS = " \
     python-fcn-pip \
     python-h5py \
     python-sklearn \
+    python-yaml \
     robot-self-filter \
     rosbag \
     roscpp \

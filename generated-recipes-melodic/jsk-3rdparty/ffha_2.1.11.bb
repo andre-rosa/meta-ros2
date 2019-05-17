@@ -17,6 +17,9 @@ ROS_CN = "jsk_3rdparty"
 ROS_BPN = "ffha"
 
 ROS_BUILD_DEPENDS = " \
+    bison \
+    flex \
+    gawk \
     mk \
     rosbuild \
     roslib \

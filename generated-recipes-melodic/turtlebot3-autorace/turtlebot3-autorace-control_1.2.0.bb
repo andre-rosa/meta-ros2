@@ -30,6 +30,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     nav-msgs \
+    python-enum34 \
+    python-numpy \
     rospy \
     sensor-msgs \
     std-msgs \

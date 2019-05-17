@@ -22,6 +22,7 @@ ROS_BUILD_DEPENDS = " \
     assimp-devel \
     class-loader \
     cmake-modules \
+    collada-dom \
     collada-parser \
     collada-urdf \
     geometric-shapes \
@@ -45,6 +46,7 @@ ROS_EXPORT_DEPENDS = " \
     angles \
     assimp-devel \
     class-loader \
+    collada-dom \
     collada-parser \
     collada-urdf \
     geometric-shapes \
@@ -64,6 +66,7 @@ ROS_EXEC_DEPENDS = " \
     angles \
     assimp-devel \
     class-loader \
+    collada-dom \
     collada-parser \
     collada-urdf \
     geometric-shapes \

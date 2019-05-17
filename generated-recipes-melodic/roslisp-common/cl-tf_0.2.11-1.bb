@@ -6,16 +6,16 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Common Lisp utility libraries"
+DESCRIPTION = "Client implementation to use TF from Common Lisp"
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
-ROS_AUTHOR = "Bhaskara Marthi"
-HOMEPAGE = "http://wiki.ros.org/cl_utils"
+ROS_AUTHOR = "Lorenz Moesenlechner"
+HOMEPAGE = "http://ros.org/wiki/cl_tf"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=13;endline=13;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "roslisp_common"
-ROS_BPN = "cl_utils"
+ROS_BPN = "cl_tf"
 
 ROS_BUILD_DEPENDS = ""
 
@@ -24,13 +24,19 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    sbcl \
+    cl-transforms \
+    cl-transforms-stamped \
+    roslisp \
+    tf \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    sbcl \
+    cl-transforms \
+    cl-transforms-stamped \
+    roslisp \
+    tf \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -43,10 +49,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/cl_utils/0.2.10-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "e0648dc010c455f407a46607c7c952b8"
-SRC_URI[sha256sum] = "e77a28e37781eac7f3e75193f0c6adb099a860976fd96677baa28b11bfc21e44"
-S = "${WORKDIR}/roslisp_common-release-release-melodic-cl_utils-0.2.10-0"
+SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/cl_tf/0.2.11-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "31c00b051e5736188702022a6ec0c5a8"
+SRC_URI[sha256sum] = "d828ea3c28fa7c860b6011475aba4e48d48e84de308dece9323da6e05577815f"
+S = "${WORKDIR}/roslisp_common-release-release-melodic-cl_tf-0.2.11-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roslisp-common', d)}"
 ROS_BUILD_TYPE = "catkin"

@@ -20,6 +20,7 @@ ROS_BPN = "cv_bridge"
 ROS_BUILD_DEPENDS = " \
     boost \
     opencv \
+    python \
     python-opencv \
     rosconsole \
     sensor-msgs \
@@ -39,12 +40,14 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     boost \
     opencv \
+    python \
     python-opencv \
     rosconsole \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
+    python-numpy \
     rostest \
 "
 

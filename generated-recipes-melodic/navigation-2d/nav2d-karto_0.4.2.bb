@@ -25,6 +25,7 @@ ROS_BUILD_DEPENDS = " \
     nav2d-msgs \
     roscpp \
     suitesparse \
+    tbb \
     tf \
     visualization-msgs \
 "
@@ -41,6 +42,7 @@ ROS_EXPORT_DEPENDS = " \
     nav2d-msgs \
     roscpp \
     suitesparse \
+    tbb \
     tf \
     visualization-msgs \
 "
@@ -55,6 +57,7 @@ ROS_EXEC_DEPENDS = " \
     nav2d-msgs \
     roscpp \
     suitesparse \
+    tbb \
     tf \
     visualization-msgs \
 "

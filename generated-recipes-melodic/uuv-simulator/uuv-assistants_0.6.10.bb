@@ -45,6 +45,7 @@ ROS_EXEC_DEPENDS = " \
     gazebo-msgs \
     geometry-msgs \
     nav-msgs \
+    python-numpy \
     roscpp \
     rosgraph \
     rospy \

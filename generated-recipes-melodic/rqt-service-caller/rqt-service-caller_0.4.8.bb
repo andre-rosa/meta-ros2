@@ -24,6 +24,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
+    python-rospkg \
     rosservice \
     rqt-gui \
     rqt-gui-py \
@@ -33,6 +34,7 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
+    python-rospkg \
     rosservice \
     rqt-gui \
     rqt-gui-py \

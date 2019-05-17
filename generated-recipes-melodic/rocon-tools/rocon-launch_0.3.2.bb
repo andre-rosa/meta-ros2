@@ -17,7 +17,9 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc
 ROS_CN = "rocon_tools"
 ROS_BPN = "rocon_launch"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    python-catkin-pkg \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \

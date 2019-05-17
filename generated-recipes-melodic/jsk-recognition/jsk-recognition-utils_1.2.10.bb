@@ -26,6 +26,7 @@ ROS_BUILD_DEPENDS = " \
     message-generation \
     pcl-msgs \
     pcl-ros \
+    python-cython \
     qtbase \
     sensor-msgs \
     std-msgs \

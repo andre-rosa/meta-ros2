@@ -17,7 +17,10 @@ ROS_CN = "grpc"
 ROS_BPN = "grpc"
 
 ROS_BUILD_DEPENDS = " \
+    autoconf \
     git \
+    libtool \
+    rsync \
     zlib \
 "
 

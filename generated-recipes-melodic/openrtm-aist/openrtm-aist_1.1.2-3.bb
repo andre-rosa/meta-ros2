@@ -18,16 +18,22 @@ ROS_CN = "openrtm_aist"
 ROS_BPN = "openrtm_aist"
 
 ROS_BUILD_DEPENDS = " \
+    crossguid \
+    doxygen \
     omniorb \
+    python \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
+    automake-native \
     cmake-native \
+    libtool-native \
     pkgconfig-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
     catkin \
+    crossguid \
     omniorb \
 "
 
@@ -35,6 +41,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     catkin \
+    crossguid \
     omniorb \
 "
 

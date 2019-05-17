@@ -6,16 +6,16 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "actionlib_lisp is a native implementation of the famous actionlib    in Common Lisp. It provides a client and a simple server."
+DESCRIPTION = "Some utility functionality to interact with ROS using roslisp."
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
-ROS_AUTHOR = "Bhaskara Marthi"
-HOMEPAGE = "http://wiki.ros.org/actionlib_lisp"
+ROS_AUTHOR = "Lorenz Moesenlechner"
+HOMEPAGE = "http://ros.org/wiki/roslisp_utilities"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=15;endline=15;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "roslisp_common"
-ROS_BPN = "actionlib_lisp"
+ROS_BPN = "roslisp_utilities"
 
 ROS_BUILD_DEPENDS = ""
 
@@ -24,18 +24,12 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    actionlib-msgs \
-    cl-utils \
-    message-runtime \
     roslisp \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    actionlib-msgs \
-    cl-utils \
-    message-runtime \
     roslisp \
 "
 
@@ -49,10 +43,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/actionlib_lisp/0.2.10-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "74f5a2d8fba8c79aeabd4b1cb87336ce"
-SRC_URI[sha256sum] = "f7d69b33db5ed3ca13e17699bb8ec2fb18612b3f193f7bbaa46b9be73877a7bc"
-S = "${WORKDIR}/roslisp_common-release-release-melodic-actionlib_lisp-0.2.10-0"
+SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/roslisp_utilities/0.2.11-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "653070d8823a3a72a4371ea91dfe911d"
+SRC_URI[sha256sum] = "9261f37c05225cce75c7c02df2302b893ca72ab8be02a4d7c2ba6b884167eb37"
+S = "${WORKDIR}/roslisp_common-release-release-melodic-roslisp_utilities-0.2.11-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roslisp-common', d)}"
 ROS_BUILD_TYPE = "catkin"

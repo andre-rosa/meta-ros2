@@ -31,6 +31,7 @@ ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     joy \
     joy-teleop \
+    python-numpy \
     rospy \
     sensor-msgs \
     std-msgs \

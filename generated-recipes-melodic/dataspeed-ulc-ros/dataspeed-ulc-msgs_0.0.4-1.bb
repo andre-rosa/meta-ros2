@@ -6,7 +6,7 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Package to translate ROS messages to and from CAN messages to interact with the Universal Lat/Lon Controller (ULC) firmware"
+DESCRIPTION = "ROS messages for interacting with the Universal Lat/Lon Controller (ULC)"
 AUTHOR = "Micho Radovnikovich <mradovnikovich@dataspeedinc.com>"
 ROS_AUTHOR = "Micho Radovnikovich <mradovnikovich@dataspeedinc.com>"
 HOMEPAGE = "https://bitbucket.org/dataspeedinc/dataspeed_ulc_ros"
@@ -15,14 +15,10 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "dataspeed_ulc_ros"
-ROS_BPN = "dataspeed_ulc_can"
+ROS_BPN = "dataspeed_ulc_msgs"
 
 ROS_BUILD_DEPENDS = " \
-    can-msgs \
-    dataspeed-ulc-msgs \
-    geometry-msgs \
-    nodelet \
-    roscpp \
+    message-generation \
     std-msgs \
 "
 
@@ -31,30 +27,18 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    can-msgs \
-    dataspeed-ulc-msgs \
-    geometry-msgs \
-    nodelet \
-    roscpp \
     std-msgs \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    can-msgs \
-    dataspeed-ulc-msgs \
-    geometry-msgs \
-    nodelet \
-    roscpp \
+    message-runtime \
     std-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = " \
-    roslib \
-    rostest \
-"
+ROS_TEST_DEPENDS = ""
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually
@@ -63,10 +47,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/DataspeedInc-release/dataspeed_ulc_ros-release/archive/release/melodic/dataspeed_ulc_can/0.0.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "37809ad3ca1e7dc2749fd0fe4cbf865d"
-SRC_URI[sha256sum] = "85673897676564ab1aea0ffe505a10469008d058ca28ce81bce53b50b4641813"
-S = "${WORKDIR}/dataspeed_ulc_ros-release-release-melodic-dataspeed_ulc_can-0.0.3-0"
+SRC_URI = "https://github.com/DataspeedInc-release/dataspeed_ulc_ros-release/archive/release/melodic/dataspeed_ulc_msgs/0.0.4-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "c96637c7a0478be63cb6f301bdb1e65a"
+SRC_URI[sha256sum] = "23a1ddaaa816c70e6778af58d95e23a16d4194072e816f778946aab3412e41c2"
+S = "${WORKDIR}/dataspeed_ulc_ros-release-release-melodic-dataspeed_ulc_msgs-0.0.4-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('dataspeed-ulc-ros', d)}"
 ROS_BUILD_TYPE = "catkin"

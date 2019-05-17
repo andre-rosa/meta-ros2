@@ -19,6 +19,7 @@ ROS_BPN = "visp"
 
 ROS_BUILD_DEPENDS = " \
     bzip2 \
+    doxygen \
     libcoin80-dev \
     libdc1394-dev \
     libdmtx-dev \
@@ -30,7 +31,9 @@ ROS_BUILD_DEPENDS = " \
     libpng-dev \
     libv4l-dev \
     libx11 \
+    libxml2 \
     opencv \
+    zbar \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -50,7 +53,9 @@ ROS_EXPORT_DEPENDS = " \
     libpng-dev \
     libv4l-dev \
     libx11 \
+    libxml2 \
     opencv \
+    zbar \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -68,7 +73,9 @@ ROS_EXEC_DEPENDS = " \
     libpng-dev \
     libv4l-dev \
     libx11 \
+    libxml2 \
     opencv \
+    zbar \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

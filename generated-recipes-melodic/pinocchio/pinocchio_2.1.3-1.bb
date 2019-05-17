@@ -22,6 +22,8 @@ ROS_BUILD_DEPENDS = " \
     git \
     libeigen \
     liburdfdom-dev \
+    python \
+    python-numpy \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -33,6 +35,8 @@ ROS_EXPORT_DEPENDS = " \
     eigenpy \
     libeigen \
     liburdfdom-dev \
+    python \
+    python-numpy \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -42,6 +46,8 @@ ROS_EXEC_DEPENDS = " \
     eigenpy \
     libeigen \
     liburdfdom-dev \
+    python \
+    python-numpy \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

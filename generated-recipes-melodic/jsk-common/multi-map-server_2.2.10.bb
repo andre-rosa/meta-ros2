@@ -22,6 +22,8 @@ ROS_BUILD_DEPENDS = " \
     libsdl-image \
     map-server \
     nav-msgs \
+    python-imaging \
+    python-yaml \
     rosconsole \
     roscpp \
     rosmake \

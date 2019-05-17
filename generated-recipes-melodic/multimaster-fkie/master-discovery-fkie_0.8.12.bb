@@ -29,6 +29,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 ROS_EXPORT_DEPENDS = " \
     avahi-daemon \
     multimaster-msgs-fkie \
+    python-avahi \
     rosgraph \
     roslib \
     rospy \
@@ -40,6 +41,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     avahi-daemon \
     multimaster-msgs-fkie \
+    python-avahi \
     rosgraph \
     roslib \
     rospy \

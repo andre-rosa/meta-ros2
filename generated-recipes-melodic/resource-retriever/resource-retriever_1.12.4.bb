@@ -40,6 +40,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 ROS_EXEC_DEPENDS = " \
     boost \
     curl \
+    python-rospkg \
     rosconsole \
     roslib \
 "

@@ -35,7 +35,10 @@ ROS_EXPORT_DEPENDS = " \
     openni-launch \
     pr2-description \
     pr2-machine \
+    python-click \
     python-gdown-pip \
+    python-paramiko \
+    python-yaml \
     rosbag \
     rqt-bag \
     rviz \
@@ -55,7 +58,10 @@ ROS_EXEC_DEPENDS = " \
     openni-launch \
     pr2-description \
     pr2-machine \
+    python-click \
     python-gdown-pip \
+    python-paramiko \
+    python-yaml \
     rosbag \
     rqt-bag \
     rviz \
@@ -66,6 +72,7 @@ ROS_EXEC_DEPENDS = " \
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
     python-freezegun-pip \
+    python-nose \
     roslaunch \
     roslint \
     rostest \

@@ -6,16 +6,16 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Some utility functionality to interact with ROS using roslisp."
+DESCRIPTION = "Homogeneous transform library for Common Lisp."
 AUTHOR = "Gayane Kazhoyan <kazhoyan@cs.uni-bremen.de>"
-ROS_AUTHOR = "Lorenz Moesenlechner"
-HOMEPAGE = "http://ros.org/wiki/roslisp_utilities"
+ROS_AUTHOR = "Bhaskara Marthi"
+HOMEPAGE = "http://ros.org/wiki/cl_transforms"
 SECTION = "devel"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=14;endline=14;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "roslisp_common"
-ROS_BPN = "roslisp_utilities"
+ROS_BPN = "cl_transforms"
 
 ROS_BUILD_DEPENDS = ""
 
@@ -24,13 +24,15 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    roslisp \
+    cl-utils \
+    sbcl \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    roslisp \
+    cl-utils \
+    sbcl \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -43,10 +45,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/roslisp_utilities/0.2.10-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "0f966bc3c85336150fc31035d5d62a18"
-SRC_URI[sha256sum] = "8ba55d5f2be13e9efc3be9f7ab4d78897f917e388d291f75f627642034621103"
-S = "${WORKDIR}/roslisp_common-release-release-melodic-roslisp_utilities-0.2.10-0"
+SRC_URI = "https://github.com/ros-gbp/roslisp_common-release/archive/release/melodic/cl_transforms/0.2.11-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "ac53b0b9eebd84f99755c88e5099da07"
+SRC_URI[sha256sum] = "2da4cb75c27597bb2847615b4f3f13435763fa9c1457e0e035be66b8c4fb6a58"
+S = "${WORKDIR}/roslisp_common-release-release-melodic-cl_transforms-0.2.11-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('roslisp-common', d)}"
 ROS_BUILD_TYPE = "catkin"

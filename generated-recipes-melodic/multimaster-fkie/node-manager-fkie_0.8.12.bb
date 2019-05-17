@@ -34,6 +34,9 @@ ROS_EXPORT_DEPENDS = " \
     master-discovery-fkie \
     master-sync-fkie \
     multimaster-msgs-fkie \
+    ncurses \
+    python-docutils \
+    python-paramiko \
     python-qt-binding \
     rosgraph \
     roslaunch \
@@ -43,6 +46,7 @@ ROS_EXPORT_DEPENDS = " \
     rosservice \
     rqt-gui \
     rqt-reconfigure \
+    screen \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -54,6 +58,9 @@ ROS_EXEC_DEPENDS = " \
     master-discovery-fkie \
     master-sync-fkie \
     multimaster-msgs-fkie \
+    ncurses \
+    python-docutils \
+    python-paramiko \
     python-qt-binding \
     rosgraph \
     roslaunch \
@@ -63,6 +70,7 @@ ROS_EXEC_DEPENDS = " \
     rosservice \
     rqt-gui \
     rqt-reconfigure \
+    screen \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

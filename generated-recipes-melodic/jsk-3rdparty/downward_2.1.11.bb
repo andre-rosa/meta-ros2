@@ -17,18 +17,30 @@ ROS_CN = "jsk_3rdparty"
 ROS_BPN = "downward"
 
 ROS_BUILD_DEPENDS = " \
+    bison \
+    ca-certificates \
+    flex \
+    gawk \
+    python \
     rostest \
+    time \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
     catkin-native \
 "
 
-ROS_EXPORT_DEPENDS = ""
+ROS_EXPORT_DEPENDS = " \
+    gawk \
+    time \
+"
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
-ROS_EXEC_DEPENDS = ""
+ROS_EXEC_DEPENDS = " \
+    gawk \
+    time \
+"
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = ""

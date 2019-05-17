@@ -12,7 +12,7 @@ ROS_VERSION = "1"
 ROS_PYTHON_VERSION = "2"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190509235705"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190517214634"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     catkin-virtualenv \
@@ -43,6 +43,18 @@ ROS_SUPERFLORE_GENERATION_NOT_POSSIBLE = " \
     qb_move_control \
     qb_move_description \
     qb_move_hardware_interface \
+    rdl \
+    rdl_benchmark \
+    rdl_cmake \
+    rdl_dynamics \
+    rdl_msgs \
+    rdl_ros_tools \
+    rdl_urdfreader \
+    toposens \
+    toposens_driver \
+    toposens_markers \
+    toposens_msgs \
+    toposens_pointcloud \
 "
 
 # Number of commits that will be returned by "git log files/ROS_DISTRO-cache.yaml" when the generated files are committed. This is
@@ -72,6 +84,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     amcl \
     angles \
     app-manager \
+    apriltag \
     ar-track-alvar \
     ar-track-alvar-msgs \
     arbotix \
@@ -150,6 +163,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     cloudwatch-metrics-collector \
     cloudwatch-metrics-common \
     cmake-modules \
+    cnn-bridge \
     cob-actions \
     cob-common \
     cob-default-env-config \
@@ -1073,6 +1087,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     rosservice \
     rostate-machine \
     rostest \
+    rosthrottle \
     rostime \
     rostopic \
     rostwitter \
@@ -1220,6 +1235,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     teleop-twist-joy \
     teleop-twist-keyboard \
     teraranger \
+    teraranger-array \
     test-diagnostic-aggregator \
     test-mavros \
     tf \
@@ -1427,7 +1443,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     ackermann-msgs_1.0.1 \
     ackermann-steering-controller_0.15.0 \
     actionlib_1.11.13 \
-    actionlib-lisp_0.2.10 \
+    actionlib-lisp_0.2.11-1 \
     actionlib-msgs_1.12.7 \
     actionlib-tutorials_0.1.11 \
     adi-driver_1.0.3 \
@@ -1436,6 +1452,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     amcl_1.16.2 \
     angles_1.9.11 \
     app-manager_1.1.0 \
+    apriltag_3.1.0-1 \
     ar-track-alvar_0.7.1 \
     ar-track-alvar-msgs_0.7.1 \
     arbotix_0.10.0 \
@@ -1501,12 +1518,12 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     catkin_0.7.17 \
     checkerboard-detector_1.2.10 \
     chomp-motion-planner_1.0.1 \
-    cl-tf_0.2.10 \
-    cl-tf2_0.2.10 \
-    cl-transforms_0.2.10 \
-    cl-transforms-stamped_0.2.10 \
-    cl-urdf_0.2.10 \
-    cl-utils_0.2.10 \
+    cl-tf_0.2.11-1 \
+    cl-tf2_0.2.11-1 \
+    cl-transforms_0.2.11-1 \
+    cl-transforms-stamped_0.2.11-1 \
+    cl-urdf_0.2.11-1 \
+    cl-utils_0.2.11-1 \
     class-loader_0.4.1 \
     clear-costmap-recovery_1.16.2 \
     cloudwatch-logger_2.0.0-1 \
@@ -1514,6 +1531,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     cloudwatch-metrics-collector_2.0.0 \
     cloudwatch-metrics-common_1.0.1 \
     cmake-modules_0.4.2 \
+    cnn-bridge_0.8.4-4 \
     cob-actions_0.6.10 \
     cob-common_0.6.10 \
     cob-default-env-config_0.6.8 \
@@ -1559,9 +1577,9 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     dataspeed-pds-msgs_1.0.2 \
     dataspeed-pds-rqt_1.0.2 \
     dataspeed-pds-scripts_1.0.2 \
-    dataspeed-ulc_0.0.3 \
-    dataspeed-ulc-can_0.0.3 \
-    dataspeed-ulc-msgs_0.0.3 \
+    dataspeed-ulc_0.0.4-1 \
+    dataspeed-ulc-can_0.0.4-1 \
+    dataspeed-ulc-msgs_0.0.4-1 \
     dbw-fca_1.0.1 \
     dbw-fca-can_1.0.1 \
     dbw-fca-description_1.0.1 \
@@ -2360,7 +2378,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     ros-reflexxes_0.8.8-1 \
     ros-speech-recognition_2.1.11 \
     ros-tutorials_0.9.1 \
-    ros-type-introspection_1.3.2-1 \
+    ros-type-introspection_1.3.3-1 \
     rosapi_0.11.1-1 \
     rosatomic_1.0.25 \
     rosauth_0.1.7-2 \
@@ -2391,7 +2409,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     rosdoc-lite_0.2.9 \
     rosemacs_0.4.13 \
     roseus_1.7.4 \
-    rosfmt_6.0.0 \
+    rosfmt_6.1.0-1 \
     rosgraph_1.14.3 \
     rosgraph-msgs_1.11.2 \
     roslang_1.14.6 \
@@ -2399,9 +2417,9 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     roslib_1.14.6 \
     roslint_0.11.2 \
     roslisp_1.9.22 \
-    roslisp-common_0.2.10 \
+    roslisp-common_0.2.11-1 \
     roslisp-repl_0.4.13 \
-    roslisp-utilities_0.2.10 \
+    roslisp-utilities_0.2.11-1 \
     roslz4_1.14.3 \
     rosmake_1.14.6 \
     rosmaster_1.14.3 \
@@ -2437,6 +2455,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     rosservice_1.14.3 \
     rostate-machine_0.0.2-3 \
     rostest_1.14.3 \
+    rosthrottle_1.2.0-3 \
     rostime_0.6.12 \
     rostopic_1.14.3 \
     rostwitter_2.1.11 \
@@ -2584,6 +2603,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     teleop-twist-joy_0.1.3 \
     teleop-twist-keyboard_0.6.2 \
     teraranger_2.1.0-1 \
+    teraranger-array_2.0.0-1 \
     test-diagnostic-aggregator_1.9.3 \
     test-mavros_0.29.2 \
     tf_1.12.0 \
@@ -2802,6 +2822,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     amcl \
     angles \
     app-manager \
+    apriltag \
     ar-track-alvar \
     ar-track-alvar-msgs \
     arbotix \
@@ -2880,6 +2901,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     cloudwatch-metrics-collector \
     cloudwatch-metrics-common \
     cmake-modules \
+    cnn-bridge \
     cob-actions \
     cob-common \
     cob-default-env-config \
@@ -3803,6 +3825,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     rosservice \
     rostate-machine \
     rostest \
+    rosthrottle \
     rostime \
     rostopic \
     rostwitter \
@@ -3950,6 +3973,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     teleop-twist-joy \
     teleop-twist-keyboard \
     teraranger \
+    teraranger-array \
     test-diagnostic-aggregator \
     test-mavros \
     tf \
@@ -4153,55 +4177,86 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
 # Packages found in the <buildtool_depend> and <buildtool_export_depend> items, ie, ones for which a -native is built. Does not
 # include those found in the ROS_EXEC_DEPENDS values in the recipes of build tools.
 ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
+    automake-native \
     catkin-native \
     cmake-native \
     genmsg-native \
     git-native \
+    libtool-native \
+    nodejs-native \
     npm-native \
     pkgconfig-native \
+    python-catkin-pkg-native \
     qt-qmake-native \
     ros-environment-native \
+    wget-native \
     yaml-cpp-native \
 "
 
 ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     ${PYTHON_PN}-sphinx \
+    acpica \
+    apr \
     arduino-core \
     assimp \
     atlas \
+    autoconf \
+    automake \
     avahi-daemon \
+    binutils \
+    bison \
+    bluez5 \
     boost \
     bullet \
     bzip2 \
+    ca-certificates \
     cairo \
     ceres-solver \
     cmake \
     coinor-libipopt-dev \
+    collada-dom \
     console-bridge \
+    coreutils \
     cppunit \
+    crossguid \
     curl \
     cwiid \
     cwiid-dev \
+    daemontools \
     dnsmasq \
+    doxygen \
     elfutils \
-    eudev \
     f2c \
+    festival \
     ffmpeg \
+    flex \
     freeglut \
     ftdi-eeprom \
+    gawk \
     gazebo \
     gdal-bin \
+    geographiclib \
     geographiclib-tools \
     gflags \
     gforth \
     git \
     glog \
     gpgme \
+    graphviz \
+    gstreamer1.0 \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-ugly \
     gtest \
     gtk+3 \
     gtk2 \
+    hddtemp \
+    hostapd \
+    iproute2 \
     julius-voxforge \
     jython \
+    lcov \
+    leveldb \
     libasound2-dev \
     libavahi-client-dev \
     libavahi-core-dev \
@@ -4220,6 +4275,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     libftdipp-dev \
     libgazebo9 \
     libgeos++-dev \
+    libgfortran \
     libglew-dev \
     libglib-dev \
     libgphoto-dev \
@@ -4231,6 +4287,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     libjsoncpp \
     libjsoncpp-dev \
     liblapack-dev \
+    libmicrohttpd \
     libmodbus-dev \
     libncurses-dev \
     libnl-3 \
@@ -4267,6 +4324,7 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     libtheora \
     libtinyxml \
     libtinyxml2 \
+    libtool \
     liburdfdom-dev \
     liburdfdom-headers-dev \
     liburdfdom-tools \
@@ -4276,16 +4334,24 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     libv4l-dev \
     libvtk-qt \
     libx11 \
+    libxext \
     libxi-dev \
+    libxml2 \
     libxmu-dev \
     linux-kernel-headers \
+    log4cplus \
     log4cxx \
     lua \
+    lz4 \
     mapnik-utils \
     mesa \
+    mongodb \
     muparser \
+    nasm \
+    ncurses \
     netpbm \
     nkf \
+    nodejs \
     npm \
     omniorb \
     opencv \
@@ -4297,75 +4363,129 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     poco \
     postgresql-postgis \
     protobuf \
+    python \
     python-argcomplete \
+    python-avahi \
     python-backports.ssl-match-hostname \
     python-bluez \
     python-boto3 \
+    python-bson \
     python-cairo \
     python-catkin-lint \
+    python-catkin-pkg \
     python-catkin-tools \
     python-chainer-pip \
     python-chainercv-pip \
     python-cherrypy \
+    python-click \
+    python-colorama \
+    python-coverage \
+    python-cryptography \
     python-cwiid \
+    python-cython \
+    python-defusedxml \
     python-dlib \
     python-docopt \
+    python-docutils \
+    python-empy \
+    python-enum34 \
     python-epydoc \
     python-fcn-pip \
     python-freezegun-pip \
+    python-futures \
     python-gdown-pip \
+    python-gi \
     python-gnupg \
     python-h5py \
     python-imageio \
+    python-imaging \
     python-impacket \
     python-kitchen \
     python-libpgm-pip \
+    python-lxml \
     python-mapnik \
+    python-matplotlib \
     python-mechanize \
     python-mock \
+    python-msgpack \
+    python-netifaces \
+    python-nose \
+    python-numpy \
     python-omniorb \
     python-opencv \
     python-opengl \
+    python-pandas \
+    python-paramiko \
     python-pcapy \
+    python-pep8 \
     python-percol \
     python-progressbar \
+    python-psutil \
     python-pyassimp \
     python-pyaudio \
     python-pydot \
     python-pygithub3 \
     python-pygraphviz \
+    python-pymongo \
+    python-pyproj \
+    python-pytest \
     python-pyusb-pip \
     python-qt5-bindings \
     python-qt5-bindings-gl \
     python-qt5-bindings-webkit \
+    python-requests \
+    python-requests-oauthlib \
+    python-rosdep \
+    python-rospkg \
     python-scipy \
     python-selenium-pip \
     python-serial \
+    python-setuptools \
+    python-simplejson \
     python-sip \
     python-skimage \
     python-sklearn \
     python-slacker-cli \
     python-speechrecognition-pip \
     python-tabulate-pip \
+    python-termcolor \
     python-texttable \
     python-tilestache \
+    python-tornado \
     python-twisted-core \
     python-urlgrabber \
+    python-websocket-client \
     python-wxtools \
+    python-yaml \
     qtbase \
     qtdeclarative5-dev \
     qtmultimedia5-dev \
+    readline \
+    rsync \
     sbcl \
+    screen \
     spacenavd \
     sqlite3 \
     sshpass \
+    subversion \
     suitesparse \
+    swig \
     tango-icon-theme \
+    tbb \
+    time \
+    udev \
+    unzip \
+    usbutils \
+    v4l-utils \
+    wget \
+    wxpython \
     wxwidgets \
     xfonts-100dpi \
     xfonts-75dpi \
     xvfb \
     yaml-cpp \
+    yasm \
+    zbar \
     zeromq \
     zlib \
 "
@@ -4381,11 +4501,13 @@ ROS_SUPERFLORE_GENERATED_TESTS = " \
     phantomjs \
     pilz-industrial-motion-testutils \
     pilz-testutils \
+    python-coverage \
     python-docopt \
     python-freezegun-pip \
     python-impacket \
     python-mock \
     python-pcapy \
+    python-pep8 \
     python-selenium-pip \
     urdf-test \
     xvfb \
@@ -4400,6 +4522,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     agni-tf-tools \
     angles \
     app-manager \
+    apriltag \
     ar-track-alvar \
     arbotix \
     ariles-ros \
@@ -4431,6 +4554,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     cloudwatch-logger \
     cloudwatch-metrics-collector \
     cmake-modules \
+    cnn-bridge \
     cob-common \
     cob-environments \
     code-coverage \
@@ -4744,6 +4868,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     rospy-message-converter \
     rosserial \
     rostate-machine \
+    rosthrottle \
     roswww \
     rotors-simulator \
     rplidar-ros \
@@ -4813,6 +4938,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     teleop-twist-joy \
     teleop-twist-keyboard \
     teraranger \
+    teraranger-array \
     tf-remapper-cpp \
     tf2-web-republisher \
     towr \

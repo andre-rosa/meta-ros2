@@ -19,6 +19,7 @@ ROS_BPN = "ethercat_trigger_controllers"
 
 ROS_BUILD_DEPENDS = " \
     diagnostic-msgs \
+    libtool \
     message-generation \
     pluginlib \
     pr2-controller-interface \
@@ -33,6 +34,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     diagnostic-msgs \
+    libtool \
     message-runtime \
     pluginlib \
     pr2-controller-interface \
@@ -46,6 +48,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     diagnostic-msgs \
+    libtool \
     message-runtime \
     pluginlib \
     pr2-controller-interface \

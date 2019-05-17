@@ -37,6 +37,8 @@ ROS_EXEC_DEPENDS = " \
     geometry-msgs \
     move-base-msgs \
     nav-msgs \
+    python-enum34 \
+    python-numpy \
     python-opencv \
     rospy \
     sensor-msgs \

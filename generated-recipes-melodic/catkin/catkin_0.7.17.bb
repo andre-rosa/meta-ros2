@@ -17,7 +17,10 @@ LIC_FILES_CHKSUM = "file://package.xml;beginline=7;endline=7;md5=d566ef916e9dedc
 ROS_CN = "catkin"
 ROS_BPN = "catkin"
 
-ROS_BUILD_DEPENDS = ""
+ROS_BUILD_DEPENDS = " \
+    python-catkin-pkg \
+    python-empy \
+"
 
 ROS_BUILDTOOL_DEPENDS = " \
     cmake-native \
@@ -25,17 +28,23 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     gtest \
+    python-catkin-pkg \
+    python-empy \
+    python-nose \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = " \
     cmake-native \
 "
 
-ROS_EXEC_DEPENDS = ""
+ROS_EXEC_DEPENDS = " \
+    python-catkin-pkg \
+"
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
 ROS_TEST_DEPENDS = " \
     python-mock \
+    python-nose \
 "
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"

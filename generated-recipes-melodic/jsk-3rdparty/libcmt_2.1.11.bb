@@ -17,6 +17,7 @@ ROS_CN = "jsk_3rdparty"
 ROS_BPN = "libcmt"
 
 ROS_BUILD_DEPENDS = " \
+    ca-certificates \
     git \
     opencv \
     openssl \
