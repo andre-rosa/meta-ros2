@@ -15,6 +15,7 @@ cppunit:
 - cppunit@meta-oe
 curl:
 - curl@openembedded-core
+dkms: []
 eigen:
 - libeigen@meta-oe
 g++-static: []
@@ -22,6 +23,8 @@ google-mock:
 - gtest@meta-oe
 gtest:
 - gtest@meta-oe
+gtk3:
+- gtk+3@openembedded-core
 libcairo2-dev:
 - cairo@openembedded-core
 libceres-dev:
@@ -34,6 +37,8 @@ libfreetype6-dev:
 - freetype@openembedded-core
 libgflags-dev:
 - gflags@meta-oe
+libglfw3-dev:
+- glfw@meta-intel-realsense
 libgoogle-glog-dev:
 - glog@meta-oe
 libopencv-dev:
@@ -54,6 +59,8 @@ libsqlite3-dev:
 - sqlite3@openembedded-core
 libssl-dev:
 - openssl@openembedded-core
+libusb-1.0-dev:
+- libusb1@openembedded-core
 libx11-dev:
 - libx11@openembedded-core
 libxaw:
@@ -62,6 +69,10 @@ libxml2-utils:
 - libxml2@openembedded-core
 libxrandr:
 - libxrandr@openembedded-core
+libzmq3-dev:
+- zeromq@meta-oe
+linux-headers-generic:
+- virtual/kernel@openembedded-core
 log4cxx:
 - log4cxx@meta-ros
 lua5.2-dev:
@@ -132,7 +143,10 @@ tinyxml:
 - libtinyxml@meta-oe
 tinyxml2:
 - libtinyxml2@meta-oe
-uncrustify: []
+udev:
+- udev@openembedded-core
+uncrustify:
+- uncrustify@meta-ros
 yaml:
 - libyaml@openembedded-core
 zlib:

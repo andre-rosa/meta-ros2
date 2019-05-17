@@ -12,7 +12,7 @@ ROS_VERSION = "2"
 ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190516003007"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190517225021"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
@@ -92,6 +92,8 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     ament-uncrustify \
     ament-xmllint \
     angles \
+    apriltag \
+    behaviortree-cpp-v3 \
     builtin-interfaces \
     camera-calibration-parsers \
     camera-info-manager \
@@ -144,6 +146,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     launch-testing-ament-cmake \
     launch-testing-ros \
     libcurl-vendor \
+    librealsense2 \
     libyaml-vendor \
     lifecycle \
     lifecycle-msgs \
@@ -349,6 +352,8 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     ament-uncrustify_0.7.3-1 \
     ament-xmllint_0.7.3-1 \
     angles_1.12.1-1 \
+    apriltag_3.1.0-2 \
+    behaviortree-cpp-v3_3.0.8-1 \
     builtin-interfaces_0.7.2-1 \
     camera-calibration-parsers_2.1.0-1 \
     camera-info-manager_2.1.0-1 \
@@ -401,6 +406,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     launch-testing-ament-cmake_0.8.1-2 \
     launch-testing-ros_0.8.1-1 \
     libcurl-vendor_2.1.0-2 \
+    librealsense2_2.16.5 \
     libyaml-vendor_1.0.0-1 \
     lifecycle_0.7.3-1 \
     lifecycle-msgs_0.7.2-1 \
@@ -608,6 +614,8 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     ament-uncrustify \
     ament-xmllint \
     angles \
+    apriltag \
+    behaviortree-cpp-v3 \
     builtin-interfaces \
     camera-calibration-parsers \
     camera-info-manager \
@@ -660,6 +668,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     launch-testing-ament-cmake \
     launch-testing-ros \
     libcurl-vendor \
+    librealsense2 \
     libyaml-vendor \
     lifecycle \
     lifecycle-msgs \
@@ -892,12 +901,15 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     curl \
     freetype \
     gflags \
+    glfw \
     glog \
     gtest \
+    gtk+3 \
     libeigen \
     libpcre \
     libtinyxml \
     libtinyxml2 \
+    libusb1 \
     libx11 \
     libxaw \
     libxml2 \
@@ -933,6 +945,10 @@ ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
     qtbase \
     sqlite3 \
     tango-icon-theme \
+    udev \
+    uncrustify \
+    virtual/kernel \
+    zeromq \
     zlib \
 "
 
@@ -972,6 +988,8 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     ament-lint \
     ament-package \
     angles \
+    apriltag \
+    behaviortree-cpp-v3 \
     cartographer \
     class-loader \
     common-interfaces \
@@ -989,6 +1007,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     laser-geometry \
     launch \
     launch-ros \
+    librealsense \
     libyaml-vendor \
     message-filters \
     navigation-msgs \

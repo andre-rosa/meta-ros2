@@ -182,6 +182,38 @@ version: ros2
 status: maintained
 }
 -----
+apriltag: {
+release: {
+tags: {
+release: 'release/dashing/<package>/<version>'
+},
+url: 'https://github.com/AprilRobotics/apriltag-release.git',
+version: 3.1.0-2
+},
+source: {
+type: git,
+url: 'https://github.com/AprilRobotics/apriltag.git',
+version: master
+},
+status: maintained
+}
+-----
+behaviortree_cpp_v3: {
+release: {
+tags: {
+release: 'release/dashing/<package>/<version>'
+},
+url: 'https://github.com/BehaviorTree/behaviortree_cpp_v3-release.git',
+version: 3.0.8-1
+},
+source: {
+type: git,
+url: 'https://github.com/BehaviorTree/BehaviorTree.CPP.git',
+version: master
+},
+status: developed
+}
+-----
 cartographer: {
 doc: {
 type: git,
@@ -586,6 +618,28 @@ url: 'https://github.com/ros2/launch_ros.git',
 version: master
 },
 status: developed
+}
+-----
+librealsense: {
+doc: {
+type: git,
+url: 'https://github.com/IntelRealSense/librealsense.git',
+version: ros2debian
+},
+release: {
+packages: [librealsense2],
+tags: {
+release: 'release/dashing/<package>/<version>'
+},
+url: 'https://github.com/ros2-gbp/librealsense-release.git',
+version: 2.16.5-0
+},
+source: {
+type: git,
+url: 'https://github.com/IntelRealSense/librealsense.git',
+version: ros2debian
+},
+status: maintained
 }
 -----
 libyaml_vendor: {
@@ -1632,6 +1686,7 @@ url: 'https://github.com/ros2-gbp/rqt_image_view-release.git',
 version: 1.0.0-1
 },
 source: {
+test_pull_requests: true,
 type: git,
 url: 'https://github.com/ros-visualization/rqt_image_view.git',
 version: crystal-devel
@@ -3014,6 +3069,40 @@ this package is what you need. The code in this package is stable and well teste
 </export>
 </package>
 -----
+apriltag: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+<name>apriltag</name>
+<description>AprilTag detector library</description>
+<maintainer email="mkrogius@umich.edu">Max Krogius</maintainer>
+<maintainer email="w.merkt+oss@gmail.com">Wolfgang Merkt</maintainer>
+<author email="ebolson@umich.edu">Edwin Olson</author>
+<author email="mkrogius@umich.edu">Max Krogius</author>
+<license>BSD</license>
+<url>https://april.eecs.umich.edu/software/apriltag.html</url>
+<buildtool_depend>cmake</buildtool_depend>
+<export>
+<build_type>cmake</build_type>
+</export>
+</package>
+-----
+behaviortree_cpp_v3: <?xml version="1.0" ?>
+<package>
+<name>behaviortree_cpp_v3</name>
+<description>This package provides the Behavior Trees core library.</description>
+<maintainer email="davide.faconti@gmail.com">Davide Faconti</maintainer>
+<license>MIT</license>
+<author>Michele Colledanchise</author>
+<author>Davide Faconti</author>
+<build_depend>libzmq3-dev</build_depend>
+<run_depend>libzmq3-dev</run_depend>
+<test_depend>ament_cmake_gtest</test_depend>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
 builtin_interfaces: <?xml version="1.0" ?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
@@ -4137,6 +4226,38 @@ it provides a fixed CMake module and an ExternalProject build of it.</descriptio
 <build_type>ament_cmake</build_type>
 </export>
 </package>"
+-----
+librealsense2: <?xml version="1.0" ?>
+<package format="2">
+<name>librealsense2</name>
+<description>Library for capturing data from the Intel(R) RealSense(TM) SR300 and D400 cameras. This effort was initiated to better support researchers,
+creative coders,
+and app developers in domains such as robotics,
+virtual reality,
+and the internet of things. Several often-requested features of RealSense(TM); devices are implemented in this project,
+including multi-camera capture.</description>
+<maintainer email="sergey.dorodnicov@intel.com">Sergey Dorodnicov</maintainer>
+<url type="website">https://github.com/IntelRealSense/librealsense/</url>
+<author email="sergey.dorodnicov@intel.com">Sergey Dorodnicov</author>
+<author email="mark.d.horn@intel.com">Mark Horn</author>
+<author email="reagan.lopez@intel.com">Reagan Lopez</author>
+<author email="itay.carpis@intel.com">Itay Carpis</author>
+<license>Apache License,
+Version 2.0</license>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<build_depend>pkg-config</build_depend>
+<depend>dkms</depend>
+<depend>gtk3</depend>
+<depend>libglfw3-dev</depend>
+<depend>libssl-dev</depend>
+<depend>libusb-1.0-dev</depend>
+<depend>linux-headers-generic</depend>
+<depend>opengl</depend>
+<depend>udev</depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
 -----
 libyaml_vendor: "<?xml version=\"1.0\" ?>
 <?xml-model href=\"http://download.ros.org/schema/package_format2.xsd\"\n  schematypens=\"http://www.w3.org/2001/XMLSchema\"?>
