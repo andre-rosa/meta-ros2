@@ -184,7 +184,8 @@ tinyxml2:
 - libtinyxml2@meta-oe
 udev:
 - udev@openembedded-core
-uncrustify: []
+uncrustify:
+- uncrustify@meta-ros
 wx-common:
 - wxwidgets@meta-ros
 wxwidgets:
