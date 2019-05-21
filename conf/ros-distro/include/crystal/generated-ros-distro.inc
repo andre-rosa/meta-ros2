@@ -12,7 +12,7 @@ ROS_VERSION = "2"
 ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190517223324"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190520213014"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
@@ -239,6 +239,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     nav2-voxel-grid \
     nav2-world-model \
     navigation2 \
+    nmea-msgs \
     object-analytics-msgs \
     object-analytics-node \
     object-analytics-rviz \
@@ -594,6 +595,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     nav2-voxel-grid_0.1.7 \
     nav2-world-model_0.1.7 \
     navigation2_0.1.7 \
+    nmea-msgs_2.0.0-1 \
     object-analytics-msgs_0.5.3 \
     object-analytics-node_0.5.3 \
     object-analytics-rviz_0.5.3 \
@@ -951,6 +953,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     nav2-voxel-grid \
     nav2-world-model \
     navigation2 \
+    nmea-msgs \
     object-analytics-msgs \
     object-analytics-node \
     object-analytics-rviz \
@@ -1170,7 +1173,7 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     rosidl-typesupport-introspection-cpp-native \
 "
 
-ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
+ROS_SUPERFLORE_GENERATED_PLATFORM_PACKAGE_DEPENDENCIES = " \
     ${PYTHON_PN}-pydocstyle \
     ${PYTHON_PN}-pyflakes \
     ${PYTHON_PN}-sphinx \
@@ -1326,6 +1329,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     mrpt2 \
     navigation-msgs \
     navigation2 \
+    nmea-msgs \
     object-msgs \
     orocos-kinematics-dynamics \
     osrf-pycommon \
