@@ -32,7 +32,7 @@ ament_cmake_python,
 ament_cmake_target_dependencies,
 ament_cmake_test],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ament_cmake-release.git',
 version: 0.5.1-0
@@ -54,7 +54,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ament_cmake_ros-release.git',
 version: 0.5.0-0
@@ -78,7 +78,7 @@ release: {
 packages: [ament_index_cpp,
 ament_index_python],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ament_index-release.git',
 version: 0.5.1-0
@@ -124,7 +124,7 @@ ament_pep8,
 ament_pyflakes,
 ament_uncrustify],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ament_lint-release.git',
 version: 0.5.2-0
@@ -146,7 +146,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ament_package-release.git',
 version: 0.5.2-0
@@ -168,7 +168,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ament_tools-release.git',
 version: 0.5.0-0
@@ -191,7 +191,7 @@ version: ros2
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/angles-release.git',
 version: 1.12.0-0
@@ -212,7 +212,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/cartographer-release.git',
 version: 2.1.0-0
@@ -236,7 +236,7 @@ release: {
 packages: [cartographer_ros,
 cartographer_ros_msgs],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/cartographer_ros-release.git',
 version: 2.1.1-1
@@ -258,7 +258,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/class_loader-release.git',
 version: 1.1.0-0
@@ -291,7 +291,7 @@ stereo_msgs,
 trajectory_msgs,
 visualization_msgs],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/common_interfaces-release.git',
 version: 0.5.1-0
@@ -313,7 +313,7 @@ version: master
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/console_bridge-release.git',
 version: 0.4.0-0
@@ -335,7 +335,7 @@ version: bouncy-devel
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros-gbp/control_msgs-release.git',
 version: 2.0.0-0
@@ -370,7 +370,7 @@ pendulum_control,
 pendulum_msgs,
 topic_monitor],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/demos-release.git',
 version: 0.5.1-1
@@ -392,7 +392,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/depthimage_to_laserscan-release.git',
 version: 2.1.0-0
@@ -438,7 +438,7 @@ ecl_time,
 ecl_type_traits,
 ecl_utilities],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/yujinrobot-release/ecl_core-release.git',
 version: 1.0.0-0
@@ -466,7 +466,7 @@ ecl_io,
 ecl_sigslots_lite,
 ecl_time_lite],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/yujinrobot-release/ecl_lite-release.git',
 version: 1.0.0-0
@@ -489,7 +489,7 @@ release: {
 packages: [ecl_build,
 ecl_license],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/yujinrobot-release/ecl_tools-release.git',
 version: 1.0.0-0
@@ -510,7 +510,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/example_interfaces-release.git',
 version: 0.5.0-1
@@ -543,7 +543,7 @@ examples_rclpy_minimal_publisher,
 examples_rclpy_minimal_service,
 examples_rclpy_minimal_subscriber],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/examples-release.git',
 version: 0.5.1-0
@@ -565,7 +565,7 @@ version: master
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/fastcdr-release.git',
 version: 1.0.7-0
@@ -587,7 +587,7 @@ version: master
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/fastrtps-release.git',
 version: 1.6.0-5
@@ -614,7 +614,7 @@ tf2_geometry_msgs,
 tf2_msgs,
 tf2_ros],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/geometry2-release.git',
 version: 0.9.1-1
@@ -633,7 +633,7 @@ release: {
 packages: [gmock_vendor,
 gtest_vendor],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/googletest-release.git',
 version: 1.8.0-0
@@ -655,7 +655,7 @@ version: bouncy
 release: {
 packages: [joy],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/joystick_drivers-release.git',
 version: 2.1.0-0
@@ -672,7 +672,7 @@ status: developed
 kdl_parser: {
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/kdl_parser-release.git',
 version: 2.1.0-0
@@ -689,7 +689,7 @@ status: maintained
 laser_geometry: {
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/laser_geometry-release.git',
 version: 2.0.0-0
@@ -714,7 +714,7 @@ launch_ros,
 launch_testing,
 ros2launch],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/launch-release.git',
 version: 0.6.0-0
@@ -731,7 +731,7 @@ status: maintained
 libyaml_vendor: {
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/libyaml_vendor-release.git',
 version: 1.0.0-0
@@ -755,7 +755,7 @@ release: {
 packages: [amcl,
 map_server],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/navigation-release.git',
 version: 3.1.0-0
@@ -773,7 +773,7 @@ navigation_msgs: {
 release: {
 packages: [map_msgs],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/navigation_msgs-release.git',
 version: 2.0.0-1
@@ -795,7 +795,7 @@ version: bouncy
 release: {
 packages: [orocos_kdl],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/orocos_kinematics_dynamics-release.git',
 version: 3.0.1-0
@@ -812,7 +812,7 @@ status: developed
 osrf_pycommon: {
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/osrf_pycommon-release.git',
 version: 0.1.5-0
@@ -830,7 +830,7 @@ release: {
 packages: [osrf_testing_tools_cpp,
 test_osrf_testing_tools_cpp],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/osrf_testings_tools_cpp-release.git',
 version: 1.0.0-0
@@ -846,7 +846,7 @@ status: maintained
 pcl_conversions: {
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/pcl_conversions-release.git',
 version: 2.0.0-0
@@ -868,7 +868,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/pluginlib-release.git',
 version: 2.1.1-0
@@ -889,7 +889,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/poco_vendor-release.git',
 version: 1.1.1-0
@@ -911,7 +911,7 @@ version: release/0.8.x
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/stonier/py_trees-release.git',
 version: 0.8.2-0
@@ -932,7 +932,7 @@ version: release/0.4.x
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/stonier/py_trees_msgs-release.git',
 version: 0.4.1-0
@@ -951,7 +951,7 @@ packages: [rcl,
 rcl_lifecycle,
 rcl_yaml_param_parser],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rcl-release.git',
 version: 0.5.1-0
@@ -978,7 +978,7 @@ rcl_interfaces,
 rosgraph_msgs,
 test_msgs],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rcl_interfaces-release.git',
 version: 0.5.0-3
@@ -1002,7 +1002,7 @@ release: {
 packages: [rclcpp,
 rclcpp_lifecycle],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rclcpp-release.git',
 version: 0.5.1-0
@@ -1024,7 +1024,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rclpy-release.git',
 version: 0.5.4-0
@@ -1041,7 +1041,7 @@ status: maintained
 rcutils: {
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rcutils-release.git',
 version: 0.5.1-0
@@ -1065,7 +1065,7 @@ release: {
 packages: [rttest,
 tlsf_cpp],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/realtime_support-release.git',
 version: 0.5.0-0
@@ -1089,7 +1089,7 @@ release: {
 packages: [libcurl_vendor,
 resource_retriever],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/resource_retriever-release.git',
 version: 2.1.0-0
@@ -1112,7 +1112,7 @@ release: {
 packages: [rmw,
 rmw_implementation_cmake],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rmw-release.git',
 version: 0.5.0-0
@@ -1136,7 +1136,7 @@ release: {
 packages: [rmw_connext_cpp,
 rmw_connext_shared_cpp],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rmw_connext-release.git',
 version: 0.5.1-0
@@ -1160,7 +1160,7 @@ release: {
 packages: [fastrtps_cmake_module,
 rmw_fastrtps_cpp],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rmw_fastrtps-release.git',
 version: 0.5.1-0
@@ -1182,7 +1182,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rmw_implementation-release.git',
 version: 0.5.1-0
@@ -1205,7 +1205,7 @@ version: bouncy
 release: {
 packages: [rmw_opensplice_cpp],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rmw_opensplice-release.git',
 version: 0.5.2-0
@@ -1222,7 +1222,7 @@ status: developed
 robot_state_publisher: {
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/robot_state_publisher-release.git',
 version: 2.1.0-0
@@ -1244,7 +1244,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ros1_bridge-release.git',
 version: 0.5.1-0
@@ -1276,7 +1276,7 @@ ros2service,
 ros2srv,
 ros2topic],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ros2cli-release.git',
 version: 0.5.4-0
@@ -1299,7 +1299,7 @@ version: bouncy
 release: {
 packages: [astra_camera],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ros_astra_camera-release.git',
 version: 2.1.1-0
@@ -1321,7 +1321,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ros_environment-release.git',
 version: 2.1.1-0
@@ -1337,7 +1337,7 @@ status: developed
 ros_workspace: {
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ros_workspace-release.git',
 version: 0.5.1-0
@@ -1365,7 +1365,7 @@ rosidl_typesupport_interface,
 rosidl_typesupport_introspection_c,
 rosidl_typesupport_introspection_cpp],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rosidl-release.git',
 version: 0.5.1-0
@@ -1388,7 +1388,7 @@ version: bouncy
 release: {
 packages: [rosidl_generator_dds_idl],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rosidl_dds-release.git',
 version: 0.5.0-0
@@ -1412,7 +1412,7 @@ release: {
 packages: [rosidl_default_generators,
 rosidl_default_runtime],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rosidl_defaults-release.git',
 version: 0.5.0-0
@@ -1436,7 +1436,7 @@ release: {
 packages: [python_cmake_module,
 rosidl_generator_py],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rosidl_python-release.git',
 version: 0.5.2-0
@@ -1460,7 +1460,7 @@ release: {
 packages: [rosidl_typesupport_c,
 rosidl_typesupport_cpp],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rosidl_typesupport-release.git',
 version: 0.5.0-2
@@ -1485,7 +1485,7 @@ packages: [connext_cmake_module,
 rosidl_typesupport_connext_c,
 rosidl_typesupport_connext_cpp],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rosidl_typesupport_connext-release.git',
 version: 0.5.3-0
@@ -1510,7 +1510,7 @@ packages: [opensplice_cmake_module,
 rosidl_typesupport_opensplice_c,
 rosidl_typesupport_opensplice_cpp],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rosidl_typesupport_opensplice-release.git',
 version: 0.5.0-0
@@ -1536,7 +1536,7 @@ rviz_rendering_tests,
 rviz_visual_testing_framework,
 rviz_yaml_cpp_vendor],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rviz-release.git',
 version: 4.0.2-0
@@ -1558,7 +1558,7 @@ version: release/1.0-bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/yujinrobot-release/sophus-release.git',
 version: 1.0.2-0
@@ -1579,7 +1579,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/sros2-release.git',
 version: 0.5.0-0
@@ -1596,7 +1596,7 @@ status: developed
 teleop_twist_joy: {
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/teleop_twist_joy-release.git',
 version: 2.1.0-0
@@ -1618,7 +1618,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/teleop_twist_keyboard-release.git',
 version: 2.1.1-0
@@ -1640,7 +1640,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/tinyxml2_vendor-release.git',
 version: 0.4.0-0
@@ -1662,7 +1662,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/tinyxml_vendor-release.git',
 version: 0.5.0-0
@@ -1679,7 +1679,7 @@ status: maintained
 tlsf: {
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/tlsf-release.git',
 version: 0.5.0-0
@@ -1708,7 +1708,7 @@ turtlebot2_drivers,
 turtlebot2_follower,
 turtlebot2_teleop],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/turtlebot2_demo-release.git',
 version: 0.5.1-0
@@ -1731,7 +1731,7 @@ version: bouncy
 release: {
 packages: [uncrustify_vendor],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/uncrustify-release.git',
 version: 0.66.1-1
@@ -1753,7 +1753,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/urdf-release.git',
 version: 2.1.0-0
@@ -1775,7 +1775,7 @@ version: bouncy
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/urdfdom-release.git',
 version: 2.0.0-0
@@ -1797,7 +1797,7 @@ version: master
 },
 release: {
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/urdfdom_headers-release.git',
 version: 1.0.0-1
@@ -1822,7 +1822,7 @@ packages: [desktop,
 ros_base,
 ros_core],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/variants-release.git',
 version: 0.5.1-0
@@ -1847,7 +1847,7 @@ packages: [cv_bridge,
 image_geometry,
 vision_opencv],
 tags: {
-release: 'release/bouncy/<package>/<version>'
+release: 'release/bouncy/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/vision_opencv-release.git',
 version: 2.0.5-0
