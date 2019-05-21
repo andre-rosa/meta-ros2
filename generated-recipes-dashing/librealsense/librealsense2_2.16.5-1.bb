@@ -64,10 +64,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/librealsense-release/archive/release/dashing/librealsense2/2.16.5-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "cfb876859ddc420290dea4d06b6ce807"
-SRC_URI[sha256sum] = "e36cb8a29b1fc63991b44360d14dfa8627747e599f630679f7d65b5469c9be1d"
-S = "${WORKDIR}/librealsense-release-release-dashing-librealsense2-2.16.5-0"
+SRC_URI = "https://github.com/ros2-gbp/librealsense-release/archive/release/dashing/librealsense2/2.16.5-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "08e414c155aabb47e584381823175ada"
+SRC_URI[sha256sum] = "8200ccf50818a19a4dcd625f099e960c38285c2181cef249da10fae25206ee07"
+S = "${WORKDIR}/librealsense-release-release-dashing-librealsense2-2.16.5-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('librealsense', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

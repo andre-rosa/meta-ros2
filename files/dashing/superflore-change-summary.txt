@@ -1,6 +1,6 @@
 dashing/superflore-change-summary.txt
 -----
-On branch yocto-bot-cIxbyojOkC
+On branch yocto-bot-GgcuZtABjy
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
@@ -123,11 +123,12 @@ Changes not staged for commit:
 	new file:   generated-recipes-dashing/launch/launch-testing-ament-cmake_0.8.1-2.bb
 	new file:   generated-recipes-dashing/launch/launch-testing_0.8.1-2.bb
 	new file:   generated-recipes-dashing/launch/launch_0.8.1-2.bb
-	new file:   generated-recipes-dashing/librealsense/librealsense2_2.16.5.bb
+	new file:   generated-recipes-dashing/librealsense/librealsense2_2.16.5-1.bb
 	new file:   generated-recipes-dashing/libyaml-vendor/libyaml-vendor_1.0.0-1.bb
 	new file:   generated-recipes-dashing/message-filters/message-filters_3.1.1-1.bb
 	new file:   generated-recipes-dashing/navigation-msgs/map-msgs_2.0.1.bb
-	new file:   generated-recipes-dashing/object-msgs/object-msgs_0.4.0.bb
+	new file:   generated-recipes-dashing/nmea-msgs/nmea-msgs_2.0.0-1.bb
+	new file:   generated-recipes-dashing/object-msgs/object-msgs_0.4.0-1.bb
 	new file:   generated-recipes-dashing/orocos-kinematics-dynamics/orocos-kdl_3.2.0-1.bb
 	new file:   generated-recipes-dashing/osrf-pycommon/osrf-pycommon_0.1.7-1.bb
 	new file:   generated-recipes-dashing/osrf-testing-tools-cpp/osrf-testing-tools-cpp_1.2.0-1.bb

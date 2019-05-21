@@ -48,10 +48,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/ros2_object_msgs-release/archive/release/dashing/object_msgs/0.4.0-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "1f1dbc5f33cc1fb123263fdb9a6da7da"
-SRC_URI[sha256sum] = "23299eb093c341908fa7e4546632135179dfa7350342af7cfc03cfa390b8bb28"
-S = "${WORKDIR}/ros2_object_msgs-release-release-dashing-object_msgs-0.4.0-0"
+SRC_URI = "https://github.com/ros2-gbp/ros2_object_msgs-release/archive/release/dashing/object_msgs/0.4.0-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "d6d888f331b94a8107ab085336276b69"
+SRC_URI[sha256sum] = "5c3dc7a345ffd92aaf80a028427eb60a521834a90595fa5795833f1325fe53ce"
+S = "${WORKDIR}/ros2_object_msgs-release-release-dashing-object_msgs-0.4.0-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('object-msgs', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

@@ -12,7 +12,7 @@ ROS_VERSION = "2"
 ROS_PYTHON_VERSION = "3"
 
 # When superflore was started, in UTC:
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190517225021"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190520211520"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
     connext-cmake-module \
@@ -154,6 +154,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     map-msgs \
     message-filters \
     nav-msgs \
+    nmea-msgs \
     object-msgs \
     orocos-kdl \
     osrf-pycommon \
@@ -406,7 +407,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     launch-testing-ament-cmake_0.8.1-2 \
     launch-testing-ros_0.8.1-1 \
     libcurl-vendor_2.1.0-2 \
-    librealsense2_2.16.5 \
+    librealsense2_2.16.5-1 \
     libyaml-vendor_1.0.0-1 \
     lifecycle_0.7.3-1 \
     lifecycle-msgs_0.7.2-1 \
@@ -414,7 +415,8 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     map-msgs_2.0.1 \
     message-filters_3.1.1-1 \
     nav-msgs_0.7.0-1 \
-    object-msgs_0.4.0 \
+    nmea-msgs_2.0.0-1 \
+    object-msgs_0.4.0-1 \
     orocos-kdl_3.2.0-1 \
     osrf-pycommon_0.1.7-1 \
     osrf-testing-tools-cpp_1.2.0-1 \
@@ -676,6 +678,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     map-msgs \
     message-filters \
     nav-msgs \
+    nmea-msgs \
     object-msgs \
     orocos-kdl \
     osrf-pycommon \
@@ -884,7 +887,7 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     rosidl-typesupport-introspection-cpp-native \
 "
 
-ROS_SUPERFLORE_GENERATED_SYSTEM_PACKAGE_DEPENDENCIES = " \
+ROS_SUPERFLORE_GENERATED_PLATFORM_PACKAGE_DEPENDENCIES = " \
     ${PYTHON_PN}-pydocstyle \
     ${PYTHON_PN}-pyflakes \
     ${PYTHON_PN}-sphinx \
@@ -1011,6 +1014,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     libyaml-vendor \
     message-filters \
     navigation-msgs \
+    nmea-msgs \
     object-msgs \
     orocos-kinematics-dynamics \
     osrf-pycommon \
