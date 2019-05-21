@@ -3,6 +3,10 @@
 #
 # Copyright (c) 2019 LG Electronics, Inc.
 
+# From the release announcement or the last field of the "release-ROS_DISTRO-YYYYMMDD" tag. Prior to the first release of a
+# ROS_DISTRO, set to "". Unfortunately, this has to be updated manually.
+ROS_DISTRO_RELEASE_DATE = ""
+
 # The release (of Ubuntu) that this ROS distro targets. This determines the versions of the platform packages that OE must
 # provide.
 ROS_DISTRO_BASELINE_PLATFORM = "bionic"
