@@ -66,6 +66,8 @@ libogg:
 - libogg@openembedded-core
 libopencv-dev:
 - opencv@meta-oe
+libopensplice69:
+- 'null'
 libpcap:
 - libpcap@openembedded-core
 libpcl-all:
@@ -170,6 +172,8 @@ qt5-qmake:
 - qtbase@meta-qt5
 qtbase5-dev:
 - qtbase@meta-qt5
+rti-connext-dds-5.3.1:
+- 'null'
 sdl:
 - libsdl@openembedded-core
 sdl-image:

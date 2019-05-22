@@ -19,7 +19,9 @@ ROS_BUILD_DEPENDS = " \
     poco \
     poco-vendor \
     rosidl-generator-c \
+    rosidl-typesupport-connext-c \
     rosidl-typesupport-introspection-c \
+    rosidl-typesupport-opensplice-c \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \

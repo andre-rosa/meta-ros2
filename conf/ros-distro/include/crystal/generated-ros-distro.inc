@@ -16,21 +16,9 @@ ROS_PYTHON_VERSION = "3"
 
 # The last-modified timestamp in UTC of the upstream ROS_DISTRO-cache.yaml from which superflore generated the recipes. The date
 # portion is used as the second version field of DISTRO_VERSION prior to the first release of a ROS_DISTRO.
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190521221013"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190522164514"
 
-ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
-    connext-cmake-module \
-    libopensplice67 \
-    opensplice-cmake-module \
-    rmw-connext-cpp \
-    rmw-connext-shared-cpp \
-    rmw-opensplice-cpp \
-    rosidl-typesupport-connext-c \
-    rosidl-typesupport-connext-cpp \
-    rosidl-typesupport-opensplice-c \
-    rosidl-typesupport-opensplice-cpp \
-    rti-connext-dds-5.3.1 \
-"
+ROS_SUPERFLORE_GENERATION_SKIP_LIST = ""
 
 # Superflore was unable to generate recipes for these packages, eg, because their repositories are not on GitHub.
 ROS_SUPERFLORE_GENERATION_NOT_POSSIBLE = ""
@@ -110,6 +98,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     composition \
     compressed-depth-image-transport \
     compressed-image-transport \
+    connext-cmake-module \
     console-bridge-vendor \
     control-msgs \
     costmap-queue \
@@ -248,6 +237,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     object-analytics-node \
     object-analytics-rviz \
     object-msgs \
+    opensplice-cmake-module \
     orocos-kdl \
     osrf-pycommon \
     osrf-testing-tools-cpp \
@@ -282,11 +272,14 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     realsense-ros2-camera \
     resource-retriever \
     rmw \
+    rmw-connext-cpp \
+    rmw-connext-shared-cpp \
     rmw-fastrtps-cpp \
     rmw-fastrtps-dynamic-cpp \
     rmw-fastrtps-shared-cpp \
     rmw-implementation \
     rmw-implementation-cmake \
+    rmw-opensplice-cpp \
     robot-state-publisher \
     ros-base \
     ros-core \
@@ -327,12 +320,16 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     rosidl-generator-py \
     rosidl-parser \
     rosidl-typesupport-c \
+    rosidl-typesupport-connext-c \
+    rosidl-typesupport-connext-cpp \
     rosidl-typesupport-cpp \
     rosidl-typesupport-fastrtps-c \
     rosidl-typesupport-fastrtps-cpp \
     rosidl-typesupport-interface \
     rosidl-typesupport-introspection-c \
     rosidl-typesupport-introspection-cpp \
+    rosidl-typesupport-opensplice-c \
+    rosidl-typesupport-opensplice-cpp \
     rqt \
     rqt-action \
     rqt-console \
@@ -466,6 +463,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     composition_0.6.2 \
     compressed-depth-image-transport_2.0.0 \
     compressed-image-transport_2.0.0 \
+    connext-cmake-module_0.6.4 \
     console-bridge-vendor_1.1.0 \
     control-msgs_2.1.0 \
     costmap-queue_0.1.7 \
@@ -604,6 +602,7 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     object-analytics-node_0.5.3 \
     object-analytics-rviz_0.5.3 \
     object-msgs_0.3.0-1 \
+    opensplice-cmake-module_0.6.2 \
     orocos-kdl_3.1.0 \
     osrf-pycommon_0.1.6 \
     osrf-testing-tools-cpp_1.1.0 \
@@ -638,11 +637,14 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     realsense-ros2-camera_2.0.3 \
     resource-retriever_2.1.0 \
     rmw_0.6.1 \
+    rmw-connext-cpp_0.6.1 \
+    rmw-connext-shared-cpp_0.6.1 \
     rmw-fastrtps-cpp_0.6.2 \
     rmw-fastrtps-dynamic-cpp_0.6.2 \
     rmw-fastrtps-shared-cpp_0.6.2 \
     rmw-implementation_0.6.1 \
     rmw-implementation-cmake_0.6.1 \
+    rmw-opensplice-cpp_0.6.3 \
     robot-state-publisher_2.1.0 \
     ros-base_0.6.1 \
     ros-core_0.6.1 \
@@ -683,12 +685,16 @@ ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
     rosidl-generator-py_0.6.3 \
     rosidl-parser_0.6.3 \
     rosidl-typesupport-c_0.6.3 \
+    rosidl-typesupport-connext-c_0.6.4 \
+    rosidl-typesupport-connext-cpp_0.6.4 \
     rosidl-typesupport-cpp_0.6.3 \
     rosidl-typesupport-fastrtps-c_0.6.1 \
     rosidl-typesupport-fastrtps-cpp_0.6.1 \
     rosidl-typesupport-interface_0.6.3 \
     rosidl-typesupport-introspection-c_0.6.3 \
     rosidl-typesupport-introspection-cpp_0.6.3 \
+    rosidl-typesupport-opensplice-c_0.6.2 \
+    rosidl-typesupport-opensplice-cpp_0.6.2 \
     rqt_1.0.2 \
     rqt-action_1.0.1 \
     rqt-console_1.0.1 \
@@ -824,6 +830,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     composition \
     compressed-depth-image-transport \
     compressed-image-transport \
+    connext-cmake-module \
     console-bridge-vendor \
     control-msgs \
     costmap-queue \
@@ -962,6 +969,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     object-analytics-node \
     object-analytics-rviz \
     object-msgs \
+    opensplice-cmake-module \
     orocos-kdl \
     osrf-pycommon \
     osrf-testing-tools-cpp \
@@ -996,11 +1004,14 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     realsense-ros2-camera \
     resource-retriever \
     rmw \
+    rmw-connext-cpp \
+    rmw-connext-shared-cpp \
     rmw-fastrtps-cpp \
     rmw-fastrtps-dynamic-cpp \
     rmw-fastrtps-shared-cpp \
     rmw-implementation \
     rmw-implementation-cmake \
+    rmw-opensplice-cpp \
     robot-state-publisher \
     ros-base \
     ros-core \
@@ -1041,12 +1052,16 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     rosidl-generator-py \
     rosidl-parser \
     rosidl-typesupport-c \
+    rosidl-typesupport-connext-c \
+    rosidl-typesupport-connext-cpp \
     rosidl-typesupport-cpp \
     rosidl-typesupport-fastrtps-c \
     rosidl-typesupport-fastrtps-cpp \
     rosidl-typesupport-interface \
     rosidl-typesupport-introspection-c \
     rosidl-typesupport-introspection-cpp \
+    rosidl-typesupport-opensplice-c \
+    rosidl-typesupport-opensplice-cpp \
     rqt \
     rqt-action \
     rqt-console \
@@ -1148,6 +1163,7 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     ament-uncrustify-native \
     ament-xmllint-native \
     cmake-native \
+    connext-cmake-module-native \
     fastcdr-native \
     fastrtps-cmake-module-native \
     fastrtps-native \
@@ -1155,6 +1171,8 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     gmock-vendor-native \
     gtest-native \
     gtest-vendor-native \
+    libopensplice69-native \
+    opensplice-cmake-module-native \
     pkgconfig-native \
     python-cmake-module-native \
     python3-catkin-pkg-native \
@@ -1162,19 +1180,24 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     python3-native \
     python3-nose-native \
     python3-pytest-native \
+    rcutils-native \
     ros-environment-native \
     rosidl-cmake-native \
     rosidl-default-generators-native \
     rosidl-generator-c-native \
     rosidl-generator-cpp-native \
+    rosidl-generator-dds-idl-native \
     rosidl-generator-py-native \
     rosidl-parser-native \
     rosidl-typesupport-c-native \
+    rosidl-typesupport-connext-cpp-native \
     rosidl-typesupport-cpp-native \
     rosidl-typesupport-fastrtps-cpp-native \
     rosidl-typesupport-interface-native \
     rosidl-typesupport-introspection-c-native \
     rosidl-typesupport-introspection-cpp-native \
+    rosidl-typesupport-opensplice-cpp-native \
+    rti-connext-dds-5.3.1-native \
 "
 
 ROS_SUPERFLORE_GENERATED_PLATFORM_PACKAGE_DEPENDENCIES = " \
@@ -1209,6 +1232,7 @@ ROS_SUPERFLORE_GENERATED_PLATFORM_PACKAGE_DEPENDENCIES = " \
     libgazebo9 \
     libjpeq-turbo \
     libogg \
+    libopensplice69 \
     libpcap \
     libpcre \
     libsdl \
@@ -1251,6 +1275,7 @@ ROS_SUPERFLORE_GENERATED_PLATFORM_PACKAGE_DEPENDENCIES = " \
     python3-pyyaml \
     python3-setuptools \
     qtbase \
+    rti-connext-dds-5.3.1 \
     sqlite3 \
     suitesparse \
     tango-icon-theme \
@@ -1354,8 +1379,10 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     realtime-support \
     resource-retriever \
     rmw \
+    rmw-connext \
     rmw-fastrtps \
     rmw-implementation \
+    rmw-opensplice \
     robot-state-publisher \
     ros-environment \
     ros-workspace \
@@ -1369,7 +1396,9 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     rosidl-defaults \
     rosidl-python \
     rosidl-typesupport \
+    rosidl-typesupport-connext \
     rosidl-typesupport-fastrtps \
+    rosidl-typesupport-opensplice \
     rqt \
     rqt-action \
     rqt-console \
