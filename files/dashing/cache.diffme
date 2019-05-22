@@ -35,7 +35,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ament_cmake-release.git',
-version: 0.7.1-1
+version: 0.7.2-1
 },
 source: {
 type: git,
@@ -314,7 +314,8 @@ url: 'https://github.com/ros2/demos.git',
 version: master
 },
 release: {
-packages: [composition,
+packages: [action_tutorials,
+composition,
 demo_nodes_cpp,
 demo_nodes_cpp_native,
 demo_nodes_py,
@@ -327,12 +328,14 @@ lifecycle,
 logging_demo,
 pendulum_control,
 pendulum_msgs,
+quality_of_service_demo_cpp,
+quality_of_service_demo_py,
 topic_monitor],
 tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/demos-release.git',
-version: 0.7.3-1
+version: 0.7.4-1
 },
 source: {
 test_pull_requests: true,
@@ -391,7 +394,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/examples-release.git',
-version: 0.7.1-1
+version: 0.7.2-1
 },
 source: {
 test_pull_requests: true,
@@ -408,7 +411,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/fastcdr-release.git',
-version: 1.0.8-1
+version: 1.0.9-1
 },
 source: {
 test_commits: false,
@@ -426,7 +429,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/fastrtps-release.git',
-version: 1.7.2-2
+version: 1.8.0-1
 },
 source: {
 test_commits: false,
@@ -455,7 +458,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/geometry2-release.git',
-version: 0.11.1-1
+version: 0.11.2-1
 },
 source: {
 test_pull_requests: true,
@@ -521,7 +524,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/joystick_drivers-release.git',
-version: 2.2.0-1
+version: 2.3.1-1
 },
 source: {
 test_pull_requests: true,
@@ -584,7 +587,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/launch-release.git',
-version: 0.8.1-2
+version: 0.8.2-1
 },
 source: {
 test_pull_requests: true,
@@ -609,7 +612,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/launch_ros-release.git',
-version: 0.8.1-1
+version: 0.8.2-1
 },
 source: {
 test_pull_requests: true,
@@ -669,7 +672,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ros2_message_filters-release.git',
-version: 3.1.1-1
+version: 3.1.2-1
 },
 source: {
 test_pull_requests: true,
@@ -802,7 +805,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/osrf_testings_tools_cpp-release.git',
-version: 1.2.0-1
+version: 1.2.1-1
 },
 source: {
 test_pull_requests: true,
@@ -939,7 +942,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rcl-release.git',
-version: 0.7.2-1
+version: 0.7.3-1
 },
 source: {
 test_pull_requests: true,
@@ -968,7 +971,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rcl_interfaces-release.git',
-version: 0.7.2-1
+version: 0.7.3-1
 },
 source: {
 test_pull_requests: true,
@@ -1018,7 +1021,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rclcpp-release.git',
-version: 0.7.2-1
+version: 0.7.3-1
 },
 source: {
 test_pull_requests: true,
@@ -1040,7 +1043,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rclpy-release.git',
-version: 0.7.1-1
+version: 0.7.2-1
 },
 source: {
 test_pull_requests: true,
@@ -1084,7 +1087,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rcutils-release.git',
-version: 0.7.1-1
+version: 0.7.2-1
 },
 source: {
 test_pull_requests: true,
@@ -1180,7 +1183,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rmw_connext-release.git',
-version: 0.7.1-1
+version: 0.7.2-1
 },
 source: {
 test_pull_requests: true,
@@ -1205,7 +1208,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rmw_fastrtps-release.git',
-version: 0.7.1-1
+version: 0.7.2-1
 },
 source: {
 test_pull_requests: true,
@@ -1294,7 +1297,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ros1_bridge-release.git',
-version: 0.7.0-1
+version: 0.7.1-1
 },
 source: {
 test_commits: false,
@@ -1329,7 +1332,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/ros2cli-release.git',
-version: 0.7.2-1
+version: 0.7.3-1
 },
 source: {
 test_pull_requests: true,
@@ -1354,6 +1357,25 @@ url: 'https://github.com/ros/ros_environment.git',
 version: dashing
 },
 status: maintained
+}
+-----
+ros_testing: {
+release: {
+packages: [ros2test,
+ros_testing],
+tags: {
+release: 'release/dashing/{package}/{version}'
+},
+url: 'https://github.com/ros2-gbp/ros_testing-release.git',
+version: 0.1.0-1
+},
+source: {
+test_pull_requests: true,
+type: git,
+url: 'https://github.com/ros2/ros_testing.git',
+version: master
+},
+status: developed
 }
 -----
 ros_workspace: {
@@ -1393,7 +1415,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rosbag2-release.git',
-version: 0.1.1-1
+version: 0.1.2-1
 },
 source: {
 test_pull_requests: true,
@@ -1423,7 +1445,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rosidl-release.git',
-version: 0.7.1-1
+version: 0.7.2-1
 },
 source: {
 test_pull_requests: true,
@@ -1495,7 +1517,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rosidl_python-release.git',
-version: 0.7.3-1
+version: 0.7.4-1
 },
 source: {
 test_pull_requests: true,
@@ -1705,7 +1727,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rqt_image_view-release.git',
-version: 1.0.0-1
+version: 1.0.1-1
 },
 source: {
 test_pull_requests: true,
@@ -1748,7 +1770,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rqt_plot-release.git',
-version: 1.0.3-1
+version: 1.0.4-1
 },
 source: {
 type: git,
@@ -1924,7 +1946,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/rviz-release.git',
-version: 6.0.0-2
+version: 6.1.0-1
 },
 source: {
 test_pull_requests: true,
@@ -2193,7 +2215,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/urdfdom_headers-release.git',
-version: 1.0.3-1
+version: 1.0.4-1
 },
 source: {
 type: git,
@@ -2262,6 +2284,26 @@ action_msgs: <?xml version="1.0" ?>
 <buildtool_depend>rosidl_default_generators</buildtool_depend>
 <depend>builtin_interfaces</depend>
 <depend>unique_identifier_msgs</depend>
+<exec_depend>rosidl_default_runtime</exec_depend>
+<test_depend>ament_lint_auto</test_depend>
+<test_depend>ament_lint_common</test_depend>
+<member_of_group>rosidl_interface_packages</member_of_group>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+action_tutorials: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+<name>action_tutorials</name>
+<description>Action tutorial code examples</description>
+<maintainer email="jacob@openrobotics.org">Jacob Perron</maintainer>
+<license>Apache License 2.0</license>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<buildtool_depend>rosidl_default_generators</buildtool_depend>
+<depend>action_msgs</depend>
+<exec_depend>rclpy</exec_depend>
 <exec_depend>rosidl_default_runtime</exec_depend>
 <test_depend>ament_lint_auto</test_depend>
 <test_depend>ament_lint_common</test_depend>
@@ -4314,6 +4356,7 @@ lifecycle: <?xml version="1.0" ?>
 <exec_depend>std_msgs</exec_depend>
 <test_depend>ament_lint_auto</test_depend>
 <test_depend>ament_lint_common</test_depend>
+<test_depend>ros_testing</test_depend>
 <export>
 <build_type>ament_cmake</build_type>
 </export>
@@ -4865,6 +4908,55 @@ qt_gui_py_common: <?xml version="1.0" ?>
 </export>
 </package>
 -----
+quality_of_service_demo_cpp: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+<name>quality_of_service_demo_cpp</name>
+<description>C++ Demo applications for Quality of Service features</description>
+<maintainer email="ros-contributions@amazon.com">Amazon ROS Contributions</maintainer>
+<license>Apache License 2.0</license>
+<author>Emerson Knapp</author>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<build_depend>example_interfaces</build_depend>
+<build_depend>rclcpp</build_depend>
+<build_depend>rcutils</build_depend>
+<build_depend>rmw</build_depend>
+<build_depend>rmw_implementation_cmake</build_depend>
+<build_depend>std_msgs</build_depend>
+<exec_depend>example_interfaces</exec_depend>
+<exec_depend>launch_ros</exec_depend>
+<exec_depend>rclcpp</exec_depend>
+<exec_depend>rcutils</exec_depend>
+<exec_depend>rmw</exec_depend>
+<exec_depend>std_msgs</exec_depend>
+<test_depend>ament_lint_auto</test_depend>
+<test_depend>ament_lint_common</test_depend>
+<test_depend>launch</test_depend>
+<test_depend>launch_testing</test_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+quality_of_service_demo_py: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+<name>quality_of_service_demo_py</name>
+<description>Python Demo applications for Quality of Service features</description>
+<maintainer email="ros-contributions@amazon.com">Amazon ROS Contributions</maintainer>
+<license>Apache License 2.0</license>
+<author>Emerson Knapp</author>
+<exec_depend>rclpy</exec_depend>
+<exec_depend>std_msgs</exec_depend>
+<test_depend>ament_copyright</test_depend>
+<test_depend>ament_flake8</test_depend>
+<test_depend>ament_pep257</test_depend>
+<test_depend>python3-pytest</test_depend>
+<export>
+<build_type>ament_python</build_type>
+</export>
+</package>
+-----
 rcl: <?xml version="1.0" ?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
@@ -4882,12 +4974,11 @@ rcl: <?xml version="1.0" ?>
 <build_export_depend>rcutils</build_export_depend>
 <build_export_depend>rosidl_generator_c</build_export_depend>
 <build_export_depend>tinydir_vendor</build_export_depend>
-<depend>rcl_logging_log4cxx</depend>
-<depend>rcl_logging_noop</depend>
 <exec_depend>rcl_interfaces</exec_depend>
 <exec_depend>ament_cmake</exec_depend>
 <exec_depend>rcutils</exec_depend>
 <exec_depend>rosidl_default_runtime</exec_depend>
+<depend>rcl_logging_noop</depend>
 <depend>rmw_implementation</depend>
 <test_depend>ament_cmake_gtest</test_depend>
 <test_depend>ament_cmake_pytest</test_depend>
@@ -4950,6 +5041,7 @@ rcl_interfaces: <?xml version="1.0" ?>
 <member_of_group>rosidl_interface_packages</member_of_group>
 <export>
 <build_type>ament_cmake</build_type>
+<ros1_bridge mapping_rules="mapping_rules.yaml"/>
 </export>
 </package>
 -----
@@ -5402,6 +5494,8 @@ rmw_fastrtps_dynamic_cpp: <?xml version="1.0" ?>
 <build_depend>rmw</build_depend>
 <build_depend>rmw_fastrtps_shared_cpp</build_depend>
 <build_depend>rosidl_generator_c</build_depend>
+<build_depend>rosidl_typesupport_fastrtps_c</build_depend>
+<build_depend>rosidl_typesupport_fastrtps_cpp</build_depend>
 <build_depend>rosidl_typesupport_introspection_c</build_depend>
 <build_depend>rosidl_typesupport_introspection_cpp</build_depend>
 <build_export_depend>fastcdr</build_export_depend>
@@ -5411,6 +5505,8 @@ rmw_fastrtps_dynamic_cpp: <?xml version="1.0" ?>
 <build_export_depend>rmw</build_export_depend>
 <build_export_depend>rmw_fastrtps_shared_cpp</build_export_depend>
 <build_export_depend>rosidl_generator_c</build_export_depend>
+<build_export_depend>rosidl_typesupport_fastrtps_c</build_export_depend>
+<build_export_depend>rosidl_typesupport_fastrtps_cpp</build_export_depend>
 <build_export_depend>rosidl_typesupport_introspection_c</build_export_depend>
 <build_export_depend>rosidl_typesupport_introspection_cpp</build_export_depend>
 <test_depend>ament_lint_auto</test_depend>
@@ -5888,6 +5984,27 @@ ros2srv: <?xml version="1.0" ?>
 </export>
 </package>
 -----
+ros2test: "<?xml version=\"1.0\" ?>
+<?xml-model href=\"http://download.ros.org/schema/package_format2.xsd\"\n  schematypens=\"http://www.w3.org/2001/XMLSchema\"?>
+<package format=\"2\">
+<name>ros2test</name>
+<description>The test command for ROS 2 launch tests.</description>
+<maintainer email=\"michel@ekumenlabs.com\">Michel Hidalgo</maintainer>
+<license>Apache License 2.0</license>
+<depend>launch</depend>
+<depend>launch_ros</depend>
+<depend>launch_testing</depend>
+<depend>launch_testing_ros</depend>
+<depend>ros2cli</depend>
+<test_depend>ament_copyright</test_depend>
+<test_depend>ament_flake8</test_depend>
+<test_depend>ament_pep257</test_depend>
+<test_depend>python3-pytest</test_depend>
+<export>
+<build_type>ament_python</build_type>
+</export>
+</package>"
+-----
 ros2topic: <?xml version="1.0" ?>
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
@@ -5921,6 +6038,30 @@ ros_environment: <?xml version="1.0" ?>
 <url type="repository">https://github.com/ros/ros_environment</url>
 <url type="bugtracker">https://github.com/ros/ros_environment/issues</url>
 <buildtool_depend>ament_cmake_core</buildtool_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+ros_testing: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+<name>ros_testing</name>
+<description>The entry point package to launch testing in ROS.</description>
+<maintainer email="michel@ekumenlabs.com">Michel Hidalgo</maintainer>
+<license>Apache License 2.0</license>
+<author email="michel@ekumenlabs.com">Michel Hidalgo</author>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<buildtool_export_depend>launch_testing_ament_cmake</buildtool_export_depend>
+<buildtool_export_depend>ros2test</buildtool_export_depend>
+<build_depend>ament_cmake_core</build_depend>
+<build_depend>ament_cmake_export_dependencies</build_depend>
+<build_export_depend>launch_testing</build_export_depend>
+<build_export_depend>launch_testing_ros</build_export_depend>
+<build_export_depend>launch_testing_ament_cmake</build_export_depend>
+<exec_depend>launch_testing</exec_depend>
+<exec_depend>launch_testing_ros</exec_depend>
+<exec_depend>ros2test</exec_depend>
 <export>
 <build_type>ament_cmake</build_type>
 </export>
@@ -6042,12 +6183,12 @@ rosbag2_test_common: <?xml version="1.0" ?>
 <maintainer email="karsten@openrobotics.org">Karsten Knese</maintainer>
 <license>Apache License 2.0</license>
 <buildtool_depend>ament_cmake</buildtool_depend>
-<test_depend>ament_cmake_gmock</test_depend>
+<build_depend>rclcpp</build_depend>
+<build_depend>rcutils</build_depend>
+<exec_depend>rclcpp</exec_depend>
+<exec_depend>rcutils</exec_depend>
 <test_depend>ament_lint_auto</test_depend>
 <test_depend>ament_lint_common</test_depend>
-<test_depend>rclcpp</test_depend>
-<test_depend>rcutils</test_depend>
-<build_export_depend>rclcpp</build_export_depend>
 <export>
 <build_type>ament_cmake</build_type>
 </export>
