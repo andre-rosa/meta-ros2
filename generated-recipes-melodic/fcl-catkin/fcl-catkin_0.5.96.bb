@@ -16,7 +16,7 @@ ROS_CN = "fcl_catkin"
 ROS_BPN = "fcl_catkin"
 
 ROS_BUILD_DEPENDS = " \
-    libccd-dev \
+    libccd \
     libeigen \
     octomap \
 "
@@ -26,7 +26,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    libccd-dev \
+    libccd \
     libeigen \
     octomap \
 "
@@ -34,7 +34,7 @@ ROS_EXPORT_DEPENDS = " \
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    libccd-dev \
+    libccd \
     libeigen \
     octomap \
 "

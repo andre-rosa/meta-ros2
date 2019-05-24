@@ -21,11 +21,11 @@ ROS_BUILD_DEPENDS = " \
     boost \
     console-bridge \
     eigen-stl-containers \
+    fcl \
     geometric-shapes \
     geometry-msgs \
     kdl-parser \
     libeigen \
-    libfcl-dev \
     liburdfdom-dev \
     liburdfdom-headers-dev \
     moveit-msgs \
@@ -57,11 +57,11 @@ ROS_EXPORT_DEPENDS = " \
     boost \
     console-bridge \
     eigen-stl-containers \
+    fcl \
     geometric-shapes \
     geometry-msgs \
     kdl-parser \
     libeigen \
-    libfcl-dev \
     liburdfdom-dev \
     liburdfdom-headers-dev \
     moveit-msgs \
@@ -90,11 +90,11 @@ ROS_EXEC_DEPENDS = " \
     boost \
     console-bridge \
     eigen-stl-containers \
+    fcl \
     geometric-shapes \
     geometry-msgs \
     kdl-parser \
     libeigen \
-    libfcl-dev \
     liburdfdom-dev \
     liburdfdom-headers-dev \
     moveit-msgs \

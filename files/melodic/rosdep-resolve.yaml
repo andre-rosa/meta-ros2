@@ -34,7 +34,7 @@ cmake:
 coinor-libipopt-dev:
 - 'null'
 collada-dom:
-- 'null'
+- collada-dom@meta-ros
 coreutils:
 - coreutils
 cppunit:
@@ -62,7 +62,7 @@ epydoc:
 f2c:
 - 'null'
 festival:
-- 'null'
+- festival@meta-ros
 ffmpeg:
 - ffmpeg@openembedded-core
 flex:
@@ -78,7 +78,7 @@ gazebo9: []
 gdal-bin:
 - 'null'
 geographiclib:
-- 'null'
+- geographiclib@meta-ros
 geographiclib-tools:
 - 'null'
 gforth:
@@ -92,7 +92,7 @@ glut:
 google-mock:
 - gtest@meta-oe
 graphviz:
-- 'null'
+- graphviz@meta-ros
 gstreamer1.0:
 - gstreamer1.0
 gstreamer1.0-plugins-base:
@@ -136,7 +136,7 @@ libcairo2-dev:
 libcap-dev:
 - 'null'
 libccd-dev:
-- 'null'
+- libccd@meta-ros
 libceres-dev:
 - ceres-solver@meta-oe
 libcoin80-dev:
@@ -150,11 +150,11 @@ libdmtx-dev:
 libdw-dev:
 - elfutils@openembedded-core
 libfcl-dev:
-- 'null'
+- fcl@meta-ros
 libfltk-dev:
 - 'null'
 libfreenect-dev:
-- 'null'
+- libfreenect@meta-ros
 libftdi-dev:
 - 'null'
 libftdipp-dev:
@@ -238,7 +238,7 @@ libqglviewer-qt4:
 libqglviewer-qt4-dev:
 - 'null'
 libqhull:
-- 'null'
+- qhull@meta-ros
 libqt4-dev:
 - 'null'
 libqt4-opengl:
@@ -375,7 +375,7 @@ python-bluez:
 python-boto3:
 - 'null'
 python-bson:
-- 'null'
+- python-bson@meta-ros
 python-cairo:
 - 'null'
 python-catkin-lint:
@@ -401,7 +401,7 @@ python-crypto:
 python-cwiid:
 - 'null'
 python-defusedxml:
-- 'null'
+- python-defusedxml@meta-ros
 python-dlib:
 - 'null'
 python-docopt:
@@ -409,7 +409,7 @@ python-docopt:
 python-docutils:
 - python-docutils
 python-empy:
-- 'null'
+- python-empy@meta-ros
 python-enum34:
 - python-enum34
 python-fcn-pip:
@@ -449,7 +449,7 @@ python-mock:
 python-msgpack:
 - python-msgpack
 python-netifaces:
-- python-netifaces
+- python-netifaces@meta-ros
 python-nose:
 - python-nose
 python-numpy:
@@ -463,7 +463,7 @@ python-opengl:
 python-pandas:
 - python-pandas
 python-paramiko:
-- python-paramiko
+- python-paramiko@meta-ros
 python-pcapy:
 - 'null'
 python-pep8:
@@ -577,7 +577,7 @@ suitesparse:
 swig:
 - swig
 tango-icon-theme:
-- tango-icon-theme@meta-ros
+- 'null'
 tbb:
 - tbb
 time:
@@ -599,7 +599,7 @@ wget:
 wx-common:
 - wxwidgets@meta-ros
 wxpython:
-- 'null'
+- wxpython@meta-ros
 wxwidgets:
 - wxwidgets@meta-ros
 xfonts-100dpi:

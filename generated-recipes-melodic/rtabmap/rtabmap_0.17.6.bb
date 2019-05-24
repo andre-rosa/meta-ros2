@@ -19,7 +19,7 @@ ROS_BPN = "rtabmap"
 ROS_BUILD_DEPENDS = " \
     acpica \
     cv-bridge \
-    libfreenect-dev \
+    libfreenect \
     libg2o \
     libopenni-dev \
     libvtk-qt \
@@ -36,7 +36,7 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     cv-bridge \
-    libfreenect-dev \
+    libfreenect \
     libg2o \
     libopenni-dev \
     libvtk-qt \
@@ -51,7 +51,7 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     cv-bridge \
-    libfreenect-dev \
+    libfreenect \
     libg2o \
     libopenni-dev \
     libvtk-qt \
