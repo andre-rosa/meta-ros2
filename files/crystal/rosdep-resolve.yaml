@@ -181,7 +181,7 @@ sdl-image:
 suitesparse:
 - suitesparse@meta-ros
 tango-icon-theme:
-- tango-icon-theme@meta-ros
+- 'null'
 tinyxml:
 - libtinyxml@meta-oe
 tinyxml2:
