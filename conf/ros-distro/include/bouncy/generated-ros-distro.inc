@@ -16,21 +16,10 @@ ROS_PYTHON_VERSION = "3"
 
 # The last-modified timestamp in UTC of the upstream ROS_DISTRO-cache.yaml from which superflore generated the recipes. The date
 # portion is used as the second version field of DISTRO_VERSION prior to the first release of a ROS_DISTRO.
-ROS_SUPERFLORE_GENERATION_DATETIME = "20190521221506"
+ROS_SUPERFLORE_GENERATION_DATETIME = "20190524170006"
 
 ROS_SUPERFLORE_GENERATION_SKIP_LIST = " \
-    connext-cmake-module \
     console-bridge \
-    libopensplice67 \
-    opensplice-cmake-module \
-    rmw-connext-cpp \
-    rmw-connext-shared-cpp \
-    rmw-opensplice-cpp \
-    rosidl-typesupport-connext-c \
-    rosidl-typesupport-connext-cpp \
-    rosidl-typesupport-opensplice-c \
-    rosidl-typesupport-opensplice-cpp \
-    rti-connext-dds-5.3.1 \
 "
 
 # Superflore was unable to generate recipes for these packages, eg, because their repositories are not on GitHub.
@@ -104,6 +93,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     class-loader \
     common-interfaces \
     composition \
+    connext-cmake-module \
     control-msgs \
     cv-bridge \
     demo-nodes-cpp \
@@ -184,6 +174,7 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     map-msgs \
     map-server \
     nav-msgs \
+    opensplice-cmake-module \
     orocos-kdl \
     osrf-pycommon \
     osrf-testing-tools-cpp \
@@ -205,9 +196,12 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     rcutils \
     resource-retriever \
     rmw \
+    rmw-connext-cpp \
+    rmw-connext-shared-cpp \
     rmw-fastrtps-cpp \
     rmw-implementation \
     rmw-implementation-cmake \
+    rmw-opensplice-cpp \
     robot-state-publisher \
     ros-base \
     ros-core \
@@ -235,10 +229,14 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     rosidl-generator-py \
     rosidl-parser \
     rosidl-typesupport-c \
+    rosidl-typesupport-connext-c \
+    rosidl-typesupport-connext-cpp \
     rosidl-typesupport-cpp \
     rosidl-typesupport-interface \
     rosidl-typesupport-introspection-c \
     rosidl-typesupport-introspection-cpp \
+    rosidl-typesupport-opensplice-c \
+    rosidl-typesupport-opensplice-cpp \
     rttest \
     rviz-assimp-vendor \
     rviz-common \
@@ -285,244 +283,253 @@ ROS_SUPERFLORE_GENERATED_RECIPES = " \
     visualization-msgs \
 "
 
-ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES = " \
-    actionlib-msgs_0.5.1 \
-    amcl_3.1.0 \
-    ament-clang-format_0.5.2 \
-    ament-cmake_0.5.1 \
-    ament-cmake-auto_0.5.1 \
-    ament-cmake-clang-format_0.5.2 \
-    ament-cmake-copyright_0.5.2 \
-    ament-cmake-core_0.5.1 \
-    ament-cmake-cppcheck_0.5.2 \
-    ament-cmake-cpplint_0.5.2 \
-    ament-cmake-export-definitions_0.5.1 \
-    ament-cmake-export-dependencies_0.5.1 \
-    ament-cmake-export-include-directories_0.5.1 \
-    ament-cmake-export-interfaces_0.5.1 \
-    ament-cmake-export-libraries_0.5.1 \
-    ament-cmake-export-link-flags_0.5.1 \
-    ament-cmake-flake8_0.5.2 \
-    ament-cmake-gmock_0.5.1 \
-    ament-cmake-gtest_0.5.1 \
-    ament-cmake-include-directories_0.5.1 \
-    ament-cmake-libraries_0.5.1 \
-    ament-cmake-lint-cmake_0.5.2 \
-    ament-cmake-nose_0.5.1 \
-    ament-cmake-pclint_0.5.2 \
-    ament-cmake-pep257_0.5.2 \
-    ament-cmake-pep8_0.5.2 \
-    ament-cmake-pyflakes_0.5.2 \
-    ament-cmake-pytest_0.5.1 \
-    ament-cmake-python_0.5.1 \
-    ament-cmake-ros_0.5.0 \
-    ament-cmake-target-dependencies_0.5.1 \
-    ament-cmake-test_0.5.1 \
-    ament-cmake-uncrustify_0.5.2 \
-    ament-copyright_0.5.2 \
-    ament-cppcheck_0.5.2 \
-    ament-cpplint_0.5.2 \
-    ament-flake8_0.5.2 \
-    ament-index-cpp_0.5.1 \
-    ament-index-python_0.5.1 \
-    ament-lint-auto_0.5.2 \
-    ament-lint-cmake_0.5.2 \
-    ament-lint-common_0.5.2 \
-    ament-package_0.5.2 \
-    ament-pclint_0.5.2 \
-    ament-pep257_0.5.2 \
-    ament-pep8_0.5.2 \
-    ament-pyflakes_0.5.2 \
-    ament-tools_0.5.0 \
-    ament-uncrustify_0.5.2 \
-    angles_1.12.0 \
-    astra-camera_2.1.1 \
-    builtin-interfaces_0.5.0-3 \
-    cartographer_2.1.0 \
-    cartographer-ros_2.1.1-1 \
-    cartographer-ros-msgs_2.1.1-1 \
-    class-loader_1.1.0 \
-    common-interfaces_0.5.1 \
-    composition_0.5.1-1 \
-    control-msgs_2.0.0 \
-    cv-bridge_2.0.5 \
-    demo-nodes-cpp_0.5.1-1 \
-    demo-nodes-cpp-rosnative_0.5.1-1 \
-    demo-nodes-py_0.5.1-1 \
-    depthimage-to-laserscan_2.1.0 \
-    depthimage-to-pointcloud2_0.5.1 \
-    desktop_0.5.1 \
-    diagnostic-msgs_0.5.1 \
-    dummy-map-server_0.5.1-1 \
-    dummy-robot-bringup_0.5.1-1 \
-    dummy-sensors_0.5.1-1 \
-    ecl-build_1.0.0 \
-    ecl-command-line_1.0.0 \
-    ecl-concepts_1.0.0 \
-    ecl-config_1.0.0 \
-    ecl-console_1.0.0 \
-    ecl-containers_1.0.0 \
-    ecl-converters_1.0.0 \
-    ecl-converters-lite_1.0.0 \
-    ecl-core-apps_1.0.0 \
-    ecl-devices_1.0.0 \
-    ecl-eigen_1.0.0 \
-    ecl-errors_1.0.0 \
-    ecl-exceptions_1.0.0 \
-    ecl-filesystem_1.0.0 \
-    ecl-formatters_1.0.0 \
-    ecl-geometry_1.0.0 \
-    ecl-io_1.0.0 \
-    ecl-ipc_1.0.0 \
-    ecl-license_1.0.0 \
-    ecl-linear-algebra_1.0.0 \
-    ecl-manipulators_1.0.0 \
-    ecl-math_1.0.0 \
-    ecl-mobile-robot_1.0.0 \
-    ecl-mpl_1.0.0 \
-    ecl-sigslots_1.0.0 \
-    ecl-sigslots-lite_1.0.0 \
-    ecl-statistics_1.0.0 \
-    ecl-streams_1.0.0 \
-    ecl-threads_1.0.0 \
-    ecl-time_1.0.0 \
-    ecl-time-lite_1.0.0 \
-    ecl-type-traits_1.0.0 \
-    ecl-utilities_1.0.0 \
-    example-interfaces_0.5.0-1 \
-    examples-rclcpp-minimal-client_0.5.1 \
-    examples-rclcpp-minimal-composition_0.5.1 \
-    examples-rclcpp-minimal-publisher_0.5.1 \
-    examples-rclcpp-minimal-service_0.5.1 \
-    examples-rclcpp-minimal-subscriber_0.5.1 \
-    examples-rclcpp-minimal-timer_0.5.1 \
-    examples-rclpy-executors_0.5.1 \
-    examples-rclpy-minimal-client_0.5.1 \
-    examples-rclpy-minimal-publisher_0.5.1 \
-    examples-rclpy-minimal-service_0.5.1 \
-    examples-rclpy-minimal-subscriber_0.5.1 \
-    fastcdr_1.0.7 \
-    fastrtps_1.6.0-5 \
-    fastrtps-cmake-module_0.5.1 \
-    geometry-msgs_0.5.1 \
-    gmock-vendor_1.8.0 \
-    gtest-vendor_1.8.0 \
-    image-geometry_2.0.5 \
-    image-tools_0.5.1-1 \
-    intra-process-demo_0.5.1-1 \
-    joy_2.1.0 \
-    kdl-parser_2.1.0 \
-    laser-geometry_2.0.0 \
-    launch_0.6.0 \
-    launch-ros_0.6.0 \
-    launch-testing_0.6.0 \
-    libcurl-vendor_2.1.0 \
-    libyaml-vendor_1.0.0 \
-    lifecycle_0.5.1-1 \
-    lifecycle-msgs_0.5.0-3 \
-    logging-demo_0.5.1-1 \
-    map-msgs_2.0.0-1 \
-    map-server_3.1.0 \
-    nav-msgs_0.5.1 \
-    orocos-kdl_3.0.1 \
-    osrf-pycommon_0.1.5 \
-    osrf-testing-tools-cpp_1.0.0 \
-    pcl-conversions_2.0.0 \
-    pendulum-control_0.5.1-1 \
-    pendulum-msgs_0.5.1-1 \
-    pluginlib_2.1.1 \
-    poco-vendor_1.1.1 \
-    py-trees_0.8.2 \
-    py-trees-msgs_0.4.1 \
-    python-cmake-module_0.5.2 \
-    rcl_0.5.1 \
-    rcl-interfaces_0.5.0-3 \
-    rcl-lifecycle_0.5.1 \
-    rcl-yaml-param-parser_0.5.1 \
-    rclcpp_0.5.1 \
-    rclcpp-lifecycle_0.5.1 \
-    rclpy_0.5.4 \
-    rcutils_0.5.1 \
-    resource-retriever_2.1.0 \
-    rmw_0.5.0 \
-    rmw-fastrtps-cpp_0.5.1 \
-    rmw-implementation_0.5.1 \
-    rmw-implementation-cmake_0.5.0 \
-    robot-state-publisher_2.1.0 \
-    ros-base_0.5.1 \
-    ros-core_0.5.1 \
-    ros-environment_2.1.1 \
-    ros-workspace_0.5.1 \
-    ros1-bridge_0.5.1 \
-    ros2cli_0.5.4 \
-    ros2launch_0.6.0 \
-    ros2lifecycle_0.5.4 \
-    ros2msg_0.5.4 \
-    ros2node_0.5.4 \
-    ros2param_0.5.4 \
-    ros2pkg_0.5.4 \
-    ros2run_0.5.4 \
-    ros2service_0.5.4 \
-    ros2srv_0.5.4 \
-    ros2topic_0.5.4 \
-    rosgraph-msgs_0.5.0-3 \
-    rosidl-cmake_0.5.1 \
-    rosidl-default-generators_0.5.0 \
-    rosidl-default-runtime_0.5.0 \
-    rosidl-generator-c_0.5.1 \
-    rosidl-generator-cpp_0.5.1 \
-    rosidl-generator-dds-idl_0.5.0 \
-    rosidl-generator-py_0.5.2 \
-    rosidl-parser_0.5.1 \
-    rosidl-typesupport-c_0.5.0-2 \
-    rosidl-typesupport-cpp_0.5.0-2 \
-    rosidl-typesupport-interface_0.5.1 \
-    rosidl-typesupport-introspection-c_0.5.1 \
-    rosidl-typesupport-introspection-cpp_0.5.1 \
-    rttest_0.5.0 \
-    rviz-assimp-vendor_4.0.2 \
-    rviz-common_4.0.2 \
-    rviz-default-plugins_4.0.2 \
-    rviz-ogre-vendor_4.0.2 \
-    rviz-rendering_4.0.2 \
-    rviz-rendering-tests_4.0.2 \
-    rviz-visual-testing-framework_4.0.2 \
-    rviz-yaml-cpp-vendor_4.0.2 \
-    rviz2_4.0.2 \
-    sensor-msgs_0.5.1 \
-    shape-msgs_0.5.1 \
-    sophus_1.0.2 \
-    sros2_0.5.0 \
-    std-msgs_0.5.1 \
-    std-srvs_0.5.1 \
-    stereo-msgs_0.5.1 \
-    teleop-twist-joy_2.1.0 \
-    teleop-twist-keyboard_2.1.1 \
-    test-msgs_0.5.0-3 \
-    test-osrf-testing-tools-cpp_1.0.0 \
-    tf2_0.9.1-1 \
-    tf2-eigen_0.9.1-1 \
-    tf2-geometry-msgs_0.9.1-1 \
-    tf2-msgs_0.9.1-1 \
-    tf2-ros_0.9.1-1 \
-    tinyxml-vendor_0.5.0 \
-    tinyxml2-vendor_0.4.0 \
-    tlsf_0.5.0 \
-    tlsf-cpp_0.5.0 \
-    topic-monitor_0.5.1-1 \
-    trajectory-msgs_0.5.1 \
-    turtlebot2-amcl_0.5.1 \
-    turtlebot2-cartographer_0.5.1 \
-    turtlebot2-demo_0.5.1 \
-    turtlebot2-drivers_0.5.1 \
-    turtlebot2-follower_0.5.1 \
-    turtlebot2-teleop_0.5.1 \
-    uncrustify-vendor_0.66.1-1 \
-    urdf_2.1.0 \
-    urdfdom_2.0.0 \
-    urdfdom-headers_1.0.0-1 \
-    vision-opencv_2.0.5 \
-    visualization-msgs_0.5.1 \
+ROS_SUPERFLORE_GENERATED_RECIPE_BASENAMES_WITH_COMPONENT = " \
+                common-interfaces/actionlib-msgs_0.5.1 \
+                       navigation/amcl_3.1.0 \
+                       ament-lint/ament-clang-format_0.5.2 \
+                      ament-cmake/ament-cmake_0.5.1 \
+                      ament-cmake/ament-cmake-auto_0.5.1 \
+                       ament-lint/ament-cmake-clang-format_0.5.2 \
+                       ament-lint/ament-cmake-copyright_0.5.2 \
+                      ament-cmake/ament-cmake-core_0.5.1 \
+                       ament-lint/ament-cmake-cppcheck_0.5.2 \
+                       ament-lint/ament-cmake-cpplint_0.5.2 \
+                      ament-cmake/ament-cmake-export-definitions_0.5.1 \
+                      ament-cmake/ament-cmake-export-dependencies_0.5.1 \
+                      ament-cmake/ament-cmake-export-include-directories_0.5.1 \
+                      ament-cmake/ament-cmake-export-interfaces_0.5.1 \
+                      ament-cmake/ament-cmake-export-libraries_0.5.1 \
+                      ament-cmake/ament-cmake-export-link-flags_0.5.1 \
+                       ament-lint/ament-cmake-flake8_0.5.2 \
+                      ament-cmake/ament-cmake-gmock_0.5.1 \
+                      ament-cmake/ament-cmake-gtest_0.5.1 \
+                      ament-cmake/ament-cmake-include-directories_0.5.1 \
+                      ament-cmake/ament-cmake-libraries_0.5.1 \
+                       ament-lint/ament-cmake-lint-cmake_0.5.2 \
+                      ament-cmake/ament-cmake-nose_0.5.1 \
+                       ament-lint/ament-cmake-pclint_0.5.2 \
+                       ament-lint/ament-cmake-pep257_0.5.2 \
+                       ament-lint/ament-cmake-pep8_0.5.2 \
+                       ament-lint/ament-cmake-pyflakes_0.5.2 \
+                      ament-cmake/ament-cmake-pytest_0.5.1 \
+                      ament-cmake/ament-cmake-python_0.5.1 \
+                  ament-cmake-ros/ament-cmake-ros_0.5.0 \
+                      ament-cmake/ament-cmake-target-dependencies_0.5.1 \
+                      ament-cmake/ament-cmake-test_0.5.1 \
+                       ament-lint/ament-cmake-uncrustify_0.5.2 \
+                       ament-lint/ament-copyright_0.5.2 \
+                       ament-lint/ament-cppcheck_0.5.2 \
+                       ament-lint/ament-cpplint_0.5.2 \
+                       ament-lint/ament-flake8_0.5.2 \
+                      ament-index/ament-index-cpp_0.5.1 \
+                      ament-index/ament-index-python_0.5.1 \
+                       ament-lint/ament-lint-auto_0.5.2 \
+                       ament-lint/ament-lint-cmake_0.5.2 \
+                       ament-lint/ament-lint-common_0.5.2 \
+                    ament-package/ament-package_0.5.2 \
+                       ament-lint/ament-pclint_0.5.2 \
+                       ament-lint/ament-pep257_0.5.2 \
+                       ament-lint/ament-pep8_0.5.2 \
+                       ament-lint/ament-pyflakes_0.5.2 \
+                      ament-tools/ament-tools_0.5.0 \
+                       ament-lint/ament-uncrustify_0.5.2 \
+                           angles/angles_1.12.0 \
+                 ros-astra-camera/astra-camera_2.1.1 \
+                   rcl-interfaces/builtin-interfaces_0.5.0-3 \
+                     cartographer/cartographer_2.1.0 \
+                 cartographer-ros/cartographer-ros_2.1.1-1 \
+                 cartographer-ros/cartographer-ros-msgs_2.1.1-1 \
+                     class-loader/class-loader_1.1.0 \
+                common-interfaces/common-interfaces_0.5.1 \
+                            demos/composition_0.5.1-1 \
+       rosidl-typesupport-connext/connext-cmake-module_0.5.3 \
+                     control-msgs/control-msgs_2.0.0 \
+                    vision-opencv/cv-bridge_2.0.5 \
+                            demos/demo-nodes-cpp_0.5.1-1 \
+                            demos/demo-nodes-cpp-rosnative_0.5.1-1 \
+                            demos/demo-nodes-py_0.5.1-1 \
+          depthimage-to-laserscan/depthimage-to-laserscan_2.1.0 \
+                  turtlebot2-demo/depthimage-to-pointcloud2_0.5.1 \
+                         variants/desktop_0.5.1 \
+                common-interfaces/diagnostic-msgs_0.5.1 \
+                            demos/dummy-map-server_0.5.1-1 \
+                            demos/dummy-robot-bringup_0.5.1-1 \
+                            demos/dummy-sensors_0.5.1-1 \
+                        ecl-tools/ecl-build_1.0.0 \
+                         ecl-core/ecl-command-line_1.0.0 \
+                         ecl-core/ecl-concepts_1.0.0 \
+                         ecl-lite/ecl-config_1.0.0 \
+                         ecl-lite/ecl-console_1.0.0 \
+                         ecl-core/ecl-containers_1.0.0 \
+                         ecl-core/ecl-converters_1.0.0 \
+                         ecl-lite/ecl-converters-lite_1.0.0 \
+                         ecl-core/ecl-core-apps_1.0.0 \
+                         ecl-core/ecl-devices_1.0.0 \
+                         ecl-core/ecl-eigen_1.0.0 \
+                         ecl-lite/ecl-errors_1.0.0 \
+                         ecl-core/ecl-exceptions_1.0.0 \
+                         ecl-core/ecl-filesystem_1.0.0 \
+                         ecl-core/ecl-formatters_1.0.0 \
+                         ecl-core/ecl-geometry_1.0.0 \
+                         ecl-lite/ecl-io_1.0.0 \
+                         ecl-core/ecl-ipc_1.0.0 \
+                        ecl-tools/ecl-license_1.0.0 \
+                         ecl-core/ecl-linear-algebra_1.0.0 \
+                         ecl-core/ecl-manipulators_1.0.0 \
+                         ecl-core/ecl-math_1.0.0 \
+                         ecl-core/ecl-mobile-robot_1.0.0 \
+                         ecl-core/ecl-mpl_1.0.0 \
+                         ecl-core/ecl-sigslots_1.0.0 \
+                         ecl-lite/ecl-sigslots-lite_1.0.0 \
+                         ecl-core/ecl-statistics_1.0.0 \
+                         ecl-core/ecl-streams_1.0.0 \
+                         ecl-core/ecl-threads_1.0.0 \
+                         ecl-core/ecl-time_1.0.0 \
+                         ecl-lite/ecl-time-lite_1.0.0 \
+                         ecl-core/ecl-type-traits_1.0.0 \
+                         ecl-core/ecl-utilities_1.0.0 \
+               example-interfaces/example-interfaces_0.5.0-1 \
+                         examples/examples-rclcpp-minimal-client_0.5.1 \
+                         examples/examples-rclcpp-minimal-composition_0.5.1 \
+                         examples/examples-rclcpp-minimal-publisher_0.5.1 \
+                         examples/examples-rclcpp-minimal-service_0.5.1 \
+                         examples/examples-rclcpp-minimal-subscriber_0.5.1 \
+                         examples/examples-rclcpp-minimal-timer_0.5.1 \
+                         examples/examples-rclpy-executors_0.5.1 \
+                         examples/examples-rclpy-minimal-client_0.5.1 \
+                         examples/examples-rclpy-minimal-publisher_0.5.1 \
+                         examples/examples-rclpy-minimal-service_0.5.1 \
+                         examples/examples-rclpy-minimal-subscriber_0.5.1 \
+                          fastcdr/fastcdr_1.0.7 \
+                         fastrtps/fastrtps_1.6.0-5 \
+                     rmw-fastrtps/fastrtps-cmake-module_0.5.1 \
+                common-interfaces/geometry-msgs_0.5.1 \
+                       googletest/gmock-vendor_1.8.0 \
+                       googletest/gtest-vendor_1.8.0 \
+                    vision-opencv/image-geometry_2.0.5 \
+                            demos/image-tools_0.5.1-1 \
+                            demos/intra-process-demo_0.5.1-1 \
+                 joystick-drivers/joy_2.1.0 \
+                       kdl-parser/kdl-parser_2.1.0 \
+                   laser-geometry/laser-geometry_2.0.0 \
+                           launch/launch_0.6.0 \
+                           launch/launch-ros_0.6.0 \
+                           launch/launch-testing_0.6.0 \
+               resource-retriever/libcurl-vendor_2.1.0 \
+                   libyaml-vendor/libyaml-vendor_1.0.0 \
+                            demos/lifecycle_0.5.1-1 \
+                   rcl-interfaces/lifecycle-msgs_0.5.0-3 \
+                            demos/logging-demo_0.5.1-1 \
+                  navigation-msgs/map-msgs_2.0.0-1 \
+                       navigation/map-server_3.1.0 \
+                common-interfaces/nav-msgs_0.5.1 \
+    rosidl-typesupport-opensplice/opensplice-cmake-module_0.5.0 \
+       orocos-kinematics-dynamics/orocos-kdl_3.0.1 \
+                    osrf-pycommon/osrf-pycommon_0.1.5 \
+           osrf-testing-tools-cpp/osrf-testing-tools-cpp_1.0.0 \
+                  pcl-conversions/pcl-conversions_2.0.0 \
+                            demos/pendulum-control_0.5.1-1 \
+                            demos/pendulum-msgs_0.5.1-1 \
+                        pluginlib/pluginlib_2.1.1 \
+                      poco-vendor/poco-vendor_1.1.1 \
+                         py-trees/py-trees_0.8.2 \
+                    py-trees-msgs/py-trees-msgs_0.4.1 \
+                    rosidl-python/python-cmake-module_0.5.2 \
+                              rcl/rcl_0.5.1 \
+                   rcl-interfaces/rcl-interfaces_0.5.0-3 \
+                              rcl/rcl-lifecycle_0.5.1 \
+                              rcl/rcl-yaml-param-parser_0.5.1 \
+                           rclcpp/rclcpp_0.5.1 \
+                           rclcpp/rclcpp-lifecycle_0.5.1 \
+                            rclpy/rclpy_0.5.4 \
+                          rcutils/rcutils_0.5.1 \
+               resource-retriever/resource-retriever_2.1.0 \
+                              rmw/rmw_0.5.0 \
+                      rmw-connext/rmw-connext-cpp_0.5.1 \
+                      rmw-connext/rmw-connext-shared-cpp_0.5.1 \
+                     rmw-fastrtps/rmw-fastrtps-cpp_0.5.1 \
+               rmw-implementation/rmw-implementation_0.5.1 \
+                              rmw/rmw-implementation-cmake_0.5.0 \
+                   rmw-opensplice/rmw-opensplice-cpp_0.5.2 \
+            robot-state-publisher/robot-state-publisher_2.1.0 \
+                         variants/ros-base_0.5.1 \
+                         variants/ros-core_0.5.1 \
+                  ros-environment/ros-environment_2.1.1 \
+                    ros-workspace/ros-workspace_0.5.1 \
+                      ros1-bridge/ros1-bridge_0.5.1 \
+                          ros2cli/ros2cli_0.5.4 \
+                           launch/ros2launch_0.6.0 \
+                          ros2cli/ros2lifecycle_0.5.4 \
+                          ros2cli/ros2msg_0.5.4 \
+                          ros2cli/ros2node_0.5.4 \
+                          ros2cli/ros2param_0.5.4 \
+                          ros2cli/ros2pkg_0.5.4 \
+                          ros2cli/ros2run_0.5.4 \
+                          ros2cli/ros2service_0.5.4 \
+                          ros2cli/ros2srv_0.5.4 \
+                          ros2cli/ros2topic_0.5.4 \
+                   rcl-interfaces/rosgraph-msgs_0.5.0-3 \
+                           rosidl/rosidl-cmake_0.5.1 \
+                  rosidl-defaults/rosidl-default-generators_0.5.0 \
+                  rosidl-defaults/rosidl-default-runtime_0.5.0 \
+                           rosidl/rosidl-generator-c_0.5.1 \
+                           rosidl/rosidl-generator-cpp_0.5.1 \
+                       rosidl-dds/rosidl-generator-dds-idl_0.5.0 \
+                    rosidl-python/rosidl-generator-py_0.5.2 \
+                           rosidl/rosidl-parser_0.5.1 \
+               rosidl-typesupport/rosidl-typesupport-c_0.5.0-2 \
+       rosidl-typesupport-connext/rosidl-typesupport-connext-c_0.5.3 \
+       rosidl-typesupport-connext/rosidl-typesupport-connext-cpp_0.5.3 \
+               rosidl-typesupport/rosidl-typesupport-cpp_0.5.0-2 \
+                           rosidl/rosidl-typesupport-interface_0.5.1 \
+                           rosidl/rosidl-typesupport-introspection-c_0.5.1 \
+                           rosidl/rosidl-typesupport-introspection-cpp_0.5.1 \
+    rosidl-typesupport-opensplice/rosidl-typesupport-opensplice-c_0.5.0 \
+    rosidl-typesupport-opensplice/rosidl-typesupport-opensplice-cpp_0.5.0 \
+                 realtime-support/rttest_0.5.0 \
+                             rviz/rviz-assimp-vendor_4.0.2 \
+                             rviz/rviz-common_4.0.2 \
+                             rviz/rviz-default-plugins_4.0.2 \
+                             rviz/rviz-ogre-vendor_4.0.2 \
+                             rviz/rviz-rendering_4.0.2 \
+                             rviz/rviz-rendering-tests_4.0.2 \
+                             rviz/rviz-visual-testing-framework_4.0.2 \
+                             rviz/rviz-yaml-cpp-vendor_4.0.2 \
+                             rviz/rviz2_4.0.2 \
+                common-interfaces/sensor-msgs_0.5.1 \
+                common-interfaces/shape-msgs_0.5.1 \
+                           sophus/sophus_1.0.2 \
+                            sros2/sros2_0.5.0 \
+                common-interfaces/std-msgs_0.5.1 \
+                common-interfaces/std-srvs_0.5.1 \
+                common-interfaces/stereo-msgs_0.5.1 \
+                 teleop-twist-joy/teleop-twist-joy_2.1.0 \
+            teleop-twist-keyboard/teleop-twist-keyboard_2.1.1 \
+                   rcl-interfaces/test-msgs_0.5.0-3 \
+           osrf-testing-tools-cpp/test-osrf-testing-tools-cpp_1.0.0 \
+                        geometry2/tf2_0.9.1-1 \
+                        geometry2/tf2-eigen_0.9.1-1 \
+                        geometry2/tf2-geometry-msgs_0.9.1-1 \
+                        geometry2/tf2-msgs_0.9.1-1 \
+                        geometry2/tf2-ros_0.9.1-1 \
+                   tinyxml-vendor/tinyxml-vendor_0.5.0 \
+                  tinyxml2-vendor/tinyxml2-vendor_0.4.0 \
+                             tlsf/tlsf_0.5.0 \
+                 realtime-support/tlsf-cpp_0.5.0 \
+                            demos/topic-monitor_0.5.1-1 \
+                common-interfaces/trajectory-msgs_0.5.1 \
+                  turtlebot2-demo/turtlebot2-amcl_0.5.1 \
+                  turtlebot2-demo/turtlebot2-cartographer_0.5.1 \
+                  turtlebot2-demo/turtlebot2-demo_0.5.1 \
+                  turtlebot2-demo/turtlebot2-drivers_0.5.1 \
+                  turtlebot2-demo/turtlebot2-follower_0.5.1 \
+                  turtlebot2-demo/turtlebot2-teleop_0.5.1 \
+                       uncrustify/uncrustify-vendor_0.66.1-1 \
+                             urdf/urdf_2.1.0 \
+                          urdfdom/urdfdom_2.0.0 \
+                  urdfdom-headers/urdfdom-headers_1.0.0-1 \
+                    vision-opencv/vision-opencv_2.0.5 \
+                common-interfaces/visualization-msgs_0.5.1 \
 "
 
 # What's built by packagegroup-ros-world. Does not include packages that appear solely in ROS_SUPERFLORE_GENERATED_BUILDTOOLS
@@ -586,6 +593,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     class-loader \
     common-interfaces \
     composition \
+    connext-cmake-module \
     control-msgs \
     cv-bridge \
     demo-nodes-cpp \
@@ -666,6 +674,7 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     map-msgs \
     map-server \
     nav-msgs \
+    opensplice-cmake-module \
     orocos-kdl \
     osrf-pycommon \
     osrf-testing-tools-cpp \
@@ -687,9 +696,12 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     rcutils \
     resource-retriever \
     rmw \
+    rmw-connext-cpp \
+    rmw-connext-shared-cpp \
     rmw-fastrtps-cpp \
     rmw-implementation \
     rmw-implementation-cmake \
+    rmw-opensplice-cpp \
     robot-state-publisher \
     ros-base \
     ros-core \
@@ -717,10 +729,14 @@ ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES = " \
     rosidl-generator-py \
     rosidl-parser \
     rosidl-typesupport-c \
+    rosidl-typesupport-connext-c \
+    rosidl-typesupport-connext-cpp \
     rosidl-typesupport-cpp \
     rosidl-typesupport-interface \
     rosidl-typesupport-introspection-c \
     rosidl-typesupport-introspection-cpp \
+    rosidl-typesupport-opensplice-c \
+    rosidl-typesupport-opensplice-cpp \
     rttest \
     rviz-assimp-vendor \
     rviz-common \
@@ -800,10 +816,13 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     ament-pyflakes-native \
     ament-uncrustify-native \
     cmake-native \
+    connext-cmake-module-native \
     fastrtps-cmake-module-native \
     gmock-vendor-native \
     gtest-native \
     gtest-vendor-native \
+    libopensplice67-native \
+    opensplice-cmake-module-native \
     osrf-pycommon-native \
     pkgconfig-native \
     python-cmake-module-native \
@@ -816,13 +835,17 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS = " \
     rosidl-default-generators-native \
     rosidl-generator-c-native \
     rosidl-generator-cpp-native \
+    rosidl-generator-dds-idl-native \
     rosidl-generator-py-native \
     rosidl-parser-native \
     rosidl-typesupport-c-native \
+    rosidl-typesupport-connext-cpp-native \
     rosidl-typesupport-cpp-native \
     rosidl-typesupport-interface-native \
     rosidl-typesupport-introspection-c-native \
     rosidl-typesupport-introspection-cpp-native \
+    rosidl-typesupport-opensplice-cpp-native \
+    rti-connext-dds-5.3.1-native \
 "
 
 ROS_SUPERFLORE_GENERATED_PLATFORM_PACKAGE_DEPENDENCIES = " \
@@ -844,6 +867,7 @@ ROS_SUPERFLORE_GENERATED_PLATFORM_PACKAGE_DEPENDENCIES = " \
     glog \
     gtest \
     libeigen \
+    libopensplice67 \
     libpcre \
     libsdl \
     libsdl-image \
@@ -875,6 +899,7 @@ ROS_SUPERFLORE_GENERATED_PLATFORM_PACKAGE_DEPENDENCIES = " \
     python3-pyyaml \
     python3-setuptools \
     qtbase \
+    rti-connext-dds-5.3.1 \
     udev \
     yaml-cpp \
     zlib \
@@ -945,8 +970,10 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     realtime-support \
     resource-retriever \
     rmw \
+    rmw-connext \
     rmw-fastrtps \
     rmw-implementation \
+    rmw-opensplice \
     robot-state-publisher \
     ros-astra-camera \
     ros-environment \
@@ -958,6 +985,8 @@ ROS_SUPERFLORE_GENERATED_RECIPES_FOR_COMPONENTS = " \
     rosidl-defaults \
     rosidl-python \
     rosidl-typesupport \
+    rosidl-typesupport-connext \
+    rosidl-typesupport-opensplice \
     rviz \
     sophus \
     sros2 \
