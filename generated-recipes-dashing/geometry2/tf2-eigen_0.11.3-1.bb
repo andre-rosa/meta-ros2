@@ -5,21 +5,22 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "tf2 is the second generation of the transform library, which lets     the user keep track of multiple coordinate frames over time. tf2     maintains the relationship between coordinate frames in a tree     structure buffered in time, and lets the user transform points,     vectors, etc between any two coordinate frames at any desired     point in time."
+DESCRIPTION = "tf2_eigen"
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
-ROS_AUTHOR = "Tully Foote"
-HOMEPAGE = "http://www.ros.org/wiki/tf2"
+ROS_AUTHOR = "Koji Terada"
+HOMEPAGE = "https://wiki.ros.org"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "geometry2"
-ROS_BPN = "tf2"
+ROS_BPN = "tf2_eigen"
 
 ROS_BUILD_DEPENDS = " \
-    console-bridge \
-    console-bridge-vendor \
     geometry-msgs \
+    libeigen \
+    tf2 \
+    tf2-ros \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -27,17 +28,18 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    console-bridge \
-    console-bridge-vendor \
     geometry-msgs \
+    libeigen \
+    tf2 \
+    tf2-ros \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    console-bridge \
-    console-bridge-vendor \
     geometry-msgs \
+    tf2 \
+    tf2-ros \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -52,10 +54,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/geometry2-release/archive/release/dashing/tf2/0.11.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "2873318da469e36b3a46400a1f0ceb6a"
-SRC_URI[sha256sum] = "81e5b1b9572da6997e64e18e87d8776e3a475fd617d9da91424562837320b67c"
-S = "${WORKDIR}/geometry2-release-release-dashing-tf2-0.11.2-1"
+SRC_URI = "https://github.com/ros2-gbp/geometry2-release/archive/release/dashing/tf2_eigen/0.11.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "05490297e8e919020b71f8f618439b7c"
+SRC_URI[sha256sum] = "267e1f37687be56e8e99b9f409d59ad994e22cc5143b77d019553967f9172707"
+S = "${WORKDIR}/geometry2-release-release-dashing-tf2_eigen-0.11.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('geometry2', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
