@@ -22,9 +22,9 @@ ROS_BUILD_DEPENDS = " \
     collada-dom \
     collada-parser \
     collada-urdf \
-    libqhull \
     liburdfdom-dev \
     mk \
+    qhull \
     resource-retriever \
     rosboost-cfg \
     rosbuild \
@@ -45,8 +45,8 @@ ROS_EXPORT_DEPENDS = " \
     collada-dom \
     collada-parser \
     collada-urdf \
-    libqhull \
     liburdfdom-dev \
+    qhull \
     resource-retriever \
     roscpp \
     rospack \
@@ -63,8 +63,8 @@ ROS_EXEC_DEPENDS = " \
     collada-dom \
     collada-parser \
     collada-urdf \
-    libqhull \
     liburdfdom-dev \
+    qhull \
     resource-retriever \
     roscpp \
     rospack \
