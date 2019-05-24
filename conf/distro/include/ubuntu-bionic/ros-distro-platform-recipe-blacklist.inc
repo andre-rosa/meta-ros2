@@ -2,8 +2,8 @@
 #
 # Copyright (c) 2019 LG Electronics, Inc.
 
-# Initially, blacklist any platform duplicates found by "bitbake-layers show-overlayed". Remove from the blacklist once a
-# PREFERRED_VERSION_<PN> setting is made in ros-distro-platform-preferred-versions.inc .
+# Initially, blacklist any platform duplicates found by "bitbake-layers show-overlayed" when DISTRO is ROS_DISTRO_TYPE. Remove
+# from the blacklist once a PREFERRED_VERSION_<PN> setting is made in ros-distro-platform-preferred-versions.inc .
 # (none)
 
 # Initially, blacklist any platform recipes with multiple versions found by "bitbake-layers show-recipes --multiple" (except for

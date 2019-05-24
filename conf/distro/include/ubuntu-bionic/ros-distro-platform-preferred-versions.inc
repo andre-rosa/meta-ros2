@@ -2,7 +2,8 @@
 #
 # Copyright (c) 2019 LG Electronics, Inc.
 
-# Set PREFERRED_VERSION_<PN> here for platform packages for which the layers provide multiple versions.
+# PREFERRED_VERSION_<PN> settings for platform packages used when DISTRO is ROS_DISTRO_TYPE for which the layers provide multiple
+# versions.
 
 PREFERRED_VERSION_cppunit ?= "1.14.0"
 # Ubuntu bionic has v4.15, but meta-raspberrypi thud only provides v4.9 and v4.14 => select the latter as the former is more
