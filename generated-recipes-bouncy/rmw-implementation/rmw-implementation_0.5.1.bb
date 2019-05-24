@@ -20,8 +20,10 @@ ROS_BUILD_DEPENDS = " \
     poco-vendor \
     rcutils \
     rmw \
+    rmw-connext-cpp \
     rmw-fastrtps-cpp \
     rmw-implementation-cmake \
+    rmw-opensplice-cpp \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
