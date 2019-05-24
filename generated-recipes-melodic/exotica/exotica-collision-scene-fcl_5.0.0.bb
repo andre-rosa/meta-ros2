@@ -17,8 +17,8 @@ ROS_BPN = "exotica_collision_scene_fcl"
 
 ROS_BUILD_DEPENDS = " \
     exotica-core \
+    fcl \
     geometric-shapes \
-    libfcl-dev \
     roscpp \
 "
 
@@ -28,8 +28,8 @@ ROS_BUILDTOOL_DEPENDS = " \
 
 ROS_EXPORT_DEPENDS = " \
     exotica-core \
+    fcl \
     geometric-shapes \
-    libfcl-dev \
     roscpp \
 "
 
@@ -37,8 +37,8 @@ ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     exotica-core \
+    fcl \
     geometric-shapes \
-    libfcl-dev \
     roscpp \
 "
 

@@ -22,9 +22,9 @@ ROS_BUILD_DEPENDS = " \
     console-bridge \
     eigen-stl-containers \
     libeigen \
-    libqhull \
     octomap \
     pkgconfig \
+    qhull \
     random-numbers \
     resource-retriever \
     shape-msgs \
@@ -41,8 +41,8 @@ ROS_EXPORT_DEPENDS = " \
     console-bridge \
     eigen-stl-containers \
     libeigen \
-    libqhull \
     octomap \
+    qhull \
     random-numbers \
     resource-retriever \
     shape-msgs \
@@ -57,8 +57,8 @@ ROS_EXEC_DEPENDS = " \
     console-bridge \
     eigen-stl-containers \
     libeigen \
-    libqhull \
     octomap \
+    qhull \
     random-numbers \
     resource-retriever \
     shape-msgs \
