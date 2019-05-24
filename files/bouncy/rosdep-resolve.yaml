@@ -38,6 +38,8 @@ libgoogle-glog-dev:
 - glog@meta-oe
 libopencv-dev:
 - opencv@meta-oe
+libopensplice67:
+- 'null'
 libpcl-all-dev:
 - pcl@meta-ros
 libpoco-dev:
@@ -108,6 +110,8 @@ python3-yaml:
 - python3-pyyaml@meta-python
 qtbase5-dev:
 - qtbase@meta-qt5
+rti-connext-dds-5.3.1:
+- 'null'
 sdl:
 - libsdl@openembedded-core
 sdl-image:
