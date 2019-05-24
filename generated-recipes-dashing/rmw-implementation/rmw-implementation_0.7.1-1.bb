@@ -21,6 +21,7 @@ ROS_BUILD_DEPENDS = " \
     rmw \
     rmw-fastrtps-cpp \
     rmw-implementation-cmake \
+    rmw-opensplice-cpp \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -31,6 +32,7 @@ ROS_EXPORT_DEPENDS = " \
     poco-vendor \
     rmw-fastrtps-cpp \
     rmw-implementation-cmake \
+    rmw-opensplice-cpp \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
@@ -39,6 +41,7 @@ ROS_EXEC_DEPENDS = " \
     poco-vendor \
     rmw-fastrtps-cpp \
     rmw-implementation-cmake \
+    rmw-opensplice-cpp \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.

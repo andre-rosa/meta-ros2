@@ -209,7 +209,7 @@ version: 3.0.8-1
 source: {
 type: git,
 url: 'https://github.com/BehaviorTree/BehaviorTree.CPP.git',
-version: master
+version: ros2-dev
 },
 status: developed
 }
@@ -346,6 +346,28 @@ version: master
 status: developed
 }
 -----
+depthimage_to_laserscan: {
+doc: {
+type: git,
+url: 'https://github.com/ros-perception/depthimage_to_laserscan.git',
+version: ros2
+},
+release: {
+tags: {
+release: 'release/dashing/{package}/{version}'
+},
+url: 'https://github.com/ros2-gbp/depthimage_to_laserscan-release.git',
+version: 2.2.1-1
+},
+source: {
+test_pull_requests: true,
+type: git,
+url: 'https://github.com/ros-perception/depthimage_to_laserscan.git',
+version: ros2
+},
+status: maintained
+}
+-----
 example_interfaces: {
 doc: {
 type: git,
@@ -436,7 +458,57 @@ test_commits: false,
 test_pull_requests: false,
 type: git,
 url: 'https://github.com/eProsima/Fast-RTPS.git',
-version: c776f0f0964e697f93b51590688569567a7056f3
+version: v1.8.0
+},
+status: developed
+}
+-----
+fmi_adapter_ros2: {
+doc: {
+type: git,
+url: 'https://github.com/boschresearch/fmi_adapter_ros2.git',
+version: dashing
+},
+release: {
+packages: [fmi_adapter,
+fmi_adapter_examples],
+tags: {
+release: 'release/dashing/{package}/{version}'
+},
+url: 'https://github.com/boschresearch/fmi_adapter_ros2-release.git',
+version: 0.1.5-1
+},
+source: {
+type: git,
+url: 'https://github.com/boschresearch/fmi_adapter_ros2.git',
+version: dashing
+},
+status: developed
+}
+-----
+gazebo_ros_pkgs: {
+doc: {
+type: git,
+url: 'https://github.com/ros-simulation/gazebo_ros_pkgs.git',
+version: ros2
+},
+release: {
+packages: [gazebo_dev,
+gazebo_msgs,
+gazebo_plugins,
+gazebo_ros,
+gazebo_ros_pkgs],
+tags: {
+release: 'release/dashing/{package}/{version}'
+},
+url: 'https://github.com/ros2-gbp/gazebo_ros_pkgs-release.git',
+version: 3.3.0-1
+},
+source: {
+test_pull_requests: true,
+type: git,
+url: 'https://github.com/ros-simulation/gazebo_ros_pkgs.git',
+version: ros2
 },
 status: developed
 }
@@ -458,7 +530,7 @@ tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/ros2-gbp/geometry2-release.git',
-version: 0.11.2-1
+version: 0.11.3-1
 },
 source: {
 test_pull_requests: true,
@@ -1306,6 +1378,53 @@ url: 'https://github.com/ros2/ros1_bridge.git',
 version: master
 },
 status: developed
+}
+-----
+ros2_intel_realsense: {
+doc: {
+type: git,
+url: 'https://github.com/intel/ros2_intel_realsense.git',
+version: master
+},
+release: {
+packages: [realsense_camera_msgs,
+realsense_ros2_camera],
+tags: {
+release: 'release/dashing/{package}/{version}'
+},
+url: 'https://github.com/ros2-gbp/ros2_intel_realsense-release.git',
+version: 2.0.3-2
+},
+source: {
+type: git,
+url: 'https://github.com/intel/ros2_intel_realsense.git',
+version: master
+},
+status: maintained
+}
+-----
+ros2_object_analytics: {
+doc: {
+type: git,
+url: 'https://github.com/intel/ros2_object_analytics.git',
+version: master
+},
+release: {
+packages: [object_analytics_msgs,
+object_analytics_node,
+object_analytics_rviz],
+tags: {
+release: 'release/dashing/{package}/{version}'
+},
+url: 'https://github.com/ros2-gbp/ros2_object_analytics-release.git',
+version: 0.5.4-1
+},
+source: {
+type: git,
+url: 'https://github.com/intel/ros2_object_analytics.git',
+version: master
+},
+status: maintained
 }
 -----
 ros2cli: {
@@ -2220,6 +2339,31 @@ version: 1.0.4-1
 source: {
 type: git,
 url: 'https://github.com/ros/urdfdom_headers.git',
+version: master
+},
+status: developed
+}
+-----
+variants: {
+doc: {
+type: git,
+url: 'https://github.com/ros2/variants.git',
+version: crystal
+},
+release: {
+packages: [desktop,
+ros_base,
+ros_core],
+tags: {
+release: 'release/dashing/{package}/{version}'
+},
+url: 'https://github.com/ros2-gbp/variants-release.git',
+version: 0.7.0-1
+},
+source: {
+test_pull_requests: true,
+type: git,
+url: 'https://github.com/ros2/variants.git',
 version: master
 },
 status: developed
@@ -3505,6 +3649,83 @@ demo_nodes_py: <?xml version="1.0" ?>
 </export>
 </package>
 -----
+depthimage_to_laserscan: <?xml version="1.0" ?>
+<package format="2">
+<name>depthimage_to_laserscan</name>
+<description>depthimage_to_laserscan</description>
+<author>Chad Rockey</author>
+<maintainer email="clalancette@openrobotics.org">Chris Lalancette</maintainer>
+<license>BSD</license>
+<url type="website">http://ros.org/wiki/depthimage_to_laserscan</url>
+<url type="bugtracker">https://github.com/ros-perception/depthimage_to_laserscan/issues</url>
+<url type="repository">https://github.com/ros-perception/depthimage_to_laserscan</url>
+<buildtool_depend>ament_cmake_ros</buildtool_depend>
+<depend>image_geometry</depend>
+<depend>libopencv-dev</depend>
+<depend>rclcpp</depend>
+<depend>sensor_msgs</depend>
+<test_depend>ament_cmake_gtest</test_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+desktop: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+<name>desktop</name>
+<description>A package which extends 'ros_base' and includes high level packages like vizualization tools and demos.</description>
+<maintainer email="steven@openrobotics.org">Steven! Ragnarök</maintainer>
+<license>Apache License 2.0</license>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<exec_depend>ros_base</exec_depend>
+<exec_depend>angles</exec_depend>
+<exec_depend>depthimage_to_laserscan</exec_depend>
+<exec_depend>joy</exec_depend>
+<exec_depend>pcl_conversions</exec_depend>
+<exec_depend>rviz2</exec_depend>
+<exec_depend>rviz_default_plugins</exec_depend>
+<exec_depend>teleop_twist_joy</exec_depend>
+<exec_depend>teleop_twist_keyboard</exec_depend>
+<exec_depend>action_tutorials</exec_depend>
+<exec_depend>composition</exec_depend>
+<exec_depend>demo_nodes_cpp</exec_depend>
+<exec_depend>demo_nodes_cpp_native</exec_depend>
+<exec_depend>demo_nodes_py</exec_depend>
+<exec_depend>dummy_map_server</exec_depend>
+<exec_depend>dummy_robot_bringup</exec_depend>
+<exec_depend>dummy_sensors</exec_depend>
+<exec_depend>image_tools</exec_depend>
+<exec_depend>intra_process_demo</exec_depend>
+<exec_depend>lifecycle</exec_depend>
+<exec_depend>logging_demo</exec_depend>
+<exec_depend>pendulum_control</exec_depend>
+<exec_depend>pendulum_msgs</exec_depend>
+<exec_depend>quality_of_service_demo_cpp</exec_depend>
+<exec_depend>quality_of_service_demo_py</exec_depend>
+<exec_depend>topic_monitor</exec_depend>
+<exec_depend>tlsf</exec_depend>
+<exec_depend>tlsf_cpp</exec_depend>
+<exec_depend>examples_rclcpp_minimal_action_client</exec_depend>
+<exec_depend>examples_rclcpp_minimal_action_server</exec_depend>
+<exec_depend>examples_rclcpp_minimal_client</exec_depend>
+<exec_depend>examples_rclcpp_minimal_composition</exec_depend>
+<exec_depend>examples_rclcpp_minimal_publisher</exec_depend>
+<exec_depend>examples_rclcpp_minimal_service</exec_depend>
+<exec_depend>examples_rclcpp_minimal_subscriber</exec_depend>
+<exec_depend>examples_rclcpp_minimal_timer</exec_depend>
+<exec_depend>examples_rclpy_minimal_action_client</exec_depend>
+<exec_depend>examples_rclpy_minimal_action_server</exec_depend>
+<exec_depend>examples_rclpy_executors</exec_depend>
+<exec_depend>examples_rclpy_minimal_client</exec_depend>
+<exec_depend>examples_rclpy_minimal_publisher</exec_depend>
+<exec_depend>examples_rclpy_minimal_service</exec_depend>
+<exec_depend>examples_rclpy_minimal_subscriber</exec_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
 diagnostic_msgs: <?xml version="1.0" ?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
@@ -3929,6 +4150,200 @@ fastrtps_cmake_module: <?xml version="1.0" ?>
 <buildtool_depend>ament_cmake</buildtool_depend>
 <test_depend>ament_lint_auto</test_depend>
 <test_depend>ament_lint_common</test_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+fmi_adapter: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+<name>fmi_adapter</name>
+<description>Wraps FMUs for co-simulation</description>
+<maintainer email="ralph.lange@de.bosch.com">Ralph Lange</maintainer>
+<license>Apache License 2.0</license>
+<url type="website">http://wiki.ros.org/fmi_adapter</url>
+<url type="repository">https://github.com/boschresearch/fmi_adapter_ros2</url>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<build_depend>rcl_interfaces</build_depend>
+<build_depend>rclcpp</build_depend>
+<build_depend>rclcpp_components</build_depend>
+<build_depend>rclcpp_lifecycle</build_depend>
+<build_depend>std_msgs</build_depend>
+<exec_depend>launch</exec_depend>
+<exec_depend>launch_ros</exec_depend>
+<exec_depend>rcl_interfaces</exec_depend>
+<exec_depend>rclcpp</exec_depend>
+<exec_depend>rclcpp_components</exec_depend>
+<exec_depend>rclcpp_lifecycle</exec_depend>
+<exec_depend>std_msgs</exec_depend>
+<test_depend>ament_cmake_gmock</test_depend>
+<test_depend>ament_cmake_gtest</test_depend>
+<test_depend>ament_cmake_pytest</test_depend>
+<test_depend>ament_lint_auto</test_depend>
+<test_depend>ament_lint_common</test_depend>
+<test_depend>launch_testing</test_depend>
+<test_depend>rcutils</test_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+fmi_adapter_examples: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+<name>fmi_adapter_examples</name>
+<description>Provides small examples for use of the fmi_adapter package</description>
+<maintainer email="ralph.lange@de.bosch.com">Ralph Lange</maintainer>
+<license>Apache License 2.0</license>
+<url type="website">http://wiki.ros.org/fmi_adapter</url>
+<url type="repository">https://github.com/boschresearch/fmi_adapter_ros2</url>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<build_depend>fmi_adapter</build_depend>
+<exec_depend>fmi_adapter</exec_depend>
+<exec_depend>launch</exec_depend>
+<exec_depend>launch_ros</exec_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+gazebo_dev: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+<name>gazebo_dev</name>
+<description>Provides a cmake config for the default version of Gazebo for the ROS distribution.</description>
+<maintainer email="jrivero@openrobotics.org">Jose Luis Rivero</maintainer>
+<license>Apache 2.0</license>
+<url type="website">http://gazebosim.org/tutorials?cat=connect_ros</url>
+<url type="bugtracker">https://github.com/ros-simulation/gazebo_ros_pkgs/issues</url>
+<url type="repository">https://github.com/ros-simulation/gazebo_ros_pkgs</url>
+<author>Johannes Meyer</author>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<build_export_depend>libgazebo9-dev</build_export_depend>
+<exec_depend>gazebo9</exec_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+gazebo_msgs: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+<name>gazebo_msgs</name>
+<description>Message and service data structures for interacting with Gazebo from ROS2.</description>
+<maintainer email="jrivero@osrfoundation.org">Jose Luis Rivero</maintainer>
+<license>BSD</license>
+<url type="website">http://gazebosim.org/tutorials?cat=connect_ros</url>
+<url type="bugtracker">https://github.com/ros-simulation/gazebo_ros_pkgs/issues</url>
+<url type="repository">https://github.com/ros-simulation/gazebo_ros_pkgs</url>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<buildtool_depend>rosidl_default_generators</buildtool_depend>
+<build_depend>builtin_interfaces</build_depend>
+<build_depend>geometry_msgs</build_depend>
+<build_depend>trajectory_msgs</build_depend>
+<build_depend>std_msgs</build_depend>
+<exec_depend>rosidl_default_runtime</exec_depend>
+<exec_depend>builtin_interfaces</exec_depend>
+<exec_depend>geometry_msgs</exec_depend>
+<exec_depend>trajectory_msgs</exec_depend>
+<exec_depend>std_msgs</exec_depend>
+<test_depend>ament_lint_common</test_depend>
+<member_of_group>rosidl_interface_packages</member_of_group>
+<export>
+<build_type>ament_cmake</build_type>
+<ros1_bridge mapping_rules="gazebo_msgs_mapping_rules.yaml"/>
+</export>
+</package>
+-----
+gazebo_plugins: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+<name>gazebo_plugins</name>
+<description>Robot-independent Gazebo plugins for sensors,
+motors and dynamic reconfigurable components.</description>
+<maintainer email="jrivero@osrfoundation.org">Jose Luis Rivero</maintainer>
+<license>BSD,
+Apache 2.0</license>
+<url type="website">http://gazebosim.org/tutorials?cat=connect_ros</url>
+<url type="bugtracker">https://github.com/ros-simulation/gazebo_ros_pkgs/issues</url>
+<url type="repository">https://github.com/ros-simulation/gazebo_ros_pkgs</url>
+<author>John Hsu</author>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<depend>camera_info_manager</depend>
+<depend>cv_bridge</depend>
+<depend>geometry_msgs</depend>
+<depend>image_transport</depend>
+<depend>nav_msgs</depend>
+<depend>sensor_msgs</depend>
+<depend>std_msgs</depend>
+<depend>tf2_geometry_msgs</depend>
+<depend>tf2_ros</depend>
+<build_depend>gazebo_dev</build_depend>
+<build_depend>gazebo_ros</build_depend>
+<build_depend>rclcpp</build_depend>
+<exec_depend>gazebo_dev</exec_depend>
+<exec_depend>gazebo_ros</exec_depend>
+<exec_depend>rclcpp</exec_depend>
+<test_depend>ament_cmake_gtest</test_depend>
+<test_depend>ament_lint_auto</test_depend>
+<test_depend>ament_lint_common</test_depend>
+<test_depend>cv_bridge</test_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+gazebo_ros: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+<name>gazebo_ros</name>
+<description>Utilities to interface with<a href="http://gazebosim.org">Gazebo</a>through ROS.</description>
+<maintainer email="jrivero@osrfoundation.org">Jose Luis Rivero</maintainer>
+<license>Apache 2.0</license>
+<url type="website">http://gazebosim.org/tutorials?cat=connect_ros</url>
+<url type="bugtracker">https://github.com/ros-simulation/gazebo_ros_pkgs/issues</url>
+<url type="repository">https://github.com/ros-simulation/gazebo_ros_pkgs</url>
+<author>John Hsu</author>
+<author>Nate Koenig</author>
+<author>Dave Coleman</author>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<depend>builtin_interfaces</depend>
+<depend>gazebo_dev</depend>
+<depend>gazebo_msgs</depend>
+<depend>rclcpp</depend>
+<depend>tinyxml_vendor</depend>
+<build_export_depend>geometry_msgs</build_export_depend>
+<build_export_depend>sensor_msgs</build_export_depend>
+<test_depend>ament_cmake_gtest</test_depend>
+<test_depend>ament_lint_auto</test_depend>
+<test_depend>ament_lint_common</test_depend>
+<test_depend>geometry_msgs</test_depend>
+<test_depend>sensor_msgs</test_depend>
+<test_depend>std_msgs</test_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+gazebo_ros_pkgs: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+<name>gazebo_ros_pkgs</name>
+<description>Interface for using ROS with the<a href="http://gazebosim.org/">Gazebo</a>simulator.</description>
+<maintainer email="jrivero@osrfoundation.org">Jose Luis Rivero</maintainer>
+<license>BSD,LGPL,Apache 2.0</license>
+<url type="website">http://gazebosim.org/tutorials?cat=connect_ros</url>
+<url type="bugtracker">https://github.com/ros-simulation/gazebo_ros_pkgs/issues</url>
+<url type="repository">https://github.com/ros-simulation/gazebo_ros_pkgs</url>
+<author>John Hsu</author>
+<author>Nate Koenig</author>
+<author>Dave Coleman</author>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<exec_depend>gazebo_dev</exec_depend>
+<exec_depend>gazebo_msgs</exec_depend>
+<exec_depend>gazebo_plugins</exec_depend>
+<exec_depend>gazebo_ros</exec_depend>
 <export>
 <build_type>ament_cmake</build_type>
 </export>
@@ -4511,6 +4926,115 @@ nmea_msgs: <?xml version="1.0" ?>
 <exec_depend>rosidl_default_runtime</exec_depend>
 <exec_depend>std_msgs</exec_depend>
 <member_of_group>rosidl_interface_packages</member_of_group>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+object_analytics_msgs: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+<name>object_analytics_msgs</name>
+<description>object analytics message definition</description>
+<maintainer email="chris.ye@intel.com">Chris Ye</maintainer>
+<author email="peter.han@intel.com">Peter Han</author>
+<license>Apache 2.0</license>
+<url type="repository">https://github.com/intel/ros2_object_analytics</url>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<build_depend>std_msgs</build_depend>
+<build_depend>object_msgs</build_depend>
+<build_depend>sensor_msgs</build_depend>
+<build_depend>geometry_msgs</build_depend>
+<build_depend>builtin_interfaces</build_depend>
+<build_depend>rosidl_default_generators</build_depend>
+<build_depend>tf2_ros</build_depend>
+<build_depend>object_msgs</build_depend>
+<exec_depend>std_msgs</exec_depend>
+<exec_depend>object_msgs</exec_depend>
+<exec_depend>sensor_msgs</exec_depend>
+<exec_depend>geometry_msgs</exec_depend>
+<exec_depend>rosidl_default_runtime</exec_depend>
+<exec_depend>tf2_ros</exec_depend>
+<exec_depend>object_msgs</exec_depend>
+<member_of_group>rosidl_interface_packages</member_of_group>
+<export>
+<build_type>ament_cmake</build_type>
+<ros1_bridge mapping_rules="object_analytics_msgs_mapping_rule.yaml"/>
+<ros1_bridge mapping_rules="object_msgs_mapping_rule.yaml"/>
+</export>
+</package>
+-----
+object_analytics_node: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+<name>object_analytics_node</name>
+<description>The object_analytics_node package</description>
+<maintainer email="chris.ye@intel.com">Chris Ye</maintainer>
+<license>Apache 2.0</license>
+<author email="peter.han@intel.com">Peter Han</author>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<build_depend>sensor_msgs</build_depend>
+<build_depend>geometry_msgs</build_depend>
+<build_depend>object_msgs</build_depend>
+<build_depend>object_analytics_msgs</build_depend>
+<build_depend>rclcpp</build_depend>
+<build_depend>rclcpp_components</build_depend>
+<build_depend>pcl_conversions</build_depend>
+<build_depend>libpcl-all-dev</build_depend>
+<build_depend>cv_bridge</build_depend>
+<build_depend>class_loader</build_depend>
+<build_depend>message_filters</build_depend>
+<exec_depend>ament_index_python</exec_depend>
+<exec_depend>std_msgs</exec_depend>
+<exec_depend>sensor_msgs</exec_depend>
+<exec_depend>geometry_msgs</exec_depend>
+<exec_depend>object_msgs</exec_depend>
+<exec_depend>object_analytics_msgs</exec_depend>
+<exec_depend>rclcpp</exec_depend>
+<build_depend>rclcpp_components</build_depend>
+<exec_depend>pcl_conversions</exec_depend>
+<exec_depend>libpcl-all-dev</exec_depend>
+<exec_depend>libpcl-all</exec_depend>
+<exec_depend>cv_bridge</exec_depend>
+<exec_depend>class_loader</exec_depend>
+<exec_depend>message_filters</exec_depend>
+<test_depend>ament_lint_auto</test_depend>
+<test_depend>ament_lint_common</test_depend>
+<test_depend>ament_cmake_gtest</test_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+object_analytics_rviz: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+<name>object_analytics_rviz</name>
+<description>Display object analytics result in rviz</description>
+<maintainer email="chris.ye@intel.com">Chris Ye</maintainer>
+<license>Apache License 2.0</license>
+<author>Chris Ye</author>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<build_depend>rclcpp</build_depend>
+<build_depend>object_analytics_msgs</build_depend>
+<build_depend>std_msgs</build_depend>
+<build_depend>object_msgs</build_depend>
+<build_depend>sensor_msgs</build_depend>
+<build_depend>message_filters</build_depend>
+<build_depend>visualization_msgs</build_depend>
+<build_depend>geometry_msgs</build_depend>
+<build_depend>cv_bridge</build_depend>
+<exec_depend>rclcpp</exec_depend>
+<exec_depend>object_analytics_msgs</exec_depend>
+<exec_depend>std_msgs</exec_depend>
+<exec_depend>object_msgs</exec_depend>
+<exec_depend>sensor_msgs</exec_depend>
+<exec_depend>message_filters</exec_depend>
+<exec_depend>visualization_msgs</exec_depend>
+<exec_depend>geometry_msgs</exec_depend>
+<exec_depend>cv_bridge</exec_depend>
+<test_depend>ament_lint_auto</test_depend>
+<test_depend>ament_lint_common</test_depend>
 <export>
 <build_type>ament_cmake</build_type>
 </export>
@@ -5326,6 +5850,65 @@ rcutils: <?xml version="1.0" ?>
 </export>
 </package>
 -----
+realsense_camera_msgs: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+<name>realsense_camera_msgs</name>
+<description>A package containing realsense camera messages definitions.</description>
+<maintainer email="sharron.liu@intel.com">Sharron LIU</maintainer>
+<license>Apache License 2.0</license>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<buildtool_depend>rosidl_default_generators</buildtool_depend>
+<build_depend>builtin_interfaces</build_depend>
+<build_depend>std_msgs</build_depend>
+<exec_depend>rosidl_default_runtime</exec_depend>
+<exec_depend>builtin_interfaces</exec_depend>
+<exec_depend>std_msgs</exec_depend>
+<test_depend>ament_lint_common</test_depend>
+<member_of_group>rosidl_interface_packages</member_of_group>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+realsense_ros2_camera: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+<name>realsense_ros2_camera</name>
+<description>The realsense_ros2_camera package</description>
+<maintainer email="sharron.liu@intel.com">Sharron LIU</maintainer>
+<license>Apache License 2.0</license>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<buildtool_depend>rosidl_default_generators</buildtool_depend>
+<build_depend>builtin_interfaces</build_depend>
+<build_depend>eigen</build_depend>
+<build_depend>rclcpp</build_depend>
+<build_depend>rmw_implementation</build_depend>
+<build_depend>std_msgs</build_depend>
+<build_depend>sensor_msgs</build_depend>
+<build_depend>tf2_ros</build_depend>
+<build_depend>realsense_camera_msgs</build_depend>
+<build_depend>cv_bridge</build_depend>
+<build_depend>image_transport</build_depend>
+<build_depend>librealsense2</build_depend>
+<exec_depend>rosidl_default_runtime</exec_depend>
+<exec_depend>builtin_interfaces</exec_depend>
+<exec_depend>rclcpp</exec_depend>
+<exec_depend>rmw_implementation</exec_depend>
+<exec_depend>std_msgs</exec_depend>
+<exec_depend>sensor_msgs</exec_depend>
+<exec_depend>tf2_ros</exec_depend>
+<exec_depend>realsense_camera_msgs</exec_depend>
+<exec_depend>cv_bridge</exec_depend>
+<exec_depend>librealsense2</exec_depend>
+<test_depend>ament_cmake_gtest</test_depend>
+<test_depend>ament_lint_auto</test_depend>
+<test_depend>ament_lint_common</test_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
 resource_retriever: <?xml version="1.0" ?>
 <package format="2">
 <name>resource_retriever</name>
@@ -6026,6 +6609,74 @@ ros2topic: <?xml version="1.0" ?>
 <test_depend>python3-pytest</test_depend>
 <export>
 <build_type>ament_python</build_type>
+</export>
+</package>
+-----
+ros_base: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+<name>ros_base</name>
+<description>A package which extends 'ros_core' and includes other basic functionalities like tf2 and urdf.</description>
+<maintainer email="steven@openrobotics.org">Steven! Ragnarök</maintainer>
+<license>Apache License 2.0</license>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<exec_depend>ros_core</exec_depend>
+<exec_depend>tf2</exec_depend>
+<exec_depend>tf2_eigen</exec_depend>
+<exec_depend>tf2_geometry_msgs</exec_depend>
+<exec_depend>tf2_ros</exec_depend>
+<exec_depend>kdl_parser</exec_depend>
+<exec_depend>urdf</exec_depend>
+<exec_depend>robot_state_publisher</exec_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
+ros_core: <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+<name>ros_core</name>
+<description>A package to aggregate the packages required to use publish / subscribe,
+services,
+generate messages and other core ROS concepts.</description>
+<maintainer email="steven@openrobotics.org">Steven! Ragnarök</maintainer>
+<license>Apache License 2.0</license>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<exec_depend>ament_cmake</exec_depend>
+<exec_depend>ament_cmake_auto</exec_depend>
+<exec_depend>ament_cmake_gtest</exec_depend>
+<exec_depend>ament_cmake_gmock</exec_depend>
+<exec_depend>ament_cmake_pytest</exec_depend>
+<exec_depend>ament_cmake_ros</exec_depend>
+<exec_depend>ament_index_cpp</exec_depend>
+<exec_depend>ament_index_python</exec_depend>
+<exec_depend>ament_lint_auto</exec_depend>
+<exec_depend>ament_lint_common</exec_depend>
+<exec_depend>rcl_lifecycle</exec_depend>
+<exec_depend>rclcpp</exec_depend>
+<exec_depend>rclcpp_lifecycle</exec_depend>
+<exec_depend>rclpy</exec_depend>
+<exec_depend>rosidl_default_generators</exec_depend>
+<exec_depend>rosidl_default_runtime</exec_depend>
+<exec_depend>ros_environment</exec_depend>
+<exec_depend>common_interfaces</exec_depend>
+<exec_depend>ros2launch</exec_depend>
+<exec_depend>ros2lifecycle</exec_depend>
+<exec_depend>ros2msg</exec_depend>
+<exec_depend>ros2multicast</exec_depend>
+<exec_depend>ros2node</exec_depend>
+<exec_depend>ros2param</exec_depend>
+<exec_depend>ros2pkg</exec_depend>
+<exec_depend>ros2run</exec_depend>
+<exec_depend>ros2service</exec_depend>
+<exec_depend>ros2srv</exec_depend>
+<exec_depend>ros2topic</exec_depend>
+<exec_depend>sros2</exec_depend>
+<exec_depend>class_loader</exec_depend>
+<exec_depend>pluginlib</exec_depend>
+<export>
+<build_type>ament_cmake</build_type>
 </export>
 </package>
 -----
