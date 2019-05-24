@@ -2,4 +2,4 @@
 #
 # Copyright (c) 2019 LG Electronics, Inc.
 
-# Set PREFERRED_PROVIDER_<PN> here for platform packages.
+# PREFERRED_PROVIDER_<PN> settings for platform packages used when DISTRO is ROS_DISTRO_TYPE.
