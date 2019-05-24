@@ -55,10 +55,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/boschresearch/fmi_adapter_ros2-release/archive/release/crystal/fmi_adapter/0.1.3-0.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "89a362e3ff6681140deeaefee2a411a5"
-SRC_URI[sha256sum] = "9fef64ebe842649540c8cf39e015113ac89ae520f644c7119340064d82bfb7ba"
-S = "${WORKDIR}/fmi_adapter_ros2-release-release-crystal-fmi_adapter-0.1.3-0"
+SRC_URI = "https://github.com/boschresearch/fmi_adapter_ros2-release/archive/release/crystal/fmi_adapter/0.1.4-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "05b1cfbb02485fc5a2488b4cca1ba22c"
+SRC_URI[sha256sum] = "25baebf9675f26c246a6a7608f48ac92f323bdbe129809007ad98f52191aec77"
+S = "${WORKDIR}/fmi_adapter_ros2-release-release-crystal-fmi_adapter-0.1.4-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('fmi-adapter-ros2', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
