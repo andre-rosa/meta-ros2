@@ -19,6 +19,7 @@ dkms: []
 eigen:
 - libeigen@meta-oe
 g++-static: []
+gazebo9: []
 google-mock:
 - gtest@meta-oe
 gtest:
@@ -35,6 +36,8 @@ libfreetype6:
 - freetype@openembedded-core
 libfreetype6-dev:
 - freetype@openembedded-core
+libgazebo9-dev:
+- libgazebo9@meta-ros
 libgflags-dev:
 - gflags@meta-oe
 libglfw3-dev:
@@ -43,6 +46,10 @@ libgoogle-glog-dev:
 - glog@meta-oe
 libopencv-dev:
 - opencv@meta-oe
+libopensplice69:
+- 'null'
+libpcl-all:
+- pcl@meta-ros
 libpcl-all-dev:
 - pcl@meta-ros
 libpoco-dev:
@@ -137,8 +144,10 @@ qt5-qmake:
 - qtbase@meta-qt5
 qtbase5-dev:
 - qtbase@meta-qt5
+rti-connext-dds-5.3.1:
+- 'null'
 tango-icon-theme:
-- tango-icon-theme@meta-ros
+- 'null'
 tinyxml:
 - libtinyxml@meta-oe
 tinyxml2:

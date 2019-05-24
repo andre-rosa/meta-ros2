@@ -5,45 +5,45 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "tf2_msgs"
+DESCRIPTION = "tf2 is the second generation of the transform library, which lets     the user keep track of multiple coordinate frames over time. tf2     maintains the relationship between coordinate frames in a tree     structure buffered in time, and lets the user transform points,     vectors, etc between any two coordinate frames at any desired     point in time."
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
-ROS_AUTHOR = "Eitan Marder-Eppstein"
-HOMEPAGE = "http://www.ros.org/wiki/tf2_msgs"
+ROS_AUTHOR = "Tully Foote"
+HOMEPAGE = "http://www.ros.org/wiki/tf2"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=17;endline=17;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "geometry2"
-ROS_BPN = "tf2_msgs"
+ROS_BPN = "tf2"
 
 ROS_BUILD_DEPENDS = " \
-    action-msgs \
-    builtin-interfaces \
+    console-bridge \
+    console-bridge-vendor \
     geometry-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
-    rosidl-default-generators-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    action-msgs \
-    builtin-interfaces \
+    console-bridge \
+    console-bridge-vendor \
     geometry-msgs \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    action-msgs \
-    builtin-interfaces \
+    console-bridge \
+    console-bridge-vendor \
     geometry-msgs \
-    rosidl-default-runtime \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = ""
+ROS_TEST_DEPENDS = " \
+    ament-cmake-gtest \
+"
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually
@@ -52,10 +52,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/geometry2-release/archive/release/dashing/tf2_msgs/0.11.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "4048ac870fac2b8024fd34aaa0bebf5b"
-SRC_URI[sha256sum] = "0e5834f11bdd42c1d99a263a3598e0a8f34f9b77e014265650f9c4eb5e0fa774"
-S = "${WORKDIR}/geometry2-release-release-dashing-tf2_msgs-0.11.2-1"
+SRC_URI = "https://github.com/ros2-gbp/geometry2-release/archive/release/dashing/tf2/0.11.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "3678c30d23187e4735bad1476e71d5aa"
+SRC_URI[sha256sum] = "b1a80124e42924602a5b1df8cf20a509a0912c015012570008510024ccac57f9"
+S = "${WORKDIR}/geometry2-release-release-dashing-tf2-0.11.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('geometry2', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

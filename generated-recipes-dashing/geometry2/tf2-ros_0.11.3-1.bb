@@ -5,22 +5,24 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "tf2_eigen"
+DESCRIPTION = "This package contains the ROS bindings for the tf2 library, for both Python and C++."
 AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
-ROS_AUTHOR = "Koji Terada"
-HOMEPAGE = "https://wiki.ros.org"
+ROS_AUTHOR = "Eitan Marder-Eppstein"
+HOMEPAGE = "http://www.ros.org/wiki/tf2_ros"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=8;endline=8;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "geometry2"
-ROS_BPN = "tf2_eigen"
+ROS_BPN = "tf2_ros"
 
 ROS_BUILD_DEPENDS = " \
     geometry-msgs \
-    libeigen \
+    message-filters \
+    rclcpp \
+    std-msgs \
     tf2 \
-    tf2-ros \
+    tf2-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
@@ -28,18 +30,18 @@ ROS_BUILDTOOL_DEPENDS = " \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    geometry-msgs \
-    libeigen \
-    tf2 \
-    tf2-ros \
+    rclcpp \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
     geometry-msgs \
+    message-filters \
+    rclcpp \
+    std-msgs \
     tf2 \
-    tf2-ros \
+    tf2-msgs \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
@@ -54,10 +56,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/geometry2-release/archive/release/dashing/tf2_eigen/0.11.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "c02c7e3c055294e3102466954ff0cba0"
-SRC_URI[sha256sum] = "b8dd68778e8f030548045227a48921ff68fab0056dbc7813246cc0f62a949a79"
-S = "${WORKDIR}/geometry2-release-release-dashing-tf2_eigen-0.11.2-1"
+SRC_URI = "https://github.com/ros2-gbp/geometry2-release/archive/release/dashing/tf2_ros/0.11.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "d145241533542b1a766157c8967951fd"
+SRC_URI[sha256sum] = "ae07e2fd1aa0156b206f307b06216a007fc72344c53f819d5c9904f53c5f4c88"
+S = "${WORKDIR}/geometry2-release-release-dashing-tf2_ros-0.11.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('geometry2', d)}"
 ROS_BUILD_TYPE = "ament_cmake"

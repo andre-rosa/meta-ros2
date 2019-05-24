@@ -5,48 +5,45 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "Small lib to transform sensor_msgs with tf. Most notably, PointCloud2"
-AUTHOR = "Vincent Rabaud <vincent.rabaud@gmail.com>"
-ROS_AUTHOR = "Vincent Rabaud"
-HOMEPAGE = "http://www.ros.org/wiki/tf2_ros"
+DESCRIPTION = "tf2_msgs"
+AUTHOR = "Tully Foote <tfoote@osrfoundation.org>"
+ROS_AUTHOR = "Eitan Marder-Eppstein"
+HOMEPAGE = "http://www.ros.org/wiki/tf2_msgs"
 SECTION = "devel"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://package.xml;beginline=9;endline=9;md5=d566ef916e9dedc494f5f793a6690ba5"
+LIC_FILES_CHKSUM = "file://package.xml;beginline=11;endline=11;md5=d566ef916e9dedc494f5f793a6690ba5"
 
 ROS_CN = "geometry2"
-ROS_BPN = "tf2_sensor_msgs"
+ROS_BPN = "tf2_msgs"
 
 ROS_BUILD_DEPENDS = " \
-    libeigen \
-    sensor-msgs \
-    tf2 \
-    tf2-ros \
+    action-msgs \
+    builtin-interfaces \
+    geometry-msgs \
 "
 
 ROS_BUILDTOOL_DEPENDS = " \
-    ament-cmake-auto-native \
+    ament-cmake-native \
+    rosidl-default-generators-native \
 "
 
 ROS_EXPORT_DEPENDS = " \
-    libeigen \
-    sensor-msgs \
-    tf2 \
-    tf2-ros \
+    action-msgs \
+    builtin-interfaces \
+    geometry-msgs \
 "
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
 ROS_EXEC_DEPENDS = " \
-    libeigen \
-    sensor-msgs \
-    tf2 \
-    tf2-ros \
+    action-msgs \
+    builtin-interfaces \
+    geometry-msgs \
+    rosidl-default-runtime \
 "
 
 # Currently informational only -- see http://www.ros.org/reps/rep-0149.html#dependency-tags.
-ROS_TEST_DEPENDS = " \
-    ament-cmake-gtest \
-"
+ROS_TEST_DEPENDS = ""
 
 DEPENDS = "${ROS_BUILD_DEPENDS} ${ROS_BUILDTOOL_DEPENDS}"
 # Bitbake doesn't support the "export" concept, so build them as if we needed them to build this package (even though we actually
@@ -55,10 +52,10 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/ros2-gbp/geometry2-release/archive/release/dashing/tf2_sensor_msgs/0.11.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "598097bff5bf8da33db1b8eac53994b8"
-SRC_URI[sha256sum] = "63933a640d8adbc63fa57662ba7451b9489bb6327569be6509bf894506d78854"
-S = "${WORKDIR}/geometry2-release-release-dashing-tf2_sensor_msgs-0.11.2-1"
+SRC_URI = "https://github.com/ros2-gbp/geometry2-release/archive/release/dashing/tf2_msgs/0.11.3-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "9ed5bf5f9eeaa61340b01c4a797ee23d"
+SRC_URI[sha256sum] = "568d34e3b983c6bb0e45ddf6d3c07e7c210954e9fd9cfce2d9edd4f10cc91c56"
+S = "${WORKDIR}/geometry2-release-release-dashing-tf2_msgs-0.11.3-1"
 
 ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('geometry2', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
