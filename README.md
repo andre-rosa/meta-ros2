@@ -1,3 +1,12 @@
+**NOTE:** As part of the
+[work for the ROS 2 Dashing Diademata release](https://github.com/ros2/ros2/issues/607#issuecomment-469502151),
+effective 2019-05-21, the authoritative `meta-ros` has been forked from this
+repository into <https://github.com/ros/meta-ros>. This new repository will
+support the current ROS 2 distros (Crystal Clemmys and Dashing Diademata), and
+eventually Bouncy Bolson and the current ROS 1 distro Melodic Morenia.
+
+----
+
 This is a layer to provide ROS Indigo Igloo in an OpenEmbedded Linux system.
 It provides a stable cross-compilation build system for many common ROS packages. 
 Currently, this layer is still under continuous development.
