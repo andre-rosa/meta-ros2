@@ -2,6 +2,9 @@
 #
 # Place the changes necessary to make meta-webosose compatible with meta-ros version 2 here.
 
+# XXX Temp until it's fixed to work with "crystal".
+RDEPENDS_packagegroup-webos-extended_remove = "${VIRTUAL-RUNTIME_com.webos.service.rosbridge}"
+
 # Undo blacklisting
 PNBLACKLIST[libfreenect] ?= ""
 PNBLACKLIST[freenect-camera] ?= ""
