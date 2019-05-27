@@ -1,5 +1,18 @@
 # Copyright (c) 2019 LG Electronics, Inc.
 
+# Remove these explicitly until they are dropped from the ROS_EXEC_DEPENDS of ros-core, after which (most of them) will not be in
+# in ROS_SUPERFLORE_GENERATED_WORLD_PACKAGES because they only appear in ROS_TEST_DEPENDS.
+RDEPENDS_${PN}_remove = "ament-cmake"
+RDEPENDS_${PN}_remove = "ament-cmake-auto"
+RDEPENDS_${PN}_remove = "ament-cmake-gmock"
+RDEPENDS_${PN}_remove = "ament-cmake-gtest"
+RDEPENDS_${PN}_remove = "ament-cmake-pytest"
+RDEPENDS_${PN}_remove = "ament-cmake-ros"
+RDEPENDS_${PN}_remove = "ament-index-cpp"
+RDEPENDS_${PN}_remove = "ament-index-python"
+RDEPENDS_${PN}_remove = "ament-lint-auto"
+RDEPENDS_${PN}_remove = "ament-lint-common"
+
 # Can't build these until we figure out how to build clang-format without building all of clang.
 RDEPENDS_${PN}_remove = "ament-clang-format"
 RDEPENDS_${PN}_remove = "ament-cmake-clang-format"
