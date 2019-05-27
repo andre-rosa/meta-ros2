@@ -5,6 +5,8 @@
 # XXX Temp until it's fixed to work with "crystal".
 RDEPENDS_packagegroup-webos-extended_remove = "${VIRTUAL-RUNTIME_com.webos.service.rosbridge}"
 
+RDEPENDS_packagegroup-webos-extended_remove = "packagegroup-ros2-world"
+
 # Undo blacklisting
 PNBLACKLIST[libfreenect] ?= ""
 PNBLACKLIST[freenect-camera] ?= ""
