@@ -1,6 +1,6 @@
 melodic/superflore-change-summary.txt
 -----
-On branch yocto-bot-UBFvLWJILw
+On branch yocto-bot-YufjjgZcAB
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)

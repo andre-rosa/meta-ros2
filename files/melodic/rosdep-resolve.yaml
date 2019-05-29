@@ -14,7 +14,7 @@ autoconf:
 automake:
 - automake
 avahi-daemon:
-- 'null'
+- avahi@openembedded-core
 binutils:
 - binutils
 bison:
