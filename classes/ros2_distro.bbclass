@@ -17,3 +17,14 @@ do_install_append() {
         true
     fi
 }
+
+do_install_append_class-target() {
+    # The parent_prefix_path files are used on the target => remove the build tree from the paths. We assume this is only an issue
+    # with ROS 2.
+    if [ -d ${D}${datadir}/ament_index/resource_index/parent_prefix_path ]; then
+        find ${D}${datadir}/ament_index/resource_index/parent_prefix_path -type f \
+            | xargs --no-run-if-empty sed -i -e 's@${STAGING_DIR_HOST}/@/@g' -e 's@${STAGING_DIR_NATIVE}/@/@g'
+    else
+        true
+    fi
+}
