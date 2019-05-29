@@ -1,10 +1,9 @@
 # TODO Before First PR
 
-- webosose/build-webos PR to remove meta-*-ros2?
-- Build github-ose with **crystal**
+- Repo transfer
+- Build  **crystal** with GitHub OSE
     - com.webos.service.rosbridge
-    - ecl-threads: CMake Error: TRY_RUN() invoked in cross-compiling mode, please set the following cache variables appropriately: THREADS_PTHREAD_ARG (advanced)
-    - urdfdom: `#include_next <stdlib.h>` failure
+    - opencv needs PKGCONFIG_append = "${PYTHON_PN}"
 - Update for newer platform components.
 - Add downloadfilename parameter:
 
@@ -17,7 +16,8 @@
         recipes-extended/fcl/fcl_0.3.2.bb:9:SRC_URI = "https://github.com/flexible-collision-library/fcl/archive/${PV}.tar.gz \
 
 - Add REQUIRED_DISTRO_FEATURES to .inc-s.
-- Prepare commits for thud meta-webosose.
+- Why opendev-staticdev package needed for webos-image-ros-world?
+- Check PR-s from `bmwcarit:meta-ros`.
 - Examine the additions to `[devel]` of <https://github.com/lgsvl/meta-ros2> since it was branched from from `[master]` of
   <https://github.com/bmwcarit/meta-ros>, cherry-picking any onto `[thud-superflore-crystal]` that are still needed.
 - Confirm that all of the builds of the `*-vendor` packages do the right thing.
@@ -52,7 +52,6 @@
         - yaml-cpp-vendor/yaml-cpp-vendor_5.0.0.bb
 
 - Add copyright notices to remaining files.
-- opencv needs PKGCONFIG_append = "${PYTHON_PN}"
 - python-catkin-pkg-modules -> check contents!! Currently it's mapped to python-catkin-pkg.
 - Test catkin changes for ROS_PYTHON_VERSION
 - Better name for catkin_opt_ros? Don't want anything under /opt/ros.
@@ -215,6 +214,8 @@
         python-empy 3.3.2 3.3.2 [melodic]
         libqhull: qhull 2012.1 2015.2 [melodic]
         wxpython 3.0.2.0 3.0.2.0  [melodic]
+
+- webosose/build-webos PR to remove meta-*-ros2?
 
 # New ROS_DISTRO bringup
 - Compare system packages
