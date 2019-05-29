@@ -1,9 +1,8 @@
 # TODO Before First PR
 
 - Repo transfer
-- Build  **crystal** with GitHub OSE
-    - com.webos.service.rosbridge
-    - opencv needs PKGCONFIG_append = "${PYTHON_PN}"
+- Get com.webos.service.rosbridge to build.
+- Where to put PREFERRED_VERSION_opencv = "3.2"
 - Update for newer platform components.
 - Add downloadfilename parameter:
 
