@@ -1,3 +1,6 @@
 # Copyright (c) 2019 LG Electronics, Inc.
 
-RDEPENDS_${PN} += "${PYTHON_PN}-typing"
+ROS_EXEC_DEPENDS += " \
+    ${PYTHON_PN}-asyncio \
+    ${PYTHON_PN}-typing \
+"
