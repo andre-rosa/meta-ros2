@@ -198,13 +198,28 @@ version: master
 status: maintained
 }
 -----
+behaviortree_cpp: {
+release: {
+tags: {
+release: 'release/dashing/{package}/{version}'
+},
+url: 'https://github.com/BehaviorTree/behaviortree_cpp-release.git',
+version: 2.5.2-1
+}
+}
+-----
 behaviortree_cpp_v3: {
+doc: {
+type: git,
+url: 'https://github.com/BehaviorTree/BehaviorTree.CPP.git',
+version: ros2-dev
+},
 release: {
 tags: {
 release: 'release/dashing/{package}/{version}'
 },
 url: 'https://github.com/BehaviorTree/behaviortree_cpp_v3-release.git',
-version: 3.0.8-1
+version: 3.0.9-1
 },
 source: {
 type: git,
@@ -3294,8 +3309,25 @@ apriltag: <?xml version="1.0" ?>
 </export>
 </package>
 -----
+behaviortree_cpp: <?xml version="1.0" ?>
+<package format="2">
+<name>behaviortree_cpp</name>
+<description>This package provides a behavior trees core.</description>
+<maintainer email="davide.faconti@gmail.com">Davide Faconti</maintainer>
+<license>MIT</license>
+<author>Michele Colledanchise</author>
+<author>Davide Faconti</author>
+<build_depend>libzmq3-dev</build_depend>
+<exec_depend>libzmq3-dev</exec_depend>
+<test_depend>ament_cmake_gtest</test_depend>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<export>
+<build_type>ament_cmake</build_type>
+</export>
+</package>
+-----
 behaviortree_cpp_v3: <?xml version="1.0" ?>
-<package>
+<package format="2">
 <name>behaviortree_cpp_v3</name>
 <description>This package provides the Behavior Trees core library.</description>
 <maintainer email="davide.faconti@gmail.com">Davide Faconti</maintainer>
@@ -3303,7 +3335,7 @@ behaviortree_cpp_v3: <?xml version="1.0" ?>
 <author>Michele Colledanchise</author>
 <author>Davide Faconti</author>
 <build_depend>libzmq3-dev</build_depend>
-<run_depend>libzmq3-dev</run_depend>
+<exec_depend>libzmq3-dev</exec_depend>
 <test_depend>ament_cmake_gtest</test_depend>
 <buildtool_depend>ament_cmake</buildtool_depend>
 <export>

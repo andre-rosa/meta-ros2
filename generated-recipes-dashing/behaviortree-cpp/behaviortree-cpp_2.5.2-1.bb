@@ -5,7 +5,7 @@
 inherit ros_distro_${ROS_DISTRO}
 inherit ros_superflore_generated
 
-DESCRIPTION = "This package provides the Behavior Trees core library."
+DESCRIPTION = "This package provides a behavior trees core."
 AUTHOR = "Davide Faconti <davide.faconti@gmail.com>"
 ROS_AUTHOR = "Michele Colledanchise"
 HOMEPAGE = "https://wiki.ros.org"
@@ -13,8 +13,8 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://package.xml;beginline=10;endline=10;md5=58e54c03ca7f821dd3967e2a2cd1596e"
 
-ROS_CN = "behaviortree_cpp_v3"
-ROS_BPN = "behaviortree_cpp_v3"
+ROS_CN = "behaviortree_cpp"
+ROS_BPN = "behaviortree_cpp"
 
 ROS_BUILD_DEPENDS = " \
     zeromq \
@@ -24,9 +24,7 @@ ROS_BUILDTOOL_DEPENDS = " \
     ament-cmake-native \
 "
 
-ROS_EXPORT_DEPENDS = " \
-    zeromq \
-"
+ROS_EXPORT_DEPENDS = ""
 
 ROS_BUILDTOOL_EXPORT_DEPENDS = ""
 
@@ -46,20 +44,20 @@ DEPENDS += "${ROS_EXPORT_DEPENDS} ${ROS_BUILDTOOL_EXPORT_DEPENDS}"
 
 RDEPENDS_${PN} += "${ROS_EXEC_DEPENDS}"
 
-SRC_URI = "https://github.com/BehaviorTree/behaviortree_cpp_v3-release/archive/release/dashing/behaviortree_cpp_v3/3.0.8-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
-SRC_URI[md5sum] = "7b777581168267e5eec5c15be5627d01"
-SRC_URI[sha256sum] = "e26225296f888bd1f1df6cc8b749d6efe255bdcc40abb177a24ed0587311c44a"
-S = "${WORKDIR}/behaviortree_cpp_v3-release-release-dashing-behaviortree_cpp_v3-3.0.8-1"
+SRC_URI = "https://github.com/BehaviorTree/behaviortree_cpp-release/archive/release/dashing/behaviortree_cpp/2.5.2-1.tar.gz;downloadfilename=${ROS_SP}.tar.gz"
+SRC_URI[md5sum] = "4af213dfa0dbc7d97382baff6aa5bc7b"
+SRC_URI[sha256sum] = "efed4ba3082011bfb1cdbb6d71b8475f8c9ed7d6302e087ac7b13cb253d08f20"
+S = "${WORKDIR}/behaviortree_cpp-release-release-dashing-behaviortree_cpp-2.5.2-1"
 
-ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('behaviortree-cpp-v3', d)}"
+ROS_COMPONENT_TYPE = "${@ros_distro__get_component_type('behaviortree-cpp', d)}"
 ROS_BUILD_TYPE = "ament_cmake"
 
 # Allow the above settings to be overridden.
-ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('behaviortree-cpp-v3', d)}"
-include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviortree-cpp-v3/behaviortree-cpp-v3_common.inc
-include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviortree-cpp-v3/behaviortree-cpp-v3-${PV}_common.inc
-include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviortree-cpp-v3/${BPN}.inc
-include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviortree-cpp-v3/${BPN}-${PV}.inc
+ROS_INCLUDES_TREE := "${@ros_superflore_generated__get_includes_tree('behaviortree-cpp', d)}"
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviortree-cpp/behaviortree-cpp_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviortree-cpp/behaviortree-cpp-${PV}_common.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviortree-cpp/${BPN}.inc
+include ${ROS_LAYERDIR}/${ROS_INCLUDES_TREE}/behaviortree-cpp/${BPN}-${PV}.inc
 
 inherit ${ROS_COMPONENT_TYPE}_component
 inherit ros_${ROS_BUILD_TYPE}
