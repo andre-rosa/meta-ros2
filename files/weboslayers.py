@@ -1,4 +1,4 @@
-# Copyright (c) 2008-2018 LG Electronics, Inc.
+# Copyright (c) 2008-2019 LG Electronics, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,11 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# This implementation introduces next generation build environment for
-# Open webOS. The change introduces a mechanism to add additional layers to the
-# base ones: oe-core, meta-oe, and meta-webos, and to specify the commits to be
-# used for each. mcf now expects the layers to be defined in this file
-# (weboslayers.py in the same directory as mcf) as a list of Python data tuples:
+# Configuration file for the webOS build configuration tool mcf.
+#
+# The layers used in the build are specified via:
 #
 # webos_layers = [
 # ('layer-name', priority, 'URL', 'submission', 'working-dir'),
@@ -36,13 +34,11 @@
 # URL         = The Git repository address for the layer from which to clone.
 #               A value of '' skips the cloning.
 #
-# submission  = The information used by Git to checkout and identify the precise
-#               content. Submission values could be "branch=<name>" and
-#               "commit=<id>" or "tag=<tag>". Omitted branch information means
-#               only that "master" will be used as the name of the local
-#               branch. Omitted commit or tag means origin/HEAD will be checked
-#               out (which might NOT be origin/master, although
-#               it usually is).
+# submission  = The information used by Git to fetch the layer and name the
+#               local branch. This item has the form:
+#                   [branch=<name>][,][commit=<id>|tag=<tag>]
+#               The default for "branch" is "master". If neither "commit" or
+#               "tag" are present, the current head of the branch is fetched.
 #
 # working-dir = Alternative directory for the layer.
 #
@@ -50,6 +46,7 @@
 # along with a list of the valid MACHINE-s
 #
 
+# Value for DISTRO
 Distribution = "webos"
 
 # Supported MACHINE-s
