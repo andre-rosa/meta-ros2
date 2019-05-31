@@ -24,8 +24,10 @@ import re
 from time import gmtime, strftime, sleep
 import shutil
 import glob
+import importlib.util
+import importlib.machinery
 
-__version__ = "6.2.3b"
+__version__ = "6.2.3c"
 
 logger = logging.getLogger(__name__)
 
@@ -115,6 +117,8 @@ def getopts():
 
     general.add_argument(mcfcommand_option, dest=mcfcommand_dest, choices=mcfcommand_choices, default=mcfcommand_default,
                               help='command to mcf; if update is given, none of the remaining options nor MACHINE can be specified (default: %(default)s)')
+
+    general.add_argument('-f', '--config-file', dest='configfile', help='.mcf/.py file specifying the build configuration (default: weboslayers.py in same directory as this script)')
 
     if mcfcommand in ('configure','update+configure'):
         variations = parser.add_argument_group('Build Instructions')
@@ -263,27 +267,32 @@ def location_to_dirname(location):
     str1 = location.split('/')
     return os.path.splitext(str1[len(str1)-1])[0]
 
-def read_weboslayers(path):
-    sys.path.insert(0,path)
-    if not os.path.isfile(os.path.join(path,'weboslayers.py')):
-        raise Exception("Error: Configuration file %s does not exist!" % os.path.join(path,'weboslayers.py'))
+def read_mcfconfigfile(configfile):
+    if not os.path.isfile(configfile):
+        raise Exception("Error: Configuration file %s does not exist!" % configfile)
 
-    from weboslayers import webos_layers
+    importlib.machinery.SOURCE_SUFFIXES.append(".mcf")
+    spec = importlib.util.spec_from_file_location("mcfconfigfile", configfile)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    sys.modules["mcfconfigfile"] = module
+
+    from mcfconfigfile import webos_layers
 
     for p in webos_layers:
         layer = {"name":p[0], "priority":p[1], "url":p[2], "submission":p[3], "location":p[4]}
         LAYERS[layer["name"]] = layer
         parsesubmissions(layer)
         if not layer["url"] and not layer["location"]:
-            raise Exception("Error: Layer '%s' does not have either URL or alternative working-dir defined in weboslayers.py" % layer["name"])
+            raise Exception("Error: Layer '%s' does not have either URL or alternative working-dir defined in %s" % (layer["name"], configfile))
         if not layer["location"]:
             layer["location"] = location_to_dirname(layer["url"])
 
-    from weboslayers import Distribution
+    from mcfconfigfile import Distribution
     global DISTRO
     DISTRO = Distribution
 
-    from weboslayers import Machines
+    from mcfconfigfile import Machines
     global SUPPORTED_MACHINES
     SUPPORTED_MACHINES = Machines
 
@@ -463,7 +472,7 @@ def write_bblayers_conf(sourcedir):
         f.write('"\n')
         f.write(priorities)
         try:
-            from weboslayers import BblayersConfExtraLines
+            from mcfconfigfile import BblayersConfExtraLines
             if BblayersConfExtraLines:
                 f.writelines('\n' + '\n'.join(BblayersConfExtraLines) + '\n')
         except ImportError:
@@ -844,6 +853,7 @@ def configure_build(srcdir, options):
         ['@prog@', progname],
         ['@srcdir@', srcdir],
         ['@abs_srcdir@', abs_srcdir],
+        ['@configfileoption@', ('--config-file=%s' % options.configfile) if options.configfile else '' ],
     ]
 
     # if icecc is not installed, or version does not match requirements, then disabling icecc is the correct action.
@@ -885,7 +895,13 @@ if __name__ == '__main__':
 
     options = getopts()
 
-    srcdir = os.path.dirname(progname)
+    if options.configfile:
+        srcdir = "."
+        configfile = options.configfile
+    else:
+        srcdir = os.path.dirname(progname)
+        configfile = os.path.join(srcdir, "weboslayers.py")
+
     abs_srcdir = os.path.abspath(srcdir)
 
     if options.mcfcommand == 'update':
@@ -897,10 +913,10 @@ if __name__ == '__main__':
     if options.clean:
         enable_clean()
 
-    read_weboslayers(srcdir)
+    read_mcfconfigfile(configfile)
     for M in options.MACHINE:
         if M not in SUPPORTED_MACHINES:
-            logger.error("MACHINE argument '%s' isn't supported (does not appear in Machines in weboslayers.py '%s')" % (M, SUPPORTED_MACHINES))
+            logger.error("MACHINE argument '%s' isn't supported (does not appear in Machines in %s: '%s')" % (M, options.configfile, SUPPORTED_MACHINES))
             sys.exit(1)
 
     if options.mcfcommand != 'configure':
