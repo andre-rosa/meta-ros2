@@ -48,18 +48,9 @@
 #
 # working-dir = Alternative directory for the layer.
 #
-# The name of the distribution is also defined in this file along with a list of
-# the valid MACHINE-s.
-#
 
 # If this setting is absent, version 1 is assumed.
 McfFileVersion = 2
-
-# Value for DISTRO
-Distribution = "webos"
-
-# Supported MACHINE-s
-Machines = ['raspberrypi3','qemux86']
 
 # Note that the github.com/openembedded repositories are read-only mirrors of
 # the authoritative repositories on git.openembedded.org .
@@ -92,4 +83,4 @@ Layers = [
 
 # BblayersConfExtraLines is a list of strings to be appended to the generated
 # conf/bblayers.conf .
-BblayersConfExtraLines = []
+BblayersConfExtraLines = ['ROS_DISTRO = "crystal"']
