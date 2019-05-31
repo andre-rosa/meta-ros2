@@ -48,12 +48,6 @@
 
 FileFormatVersion = 2
 
-# Value for DISTRO
-Distribution = "webos"
-
-# Supported MACHINE-s
-Machines = ['raspberrypi3','qemux86']
-
 # github.com/openembedded repositories are read-only mirrors of the authoritative
 # repositories on git.openembedded.org
 Layers = [
@@ -82,3 +76,6 @@ Layers = [
 
 ('meta-webos-ros2',           52, 'git://github.com/webosose/meta-webosose.git',            '', ''),
 ]
+
+# BblayersConfExtraLines is a tuple of strings to be appended to the generated conf/bblayers.conf.
+BblayersConfExtraLines = ('ROS_DISTRO = "crystal"')
