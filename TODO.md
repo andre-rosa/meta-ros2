@@ -1,5 +1,25 @@
 # TODO Before First PR
 
+- ros-workspace: local_setup: _ament_python_executable="/home/herb.kuta/z/work/lge/ros/lgsvl/build-webos/BUILD/sysroots/x86_64-linux/usr/bin/python3-native/python
+
+./usr/bin/python3-config
+./usr/bin/python3.5-config
+./usr/bin/python3.5m-config
+./usr/lib/python3.5/config-3.5m/Makefile
+./usr/lib/python3.5/config/Makefile
+./usr/lib/python3.5/_sysconfigdata.py
+./usr/lib/urdfdom/cmake/urdfdom-config.cmake
+./usr/lib/python2.7/config/Makefile
+./usr/lib/python2.7/_sysconfigdata.py
+./usr/lib/opkg/info/ntp.preinst
+./usr/lib/opkg/info/systemd-extra-utils.preinst
+./usr/lib/opkg/info/pulseaudio-server.preinst
+./usr/lib/opkg/info/dbus-1.preinst
+./usr/lib/opkg/info/lttng-tools.preinst
+./usr/lib/opkg/info/systemd.preinst
+./usr/lib/node_modules/*
+./usr/share/node-inspector/*
+
 - Run morty-sf-crystal-trial in qemu; -B morty-sf-crystal; force push and announce
 - mcf
 - cmake-s to put into -dev:
