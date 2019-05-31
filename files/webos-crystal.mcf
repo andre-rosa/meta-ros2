@@ -55,7 +55,7 @@ McfFileVersion = 2
 # Note that the github.com/openembedded repositories are read-only mirrors of
 # the authoritative repositories on git.openembedded.org .
 Layers = [
-('bitbake',                   -1, 'git://github.com/openembedded/bitbake.git',              'branch=1.32,commit=0193e1f', ''),
+('bitbake',                   -6, 'git://github.com/openembedded/bitbake.git',              'branch=1.32,commit=0193e1f', 'openembedded-core/bitbake'),
 
 ('meta',                       5, 'git://github.com/openembedded/openembedded-core.git',    'branch=morty,commit=4b32784', ''),
 
