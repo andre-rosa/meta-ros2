@@ -15,3 +15,7 @@ VIRTUAL-RUNTIME_init_manager = "systemd"
 require conf/distro/include/${ROS_DISTRO_BASELINE_PLATFORM}/ros-distro-platform-preferred-providers.inc
 require conf/distro/include/${ROS_DISTRO_BASELINE_PLATFORM}/ros-distro-platform-recipe-blacklist.inc
 require conf/distro/include/${ROS_DISTRO_BASELINE_PLATFORM}/ros-distro-platform-preferred-versions.inc
+
+# XXX Perhaps these below elsewhere?
+PNBLACKLIST[webos-image-ros-roscore] ?= "Not buildable when DISTRO is '${DISTRO}'"
+PNBLACKLIST[webos-image-ros-world] ?= "Not buildable when DISTRO is '${DISTRO}'"
