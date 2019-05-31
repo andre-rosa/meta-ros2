@@ -16,7 +16,7 @@
 #
 # The layers used in the build are specified via:
 #
-# webos_layers = [
+# Layers = [
 # ('layer-name', priority, 'URL', 'submission', 'working-dir'),
 # ...
 # ]
@@ -46,6 +46,8 @@
 # along with a list of the valid MACHINE-s
 #
 
+FileFormatVersion = 2
+
 # Value for DISTRO
 Distribution = "webos"
 
@@ -54,7 +56,7 @@ Machines = ['raspberrypi3','qemux86']
 
 # github.com/openembedded repositories are read-only mirrors of the authoritative
 # repositories on git.openembedded.org
-webos_layers = [
+Layers = [
 ('bitbake',                   -1, 'git://github.com/openembedded/bitbake.git',              'branch=1.32,commit=0193e1f', ''),
 
 ('meta',                       5, 'git://github.com/openembedded/openembedded-core.git',    'branch=morty,commit=4b32784', ''),
