@@ -26,8 +26,11 @@ do_install_append() {
            -e '/AMENT_CURRENT_PREFIX=.*_path/ s@_path.*@_path; [ $_path = '$profile_dir' ] \&\& AMENT_CURRENT_PREFIX=${prefix}@' \
            setup.sh
 
-    # Hardcode the directory where _order_packages.py resides.
-    sed -i -e '/_order_packages\.py/ s@\$AMENT_CURRENT_PREFIX/@'$profile_dir'/@' local_setup.sh
+    # Don't attempt to use the build-time Python executable on the target and hardcode the directory where _order_packages.py
+    # resides.
+    sed -i -e '/^_ament_python_executable=/ s@=.*@=${bindir}/${PYTHON_PN}@' \
+           -e '/_order_packages\.py/ s@\$AMENT_CURRENT_PREFIX/@'$profile_dir'/@' \
+           local_setup.sh
 
     mkdir -p ${D}${bindir}
     for f in *setup.bash *setup.zsh *setup.sh; do
