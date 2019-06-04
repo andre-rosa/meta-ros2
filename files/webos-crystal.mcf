@@ -71,7 +71,7 @@ Layers = [
 ('meta-qt5-compat',           19, 'ssh://gpro.lgsvl.com/webosose/meta-webosose',            '', ''),
 ('meta-qt5',                  20, 'git://github.com/meta-qt5/meta-qt5.git',                 'branch=krogoth,commit=dcfcb58', ''),
 
-('meta-ros',                  38, 'git://github.com/ros/meta-ros.git',                      'branch=thud-draft',''),
+('meta-ros',                  38, 'git://github.com/herb-kuta-lge/meta-ros2.git',           'branch=thud-draft-next','meta-ros'),
 
 # From https://gpro.lgsvl.com/#/c/207963/118/weboslayers.py,cm (https://jira2.lgsvl.com/browse/PLAT-60843) (7225b02)
 ('meta-webos',                40, 'ssh://gpro.lge.com/webosose/meta-webosose',              'branch=jansa/thud,commit=refs/changes/63/237563/16', ''),
