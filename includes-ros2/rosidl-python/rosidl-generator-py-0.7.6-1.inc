@@ -1,5 +1,9 @@
 # Copyright (c) 2019 LG Electronics, Inc.
 
+ROS_EXPORT_DEPENDS = " \
+    python3-numpy \
+"
+
 do_install_append() {
     # - Add <SYSROOT>/<PYTHON-SITE-PACKAGES>/numpy/core/include to the include file search path. XXX Why doesn't this need to be
     #   done under Ubuntu bionic?
