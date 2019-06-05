@@ -69,7 +69,7 @@ Layers = [
 ('meta-webos-backports-2.5',  32, 'git://github.com/webosose/meta-webosose.git',            '', ''),
 ('meta-webos-backports-2.6',  33, 'git://github.com/webosose/meta-webosose.git',            '', ''),
 
-('meta-ros',                  38, 'git://github.com/ros/meta-ros.git',                      'branch=morty-draft-dashing',''),
+('meta-ros',                  38, 'git://github.com/herb-kuta-lge/meta-ros2.git',           'branch=morty-draft-dashing','meta-ros'),
 
 ('meta-raspberrypi',          50, 'git://git.yoctoproject.org/meta-raspberrypi',            'branch=morty,commit=2a19226', ''),
 ]
